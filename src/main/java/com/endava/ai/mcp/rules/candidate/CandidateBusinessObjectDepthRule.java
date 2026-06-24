@@ -45,8 +45,8 @@ public final class CandidateBusinessObjectDepthRule implements McpValidationRule
 
     private boolean hasDurableObjectSignal(String value) {
         return CandidateTextSupport.containsAny(value,
-                "row", "record", "ledger", "receipt", "invoice", "order", "history",
-                "profile", "account", "thread", "case", "ticket", "transaction", "document",
+                "row", "record", "ledger", "history",
+                "profile", "account", "thread", "case", "transaction", "document",
                 "identity", "detail", "line item", "line-item", "persistence", "persisted", "durable");
     }
 }

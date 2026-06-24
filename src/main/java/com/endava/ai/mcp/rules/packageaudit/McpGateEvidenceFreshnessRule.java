@@ -36,7 +36,10 @@ public final class McpGateEvidenceFreshnessRule implements McpValidationRule {
                     "MCP gate must publish a non-zero Tests run count",
                     gate));
         }
-        if (Pattern.compile("(?i)(failures|errors)\\s*:\\s*[1-9]").matcher(text).find()) {
+        boolean claimsPass = Pattern.compile("(?im)^\\s*-?\\s*verdict\\s*:\\s*PASS\\b").matcher(text).find()
+                || Pattern.compile("(?im)^\\s*-?\\s*exit_code\\s*:\\s*0\\b").matcher(text).find()
+                || Pattern.compile("(?i)\\bMCP_EXIT_CODE\\s*=\\s*0\\b").matcher(text).find();
+        if (claimsPass && Pattern.compile("(?i)(failures|errors)\\s*:\\s*[1-9]").matcher(text).find()) {
             result.add(McpPackageViolation.blocker("mcp.gate-evidence.failures-present",
                     "MCP gate cannot claim PASS while publishing failures or errors",
                     gate));

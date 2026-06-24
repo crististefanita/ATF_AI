@@ -66,6 +66,63 @@ public final class McpBusinessGraphAssertions {
                         "Expected: bullet list covering application map, package overlay, owned/countable, blocked/capped, next closure, and proof boundary."));
     }
 
+    public void assertBusinessFlowGraphEdgesDoNotCrossNodeText() throws IOException {
+        List<String> blockers = graphProfile().nodeTextClearanceBlockers();
+        audit.assertNoSyntheticViolations("Final report Business Flow Graph edge-to-text clearance", blockers, audit.finalReport(),
+                "report.graph.edge-crosses-node-text",
+                audit.details(
+                        "Asserts: graph edges enter nodes through borders, not through title/subtitle text bands.",
+                        "Artifact: analysis/langgraph-business-understanding.html.",
+                        "Expected: no SVG edge endpoint/control point inside a node near .nt/.ns text baselines.",
+                        "Repair: route the edge to the rectangle border or move the label/edge so they do not overlap visually."));
+    }
+
+    public void assertBusinessFlowGraphLabelsAreCenteredInsideNodes() throws IOException {
+        List<String> blockers = graphProfile().nodeLabelAlignmentBlockers();
+        audit.assertNoSyntheticViolations("Final report Business Flow Graph label alignment", blockers, audit.finalReport(),
+                "report.graph.label-alignment",
+                audit.details(
+                        "Asserts: graph node labels are centered and fit inside their rectangles.",
+                        "Artifact: analysis/langgraph-business-understanding.html and analysis/shared-report-reference.css.",
+                        "Expected: .nt and .ns use text-anchor: middle, or every text element declares text-anchor=\"middle\".",
+                        "Repair: add the anchor to shared CSS or widen/reposition nodes whose labels overflow."));
+    }
+
+    public void assertBusinessFlowGraphStylesVisibleSvgShapes() throws IOException {
+        List<String> blockers = graphProfile().visibleNodeShapeBlockers();
+        audit.assertNoSyntheticViolations("Final report Business Flow Graph visible node styling", blockers, audit.finalReport(),
+                "report.graph.node-style-target",
+                audit.details(
+                        "Asserts: SVG node classes are attached to visible shapes, not only wrapper groups.",
+                        "Artifact: analysis/langgraph-business-understanding.html.",
+                        "Expected: <rect class=\"node ...\"> so shared CSS paints fill/stroke directly.",
+                        "Repair: move node/owned/cap/strong classes from <g> wrappers to the rendered <rect> elements."));
+    }
+
+    public void assertBusinessFlowGraphUsesDeclaredEdgeVariants() throws IOException {
+        List<String> blockers = graphProfile().edgeVariantBlockers();
+        audit.assertNoSyntheticViolations("Final report Business Flow Graph declared edge variants", blockers, audit.finalReport(),
+                "report.graph.edge-variant-undefined",
+                audit.details(
+                        "Asserts: every SVG edge variant used by the graph is defined by shared CSS.",
+                        "Artifacts: analysis/langgraph-business-understanding.html and analysis/shared-report-reference.css.",
+                        "Expected: edge classes use canonical variants such as edge, edge soft, edge dashed, or a CSS-backed variant.",
+                        "Repair: replace ad-hoc edge classes or promote the useful variant into shared-report-reference.css first."));
+    }
+
+    public void assertBusinessFlowGraphShowsPackageRunOverlay() throws IOException {
+        List<String> runIds = new java.util.ArrayList<>();
+        audit.forEachRun(runIds::add);
+        List<String> blockers = graphProfile().runOverlayBlockers(runIds);
+        audit.assertNoSyntheticViolations("Final report Business Flow Graph package run overlay", blockers, audit.finalReport(),
+                "report.graph.run-overlay-missing",
+                audit.details(
+                        "Asserts: Business Flow Graph exposes the package overlay lane, not only the application macro-map.",
+                        "Artifact: analysis/langgraph-business-understanding.html.",
+                        "Expected: visible run overlay nodes for every runtime run slot, e.g. run_01..run_N.",
+                        "Repair: use the html-ex lane pattern: application row, run evidence row, next-closure pressure row."));
+    }
+
     private McpGraphTemplateProfile graphProfile() throws IOException {
         String html = audit.readFinalReport();
         return McpGraphTemplateProfile.from(

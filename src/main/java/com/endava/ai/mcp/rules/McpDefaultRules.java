@@ -3,6 +3,7 @@ package com.endava.ai.mcp.rules;
 import com.endava.ai.mcp.contract.McpProfile;
 import com.endava.ai.mcp.rules.business.BusinessEvidenceTraceRule;
 import com.endava.ai.mcp.rules.business.BusinessNoveltyAgainstExistingSuiteRule;
+import com.endava.ai.mcp.rules.business.ClaimSourceActionAlignmentRule;
 import com.endava.ai.mcp.rules.business.DurableBusinessObjectRule;
 import com.endava.ai.mcp.rules.business.NextFrontierSingularityRule;
 import com.endava.ai.mcp.rules.candidate.CandidateBusinessGraphObjectSpecificityRule;
@@ -18,6 +19,7 @@ import com.endava.ai.mcp.rules.candidate.CandidateSingleFamilyCapRule;
 import com.endava.ai.mcp.rules.candidate.HtmlExampleCandidateBusinessClosureRule;
 import com.endava.ai.mcp.rules.candidate.HtmlExampleCandidateEvidenceTraceRule;
 import com.endava.ai.mcp.rules.candidate.HtmlExampleCandidateScoreRule;
+import com.endava.ai.mcp.rules.candidate.BusinessLifecycleDepthRule;
 import com.endava.ai.mcp.rules.packageaudit.FullMcpGateRule;
 import com.endava.ai.mcp.rules.packageaudit.McpGateEvidenceFreshnessRule;
 import com.endava.ai.mcp.rules.packageaudit.PackageAccountingRule;
@@ -104,6 +106,7 @@ public final class McpDefaultRules {
                 new BusinessNoveltyAgainstExistingSuiteRule(),
                 new DurableBusinessObjectRule(),
                 new BusinessEvidenceTraceRule(),
+                new ClaimSourceActionAlignmentRule(),
                 new NextFrontierSingularityRule(),
                 new ScoreCapEvidenceRule(),
                 new RunLearningProgressionRule(),
@@ -158,6 +161,7 @@ public final class McpDefaultRules {
                 new CandidateBusinessGraphObjectSpecificityRule(),
                 new CandidateScoreJustificationRule(),
                 new CandidateHtmlExamplePromotionRule(),
+                new BusinessLifecycleDepthRule(),
                 new HtmlExampleCandidateEvidenceTraceRule()
         );
     }

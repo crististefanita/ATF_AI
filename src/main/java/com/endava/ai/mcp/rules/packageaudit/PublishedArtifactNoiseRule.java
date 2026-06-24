@@ -62,8 +62,19 @@ public final class PublishedArtifactNoiseRule implements McpValidationRule {
     }
 
     private List<Path> publishedTextArtifacts(McpPackageContext context, McpPackageValidationResult result) {
+        List<Path> artifacts = new ArrayList<>();
+        artifacts.addAll(findPackageLevelTextArtifacts(context, result));
+        artifacts.addAll(findRunTextArtifacts(context, result));
+        return artifacts.stream()
+                .filter(Files::isRegularFile)
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
+    private List<Path> findPackageLevelTextArtifacts(McpPackageContext context, McpPackageValidationResult result) {
         List<Path> artifacts = new ArrayList<>(List.of(
                 context.paths().readme(),
+                context.packageRoot().resolve(McpArtifactPaths.CALIBRATION),
                 context.paths().report(),
                 context.paths().packageState(),
                 context.paths().executionGateCard(),
@@ -72,11 +83,9 @@ public final class PublishedArtifactNoiseRule implements McpValidationRule {
                 context.packageRoot().resolve(McpArtifactPaths.QUALITY_ACCOUNTING_VERDICT),
                 context.packageRoot().resolve(McpArtifactPaths.MCP_GATE_RESULT)
         ));
-        artifacts.addAll(findRunTextArtifacts(context, result));
-        return artifacts.stream()
-                .filter(Files::isRegularFile)
-                .distinct()
-                .collect(Collectors.toList());
+        artifacts.addAll(findTextArtifacts(context.packageRoot().resolve(McpArtifactPaths.REVIEW_ROOT), result));
+        artifacts.addAll(findTextArtifacts(context.packageRoot().resolve(McpArtifactPaths.ANALYSIS_ROOT), result));
+        return artifacts;
     }
 
     private List<Path> findRunTextArtifacts(McpPackageContext context, McpPackageValidationResult result) {
@@ -98,5 +107,30 @@ public final class PublishedArtifactNoiseRule implements McpValidationRule {
                     exception.getMessage(), runsRoot));
             return List.of();
         }
+    }
+
+    private List<Path> findTextArtifacts(Path root, McpPackageValidationResult result) {
+        if (!Files.isDirectory(root)) {
+            return List.of();
+        }
+        try (Stream<Path> stream = Files.walk(root)) {
+            return stream
+                    .filter(Files::isRegularFile)
+                    .filter(this::isPublishedTextArtifact)
+                    .sorted()
+                    .collect(Collectors.toList());
+        } catch (IOException exception) {
+            result.add(McpPackageViolation.blocker("artifact.noise.walk-failed",
+                    exception.getMessage(), root));
+            return List.of();
+        }
+    }
+
+    private boolean isPublishedTextArtifact(Path path) {
+        String name = path.getFileName().toString().toLowerCase(Locale.ROOT);
+        return name.endsWith(".md")
+                || name.endsWith(".json")
+                || name.endsWith(".diff")
+                || name.endsWith(".txt");
     }
 }

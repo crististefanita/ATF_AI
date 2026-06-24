@@ -33,4 +33,29 @@ public class McpLatestPackageBusinessGraphPresentationContractTest {
     public void businessFlowGraphLegendContentIsRelevant() throws IOException {
         McpPackageAuditValidation.latestPackage().businessGraph().assertBusinessFlowGraphLegendContentIsRelevant();
     }
+
+    @Test
+    public void businessFlowGraphEdgesDoNotCrossNodeText() throws IOException {
+        McpPackageAuditValidation.latestPackage().businessGraph().assertBusinessFlowGraphEdgesDoNotCrossNodeText();
+    }
+
+    @Test
+    public void businessFlowGraphLabelsAreCenteredInsideNodes() throws IOException {
+        McpPackageAuditValidation.latestPackage().businessGraph().assertBusinessFlowGraphLabelsAreCenteredInsideNodes();
+    }
+
+    @Test
+    public void businessFlowGraphStylesVisibleSvgShapes() throws IOException {
+        McpPackageAuditValidation.latestPackage().businessGraph().assertBusinessFlowGraphStylesVisibleSvgShapes();
+    }
+
+    @Test
+    public void businessFlowGraphUsesDeclaredEdgeVariants() throws IOException {
+        McpPackageAuditValidation.latestPackage().businessGraph().assertBusinessFlowGraphUsesDeclaredEdgeVariants();
+    }
+
+    @Test
+    public void businessFlowGraphShowsPackageRunOverlay() throws IOException {
+        McpPackageAuditValidation.latestPackage().businessGraph().assertBusinessFlowGraphShowsPackageRunOverlay();
+    }
 }

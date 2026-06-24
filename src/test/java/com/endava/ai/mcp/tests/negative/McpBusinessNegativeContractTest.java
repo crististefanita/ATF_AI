@@ -45,4 +45,30 @@ public class McpBusinessNegativeContractTest {
         requireCode(result, "next-frontier.primary-missing");
         StepLogger.pass("Validator rejected broad next-frontier handoff");
     }
+
+    @Test
+    @ValidatesMcpContract("claim-action.source-proof-alignment")
+    public void rejectsReloginClaimWithoutSessionBoundaryProof() throws IOException {
+        Path projectRoot = projectRoot();
+        Path packageRoot = cloneLatestPackage();
+        Path state = packageRoot.resolve("runs/run_01/review/run-state.json");
+        String mutated = Files.readString(state)
+                .replaceAll("(?is)\"claim\"\\s*:\\s*\"[^\"]*\"",
+                        "\"claim\": \"registered customer relogin proves account ownership without any session boundary\"")
+                .replaceAll("(?is)\"progression\"\\s*:\\s*\"[^\"]*\"",
+                        "\"progression\": \"claims relogin but keeps the original source and proof unchanged\"");
+        write(state, mutated);
+
+        McpPackageValidationResult result = new McpGeneratedPackageValidator(projectRoot).validate(packageRoot);
+
+        logValidatorScenario(
+                "Reject relogin claim without source/proof session boundary",
+                packageRoot,
+                "Changed run_01 state to publish a relogin claim without changing source, diff or proof.",
+                "Expected violation: claim-action.relogin-without-session-boundary.",
+                "Asserted artifact: runs/run_01/review/run-state.json.",
+                result);
+        requireCode(result, "claim-action.relogin-without-session-boundary");
+        StepLogger.pass("Validator rejected claim verb stronger than source/proof action");
+    }
 }

@@ -1,24 +1,18 @@
-﻿# Calibration README
+# Branch Memory Guide
 
-Latest active ROOT_RUN: $run.
-
-| Metric | Value | Source |
-| --- | ---: | --- |
-| Overall package | 93 | $run/review/package-state.json |
-| Score cap | 93 | $run/review/package-state.json |
-| Runs consumed | 5 / 5 | $run/review/package-state.json |
-| UI tests | 25 / 25 PASS | $run/runs/*/validation/testng-results.xml |
-| MCP gate | PASS 100 / 100 | $run/validation/mcp/mcp-gate-result.md |
-
-Owned object: registered account invoice details page with purchased line item.
-New frontier: registered-account-invoice-products-after-authenticated-checkout-reopen-and-relogin.
-Weakest axis: business breadth beyond invoice details.
-Primary next business object: registered account order history row.
-
-## Fresh-Run Contract
-
-- Live prompt family was reread.
-- Five run slots were consumed.
-- Each run has five UI tests.
-- Each run has source, diff, state, XML, Extent, and command proof.
-- Final MCP gate is frozen under $run/validation/mcp/.
+- active ROOT_RUN = none
+- branch = develop3
+- quality loop = docs/prompts/iterativ/iterative-core-standard.html
+- completion state = no saved package remains under docs/out
+- META_ITERATION_COUNT = 10
+- active window = none
+- counted run set = none
+- retained governed set = none
+- materialized novelty set = none
+- closure-only cap set = none
+- countable no-lift set = none
+- retained diagnostic set = none
+- pruned review-only set = none
+- outside-window comparative memory = common/docs/html-ex/README.md
+- stop verdict = no local package memory remains here
+- next target = reopen branch memory cold, then create a fresh ROOT_RUN only after prepare and pretrain pass

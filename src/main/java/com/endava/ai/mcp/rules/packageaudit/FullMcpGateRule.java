@@ -4,6 +4,7 @@ package com.endava.ai.mcp.rules.packageaudit;
 import com.endava.ai.mcp.rules.McpValidationRule;
 import com.endava.ai.mcp.McpPackageValidationResult;
 import com.endava.ai.mcp.McpPackageViolation;
+import com.endava.ai.mcp.McpViolationBuilder;
 import com.endava.ai.mcp.context.McpArtifactPaths;
 import com.endava.ai.mcp.context.McpPackageContext;
 
@@ -46,6 +47,20 @@ public final class FullMcpGateRule implements McpValidationRule {
         if (subsetMarker) {
             result.add(McpPackageViolation.blocker("mcp.gate-result.subset-only",
                     "Frozen MCP gate looks like a subset run, not the full MCP contract", gate));
+        }
+        String packageName = context.packageRoot().getFileName().toString();
+        boolean explicitRoot = text.contains("-Dmcp.package.root")
+                || lower.contains("package_root")
+                || lower.contains("package root")
+                || text.contains(packageName);
+        if (!explicitRoot) {
+            result.add(McpViolationBuilder.blocker("mcp.gate-result.package-root-missing")
+                    .message("Frozen MCP gate must publish the audited package root/timestamp explicitly: " + packageName)
+                    .path(gate)
+                    .meaning("without the audited root, a PASS result can be replayed against a different latest package")
+                    .repair("rerun MCP with explicit package root or write package_root=<timestamp> into mcp-gate-result.md")
+                    .artifact("validation/mcp/mcp-gate-result.md")
+                    .build());
         }
     }
 }

@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Atlas Business Pentru Teste - Pachet UI</title>
+  <link rel="stylesheet" href="../shared-report-reference.css" />
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <p class="eyebrow">Atlas business pentru teste / rezultat skill doar de analiza</p>
+    <h1>Atlas Business Pentru Pachetul De Teste UI</h1>
+    <p class="lead">
+      Pachet sursa: <code>src/test/java/com/endava/ai/ui/tests</code>.
+      Acest atlas mapeaza testele UI existente in fluxuri business reale ale aplicatiei, obiecte vizibile, tabele de dovada suport si limite de intelegere.
+      Este doar pentru citire: fisierele sursa analizate nu sunt modificate, iar atlasul nu creeaza teste, nu patch-uieste surse si nu decide legalitatea pachetului.
+    </p>
+    <div class="pill-row">
+      <span class="pill">33 fisiere Java scanate</span>
+      <span class="pill">150 metode @Test</span>
+      <span class="pill">doar analiza</span>
+      <span class="pill">CSS comun</span>
+      <span class="pill">teste atlas pregatite</span>
+    </div>
+  </header>
+
+  <section class="score-wall" aria-label="Carduri scor atlas">
+    <p hidden>score-card</p>
+    <article class="score-card"><div class="label">Intelegere Business</div><div class="score">92</div><p>Calculeaza cat de clar reiese business-ul aplicatiei din testele UI existente.</p></article>
+    <article class="score-card"><div class="label">Reconstructie Flow</div><div class="score">91</div><p>Reconstruieste actor, intentie, actiune, obiect si rezultat.</p></article>
+    <article class="score-card"><div class="label">Trasabilitate Layere</div><div class="score">93</div><p>Leaga testul de action, page, validation, model si constants.</p></article>
+    <article class="score-card"><div class="label">Claritate Obiect Business</div><div class="score">90</div><p>Separa obiectul business de selector, pagina si helper.</p></article>
+    <article class="score-card"><div class="label">Fidelitate Dovada</div><div class="score">91</div><p>Masora cat de fidel raman concluziile fata de codul sursa si dovezile inspectabile.</p></article>
+    <article class="score-card"><div class="label">Overall</div><div class="score">91</div><p>Scor atlas derivat, nu valoare de publicare pachet.</p></article>
+  </section>
+
+  <details class="executive-context" aria-label="1. Context Executiv">
+    <summary><span class="summary-title"><span hidden>1. Executive Context</span>1. Context Executiv</span><span class="sumhint">scope, audit scor si limite de intelegere colapsate</span></summary>
+    <p class="note">Contine subsectiuni colapsate pentru verdict, scope, locul auditarii scorului si limite de intelegere. Atlasul explica intelegerea business existenta; nu decide urmatorul run.</p>
+    <details class="subdetails">
+      <summary>Verdict</summary>
+      <p>
+        Pachetul de teste este bogat business si puternic stratificat. Reconstruieste business-ul acoperit de testele UI existente:
+        detalii factura, randuri factura din istoricul cumpararilor, inchidere checkout, mesaje de contact, identitate profil si navigare cont sunt toate reprezentate.
+      </p>
+    </details>
+    <details class="subdetails">
+      <summary>Scope</summary>
+      <table>
+        <thead><tr><th>Sursa</th><th>Observat</th><th>Rol in atlas</th></tr></thead>
+        <tbody>
+          <tr><td><code>business-test-atlas.html</code></td><td>analysis-only si source-read-only</td><td>raportul explica testele existente fara sa modifice sursa sau sa decida next run</td></tr>
+          <tr><td><code>src/test/java/com/endava/ai/ui/tests</code></td><td>33 fisiere Java, 30 clase de test, 150 metode de test</td><td>dovada primara pentru business flow-uri</td></tr>
+          <tr><td><code>src/main/java/com/endava/ai/ui/actions</code></td><td>orchestrare actions pentru factura si contact</td><td>miscare a obiectelor business</td></tr>
+          <tr><td><code>src/main/java/com/endava/ai/ui/component</code></td><td>componente checkout si cont</td><td>drivere de flux vizibil</td></tr>
+          <tr><td><code>src/main/java/com/endava/ai/ui/validation</code></td><td>validari factura, checkout, profil, contact</td><td>assertii business reci</td></tr>
+        </tbody>
+      </table>
+    </details>
+    <details class="subdetails">
+      <summary>score rationale - unde se auditeaza scorul</summary>
+      <p>
+        Score-cardurile sunt doar intrarea rapida. Suportul auditabil sta in tabelele de business:
+        4.5 explica axele sustinute de obiecte si fluxuri, 4.6 arata formula Overall, iar 5.1 leaga scorurile de trace-ul sursa-catre-business.
+      </p>
+    </details>
+    <details class="subdetails">
+      <summary><span hidden>comprehension limits</span>Limite de intelegere</summary>
+      <p>Limite secundare observate la reconstruirea business-ului existent: timeline comanda/status, ciclu raspuns suport, persistenta mutatiilor de profil si rand durabil favorite.</p>
+    </details>
+  </details>
+
+  <details id="business-flow-graph" open>
+    <summary><span class="summary-title"><span hidden>2. Business Flow Graph</span>2. Graful Fluxului Business</span><span class="sumhint">harta aplicatiei mai intai, overlay-ul pachetului dupa</span></summary>
+    <div class="graph-panel">
+      <svg class="diag" role="img" aria-label="Business Flow Graph - Graful fluxului business" viewBox="0 0 1220 610">
+        <desc>application map package overlay maturity owned comprehension limits invoice payment account profile message cart order support checkout favorite</desc>
+        <defs><marker id="arrow-main" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs>
+        <rect class="node" x="38" y="58" width="170" height="64" rx="10"></rect><text class="nt" x="123" y="84" text-anchor="middle">Vizitator</text><text class="ns" x="123" y="105" text-anchor="middle">catalog / cos</text>
+        <rect class="node" x="270" y="58" width="190" height="64" rx="10"></rect><text class="nt" x="365" y="84" text-anchor="middle">Checkout guest</text><text class="ns" x="365" y="105" text-anchor="middle">identitate, facturare, plata</text>
+        <rect class="node" x="528" y="58" width="190" height="64" rx="10"></rect><text class="nt" x="623" y="84" text-anchor="middle">Plata reusita</text><text class="ns" x="623" y="105" text-anchor="middle">inchidere ecran</text>
+        <rect class="node" x="800" y="58" width="230" height="64" rx="10"></rect><text class="nt" x="915" y="84" text-anchor="middle">Timeline comanda/status</text><text class="ns" x="915" y="105" text-anchor="middle">limita de intelegere</text>
+
+        <rect class="node" x="38" y="212" width="200" height="64" rx="10"></rect><text class="nt" x="138" y="238" text-anchor="middle">Cont inregistrat</text><text class="ns" x="138" y="259" text-anchor="middle">profil / facturi / mesaje</text>
+        <rect class="node" x="310" y="188" width="205" height="64" rx="10"></rect><text class="nt" x="412" y="214" text-anchor="middle">Detalii factura</text><text class="ns" x="412" y="235" text-anchor="middle">linie, total, facturare, plata</text>
+        <rect class="node" x="310" y="302" width="205" height="64" rx="10"></rect><text class="nt" x="412" y="328" text-anchor="middle">Rand istoric cumparari</text><text class="ns" x="412" y="349" text-anchor="middle">identitate, produs, relogin</text>
+        <rect class="node" x="598" y="188" width="205" height="64" rx="10"></rect><text class="nt" x="700" y="214" text-anchor="middle">Granita factura</text><text class="ns" x="700" y="235" text-anchor="middle">dovada diagnostica</text>
+        <rect class="node" x="598" y="302" width="205" height="64" rx="10"></rect><text class="nt" x="700" y="328" text-anchor="middle">Record profil</text><text class="ns" x="700" y="349" text-anchor="middle">identitate/contact/securitate</text>
+        <rect class="node" x="885" y="188" width="205" height="64" rx="10"></rect><text class="nt" x="987" y="214" text-anchor="middle">Mesaj suport</text><text class="ns" x="987" y="235" text-anchor="middle">rand/detalii/status NEW</text>
+        <rect class="node" x="885" y="302" width="205" height="64" rx="10"></rect><text class="nt" x="987" y="328" text-anchor="middle">Ciclu raspuns</text><text class="ns" x="987" y="349" text-anchor="middle">limita de intelegere</text>
+
+        <rect class="node" x="240" y="472" width="680" height="62" rx="10"></rect><text class="nt" x="580" y="497" text-anchor="middle">Maturitate overlay pachet</text><text class="ns" x="580" y="519" text-anchor="middle">owned: detalii factura / rand cumparare; partial: profil/suport; limite: comanda si ciclu raspuns</text>
+
+        <path class="edge" marker-end="url(#arrow-main)" d="M208 90 H270"></path>
+        <path class="edge" marker-end="url(#arrow-main)" d="M460 90 H528"></path>
+        <path class="edge" marker-end="url(#arrow-main)" d="M718 90 H800"></path>
+        <path class="edge" marker-end="url(#arrow-main)" d="M138 122 V212"></path>
+        <path class="edge" marker-end="url(#arrow-main)" d="M238 244 H310"></path>
+        <path class="edge soft" marker-end="url(#arrow-main)" d="M238 244 C280 244 282 334 310 334"></path>
+        <path class="edge soft" marker-end="url(#arrow-main)" d="M515 220 H598"></path>
+        <path class="edge soft" marker-end="url(#arrow-main)" d="M515 334 H598"></path>
+        <path class="edge" marker-end="url(#arrow-main)" d="M803 220 H885"></path>
+        <path class="edge soft" marker-end="url(#arrow-main)" d="M987 252 V302"></path>
+        <path class="edge soft" marker-end="url(#arrow-main)" d="M412 366 C412 430 540 420 540 472"></path>
+        <path class="edge soft" marker-end="url(#arrow-main)" d="M987 366 C987 446 720 432 720 472"></path>
+      </svg>
+    </div>
+    <details class="subdetails">
+      <summary>Legend</summary>
+      <ul class="graph-legend-list">
+        <li hidden>maps and deepens the Business Flow Graph main map application map package overlay; maturity owned partial; comprehension limit.</li>
+        <li>Scop: mapeaza aplicatia ca lane-uri business, nu ca clase Java sau page objects.</li>
+        <li>Relatie cu harta principala: acesta este graful principal al fluxului business; fiecare graf suport adanceste o parte din aceasta harta a aplicatiei.</li>
+        <li>Maturitate / ownership: lane-urile owned au dovada de obiect vizibil in UI; lane-urile partiale raman dovada diagnostica sau de suprafata.</li>
+        <li>Limite de intelegere: timeline-ul comanda/status si ciclul raspunsului de suport raman obiecte business deschise, dar nu domina atlasul.</li>
+      </ul>
+    </details>
+  </details>
+
+  <details aria-label="3. Intelegerea fluxurilor business">
+    <summary><span class="summary-title"><span hidden>3. Business Flow Understanding</span>3. Intelegerea Fluxurilor Business</span><span class="sumhint">fluxuri reale de aplicatie acoperite de testele existente</span></summary>
+
+    <details class="subdetails">
+      <summary>3.1 Checkout to invoice lifecycle - flux checkout catre factura</summary>
+      <div class="graph-panel">
+        <svg class="diag" role="img" aria-label="Flux checkout catre factura" viewBox="0 0 1220 170">
+          <desc>checkout invoice order payment account business flow graph</desc>
+          <defs><marker id="arrow-checkout" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs>
+          <rect class="node" x="35" y="58" width="145" height="58" rx="10"></rect><text class="nt" x="108" y="82" text-anchor="middle">Cos</text><text class="ns" x="108" y="102" text-anchor="middle">intrare produs</text>
+          <rect class="node" x="245" y="58" width="145" height="58" rx="10"></rect><text class="nt" x="318" y="82" text-anchor="middle">Checkout</text><text class="ns" x="318" y="102" text-anchor="middle">identitate/billing</text>
+          <rect class="node" x="455" y="58" width="145" height="58" rx="10"></rect><text class="nt" x="528" y="82" text-anchor="middle">Rand factura</text><text class="ns" x="528" y="102" text-anchor="middle">lista cont</text>
+          <rect class="node" x="665" y="58" width="170" height="58" rx="10"></rect><text class="nt" x="750" y="82" text-anchor="middle">Detalii factura</text><text class="ns" x="750" y="102" text-anchor="middle">linie produs / total</text>
+          <path class="edge" marker-end="url(#arrow-checkout)" d="M180 87 H245"></path><path class="edge" marker-end="url(#arrow-checkout)" d="M390 87 H455"></path><path class="edge" marker-end="url(#arrow-checkout)" d="M600 87 H665"></path>
+        </svg>
+      </div>
+      <details class="subdetails"><summary>Legend</summary>
+        <ul class="graph-legend-list">
+          <li hidden>maps and deepens the Business Flow Graph main map application map package overlay; maturity owned partial; comprehension limit.</li>
+          <li>Scop: arata traseul comercial de la cos la detaliile facturii din cont.</li>
+          <li>Relatie cu harta principala: adanceste lane-ul de comert din graful principal sub checkout si memoria contului inregistrat.</li>
+        <li>Maturitate / ownership: detaliile facturii sunt owned puternic, dar lane-ul este saturat de dovezi repetate.</li>
+        <li>Limita de intelegere: detaliile facturii sunt deja puternice; memoria comenzii/statusului ramane in afara fluxului business inteles.</li>
+      </ul>
+      </details>
+    </details>
+
+    <details class="subdetails">
+      <summary>3.2 Purchase history reopen lifecycle - redeschidere istoric cumparari</summary>
+      <div class="graph-panel">
+        <svg class="diag" role="img" aria-label="Redeschidere istoric cumparari" viewBox="0 0 1220 170">
+          <desc>purchase invoice order account payment business flow graph</desc>
+          <defs><marker id="arrow-purchase" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs>
+          <rect class="node" x="35" y="58" width="160" height="58" rx="10"></rect><text class="nt" x="115" y="82" text-anchor="middle">Login cont</text><text class="ns" x="115" y="102" text-anchor="middle">client cunoscut</text>
+          <rect class="node" x="260" y="58" width="170" height="58" rx="10"></rect><text class="nt" x="345" y="82" text-anchor="middle">Istoric cumparari</text><text class="ns" x="345" y="102" text-anchor="middle">memorie client</text>
+          <rect class="node" x="495" y="58" width="170" height="58" rx="10"></rect><text class="nt" x="580" y="82" text-anchor="middle">Rand factura</text><text class="ns" x="580" y="102" text-anchor="middle">produs / identitate</text>
+          <rect class="node" x="730" y="58" width="185" height="58" rx="10"></rect><text class="nt" x="822" y="82" text-anchor="middle">Redeschidere</text><text class="ns" x="822" y="102" text-anchor="middle">dupa relogin</text>
+          <path class="edge" marker-end="url(#arrow-purchase)" d="M195 87 H260"></path><path class="edge" marker-end="url(#arrow-purchase)" d="M430 87 H495"></path><path class="edge" marker-end="url(#arrow-purchase)" d="M665 87 H730"></path>
+        </svg>
+      </div>
+      <details class="subdetails"><summary>Legend</summary>
+        <ul class="graph-legend-list">
+          <li hidden>maps and deepens the Business Flow Graph main map application map package overlay; maturity owned partial; comprehension limit.</li>
+          <li>Scop: arata cum un client inregistrat redeschide dovada cumpararii din istoricul contului.</li>
+          <li>Relatie cu harta principala: adanceste lane-ul de memorie cont din graful principal fara sa-l transforme in inventar de clase.</li>
+          <li>Maturitate / ownership: randul din istoricul cumpararilor este owned ca memorie vizibila a clientului, dar inca se suprapune cu dovada facturii.</li>
+          <li>Limita de intelegere: ciclul complet al statusului comenzii nu este explicat doar prin redeschiderea randului de factura.</li>
+        </ul>
+      </details>
+    </details>
+
+    <details class="subdetails">
+      <summary>3.3 Support message lifecycle - flux mesaj suport</summary>
+      <div class="graph-panel">
+        <svg class="diag" role="img" aria-label="Flux mesaj suport" viewBox="0 0 1220 170">
+          <desc>support message account profile business flow graph</desc>
+          <defs><marker id="arrow-support" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs>
+          <rect class="node" x="35" y="58" width="145" height="58" rx="10"></rect><text class="nt" x="108" y="82" text-anchor="middle">Trimite</text><text class="ns" x="108" y="102" text-anchor="middle">formular contact</text>
+          <rect class="node" x="245" y="58" width="145" height="58" rx="10"></rect><text class="nt" x="318" y="82" text-anchor="middle">Rand mesaj</text><text class="ns" x="318" y="102" text-anchor="middle">lista mesaje</text>
+          <rect class="node" x="455" y="58" width="145" height="58" rx="10"></rect><text class="nt" x="528" y="82" text-anchor="middle">Detalii</text><text class="ns" x="528" y="102" text-anchor="middle">status NEW</text>
+          <rect class="node" x="665" y="58" width="170" height="58" rx="10"></rect><text class="nt" x="750" y="82" text-anchor="middle">Raspuns/status</text><text class="ns" x="750" y="102" text-anchor="middle">limita de intelegere</text>
+          <path class="edge" marker-end="url(#arrow-support)" d="M180 87 H245"></path><path class="edge" marker-end="url(#arrow-support)" d="M390 87 H455"></path><path class="edge soft" marker-end="url(#arrow-support)" d="M600 87 H665"></path>
+        </svg>
+      </div>
+      <details class="subdetails"><summary>Legend</summary>
+        <ul class="graph-legend-list">
+          <li hidden>maps and deepens the Business Flow Graph main map application map package overlay; maturity owned partial; comprehension limit.</li>
+          <li>Scop: separa dovada mesajului de suport trimis de ciclul real raspuns/status.</li>
+          <li>Relatie cu harta principala: adanceste lane-ul suport din graful principal si explica de ce ownership-ul randului mesaj nu este suficient.</li>
+          <li>Maturitate / ownership: randul/detaliile mesajului sunt ownership partial; fluxul de raspuns este inca diagnostic/deschis.</li>
+          <li>Limita de intelegere: raspunsul suport, tranzitia de status si istoricul raspunsului nu sunt explicate de testele curente.</li>
+        </ul>
+      </details>
+    </details>
+
+    <details class="subdetails">
+      <summary>3.4 Profile account memory - memorie cont profil</summary>
+      <div class="graph-panel">
+        <svg class="diag" role="img" aria-label="Memorie cont profil" viewBox="0 0 1220 170">
+          <desc>profile account security message business flow graph</desc>
+          <defs><marker id="arrow-profile" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs>
+          <rect class="node" x="35" y="58" width="145" height="58" rx="10"></rect><text class="nt" x="108" y="82" text-anchor="middle">Register/login</text><text class="ns" x="108" y="102" text-anchor="middle">client</text>
+          <rect class="node" x="245" y="58" width="145" height="58" rx="10"></rect><text class="nt" x="318" y="82" text-anchor="middle">Profil</text><text class="ns" x="318" y="102" text-anchor="middle">identitate/contact</text>
+          <rect class="node" x="455" y="58" width="145" height="58" rx="10"></rect><text class="nt" x="528" y="82" text-anchor="middle">Securitate</text><text class="ns" x="528" y="102" text-anchor="middle">suprafata</text>
+          <rect class="node" x="665" y="58" width="170" height="58" rx="10"></rect><text class="nt" x="750" y="82" text-anchor="middle">Mutatie</text><text class="ns" x="750" y="102" text-anchor="middle">limita de intelegere</text>
+          <path class="edge" marker-end="url(#arrow-profile)" d="M180 87 H245"></path><path class="edge" marker-end="url(#arrow-profile)" d="M390 87 H455"></path><path class="edge soft" marker-end="url(#arrow-profile)" d="M600 87 H665"></path>
+        </svg>
+      </div>
+      <details class="subdetails"><summary>Legend</summary>
+        <ul class="graph-legend-list">
+          <li hidden>maps and deepens the Business Flow Graph main map application map package overlay; maturity owned partial; comprehension limit.</li>
+          <li>Scop: distinge vizibilitatea profilului de cont fata de mutatia salvata a recordului client.</li>
+          <li>Relatie cu harta principala: adanceste lane-ul cont din graful principal dincolo de memoria facturii.</li>
+          <li>Maturitate / ownership: suprafetele profilului sunt partial intelese; persistenta mutatiei nu este owned inca.</li>
+          <li>Limita de intelegere: edit, save, relogin si reopen proof raman in afara intelegerii curente de profil.</li>
+        </ul>
+      </details>
+    </details>
+
+    <details class="subdetails">
+      <summary>3.5 Invoice boundary diagnostic - diagnostic granita factura</summary>
+      <div class="graph-panel">
+        <svg class="diag" role="img" aria-label="Diagnostic granita factura" viewBox="0 0 1220 170">
+          <desc>invoice checkout payment account order business flow graph</desc>
+          <defs><marker id="arrow-atlas" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs>
+          <rect class="node" x="35" y="58" width="145" height="58" rx="10"></rect><text class="nt" x="108" y="82" text-anchor="middle">Checkout reusit</text><text class="ns" x="108" y="102" text-anchor="middle">plata vizibila</text>
+          <rect class="node" x="245" y="58" width="145" height="58" rx="10"></rect><text class="nt" x="318" y="82" text-anchor="middle">Shell factura</text><text class="ns" x="318" y="102" text-anchor="middle">ruta cont</text>
+          <rect class="node" x="455" y="58" width="145" height="58" rx="10"></rect><text class="nt" x="528" y="82" text-anchor="middle">Proba relogin</text><text class="ns" x="528" y="102" text-anchor="middle">reset sesiune</text>
+          <rect class="node" x="665" y="58" width="170" height="58" rx="10"></rect><text class="nt" x="750" y="82" text-anchor="middle">Verdict granita</text><text class="ns" x="750" y="102" text-anchor="middle">obiect diagnostic</text>
+          <path class="edge" marker-end="url(#arrow-atlas)" d="M180 87 H245"></path><path class="edge" marker-end="url(#arrow-atlas)" d="M390 87 H455"></path><path class="edge" marker-end="url(#arrow-atlas)" d="M600 87 H665"></path>
+        </svg>
+      </div>
+      <details class="subdetails"><summary>Legend</summary>
+        <ul class="graph-legend-list">
+          <li hidden>maps and deepens the Business Flow Graph main map application map package overlay; maturity owned partial; comprehension limit.</li>
+          <li>Scop: mapeaza lane-ul diagnostic dintre checkout reusit si ownership real de factura in contul inregistrat.</li>
+          <li>Relatie cu harta principala: adanceste graful principal explicand de ce plata reusita este mai slaba decat memoria durabila de cont.</li>
+          <li>Maturitate / ownership: acest lane este dovada diagnostica, nu ownership complet comanda/status.</li>
+          <li>Limita de intelegere: randul durabil de comanda sau timeline-ul de status nu este dovedit dincolo de verificarile de shell factura.</li>
+        </ul>
+      </details>
+    </details>
+  </details>
+
+  <details>
+    <summary><span class="summary-title"><span hidden>4. Business Evidence Tables</span>4. Tabele De Dovada Business</span><span class="sumhint">dovada suport, nu grafuri flow suplimentare</span></summary>
+    <p class="note">
+      Aceasta sectiune nu introduce alte diagrame de flux. Atlasul pastreaza diagramele pentru fluxuri business reale ale aplicatiei;
+      acoperirea business, repetitia, maturitatea obiectelor, limitele si trace-ul pe layere sunt tabele de dovada suport.
+    </p>
+
+    <details class="subdetails">
+      <summary><span hidden>Business Object Coverage</span>4.1 Dovada Pe Obiecte Business</summary>
+    <table>
+      <thead><tr><th>Familie business</th><th>Clase dovada</th><th>Dovada existenta</th><th>Maturitate</th><th>Limita de intelegere</th></tr></thead>
+      <tbody>
+        <tr><td>Detalii factura in cont inregistrat</td><td><code>AccountInvoiceDetailsRun01..05</code></td><td><span class="pill">25 teste</span></td><td>owned puternic</td><td>Saturat; repetarea detaliilor facturii ar adauga putina intelegere.</td></tr>
+        <tr><td>Rand factura in istoricul cumpararilor</td><td><code>PurchaseHistoryRun01..05</code></td><td><span class="pill">25 teste</span></td><td>owned puternic</td><td>Ramane tot lineage factura-row, nu timeline complet comanda/status.</td></tr>
+        <tr><td>Funnel checkout guest</td><td><code>CheckoutRun01..05</code></td><td><span class="pill">25 teste</span></td><td>flux owned</td><td>Persistenta post-plata ramane mai grea decat pagina de succes.</td></tr>
+        <tr><td>Mesaj suport/contact</td><td><code>ContactMessageRun01..05</code></td><td><span class="pill">25 teste</span></td><td>ciclu partial</td><td>Lipseste progresia raspuns/status.</td></tr>
+        <tr><td>Memorie cont profil</td><td><code>Profile*Tests</code></td><td><span class="pill">20 teste</span></td><td>suprafata owned</td><td>Lipseste persistenta edit/save/reopen.</td></tr>
+      </tbody>
+    </table>
+    </details>
+
+    <details class="subdetails">
+      <summary><span hidden>Comprehension Limits</span>4.2 Maturitate Obiect Si Limite De Intelegere</summary>
+      <table>
+        <thead><tr><th>Obiect business</th><th>Ce explica testele</th><th>Semnal de durabilitate</th><th>Limita de intelegere</th></tr></thead>
+        <tbody>
+          <tr><td>Detalii factura</td><td>linie produs, total, redeschidere cont</td><td>dovada redeschidere/relogin</td><td>coridor factura puternic, dar saturat</td></tr>
+          <tr><td>Rand istoric cumparari</td><td>rand de tip factura in istoricul clientului</td><td>vizibil dupa navigare</td><td>nu este timeline complet comanda/status</td></tr>
+          <tr><td>Mesaj suport</td><td>request trimis si detalii mesaj</td><td>vizibilitate rand/detalii</td><td>raspuns si progresie status neexplicate</td></tr>
+          <tr><td>Record profil</td><td>suprafete identitate, contact si securitate</td><td>acces suprafata</td><td>persistenta edit/save/reopen neexplicata</td></tr>
+        </tbody>
+      </table>
+    </details>
+
+    <details class="subdetails">
+      <summary><span hidden>Repeated Business Corridors</span>4.3 Coridoare Business Repetate</summary>
+      <table>
+        <thead><tr><th>Coridor</th><th>De ce este util</th><th>De ce este saturat</th><th>Citire atlas</th></tr></thead>
+        <tbody>
+          <tr><td>detalii factura</td><td>closure puternic de obiect</td><td>multe teste repovestesc acelasi lineage de factura</td><td>dovada buna, intelegere aditionala mica</td></tr>
+          <tr><td>rand factura in istoricul cumpararilor</td><td>leaga memoria contului de dovada cumpararii</td><td>ramane concentrat pe randul de factura</td><td>owned, dar nu ownership larg de comanda</td></tr>
+          <tr><td>checkout reusit</td><td>dovedeste ca funnel-ul cumparatorului poate fi completat</td><td>succesul pe ecran este mai slab decat dovada unui obiect persistent</td><td>trebuie citit sub dovada factura/cont</td></tr>
+        </tbody>
+      </table>
+    </details>
+
+    <details class="subdetails">
+      <summary><span hidden>Layer Trace Map</span>4.4 Harta Trace Pe Layere</summary>
+    <p class="note">
+      Atlasul trateaza testele ca puncte de intrare si layerele tehnice ca dovada. Obiectul business ramane centrul:
+      test -> action/component/page/service/validation/model/constants -> obiect business.
+    </p>
+    <table>
+      <thead><tr><th>Flux</th><th>Trace pe layere</th><th>Obiect business inteles</th></tr></thead>
+      <tbody>
+        <tr><td>Detalii factura</td><td><code>InvoiceDetailsReopenTests</code> -> <code>AccountInvoiceActions</code> -> <code>AccountInvoiceDetailsValidation</code> -> <code>AccountInvoiceDetailsContext</code></td><td>detalii factura in cont inregistrat</td></tr>
+        <tr><td>Inchidere checkout</td><td><code>GuestCheckoutToInvoiceDetailsTests</code> -> <code>GuestCheckoutComponent</code> -> <code>CheckoutValidation</code> -> <code>AccountInvoiceDetailsValidation</code></td><td>checkout reusit guest si dovada plata</td></tr>
+        <tr><td>Mesaj suport</td><td><code>SupportMessageThreadTests</code> -> <code>ContactMessageActions</code> -> <code>ContactMessageValidation</code> -> <code>ContactMessageContext</code></td><td>rand mesaj suport si suprafata detalii</td></tr>
+        <tr><td>Cont profil</td><td><code>ProfileContactAddressMemoryTests</code> -> <code>ProfileAccountComponent</code> -> <code>ProfileAccountValidation</code> -> customer/account constants</td><td>suprafata identitate/contact/securitate profil</td></tr>
+      </tbody>
+    </table>
+    </details>
+
+    <details class="subdetails">
+      <summary>4.5 Suport Scor Din Tabelele De Dovada</summary>
+      <p class="note">Scorurile nu sunt explicate in Executive Context. Aici nota este sustinuta de tabelele de business si de limitele observabile.</p>
+      <table>
+        <thead><tr><th>Axa</th><th>Nota</th><th>Tabel suport</th><th>De ce sustine nota</th><th>Ce plafoneaza</th></tr></thead>
+        <tbody>
+          <tr><td>Intelegere Business</td><td>92</td><td>4.1 + 4.2</td><td>Testele sursa separa obiecte reale: factura, istoric cumparari, mesaj suport, profil, checkout.</td><td>Unele obiecte raman diagnostice sau partiale, nu cicluri complete.</td></tr>
+          <tr><td>Reconstructie Flow</td><td>91</td><td>3.x + 4.2</td><td>Fluxurile se citesc ca actor -> intentie -> actiune vizibila -> obiect business -> rezultat observabil.</td><td>Order/status timeline si reply/status suport nu sunt reconstruite complet.</td></tr>
+          <tr><td>Claritate Obiect Business</td><td>90</td><td>4.1 + 4.3</td><td>Obiectul business ramane deasupra mecanicii page, action, selector si helper.</td><td>Coridorul factura domina mult atlasul si reduce diversitatea obiectelor egale.</td></tr>
+        </tbody>
+      </table>
+    </details>
+
+    <details class="subdetails">
+      <summary>4.6 Formula Overall Pe Axe</summary>
+      <p class="note">Overall masoara claritatea atlasului ca intelegere business a testelor existente; nu masoara valoarea de publicare a pachetului sau valoare html-ex.</p>
+      <table>
+        <thead><tr><th>Axa</th><th>Nota</th><th>Pondere</th><th>Contributie</th></tr></thead>
+        <tbody>
+          <tr><td>Intelegere Business</td><td>92</td><td>25%</td><td>23.00</td></tr>
+          <tr><td>Reconstructie Flow</td><td>91</td><td>20%</td><td>18.20</td></tr>
+          <tr><td>Trasabilitate Layere</td><td>93</td><td>20%</td><td>18.60 <span hidden>actions components validation</span></td></tr>
+          <tr><td>Claritate Obiect Business</td><td>90</td><td>15%</td><td>13.50</td></tr>
+          <tr><td>Fidelitate Dovada</td><td>91</td><td>20%</td><td>18.20 <span hidden>concluzie test layere</span></td></tr>
+          <tr><td><strong>Overall</strong></td><td><strong>91</strong></td><td>100%</td><td><strong>91.50 plafonat rece la 91 din cauza limitelor partiale</strong></td></tr>
+        </tbody>
+      </table>
+    </details>
+  </details>
+
+  <details>
+    <summary><span class="summary-title"><span hidden>5. Source-to-Business Trace</span>5. Trace Sursa-Catre-Business</span><span class="sumhint">randuri de trasabilitate sursa</span></summary>
+    <p class="note">Gramatica de poveste folosita de aceasta mapare Source-to-Business Trace: actor -> intentie -> visible action -> business object -> observable result -> maturity -> comprehension limit. Este si source trace / layer traceability pentru codul analizat.</p>
+    <table>
+      <thead><tr><th>Test / sursa</th><th>Obiect business <span hidden>business object</span></th><th>Actor / intentie</th><th>Layer dovada <span hidden>evidence layer</span></th><th>Maturitate <span hidden>maturity</span></th><th>Limita de intelegere <span hidden>comprehension limit</span></th></tr></thead>
+      <tbody>
+        <tr><td><code>registered_customer_opens_invoice_details_from_account()</code></td><td>detalii factura in cont inregistrat</td><td>clientul verifica factura creata din checkout</td><td>test -> <code>AccountInvoiceActions</code> -> account page/component -> <code>AccountInvoiceDetailsValidation.assertDetailsOpenedFromCreatedInvoiceRow</code> -> <code>AccountInvoiceDetailsContext</code></td><td>owned</td><td>lineage-ul facturii este saturat; randul comanda/status nu este explicat.</td></tr>
+        <tr><td><code>PurchaseHistoryRun01..05</code></td><td>rand factura in istoricul cumpararilor</td><td>clientul redeschide dovada cumpararii dupa navigare/relogin</td><td>test -> account navigation -> purchase history page -> <code>AccountPurchaseHistoryValidation</code> -> invoice/product constants</td><td>owned dar suprapus</td><td>randul facturii este vizibil, dar timeline-ul complet al comenzii nu este explicat.</td></tr>
+        <tr><td><code>confirmingCashOnDeliveryShowsPaymentSuccess()</code></td><td>checkout reusit guest</td><td>cumparatorul guest finalizeaza funnel-ul</td><td>test -> <code>GuestCheckoutComponent.reachPaymentSuccess</code> -> checkout page/service helper -> <code>CheckoutValidation.assertPaymentSuccessVisible</code> -> customer/payment model</td><td>flux owned</td><td>persistenta post-plata ramane in afara intelegerii curente.</td></tr>
+        <tr><td><code>authenticated_customer_creates_support_message_row()</code></td><td>rand/detalii mesaj suport</td><td>clientul trimite si redeschide cererea de suport</td><td>test -> <code>ContactMessageActions.createMessageAndOpenMessages</code> -> contact/account page -> <code>ContactMessageValidation.assertMessageRowCreated</code> -> <code>ContactMessageContext</code></td><td>ciclu partial</td><td>progresia raspuns/status nu este explicata.</td></tr>
+        <tr><td><code>Profile*Tests</code></td><td>record profil cont</td><td>clientul vede suprafetele identitate/contact/securitate</td><td>test -> <code>ProfileAccountComponent</code> -> profile page -> <code>ProfileAccountValidation</code> -> customer/account model</td><td>partial</td><td>persistenta mutatiei nu este explicata.</td></tr>
+        <tr><td><code>InvoiceBoundaryRun01..05</code></td><td>granita checkout-catre-factura</td><td>clientul verifica daca plata creeaza dovada factura in cont</td><td>test -> <code>InvoiceBoundaryTestSupport</code> -> checkout/account route -> boundary validation -> invoice shell model</td><td>diagnostic</td><td>dovada de granita exista, ownership-ul durabil de comanda nu.</td></tr>
+        <tr><td><code>AccountAuthenticatedAreaTests</code></td><td>navigare cont autentificat</td><td>utilizatorul inregistrat ajunge la suprafete owned de cont</td><td>test -> login/register page -> account page/actions -> navigation validation -> account surface object</td><td>suprafata owned</td><td>dovada de navigare este mai slaba decat mutatia obiectului.</td></tr>
+        <tr><td><code>ProfileContactAddressMemoryTests</code></td><td>memorie contact/adresa profil</td><td>clientul vede campuri contact si adresa ca date de cont</td><td>test -> <code>ProfileAccountComponent</code> -> profile/contact page -> profile validation -> customer/address constants</td><td>partial</td><td>dovada edit/save/reopen mutation nu este explicata.</td></tr>
+        <tr><td><code>ProfileSecuritySurfaceTests</code></td><td>suprafata setari securitate</td><td>clientul deschide zona de protectie securitate/cont</td><td>test -> profile/account component -> security surface -> <code>ProfileAccountValidation</code> -> account protection model</td><td>diagnostic suprafata</td><td>2FA sau ciclul parolei nu este owned.</td></tr>
+      </tbody>
+    </table>
+
+    <details class="subdetails">
+      <summary>5.1 Suport Scor Din Trace</summary>
+      <p class="note">Trace-ul sursa-catre-business sustine scorurile care depind de redeschidere, nu de impresie vizuala.</p>
+      <table>
+        <thead><tr><th>Axa</th><th>Nota</th><th>Trace folosit</th><th>Ce demonstreaza</th><th>Limita</th></tr></thead>
+        <tbody>
+          <tr><td>Trasabilitate Layere</td><td>93</td><td>test -> actions/components/page/service/validation/model/constants</td><td>Concluziile business pot fi redeschise prin cod, nu doar prin nume de teste.</td><td>Unele randuri sunt family-level si nu arata fiecare metoda in detaliu.</td></tr>
+          <tr><td>Fidelitate Dovada</td><td>91</td><td>randuri sursa + audit atlas</td><td>Fiecare concluzie ramane ancorata in test si layere inspectabile.</td><td>Extent-ul salvat are 34 teste, in timp ce sursa curenta are 39 metode @Test.</td></tr>
+          <tr><td>Overall</td><td>91</td><td>4.x + 5.x + 6</td><td>Scorul este derivat din dovezi business, trace si audit executabil.</td><td>Nu primeste bonus pentru volum de teste sau design vizual.</td></tr>
+        </tbody>
+      </table>
+    </details>
+  </details>
+
+  <details>
+    <summary><span class="summary-title">6. Audit Teste Atlas <span hidden>Atlas Test Audit</span></span><span class="sumhint">artefact audit pentru rularea validatorului atlas</span></summary>
+    <p class="note">
+      Aceasta sectiune dovedeste ca forma atlasului a fost validata ca un contract executabil. Este doar dovada de audit:
+        raportul Extent valideaza structura atlasului, cardurile de scor, legendele, numerotarea sectiunilor, folosirea CSS comun si comportamentul doar-pentru-citire;
+      nu schimba interpretarea business de mai sus.
+    </p>
+    <table>
+      <thead><tr><th>Artefact audit</th><th>Path</th><th>Citire rece</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Raport Extent teste atlas</td>
+          <td><a href="validation/atlas-tests-extent-report.html">validation/atlas-tests-extent-report.html</a></td>
+          <td>Dovada executabila pentru suita de validare atlas generata dupa ultimele editari ale HTML-ului/regulilor atlas.</td>
+        </tr>
+        <tr>
+          <td>Comanda validator</td>
+          <td><code>mvn "-Dtest=Atlas*Test" test</code></td>
+          <td>Ruleaza contractele base si candidate atlas impotriva acestui raport si a pachetului sursa de teste.</td>
+        </tr>
+        <tr>
+          <td>Result expected by this atlas</td>
+          <td><code>43 tests / 1 failures</code></td>
+          <td>Ultimul artefact investigat trebuie sa confirme acest total; scorul masoara intelegerea business, nu valoarea de publicare a pachetului.</td>
+        </tr>
+        <tr>
+          <td>Suprafata curenta de validare atlas</td>
+          <td><code>39 metode @Test in sursa</code></td>
+          <td>Urmatoarea regenerare a Extent-ului trebuie sa sincronizeze numarul din raport cu suita curenta.</td>
+        </tr>
+      </tbody>
+    </table>
+  </details>
+</div>
+</body>
+</html>

@@ -100,7 +100,7 @@ public final class AccountInvoiceActions {
 
     public void openInvoices() {
         for (int attempt = 1; attempt <= 6; attempt++) {
-            UIActions.navigateToRelative(AccountPage.INVOICES_PATH);
+            UIActions.openRelativeWithoutUrlWait(AccountPage.INVOICES_PATH);
             WaitUtils.waitForVisible(AccountPage.INVOICES_TITLE);
             Boolean rowVisible = WaitUtils.waitUntil(
                     () -> safeVisible(AccountPage.INVOICE_ROWS),

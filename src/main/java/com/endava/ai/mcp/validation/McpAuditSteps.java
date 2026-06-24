@@ -38,13 +38,18 @@ final class McpAuditSteps {
     }
 
     private static void log(McpRuleResult result) {
-        StepLogger.startStep(result.title());
-        StepLogger.logDetail("Validation axis: " + result.title());
-        StepLogger.logDetail("Outcome: " + result.status());
-        logExpectedContract(result);
-        logObservedValidatorResult(result);
-        logColdVerdict(result);
-        logRepairHint(result);
+        McpDiagnostic.builder(result.title())
+                .packageRoot(result.packageRoot())
+                .requiredArtifacts(result.evidenceArtifact())
+                .expectedInvariant(expectedInvariant(result))
+                .status(result.status())
+                .blockers(result.blockers())
+                .warnings(result.warnings())
+                .evidenceArtifact(result.evidenceArtifact())
+                .coldReason(result.coldReason())
+                .repairHint(result.repairHint())
+                .build()
+                .log();
         if (result.passed()) {
             StepLogger.pass("MCP audit passed: " + result.title());
             return;
@@ -56,56 +61,16 @@ final class McpAuditSteps {
                         .collect(Collectors.joining(System.lineSeparator())));
     }
 
-    private static void logExpectedContract(McpRuleResult result) {
-        StepLogger.startStep("Expected contract");
-        StepLogger.logDetail("HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.");
-        StepLogger.logDetail("MCP profile: latest generated package contract axis.");
-        logGroupedDetails("Required artifacts", result.details(),
-                "artifact:", "artifacts:", "relative path", "relative paths:",
-                "required", "required package spine:", "required run spine:",
-                "source truth:", "discovery artifact:", "discovery artifacts:");
-        logGroupedDetails("Expected invariant", result.details(),
-                "asserts:", "expected:", "forbidden:", "target", "runtime keys:", "runtime values:");
-        if (result.details().stream().noneMatch(detail -> containsAny(detail, "asserts:", "expected:", "forbidden:"))) {
-            StepLogger.logDetail("Expected invariant: " + result.title());
-        }
-        StepLogger.pass("Expected contract recorded");
-    }
-
-    private static void logObservedValidatorResult(McpRuleResult result) {
-        StepLogger.startStep("Observed validator result");
-        StepLogger.logDetail("Package: " + result.packageRoot());
-        StepLogger.logDetail("Rule: " + result.title());
-        StepLogger.logDetail("Status: " + result.status());
-        StepLogger.logDetail("Blockers: " + result.blockers().size());
-        StepLogger.logDetail("Warnings: " + result.warnings().size());
-        StepLogger.logDetail("Evidence artifact: " + result.evidenceArtifact());
-        StepLogger.pass("Observed validator result recorded");
-    }
-
-    private static void logColdVerdict(McpRuleResult result) {
-        StepLogger.startStep("Cold verdict");
-        StepLogger.logDetail("PASS / FAIL: " + result.status());
-        StepLogger.logDetail("Why: " + result.coldReason());
-        StepLogger.pass("Cold verdict recorded");
-    }
-
-    private static void logRepairHint(McpRuleResult result) {
-        StepLogger.startStep("Repair hint");
-        StepLogger.logDetail(result.repairHint());
-        StepLogger.pass("Repair hint recorded");
-    }
-
-    private static void logGroupedDetails(String label, List<String> details, String... needles) {
-        List<String> matching = details.stream()
+    private static String expectedInvariant(McpRuleResult result) {
+        List<String> matching = result.details().stream()
                 .filter(detail -> detail != null && !detail.isBlank())
-                .filter(detail -> startsWithAny(detail, needles))
+                .filter(detail -> startsWithAny(detail,
+                        "asserts:", "expected:", "forbidden:", "target", "runtime keys:", "runtime values:"))
                 .collect(Collectors.toList());
         if (matching.isEmpty()) {
-            StepLogger.logDetail(label + ": not explicitly declared by this test; see validation axis.");
-            return;
+            return result.title();
         }
-        matching.forEach(detail -> StepLogger.logDetail(label + ": " + detail));
+        return String.join(" | ", matching);
     }
 
     private static boolean startsWithAny(String value, String... prefixes) {
@@ -115,19 +80,6 @@ final class McpAuditSteps {
         String lower = value.trim().toLowerCase(java.util.Locale.ROOT);
         for (String prefix : prefixes) {
             if (lower.startsWith(prefix.toLowerCase(java.util.Locale.ROOT))) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private static boolean containsAny(String value, String... needles) {
-        if (value == null) {
-            return false;
-        }
-        String lower = value.toLowerCase(java.util.Locale.ROOT);
-        for (String needle : needles) {
-            if (lower.contains(needle.toLowerCase(java.util.Locale.ROOT))) {
                 return true;
             }
         }
@@ -168,6 +120,15 @@ final class McpAuditSteps {
         StepLogger.logDetail("BLOCKER [" + blocker.code() + "]: " + blocker.message());
         if (blocker.path() != null) {
             StepLogger.logDetail("Artifact: " + relativize(packageRoot, blocker.path()));
+        }
+        if (blocker.failureMeaning() != null && !blocker.failureMeaning().isBlank()) {
+            StepLogger.logDetail("Failure meaning: " + blocker.failureMeaning());
+        }
+        if (blocker.repairAction() != null && !blocker.repairAction().isBlank()) {
+            StepLogger.logDetail("Repair action: " + blocker.repairAction());
+        }
+        if (blocker.artifactToRegenerate() != null && !blocker.artifactToRegenerate().isBlank()) {
+            StepLogger.logDetail("Artifact to regenerate: " + blocker.artifactToRegenerate());
         }
     }
 

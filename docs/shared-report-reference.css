@@ -696,13 +696,17 @@ a:hover {
   height: auto;
 }
 
-.diag .node {
+.diag rect.node,
+.diag circle.node,
+.diag polygon.node {
   fill: rgba(17, 24, 38, .88);
   stroke: #5f6f88;
   stroke-width: .76;
 }
 
-.diag .owned {
+.diag rect.owned,
+.diag circle.owned,
+.diag polygon.owned {
   stroke: var(--accent);
 }
 
@@ -710,12 +714,16 @@ a:hover {
   stroke: #93c5fd;
 }
 
-.diag .cap {
+.diag rect.cap,
+.diag circle.cap,
+.diag polygon.cap {
   stroke: var(--warn);
   stroke-dasharray: 6 4;
 }
 
-.diag .blocked {
+.diag rect.blocked,
+.diag circle.blocked,
+.diag polygon.blocked {
   stroke: var(--warn);
   stroke-dasharray: 5 4;
 }
@@ -740,14 +748,26 @@ a:hover {
   fill: var(--accent);
 }
 
+.diag text {
+  stroke: none;
+  paint-order: fill;
+  text-shadow: none;
+}
+
 .nt {
   fill: var(--text);
   font: 400 15px var(--sans);
+  text-anchor: middle;
+  text-shadow: none;
+  filter: none;
 }
 
 .ns {
   fill: var(--muted);
   font: 12px var(--sans);
+  text-anchor: middle;
+  text-shadow: none;
+  filter: none;
 }
 
 @media (max-width: 1080px) {

@@ -39,6 +39,7 @@ public final class RunStateCompletenessRule implements McpValidationRule {
         McpRuleSupport.requireText(content, runState, result, "run-state.verdict",
                 "Run state should publish business/countability status",
                 "countable", "owned", "blocked", "partial", "verdict");
+        requireCanonicalBusinessFields(content, runState, result);
     }
 
     private void requireRunTestCount(String content,
@@ -53,6 +54,36 @@ public final class RunStateCompletenessRule implements McpValidationRule {
             result.add(McpPackageViolation.blocker("run-state.tests-under-target",
                     "Run produced " + actual + " tests, below active ROUND_TARGET_TEST_COUNT="
                             + context.runtime().roundTargetTestCount(),
+                    runState));
+        }
+    }
+
+    private void requireCanonicalBusinessFields(String content,
+                                                Path runState,
+                                                McpPackageValidationResult result) {
+        boolean hasBusinessClaim = McpRuleSupport.extractStringValue(content, "business_claim") != null;
+        boolean hasLegacyClaim = McpRuleSupport.extractStringValue(content, "claim") != null;
+        boolean hasProgressionFromPrevious = McpRuleSupport.extractStringValue(content, "progression_from_previous_run") != null;
+        boolean hasLegacyProgression = McpRuleSupport.extractStringValue(content, "progression") != null;
+
+        if (!hasBusinessClaim && hasLegacyClaim) {
+            result.add(McpPackageViolation.warning("run-state.business-claim.legacy-field",
+                    "Prefer canonical business_claim; legacy claim is accepted only as transitional compatibility",
+                    runState));
+        }
+        if (!hasBusinessClaim && !hasLegacyClaim) {
+            result.add(McpPackageViolation.warning("run-state.business-claim.missing",
+                    "Run state should publish business_claim so MCP can trace claim -> source -> proof",
+                    runState));
+        }
+        if (!hasProgressionFromPrevious && hasLegacyProgression) {
+            result.add(McpPackageViolation.warning("run-state.progression.legacy-field",
+                    "Prefer canonical progression_from_previous_run; legacy progression is accepted only as transitional compatibility",
+                    runState));
+        }
+        if (!hasProgressionFromPrevious && !hasLegacyProgression) {
+            result.add(McpPackageViolation.warning("run-state.progression.missing",
+                    "Run state should publish progression_from_previous_run so learning is explicit",
                     runState));
         }
     }
