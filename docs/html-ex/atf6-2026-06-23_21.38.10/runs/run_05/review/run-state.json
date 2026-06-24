@@ -1,0 +1,21 @@
+﻿{
+    "run_id":  "run_05",
+    "target_status":  "met",
+    "proof_ui":  "runs/run_05/validation/reports/ExtentReport.html",
+    "proof_machine":  "runs/run_05/validation/testng-results.xml",
+    "tests_target":  5,
+    "claim":  "support message audit trail links submit, row, details, status, relogin, reply surface",
+    "tests_passed":  5,
+    "delta_quality_status":  "pass",
+    "business_object":  "authenticated support message row with details route",
+    "blocker_status":  "no",
+    "run_diff":  "runs/run_05/review/thin-no-index.diff",
+    "kept_status":  "yes",
+    "command":  "runs/run_05/validation/command-result.md",
+    "tests_produced":  5,
+    "source":  "src/test/java/com/endava/ai/ui/tests/ContactMessageRun05AuditTrailTests.java",
+    "verdict":  "owned/countable",
+    "actor":  "authenticated customer",
+    "intent":  "preserve support/order-status message in account history",
+    "progression":  "Progression from run_04: ties submit, row, details, status, relogin and reply surface into a single audit trail."
+}

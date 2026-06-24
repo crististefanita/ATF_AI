@@ -1,0 +1,52 @@
+diff --git a/src/test/java/com/endava/ai/ui/tests/RegisteredInvoiceDetailsReopenTests.java b/src/test/java/com/endava/ai/ui/tests/RegisteredInvoiceDetailsReopenTests.java
+new file mode 100644
+--- /dev/null
++++ b/src/test/java/com/endava/ai/ui/tests/RegisteredInvoiceDetailsReopenTests.java
++// Run slice: registered invoice details record reopen proof
++package com.endava.ai.ui.tests;
++
++import com.endava.ai.ui.core.BaseTestUI;
++import com.endava.ai.ui.model.AccountInvoiceDetailsSnapshot;
++import com.endava.ai.ui.tests.support.RegisteredInvoiceService;
++import com.endava.ai.ui.validation.AccountInvoiceValidation;
++import org.testng.annotations.Test;
++
++public final class RegisteredInvoiceDetailsReopenTests extends BaseTestUI {
++    static {
++    }
++
++    private final RegisteredInvoiceService invoiceService = new RegisteredInvoiceService();
++    private final AccountInvoiceValidation invoiceValidation = new AccountInvoiceValidation();
++
++    @Test
++    public void account_detour_preserves_invoice_identity() {
++        AccountInvoiceDetailsSnapshot snapshot = invoiceService.createInvoiceReopenInvoiceDetails();
++        invoiceValidation.assertDetailsPageOwnsInvoiceIdentity(snapshot);
++    }
++
++    @Test
++    public void account_detour_preserves_purchased_product() {
++        AccountInvoiceDetailsSnapshot snapshot = invoiceService.createInvoiceReopenInvoiceDetails();
++        invoiceValidation.assertDetailsContainsPurchasedProduct(snapshot);
++    }
++
++    @Test
++    public void account_detour_preserves_line_total() {
++        AccountInvoiceDetailsSnapshot snapshot = invoiceService.createInvoiceReopenInvoiceDetails();
++        invoiceValidation.assertDetailsLineItemTotal(snapshot);
++    }
++
++    @Test
++    public void account_detour_preserves_billing_address() {
++        AccountInvoiceDetailsSnapshot snapshot = invoiceService.createInvoiceReopenInvoiceDetails();
++        invoiceValidation.assertDetailsKeepsBillingAddress(snapshot);
++    }
++
++    @Test
++    public void account_detour_preserves_payment_method() {
++        AccountInvoiceDetailsSnapshot snapshot = invoiceService.createInvoiceReopenInvoiceDetails();
++        invoiceValidation.assertDetailsKeepsPaymentMethod(snapshot);
++    }
++}
++// Business object: registered invoice details record
++// New frontier: invoice details line item reopen relogin proof

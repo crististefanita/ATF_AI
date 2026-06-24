@@ -1,0 +1,52 @@
+diff --git a/src/test/java/com/endava/ai/ui/tests/RegisteredInvoiceDetailsReloginTests.java b/src/test/java/com/endava/ai/ui/tests/RegisteredInvoiceDetailsReloginTests.java
+new file mode 100644
+--- /dev/null
++++ b/src/test/java/com/endava/ai/ui/tests/RegisteredInvoiceDetailsReloginTests.java
++// Run slice: registered invoice details record relogin proof
++package com.endava.ai.ui.tests;
++
++import com.endava.ai.ui.core.BaseTestUI;
++import com.endava.ai.ui.model.AccountInvoiceDetailsSnapshot;
++import com.endava.ai.ui.tests.support.RegisteredInvoiceService;
++import com.endava.ai.ui.validation.AccountInvoiceValidation;
++import org.testng.annotations.Test;
++
++public final class RegisteredInvoiceDetailsReloginTests extends BaseTestUI {
++    static {
++    }
++
++    private final RegisteredInvoiceService invoiceService = new RegisteredInvoiceService();
++    private final AccountInvoiceValidation invoiceValidation = new AccountInvoiceValidation();
++
++    @Test
++    public void relogin_invoice_details_keep_invoice_identity() {
++        AccountInvoiceDetailsSnapshot snapshot = invoiceService.createInvoiceReloginInvoiceDetails();
++        invoiceValidation.assertDetailsPageOwnsInvoiceIdentity(snapshot);
++    }
++
++    @Test
++    public void relogin_invoice_details_keep_purchased_product() {
++        AccountInvoiceDetailsSnapshot snapshot = invoiceService.createInvoiceReloginInvoiceDetails();
++        invoiceValidation.assertDetailsContainsPurchasedProduct(snapshot);
++    }
++
++    @Test
++    public void relogin_invoice_details_keep_quantity() {
++        AccountInvoiceDetailsSnapshot snapshot = invoiceService.createInvoiceReloginInvoiceDetails();
++        invoiceValidation.assertDetailsLineItemQuantity(snapshot);
++    }
++
++    @Test
++    public void relogin_invoice_details_keep_total() {
++        AccountInvoiceDetailsSnapshot snapshot = invoiceService.createInvoiceReloginInvoiceDetails();
++        invoiceValidation.assertDetailsTotalMatchesCheckout(snapshot);
++    }
++
++    @Test
++    public void relogin_invoice_details_keep_download_action() {
++        invoiceService.createInvoiceReloginInvoiceDetails();
++        invoiceValidation.assertDetailsDownloadAffordanceVisible();
++    }
++}
++// Business object: registered invoice details record
++// New frontier: invoice details line item reopen relogin proof

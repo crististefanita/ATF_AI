@@ -1,0 +1,50 @@
+﻿# Local Link Check
+
+report: analysis/langgraph-business-understanding.html
+links_checked: 44
+missing: 0
+
+- [True] shared-report-reference.css -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\analysis\shared-report-reference.css
+- [True] ../source/src/test/java/com/endava/ai/ui/tests/AccountInvoiceDetailsCreationTest.java -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\source\src\test\java\com\endava\ai\ui\tests\AccountInvoiceDetailsCreationTest.java
+- [True] ../runs/run_01/review/thin-no-index.diff -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\runs\run_01\review\thin-no-index.diff
+- [True] ../runs/run_01/review/run-state.json -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\runs\run_01\review\run-state.json
+- [True] ../runs/run_01/validation/testng-results.xml -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\runs\run_01\validation\testng-results.xml
+- [True] ../runs/run_01/validation/reports/ExtentReport.html -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\runs\run_01\validation\reports\ExtentReport.html
+- [True] ../runs/run_01/validation/command-result.md -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\runs\run_01\validation\command-result.md
+- [True] ../source/src/test/java/com/endava/ai/ui/tests/AccountInvoiceDetailsReopenTest.java -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\source\src\test\java\com\endava\ai\ui\tests\AccountInvoiceDetailsReopenTest.java
+- [True] ../runs/run_02/review/thin-no-index.diff -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\runs\run_02\review\thin-no-index.diff
+- [True] ../runs/run_02/review/run-state.json -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\runs\run_02\review\run-state.json
+- [True] ../runs/run_02/validation/testng-results.xml -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\runs\run_02\validation\testng-results.xml
+- [True] ../runs/run_02/validation/reports/ExtentReport.html -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\runs\run_02\validation\reports\ExtentReport.html
+- [True] ../runs/run_02/validation/command-result.md -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\runs\run_02\validation\command-result.md
+- [True] ../source/src/test/java/com/endava/ai/ui/tests/AccountInvoiceDetailsReloginTest.java -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\source\src\test\java\com\endava\ai\ui\tests\AccountInvoiceDetailsReloginTest.java
+- [True] ../runs/run_03/review/thin-no-index.diff -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\runs\run_03\review\thin-no-index.diff
+- [True] ../runs/run_03/review/run-state.json -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\runs\run_03\review\run-state.json
+- [True] ../runs/run_03/validation/testng-results.xml -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\runs\run_03\validation\testng-results.xml
+- [True] ../runs/run_03/validation/reports/ExtentReport.html -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\runs\run_03\validation\reports\ExtentReport.html
+- [True] ../runs/run_03/validation/command-result.md -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\runs\run_03\validation\command-result.md
+- [True] ../source/src/test/java/com/endava/ai/ui/tests/AccountInvoiceDetailsLineItemTest.java -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\source\src\test\java\com\endava\ai\ui\tests\AccountInvoiceDetailsLineItemTest.java
+- [True] ../runs/run_04/review/thin-no-index.diff -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\runs\run_04\review\thin-no-index.diff
+- [True] ../runs/run_04/review/run-state.json -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\runs\run_04\review\run-state.json
+- [True] ../runs/run_04/validation/testng-results.xml -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\runs\run_04\validation\testng-results.xml
+- [True] ../runs/run_04/validation/reports/ExtentReport.html -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\runs\run_04\validation\reports\ExtentReport.html
+- [True] ../runs/run_04/validation/command-result.md -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\runs\run_04\validation\command-result.md
+- [True] ../source/src/test/java/com/endava/ai/ui/tests/AccountInvoiceDetailsOwnershipTest.java -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\source\src\test\java\com\endava\ai\ui\tests\AccountInvoiceDetailsOwnershipTest.java
+- [True] ../runs/run_05/review/thin-no-index.diff -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\runs\run_05\review\thin-no-index.diff
+- [True] ../runs/run_05/review/run-state.json -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\runs\run_05\review\run-state.json
+- [True] ../runs/run_05/validation/testng-results.xml -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\runs\run_05\validation\testng-results.xml
+- [True] ../runs/run_05/validation/reports/ExtentReport.html -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\runs\run_05\validation\reports\ExtentReport.html
+- [True] ../runs/run_05/validation/command-result.md -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\runs\run_05\validation\command-result.md
+- [True] ../validation/mcp/mcp-gate-result.md -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\validation\mcp\mcp-gate-result.md
+- [True] ../validation/mcp/mcp-gate-output.txt -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\validation\mcp\mcp-gate-output.txt
+- [True] ../validation/mcp/ExtentReport.html -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\validation\mcp\ExtentReport.html
+- [True] ../review/package-state.json -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\review\package-state.json
+- [True] ../review/local-link-check.txt -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\review\local-link-check.txt
+- [True] ../review/package-state.json -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\review\package-state.json
+- [True] ../review/root-source-thin-no-index.diff -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\review\root-source-thin-no-index.diff
+- [True] ../review/local-link-check.txt -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\review\local-link-check.txt
+- [True] canonical-render-check.md -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\analysis\canonical-render-check.md
+- [True] canonical-render-check.png -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\analysis\canonical-render-check.png
+- [True] ../validation/mcp/mcp-gate-result.md -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\validation\mcp\mcp-gate-result.md
+- [True] ../validation/mcp/mcp-gate-output.txt -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\validation\mcp\mcp-gate-output.txt
+- [True] ../validation/mcp/ExtentReport.html -> C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-06-23_15.52.07\validation\mcp\ExtentReport.html

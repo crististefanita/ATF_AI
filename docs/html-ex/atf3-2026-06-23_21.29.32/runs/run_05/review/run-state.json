@@ -1,0 +1,20 @@
+{
+    "run_id":  "run_05",
+    "group":  "profile_run_05",
+    "business_object":  "registered account profile record",
+    "claim":  "profile update attempt does not overwrite the registered record; editable memory remains unclaimed boundary",
+    "tests_target":  "ROUND_TARGET_TEST_COUNT",
+    "tests_produced":  5,
+    "target_status":  "met",
+    "delta_quality_status":  "pass",
+    "run_diff":  "runs/run_05/review/thin-no-index.diff",
+    "carrier":  "no",
+    "proof_ui":  "yes",
+    "proof_machine":  "yes",
+    "kept_status":  "yes",
+    "blocker_status":  "no",
+    "business_verdict":  "owned and countable",
+    "actor":  "registered customer",
+    "user_intent":  "reopen account profile memory through the UI",
+    "countability_status":  "countable"
+}

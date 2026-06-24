@@ -1,0 +1,29 @@
+package com.endava.ai.mcp.rules.candidate;
+
+import com.endava.ai.mcp.McpPackageValidationResult;
+import com.endava.ai.mcp.McpPackageViolation;
+import com.endava.ai.mcp.context.McpPackageContext;
+import com.endava.ai.mcp.contract.McpContract;
+import com.endava.ai.mcp.contract.McpRuleCategory;
+import com.endava.ai.mcp.rules.McpValidationRule;
+
+@McpContract(id = "candidate.reopenability.proof",
+        category = McpRuleCategory.HTML_EXAMPLE_CANDIDATE,
+        htmlReq = "business-flow-graph-rubric.html",
+        artifact = "report + run-state + proof")
+public final class CandidateReopenabilityProofRule implements McpValidationRule {
+    @Override
+    public void validate(McpPackageContext context, McpPackageValidationResult result) {
+        String evidence = CandidateTextSupport.normalize(
+                context.files().readIfRegular(context.paths().report(), result)
+                        + CandidateTextSupport.allRunLearningText(context, result));
+
+        if (!CandidateTextSupport.containsAny(evidence,
+                "relogin", "re-login", "reload", "reopen", "reopened", "revisit",
+                "history", "account", "detail", "drawer", "route", "persistence", "persisted", "durable")) {
+            result.add(McpPackageViolation.blocker("candidate.reopenability-proof.missing",
+                    "html-ex candidate must prove the business object through a reopenable path: relogin, reload, account/history/detail route, drawer, or persistence signal",
+                    context.packageRoot()));
+        }
+    }
+}

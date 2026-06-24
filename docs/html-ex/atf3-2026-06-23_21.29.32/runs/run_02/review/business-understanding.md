@@ -1,0 +1,11 @@
+# Business Understanding
+
+Actor: registered customer.
+Intent: preserve account profile memory as visible product state.
+Progression: progresses from surface reachability to field ownership, proving that contact and address values are product-owned profile data.
+Owned object: registered account profile record.
+Remaining boundary: edited profile values are not claimed as persistent.
+Next implication: handoff should continue with a fresh commerce/status object or with editable profile memory only if the UI shows persistence.
+
+Progression from prior: builds on run_01 and extends run_01 toward deeper profile ownership.
+

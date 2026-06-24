@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-06-23T15:57:33 EEST" name="Surefire suite" finished-at="2026-06-23T15:58:51 EEST" duration-ms="78043">
+    <groups>
+    </groups>
+    <test started-at="2026-06-23T15:57:33 EEST" name="Surefire test" finished-at="2026-06-23T15:58:51 EEST" duration-ms="78043">
+      <class name="com.endava.ai.ui.tests.AccountInvoiceDetailsOwnershipTest">
+        <!-- setUp -->
+        <test-method signature="account_owned_details_expose_billing_and_payment_after_relogin()[pri:0, instance:com.endava.ai.ui.tests.AccountInvoiceDetailsOwnershipTest@b9b00e0]" started-at="2026-06-23T15:57:46 EEST" name="account_owned_details_expose_billing_and_payment_after_relogin" finished-at="2026-06-23T15:58:01 EEST" duration-ms="14919" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method>
+        <!-- account_owned_details_expose_billing_and_payment_after_relogin -->
+        <test-method signature="account_owned_details_include_invoice_number_after_reopen()[pri:0, instance:com.endava.ai.ui.tests.AccountInvoiceDetailsOwnershipTest@b9b00e0]" started-at="2026-06-23T15:58:02 EEST" name="account_owned_details_include_invoice_number_after_reopen" finished-at="2026-06-23T15:58:13 EEST" duration-ms="11151" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method>
+        <!-- account_owned_details_include_invoice_number_after_reopen -->
+        <test-method signature="account_owned_details_include_line_item_after_relogin()[pri:0, instance:com.endava.ai.ui.tests.AccountInvoiceDetailsOwnershipTest@b9b00e0]" started-at="2026-06-23T15:58:13 EEST" name="account_owned_details_include_line_item_after_relogin" finished-at="2026-06-23T15:58:25 EEST" duration-ms="12087" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method>
+        <!-- account_owned_details_include_line_item_after_relogin -->
+        <test-method signature="account_owned_details_include_total_after_reopen()[pri:0, instance:com.endava.ai.ui.tests.AccountInvoiceDetailsOwnershipTest@b9b00e0]" started-at="2026-06-23T15:58:25 EEST" name="account_owned_details_include_total_after_reopen" finished-at="2026-06-23T15:58:36 EEST" duration-ms="10502" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method>
+        <!-- account_owned_details_include_total_after_reopen -->
+        <test-method signature="account_owned_details_keep_account_route_after_relogin()[pri:0, instance:com.endava.ai.ui.tests.AccountInvoiceDetailsOwnershipTest@b9b00e0]" started-at="2026-06-23T15:58:36 EEST" name="account_owned_details_keep_account_route_after_relogin" finished-at="2026-06-23T15:58:51 EEST" duration-ms="14448" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method>
+        <!-- account_owned_details_keep_account_route_after_relogin -->
+        <!-- tearDown -->
+      </class>
+      <!-- com.endava.ai.ui.tests.AccountInvoiceDetailsOwnershipTest -->
+    </test>
+    <!-- Surefire test -->
+  </suite>
+  <!-- Surefire suite -->
+</testng-results>

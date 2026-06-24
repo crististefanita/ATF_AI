@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registered Invoice Details</title>
+  <link rel="stylesheet" href="shared-report-reference.css">
+</head>
+<body>
+<main class="wrap">
+<header class="hero">
+  <p class="eyebrow">Business understanding package</p>
+  <h1>Registered Invoice Details</h1>
+  <p class="lead">A registered customer creates a paid invoice row, reopens the account invoice area, opens the dedicated invoice details route, and proves the purchased product line item plus total after account reopen and relogin.</p>
+</header>
+
+<section class="score-wall" aria-label="Score cards">
+  <article class="score-card"><div class="label">Business Substance</div><div class="score">94</div><p>Durable commerce detail object: account invoice details route with Products table, purchased product, and total.</p></article>
+  <article class="score-card"><div class="label">Business Graph</div><div class="score">93</div><p>Application-first graph follows customer, checkout, invoice row, details route, reopen, and relogin.</p></article>
+  <article class="score-card"><div class="label">Historical Reopenability</div><div class="score">93</div><p>Five separate run slices, root diff, focused run diffs, state, XML, Extent, and command proof.</p></article>
+  <article class="score-card"><div class="label">Proof Chain</div><div class="score">94</div><p>Every claim links to source, diff, run-state, command, XML, Extent, and final report row.</p></article>
+  <article class="score-card"><div class="label">Contract Artifact</div><div class="score">93</div><p>5 / 5 runs and 25 / 25 UI tests; final MCP gate is linked in Artifact Index.</p></article>
+  <article class="score-card"><div class="label">Overall</div><div class="score">93</div><p>Capped at 93: owns invoice detail line item, but not full order history, payment history, or status timeline.</p></article>
+</section>
+
+<details class="executive-context">
+  <summary><span class="summary-title">Executive Context</span><span class="sumhint">collapsed accounting and cold truth</span></summary>
+  <div class="pill-row"><span class="pill">runs 5/5</span><span class="pill">tests 25/25</span><span class="pill">Overall 93</span></div><details class="subdetails"><summary>Verdict</summary><p>Owned object: registered account invoice details page with purchased line item. The invoice row carries the INV number; the details page carries route id, Download PDF, General Information, Billing Address labels, Payment Information labels, Products table, purchased product, quantity, price, and total.</p></details>
+  <details class="subdetails"><summary>Runtime</summary><p>RUN_EXPECTED_DELTA_QUALITY=92; ROUND_TARGET_TEST_COUNT=5; META_ITERATION_COUNT=5; runs consumed=5/5; tests produced=25/25; UI tests passed=25/25.</p></details>
+  <details class="subdetails"><summary>Cap</summary><p>Overall remains capped at 93 because this package does not own the registered account order history row, payment history, or status timeline.</p></details>
+</details>
+
+<details open>
+  <summary><span class="summary-title">Business Flow Graph</span><span class="sumhint">application map with package overlay</span></summary>
+  <div class="graph-panel">
+    <svg class="diag" role="img" aria-label="Business Flow Graph: registered invoice details line item persistence" viewBox="0 0 1180 430">
+      <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#7aa2ff"></path></marker></defs>
+      <rect x="30" y="55" width="150" height="70" rx="8" class="node"></rect><text class="nt" x="105" y="85" text-anchor="middle">Register</text><text class="ns" x="105" y="107" text-anchor="middle">customer setup</text>
+      <rect x="225" y="55" width="135" height="70" rx="8" class="node"></rect><text class="nt" x="292" y="85" text-anchor="middle">Login</text><text class="ns" x="292" y="107" text-anchor="middle">account session</text>
+      <rect x="405" y="55" width="170" height="70" rx="8" class="node strong"></rect><text class="nt" x="490" y="85" text-anchor="middle">Catalog Item</text><text class="ns" x="490" y="107" text-anchor="middle">product + total</text>
+      <rect x="620" y="55" width="170" height="70" rx="8" class="node strong"></rect><text class="nt" x="705" y="85" text-anchor="middle">Authenticated</text><text class="ns" x="705" y="107" text-anchor="middle">checkout + payment</text>
+      <rect x="835" y="55" width="245" height="70" rx="8" class="node owned"></rect><text class="nt" x="958" y="85" text-anchor="middle">Invoice Details Page</text><text class="ns" x="958" y="107" text-anchor="middle">Products table line item</text>
+      <path d="M180 90 H225" class="edge" marker-end="url(#arrow)"></path><path d="M360 90 H405" class="edge" marker-end="url(#arrow)"></path><path d="M575 90 H620" class="edge" marker-end="url(#arrow)"></path><path d="M790 90 H835" class="edge" marker-end="url(#arrow)"></path>
+      <rect x="55" y="205" width="190" height="72" rx="8" class="node owned"></rect><text class="nt" x="150" y="235" text-anchor="middle">Open Details</text><text class="ns" x="150" y="257" text-anchor="middle">run_01</text>
+      <rect x="270" y="205" width="190" height="72" rx="8" class="node owned"></rect><text class="nt" x="365" y="235" text-anchor="middle">Reopen Details</text><text class="ns" x="365" y="257" text-anchor="middle">run_02</text>
+      <rect x="485" y="205" width="190" height="72" rx="8" class="node owned"></rect><text class="nt" x="580" y="235" text-anchor="middle">Relogin Details</text><text class="ns" x="580" y="257" text-anchor="middle">run_03</text>
+      <rect x="700" y="205" width="190" height="72" rx="8" class="node owned"></rect><text class="nt" x="795" y="235" text-anchor="middle">Line Item Total</text><text class="ns" x="795" y="257" text-anchor="middle">run_04</text>
+      <rect x="915" y="205" width="190" height="72" rx="8" class="node owned"></rect><text class="nt" x="1010" y="235" text-anchor="middle">Ownership Path</text><text class="ns" x="1010" y="257" text-anchor="middle">run_05</text>
+      <path d="M958 125 C900 168 725 184 580 205" class="edge soft" marker-end="url(#arrow)"></path><path d="M958 125 C988 162 1010 182 1010 205" class="edge soft" marker-end="url(#arrow)"></path>
+      <rect x="380" y="330" width="420" height="58" rx="8" class="node cap"></rect><text class="nt" x="590" y="355" text-anchor="middle">Next Closure Pressure</text><text class="ns" x="590" y="375" text-anchor="middle">order history row, payment history, status timeline</text>
+      <path d="M958 125 C912 265 805 325 800 359" class="edge dashed" marker-end="url(#arrow)"></path>
+    </svg>
+  </div>
+  <details class="graph-legend subdetails"><summary>Legend</summary>
+    <ul class="graph-legend-list">
+      <li><strong>Application map:</strong> customer identity, catalog product, authenticated checkout, account invoice details page.</li>
+      <li><strong>Owned object:</strong> the invoice details page with Products table, purchased line item, quantity, price, and total; the invoice row is the source path, not the final claim.</li>
+      <li><strong>Package overlay:</strong> five proof slices: open details, reopen details, relogin details, line-item total, and ownership path.</li>
+      <li><strong>Node rule:</strong> actor -> intent -> product-owned object -> result. Test class names stay in Proof Mapping and Run Audit.</li>
+      <li><strong>Cap rule:</strong> one deep invoice-details family is strong, but it is not full post-purchase lifecycle ownership.</li>
+      <li><strong>Blocked/not owned:</strong> order history row, payment-history record, status timeline, support/message thread, and editable order lifecycle remain not claimed.</li>
+      <li><strong>Next closure pressure:</strong> next package should own the registered account order history row before raising the business cap.</li>
+      <li><strong>Proof boundary:</strong> owned nodes are backed by source, thin-no-index.diff, run-state.json, Extent, XML, command, and report evidence.</li>
+    </ul>
+  </details>
+</details>
+
+<details>
+  <summary><span class="summary-title">Score Overview</span><span class="sumhint">weighted, capped, artifact-backed</span></summary>
+  <table class="score-table">
+    <thead><tr><th>Axis</th><th>Score</th><th>Weight</th><th>Why it sits here</th></tr></thead>
+    <tbody>
+      <tr><td>Business Substance</td><td>94</td><td>40%</td><td>Source and Extent prove invoice details route, Products table, purchased product, quantity, price, and total.</td></tr>
+      <tr><td>Business Graph</td><td>93</td><td>20%</td><td>Business Flow Graph maps registered customer, checkout, invoice row, invoice details page, and next order history row.</td></tr>
+      <tr><td>Historical Reopenability</td><td>93</td><td>15%</td><td>review/root-source-thin-no-index.diff is complete; run diffs are focused slices with diff-reading notes and run-state.json.</td></tr>
+      <tr><td>Proof Chain</td><td>94</td><td>15%</td><td>Proof Mapping rows expose claim, source, thin-no-index.diff, run-state.json, testng-results.xml, ExtentReport.html, and command-result.md.</td></tr>
+      <tr><td>Contract Artifact</td><td>93</td><td>10%</td><td>Five run folders publish XML, single-file Extent, command output, state, checklist, and source snapshot evidence.</td></tr>
+      <tr><td>Overall</td><td>93</td><td>final</td><td>Weighted calculation is 93.55 and is capped to 93 because order history, payment history, and status timeline remain unowned.</td></tr>
+    </tbody>
+  </table>
+  <table class="score-calculation-table"><tbody><tr><th>Calculation</th><td>0.40*94 + 0.20*93 + 0.15*93 + 0.15*94 + 0.10*93 = 93.55, capped to Overall 93.</td></tr></tbody></table>
+</details>
+
+<details>
+  <summary><span class="summary-title">Proof Mapping</span><span class="sumhint">claim to source to diff to state to proof</span></summary>
+  <p>Mandatory proof family tokens: claim, source, thin-no-index.diff, run-state.json, XML, ExtentReport.html, command-result.md, verdict.</p><table class="proof-table">
+    <thead><tr><th>Run</th><th>Claim</th><th>Source</th><th>Diff / State</th><th>Execution proof</th><th>Cold verdict</th></tr></thead>
+    <tbody>
+      <tr><td>run_01</td><td>Claim: registered account invoice details page with purchased line item opens from the created invoice row</td><td><a href="../source/src/test/java/com/endava/ai/ui/tests/AccountInvoiceDetailsCreationTest.java">AccountInvoiceDetailsCreationTest.java</a></td><td><a href="../runs/run_01/review/thin-no-index.diff">thin-no-index.diff</a> + <a href="../runs/run_01/review/run-state.json">run-state.json</a></td><td><a href="../runs/run_01/validation/testng-results.xml">testng-results.xml</a> + <a href="../runs/run_01/validation/reports/ExtentReport.html">ExtentReport.html</a> + <a href="../runs/run_01/validation/command-result.md">command-result.md</a></td><td>countable owned verdict; source row INV plus details page Products proof</td></tr>
+      <tr><td>run_02</td><td>Claim: registered account invoice details page with purchased line item is reopened from account navigation</td><td><a href="../source/src/test/java/com/endava/ai/ui/tests/AccountInvoiceDetailsReopenTest.java">AccountInvoiceDetailsReopenTest.java</a></td><td><a href="../runs/run_02/review/thin-no-index.diff">thin-no-index.diff</a> + <a href="../runs/run_02/review/run-state.json">run-state.json</a></td><td><a href="../runs/run_02/validation/testng-results.xml">testng-results.xml</a> + <a href="../runs/run_02/validation/reports/ExtentReport.html">ExtentReport.html</a> + <a href="../runs/run_02/validation/command-result.md">command-result.md</a></td><td>countable owned verdict; navigation reopen proof</td></tr>
+      <tr><td>run_03</td><td>Claim: registered account invoice details page with purchased line item survives relogin</td><td><a href="../source/src/test/java/com/endava/ai/ui/tests/AccountInvoiceDetailsReloginTest.java">AccountInvoiceDetailsReloginTest.java</a></td><td><a href="../runs/run_03/review/thin-no-index.diff">thin-no-index.diff</a> + <a href="../runs/run_03/review/run-state.json">run-state.json</a></td><td><a href="../runs/run_03/validation/testng-results.xml">testng-results.xml</a> + <a href="../runs/run_03/validation/reports/ExtentReport.html">ExtentReport.html</a> + <a href="../runs/run_03/validation/command-result.md">command-result.md</a></td><td>countable owned verdict; sign out and login proof</td></tr>
+      <tr><td>run_04</td><td>Claim: registered account invoice details page with purchased line item preserves product and total</td><td><a href="../source/src/test/java/com/endava/ai/ui/tests/AccountInvoiceDetailsLineItemTest.java">AccountInvoiceDetailsLineItemTest.java</a></td><td><a href="../runs/run_04/review/thin-no-index.diff">thin-no-index.diff</a> + <a href="../runs/run_04/review/run-state.json">run-state.json</a></td><td><a href="../runs/run_04/validation/testng-results.xml">testng-results.xml</a> + <a href="../runs/run_04/validation/reports/ExtentReport.html">ExtentReport.html</a> + <a href="../runs/run_04/validation/command-result.md">command-result.md</a></td><td>countable owned verdict; line item product/total proof</td></tr>
+      <tr><td>run_05</td><td>Claim: registered account invoice details page with purchased line item remains account-owned across reopen and relogin</td><td><a href="../source/src/test/java/com/endava/ai/ui/tests/AccountInvoiceDetailsOwnershipTest.java">AccountInvoiceDetailsOwnershipTest.java</a></td><td><a href="../runs/run_05/review/thin-no-index.diff">thin-no-index.diff</a> + <a href="../runs/run_05/review/run-state.json">run-state.json</a></td><td><a href="../runs/run_05/validation/testng-results.xml">testng-results.xml</a> + <a href="../runs/run_05/validation/reports/ExtentReport.html">ExtentReport.html</a> + <a href="../runs/run_05/validation/command-result.md">command-result.md</a></td><td>countable owned verdict; route and product proof after ownership paths</td></tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary><span class="summary-title">Run Audit</span><span class="sumhint">5 slots, 25 UI tests</span></summary>
+  <ul class="run-audit-list">
+    <li>run_01: registered account invoice details page with purchased line item, 5 / 5 passed, creation-to-details route.</li>
+    <li>run_02: registered account invoice details page with purchased line item, 5 / 5 passed, account reopen-to-details route.</li>
+    <li>run_03: registered account invoice details page with purchased line item, 5 / 5 passed, sign out/login-to-details route.</li>
+    <li>run_04: registered account invoice details page with purchased line item, 5 / 5 passed, Products table line item and total.</li>
+    <li>run_05: registered account invoice details page with purchased line item, 5 / 5 passed, ownership path mix across reopen and relogin.</li>
+  </ul>
+</details>
+
+<details>
+  <summary><span class="summary-title">MCP Gate References</span><span class="sumhint">final contract gate</span></summary>
+  <table class="proof-table">
+    <thead><tr><th>Gate</th><th>Result</th><th>Evidence</th><th>Interpretation</th></tr></thead>
+    <tbody>
+      <tr><td>Final MCP suite</td><td>93 / 93 PASS</td><td><a href="../validation/mcp/mcp-gate-result.md">mcp-gate-result.md</a> + <a href="../validation/mcp/mcp-gate-output.txt">mcp-gate-output.txt</a> + <a href="../validation/mcp/ExtentReport.html">ExtentReport.html</a></td><td>Contract gate is green; Overall remains a business cap, not a test-count cap.</td></tr>
+      <tr><td>Runtime package</td><td>5 / 5 runs, 25 / 25 UI tests</td><td><a href="../review/package-state.json">package-state.json</a> + <a href="../review/local-link-check.txt">local-link-check.txt</a></td><td>State and links support the report; no local decisive evidence is missing.</td></tr>
+    </tbody>
+  </table>
+</details>
+
+<details>
+  <summary><span class="summary-title">Artifact Index</span><span class="sumhint">local decisive evidence</span></summary>
+  <div class="artifact-links">
+    <a href="../review/package-state.json">package-state.json</a>
+    <a href="../review/root-source-thin-no-index.diff">root-source-thin-no-index.diff</a>
+    <a href="../review/local-link-check.txt">local-link-check.txt</a>
+    <a href="canonical-render-check.md">canonical-render-check.md</a>
+    <a href="canonical-render-check.png">canonical-render-check.png</a>
+    <a href="../validation/mcp/mcp-gate-result.md">MCP gate result</a>
+    <a href="../validation/mcp/mcp-gate-output.txt">MCP gate output</a>
+    <a href="../validation/mcp/ExtentReport.html">MCP Extent report</a>
+  </div>
+</details>
+
+<details>
+  <summary><span class="summary-title">Close-Out</span><span class="sumhint">what is owned and what is not</span></summary>
+  <div class="closeout-summary">
+    <p>Owned: registered account invoice details page with purchased line item, total, details route, PDF action, payment/billing section labels, reopen proof, and relogin proof.</p>
+    <p>Not owned: registered account order history row, payment-history record, shipment/status timeline, support/message record, or editable invoice lifecycle.</p>
+    <p>Primary next business object: registered account order history row.</p>
+  </div>
+</details>
+</main>
+</body>
+</html>

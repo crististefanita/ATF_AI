@@ -1,0 +1,20 @@
+﻿{
+    "run":  "run_01",
+    "class":  "RegisteredInvoiceCreationTests",
+    "status":  "closed-pass",
+    "verdict":  "countable owned invoice details record proof",
+    "business_object":  "registered invoice details record",
+    "new_frontier":  "invoice details line item reopen relogin proof",
+    "claim":  "Invoice row is created from registered checkout and exposes INV identity, date, total and owner account.",
+    "progression":  "first baseline beyond checkout success: the account invoice row is countable",
+    "next_implication":  "run_02 opens the invoice details record from that row",
+    "tests_produced":  5,
+    "tests_expected":  5,
+    "tests_passed":  5,
+    "extent_report":  "validation/reports/ExtentReport.html",
+    "testng_results":  "validation/testng-results.xml",
+    "command_result":  "validation/command-result.md",
+    "diff":  "review/thin-no-index.diff",
+    "countable":  true,
+    "owned":  true
+}

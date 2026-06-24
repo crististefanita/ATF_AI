@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="25" passed="25" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-06-23T21:34:32 EEST" name="Surefire suite" finished-at="2026-06-23T21:38:01 EEST" duration-ms="209007">
+    <groups>
+    </groups>
+    <test started-at="2026-06-23T21:34:32 EEST" name="Surefire test" finished-at="2026-06-23T21:38:01 EEST" duration-ms="209007">
+      <class name="com.endava.ai.ui.tests.ContactMessageRun04ReloginTests">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun04ReloginTests@6fdbe764]" started-at="2026-06-23T21:36:36 EEST" name="setUp" finished-at="2026-06-23T21:36:38 EEST" duration-ms="2485" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="relogin_message_details_keep_customer_identity()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun04ReloginTests@6fdbe764]" started-at="2026-06-23T21:36:38 EEST" name="relogin_message_details_keep_customer_identity" finished-at="2026-06-23T21:36:49 EEST" duration-ms="10590" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- relogin_message_details_keep_customer_identity -->
+        <test-method signature="relogin_message_details_keep_full_message()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun04ReloginTests@6fdbe764]" started-at="2026-06-23T21:36:49 EEST" name="relogin_message_details_keep_full_message" finished-at="2026-06-23T21:36:57 EEST" duration-ms="8254" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- relogin_message_details_keep_full_message -->
+        <test-method signature="relogin_message_details_keep_subject_and_status()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun04ReloginTests@6fdbe764]" started-at="2026-06-23T21:36:58 EEST" name="relogin_message_details_keep_subject_and_status" finished-at="2026-06-23T21:37:06 EEST" duration-ms="8028" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- relogin_message_details_keep_subject_and_status -->
+        <test-method signature="relogin_messages_page_keeps_submitted_preview()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun04ReloginTests@6fdbe764]" started-at="2026-06-23T21:37:06 EEST" name="relogin_messages_page_keeps_submitted_preview" finished-at="2026-06-23T21:37:13 EEST" duration-ms="7227" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- relogin_messages_page_keeps_submitted_preview -->
+        <test-method signature="relogin_messages_page_keeps_support_row()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun04ReloginTests@6fdbe764]" started-at="2026-06-23T21:37:13 EEST" name="relogin_messages_page_keeps_support_row" finished-at="2026-06-23T21:37:20 EEST" duration-ms="7093" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- relogin_messages_page_keeps_support_row -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun04ReloginTests@6fdbe764]" started-at="2026-06-23T21:37:21 EEST" name="tearDown" finished-at="2026-06-23T21:37:21 EEST" duration-ms="467" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.endava.ai.ui.tests.ContactMessageRun04ReloginTests -->
+      <class name="com.endava.ai.ui.tests.ContactMessageRun02DetailsTests">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun02DetailsTests@4d5650ae]" started-at="2026-06-23T21:35:17 EEST" name="setUp" finished-at="2026-06-23T21:35:19 EEST" duration-ms="2086" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="support_message_details_expose_reply_surface()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun02DetailsTests@4d5650ae]" started-at="2026-06-23T21:35:19 EEST" name="support_message_details_expose_reply_surface" finished-at="2026-06-23T21:35:27 EEST" duration-ms="8608" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- support_message_details_expose_reply_surface -->
+        <test-method signature="support_message_details_open_from_row()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun02DetailsTests@4d5650ae]" started-at="2026-06-23T21:35:28 EEST" name="support_message_details_open_from_row" finished-at="2026-06-23T21:35:34 EEST" duration-ms="6397" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- support_message_details_open_from_row -->
+        <test-method signature="support_message_details_preserve_customer_identity()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun02DetailsTests@4d5650ae]" started-at="2026-06-23T21:35:34 EEST" name="support_message_details_preserve_customer_identity" finished-at="2026-06-23T21:35:41 EEST" duration-ms="6246" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- support_message_details_preserve_customer_identity -->
+        <test-method signature="support_message_details_preserve_subject_and_status()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun02DetailsTests@4d5650ae]" started-at="2026-06-23T21:35:41 EEST" name="support_message_details_preserve_subject_and_status" finished-at="2026-06-23T21:35:47 EEST" duration-ms="6340" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- support_message_details_preserve_subject_and_status -->
+        <test-method signature="support_message_details_preserve_timestamp()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun02DetailsTests@4d5650ae]" started-at="2026-06-23T21:35:48 EEST" name="support_message_details_preserve_timestamp" finished-at="2026-06-23T21:35:54 EEST" duration-ms="6234" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- support_message_details_preserve_timestamp -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun02DetailsTests@4d5650ae]" started-at="2026-06-23T21:35:54 EEST" name="tearDown" finished-at="2026-06-23T21:35:55 EEST" duration-ms="510" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.endava.ai.ui.tests.ContactMessageRun02DetailsTests -->
+      <class name="com.endava.ai.ui.tests.ContactMessageRun03ReopenTests">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun03ReopenTests@a38c7fe]" started-at="2026-06-23T21:35:55 EEST" name="setUp" finished-at="2026-06-23T21:35:57 EEST" duration-ms="2557" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="reopened_messages_details_keep_full_message()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun03ReopenTests@a38c7fe]" started-at="2026-06-23T21:35:57 EEST" name="reopened_messages_details_keep_full_message" finished-at="2026-06-23T21:36:08 EEST" duration-ms="10526" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- reopened_messages_details_keep_full_message -->
+        <test-method signature="reopened_messages_details_keep_reply_surface()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun03ReopenTests@a38c7fe]" started-at="2026-06-23T21:36:08 EEST" name="reopened_messages_details_keep_reply_surface" finished-at="2026-06-23T21:36:15 EEST" duration-ms="7243" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- reopened_messages_details_keep_reply_surface -->
+        <test-method signature="reopened_messages_page_keeps_support_row()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun03ReopenTests@a38c7fe]" started-at="2026-06-23T21:36:15 EEST" name="reopened_messages_page_keeps_support_row" finished-at="2026-06-23T21:36:22 EEST" duration-ms="6423" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- reopened_messages_page_keeps_support_row -->
+        <test-method signature="reopened_messages_page_keeps_support_status()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun03ReopenTests@a38c7fe]" started-at="2026-06-23T21:36:22 EEST" name="reopened_messages_page_keeps_support_status" finished-at="2026-06-23T21:36:28 EEST" duration-ms="6290" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- reopened_messages_page_keeps_support_status -->
+        <test-method signature="reopened_messages_page_keeps_timestamp()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun03ReopenTests@a38c7fe]" started-at="2026-06-23T21:36:29 EEST" name="reopened_messages_page_keeps_timestamp" finished-at="2026-06-23T21:36:35 EEST" duration-ms="6150" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- reopened_messages_page_keeps_timestamp -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun03ReopenTests@a38c7fe]" started-at="2026-06-23T21:36:35 EEST" name="tearDown" finished-at="2026-06-23T21:36:36 EEST" duration-ms="467" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.endava.ai.ui.tests.ContactMessageRun03ReopenTests -->
+      <class name="com.endava.ai.ui.tests.ContactMessageRun01SubmissionTests">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun01SubmissionTests@130c12b7]" started-at="2026-06-23T21:34:32 EEST" name="setUp" finished-at="2026-06-23T21:34:46 EEST" duration-ms="13271" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="authenticated_customer_creates_support_message_row()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun01SubmissionTests@130c12b7]" started-at="2026-06-23T21:34:46 EEST" name="authenticated_customer_creates_support_message_row" finished-at="2026-06-23T21:34:53 EEST" duration-ms="7620" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- authenticated_customer_creates_support_message_row -->
+        <test-method signature="support_message_replaces_messages_empty_state()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun01SubmissionTests@130c12b7]" started-at="2026-06-23T21:34:54 EEST" name="support_message_replaces_messages_empty_state" finished-at="2026-06-23T21:34:59 EEST" duration-ms="5226" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- support_message_replaces_messages_empty_state -->
+        <test-method signature="support_message_row_carries_submitted_preview()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun01SubmissionTests@130c12b7]" started-at="2026-06-23T21:34:59 EEST" name="support_message_row_carries_submitted_preview" finished-at="2026-06-23T21:35:05 EEST" duration-ms="5470" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- support_message_row_carries_submitted_preview -->
+        <test-method signature="support_message_row_has_a_business_timestamp()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun01SubmissionTests@130c12b7]" started-at="2026-06-23T21:35:05 EEST" name="support_message_row_has_a_business_timestamp" finished-at="2026-06-23T21:35:11 EEST" duration-ms="5682" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- support_message_row_has_a_business_timestamp -->
+        <test-method signature="support_message_row_starts_with_new_status()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun01SubmissionTests@130c12b7]" started-at="2026-06-23T21:35:11 EEST" name="support_message_row_starts_with_new_status" finished-at="2026-06-23T21:35:16 EEST" duration-ms="5153" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- support_message_row_starts_with_new_status -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun01SubmissionTests@130c12b7]" started-at="2026-06-23T21:35:16 EEST" name="tearDown" finished-at="2026-06-23T21:35:17 EEST" duration-ms="541" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.endava.ai.ui.tests.ContactMessageRun01SubmissionTests -->
+      <class name="com.endava.ai.ui.tests.ContactMessageRun05AuditTrailTests">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun05AuditTrailTests@51c668e3]" started-at="2026-06-23T21:37:21 EEST" name="setUp" finished-at="2026-06-23T21:37:23 EEST" duration-ms="1918" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="message_audit_trail_keeps_reply_surface_as_next_lifecycle()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun05AuditTrailTests@51c668e3]" started-at="2026-06-23T21:37:23 EEST" name="message_audit_trail_keeps_reply_surface_as_next_lifecycle" finished-at="2026-06-23T21:37:33 EEST" duration-ms="10107" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- message_audit_trail_keeps_reply_surface_as_next_lifecycle -->
+        <test-method signature="message_audit_trail_links_details_to_status()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun05AuditTrailTests@51c668e3]" started-at="2026-06-23T21:37:33 EEST" name="message_audit_trail_links_details_to_status" finished-at="2026-06-23T21:37:40 EEST" duration-ms="6490" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- message_audit_trail_links_details_to_status -->
+        <test-method signature="message_audit_trail_links_relogin_to_details()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun05AuditTrailTests@51c668e3]" started-at="2026-06-23T21:37:40 EEST" name="message_audit_trail_links_relogin_to_details" finished-at="2026-06-23T21:37:48 EEST" duration-ms="8040" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- message_audit_trail_links_relogin_to_details -->
+        <test-method signature="message_audit_trail_links_row_to_details_route()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun05AuditTrailTests@51c668e3]" started-at="2026-06-23T21:37:49 EEST" name="message_audit_trail_links_row_to_details_route" finished-at="2026-06-23T21:37:55 EEST" duration-ms="6471" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- message_audit_trail_links_row_to_details_route -->
+        <test-method signature="message_audit_trail_links_submit_to_account_row()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun05AuditTrailTests@51c668e3]" started-at="2026-06-23T21:37:55 EEST" name="message_audit_trail_links_submit_to_account_row" finished-at="2026-06-23T21:38:01 EEST" duration-ms="5434" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- message_audit_trail_links_submit_to_account_row -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.endava.ai.ui.tests.ContactMessageRun05AuditTrailTests@51c668e3]" started-at="2026-06-23T21:38:01 EEST" name="tearDown" finished-at="2026-06-23T21:38:01 EEST" duration-ms="421" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.endava.ai.ui.tests.ContactMessageRun05AuditTrailTests -->
+    </test> <!-- Surefire test -->
+  </suite> <!-- Surefire suite -->
+</testng-results>

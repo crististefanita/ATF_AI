@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-06-24T10:06:41 EEST" name="Surefire suite" finished-at="2026-06-24T10:07:55 EEST" duration-ms="73721">
+    <groups>
+    </groups>
+    <test started-at="2026-06-24T10:06:41 EEST" name="Surefire test" finished-at="2026-06-24T10:07:55 EEST" duration-ms="73721">
+      <class name="com.endava.ai.ui.tests.RegisteredInvoiceDetailsIdentityTests">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.endava.ai.ui.tests.RegisteredInvoiceDetailsIdentityTests@506ae4d4]" started-at="2026-06-24T10:06:41 EEST" name="setUp" finished-at="2026-06-24T10:07:03 EEST" duration-ms="21471" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="invoice_details_page_exposes_download_action()[pri:0, instance:com.endava.ai.ui.tests.RegisteredInvoiceDetailsIdentityTests@506ae4d4]" started-at="2026-06-24T10:07:03 EEST" name="invoice_details_page_exposes_download_action" finished-at="2026-06-24T10:07:14 EEST" duration-ms="10946" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- invoice_details_page_exposes_download_action -->
+        <test-method signature="invoice_details_page_exposes_invoice_date()[pri:0, instance:com.endava.ai.ui.tests.RegisteredInvoiceDetailsIdentityTests@506ae4d4]" started-at="2026-06-24T10:07:14 EEST" name="invoice_details_page_exposes_invoice_date" finished-at="2026-06-24T10:07:24 EEST" duration-ms="9672" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- invoice_details_page_exposes_invoice_date -->
+        <test-method signature="invoice_details_page_has_account_invoice_route()[pri:0, instance:com.endava.ai.ui.tests.RegisteredInvoiceDetailsIdentityTests@506ae4d4]" started-at="2026-06-24T10:07:24 EEST" name="invoice_details_page_has_account_invoice_route" finished-at="2026-06-24T10:07:34 EEST" duration-ms="9842" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- invoice_details_page_has_account_invoice_route -->
+        <test-method signature="invoice_details_page_keeps_row_invoice_number()[pri:0, instance:com.endava.ai.ui.tests.RegisteredInvoiceDetailsIdentityTests@506ae4d4]" started-at="2026-06-24T10:07:34 EEST" name="invoice_details_page_keeps_row_invoice_number" finished-at="2026-06-24T10:07:43 EEST" duration-ms="9722" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- invoice_details_page_keeps_row_invoice_number -->
+        <test-method signature="invoice_details_total_matches_checkout_total()[pri:0, instance:com.endava.ai.ui.tests.RegisteredInvoiceDetailsIdentityTests@506ae4d4]" started-at="2026-06-24T10:07:44 EEST" name="invoice_details_total_matches_checkout_total" finished-at="2026-06-24T10:07:53 EEST" duration-ms="9410" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- invoice_details_total_matches_checkout_total -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.endava.ai.ui.tests.RegisteredInvoiceDetailsIdentityTests@506ae4d4]" started-at="2026-06-24T10:07:53 EEST" name="tearDown" finished-at="2026-06-24T10:07:55 EEST" duration-ms="1819" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.endava.ai.ui.tests.RegisteredInvoiceDetailsIdentityTests -->
+    </test> <!-- Surefire test -->
+  </suite> <!-- Surefire suite -->
+</testng-results>

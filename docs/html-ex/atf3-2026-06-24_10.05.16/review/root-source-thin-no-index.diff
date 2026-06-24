@@ -1,0 +1,264 @@
+diff --git a/src/test/java/com/endava/ai/ui/tests/RegisteredInvoiceCreationTests.java b/src/test/java/com/endava/ai/ui/tests/RegisteredInvoiceCreationTests.java
+new file mode 100644
+--- /dev/null
++++ b/src/test/java/com/endava/ai/ui/tests/RegisteredInvoiceCreationTests.java
++// Run slice: registered invoice details record creation row proof
++package com.endava.ai.ui.tests;
++
++import com.endava.ai.ui.core.BaseTestUI;
++import com.endava.ai.ui.model.AccountInvoiceSnapshot;
++import com.endava.ai.ui.tests.support.RegisteredInvoiceService;
++import com.endava.ai.ui.validation.AccountInvoiceValidation;
++import org.testng.annotations.Test;
++
++public final class RegisteredInvoiceCreationTests extends BaseTestUI {
++    static {
++    }
++
++    private final RegisteredInvoiceService invoiceService = new RegisteredInvoiceService();
++    private final AccountInvoiceValidation invoiceValidation = new AccountInvoiceValidation();
++
++    @Test
++    public void registered_checkout_creates_invoice_number() {
++        AccountInvoiceSnapshot snapshot = invoiceService.createInvoiceAndOpenAccountInvoices();
++        invoiceValidation.assertInvoiceNumberFormat(snapshot);
++    }
++
++    @Test
++    public void created_invoice_appears_in_account_invoices() {
++        AccountInvoiceSnapshot snapshot = invoiceService.createInvoiceAndOpenAccountInvoices();
++        invoiceValidation.assertInvoiceRowContainsCreatedInvoice(snapshot);
++    }
++
++    @Test
++    public void invoice_row_keeps_checkout_total() {
++        AccountInvoiceSnapshot snapshot = invoiceService.createInvoiceAndOpenAccountInvoices();
++        invoiceValidation.assertInvoiceRowKeepsCheckoutTotal(snapshot);
++    }
++
++    @Test
++    public void invoice_row_exposes_table_contract() {
++        AccountInvoiceSnapshot snapshot = invoiceService.createInvoiceAndOpenAccountInvoices();
++        invoiceValidation.assertInvoiceTableShape(snapshot);
++    }
++
++    @Test
++    public void invoice_row_is_owned_by_registered_account() {
++        AccountInvoiceSnapshot snapshot = invoiceService.createInvoiceAndOpenAccountInvoices();
++        invoiceValidation.assertInvoiceBelongsToRegisteredCustomer(snapshot);
++    }
++}
++// Business object: registered invoice details record
++// New frontier: invoice details line item reopen relogin proof
+diff --git a/src/test/java/com/endava/ai/ui/tests/RegisteredInvoiceDetailsIdentityTests.java b/src/test/java/com/endava/ai/ui/tests/RegisteredInvoiceDetailsIdentityTests.java
+new file mode 100644
+--- /dev/null
++++ b/src/test/java/com/endava/ai/ui/tests/RegisteredInvoiceDetailsIdentityTests.java
++// Run slice: registered invoice details record identity route proof
++package com.endava.ai.ui.tests;
++
++import com.endava.ai.ui.core.BaseTestUI;
++import com.endava.ai.ui.model.AccountInvoiceDetailsSnapshot;
++import com.endava.ai.ui.tests.support.RegisteredInvoiceService;
++import com.endava.ai.ui.validation.AccountInvoiceValidation;
++import org.testng.annotations.Test;
++
++public final class RegisteredInvoiceDetailsIdentityTests extends BaseTestUI {
++    static {
++    }
++
++    private final RegisteredInvoiceService invoiceService = new RegisteredInvoiceService();
++    private final AccountInvoiceValidation invoiceValidation = new AccountInvoiceValidation();
++
++    @Test
++    public void invoice_details_page_keeps_row_invoice_number() {
++        AccountInvoiceDetailsSnapshot snapshot = invoiceService.createInvoiceAndOpenInvoiceDetails();
++        invoiceValidation.assertDetailsPageOwnsInvoiceIdentity(snapshot);
++    }
++
++    @Test
++    public void invoice_details_page_has_account_invoice_route() {
++        AccountInvoiceDetailsSnapshot snapshot = invoiceService.createInvoiceAndOpenInvoiceDetails();
++        invoiceValidation.assertDetailsPageOwnsInvoiceIdentity(snapshot);
++    }
++
++    @Test
++    public void invoice_details_page_exposes_invoice_date() {
++        AccountInvoiceDetailsSnapshot snapshot = invoiceService.createInvoiceAndOpenInvoiceDetails();
++        invoiceValidation.assertDetailsPageKeepsInvoiceDate(snapshot);
++    }
++
++    @Test
++    public void invoice_details_total_matches_checkout_total() {
++        AccountInvoiceDetailsSnapshot snapshot = invoiceService.createInvoiceAndOpenInvoiceDetails();
++        invoiceValidation.assertDetailsTotalMatchesCheckout(snapshot);
++    }
++
++    @Test
++    public void invoice_details_page_exposes_download_action() {
++        invoiceService.createInvoiceAndOpenInvoiceDetails();
++        invoiceValidation.assertDetailsDownloadAffordanceVisible();
++    }
++}
++// Business object: registered invoice details record
++// New frontier: invoice details line item reopen relogin proof
+diff --git a/src/test/java/com/endava/ai/ui/tests/RegisteredInvoiceDetailsBillingPaymentTests.java b/src/test/java/com/endava/ai/ui/tests/RegisteredInvoiceDetailsBillingPaymentTests.java
+new file mode 100644
+--- /dev/null
++++ b/src/test/java/com/endava/ai/ui/tests/RegisteredInvoiceDetailsBillingPaymentTests.java
++// Run slice: registered invoice details record billing payment line item proof
++package com.endava.ai.ui.tests;
++
++import com.endava.ai.ui.core.BaseTestUI;
++import com.endava.ai.ui.model.AccountInvoiceDetailsSnapshot;
++import com.endava.ai.ui.tests.support.RegisteredInvoiceService;
++import com.endava.ai.ui.validation.AccountInvoiceValidation;
++import org.testng.annotations.Test;
++
++public final class RegisteredInvoiceDetailsBillingPaymentTests extends BaseTestUI {
++    static {
++    }
++
++    private final RegisteredInvoiceService invoiceService = new RegisteredInvoiceService();
++    private final AccountInvoiceValidation invoiceValidation = new AccountInvoiceValidation();
++
++    @Test
++    public void invoice_details_keep_billing_address() {
++        AccountInvoiceDetailsSnapshot snapshot = invoiceService.createInvoiceAndOpenInvoiceDetails();
++        invoiceValidation.assertDetailsKeepsBillingAddress(snapshot);
++    }
++
++    @Test
++    public void invoice_details_keep_payment_method() {
++        AccountInvoiceDetailsSnapshot snapshot = invoiceService.createInvoiceAndOpenInvoiceDetails();
++        invoiceValidation.assertDetailsKeepsPaymentMethod(snapshot);
++    }
++
++    @Test
++    public void invoice_details_keep_total_with_billing_context() {
++        AccountInvoiceDetailsSnapshot snapshot = invoiceService.createInvoiceAndOpenInvoiceDetails();
++        invoiceValidation.assertDetailsKeepsBillingAddress(snapshot);
++        invoiceValidation.assertDetailsTotalMatchesCheckout(snapshot);
++    }
++
++    @Test
++    public void invoice_details_keep_payment_with_product_context() {
++        AccountInvoiceDetailsSnapshot snapshot = invoiceService.createInvoiceAndOpenInvoiceDetails();
++        invoiceValidation.assertDetailsKeepsPaymentMethod(snapshot);
++        invoiceValidation.assertDetailsContainsPurchasedProduct(snapshot);
++    }
++
++    @Test
++    public void invoice_details_keep_customer_owned_commerce_record() {
++        AccountInvoiceDetailsSnapshot snapshot = invoiceService.createInvoiceAndOpenInvoiceDetails();
++        invoiceValidation.assertDetailsPageOwnsInvoiceIdentity(snapshot);
++        invoiceValidation.assertDetailsKeepsBillingAddress(snapshot);
++        invoiceValidation.assertDetailsKeepsPaymentMethod(snapshot);
++    }
++}
++// Business object: registered invoice details record
++// New frontier: invoice details line item reopen relogin proof
+diff --git a/src/test/java/com/endava/ai/ui/tests/RegisteredInvoiceDetailsReopenTests.java b/src/test/java/com/endava/ai/ui/tests/RegisteredInvoiceDetailsReopenTests.java
+new file mode 100644
+--- /dev/null
++++ b/src/test/java/com/endava/ai/ui/tests/RegisteredInvoiceDetailsReopenTests.java
++// Run slice: registered invoice details record reopen proof
++package com.endava.ai.ui.tests;
++
++import com.endava.ai.ui.core.BaseTestUI;
++import com.endava.ai.ui.model.AccountInvoiceDetailsSnapshot;
++import com.endava.ai.ui.tests.support.RegisteredInvoiceService;
++import com.endava.ai.ui.validation.AccountInvoiceValidation;
++import org.testng.annotations.Test;
++
++public final class RegisteredInvoiceDetailsReopenTests extends BaseTestUI {
++    static {
++    }
++
++    private final RegisteredInvoiceService invoiceService = new RegisteredInvoiceService();
++    private final AccountInvoiceValidation invoiceValidation = new AccountInvoiceValidation();
++
++    @Test
++    public void account_detour_preserves_invoice_identity() {
++        AccountInvoiceDetailsSnapshot snapshot = invoiceService.createInvoiceReopenInvoiceDetails();
++        invoiceValidation.assertDetailsPageOwnsInvoiceIdentity(snapshot);
++    }
++
++    @Test
++    public void account_detour_preserves_purchased_product() {
++        AccountInvoiceDetailsSnapshot snapshot = invoiceService.createInvoiceReopenInvoiceDetails();
++        invoiceValidation.assertDetailsContainsPurchasedProduct(snapshot);
++    }
++
++    @Test
++    public void account_detour_preserves_line_total() {
++        AccountInvoiceDetailsSnapshot snapshot = invoiceService.createInvoiceReopenInvoiceDetails();
++        invoiceValidation.assertDetailsLineItemTotal(snapshot);
++    }
++
++    @Test
++    public void account_detour_preserves_billing_address() {
++        AccountInvoiceDetailsSnapshot snapshot = invoiceService.createInvoiceReopenInvoiceDetails();
++        invoiceValidation.assertDetailsKeepsBillingAddress(snapshot);
++    }
++
++    @Test
++    public void account_detour_preserves_payment_method() {
++        AccountInvoiceDetailsSnapshot snapshot = invoiceService.createInvoiceReopenInvoiceDetails();
++        invoiceValidation.assertDetailsKeepsPaymentMethod(snapshot);
++    }
++}
++// Business object: registered invoice details record
++// New frontier: invoice details line item reopen relogin proof
+diff --git a/src/test/java/com/endava/ai/ui/tests/RegisteredInvoiceDetailsReloginTests.java b/src/test/java/com/endava/ai/ui/tests/RegisteredInvoiceDetailsReloginTests.java
+new file mode 100644
+--- /dev/null
++++ b/src/test/java/com/endava/ai/ui/tests/RegisteredInvoiceDetailsReloginTests.java
++// Run slice: registered invoice details record relogin proof
++package com.endava.ai.ui.tests;
++
++import com.endava.ai.ui.core.BaseTestUI;
++import com.endava.ai.ui.model.AccountInvoiceDetailsSnapshot;
++import com.endava.ai.ui.tests.support.RegisteredInvoiceService;
++import com.endava.ai.ui.validation.AccountInvoiceValidation;
++import org.testng.annotations.Test;
++
++public final class RegisteredInvoiceDetailsReloginTests extends BaseTestUI {
++    static {
++    }
++
++    private final RegisteredInvoiceService invoiceService = new RegisteredInvoiceService();
++    private final AccountInvoiceValidation invoiceValidation = new AccountInvoiceValidation();
++
++    @Test
++    public void relogin_invoice_details_keep_invoice_identity() {
++        AccountInvoiceDetailsSnapshot snapshot = invoiceService.createInvoiceReloginInvoiceDetails();
++        invoiceValidation.assertDetailsPageOwnsInvoiceIdentity(snapshot);
++    }
++
++    @Test
++    public void relogin_invoice_details_keep_purchased_product() {
++        AccountInvoiceDetailsSnapshot snapshot = invoiceService.createInvoiceReloginInvoiceDetails();
++        invoiceValidation.assertDetailsContainsPurchasedProduct(snapshot);
++    }
++
++    @Test
++    public void relogin_invoice_details_keep_quantity() {
++        AccountInvoiceDetailsSnapshot snapshot = invoiceService.createInvoiceReloginInvoiceDetails();
++        invoiceValidation.assertDetailsLineItemQuantity(snapshot);
++    }
++
++    @Test
++    public void relogin_invoice_details_keep_total() {
++        AccountInvoiceDetailsSnapshot snapshot = invoiceService.createInvoiceReloginInvoiceDetails();
++        invoiceValidation.assertDetailsTotalMatchesCheckout(snapshot);
++    }
++
++    @Test
++    public void relogin_invoice_details_keep_download_action() {
++        invoiceService.createInvoiceReloginInvoiceDetails();
++        invoiceValidation.assertDetailsDownloadAffordanceVisible();
++    }
++}
++// Business object: registered invoice details record
++// New frontier: invoice details line item reopen relogin proof

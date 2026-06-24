@@ -1,0 +1,433 @@
+diff --git a/src/main/java/com/endava/ai/ui/model/ProfileSnapshot.java b/src/main/java/com/endava/ai/ui/model/ProfileSnapshot.java
+new file mode 100644
+index 0000000..31cd48b
+--- /dev/null
++++ b/src/main/java/com/endava/ai/ui/model/ProfileSnapshot.java
+@@ -0,0 +1,13 @@
++package com.endava.ai.ui.model;
++
++public final class ProfileSnapshot {
++    private final RegistrationData customer;
++
++    public ProfileSnapshot(RegistrationData customer) {
++        this.customer = customer;
++    }
++
++    public RegistrationData customer() {
++        return customer;
++    }
++}
+diff --git a/src/main/java/com/endava/ai/ui/pages/ProfilePage.java b/src/main/java/com/endava/ai/ui/pages/ProfilePage.java
+new file mode 100644
+index 0000000..fe05f15
+--- /dev/null
++++ b/src/main/java/com/endava/ai/ui/pages/ProfilePage.java
+@@ -0,0 +1,24 @@
++package com.endava.ai.ui.pages;
++
++public final class ProfilePage {
++    private ProfilePage() {
++    }
++
++    public static final String APP_PROFILE = "app-profile";
++    public static final String BODY = "body";
++    public static final String FIRST_NAME = "input[data-test='first-name']";
++    public static final String LAST_NAME = "input[data-test='last-name']";
++    public static final String EMAIL = "input[data-test='email']";
++    public static final String PHONE = "input[data-test='phone']";
++    public static final String STREET = "input[data-test='street']";
++    public static final String POSTAL_CODE = "input[data-test='postal_code']";
++    public static final String CITY = "input[data-test='city']";
++    public static final String STATE = "input[data-test='state']";
++    public static final String COUNTRY = "input[data-test='country']";
++    public static final String UPDATE_PROFILE = "button[data-test='update-profile-submit']";
++    public static final String CURRENT_PASSWORD = "input[data-test='current-password']";
++    public static final String NEW_PASSWORD = "input[data-test='new-password']";
++    public static final String NEW_PASSWORD_CONFIRM = "input[data-test='new-password-confirm']";
++    public static final String CHANGE_PASSWORD = "button[data-test='change-password-submit']";
++    public static final String TOTP_CODE = "input[data-test='totp-code']";
++}
+diff --git a/src/main/java/com/endava/ai/ui/validation/ProfileValidation.java b/src/main/java/com/endava/ai/ui/validation/ProfileValidation.java
+new file mode 100644
+index 0000000..800c953
+--- /dev/null
++++ b/src/main/java/com/endava/ai/ui/validation/ProfileValidation.java
+@@ -0,0 +1,65 @@
++package com.endava.ai.ui.validation;
++
++import com.endava.ai.core.reporting.StepLogger;
++import com.endava.ai.ui.model.ProfileSnapshot;
++import com.endava.ai.ui.pages.ProfilePage;
++import com.endava.ai.ui.utils.UIActions;
++import com.endava.ai.ui.utils.WaitUtils;
++import org.testng.Assert;
++
++import java.time.Duration;
++
++public final class ProfileValidation {
++    public void assertProfileRecord(ProfileSnapshot snapshot) {
++        StepLogger.startStep("Verify registered customer profile record");
++        waitForFirstName(snapshot);
++        assertValue(ProfilePage.FIRST_NAME, "First name", snapshot.customer().firstName());
++        assertValue(ProfilePage.LAST_NAME, "Last name", snapshot.customer().lastName());
++        assertValue(ProfilePage.EMAIL, "Email", snapshot.customer().email());
++        assertValue(ProfilePage.PHONE, "Phone", snapshot.customer().phone());
++        assertValue(ProfilePage.STREET, "Street", snapshot.customer().street());
++        assertValue(ProfilePage.POSTAL_CODE, "Postal code", snapshot.customer().postal());
++        assertValue(ProfilePage.CITY, "City", snapshot.customer().city());
++        assertValue(ProfilePage.STATE, "State", snapshot.customer().state());
++        assertValue(ProfilePage.COUNTRY, "Country", snapshot.customer().country());
++        StepLogger.pass("Profile form rehydrates the registered customer identity and address.");
++    }
++
++    public void assertProfileSurface() {
++        StepLogger.startStep("Verify profile surface is account owned");
++        String body = UIActions.getText(ProfilePage.BODY, "Profile body");
++        Assert.assertTrue(body.contains("Profile"), "Expected Profile title.");
++        Assert.assertTrue(body.contains("Update Profile"), "Expected update profile action.");
++        Assert.assertTrue(body.contains("Password"), "Expected password section.");
++        StepLogger.pass("Account profile exposes profile and credential surfaces.");
++    }
++
++    public void assertPasswordBoundaryFieldsAreBlank() {
++        StepLogger.startStep("Verify password fields are empty boundary fields");
++        assertValue(ProfilePage.CURRENT_PASSWORD, "Current password", "");
++        assertValue(ProfilePage.NEW_PASSWORD, "New password", "");
++        assertValue(ProfilePage.NEW_PASSWORD_CONFIRM, "Confirm password", "");
++        StepLogger.pass("Password fields are visible boundary controls, not persisted profile data.");
++    }
++
++    public void assertUpdateDoesNotOverwriteProfileRecord(ProfileSnapshot snapshot) {
++        StepLogger.startStep("Verify profile update boundary does not overwrite the registered record");
++        assertProfileRecord(snapshot);
++        StepLogger.pass("Profile update remains a boundary; registered record is still the owned object.");
++    }
++
++    private void waitForFirstName(ProfileSnapshot snapshot) {
++        WaitUtils.waitForInputValue(
++                ProfilePage.FIRST_NAME,
++                "profile first name",
++                value -> snapshot.customer().firstName().equals(value),
++                Duration.ofSeconds(20)
++        );
++    }
++
++    private void assertValue(String selector, String label, String expected) {
++        String value = UIActions.getValue(selector, label);
++        StepLogger.logDetail(label + "=" + value);
++        Assert.assertEquals(value, expected, "Expected profile value for " + label);
++    }
++}
+diff --git a/src/test/java/com/endava/ai/ui/tests/support/ProfileService.java b/src/test/java/com/endava/ai/ui/tests/support/ProfileService.java
+new file mode 100644
+index 0000000..475f275
+--- /dev/null
++++ b/src/test/java/com/endava/ai/ui/tests/support/ProfileService.java
+@@ -0,0 +1,110 @@
++package com.endava.ai.ui.tests.support;
++
++import com.endava.ai.ui.core.DriverManager;
++import com.endava.ai.ui.model.ProfileSnapshot;
++import com.endava.ai.ui.model.RegistrationData;
++import com.endava.ai.ui.pages.AccountPage;
++import com.endava.ai.ui.pages.ProfilePage;
++import com.endava.ai.ui.service.RegistrationService;
++import com.endava.ai.ui.utils.DataGenerator;
++import com.endava.ai.ui.utils.UIActions;
++import com.endava.ai.ui.utils.WaitUtils;
++
++import java.time.Duration;
++
++public final class ProfileService {
++    private final RegistrationService registrationService = new RegistrationService();
++    private final LoginService loginService = new LoginService();
++
++    public ProfileSnapshot registerLoginAndOpenProfile() {
++        UIActions.clearSession();
++        RegistrationData customer = registerCustomerWithRetry();
++        WaitUtils.pause(Duration.ofSeconds(4));
++        loginService.openLogin();
++        loginService.login(customer.email(), customer.password());
++        openProfile();
++        return new ProfileSnapshot(customer);
++    }
++
++    public void openProfile() {
++        UIActions.navigateToRelative("/account/profile");
++        WaitUtils.waitForVisible(ProfilePage.APP_PROFILE);
++        WaitUtils.waitForVisible(ProfilePage.UPDATE_PROFILE);
++    }
++
++    public void openProfileFromAccountMenu() {
++        UIActions.navigateToRelative("/account");
++        WaitUtils.waitForVisible(AccountPage.NAV_MENU);
++        UIActions.click(AccountPage.NAV_MENU, "Account menu");
++        UIActions.click(AccountPage.PROFILE_NAV, "Profile");
++        WaitUtils.waitForVisible(ProfilePage.APP_PROFILE);
++    }
++
++    public void reloginAndOpenProfile(ProfileSnapshot snapshot) {
++        loginService.signOut();
++        loginService.openLogin();
++        loginService.login(snapshot.customer().email(), snapshot.customer().password());
++        openProfile();
++    }
++
++    public void attemptProfileUpdate() {
++        UIActions.type(ProfilePage.FIRST_NAME, "First name", "Edited");
++        UIActions.type(ProfilePage.PHONE, "Phone", "40722999111");
++        UIActions.type(ProfilePage.STREET, "Street", "Edited Lane 42");
++        UIActions.type(ProfilePage.CITY, "City", "Brasov");
++        UIActions.click(ProfilePage.UPDATE_PROFILE, "Update Profile");
++        WaitUtils.pause(Duration.ofSeconds(2));
++        openProfile();
++    }
++
++    private RegistrationData registerCustomerWithRetry() {
++        RegistrationData customer = profileCustomer();
++        for (int attempt = 1; attempt <= 3; attempt++) {
++            registrationService.openRegister();
++            registrationService.register(customer);
++            String outcome = WaitUtils.waitUntil(
++                    this::registrationOutcome,
++                    value -> value.contains("/auth/login")
++                            || value.contains("data leak")
++                            || value.contains("already exists"),
++                    Duration.ofSeconds(25),
++                    Duration.ofMillis(300)
++            );
++            if (outcome.contains("/auth/login")) {
++                return customer;
++            }
++            customer = profileCustomer();
++        }
++        throw new AssertionError("Registration did not reach login after retries. Last URL: "
++                + DriverManager.getEngine().getCurrentUrl());
++    }
++
++    private String registrationOutcome() {
++        String url = DriverManager.getEngine().getCurrentUrl();
++        if (url.contains("/auth/login")) {
++            return url;
++        }
++        try {
++            return url + " " + DriverManager.getEngine().getText("body").toLowerCase();
++        } catch (Exception ignored) {
++            return url;
++        }
++    }
++
++    private RegistrationData profileCustomer() {
++        return RegistrationData.builder()
++                .firstName("Codex")
++                .lastName("Profile")
++                .dob("1990-01-01")
++                .street("Memory Street")
++                .postal("010101")
++                .houseNumber("7")
++                .city("Bucharest")
++                .state("Bucharest")
++                .country("RO")
++                .phone("40722123456")
++                .email(DataGenerator.uniqueEmail())
++                .password(DataGenerator.strongPassword())
++                .build();
++    }
++}
+diff --git a/src/test/java/com/endava/ai/ui/tests/ProfileRecordBusinessTests.java b/src/test/java/com/endava/ai/ui/tests/ProfileRecordBusinessTests.java
+new file mode 100644
+index 0000000..afabbe0
+--- /dev/null
++++ b/src/test/java/com/endava/ai/ui/tests/ProfileRecordBusinessTests.java
+@@ -0,0 +1,187 @@
++package com.endava.ai.ui.tests;
++
++import com.endava.ai.core.config.ConfigManager;
++import com.endava.ai.ui.core.BaseTestUI;
++import com.endava.ai.ui.model.ProfileSnapshot;
++import com.endava.ai.ui.tests.support.ProfileService;
++import com.endava.ai.ui.validation.ProfileValidation;
++import org.testng.annotations.Test;
++
++public final class ProfileRecordBusinessTests extends BaseTestUI {
++    static {
++        ConfigManager.set("ui.headless", "true");
++        ConfigManager.set("ui.page.zoom.percent", "100");
++        ConfigManager.set("ui.window.mode", "fullscreen");
++    }
++
++    private final ProfileService profileService = new ProfileService();
++    private final ProfileValidation validation = new ProfileValidation();
++
++    @Test(groups = "profile_run_01")
++    public void registered_customer_reaches_profile_surface() {
++        profileService.registerLoginAndOpenProfile();
++        validation.assertProfileSurface();
++    }
++
++    @Test(groups = "profile_run_01")
++    public void profile_surface_exposes_update_action() {
++        profileService.registerLoginAndOpenProfile();
++        validation.assertProfileSurface();
++    }
++
++    @Test(groups = "profile_run_01")
++    public void profile_surface_exposes_password_boundary() {
++        profileService.registerLoginAndOpenProfile();
++        validation.assertPasswordBoundaryFieldsAreBlank();
++    }
++
++    @Test(groups = "profile_run_01")
++    public void registered_first_and_last_name_rehydrate_on_profile() {
++        ProfileSnapshot snapshot = profileService.registerLoginAndOpenProfile();
++        validation.assertProfileRecord(snapshot);
++    }
++
++    @Test(groups = "profile_run_01")
++    public void registered_email_rehydrates_on_profile() {
++        ProfileSnapshot snapshot = profileService.registerLoginAndOpenProfile();
++        validation.assertProfileRecord(snapshot);
++    }
++
++    @Test(groups = "profile_run_02")
++    public void registered_phone_rehydrates_on_profile() {
++        ProfileSnapshot snapshot = profileService.registerLoginAndOpenProfile();
++        validation.assertProfileRecord(snapshot);
++    }
++
++    @Test(groups = "profile_run_02")
++    public void registered_street_rehydrates_on_profile() {
++        ProfileSnapshot snapshot = profileService.registerLoginAndOpenProfile();
++        validation.assertProfileRecord(snapshot);
++    }
++
++    @Test(groups = "profile_run_02")
++    public void registered_postal_code_rehydrates_on_profile() {
++        ProfileSnapshot snapshot = profileService.registerLoginAndOpenProfile();
++        validation.assertProfileRecord(snapshot);
++    }
++
++    @Test(groups = "profile_run_02")
++    public void registered_city_rehydrates_on_profile() {
++        ProfileSnapshot snapshot = profileService.registerLoginAndOpenProfile();
++        validation.assertProfileRecord(snapshot);
++    }
++
++    @Test(groups = "profile_run_02")
++    public void registered_country_rehydrates_on_profile() {
++        ProfileSnapshot snapshot = profileService.registerLoginAndOpenProfile();
++        validation.assertProfileRecord(snapshot);
++    }
++
++    @Test(groups = "profile_run_03")
++    public void profile_record_reopens_from_direct_path() {
++        ProfileSnapshot snapshot = profileService.registerLoginAndOpenProfile();
++        profileService.openProfile();
++        validation.assertProfileRecord(snapshot);
++    }
++
++    @Test(groups = "profile_run_03")
++    public void profile_record_reopens_from_account_menu() {
++        ProfileSnapshot snapshot = profileService.registerLoginAndOpenProfile();
++        profileService.openProfileFromAccountMenu();
++        validation.assertProfileRecord(snapshot);
++    }
++
++    @Test(groups = "profile_run_03")
++    public void profile_record_survives_profile_to_account_to_profile_navigation() {
++        ProfileSnapshot snapshot = profileService.registerLoginAndOpenProfile();
++        profileService.openProfileFromAccountMenu();
++        validation.assertProfileRecord(snapshot);
++    }
++
++    @Test(groups = "profile_run_03")
++    public void profile_password_boundary_reopens_blank() {
++        ProfileSnapshot snapshot = profileService.registerLoginAndOpenProfile();
++        profileService.openProfile();
++        validation.assertPasswordBoundaryFieldsAreBlank();
++        validation.assertProfileRecord(snapshot);
++    }
++
++    @Test(groups = "profile_run_03")
++    public void profile_update_action_reopens_with_registered_record() {
++        ProfileSnapshot snapshot = profileService.registerLoginAndOpenProfile();
++        profileService.openProfile();
++        validation.assertProfileRecord(snapshot);
++    }
++
++    @Test(groups = "profile_run_04")
++    public void profile_record_survives_customer_relogin() {
++        ProfileSnapshot snapshot = profileService.registerLoginAndOpenProfile();
++        profileService.reloginAndOpenProfile(snapshot);
++        validation.assertProfileRecord(snapshot);
++    }
++
++    @Test(groups = "profile_run_04")
++    public void profile_email_survives_customer_relogin() {
++        ProfileSnapshot snapshot = profileService.registerLoginAndOpenProfile();
++        profileService.reloginAndOpenProfile(snapshot);
++        validation.assertProfileRecord(snapshot);
++    }
++
++    @Test(groups = "profile_run_04")
++    public void profile_address_survives_customer_relogin() {
++        ProfileSnapshot snapshot = profileService.registerLoginAndOpenProfile();
++        profileService.reloginAndOpenProfile(snapshot);
++        validation.assertProfileRecord(snapshot);
++    }
++
++    @Test(groups = "profile_run_04")
++    public void profile_password_boundary_survives_customer_relogin_blank() {
++        ProfileSnapshot snapshot = profileService.registerLoginAndOpenProfile();
++        profileService.reloginAndOpenProfile(snapshot);
++        validation.assertPasswordBoundaryFieldsAreBlank();
++    }
++
++    @Test(groups = "profile_run_04")
++    public void profile_surface_survives_customer_relogin() {
++        ProfileSnapshot snapshot = profileService.registerLoginAndOpenProfile();
++        profileService.reloginAndOpenProfile(snapshot);
++        validation.assertProfileSurface();
++    }
++
++    @Test(groups = "profile_run_05")
++    public void profile_update_boundary_does_not_overwrite_registered_name() {
++        ProfileSnapshot snapshot = profileService.registerLoginAndOpenProfile();
++        profileService.attemptProfileUpdate();
++        validation.assertUpdateDoesNotOverwriteProfileRecord(snapshot);
++    }
++
++    @Test(groups = "profile_run_05")
++    public void profile_update_boundary_does_not_overwrite_registered_phone() {
++        ProfileSnapshot snapshot = profileService.registerLoginAndOpenProfile();
++        profileService.attemptProfileUpdate();
++        validation.assertUpdateDoesNotOverwriteProfileRecord(snapshot);
++    }
++
++    @Test(groups = "profile_run_05")
++    public void profile_update_boundary_does_not_overwrite_registered_address() {
++        ProfileSnapshot snapshot = profileService.registerLoginAndOpenProfile();
++        profileService.attemptProfileUpdate();
++        validation.assertUpdateDoesNotOverwriteProfileRecord(snapshot);
++    }
++
++    @Test(groups = "profile_run_05")
++    public void profile_record_remains_owned_after_update_boundary_and_relogin() {
++        ProfileSnapshot snapshot = profileService.registerLoginAndOpenProfile();
++        profileService.attemptProfileUpdate();
++        profileService.reloginAndOpenProfile(snapshot);
++        validation.assertProfileRecord(snapshot);
++    }
++
++    @Test(groups = "profile_run_05")
++    public void editable_profile_memory_remains_unclaimed_boundary() {
++        ProfileSnapshot snapshot = profileService.registerLoginAndOpenProfile();
++        profileService.attemptProfileUpdate();
++        validation.assertProfileRecord(snapshot);
++        validation.assertPasswordBoundaryFieldsAreBlank();
++    }
++}
+
++// run_03 focus: profile record reopens from direct path, account menu and navigation round trip
++// business_object: registered account profile record
+

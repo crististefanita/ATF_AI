@@ -1,0 +1,20 @@
+{
+    "run_id":  "run_02",
+    "group":  "profile_run_02",
+    "business_object":  "registered account profile record",
+    "claim":  "registered phone, street, postal code, city and country rehydrate as profile record fields",
+    "tests_target":  "ROUND_TARGET_TEST_COUNT",
+    "tests_produced":  5,
+    "target_status":  "met",
+    "delta_quality_status":  "pass",
+    "run_diff":  "runs/run_02/review/thin-no-index.diff",
+    "carrier":  "no",
+    "proof_ui":  "yes",
+    "proof_machine":  "yes",
+    "kept_status":  "yes",
+    "blocker_status":  "no",
+    "business_verdict":  "owned and countable",
+    "actor":  "registered customer",
+    "user_intent":  "reopen account profile memory through the UI",
+    "countability_status":  "countable"
+}

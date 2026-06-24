@@ -1,0 +1,42 @@
+﻿[
+    {
+        "run":  "run_01",
+        "class":  "RegisteredInvoiceCreationTests",
+        "result":  "PASS",
+        "claim":  "Invoice row is created from registered checkout and exposes INV identity, date, total and owner account.",
+        "extent":  "validation/reports/ExtentReport.html",
+        "xml":  "validation/xml/testng-results.xml"
+    },
+    {
+        "run":  "run_02",
+        "class":  "RegisteredInvoiceDetailsIdentityTests",
+        "result":  "PASS",
+        "claim":  "Invoice details page owns the row invoice number, date, total and download action.",
+        "extent":  "validation/reports/ExtentReport.html",
+        "xml":  "validation/xml/testng-results.xml"
+    },
+    {
+        "run":  "run_03",
+        "class":  "RegisteredInvoiceDetailsBillingPaymentTests",
+        "result":  "PASS",
+        "claim":  "Invoice details preserve billing address, payment method and product context.",
+        "extent":  "validation/reports/ExtentReport.html",
+        "xml":  "validation/xml/testng-results.xml"
+    },
+    {
+        "run":  "run_04",
+        "class":  "RegisteredInvoiceDetailsReopenTests",
+        "result":  "PASS",
+        "claim":  "Invoice details survive account detour and reopen.",
+        "extent":  "validation/reports/ExtentReport.html",
+        "xml":  "validation/xml/testng-results.xml"
+    },
+    {
+        "run":  "run_05",
+        "class":  "RegisteredInvoiceDetailsReloginTests",
+        "result":  "PASS",
+        "claim":  "Invoice details survive session clear and relogin.",
+        "extent":  "validation/reports/ExtentReport.html",
+        "xml":  "validation/xml/testng-results.xml"
+    }
+]

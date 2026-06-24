@@ -1,0 +1,2834 @@
+﻿[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.endava.ai:test-framework >--------------------
+[INFO] Building Test Automation Framework 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ test-framework ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ test-framework ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ test-framework ---
+[INFO] Copying 4 resources from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ test-framework ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ test-framework ---
+[INFO] Using auto detected provider org.apache.maven.surefire.testng.TestNGProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running TestSuite
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+? HTML example candidate contract
+  � Validation axis: HTML example candidate contract
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: score-overview-reference.html + business-flow-graph-rubric.html + reporting.html.
+  � MCP profile: htmlExampleCandidateContract.
+  � Required artifacts: review/package-state.json; analysis/langgraph-business-understanding.html; run state/diff/proof chain.
+  � Expected invariant: MCP-valid is not enough; candidate must meet runtime teacher threshold and semantic evidence trace.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: htmlExampleCandidateContract
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: review/package-state.json + analysis/langgraph-business-understanding.html.
+? Candidate rule matrix
+  ? PASS: Recorded candidate MCP rule -> HTML req -> artifact matrix
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: package satisfies the candidate-grade threshold and evidence trace.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun candidate MCP after any report or artifact edit.
+  ? PASS: Repair hint recorded
+  ? PASS: Package is teacher-grade html-ex candidate
+? Complete MCP generated package audit
+  � Validation axis: Complete MCP generated package audit
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifacts: package spine, run spine, runtime constants, final report, local links, Extent/XML proof.
+  � Required artifacts: Relative paths: docs/out/<timestamp>/**; docs/prompts/iterativ/agent-runtime.properties
+  � Expected invariant: Asserts: no BLOCKER violations across the full generated ROOT_RUN package.
+  � Expected invariant: Runtime values: RUN_EXPECTED_DELTA_QUALITY=92 | ROUND_TARGET_TEST_COUNT=5 | META_ITERATION_COUNT=5
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Complete MCP generated package audit
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifacts: package spine, run spine, runtime constants, final report, local links, Extent/XML proof.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Complete MCP generated package audit.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Complete MCP generated package audit
+? Reject new frontier without evidence chain
+  � Validation axis: Reject new frontier without evidence chain
+  � Outcome: expected rejection
+? Fixture mutation
+  � Fixture package root: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-html-ex-reference-407031494701396867
+  � Mutation: Changed review/package-state.json so new_frontier is not backed by report/run/diff/proof evidence.
+  ? PASS: Mutation recorded
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / expected failure code.
+  � MCP profile: negative fixture contract.
+  � Required artifacts: review/package-state.json
+  � Expected invariant: Expected violation: business-evidence.business-frontier.missing-in-artifact-family.
+  � Expected code observed [business-evidence.business-frontier.missing-in-artifact-family]: yes
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-html-ex-reference-407031494701396867
+  � Rule: Reject new frontier without evidence chain
+  � Status: expected rejection
+  � Blockers: 31
+  � Warnings: 0
+  � Evidence artifact: review/package-state.json
+  � Observed violation [business-evidence.business-frontier.missing-in-artifact-family]: business-frontier must be traceable into final report. Expected one of: [offline, warranty, renewal, ledger]
+  � Observed target: review/package-state.json
+  � Validator artifact scope: review\package-state.json
+  � Observed violation [business-evidence.business-frontier.missing-in-artifact-family]: business-frontier must be traceable into Business Flow Graph section. Expected one of: [offline, warranty, renewal, ledger]
+  � Observed target: review/package-state.json
+  � Validator artifact scope: review\package-state.json
+  � Observed violation [business-evidence.business-frontier.missing-in-artifact-family]: business-frontier must be traceable into Proof Mapping section. Expected one of: [offline, warranty, renewal, ledger]
+  � Observed target: review/package-state.json
+  � Validator artifact scope: review\package-state.json
+  � Observed violation [business-evidence.business-frontier.missing-in-artifact-family]: business-frontier must be traceable into run-state business handoff. Expected one of: [offline, warranty, renewal, ledger]
+  � Observed target: review/package-state.json
+  � Validator artifact scope: review\package-state.json
+  � Observed violation [business-evidence.business-frontier.missing-in-artifact-family]: business-frontier must be traceable into run/root diff history. Expected one of: [offline, warranty, renewal, ledger]
+  � Observed target: review/package-state.json
+  � Validator artifact scope: review\package-state.json
+  � Observed violation [business-evidence.business-frontier.missing-in-artifact-family]: business-frontier must be traceable into machine execution proof. Expected one of: [offline, warranty, renewal, ledger]
+  � Observed target: review/package-state.json
+  � Validator artifact scope: review\package-state.json
+  � Other fixture violations hidden from this negative-test report: 25
+  � Reason: this test proves the expected mutation contract, not the full package health.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: validator rejected the intentional mutation through the expected failure code(s).
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required for the fixture; keep the production package away from this mutation.
+  ? PASS: Repair hint recorded
+? Reject business object without cross-artifact evidence trace
+  � Validation axis: Reject business object without cross-artifact evidence trace
+  � Outcome: expected rejection
+? Fixture mutation
+  � Fixture package root: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-html-ex-reference-14400104274592692105
+  � Mutation: Changed review/package-state.json so business_object lives only in package-state.json.
+  ? PASS: Mutation recorded
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / expected failure code.
+  � MCP profile: negative fixture contract.
+  � Required artifacts: review/package-state.json
+  � Expected invariant: Expected violation: business-evidence.business-object.missing-in-artifact-family.
+  � Expected code observed [business-evidence.business-object.missing-in-artifact-family]: yes
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-html-ex-reference-14400104274592692105
+  � Rule: Reject business object without cross-artifact evidence trace
+  � Status: expected rejection
+  � Blockers: 31
+  � Warnings: 0
+  � Evidence artifact: review/package-state.json
+  � Observed violation [business-evidence.business-object.missing-in-artifact-family]: business-object must be traceable into final report. Expected one of: [offline, warranty, certificate, ledger]
+  � Observed target: review/package-state.json
+  � Validator artifact scope: review\package-state.json
+  � Observed violation [business-evidence.business-object.missing-in-artifact-family]: business-object must be traceable into Business Flow Graph section. Expected one of: [offline, warranty, certificate, ledger]
+  � Observed target: review/package-state.json
+  � Validator artifact scope: review\package-state.json
+  � Observed violation [business-evidence.business-object.missing-in-artifact-family]: business-object must be traceable into Proof Mapping section. Expected one of: [offline, warranty, certificate, ledger]
+  � Observed target: review/package-state.json
+  � Validator artifact scope: review\package-state.json
+  � Observed violation [business-evidence.business-object.missing-in-artifact-family]: business-object must be traceable into run-state business handoff. Expected one of: [offline, warranty, certificate, ledger]
+  � Observed target: review/package-state.json
+  � Validator artifact scope: review\package-state.json
+  � Observed violation [business-evidence.business-object.missing-in-artifact-family]: business-object must be traceable into run/root diff history. Expected one of: [offline, warranty, certificate, ledger]
+  � Observed target: review/package-state.json
+  � Validator artifact scope: review\package-state.json
+  � Observed violation [business-evidence.business-object.missing-in-artifact-family]: business-object must be traceable into machine execution proof. Expected one of: [offline, warranty, certificate, ledger]
+  � Observed target: review/package-state.json
+  � Validator artifact scope: review\package-state.json
+  � Other fixture violations hidden from this negative-test report: 25
+  � Reason: this test proves the expected mutation contract, not the full package health.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: validator rejected the intentional mutation through the expected failure code(s).
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required for the fixture; keep the production package away from this mutation.
+  ? PASS: Repair hint recorded
+? Diff-touched UI test architecture contract
+  � Validation axis: Diff-touched UI test architecture contract
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Discovery artifacts: review/root-source-thin-no-index.diff and runs/run_##/review/thin-no-index.diff.
+  � Required artifacts: Source truth: current project src/**, because frozen diffs cannot prove BaseTestUI/layer/validation behavior without the Java files.
+  � Expected invariant: Asserts: UI files claimed by frozen diffs still exist and respect Living_Architecture_UI_API_doc_v1_0.html.
+  � Expected invariant: Expected: UI test classes extend BaseTestUI and delegate listener/engine lifecycle to the framework.
+  � Expected invariant: Expected: assertions live in validation/assertion classes, with reusable messages for audit/reporting.
+  � Expected invariant: Expected: validation classes that assert must emit StepLogger details so Extent shows expected/actual evidence.
+  � Expected invariant: Expected: UI tests use a declared service/page/actions/validation/component layer, not monolithic inline scripting.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Diff-touched UI test architecture contract
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Discovery artifacts: review/root-source-thin-no-index.diff and runs/run_##/review/thin-no-index.diff.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Diff-touched UI test architecture contract.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Diff-touched UI test architecture contract
+? Generated package protected framework mutation gate
+  � Validation axis: Generated package protected framework mutation gate
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifacts: review/root-source-thin-no-index.diff and runs/run_##/review/thin-no-index.diff.
+  � Expected invariant: Asserts: generated ROOT_RUN diffs do not edit framework/MCP/core/service infrastructure.
+  � Expected invariant: Expected: business work changes tests and allowed business-facing layers, not the validator or framework contract itself.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Generated package protected framework mutation gate
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifacts: review/root-source-thin-no-index.diff and runs/run_##/review/thin-no-index.diff.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Generated package protected framework mutation gate.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Generated package protected framework mutation gate
+? Artifact freshness
+  � Validation axis: Artifact freshness
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifacts: canonical-render-check.png, local-link-check.txt, package-state.json, final HTML.
+  � Expected invariant: Asserts: render/link/state artifacts are refreshed after final report edits.
+  � Expected invariant: Expected: supporting artifacts are not stale against the report they validate.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Artifact freshness
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifacts: canonical-render-check.png, local-link-check.txt, package-state.json, final HTML.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Artifact freshness.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Artifact freshness
+? Claim-to-evidence chain
+  � Validation axis: Claim-to-evidence chain
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Asserts: every major Proof Mapping claim has cold evidence, not just narrative.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Claim-to-evidence chain
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Claim-to-evidence chain.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Claim-to-evidence chain
+? Claimed absence assertion
+  � Validation axis: Claimed absence assertion
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifacts: review/root-source-thin-no-index.diff plus project src/main/java and src/test/java.
+  � Expected invariant: Asserts: if the package claims an absent/missing/not-visible object, that absence is asserted in evidence, not only narrated.
+  � Expected invariant: Expected: explicit assertion/check for absence of the claimed object.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Claimed absence assertion
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifacts: review/root-source-thin-no-index.diff plus project src/main/java and src/test/java.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Claimed absence assertion.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Claimed absence assertion
+? Decision trace
+  � Validation axis: Decision trace
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifacts: execution-gate-card.md, package-close-out.md, next-run-eligibility-card.md, final Close-Out.
+  � Expected invariant: Asserts: stop/continue/fresh-root decisions are backed by gate/state/close-out artifacts.
+  � Expected invariant: Expected: no procedural decision is left as free prose.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Decision trace
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifacts: execution-gate-card.md, package-close-out.md, next-run-eligibility-card.md, final Close-Out.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Decision trace.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Decision trace
+? No unverifiable language
+  � Validation axis: No unverifiable language
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Asserts: high-confidence wording is tied to evidence or a partial/capped verdict.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: No unverifiable language
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for No unverifiable language.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: No unverifiable language
+? Final report business structure
+  � Validation axis: Final report business structure
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Asserts: final HTML report has the canonical business-first structure.
+  � Expected invariant: Expected: Business Flow Graph default-open, Score Overview, Proof Mapping, Run Audit, Artifact Index, Close-Out.
+  � Expected invariant: Expected: no external calibration language such as html-ex/teacher/benchmark/comparison.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report business structure
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report business structure.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report business structure
+? Final report local hyperlinks
+  � Validation axis: Final report local hyperlinks
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Asserts: every local href in final report resolves from the report directory.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report local hyperlinks
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report local hyperlinks.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report local hyperlinks
+? Frozen MCP gate uses complete suite
+  � Validation axis: Frozen MCP gate uses complete suite
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: validation/mcp/mcp-gate-result.md.
+  � Expected invariant: Asserts: saved MCP gate represents the full MCP contract, not a selective green subset.
+  � Expected invariant: Forbidden: PASS claim from only McpLatestPackage*Test or a narrow subset.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Frozen MCP gate uses complete suite
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: validation/mcp/mcp-gate-result.md.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Frozen MCP gate uses complete suite.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Frozen MCP gate uses complete suite
+? Run learning trace quality
+  � Validation axis: Run learning trace quality
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifacts: SUMMARY.md, run-state.json, business-understanding.md, lesson-learned.md, frontier-decision.md.
+  � Expected invariant: Asserts: every run leaves a useful learning trace for the next agent.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Run learning trace quality
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifacts: SUMMARY.md, run-state.json, business-understanding.md, lesson-learned.md, frontier-decision.md.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Run learning trace quality.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Run learning trace quality
+? Package accounting vs runtime window
+  � Validation axis: Package accounting vs runtime window
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: review/package-state.json
+  � Expected invariant: Asserts: package-state accounting matches runtime window and target values.
+  � Expected invariant: Expected: runs_expected/runs_completed = META_ITERATION_COUNT; tests_expected = META_ITERATION_COUNT * ROUND_TARGET_TEST_COUNT.
+  � Expected invariant: Runtime values: RUN_EXPECTED_DELTA_QUALITY=92 | ROUND_TARGET_TEST_COUNT=5 | META_ITERATION_COUNT=5
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Package accounting vs runtime window
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: review/package-state.json
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Package accounting vs runtime window.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Package accounting vs runtime window
+? Package-level artifact spine
+  � Validation axis: Package-level artifact spine
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Required package spine: README.md, CALIBRATION.md, manifests/package-manifest.md, prompt/input-snapshot.md, analysis/langgraph-business-understanding.html, analysis/shared-report-reference.css, analysis/canonical-render-check.png, review/package-state.json, review/execution-gate-card.md, review/quality-accounting-verdict.md, review/package-close-out.md, review/root-source-thin-no-index.diff.
+  � Expected invariant: Asserts: package-level files exist and are not empty.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Package-level artifact spine
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: see package root and MCP rule metadata
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Package-level artifact spine.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Package-level artifact spine
+? Pretraining intake quality
+  � Validation axis: Pretraining intake quality
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: review/round-pretraining-brief.md.
+  � Expected invariant: Asserts: pretraining saved a reusable intake brief, not just a prose mention.
+  � Expected invariant: Expected: sources read, extracted lesson, do-not-inherit boundary, chosen frontier, saved artifact.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Pretraining intake quality
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: review/round-pretraining-brief.md.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Pretraining intake quality.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Pretraining intake quality
+? Published artifacts contain no template noise
+  � Validation axis: Published artifacts contain no template noise
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifacts: README, final report, review/*.md/json/diff, run review files, MCP gate.
+  � Expected invariant: Asserts: public package artifacts do not leak shell/template leftovers.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Published artifacts contain no template noise
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifacts: README, final report, review/*.md/json/diff, run review files, MCP gate.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Published artifacts contain no template noise.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Published artifacts contain no template noise
+? README vs package-state truth
+  � Validation axis: README vs package-state truth
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifacts: README.md and review/package-state.json.
+  � Expected invariant: Asserts: README.md does not preserve stale partial-run language after package-state.json closes the package.
+  � Expected invariant: Expected: README echoes current run/test accounting and does not contradict closed/partial status.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: README vs package-state truth
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifacts: README.md and review/package-state.json.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for README vs package-state truth.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: README vs package-state truth
+? Report-state sync
+  � Validation axis: Report-state sync
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifacts: README.md, review/package-state.json, review/package-close-out.md, final HTML.
+  � Expected invariant: Asserts: README, package-state, close-out, and final report publish the same package truth.
+  � Expected invariant: Expected: Overall, run count, test count, status/cap do not drift across canonical files.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Report-state sync
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifacts: README.md, review/package-state.json, review/package-close-out.md, final HTML.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Report-state sync.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Report-state sync
+? Root diff source file existence
+  � Validation axis: Root diff source file existence
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Discovery artifact: review/root-source-thin-no-index.diff.
+  � Required artifacts: Source truth: current project src/**, because a diff alone is only a delta, not executable code.
+  � Expected invariant: Asserts: the frozen root diff does not reference phantom source files.
+  � Expected invariant: Expected: every src/** file declared as NEW/UPDATE or +++ b/... resolves under the project root before the package can be trusted.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Root diff source file existence
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Discovery artifact: review/root-source-thin-no-index.diff.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Root diff source file existence.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Root diff source file existence
+? Run state countability and test accounting
+  � Validation axis: Run state countability and test accounting
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Relative path pattern: runs/run_##/review/run-state.json.
+  � Expected invariant: Asserts: each run-state exposes produced tests and a cold business/countability verdict.
+  � Expected invariant: Target per run from runtime: 5
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Run state countability and test accounting
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Relative path pattern: runs/run_##/review/run-state.json.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Run state countability and test accounting.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Run state countability and test accounting
+? Run window and per-run artifact spine
+  � Validation axis: Run window and per-run artifact spine
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Relative path pattern: runs/run_##/**.
+  � Required artifacts: Required run spine: SUMMARY.md, manifests/run-manifest.md, prompt/input-snapshot.md, review/run-state.json, review/artifact-checklist.md, review/score-support.md, review/business-understanding.md, review/thin-no-index.diff.
+  � Expected invariant: Asserts: each runtime run slot has a complete and non-empty run artifact spine.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Run window and per-run artifact spine
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Relative path pattern: runs/run_##/**.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Run window and per-run artifact spine.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Run window and per-run artifact spine
+? Runtime referenced prompt documents
+  � Validation axis: Runtime referenced prompt documents
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: docs/prompts/iterativ/agent-runtime.properties
+  � Required artifacts: Relative paths: docs/prompts/iterativ/*.html, docs/shared-report-reference.css, other configured prompt references.
+  � Expected invariant: Asserts: every *_PATH reference in agent-runtime.properties points to an existing prompt/style document.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Runtime referenced prompt documents
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: docs/prompts/iterativ/agent-runtime.properties
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Runtime referenced prompt documents.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Runtime referenced prompt documents
+? Runtime values from agent-runtime.properties
+  � Validation axis: Runtime values from agent-runtime.properties
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: docs/prompts/iterativ/agent-runtime.properties
+  � Expected invariant: Asserts: generated package publishes the active runtime values without drift.
+  � Expected invariant: Runtime keys: RUN_EXPECTED_DELTA_QUALITY, ROUND_TARGET_TEST_COUNT, META_ITERATION_COUNT.
+  � Expected invariant: Runtime values: RUN_EXPECTED_DELTA_QUALITY=92 | ROUND_TARGET_TEST_COUNT=5 | META_ITERATION_COUNT=5
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Runtime values from agent-runtime.properties
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: docs/prompts/iterativ/agent-runtime.properties
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Runtime values from agent-runtime.properties.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Runtime values from agent-runtime.properties
+? Score-cap consistency
+  � Validation axis: Score-cap consistency
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: Score Overview inside analysis/langgraph-business-understanding.html.
+  � Expected invariant: Asserts: Overall does not exceed the weakest published score axis.
+  � Expected invariant: Expected: Overall <= min(business substance, graph, history, proof, contract/artifact axes).
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Score-cap consistency
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: Score Overview inside analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Score-cap consistency.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Score-cap consistency
+? UI wrapper handoff quality
+  � Validation axis: UI wrapper handoff quality
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifacts: run-state.json, business-understanding.md, SUMMARY.md.
+  � Expected invariant: Asserts: each run handoff carries UI/business context into execution.
+  � Expected invariant: Expected: actor, intent, visible object/anchor, local result/verdict.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: UI wrapper handoff quality
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifacts: run-state.json, business-understanding.md, SUMMARY.md.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for UI wrapper handoff quality.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: UI wrapper handoff quality
+? Final report Business Flow Graph has no inline SVG legend band
+  � Validation axis: Final report Business Flow Graph has no inline SVG legend band
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Asserts: graph SVG remains a graph; explanatory legend belongs in the collapsible Legend section.
+  � Expected invariant: Expected: details.subdetails.graph-legend-list with bullet content below the SVG.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report Business Flow Graph has no inline SVG legend band
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report Business Flow Graph has no inline SVG legend band.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report Business Flow Graph has no inline SVG legend band
+? Final report Business Flow Graph rendered diagram
+  � Validation axis: Final report Business Flow Graph rendered diagram
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Asserts: Business Flow Graph is a visual application map with diagram nodes, not only prose.
+  � Expected invariant: Expected: SVG/diag container, accessible label, visual nodes/edges, legend below.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report Business Flow Graph rendered diagram
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report Business Flow Graph rendered diagram.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report Business Flow Graph rendered diagram
+? Final report Business Flow Graph legend content
+  � Validation axis: Final report Business Flow Graph legend content
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Asserts: graph legend teaches how to read the application map, package overlay, owned/capped nodes, and proof boundary.
+  � Expected invariant: Expected: bullet list covering application map, package overlay, owned/countable, blocked/capped, next closure, and proof boundary.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report Business Flow Graph legend content
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report Business Flow Graph legend content.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report Business Flow Graph legend content
+? Final report Business Flow Graph collapsible legend
+  � Validation axis: Final report Business Flow Graph collapsible legend
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Asserts: Business Flow Graph has a nested collapsible legend, not a flat paragraph.
+  � Expected invariant: Expected: details.subdetails inside Business Flow Graph with summary Legend / Graph legend.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report Business Flow Graph collapsible legend
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report Business Flow Graph collapsible legend.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report Business Flow Graph collapsible legend
+? Final report Business Flow Graph calm typography
+  � Validation axis: Final report Business Flow Graph calm typography
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifacts: analysis/langgraph-business-understanding.html and analysis/shared-report-reference.css.
+  � Expected invariant: Asserts: graph nodes follow the html-ex calm typography contract.
+  � Expected invariant: Expected: primary labels use .nt; secondary labels use .ns; no blanket bold rule for all SVG text.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report Business Flow Graph calm typography
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifacts: analysis/langgraph-business-understanding.html and analysis/shared-report-reference.css.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report Business Flow Graph calm typography.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report Business Flow Graph calm typography
+? Per-run Extent report presence
+  � Validation axis: Per-run Extent report presence
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Relative path pattern: runs/run_##/validation/reports/*.html or runs/run_##/validation/*ExtentReport*.html.
+  � Expected invariant: Asserts: each run has at least one Extent HTML report.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Per-run Extent report presence
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Relative path pattern: runs/run_##/validation/reports/*.html or runs/run_##/validation/*ExtentReport*.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Per-run Extent report presence.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Per-run Extent report presence
+? Extent proof class is published and reflected in scoring
+  � Validation axis: Extent proof class is published and reflected in scoring
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifacts: runs/run_##/validation/reports/ExtentReport.html, README.md, final report, package-state.json.
+  � Expected invariant: Asserts: per-run Extent proof is classified as spark, standalone, or synthetic.
+  � Expected invariant: Expected: synthetic/standalone proof remains weak evidence and keeps Overall capped; Spark proof may support stronger evidence only with UI-owned product proof.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Extent proof class is published and reflected in scoring
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifacts: runs/run_##/validation/reports/ExtentReport.html, README.md, final report, package-state.json.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Extent proof class is published and reflected in scoring.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Extent proof class is published and reflected in scoring
+? Extent screenshot embedding contract
+  � Validation axis: Extent screenshot embedding contract
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: not explicitly declared by this test; see validation axis.
+  � Expected invariant: Asserts: Extent proof does not depend on external screenshots/ folders.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Extent screenshot embedding contract
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: see package root and MCP rule metadata
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Extent screenshot embedding contract.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Extent screenshot embedding contract
+? Extent base64 screenshot evidence
+  � Validation axis: Extent base64 screenshot evidence
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: not explicitly declared by this test; see validation axis.
+  � Expected invariant: Asserts: Extent report embeds screenshot evidence as base64 data URI.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Extent base64 screenshot evidence
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: see package root and MCP rule metadata
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Extent base64 screenshot evidence.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Extent base64 screenshot evidence
+? Frozen MCP Extent report detail contract
+  � Validation axis: Frozen MCP Extent report detail contract
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: validation/mcp/ExtentReport.html.
+  � Expected invariant: Asserts: the saved MCP Extent report is readable as a contract audit, not only a green shell.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Frozen MCP Extent report detail contract
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: validation/mcp/ExtentReport.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Frozen MCP Extent report detail contract.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Frozen MCP Extent report detail contract
+? Frozen MCP gate result freshness
+  � Validation axis: Frozen MCP gate result freshness
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: validation/mcp/mcp-gate-result.md.
+  � Expected invariant: Asserts: frozen validation/mcp/mcp-gate-result.md agrees with the current validator state.
+  � Expected invariant: Expected: no PASS/no-blocker claim when the current MCP validator reports blockers; no PENDING claim after the current validator is clean.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Frozen MCP gate result freshness
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: validation/mcp/mcp-gate-result.md.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Frozen MCP gate result freshness.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Frozen MCP gate result freshness
+? Per-run Extent report generated shell and detail contract
+  � Validation axis: Per-run Extent report generated shell and detail contract
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifacts: runs/run_##/validation/reports/ExtentReport*.html.
+  � Expected invariant: Asserts: per-run Extent reports are generated audit artifacts, not tiny handmade PASS shells.
+  � Expected invariant: Expected: Extent/Spark shell tokens, meaningful size, embedded non-placeholder screenshot proof, readable step/detail/status evidence, XML-method alignment, and single-file portability.
+  � Expected invariant: Forbidden: minimal HTML containing only PASS PASS PASS and a 1x1 base64 placeholder.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Per-run Extent report generated shell and detail contract
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifacts: runs/run_##/validation/reports/ExtentReport*.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Per-run Extent report generated shell and detail contract.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Per-run Extent report generated shell and detail contract
+? Per-run Extent report single-file proof contract
+  � Validation axis: Per-run Extent report single-file proof contract
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifacts: runs/run_##/validation/reports/ExtentReport*.html.
+  � Expected invariant: Asserts: every frozen per-run Extent report is reopenable as one HTML file.
+  � Expected invariant: Expected: no local spark/ CSS, JS, image, or font dependency beside the HTML.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Per-run Extent report single-file proof contract
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifacts: runs/run_##/validation/reports/ExtentReport*.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Per-run Extent report single-file proof contract.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Per-run Extent report single-file proof contract
+? Final report canonical business sections
+  � Validation axis: Final report canonical business sections
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/langgraph-business-understanding.html.
+  � Required artifacts: Required tokens: Business Flow Graph, Score Overview, Proof Mapping, Run Audit, Artifact Index, Close-Out, Overall.
+  � Expected invariant: Asserts: canonical report sections are present by exact section names.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report canonical business sections
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report canonical business sections.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report canonical business sections
+? Final report external calibration leak check
+  � Validation axis: Final report external calibration leak check
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Asserts: final report describes the package itself, not the calibration library.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report external calibration leak check
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report external calibration leak check.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report external calibration leak check
+? Final report per-run evidence links
+  � Validation axis: Final report per-run evidence links
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/langgraph-business-understanding.html.
+  � Required artifacts: Relative path pattern: ../runs/run_##/review/thin-no-index.diff; ../runs/run_##/review/run-state.json; ../runs/run_##/validation/.
+  � Expected invariant: Asserts: final report links every run to diff, run-state, and validation proof.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report per-run evidence links
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report per-run evidence links.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report per-run evidence links
+? Final report runtime constants and counters
+  � Validation axis: Final report runtime constants and counters
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Asserts: report publishes active runtime constants and visible run/test counters.
+  � Expected invariant: Runtime values: RUN_EXPECTED_DELTA_QUALITY=92 | ROUND_TARGET_TEST_COUNT=5 | META_ITERATION_COUNT=5
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report runtime constants and counters
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report runtime constants and counters.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report runtime constants and counters
+? Final report local href filesystem resolution
+  � Validation axis: Final report local href filesystem resolution
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Asserts: parsed href values resolve on disk when treated as local links.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report local href filesystem resolution
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report local href filesystem resolution.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report local href filesystem resolution
+? Saved local-link-check verdict
+  � Validation axis: Saved local-link-check verdict
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: review/local-link-check.txt.
+  � Expected invariant: Asserts: saved link audit artifact also says zero missing/broken links.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Saved local-link-check verdict
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: review/local-link-check.txt.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Saved local-link-check verdict.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Saved local-link-check verdict
+? Final report shared CSS exact reuse
+  � Validation axis: Final report shared CSS exact reuse
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: not explicitly declared by this test; see validation axis.
+  � Expected invariant: Asserts: package report reuses the project shared CSS verbatim, instead of inventing a local visual system.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report shared CSS exact reuse
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: see package root and MCP rule metadata
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report shared CSS exact reuse.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report shared CSS exact reuse
+? Final report non-plain-white visual theme
+  � Validation axis: Final report non-plain-white visual theme
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/shared-report-reference.css.
+  � Expected invariant: Asserts: final report is not a plain white/default browser document.
+  � Expected invariant: Expected: non-white page atmosphere, non-white/intentional panels, and at least one visual treatment.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report non-plain-white visual theme
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/shared-report-reference.css.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report non-plain-white visual theme.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report non-plain-white visual theme
+? Final report hides raw ROOT_RUN identity
+  � Validation axis: Final report hides raw ROOT_RUN identity
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Asserts: final report is business-readable and does not title itself by ROOT_RUN/timestamp.
+  � Expected invariant: Expected: package identity is expressed as business frontier; raw timestamp remains in filesystem/artifacts only.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report hides raw ROOT_RUN identity
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report hides raw ROOT_RUN identity.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report hides raw ROOT_RUN identity
+? Final report has no inline CSS overrides
+  � Validation axis: Final report has no inline CSS overrides
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Asserts: report visual design is controlled by shared-report-reference.css only.
+  � Expected invariant: Forbidden: inline <style> blocks and style= attributes.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report has no inline CSS overrides
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report has no inline CSS overrides.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report has no inline CSS overrides
+? Final report follows primary html-ex template profile
+  � Validation axis: Final report follows primary html-ex template profile
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: not explicitly declared by this test; see validation axis.
+  � Expected invariant: Asserts: report shape is learned from the primary docs/html-ex structural reference, without copying business text or scores.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report follows primary html-ex template profile
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: see package root and MCP rule metadata
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report follows primary html-ex template profile.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report follows primary html-ex template profile
+? Final report frozen MCP evidence links
+  � Validation axis: Final report frozen MCP evidence links
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: not explicitly declared by this test; see validation axis.
+  � Expected invariant: Asserts: MCP gate is published as a package artifact, not only left in target/reports.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report frozen MCP evidence links
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: see package root and MCP rule metadata
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report frozen MCP evidence links.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report frozen MCP evidence links
+? Final report collapsible section contract
+  � Validation axis: Final report collapsible section contract
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Asserts: all main report sections are collapsible details blocks.
+  � Expected invariant: Expected: only Business Flow Graph is open by default.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report collapsible section contract
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report collapsible section contract.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report collapsible section contract
+? Final report opening visible pill row
+  � Validation axis: Final report opening visible pill row
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Asserts: opening has visible navigation/calibration pills, not only collapsed runtime details.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report opening visible pill row
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report opening visible pill row.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report opening visible pill row
+? Final report proof and artifact link families
+  � Validation axis: Final report proof and artifact link families
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Asserts: report exposes the full audit spine, not just a narrative summary.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report proof and artifact link families
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report proof and artifact link families.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report proof and artifact link families
+? Final report Run Audit structured evidence rows
+  � Validation axis: Final report Run Audit structured evidence rows
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Asserts: Run Audit is an aligned audit surface, not prose-only bookkeeping.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report Run Audit structured evidence rows
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report Run Audit structured evidence rows.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report Run Audit structured evidence rows
+? Final report html-ex visual shell
+  � Validation axis: Final report html-ex visual shell
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Asserts: final report uses the reusable html-ex report shell, not browser-default document flow.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report html-ex visual shell
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report html-ex visual shell.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report html-ex visual shell
+? Final report shared CSS and document chrome
+  � Validation axis: Final report shared CSS and document chrome
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifacts: analysis/langgraph-business-understanding.html and analysis/shared-report-reference.css.
+  � Expected invariant: Asserts: final report has reusable document shell and shared CSS styling.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report shared CSS and document chrome
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifacts: analysis/langgraph-business-understanding.html and analysis/shared-report-reference.css.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report shared CSS and document chrome.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report shared CSS and document chrome
+? Final report shared CSS canonical reference contract
+  � Validation axis: Final report shared CSS canonical reference contract
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/shared-report-reference.css.
+  � Expected invariant: Asserts: shared-report-reference.css reuses the canonical html-ex visual vocabulary.
+  � Expected invariant: Expected: canonical variables, page shell, collapsible details, score primitives, graph typography, note/warn/rule helpers.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report shared CSS canonical reference contract
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/shared-report-reference.css.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report shared CSS canonical reference contract.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report shared CSS canonical reference contract
+? Per-run diff and feedback reopenability
+  � Validation axis: Per-run diff and feedback reopenability
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifacts: runs/run_##/review/thin-no-index.diff and runs/run_##/SUMMARY.md.
+  � Expected invariant: Asserts: each run leaves enough source/history context to reopen the evolution.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Per-run diff and feedback reopenability
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifacts: runs/run_##/review/thin-no-index.diff and runs/run_##/SUMMARY.md.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Per-run diff and feedback reopenability.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Per-run diff and feedback reopenability
+? Per-run score support delta quality
+  � Validation axis: Per-run score support delta quality
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: not explicitly declared by this test; see validation axis.
+  � Expected invariant: Asserts: if actual_delta_quality is published, it meets RUN_EXPECTED_DELTA_QUALITY.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Per-run score support delta quality
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: see package root and MCP rule metadata
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Per-run score support delta quality.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Per-run score support delta quality
+? Per-run state target and business status
+  � Validation axis: Per-run state target and business status
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: not explicitly declared by this test; see validation axis.
+  � Expected invariant: Asserts: each run-state publishes target count, produced tests, and business/countability status.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Per-run state target and business status
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: see package root and MCP rule metadata
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Per-run state target and business status.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Per-run state target and business status
+? Per-run TestNG XML target and failures
+  � Validation axis: Per-run TestNG XML target and failures
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: not explicitly declared by this test; see validation axis.
+  � Expected invariant: Asserts: each run XML matches active test target and has no failed/skipped tests.
+  � Expected invariant: Target per run from runtime: 5
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Per-run TestNG XML target and failures
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: see package root and MCP rule metadata
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Per-run TestNG XML target and failures.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Per-run TestNG XML target and failures
+? Per-run diff history distinctness
+  � Validation axis: Per-run diff history distinctness
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifacts: runs/run_##/review/thin-no-index.diff.
+  � Expected invariant: Asserts: per-run thin-no-index.diff files are not all identical.
+  � Expected invariant: Expected: each kept run leaves cold-distinct evolution evidence, not copied package-level diff.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Per-run diff history distinctness
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifacts: runs/run_##/review/thin-no-index.diff.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Per-run diff history distinctness.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Per-run diff history distinctness
+? Run independence
+  � Validation axis: Run independence
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifacts: runs/run_##/SUMMARY.md, review/run-state.json, review/business-understanding.md.
+  � Expected invariant: Asserts: runs do not reuse the same diff, state, summary, verdict, and learning trace.
+  � Expected invariant: Expected: at least one cold axis is distinct enough to prove iteration novelty.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Run independence
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifacts: runs/run_##/SUMMARY.md, review/run-state.json, review/business-understanding.md.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Run independence.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Run independence
+? Run XML to real Java @Test countability
+  � Validation axis: Run XML to real Java @Test countability
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: not explicitly declared by this test; see validation axis.
+  � Expected invariant: Asserts: per-run XML proves real TestNG methods, not only counters.
+  � Expected invariant: Expected: one passed <test-method> per counted Java @Test method.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Run XML to real Java @Test countability
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: see package root and MCP rule metadata
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Run XML to real Java @Test countability.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Run XML to real Java @Test countability
+? Executive Context collapsed verdict/runtime subsections
+  � Validation axis: Executive Context collapsed verdict/runtime subsections
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Asserts: Executive Context carries detailed verdict/runtime information without polluting the visible opening.
+  � Expected invariant: Expected: collapsed details for verdict and runtime/accounting before Business Flow Graph.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Executive Context collapsed verdict/runtime subsections
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Executive Context collapsed verdict/runtime subsections.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Executive Context collapsed verdict/runtime subsections
+? Executive Context is collapsed by default
+  � Validation axis: Executive Context is collapsed by default
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Asserts: Executive Context is useful but not visually dominant.
+  � Expected invariant: Expected: <details id="executive-context" ...> without the open attribute.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Executive Context is collapsed by default
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Executive Context is collapsed by default.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Executive Context is collapsed by default
+? Final report canonical opening shape
+  � Validation axis: Final report canonical opening shape
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: not explicitly declared by this test; see validation axis.
+  � Expected invariant: Asserts: report opening follows the reusable html-ex shape.
+  � Expected invariant: Expected: no raw escaped newline artifacts.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report canonical opening shape
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: see package root and MCP rule metadata
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report canonical opening shape.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report canonical opening shape
+? Final report opening score-card readable structure
+  � Validation axis: Final report opening score-card readable structure
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Asserts: score cards are visually readable, not only token-present.
+  � Expected invariant: Expected: at least 6 .score-card blocks with separate .label and .score elements.
+  � Expected invariant: Forbidden: compressed span+strong markup that visually glues label and number.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report opening score-card readable structure
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report opening score-card readable structure.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report opening score-card readable structure
+? Final report opening score-wall has no loose score elements
+  � Validation axis: Final report opening score-wall has no loose score elements
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Asserts: opening score-wall is a clean grid of cards, not loose label/score text plus cards.
+  � Expected invariant: Expected: every visible score value lives inside a score-card.
+  � Expected invariant: Forbidden: direct .label or .score children before the first score-card.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report opening score-wall has no loose score elements
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report opening score-wall has no loose score elements.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report opening score-wall has no loose score elements
+? Final report score cards follow primary html-ex reference order
+  � Validation axis: Final report score cards follow primary html-ex reference order
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: not explicitly declared by this test; see validation axis.
+  � Expected invariant: Asserts: score-card order is learned dynamically from docs/html-ex primary structural reference.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report score cards follow primary html-ex reference order
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: see package root and MCP rule metadata
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report score cards follow primary html-ex reference order.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report score cards follow primary html-ex reference order
+? Final report Score Overview canonical axes
+  � Validation axis: Final report Score Overview canonical axes
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Asserts: Score Overview is not only a number; it publishes the core business/audit axes and weights.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report Score Overview canonical axes
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report Score Overview canonical axes.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report Score Overview canonical axes
+? Model/service-only package score ceiling
+  � Validation axis: Model/service-only package score ceiling
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifacts: review/package-state.json and final report.
+  � Expected invariant: Asserts: model/service-only packages cannot score like UI-owned business proof.
+  � Expected invariant: Expected: model-only or not-UI-owned packages keep Overall <= 60 and explain the Business Substance cap.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Model/service-only package score ceiling
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifacts: review/package-state.json and final report.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Model/service-only package score ceiling.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Model/service-only package score ceiling
+? Final report opening has no visible Verdict/runtime block before score cards
+  � Validation axis: Final report opening has no visible Verdict/runtime block before score cards
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Asserts: the opening remains business-first and does not start with a raw Verdict/runtime block.
+  � Expected invariant: Expected: verdict/runtime details live in collapsed Executive Context subsections or canonical Score/Artifact/Close-Out sections.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report opening has no visible Verdict/runtime block before score cards
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report opening has no visible Verdict/runtime block before score cards.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report opening has no visible Verdict/runtime block before score cards
+? Overall truth synchronized across README, package-state, report, and MCP gate
+  � Validation axis: Overall truth synchronized across README, package-state, report, and MCP gate
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifacts: docs/out/README.md, review/package-state.json, final HTML, validation/mcp/mcp-gate-result.md.
+  � Expected invariant: Asserts: canonical frozen artifacts publish the same Overall truth; this check is artifact-only.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Overall truth synchronized across README, package-state, report, and MCP gate
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifacts: docs/out/README.md, review/package-state.json, final HTML, validation/mcp/mcp-gate-result.md.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Overall truth synchronized across README, package-state, report, and MCP gate.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Overall truth synchronized across README, package-state, report, and MCP gate
+? Published Overall does not exceed package-state cap
+  � Validation axis: Published Overall does not exceed package-state cap
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifacts: review/package-state.json and analysis/langgraph-business-understanding.html.
+  � Expected invariant: Asserts: no report may publish a higher Overall than review/package-state.json cap.
+  � Expected invariant: Expected: package-state overall <= cap and report Overall <= cap.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Published Overall does not exceed package-state cap
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifacts: review/package-state.json and analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Published Overall does not exceed package-state cap.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Published Overall does not exceed package-state cap
+? Final report opening has no runtime strip between score cards and Executive Context
+  � Validation axis: Final report opening has no runtime strip between score cards and Executive Context
+  � Outcome: PASS
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / HTML-req for this validation axis.
+  � MCP profile: latest generated package contract axis.
+  � Required artifacts: Artifact: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Asserts: opening stays business-first after score cards.
+  � Expected invariant: Expected: runtime/accounting details live in Score Overview, Artifact Index, or Close-Out.
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\work\ex\java\demo\atf3\test-framework\docs\out\2026-06-24_10.05.16
+  � Rule: Final report opening has no runtime strip between score cards and Executive Context
+  � Status: PASS
+  � Blockers: 0
+  � Warnings: 0
+  � Evidence artifact: Artifact: analysis/langgraph-business-understanding.html.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: no blocker violations for Final report opening has no runtime strip between score cards and Executive Context.
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required now; rerun the full MCP gate after any report, state, diff, CSS, or proof edit.
+  ? PASS: Repair hint recorded
+  ? PASS: MCP audit passed: Final report opening has no runtime strip between score cards and Executive Context
+? Reject missing primary next business object
+  � Validation axis: Reject missing primary next business object
+  � Outcome: expected rejection
+? Fixture mutation
+  � Fixture package root: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-2676852606893172021
+  � Mutation: Removed primary_next_business_object from review/package-state.json.
+  ? PASS: Mutation recorded
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / expected failure code.
+  � MCP profile: negative fixture contract.
+  � Required artifacts: review/package-state.json.
+  � Expected invariant: Expected violation: next-frontier.primary-missing.
+  � Expected code observed [next-frontier.primary-missing]: yes
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-2676852606893172021
+  � Rule: Reject missing primary next business object
+  � Status: expected rejection
+  � Blockers: 1
+  � Warnings: 0
+  � Evidence artifact: review/package-state.json.
+  � Observed violation [next-frontier.primary-missing]: package-state.json must name one primary_next_business_object for the next fresh package
+  � Observed target: review/package-state.json.
+  � Validator artifact scope: review\package-state.json
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: validator rejected the intentional mutation through the expected failure code(s).
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required for the fixture; keep the production package away from this mutation.
+  ? PASS: Repair hint recorded
+  ? PASS: Validator rejected broad next-frontier handoff
+? Reject candidate absence sold as positive ownership
+  � Validation axis: Reject candidate absence sold as positive ownership
+  � Outcome: expected rejection
+? Fixture mutation
+  � Fixture package root: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-html-ex-reference-6541409733303902647
+  � Mutation: Changed business_object to an absence claim instead of a durable owned object.
+  ? PASS: Mutation recorded
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / expected failure code.
+  � MCP profile: negative fixture contract.
+  � Required artifacts: review/package-state.json.
+  � Expected invariant: Expected violation: candidate.positive-ownership.absence-owned.
+  � Expected code observed [candidate.positive-ownership.absence-owned]: yes
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-html-ex-reference-6541409733303902647
+  � Rule: Reject candidate absence sold as positive ownership
+  � Status: expected rejection
+  � Blockers: 6
+  � Warnings: 0
+  � Evidence artifact: review/package-state.json.
+  � Observed violation [candidate.positive-ownership.absence-owned]: html-ex candidate business_object must be positive ownership; absence/blocker can be next frontier or cap reason, not the owned object: receipt identity absence
+  � Observed target: review/package-state.json.
+  � Validator artifact scope: review\package-state.json
+  � Other fixture violations hidden from this negative-test report: 5
+  � Reason: this test proves the expected mutation contract, not the full package health.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: validator rejected the intentional mutation through the expected failure code(s).
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required for the fixture; keep the production package away from this mutation.
+  ? PASS: Repair hint recorded
+  ? PASS: Candidate contract rejected absence as positive ownership
+? Reject candidate business token spam without structural proof row
+  � Validation axis: Reject candidate business token spam without structural proof row
+  � Outcome: expected rejection
+? Fixture mutation
+  � Fixture package root: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-html-ex-reference-10475343714425151320
+  � Mutation: Repeated the package business_object in report prose while removing the Proof Mapping evidence chain.
+  ? PASS: Mutation recorded
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / expected failure code.
+  � MCP profile: negative fixture contract.
+  � Required artifacts: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Expected violation: candidate.business-object.proof-row-missing.
+  � Expected code observed [candidate.business-object.proof-row-missing]: yes
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-html-ex-reference-10475343714425151320
+  � Rule: Reject candidate business token spam without structural proof row
+  � Status: expected rejection
+  � Blockers: 8
+  � Warnings: 0
+  � Evidence artifact: analysis/langgraph-business-understanding.html.
+  � Observed violation [candidate.business-object.proof-row-missing]: html-ex candidate business_object must have a Proof Mapping row with business token + diff + state + execution proof + cold verdict. Tokens: [portable, warranty, renewal, ledger]
+  � Observed target: analysis/langgraph-business-understanding.html.
+  � Validator artifact scope: analysis\langgraph-business-understanding.html
+  � Other fixture violations hidden from this negative-test report: 7
+  � Reason: this test proves the expected mutation contract, not the full package health.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: validator rejected the intentional mutation through the expected failure code(s).
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required for the fixture; keep the production package away from this mutation.
+  ? PASS: Repair hint recorded
+  ? PASS: Candidate contract rejected business words without proof-row evidence
+? Reject candidate graph that hides the next closure object
+  � Validation axis: Reject candidate graph that hides the next closure object
+  � Outcome: expected rejection
+? Fixture mutation
+  � Fixture package root: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-html-ex-reference-16153979642862001136
+  � Mutation: Removed the primary next business object tokens from the Business Flow Graph.
+  ? PASS: Mutation recorded
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / expected failure code.
+  � MCP profile: negative fixture contract.
+  � Required artifacts: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Expected violation: candidate.business-graph.next-closure-missing.
+  � Expected code observed [candidate.business-graph.next-closure-missing]: yes
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-html-ex-reference-16153979642862001136
+  � Rule: Reject candidate graph that hides the next closure object
+  � Status: expected rejection
+  � Blockers: 3
+  � Warnings: 0
+  � Evidence artifact: analysis/langgraph-business-understanding.html.
+  � Observed violation [candidate.business-graph.next-closure-missing]: Business Flow Graph must name the primary next closure object tokens: [registered, account, invoice]
+  � Observed target: analysis/langgraph-business-understanding.html.
+  � Validator artifact scope: analysis\langgraph-business-understanding.html
+  � Other fixture violations hidden from this negative-test report: 2
+  � Reason: this test proves the expected mutation contract, not the full package health.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: validator rejected the intentional mutation through the expected failure code(s).
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required for the fixture; keep the production package away from this mutation.
+  ? PASS: Repair hint recorded
+  ? PASS: Candidate contract rejected graph without next closure object
+? Reject candidate business object that is only a boundary/screen/state
+  � Validation axis: Reject candidate business object that is only a boundary/screen/state
+  � Outcome: expected rejection
+? Fixture mutation
+  � Fixture package root: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-html-ex-reference-13394142506318775010
+  � Mutation: Changed business_object to a non-durable success state.
+  ? PASS: Mutation recorded
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / expected failure code.
+  � MCP profile: negative fixture contract.
+  � Required artifacts: review/package-state.json.
+  � Expected invariant: Expected violation: candidate.business-object.not-durable.
+  � Expected code observed [candidate.business-object.not-durable]: yes
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-html-ex-reference-13394142506318775010
+  � Rule: Reject candidate business object that is only a boundary/screen/state
+  � Status: expected rejection
+  � Blockers: 4
+  � Warnings: 0
+  � Evidence artifact: review/package-state.json.
+  � Observed violation [candidate.business-object.not-durable]: html-ex candidate business_object must be durable and specific, not screen/boundary/state generic: guest checkout payment success state
+  � Observed target: review/package-state.json.
+  � Validator artifact scope: review\package-state.json
+  � Other fixture violations hidden from this negative-test report: 3
+  � Reason: this test proves the expected mutation contract, not the full package health.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: validator rejected the intentional mutation through the expected failure code(s).
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required for the fixture; keep the production package away from this mutation.
+  ? PASS: Repair hint recorded
+  ? PASS: Candidate contract rejected non-durable business object
+? Reject candidate score cards with generic justification
+  � Validation axis: Reject candidate score cards with generic justification
+  � Outcome: expected rejection
+? Fixture mutation
+  � Fixture package root: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-html-ex-reference-6305181082418967359
+  � Mutation: Replaced Score Overview rows with repeated generic text.
+  ? PASS: Mutation recorded
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / expected failure code.
+  � MCP profile: negative fixture contract.
+  � Required artifacts: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Expected violation: candidate.score.justification-generic.
+  � Expected code observed [candidate.score.justification-generic]: yes
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-html-ex-reference-6305181082418967359
+  � Rule: Reject candidate score cards with generic justification
+  � Status: expected rejection
+  � Blockers: 1
+  � Warnings: 0
+  � Evidence artifact: analysis/langgraph-business-understanding.html.
+  � Observed violation [candidate.score.justification-generic]: html-ex candidate score rows must have distinct artifact-backed justifications; scoredRows=4, weakRows=4, distinct=4
+  � Observed target: analysis/langgraph-business-understanding.html.
+  � Validator artifact scope: analysis\langgraph-business-understanding.html
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: validator rejected the intentional mutation through the expected failure code(s).
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required for the fixture; keep the production package away from this mutation.
+  ? PASS: Repair hint recorded
+  ? PASS: Candidate contract rejected generic score justifications
+? Reject candidate single-family package scored above runtime threshold without depth escape
+  � Validation axis: Reject candidate single-family package scored above runtime threshold without depth escape
+  � Outcome: expected rejection
+? Fixture mutation
+  � Fixture package root: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-html-ex-reference-17129740544300203296
+  � Mutation: Raised Overall/cap above RUN_EXPECTED_DELTA_QUALITY while keeping breadth partial and no second durable object.
+  ? PASS: Mutation recorded
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / expected failure code.
+  � MCP profile: negative fixture contract.
+  � Required artifacts: review/package-state.json.
+  � Expected invariant: Expected violation: candidate.single-family.cap-too-high.
+  � Expected code observed [candidate.single-family.cap-too-high]: yes
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-html-ex-reference-17129740544300203296
+  � Rule: Reject candidate single-family package scored above runtime threshold without depth escape
+  � Status: expected rejection
+  � Blockers: 1
+  � Warnings: 0
+  � Evidence artifact: review/package-state.json.
+  � Observed violation [candidate.single-family.cap-too-high]: single-family/partial html-ex candidate cannot exceed runtime teacher threshold without details, line-items, or a second durable business object. Threshold=92; overall=93
+  � Observed target: review/package-state.json.
+  � Validator artifact scope: review\package-state.json
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: validator rejected the intentional mutation through the expected failure code(s).
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required for the fixture; keep the production package away from this mutation.
+  ? PASS: Repair hint recorded
+  ? PASS: Candidate contract rejected inflated single-family score
+? MCP rule metadata coverage
+  � Missing metadata classes: []
+  � Duplicate MCP contract ids: []
+  ? PASS: All MCP profile rules expose unique contract metadata
+? Reject analysis shared CSS drift
+  � Validation axis: Reject analysis shared CSS drift
+  � Outcome: expected rejection
+? Fixture mutation
+  � Fixture package root: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-15580931238397103908
+  � Mutation: Changed analysis/shared-report-reference.css without changing the project-level canonical CSS.
+  ? PASS: Mutation recorded
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / expected failure code.
+  � MCP profile: negative fixture contract.
+  � Required artifacts: analysis/shared-report-reference.css.
+  � Expected invariant: Expected violation: report.css.shared-reference-copy-drift.
+  � Expected code observed [report.css.shared-reference-copy-drift]: yes
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-15580931238397103908
+  � Rule: Reject analysis shared CSS drift
+  � Status: expected rejection
+  � Blockers: 1
+  � Warnings: 0
+  � Evidence artifact: analysis/shared-report-reference.css.
+  � Observed violation [report.css.shared-reference-copy-drift]: analysis/shared-report-reference.css must be an exact copy of docs/shared-report-reference.css
+  � Observed target: analysis/shared-report-reference.css.
+  � Validator artifact scope: analysis\shared-report-reference.css
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: validator rejected the intentional mutation through the expected failure code(s).
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required for the fixture; keep the production package away from this mutation.
+  ? PASS: Repair hint recorded
+  ? PASS: Validator rejected local analysis CSS drift
+? Reject final report with closed Business Flow Graph
+  � Validation axis: Reject final report with closed Business Flow Graph
+  � Outcome: expected rejection
+? Fixture mutation
+  � Fixture package root: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-17699967988237879466
+  � Mutation: Changed analysis/langgraph-business-understanding.html so Business Flow Graph is not open by default.
+  ? PASS: Mutation recorded
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / expected failure code.
+  � MCP profile: negative fixture contract.
+  � Required artifacts: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Expected violation: report.graph.default-open.
+  � Expected code observed [report.graph.default-open]: yes
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-17699967988237879466
+  � Rule: Reject final report with closed Business Flow Graph
+  � Status: expected rejection
+  � Blockers: 1
+  � Warnings: 3
+  � Evidence artifact: analysis/langgraph-business-understanding.html.
+  � Observed violation [report.graph.default-open]: Business Flow Graph must be the default-open report section
+  � Observed target: analysis/langgraph-business-understanding.html.
+  � Validator artifact scope: analysis\langgraph-business-understanding.html
+  � Other fixture violations hidden from this negative-test report: 3
+  � Reason: this test proves the expected mutation contract, not the full package health.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: validator rejected the intentional mutation through the expected failure code(s).
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required for the fixture; keep the production package away from this mutation.
+  ? PASS: Repair hint recorded
+  ? PASS: Validator rejected non-default-open Business Flow Graph
+? Reject generic Close-Out next step
+  � Validation axis: Reject generic Close-Out next step
+  � Outcome: expected rejection
+? Fixture mutation
+  � Fixture package root: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-6093656597320210557
+  � Mutation: Changed Close-Out to generic continuation without a named business object.
+  ? PASS: Mutation recorded
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / expected failure code.
+  � MCP profile: negative fixture contract.
+  � Required artifacts: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Expected violation: report.close-out.next-object-missing.
+  � Expected code observed [report.close-out.next-object-missing]: yes
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-6093656597320210557
+  � Rule: Reject generic Close-Out next step
+  � Status: expected rejection
+  � Blockers: 1
+  � Warnings: 3
+  � Evidence artifact: analysis/langgraph-business-understanding.html.
+  � Observed violation [report.close-out.next-object-missing]: Close-Out should name a concrete next business object, not only generic continuation language
+  � Observed target: analysis/langgraph-business-understanding.html.
+  � Validator artifact scope: analysis\langgraph-business-understanding.html
+  � Other fixture violations hidden from this negative-test report: 3
+  � Reason: this test proves the expected mutation contract, not the full package health.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: validator rejected the intentional mutation through the expected failure code(s).
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required for the fixture; keep the production package away from this mutation.
+  ? PASS: Repair hint recorded
+  ? PASS: Validator rejected generic Close-Out
+? Reject final report broken local hyperlink
+  � Validation axis: Reject final report broken local hyperlink
+  � Outcome: expected rejection
+? Fixture mutation
+  � Fixture package root: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-14804375944703467935
+  � Mutation: Changed analysis/langgraph-business-understanding.html to link to ../runs/run_99/validation/reports/missing.html.
+  ? PASS: Mutation recorded
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / expected failure code.
+  � MCP profile: negative fixture contract.
+  � Required artifacts: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Expected violation: report.link.broken.
+  � Expected code observed [report.link.broken]: yes
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-14804375944703467935
+  � Rule: Reject final report broken local hyperlink
+  � Status: expected rejection
+  � Blockers: 2
+  � Warnings: 3
+  � Evidence artifact: analysis/langgraph-business-understanding.html.
+  � Observed violation [report.link.broken]: Broken local report link: ../runs/run_99/validation/reports/missing.html -> C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-14804375944703467935\runs\run_99\validation\reports\missing.html
+  � Observed target: analysis/langgraph-business-understanding.html.
+  � Validator artifact scope: analysis\langgraph-business-understanding.html
+  � Observed violation [report.link.broken]: Broken local report link: ../runs/run_99/validation/reports/missing.html -> C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-14804375944703467935\runs\run_99\validation\reports\missing.html
+  � Observed target: analysis/langgraph-business-understanding.html.
+  � Validator artifact scope: analysis\langgraph-business-understanding.html
+  � Other fixture violations hidden from this negative-test report: 3
+  � Reason: this test proves the expected mutation contract, not the full package health.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: validator rejected the intentional mutation through the expected failure code(s).
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required for the fixture; keep the production package away from this mutation.
+  ? PASS: Repair hint recorded
+  ? PASS: Validator rejected broken local report link
+? Reject final report leaking calibration language
+  � Validation axis: Reject final report leaking calibration language
+  � Outcome: expected rejection
+? Fixture mutation
+  � Fixture package root: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-10928420743068522957
+  � Mutation: Injected html-ex / benchmark / comparison language into the final report.
+  ? PASS: Mutation recorded
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / expected failure code.
+  � MCP profile: negative fixture contract.
+  � Required artifacts: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Expected violation: report.external-calibration-leak.
+  � Expected code observed [report.external-calibration-leak]: yes
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-10928420743068522957
+  � Rule: Reject final report leaking calibration language
+  � Status: expected rejection
+  � Blockers: 3
+  � Warnings: 3
+  � Evidence artifact: analysis/langgraph-business-understanding.html.
+  � Observed violation [report.external-calibration-leak]: Final report must not mention external calibration word: html-ex
+  � Observed target: analysis/langgraph-business-understanding.html.
+  � Validator artifact scope: analysis\langgraph-business-understanding.html
+  � Observed violation [report.external-calibration-leak]: Final report must not mention external calibration word: benchmark
+  � Observed target: analysis/langgraph-business-understanding.html.
+  � Validator artifact scope: analysis\langgraph-business-understanding.html
+  � Observed violation [report.external-calibration-leak]: Final report must not mention external calibration word: comparison
+  � Observed target: analysis/langgraph-business-understanding.html.
+  � Validator artifact scope: analysis\langgraph-business-understanding.html
+  � Other fixture violations hidden from this negative-test report: 3
+  � Reason: this test proves the expected mutation contract, not the full package health.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: validator rejected the intentional mutation through the expected failure code(s).
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required for the fixture; keep the production package away from this mutation.
+  ? PASS: Repair hint recorded
+  ? PASS: Validator rejected external calibration language in final report
+? Reject repetitive Run Audit claims
+  � Validation axis: Reject repetitive Run Audit claims
+  � Outcome: expected rejection
+? Fixture mutation
+  � Fixture package root: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-17448741649793261354
+  � Mutation: Collapsed Run Audit to repeated bookkeeping instead of distinct business claims.
+  ? PASS: Mutation recorded
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / expected failure code.
+  � MCP profile: negative fixture contract.
+  � Required artifacts: analysis/langgraph-business-understanding.html.
+  � Expected invariant: Expected violation: report.run-audit.claims-too-repetitive.
+  � Expected code observed [report.run-audit.claims-too-repetitive]: yes
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-17448741649793261354
+  � Rule: Reject repetitive Run Audit claims
+  � Status: expected rejection
+  � Blockers: 1
+  � Warnings: 3
+  � Evidence artifact: analysis/langgraph-business-understanding.html.
+  � Observed violation [report.run-audit.claims-too-repetitive]: Run Audit should expose distinct business claims, not repeated run bookkeeping. Distinct claims found: 1
+  � Observed target: analysis/langgraph-business-understanding.html.
+  � Validator artifact scope: analysis\langgraph-business-understanding.html
+  � Other fixture violations hidden from this negative-test report: 3
+  � Reason: this test proves the expected mutation contract, not the full package health.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: validator rejected the intentional mutation through the expected failure code(s).
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required for the fixture; keep the production package away from this mutation.
+  ? PASS: Repair hint recorded
+  ? PASS: Validator rejected repetitive run audit
+? Reject duplicate per-run diffs
+  � Validation axis: Reject duplicate per-run diffs
+  � Outcome: expected rejection
+? Fixture mutation
+  � Fixture package root: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-17957674636059342994
+  � Mutation: Overwrote every runs/run_##/review/thin-no-index.diff with the same content.
+  ? PASS: Mutation recorded
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / expected failure code.
+  � MCP profile: negative fixture contract.
+  � Required artifacts: runs/run_##/review/thin-no-index.diff.
+  � Expected invariant: Expected violation: run-diff.duplicate-all.
+  � Expected code observed [run-diff.duplicate-all]: yes
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-17957674636059342994
+  � Rule: Reject duplicate per-run diffs
+  � Status: expected rejection
+  � Blockers: 3
+  � Warnings: 5
+  � Evidence artifact: runs/run_##/review/thin-no-index.diff.
+  � Observed violation [run-diff.duplicate-all]: All per-run thin-no-index.diff files are identical; run history is not cold-distinct
+  � Observed target: runs/run_##/review/thin-no-index.diff.
+  � Validator artifact scope: runs
+  � Other fixture violations hidden from this negative-test report: 7
+  � Reason: this test proves the expected mutation contract, not the full package health.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: validator rejected the intentional mutation through the expected failure code(s).
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required for the fixture; keep the production package away from this mutation.
+  ? PASS: Repair hint recorded
+  ? PASS: Validator rejected non-distinct run history diffs
+? Reject run learning without progression
+  � Validation axis: Reject run learning without progression
+  � Outcome: expected rejection
+? Fixture mutation
+  � Fixture package root: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-6773688846895595041
+  � Mutation: Replaced runs/run_03 learning artifacts with a generic lesson that does not reference prior progress.
+  ? PASS: Mutation recorded
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / expected failure code.
+  � MCP profile: negative fixture contract.
+  � Required artifacts: runs/run_03/SUMMARY.md.
+  � Expected invariant: Expected violation: run-learning.progression-missing.
+  � Expected code observed [run-learning.progression-missing]: yes
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-6773688846895595041
+  � Rule: Reject run learning without progression
+  � Status: expected rejection
+  � Blockers: 3
+  � Warnings: 0
+  � Evidence artifact: runs/run_03/SUMMARY.md.
+  � Observed violation [run-learning.progression-missing]: Run learning trace must state how this run progresses from baseline or a prior run
+  � Observed target: runs/run_03/SUMMARY.md.
+  � Validator artifact scope: runs\run_03\SUMMARY.md
+  � Other fixture violations hidden from this negative-test report: 2
+  � Reason: this test proves the expected mutation contract, not the full package health.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: validator rejected the intentional mutation through the expected failure code(s).
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required for the fixture; keep the production package away from this mutation.
+  ? PASS: Repair hint recorded
+  ? PASS: Validator rejected non-progressive run learning
+? Reject missing run-state artifact
+  � Validation axis: Reject missing run-state artifact
+  � Outcome: expected rejection
+? Fixture mutation
+  � Fixture package root: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-17886448143945511944
+  � Mutation: Deleted runs/run_03/review/run-state.json from an otherwise valid package fixture.
+  ? PASS: Mutation recorded
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / expected failure code.
+  � MCP profile: negative fixture contract.
+  � Required artifacts: runs/run_03/review/run-state.json.
+  � Expected invariant: Expected violation: file.missing.
+  � Expected code observed [file.missing]: yes
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-17886448143945511944
+  � Rule: Reject missing run-state artifact
+  � Status: expected rejection
+  � Blockers: 3
+  � Warnings: 0
+  � Evidence artifact: runs/run_03/review/run-state.json.
+  � Observed violation [file.missing]: Missing run state
+  � Observed target: runs/run_03/review/run-state.json.
+  � Validator artifact scope: runs\run_03\review\run-state.json
+  � Other fixture violations hidden from this negative-test report: 2
+  � Reason: this test proves the expected mutation contract, not the full package health.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: validator rejected the intentional mutation through the expected failure code(s).
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required for the fixture; keep the production package away from this mutation.
+  ? PASS: Repair hint recorded
+  ? PASS: Validator rejected missing run-state artifact
+? Reject runtime target drift
+  � Validation axis: Reject runtime target drift
+  � Outcome: expected rejection
+? Fixture mutation
+  � Fixture package root: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-17672177938570132187
+  � Mutation: Changed review/package-state.json to publish values that drift from active runtime constants.
+  ? PASS: Mutation recorded
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / expected failure code.
+  � MCP profile: negative fixture contract.
+  � Required artifacts: review/package-state.json.
+  � Expected invariant: Expected violations: runtime.round-target and runtime.meta-iteration.
+  � Expected code observed [runtime.round-target]: yes
+  � Expected code observed [runtime.meta-iteration]: yes
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-17672177938570132187
+  � Rule: Reject runtime target drift
+  � Status: expected rejection
+  � Blockers: 3
+  � Warnings: 2
+  � Evidence artifact: review/package-state.json.
+  � Observed violation [runtime.round-target]: Missing active ROUND_TARGET_TEST_COUNT from C:\work\ex\java\demo\atf3\test-framework\docs\prompts\iterativ\agent-runtime.properties: key=round_target_test_count or ROUND_TARGET_TEST_COUNT or tests_expected, value=5
+  � Observed target: review/package-state.json.
+  � Validator artifact scope: review\package-state.json
+  � Observed violation [runtime.meta-iteration]: Missing active META_ITERATION_COUNT from C:\work\ex\java\demo\atf3\test-framework\docs\prompts\iterativ\agent-runtime.properties: key=meta_iteration_count or META_ITERATION_COUNT or runs_expected, value=5
+  � Observed target: review/package-state.json.
+  � Validator artifact scope: review\package-state.json
+  � Other fixture violations hidden from this negative-test report: 3
+  � Reason: this test proves the expected mutation contract, not the full package health.
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: validator rejected the intentional mutation through the expected failure code(s).
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required for the fixture; keep the production package away from this mutation.
+  ? PASS: Repair hint recorded
+  ? PASS: Validator rejected runtime counter drift
+? Reject missing score cap evidence
+  � Validation axis: Reject missing score cap evidence
+  � Outcome: expected rejection
+? Fixture mutation
+  � Fixture package root: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-2978805842157367602
+  � Mutation: Removed cap_reason and weakest_axis from review/package-state.json.
+  ? PASS: Mutation recorded
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / expected failure code.
+  � MCP profile: negative fixture contract.
+  � Required artifacts: review/package-state.json.
+  � Expected invariant: Expected violations: score.cap-evidence.reason-missing and score.cap-evidence.weakest-axis-missing.
+  � Expected code observed [score.cap-evidence.reason-missing]: yes
+  � Expected code observed [score.cap-evidence.weakest-axis-missing]: yes
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-2978805842157367602
+  � Rule: Reject missing score cap evidence
+  � Status: expected rejection
+  � Blockers: 2
+  � Warnings: 0
+  � Evidence artifact: review/package-state.json.
+  � Observed violation [score.cap-evidence.reason-missing]: package-state.json must explain why Overall is capped
+  � Observed target: review/package-state.json.
+  � Validator artifact scope: review\package-state.json
+  � Observed violation [score.cap-evidence.weakest-axis-missing]: package-state.json must publish the weakest scoring axis
+  � Observed target: review/package-state.json.
+  � Validator artifact scope: review\package-state.json
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: validator rejected the intentional mutation through the expected failure code(s).
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required for the fixture; keep the production package away from this mutation.
+  ? PASS: Repair hint recorded
+  ? PASS: Validator rejected score cap without evidence
+? Reject Overall drift between package-state and report
+  � Validation axis: Reject Overall drift between package-state and report
+  � Outcome: expected rejection
+? Fixture mutation
+  � Fixture package root: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-691589877540117636
+  � Mutation: Changed review/package-state.json overall while leaving Score Overview unchanged.
+  ? PASS: Mutation recorded
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / expected failure code.
+  � MCP profile: negative fixture contract.
+  � Required artifacts: review/package-state.json and analysis/langgraph-business-understanding.html.
+  � Expected invariant: Expected violation: report.score.overall-drift.
+  � Expected code observed [report.score.overall-drift]: yes
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-691589877540117636
+  � Rule: Reject Overall drift between package-state and report
+  � Status: expected rejection
+  � Blockers: 1
+  � Warnings: 0
+  � Evidence artifact: review/package-state.json and analysis/langgraph-business-understanding.html.
+  � Observed violation [report.score.overall-drift]: Score Overview Overall must match review/package-state.json: state=77, report=92
+  � Observed target: review/package-state.json and analysis/langgraph-business-understanding.html.
+  � Validator artifact scope: analysis\langgraph-business-understanding.html
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: validator rejected the intentional mutation through the expected failure code(s).
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required for the fixture; keep the production package away from this mutation.
+  ? PASS: Repair hint recorded
+  ? PASS: Validator rejected score overview drift
+? Reject generated package mutation of protected framework layers
+  � Validation axis: Reject generated package mutation of protected framework layers
+  � Outcome: expected rejection
+? Fixture mutation
+  � Fixture package root: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-4582209744007266867
+  � Mutation: Injected a protected MCP framework path into review/root-source-thin-no-index.diff.
+  ? PASS: Mutation recorded
+? Expected contract
+  � HTML owner: linked by MCP rule metadata / expected failure code.
+  � MCP profile: negative fixture contract.
+  � Required artifacts: review/root-source-thin-no-index.diff.
+  � Expected invariant: Expected violation: framework-mutation.protected-path.
+  � Expected code observed [framework-mutation.protected-path]: yes
+  ? PASS: Expected contract recorded
+? Observed validator result
+  � Package: C:\Users\CSTEFA~1\AppData\Local\Temp\atf6-mcp-latest-root-run-4582209744007266867
+  � Rule: Reject generated package mutation of protected framework layers
+  � Status: expected rejection
+  � Blockers: 1
+  � Warnings: 0
+  � Evidence artifact: review/root-source-thin-no-index.diff.
+  � Observed violation [framework-mutation.protected-path]: Generated package must not mutate framework/MCP/core/service infrastructure: src/main/java/com/endava/ai/mcp/rules/run/RunCountRule.java
+  � Observed target: review/root-source-thin-no-index.diff.
+  � Validator artifact scope: 
+  ? PASS: Observed validator result recorded
+? Cold verdict
+  � PASS / FAIL: PASS
+  � Why: validator rejected the intentional mutation through the expected failure code(s).
+  ? PASS: Cold verdict recorded
+? Repair hint
+  � No repair required for the fixture; keep the production package away from this mutation.
+  ? PASS: Repair hint recorded
+  ? PASS: Validator rejected framework/MCP mutation inside generated package diff
+[INFO] Tests run: 100, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 82.93 s -- in TestSuite
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 100, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  01:27 min
+[INFO] Finished at: 2026-06-24T11:04:36+03:00
+[INFO] ------------------------------------------------------------------------

@@ -1,0 +1,47 @@
+package com.endava.ai.ui.tests;
+
+import com.endava.ai.ui.actions.ContactMessageActions;
+import com.endava.ai.ui.core.BaseTestUI;
+import com.endava.ai.ui.model.ContactMessageContext;
+import com.endava.ai.ui.validation.ContactMessageValidation;
+import org.testng.annotations.Test;
+
+public class ContactMessageRun05AuditTrailTests extends BaseTestUI {
+    private final ContactMessageActions actions = new ContactMessageActions();
+    private final ContactMessageValidation validation = new ContactMessageValidation();
+
+    @Test
+    public void message_audit_trail_links_submit_to_account_row() {
+        ContactMessageContext context = actions.createMessageAndOpenMessages();
+        validation.assertMessageRowCreated(context);
+        validation.assertMessagePreviewCarriesSubmittedText(context);
+    }
+
+    @Test
+    public void message_audit_trail_links_row_to_details_route() {
+        ContactMessageContext context = actions.createMessageAndOpenDetails();
+        validation.assertDetailsRouteOpensFromRow(context);
+        validation.assertMessageBelongsToAccountSurface(context);
+    }
+
+    @Test
+    public void message_audit_trail_links_details_to_status() {
+        ContactMessageContext context = actions.createMessageAndOpenDetails();
+        validation.assertDetailsPreserveSubjectAndStatus(context);
+        validation.assertDetailsPreserveDate(context);
+    }
+
+    @Test
+    public void message_audit_trail_links_relogin_to_details() {
+        ContactMessageContext context = actions.createMessageReloginAndOpenDetails();
+        validation.assertDetailsRouteOpensFromRow(context);
+        validation.assertDetailsPreserveCustomerIdentity(context);
+    }
+
+    @Test
+    public void message_audit_trail_keeps_reply_surface_as_next_lifecycle() {
+        ContactMessageContext context = actions.createMessageReloginAndOpenDetails();
+        validation.assertDetailsExposeReplySurface(context);
+        validation.assertMessageBelongsToAccountSurface(context);
+    }
+}

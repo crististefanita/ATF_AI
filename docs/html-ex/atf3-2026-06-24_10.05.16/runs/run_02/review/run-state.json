@@ -1,0 +1,20 @@
+﻿{
+    "run":  "run_02",
+    "class":  "RegisteredInvoiceDetailsIdentityTests",
+    "status":  "closed-pass",
+    "verdict":  "countable owned invoice details record proof",
+    "business_object":  "registered invoice details record",
+    "new_frontier":  "invoice details line item reopen relogin proof",
+    "claim":  "Invoice details record owns the row invoice number, date, total and download action.",
+    "progression":  "extends run_01 from row existence to detail route identity",
+    "next_implication":  "run_03 adds billing/payment context",
+    "tests_produced":  5,
+    "tests_expected":  5,
+    "tests_passed":  5,
+    "extent_report":  "validation/reports/ExtentReport.html",
+    "testng_results":  "validation/testng-results.xml",
+    "command_result":  "validation/command-result.md",
+    "diff":  "review/thin-no-index.diff",
+    "countable":  true,
+    "owned":  true
+}

@@ -1,0 +1,20 @@
+﻿{
+    "run":  "run_05",
+    "class":  "RegisteredInvoiceDetailsReloginTests",
+    "status":  "closed-pass",
+    "verdict":  "countable owned invoice details record proof",
+    "business_object":  "registered invoice details record",
+    "new_frontier":  "invoice details line item reopen relogin proof",
+    "claim":  "Invoice details record survives session clear and relogin.",
+    "progression":  "extends run_04 from reopen to authenticated recovery",
+    "next_implication":  "fresh root should target registered order history row",
+    "tests_produced":  5,
+    "tests_expected":  5,
+    "tests_passed":  5,
+    "extent_report":  "validation/reports/ExtentReport.html",
+    "testng_results":  "validation/testng-results.xml",
+    "command_result":  "validation/command-result.md",
+    "diff":  "review/thin-no-index.diff",
+    "countable":  true,
+    "owned":  true
+}

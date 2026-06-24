@@ -1,0 +1,4 @@
+﻿ROOT_RUN=2026-06-24_10.05.16
+frontier=registered invoice details record
+contract=5 runs x 5 UI tests + MCP full gate including candidate
+

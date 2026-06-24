@@ -1,0 +1,47 @@
+﻿[
+    {
+        "Run":  "run_01",
+        "Class":  "com.endava.ai.ui.tests.AccountInvoiceDetailsCreationTest",
+        "Exit":  0,
+        "Total":  "5",
+        "Passed":  "5",
+        "Failed":  "0",
+        "Skipped":  "0"
+    },
+    {
+        "Run":  "run_02",
+        "Class":  "com.endava.ai.ui.tests.AccountInvoiceDetailsReopenTest",
+        "Exit":  0,
+        "Total":  "5",
+        "Passed":  "5",
+        "Failed":  "0",
+        "Skipped":  "0"
+    },
+    {
+        "Run":  "run_03",
+        "Class":  "com.endava.ai.ui.tests.AccountInvoiceDetailsReloginTest",
+        "Exit":  0,
+        "Total":  "5",
+        "Passed":  "5",
+        "Failed":  "0",
+        "Skipped":  "0"
+    },
+    {
+        "Run":  "run_04",
+        "Class":  "com.endava.ai.ui.tests.AccountInvoiceDetailsLineItemTest",
+        "Exit":  0,
+        "Total":  "5",
+        "Passed":  "5",
+        "Failed":  "0",
+        "Skipped":  "0"
+    },
+    {
+        "Run":  "run_05",
+        "Class":  "com.endava.ai.ui.tests.AccountInvoiceDetailsOwnershipTest",
+        "Exit":  0,
+        "Total":  "5",
+        "Passed":  "5",
+        "Failed":  "0",
+        "Skipped":  "0"
+    }
+]
