@@ -1,14 +1,14 @@
-diff --git a/src/main/java/com/endava/ai/ui/support/service/SupportMessagesClient.java b/src/main/java/com/endava/ai/ui/support/service/SupportMessagesClient.java
+diff --git a/src/main/java/com/ai/ui/support/service/SupportMessagesClient.java b/src/main/java/com/ai/ui/support/service/SupportMessagesClient.java
 new file mode 100644
 index 00000000..e5cb10ce
 --- /dev/null
-+++ b/src/main/java/com/endava/ai/ui/support/service/SupportMessagesClient.java
++++ b/src/main/java/com/ai/ui/support/service/SupportMessagesClient.java
 @@ -0,0 +1,207 @@
-+package com.endava.ai.ui.support.service;
++package com.ai.ui.support.service;
 +
-+import com.endava.ai.core.support.config.ConfigManager;
-+import com.endava.ai.core.reporting.StepLogger;
-+import com.endava.ai.ui.support.model.CustomerData;
++import com.ai.core.support.config.ConfigManager;
++import com.ai.core.reporting.StepLogger;
++import com.ai.ui.support.model.CustomerData;
 +
 +import java.io.IOException;
 +import java.net.URI;
@@ -211,21 +211,21 @@ index 00000000..e5cb10ce
 +        }
 +    }
 +}
-diff --git a/src/test/java/com/endava/ai/ui/tests/refunds/support/RefundSupportCustomerMessagesLifecycleTest.java b/src/test/java/com/endava/ai/ui/tests/refunds/support/RefundSupportCustomerMessagesLifecycleTest.java
+diff --git a/src/test/java/com/ai/ui/tests/refunds/support/RefundSupportCustomerMessagesLifecycleTest.java b/src/test/java/com/ai/ui/tests/refunds/support/RefundSupportCustomerMessagesLifecycleTest.java
 new file mode 100644
 index 00000000..cadf688f
 --- /dev/null
-+++ b/src/test/java/com/endava/ai/ui/tests/refunds/support/RefundSupportCustomerMessagesLifecycleTest.java
++++ b/src/test/java/com/ai/ui/tests/refunds/support/RefundSupportCustomerMessagesLifecycleTest.java
 @@ -0,0 +1,57 @@
-+package com.endava.ai.ui.tests.refunds.support;
++package com.ai.ui.tests.refunds.support;
 +
-+import com.endava.ai.ui.core.runtime.BaseTestUI;
-+import com.endava.ai.ui.support.model.RefundSupportRequestContext;
-+import com.endava.ai.ui.support.validation.support.RefundSupportRequestValidation;
++import com.ai.ui.core.runtime.BaseTestUI;
++import com.ai.ui.support.model.RefundSupportRequestContext;
++import com.ai.ui.support.validation.support.RefundSupportRequestValidation;
 +import org.testng.annotations.Test;
 +
-+import static com.endava.ai.ui.tests.refunds.support.RefundSupportRequestTestSupport.adminProgressedRequest;
-+import static com.endava.ai.ui.tests.refunds.support.RefundSupportRequestTestSupport.request;
++import static com.ai.ui.tests.refunds.support.RefundSupportRequestTestSupport.adminProgressedRequest;
++import static com.ai.ui.tests.refunds.support.RefundSupportRequestTestSupport.request;
 +
 +public final class RefundSupportCustomerMessagesLifecycleTest extends BaseTestUI {
 +    private final RefundSupportRequestValidation validation = new RefundSupportRequestValidation();

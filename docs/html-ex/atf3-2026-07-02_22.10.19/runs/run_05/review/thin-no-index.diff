@@ -1,17 +1,17 @@
-﻿diff --git a/src/main/java/com/endava/ai/ui/support/flows/invoice/RegisteredInvoiceCheckoutActions.java b/src/main/java/com/endava/ai/ui/support/flows/invoice/RegisteredInvoiceCheckoutActions.java
+diff --git a/src/main/java/com/ai/ui/support/flows/invoice/RegisteredInvoiceCheckoutActions.java b/src/main/java/com/ai/ui/support/flows/invoice/RegisteredInvoiceCheckoutActions.java
 new file mode 100644
 index 00000000..2007b714
 --- /dev/null
-+++ b/src/main/java/com/endava/ai/ui/support/flows/invoice/RegisteredInvoiceCheckoutActions.java
++++ b/src/main/java/com/ai/ui/support/flows/invoice/RegisteredInvoiceCheckoutActions.java
 @@ -0,0 +1,108 @@
-+package com.endava.ai.ui.support.flows.invoice;
++package com.ai.ui.support.flows.invoice;
 +
-+import com.endava.ai.ui.support.model.CustomerData;
-+import com.endava.ai.ui.support.pages.CheckoutPage;
-+import com.endava.ai.ui.support.pages.LoginPage;
-+import com.endava.ai.ui.support.pages.ProductPage;
-+import com.endava.ai.ui.support.actions.UIActions;
-+import com.endava.ai.ui.support.wait.WaitUtils;
++import com.ai.ui.support.model.CustomerData;
++import com.ai.ui.support.pages.CheckoutPage;
++import com.ai.ui.support.pages.LoginPage;
++import com.ai.ui.support.pages.ProductPage;
++import com.ai.ui.support.actions.UIActions;
++import com.ai.ui.support.wait.WaitUtils;
 +
 +import java.time.Duration;
 +
@@ -112,19 +112,19 @@ index 00000000..2007b714
 +
 +}
 +
-diff --git a/src/main/java/com/endava/ai/ui/support/flows/invoice/RegisteredInvoicePaymentConfirmationStep.java b/src/main/java/com/endava/ai/ui/support/flows/invoice/RegisteredInvoicePaymentConfirmationStep.java
+diff --git a/src/main/java/com/ai/ui/support/flows/invoice/RegisteredInvoicePaymentConfirmationStep.java b/src/main/java/com/ai/ui/support/flows/invoice/RegisteredInvoicePaymentConfirmationStep.java
 new file mode 100644
 index 00000000..ef971164
 --- /dev/null
-+++ b/src/main/java/com/endava/ai/ui/support/flows/invoice/RegisteredInvoicePaymentConfirmationStep.java
++++ b/src/main/java/com/ai/ui/support/flows/invoice/RegisteredInvoicePaymentConfirmationStep.java
 @@ -0,0 +1,79 @@
-+package com.endava.ai.ui.support.flows.invoice;
++package com.ai.ui.support.flows.invoice;
 +
-+import com.endava.ai.ui.core.engine.UiNetworkResponse;
-+import com.endava.ai.ui.support.actions.UIActions;
-+import com.endava.ai.ui.support.model.CustomerData;
-+import com.endava.ai.ui.support.pages.CheckoutPage;
-+import com.endava.ai.ui.support.wait.WaitUtils;
++import com.ai.ui.core.engine.UiNetworkResponse;
++import com.ai.ui.support.actions.UIActions;
++import com.ai.ui.support.model.CustomerData;
++import com.ai.ui.support.pages.CheckoutPage;
++import com.ai.ui.support.wait.WaitUtils;
 +
 +import java.time.Duration;
 +import java.util.regex.Pattern;
@@ -197,18 +197,18 @@ index 00000000..ef971164
 +        );
 +    }
 +}
-diff --git a/src/test/java/com/endava/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentReopenTest.java b/src/test/java/com/endava/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentReopenTest.java
+diff --git a/src/test/java/com/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentReopenTest.java b/src/test/java/com/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentReopenTest.java
 new file mode 100644
 index 00000000..b0511e58
 --- /dev/null
-+++ b/src/test/java/com/endava/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentReopenTest.java
++++ b/src/test/java/com/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentReopenTest.java
 @@ -0,0 +1,39 @@
-+package com.endava.ai.ui.tests.invoice.account.document;
++package com.ai.ui.tests.invoice.account.document;
 +
-+import com.endava.ai.ui.core.runtime.BaseTestUI;
-+import com.endava.ai.ui.support.flows.invoice.RegisteredInvoiceFlow;
-+import com.endava.ai.ui.support.validation.invoice.AccountInvoiceValidation;
-+import com.endava.ai.ui.tests.fixture.invoice.RegisteredInvoiceFixture;
++import com.ai.ui.core.runtime.BaseTestUI;
++import com.ai.ui.support.flows.invoice.RegisteredInvoiceFlow;
++import com.ai.ui.support.validation.invoice.AccountInvoiceValidation;
++import com.ai.ui.tests.fixture.invoice.RegisteredInvoiceFixture;
 +import org.testng.annotations.Test;
 +
 +public final class RegisteredInvoiceDocumentReopenTest extends BaseTestUI {

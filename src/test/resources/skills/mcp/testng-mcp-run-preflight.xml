@@ -2,9 +2,9 @@
 <suite name="MCP Run Preflight Gate" verbose="1">
     <test name="run-preflight">
         <classes>
-            <class name="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest"/>
+            <class name="com.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest"/>
+            <class name="com.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest"/>
+            <class name="com.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest"/>
         </classes>
     </test>
 </suite>

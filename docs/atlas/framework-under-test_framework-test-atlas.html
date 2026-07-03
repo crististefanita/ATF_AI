@@ -12,7 +12,7 @@
     <p class="eyebrow">Atlas de capabilitati framework / rezultat skill doar de analiza</p>
     <h1>Atlas Framework Pentru ATF Core</h1>
     <p class="lead">
-      Pachet sursa: <code>src/test/java/com/endava/ai/atf</code>.
+      Pachet sursa: <code>src/test/java/com/ai/atf</code>.
       Acest atlas nu descrie business-ul aplicatiei testate. El aplica disciplina din
       <code>business-test-atlas-reference.html</code> pe ATF-core: testele sunt intrarea,
       layerele sunt dovada trasabila, iar obiectele reale sunt capabilitatile framework-ului.
@@ -58,8 +58,8 @@
       <table>
         <thead><tr><th>Sursa</th><th>Ce se extrage</th><th>Rol in atlas</th></tr></thead>
         <tbody>
-          <tr><td><code>src/test/java/com/endava/ai/atf</code></td><td>172 fisiere Java, 435 metode @Test, 10 suite-uri core TestNG si 19 suite-uri TestNG totale</td><td>input read-only</td></tr>
-          <tr><td><code>com.endava.ai.atf.contract</code></td><td><code>@AtfContract</code>, steps, assertions</td><td>vocabular executabil</td></tr>
+          <tr><td><code>src/test/java/com/ai/atf</code></td><td>172 fisiere Java, 435 metode @Test, 10 suite-uri core TestNG si 19 suite-uri TestNG totale</td><td>input read-only</td></tr>
+          <tr><td><code>com.ai.atf.contract</code></td><td><code>@AtfContract</code>, steps, assertions</td><td>vocabular executabil</td></tr>
           <tr><td><code>docs/atlas/validation/framework-under-test/framework-under-test_framework-atlas-tests-extent-report.html</code></td><td>83 test cases / 0 failures in Extent; Surefire executa 83 metode</td><td>dovada scoped redeschisibila pentru auditul Atlas framework</td></tr>
           <tr><td><code>core.listener</code> + <code>core.reporting</code></td><td>listener, logger, adapters</td><td>spine lifecycle si raportare</td></tr>
           <tr><td><code>ui.engine</code> + <code>ui.reporting</code></td><td>window, screenshots, interactiune UI</td><td>dovada UI framework</td></tr>
@@ -452,7 +452,7 @@
       <thead><tr><th>Element</th><th>Valoare</th><th>Verdict</th></tr></thead>
       <tbody>
         <tr><td>Result expected by this atlas</td><td><code>83 test cases / 0 failures</code></td><td>total sincronizat cu score-cardurile Extent <code>Tests Passed</code>/<code>Tests Failed</code>; Surefire method-level este publicat separat</td></tr>
-        <tr><td>Comanda framework-atlas</td><td><code>mvn -q surefire:test "-Dtest=com.endava.ai.atlas.tests.*Test" "-Datlas.html=docs/atlas/framework-under-test_framework-test-atlas.html" "-Datlas.sourceRoot=C:/work/ex/java/demo/framework-under-test/test-framework/src/test/java/com/endava/ai/atf" "-Datlas.uiSourceRoot=C:/work/ex/java/demo/framework-under-test/test-framework/src/main/java/com/endava/ai" "-Dreporting.engine=extent" "-Dreports.dir=docs/atlas/validation" "-Dreports.file.name=framework-under-test_framework-atlas-tests-extent-report.html" "-Dreports.timestamp.enabled=false" "-DforkCount=0"</code></td><td>ruleaza contractele Atlas direct peste artifactul framework-atlas framework-under-test si publica Extent-ul scoped link-uit in validation</td></tr>
+        <tr><td>Comanda framework-atlas</td><td><code>mvn -q surefire:test "-Dtest=com.ai.atlas.tests.*Test" "-Datlas.html=docs/atlas/framework-under-test_framework-test-atlas.html" "-Datlas.sourceRoot=C:/work/ex/java/demo/framework-under-test/test-framework/src/test/java/com/ai/atf" "-Datlas.uiSourceRoot=C:/work/ex/java/demo/framework-under-test/test-framework/src/main/java/com/ai" "-Dreporting.engine=extent" "-Dreports.dir=docs/atlas/validation" "-Dreports.file.name=framework-under-test_framework-atlas-tests-extent-report.html" "-Dreports.timestamp.enabled=false" "-DforkCount=0"</code></td><td>ruleaza contractele Atlas direct peste artifactul framework-atlas framework-under-test si publica Extent-ul scoped link-uit in validation</td></tr>
         <tr><td>Rezultat framework-atlas</td><td><code>83 test cases passed / 0 failed / 0 skipped</code></td><td>atlas framework aliniat cu score-cardurile Extent; suita Maven ruleaza 83 metode contract</td></tr>
         <tr><td>Raport framework-atlas publicat</td><td><a href="validation/framework-under-test/framework-under-test_framework-atlas-tests-extent-report.html">validation/framework-under-test/framework-under-test_framework-atlas-tests-extent-report.html</a></td><td>dovada Extent scoped pentru rularea Atlas framework</td></tr>
         <tr><td>Surefire XML framework-atlas publicat</td><td><a href="validation/framework-under-test/framework-under-test_framework-atlas-surefire-testsuite.xml">validation/framework-under-test/framework-under-test_framework-atlas-surefire-testsuite.xml</a></td><td>dovada XML Maven/Surefire pentru aceeasi rulare Atlas framework</td></tr>

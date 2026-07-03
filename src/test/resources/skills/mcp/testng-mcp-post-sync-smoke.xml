@@ -2,11 +2,11 @@
 <suite name="MCP Post-Sync Smoke" verbose="1">
     <!-- Fast file-level verification after validation/mcp artifacts are copied or regenerated. -->
     <listeners>
-        <listener class-name="com.endava.ai.skills.mcp.tests.support.McpPackageAuditSuiteInterceptor"/>
+        <listener class-name="com.ai.skills.mcp.tests.support.McpPackageAuditSuiteInterceptor"/>
     </listeners>
     <test name="mcp-post-sync-smoke">
         <classes>
-            <class name="com.endava.ai.skills.mcp.tests.smoke.McpPostSyncSmokeContractTest">
+            <class name="com.ai.skills.mcp.tests.smoke.McpPostSyncSmokeContractTest">
                 <methods>
                     <include name="requiredFrozenMcpArtifactsArePresent"/>
                     <include name="finalReportLinksFrozenMcpAndKpiEvidence"/>

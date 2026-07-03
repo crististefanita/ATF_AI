@@ -2,7 +2,7 @@
 <suite name="ATF Core Aggregate Parallel Full Sweep" verbose="1">
     <test name="parallel-full-package-sweep">
         <classes>
-            <class name="com.endava.ai.atf.core.reporting.aggregate.parallel.AggregateParallelFullSweepContractTest">
+            <class name="com.ai.atf.core.reporting.aggregate.parallel.AggregateParallelFullSweepContractTest">
                 <methods>
                     <include name="full_atf_core_package_sweep_runs_as_isolated_parallel_collections"/>
                 </methods>

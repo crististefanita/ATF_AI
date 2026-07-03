@@ -2,11 +2,11 @@
 <suite name="BusinessUnderstandingSanitySuite" verbose="1">
     <test name="business-understanding-kernel-contracts">
         <classes>
-            <class name="com.endava.ai.skills.business.tests.BusinessUnderstandingKernelContractTest"/>
-            <class name="com.endava.ai.skills.business.tests.BusinessUnderstandingPackageShapeContractTest"/>
-            <class name="com.endava.ai.skills.business.tests.BusinessUnderstandingConsumerBridgeContractTest"/>
-            <class name="com.endava.ai.skills.business.tests.BusinessUnderstandingArtifactParserContractTest"/>
-            <class name="com.endava.ai.skills.business.tests.BusinessUnderstandingExtentNarrativeContractTest"/>
+            <class name="com.ai.skills.business.tests.BusinessUnderstandingKernelContractTest"/>
+            <class name="com.ai.skills.business.tests.BusinessUnderstandingPackageShapeContractTest"/>
+            <class name="com.ai.skills.business.tests.BusinessUnderstandingConsumerBridgeContractTest"/>
+            <class name="com.ai.skills.business.tests.BusinessUnderstandingArtifactParserContractTest"/>
+            <class name="com.ai.skills.business.tests.BusinessUnderstandingExtentNarrativeContractTest"/>
         </classes>
     </test>
 </suite>

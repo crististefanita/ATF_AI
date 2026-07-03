@@ -3,43 +3,43 @@ contracts:
   - id: core.architecture.no-mcp-dependency
     owner: ATF core architecture
     severity: BLOCKER
-    sourceRoot: src/test/java/com/endava/ai/atf/core
-    scanRoots: src/main/java/com/endava/ai/core,src/main/java/com/endava/ai/ui/core,src/main/java/com/endava/ai/api/core
-    protectedRoots: src/main/java/com/endava/ai/skills/mcp,src/main/java/com/endava/ai/skills/atlas
-    forbidden: com.endava.ai.skills.mcp,com.endava.ai.skills.atlas,package-state,html-ex,agentic close-out,MCP_PACKAGE,RUN_SCORE
+    sourceRoot: src/test/java/com/ai/atf/core
+    scanRoots: src/main/java/com/ai/core,src/main/java/com/ai/ui/core,src/main/java/com/ai/api/core
+    protectedRoots: src/main/java/com/ai/skills/mcp,src/main/java/com/ai/skills/atlas
+    forbidden: com.ai.skills.mcp,com.ai.skills.atlas,package-state,html-ex,agentic close-out,MCP_PACKAGE,RUN_SCORE
     repair: Keep ATF core contract tests generic; MCP and Atlas may validate ATF, but ATF core must not import them.
   - id: core.reporting.renderer-purity
     owner: ATF core reporting
     severity: BLOCKER
-    sourceRoot: src/main/java/com/endava/ai/core/reporting/listener/internal/runtime
-    protectedRoots: src/main/java/com/endava/ai/core/reporting/listener/internal/runtime
+    sourceRoot: src/main/java/com/ai/core/reporting/listener/internal/runtime
+    protectedRoots: src/main/java/com/ai/core/reporting/listener/internal/runtime
     forbidden: Files.,ConfigManager,Instant.now(),new Date(,System.out,System.err
     repair: Keep runtime renderers pure model-to-HTML transforms; move IO, clock and config decisions outside renderers.
   - id: core.reporting.patch-planner-purity
     owner: ATF core Extent patch pipeline
     severity: BLOCKER
-    sourceRoot: src/main/java/com/endava/ai/core/reporting/adapters/extent/patch
-    protectedRoots: src/main/java/com/endava/ai/core/reporting/adapters/extent/patch
+    sourceRoot: src/main/java/com/ai/core/reporting/adapters/extent/patch
+    protectedRoots: src/main/java/com/ai/core/reporting/adapters/extent/patch
     forbidden: Files.,ConfigManager,ExtentSparkReporter,ExtentReports,System.out,System.err
     repair: Keep Extent patch planners deterministic; move IO, third-party Extent objects and console output outside patch planning.
   - id: core.ui-api.sibling-boundary
     owner: UI/API core boundaries
     severity: BLOCKER
-    sourceRoot: src/main/java/com/endava/ai
-    protectedRoots: src/main/java/com/endava/ai/ui/core,src/main/java/com/endava/ai/api/core
+    sourceRoot: src/main/java/com/ai
+    protectedRoots: src/main/java/com/ai/ui/core,src/main/java/com/ai/api/core
     forbidden: api.core->ui.core,ui.core->api.core
     repair: Keep api.core and ui.core as sibling modules; shared contracts belong in neutral support/core abstractions.
   - id: core.console-logger-single-entrypoint
     owner: ATF core console logging
     severity: WARNING
-    sourceRoot: src/main/java/com/endava/ai/core
-    protectedRoots: src/main/java/com/endava/ai/core
+    sourceRoot: src/main/java/com/ai/core
+    protectedRoots: src/main/java/com/ai/core
     forbidden: ConsoleLoger,System.out,System.err
     repair: Keep ConsoleLogger as the single console writer and route dynamic test progress through it.
   - id: core.reporting-artifact-immutability
     owner: ATF core reporting artifacts
     severity: BLOCKER
-    sourceRoot: src/main/java/com/endava/ai/core
+    sourceRoot: src/main/java/com/ai/core
     protectedRoots: docs/out,target/reports,target/surefire-reports
     forbidden: overwrite-saved-artifacts,manual-extent-surgery,stale-origin
     repair: Runtime may publish new artifacts, but saved package artifacts must carry origin/hash evidence and must not be silently rewritten.

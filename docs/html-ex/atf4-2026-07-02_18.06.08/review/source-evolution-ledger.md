@@ -1,4 +1,4 @@
-﻿# Source Evolution Ledger
+# Source Evolution Ledger
 
 ## baseline_before_run_0
 
@@ -68,24 +68,24 @@ Delta row run_01. Delta row run_02. Delta row run_03. Delta row run_04. Delta ro
 
 ## Delta row: run_01
 run_01_files_count=1
-source path: src/test/java/com/endava/ai/ui/tests/payment/settlement/AccountPaymentLedgerContractTest.java
+source path: src/test/java/com/ai/ui/tests/payment/settlement/AccountPaymentLedgerContractTest.java
 ## Delta row: run_02
 run_02_files_count=1
-source path: src/test/java/com/endava/ai/ui/tests/payment/settlement/PaymentSettlementHandshakeContractTest.java
+source path: src/test/java/com/ai/ui/tests/payment/settlement/PaymentSettlementHandshakeContractTest.java
 ## Delta row: run_03
 run_03_files_count=1
-source path: src/test/java/com/endava/ai/ui/tests/invoice/account/AccountInvoiceLifecycleContractTest.java
+source path: src/test/java/com/ai/ui/tests/invoice/account/AccountInvoiceLifecycleContractTest.java
 ## Delta row: run_04
 run_04_files_count=1
-source path: src/test/java/com/endava/ai/ui/tests/support/staff/response/StaffSupportResponseLifecycleContractTest.java
+source path: src/test/java/com/ai/ui/tests/support/staff/response/StaffSupportResponseLifecycleContractTest.java
 ## Delta row: run_05
 run_05_files_count=1
-source path: src/test/java/com/endava/ai/ui/tests/admin/fulfillment/CustomerFulfillmentTimelineBoundaryContractTest.java
+source path: src/test/java/com/ai/ui/tests/admin/fulfillment/CustomerFulfillmentTimelineBoundaryContractTest.java
 
 
 
-run_01_delta: source path src/test/java/com/endava/ai/ui/tests/payment/settlement/AccountPaymentLedgerContractTest.java; diff link runs/run_01/review/thin-no-index.diff; state link runs/run_01/review/run-state.json.
-run_02_delta: source path src/test/java/com/endava/ai/ui/tests/payment/settlement/PaymentSettlementHandshakeContractTest.java; diff link runs/run_02/review/thin-no-index.diff; state link runs/run_02/review/run-state.json.
-run_03_delta: source path src/test/java/com/endava/ai/ui/tests/invoice/account/AccountInvoiceLifecycleContractTest.java; diff link runs/run_03/review/thin-no-index.diff; state link runs/run_03/review/run-state.json.
-run_04_delta: source path src/test/java/com/endava/ai/ui/tests/support/staff/response/StaffSupportResponseLifecycleContractTest.java; diff link runs/run_04/review/thin-no-index.diff; state link runs/run_04/review/run-state.json.
-run_05_delta: source path src/test/java/com/endava/ai/ui/tests/admin/fulfillment/CustomerFulfillmentTimelineBoundaryContractTest.java; diff link runs/run_05/review/thin-no-index.diff; state link runs/run_05/review/run-state.json.
+run_01_delta: source path src/test/java/com/ai/ui/tests/payment/settlement/AccountPaymentLedgerContractTest.java; diff link runs/run_01/review/thin-no-index.diff; state link runs/run_01/review/run-state.json.
+run_02_delta: source path src/test/java/com/ai/ui/tests/payment/settlement/PaymentSettlementHandshakeContractTest.java; diff link runs/run_02/review/thin-no-index.diff; state link runs/run_02/review/run-state.json.
+run_03_delta: source path src/test/java/com/ai/ui/tests/invoice/account/AccountInvoiceLifecycleContractTest.java; diff link runs/run_03/review/thin-no-index.diff; state link runs/run_03/review/run-state.json.
+run_04_delta: source path src/test/java/com/ai/ui/tests/support/staff/response/StaffSupportResponseLifecycleContractTest.java; diff link runs/run_04/review/thin-no-index.diff; state link runs/run_04/review/run-state.json.
+run_05_delta: source path src/test/java/com/ai/ui/tests/admin/fulfillment/CustomerFulfillmentTimelineBoundaryContractTest.java; diff link runs/run_05/review/thin-no-index.diff; state link runs/run_05/review/run-state.json.

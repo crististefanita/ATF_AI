@@ -1,17 +1,17 @@
-﻿diff --git a/src/main/java/com/endava/ai/ui/support/flows/invoice/RegisteredInvoiceDocumentStatusClient.java b/src/main/java/com/endava/ai/ui/support/flows/invoice/RegisteredInvoiceDocumentStatusClient.java
+diff --git a/src/main/java/com/ai/ui/support/flows/invoice/RegisteredInvoiceDocumentStatusClient.java b/src/main/java/com/ai/ui/support/flows/invoice/RegisteredInvoiceDocumentStatusClient.java
 new file mode 100644
 index 00000000..4372eacb
 --- /dev/null
-+++ b/src/main/java/com/endava/ai/ui/support/flows/invoice/RegisteredInvoiceDocumentStatusClient.java
++++ b/src/main/java/com/ai/ui/support/flows/invoice/RegisteredInvoiceDocumentStatusClient.java
 @@ -0,0 +1,146 @@
-+package com.endava.ai.ui.support.flows.invoice;
++package com.ai.ui.support.flows.invoice;
 +
-+import com.endava.ai.core.support.config.ConfigManager;
-+import com.endava.ai.ui.core.engine.UiNetworkResponse;
-+import com.endava.ai.ui.support.model.CustomerData;
-+import com.endava.ai.ui.support.model.invoice.AccountInvoicePdfArtifact;
-+import com.endava.ai.ui.support.model.invoice.AccountInvoiceSnapshot;
-+import com.endava.ai.ui.support.wait.WaitUtils;
++import com.ai.core.support.config.ConfigManager;
++import com.ai.ui.core.engine.UiNetworkResponse;
++import com.ai.ui.support.model.CustomerData;
++import com.ai.ui.support.model.invoice.AccountInvoicePdfArtifact;
++import com.ai.ui.support.model.invoice.AccountInvoiceSnapshot;
++import com.ai.ui.support.wait.WaitUtils;
 +import io.restassured.RestAssured;
 +import io.restassured.response.Response;
 +
@@ -150,13 +150,13 @@ index 00000000..4372eacb
 +        return new String(Arrays.copyOfRange(bytes, from, to), StandardCharsets.ISO_8859_1);
 +    }
 +}
-diff --git a/src/main/java/com/endava/ai/ui/support/model/invoice/AccountInvoicePdfArtifact.java b/src/main/java/com/endava/ai/ui/support/model/invoice/AccountInvoicePdfArtifact.java
+diff --git a/src/main/java/com/ai/ui/support/model/invoice/AccountInvoicePdfArtifact.java b/src/main/java/com/ai/ui/support/model/invoice/AccountInvoicePdfArtifact.java
 new file mode 100644
 index 00000000..ab81b26b
 --- /dev/null
-+++ b/src/main/java/com/endava/ai/ui/support/model/invoice/AccountInvoicePdfArtifact.java
++++ b/src/main/java/com/ai/ui/support/model/invoice/AccountInvoicePdfArtifact.java
 @@ -0,0 +1,56 @@
-+package com.endava.ai.ui.support.model.invoice;
++package com.ai.ui.support.model.invoice;
 +
 +public final class AccountInvoicePdfArtifact {
 +    private final String url;
@@ -212,18 +212,18 @@ index 00000000..ab81b26b
 +        return header.startsWith("%PDF-") && trailer.contains("%%EOF");
 +    }
 +}
-diff --git a/src/test/java/com/endava/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentContractTest.java b/src/test/java/com/endava/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentContractTest.java
+diff --git a/src/test/java/com/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentContractTest.java b/src/test/java/com/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentContractTest.java
 new file mode 100644
 index 00000000..0cb06b58
 --- /dev/null
-+++ b/src/test/java/com/endava/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentContractTest.java
++++ b/src/test/java/com/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentContractTest.java
 @@ -0,0 +1,39 @@
-+package com.endava.ai.ui.tests.invoice.account.document;
++package com.ai.ui.tests.invoice.account.document;
 +
-+import com.endava.ai.ui.core.runtime.BaseTestUI;
-+import com.endava.ai.ui.support.flows.invoice.RegisteredInvoiceFlow;
-+import com.endava.ai.ui.support.validation.invoice.AccountInvoiceValidation;
-+import com.endava.ai.ui.tests.fixture.invoice.RegisteredInvoiceFixture;
++import com.ai.ui.core.runtime.BaseTestUI;
++import com.ai.ui.support.flows.invoice.RegisteredInvoiceFlow;
++import com.ai.ui.support.validation.invoice.AccountInvoiceValidation;
++import com.ai.ui.tests.fixture.invoice.RegisteredInvoiceFixture;
 +import org.testng.annotations.Test;
 +
 +public final class RegisteredInvoiceDocumentContractTest extends BaseTestUI {

@@ -2,25 +2,25 @@
 <suite name="ATF Core Sanity" verbose="1">
     <test name="atf-core-sanity">
         <classes>
-            <class name="com.endava.ai.atf.core.support.contract.capability.AtfCapabilityCatalogContractTest"/>
-            <class name="com.endava.ai.atf.core.support.architecture.CoreSupportKernelArchitectureContractTest"/>
-            <class name="com.endava.ai.atf.core.support.contracts.annotations.AtfContractNarrativeIdsShapeContractTest"/>
-            <class name="com.endava.ai.atf.core.skills.architecture.AtfSkillArchitectureContractTest"/>
-            <class name="com.endava.ai.atf.core.skills.architecture.model.AtfSkillAggregateContractTest"/>
-            <class name="com.endava.ai.atf.core.skills.architecture.AtfSkillCleanSanityRunnerContractTest"/>
-            <class name="com.endava.ai.atf.core.skills.architecture.AtfSkillExecutionReceiptValidatorContractTest"/>
-            <class name="com.endava.ai.atf.core.skills.architecture.AtfSkillFlowArchitectureContractTest"/>
-            <class name="com.endava.ai.atf.core.skills.architecture.AtfSkillPackageGovernanceContractTest"/>
-            <class name="com.endava.ai.atf.core.skills.architecture.AtfSkillPromptRoutingContractTest"/>
-            <class name="com.endava.ai.atf.core.skills.architecture.AtfTestArchitectureContractTest"/>
-            <class name="com.endava.ai.atf.core.skills.architecture.AtfSkillYamlPackArchitectureContractTest"/>
-            <class name="com.endava.ai.atf.core.support.profiles.AtfCoreTestNgProfileContractTest"/>
-            <class name="com.endava.ai.atf.core.reporting.architecture.AtfReportingPackageShapeContractTest"/>
-            <class name="com.endava.ai.atf.core.reporting.aggregate.design.AggregateExtentWriterDesignContractTest"/>
-            <class name="com.endava.ai.atf.core.reporting.adapters.spark.ExtentSparkReportModeContractTest"/>
-            <class name="com.endava.ai.atf.core.reporting.regression.overview.ExtentPublishedOverviewInspectorContractTest"/>
-            <class name="com.endava.ai.atf.core.reporting.regression.overview.ExtentOverviewTopCardsTimingContractTest"/>
-            <class name="com.endava.ai.atf.core.reporting.regression.RuntimeAuditPublisherCoordinatorContractTest"/>
+            <class name="com.ai.atf.core.support.contract.capability.AtfCapabilityCatalogContractTest"/>
+            <class name="com.ai.atf.core.support.architecture.CoreSupportKernelArchitectureContractTest"/>
+            <class name="com.ai.atf.core.support.contracts.annotations.AtfContractNarrativeIdsShapeContractTest"/>
+            <class name="com.ai.atf.core.skills.architecture.AtfSkillArchitectureContractTest"/>
+            <class name="com.ai.atf.core.skills.architecture.model.AtfSkillAggregateContractTest"/>
+            <class name="com.ai.atf.core.skills.architecture.AtfSkillCleanSanityRunnerContractTest"/>
+            <class name="com.ai.atf.core.skills.architecture.AtfSkillExecutionReceiptValidatorContractTest"/>
+            <class name="com.ai.atf.core.skills.architecture.AtfSkillFlowArchitectureContractTest"/>
+            <class name="com.ai.atf.core.skills.architecture.AtfSkillPackageGovernanceContractTest"/>
+            <class name="com.ai.atf.core.skills.architecture.AtfSkillPromptRoutingContractTest"/>
+            <class name="com.ai.atf.core.skills.architecture.AtfTestArchitectureContractTest"/>
+            <class name="com.ai.atf.core.skills.architecture.AtfSkillYamlPackArchitectureContractTest"/>
+            <class name="com.ai.atf.core.support.profiles.AtfCoreTestNgProfileContractTest"/>
+            <class name="com.ai.atf.core.reporting.architecture.AtfReportingPackageShapeContractTest"/>
+            <class name="com.ai.atf.core.reporting.aggregate.design.AggregateExtentWriterDesignContractTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.spark.ExtentSparkReportModeContractTest"/>
+            <class name="com.ai.atf.core.reporting.regression.overview.ExtentPublishedOverviewInspectorContractTest"/>
+            <class name="com.ai.atf.core.reporting.regression.overview.ExtentOverviewTopCardsTimingContractTest"/>
+            <class name="com.ai.atf.core.reporting.regression.RuntimeAuditPublisherCoordinatorContractTest"/>
         </classes>
     </test>
 </suite>

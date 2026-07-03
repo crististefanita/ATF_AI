@@ -6,306 +6,306 @@
     <groups>
     </groups>
     <test started-at="2026-06-30T13:02:59 EEST" name="atlas-contracts" finished-at="2026-06-30T13:03:11 EEST" duration-ms="11863">
-      <class name="com.endava.ai.atlas.tests.AtlasCandidateScoreContractTest">
-        <test-method signature="candidateAtlasEndToEndLimitsCapOverallScore()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasEndToEndLimitsCapOverallScore" finished-at="2026-06-30T13:03:06 EEST" duration-ms="9" status="PASS">
+      <class name="com.ai.atlas.tests.AtlasCandidateScoreContractTest">
+        <test-method signature="candidateAtlasEndToEndLimitsCapOverallScore()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasEndToEndLimitsCapOverallScore" finished-at="2026-06-30T13:03:06 EEST" duration-ms="9" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasEndToEndLimitsCapOverallScore -->
-        <test-method signature="candidateAtlasExcellentOverallRequiresLimitDiscipline()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasExcellentOverallRequiresLimitDiscipline" finished-at="2026-06-30T13:03:06 EEST" duration-ms="6" status="PASS">
+        <test-method signature="candidateAtlasExcellentOverallRequiresLimitDiscipline()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasExcellentOverallRequiresLimitDiscipline" finished-at="2026-06-30T13:03:06 EEST" duration-ms="6" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasExcellentOverallRequiresLimitDiscipline -->
-        <test-method signature="candidateAtlasHasCanonicalScoreCards()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasHasCanonicalScoreCards" finished-at="2026-06-30T13:03:06 EEST" duration-ms="18" status="PASS">
+        <test-method signature="candidateAtlasHasCanonicalScoreCards()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasHasCanonicalScoreCards" finished-at="2026-06-30T13:03:06 EEST" duration-ms="18" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasHasCanonicalScoreCards -->
-        <test-method signature="candidateAtlasOverallScoreIsCalculatedFromAxes()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasOverallScoreIsCalculatedFromAxes" finished-at="2026-06-30T13:03:06 EEST" duration-ms="8" status="PASS">
+        <test-method signature="candidateAtlasOverallScoreIsCalculatedFromAxes()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasOverallScoreIsCalculatedFromAxes" finished-at="2026-06-30T13:03:06 EEST" duration-ms="8" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasOverallScoreIsCalculatedFromAxes -->
-        <test-method signature="candidateAtlasScoreAxisNamesAreConsistent()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasScoreAxisNamesAreConsistent" finished-at="2026-06-30T13:03:06 EEST" duration-ms="11" status="PASS">
+        <test-method signature="candidateAtlasScoreAxisNamesAreConsistent()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasScoreAxisNamesAreConsistent" finished-at="2026-06-30T13:03:06 EEST" duration-ms="11" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasScoreAxisNamesAreConsistent -->
-        <test-method signature="candidateAtlasScoreBusinessUnderstandingIsEvidenceBacked()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasScoreBusinessUnderstandingIsEvidenceBacked" finished-at="2026-06-30T13:03:06 EEST" duration-ms="10" status="PASS">
+        <test-method signature="candidateAtlasScoreBusinessUnderstandingIsEvidenceBacked()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasScoreBusinessUnderstandingIsEvidenceBacked" finished-at="2026-06-30T13:03:06 EEST" duration-ms="10" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasScoreBusinessUnderstandingIsEvidenceBacked -->
-        <test-method signature="candidateAtlasScoreCardsAreDocumentedInRequirements()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasScoreCardsAreDocumentedInRequirements" finished-at="2026-06-30T13:03:06 EEST" duration-ms="12" status="PASS">
+        <test-method signature="candidateAtlasScoreCardsAreDocumentedInRequirements()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasScoreCardsAreDocumentedInRequirements" finished-at="2026-06-30T13:03:06 EEST" duration-ms="12" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasScoreCardsAreDocumentedInRequirements -->
-        <test-method signature="candidateAtlasScoreCardsHaveSupportTrace()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasScoreCardsHaveSupportTrace" finished-at="2026-06-30T13:03:06 EEST" duration-ms="20" status="PASS">
+        <test-method signature="candidateAtlasScoreCardsHaveSupportTrace()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasScoreCardsHaveSupportTrace" finished-at="2026-06-30T13:03:06 EEST" duration-ms="20" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasScoreCardsHaveSupportTrace -->
-        <test-method signature="candidateAtlasScoreCardsRemainReadable()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasScoreCardsRemainReadable" finished-at="2026-06-30T13:03:06 EEST" duration-ms="7" status="PASS">
+        <test-method signature="candidateAtlasScoreCardsRemainReadable()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasScoreCardsRemainReadable" finished-at="2026-06-30T13:03:06 EEST" duration-ms="7" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasScoreCardsRemainReadable -->
-        <test-method signature="candidateAtlasScoreFormulaIsTraceable()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasScoreFormulaIsTraceable" finished-at="2026-06-30T13:03:06 EEST" duration-ms="10" status="PASS">
+        <test-method signature="candidateAtlasScoreFormulaIsTraceable()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasScoreFormulaIsTraceable" finished-at="2026-06-30T13:03:06 EEST" duration-ms="10" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasScoreFormulaIsTraceable -->
-        <test-method signature="candidateAtlasScoreOpeningPointsToAuditSections()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasScoreOpeningPointsToAuditSections" finished-at="2026-06-30T13:03:06 EEST" duration-ms="7" status="PASS">
+        <test-method signature="candidateAtlasScoreOpeningPointsToAuditSections()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasScoreOpeningPointsToAuditSections" finished-at="2026-06-30T13:03:06 EEST" duration-ms="7" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasScoreOpeningPointsToAuditSections -->
-        <test-method signature="candidateAtlasScoreRationaleIsAuditable()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasScoreRationaleIsAuditable" finished-at="2026-06-30T13:03:06 EEST" duration-ms="8" status="PASS">
+        <test-method signature="candidateAtlasScoreRationaleIsAuditable()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasScoreRationaleIsAuditable" finished-at="2026-06-30T13:03:06 EEST" duration-ms="8" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasScoreRationaleIsAuditable -->
-        <test-method signature="candidateAtlasScoreUsesGoalQuestionEvidenceChain()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasScoreUsesGoalQuestionEvidenceChain" finished-at="2026-06-30T13:03:06 EEST" duration-ms="9" status="PASS">
+        <test-method signature="candidateAtlasScoreUsesGoalQuestionEvidenceChain()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasScoreUsesGoalQuestionEvidenceChain" finished-at="2026-06-30T13:03:06 EEST" duration-ms="9" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasScoreUsesGoalQuestionEvidenceChain -->
-        <test-method signature="candidateAtlasSeparatesSuiteCompletenessFromAtlasQuality()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasSeparatesSuiteCompletenessFromAtlasQuality" finished-at="2026-06-30T13:03:06 EEST" duration-ms="10" status="PASS">
+        <test-method signature="candidateAtlasSeparatesSuiteCompletenessFromAtlasQuality()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasSeparatesSuiteCompletenessFromAtlasQuality" finished-at="2026-06-30T13:03:06 EEST" duration-ms="10" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasSeparatesSuiteCompletenessFromAtlasQuality -->
-        <test-method signature="candidateAtlasUniformScoresExposeSharedCap()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasUniformScoresExposeSharedCap" finished-at="2026-06-30T13:03:06 EEST" duration-ms="9" status="PASS">
+        <test-method signature="candidateAtlasUniformScoresExposeSharedCap()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateScoreContractTest@2b6fb197]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasUniformScoresExposeSharedCap" finished-at="2026-06-30T13:03:06 EEST" duration-ms="9" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasUniformScoresExposeSharedCap -->
-      </class> <!-- com.endava.ai.atlas.tests.AtlasCandidateScoreContractTest -->
-      <class name="com.endava.ai.atlas.tests.AtlasRuleCatalogContractTest">
-        <test-method signature="atlasRuleCatalogMatchesExecutableValidatorRules()[pri:0, instance:com.endava.ai.atlas.tests.AtlasRuleCatalogContractTest@55361f03]" started-at="2026-06-30T13:03:11 EEST" name="atlasRuleCatalogMatchesExecutableValidatorRules" finished-at="2026-06-30T13:03:11 EEST" duration-ms="4" status="PASS">
+      </class> <!-- com.ai.atlas.tests.AtlasCandidateScoreContractTest -->
+      <class name="com.ai.atlas.tests.AtlasRuleCatalogContractTest">
+        <test-method signature="atlasRuleCatalogMatchesExecutableValidatorRules()[pri:0, instance:com.ai.atlas.tests.AtlasRuleCatalogContractTest@55361f03]" started-at="2026-06-30T13:03:11 EEST" name="atlasRuleCatalogMatchesExecutableValidatorRules" finished-at="2026-06-30T13:03:11 EEST" duration-ms="4" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- atlasRuleCatalogMatchesExecutableValidatorRules -->
-      </class> <!-- com.endava.ai.atlas.tests.AtlasRuleCatalogContractTest -->
-      <class name="com.endava.ai.atlas.tests.AtlasReportModelContractTest">
-        <test-method signature="atlasReportModelExtractsMainBusinessAuditSurfaces()[pri:0, instance:com.endava.ai.atlas.tests.AtlasReportModelContractTest@7d59e968]" started-at="2026-06-30T13:03:11 EEST" name="atlasReportModelExtractsMainBusinessAuditSurfaces" finished-at="2026-06-30T13:03:11 EEST" duration-ms="3" status="PASS">
+      </class> <!-- com.ai.atlas.tests.AtlasRuleCatalogContractTest -->
+      <class name="com.ai.atlas.tests.AtlasReportModelContractTest">
+        <test-method signature="atlasReportModelExtractsMainBusinessAuditSurfaces()[pri:0, instance:com.ai.atlas.tests.AtlasReportModelContractTest@7d59e968]" started-at="2026-06-30T13:03:11 EEST" name="atlasReportModelExtractsMainBusinessAuditSurfaces" finished-at="2026-06-30T13:03:11 EEST" duration-ms="3" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- atlasReportModelExtractsMainBusinessAuditSurfaces -->
-        <test-method signature="atlasReportModelKeepsArtifactNamingGeneric()[pri:0, instance:com.endava.ai.atlas.tests.AtlasReportModelContractTest@7d59e968]" started-at="2026-06-30T13:03:11 EEST" name="atlasReportModelKeepsArtifactNamingGeneric" finished-at="2026-06-30T13:03:11 EEST" duration-ms="1" status="PASS">
+        <test-method signature="atlasReportModelKeepsArtifactNamingGeneric()[pri:0, instance:com.ai.atlas.tests.AtlasReportModelContractTest@7d59e968]" started-at="2026-06-30T13:03:11 EEST" name="atlasReportModelKeepsArtifactNamingGeneric" finished-at="2026-06-30T13:03:11 EEST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- atlasReportModelKeepsArtifactNamingGeneric -->
-        <test-method signature="atlasScoreContractUsesSharedTextNormalizationAndMissingTextDefaults()[pri:0, instance:com.endava.ai.atlas.tests.AtlasReportModelContractTest@7d59e968]" started-at="2026-06-30T13:03:11 EEST" name="atlasScoreContractUsesSharedTextNormalizationAndMissingTextDefaults" finished-at="2026-06-30T13:03:11 EEST" duration-ms="1" status="PASS">
+        <test-method signature="atlasScoreContractUsesSharedTextNormalizationAndMissingTextDefaults()[pri:0, instance:com.ai.atlas.tests.AtlasReportModelContractTest@7d59e968]" started-at="2026-06-30T13:03:11 EEST" name="atlasScoreContractUsesSharedTextNormalizationAndMissingTextDefaults" finished-at="2026-06-30T13:03:11 EEST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- atlasScoreContractUsesSharedTextNormalizationAndMissingTextDefaults -->
-        <test-method signature="atlasTextUtilitiesTreatMissingFragmentsAsEmptyText()[pri:0, instance:com.endava.ai.atlas.tests.AtlasReportModelContractTest@7d59e968]" started-at="2026-06-30T13:03:11 EEST" name="atlasTextUtilitiesTreatMissingFragmentsAsEmptyText" finished-at="2026-06-30T13:03:11 EEST" duration-ms="3" status="PASS">
+        <test-method signature="atlasTextUtilitiesTreatMissingFragmentsAsEmptyText()[pri:0, instance:com.ai.atlas.tests.AtlasReportModelContractTest@7d59e968]" started-at="2026-06-30T13:03:11 EEST" name="atlasTextUtilitiesTreatMissingFragmentsAsEmptyText" finished-at="2026-06-30T13:03:11 EEST" duration-ms="3" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- atlasTextUtilitiesTreatMissingFragmentsAsEmptyText -->
-        <test-method signature="generatedAtlasExposesModelReadableAuditSurfaces()[pri:0, instance:com.endava.ai.atlas.tests.AtlasReportModelContractTest@7d59e968]" started-at="2026-06-30T13:03:11 EEST" name="generatedAtlasExposesModelReadableAuditSurfaces" finished-at="2026-06-30T13:03:11 EEST" duration-ms="7" status="PASS">
+        <test-method signature="generatedAtlasExposesModelReadableAuditSurfaces()[pri:0, instance:com.ai.atlas.tests.AtlasReportModelContractTest@7d59e968]" started-at="2026-06-30T13:03:11 EEST" name="generatedAtlasExposesModelReadableAuditSurfaces" finished-at="2026-06-30T13:03:11 EEST" duration-ms="7" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- generatedAtlasExposesModelReadableAuditSurfaces -->
-      </class> <!-- com.endava.ai.atlas.tests.AtlasReportModelContractTest -->
-      <class name="com.endava.ai.atlas.tests.AtlasCandidateSkillReadinessContractTest">
-        <test-method signature="candidateAtlasAggregateManifestAndCommandStaySynchronized()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateSkillReadinessContractTest@2eb0cefe]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasAggregateManifestAndCommandStaySynchronized" finished-at="2026-06-30T13:03:06 EEST" duration-ms="9" status="PASS">
+      </class> <!-- com.ai.atlas.tests.AtlasReportModelContractTest -->
+      <class name="com.ai.atlas.tests.AtlasCandidateSkillReadinessContractTest">
+        <test-method signature="candidateAtlasAggregateManifestAndCommandStaySynchronized()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateSkillReadinessContractTest@2eb0cefe]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasAggregateManifestAndCommandStaySynchronized" finished-at="2026-06-30T13:03:06 EEST" duration-ms="9" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasAggregateManifestAndCommandStaySynchronized -->
-        <test-method signature="candidateAtlasPublishesAtlasTestAuditExtent()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateSkillReadinessContractTest@2eb0cefe]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasPublishesAtlasTestAuditExtent" finished-at="2026-06-30T13:03:06 EEST" duration-ms="6" status="PASS">
+        <test-method signature="candidateAtlasPublishesAtlasTestAuditExtent()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateSkillReadinessContractTest@2eb0cefe]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasPublishesAtlasTestAuditExtent" finished-at="2026-06-30T13:03:06 EEST" duration-ms="6" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasPublishesAtlasTestAuditExtent -->
-        <test-method signature="candidateAtlasRequirementsAreReadyForCodexSkillMigration()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateSkillReadinessContractTest@2eb0cefe]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasRequirementsAreReadyForCodexSkillMigration" finished-at="2026-06-30T13:03:06 EEST" duration-ms="7" status="PASS">
+        <test-method signature="candidateAtlasRequirementsAreReadyForCodexSkillMigration()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateSkillReadinessContractTest@2eb0cefe]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasRequirementsAreReadyForCodexSkillMigration" finished-at="2026-06-30T13:03:06 EEST" duration-ms="7" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasRequirementsAreReadyForCodexSkillMigration -->
-        <test-method signature="candidateAtlasSkillParametersStayGeneric()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateSkillReadinessContractTest@2eb0cefe]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasSkillParametersStayGeneric" finished-at="2026-06-30T13:03:06 EEST" duration-ms="7" status="PASS">
+        <test-method signature="candidateAtlasSkillParametersStayGeneric()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateSkillReadinessContractTest@2eb0cefe]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasSkillParametersStayGeneric" finished-at="2026-06-30T13:03:06 EEST" duration-ms="7" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasSkillParametersStayGeneric -->
-        <test-method signature="candidateAtlasTestAuditTotalsMatchLinkedExtent()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateSkillReadinessContractTest@2eb0cefe]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasTestAuditTotalsMatchLinkedExtent" finished-at="2026-06-30T13:03:06 EEST" duration-ms="30" status="PASS">
+        <test-method signature="candidateAtlasTestAuditTotalsMatchLinkedExtent()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateSkillReadinessContractTest@2eb0cefe]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasTestAuditTotalsMatchLinkedExtent" finished-at="2026-06-30T13:03:06 EEST" duration-ms="30" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasTestAuditTotalsMatchLinkedExtent -->
-        <test-method signature="candidateRuleMatrixIsPublished()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateSkillReadinessContractTest@2eb0cefe]" started-at="2026-06-30T13:03:06 EEST" name="candidateRuleMatrixIsPublished" finished-at="2026-06-30T13:03:11 EEST" duration-ms="5173" status="PASS">
+        <test-method signature="candidateRuleMatrixIsPublished()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateSkillReadinessContractTest@2eb0cefe]" started-at="2026-06-30T13:03:06 EEST" name="candidateRuleMatrixIsPublished" finished-at="2026-06-30T13:03:11 EEST" duration-ms="5173" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateRuleMatrixIsPublished -->
-      </class> <!-- com.endava.ai.atlas.tests.AtlasCandidateSkillReadinessContractTest -->
-      <class name="com.endava.ai.atlas.tests.AtlasGeneratedOutputContractTest">
-        <test-method signature="atlasContainsBusinessFlowDiagrams()[pri:0, instance:com.endava.ai.atlas.tests.AtlasGeneratedOutputContractTest@2bec068b]" started-at="2026-06-30T13:03:11 EEST" name="atlasContainsBusinessFlowDiagrams" finished-at="2026-06-30T13:03:11 EEST" duration-ms="7" status="PASS">
+      </class> <!-- com.ai.atlas.tests.AtlasCandidateSkillReadinessContractTest -->
+      <class name="com.ai.atlas.tests.AtlasGeneratedOutputContractTest">
+        <test-method signature="atlasContainsBusinessFlowDiagrams()[pri:0, instance:com.ai.atlas.tests.AtlasGeneratedOutputContractTest@2bec068b]" started-at="2026-06-30T13:03:11 EEST" name="atlasContainsBusinessFlowDiagrams" finished-at="2026-06-30T13:03:11 EEST" duration-ms="7" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- atlasContainsBusinessFlowDiagrams -->
-        <test-method signature="atlasContextUsesDeclaredScopedSourceRoot()[pri:0, instance:com.endava.ai.atlas.tests.AtlasGeneratedOutputContractTest@2bec068b]" started-at="2026-06-30T13:03:11 EEST" name="atlasContextUsesDeclaredScopedSourceRoot" finished-at="2026-06-30T13:03:11 EEST" duration-ms="5" status="PASS">
+        <test-method signature="atlasContextUsesDeclaredScopedSourceRoot()[pri:0, instance:com.ai.atlas.tests.AtlasGeneratedOutputContractTest@2bec068b]" started-at="2026-06-30T13:03:11 EEST" name="atlasContextUsesDeclaredScopedSourceRoot" finished-at="2026-06-30T13:03:11 EEST" duration-ms="5" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- atlasContextUsesDeclaredScopedSourceRoot -->
-        <test-method signature="atlasDiagramsUseMinimalSharedReportStyle()[pri:0, instance:com.endava.ai.atlas.tests.AtlasGeneratedOutputContractTest@2bec068b]" started-at="2026-06-30T13:03:11 EEST" name="atlasDiagramsUseMinimalSharedReportStyle" finished-at="2026-06-30T13:03:11 EEST" duration-ms="7" status="PASS">
+        <test-method signature="atlasDiagramsUseMinimalSharedReportStyle()[pri:0, instance:com.ai.atlas.tests.AtlasGeneratedOutputContractTest@2bec068b]" started-at="2026-06-30T13:03:11 EEST" name="atlasDiagramsUseMinimalSharedReportStyle" finished-at="2026-06-30T13:03:11 EEST" duration-ms="7" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- atlasDiagramsUseMinimalSharedReportStyle -->
-        <test-method signature="atlasKeepsSourceAnalysisReadOnly()[pri:0, instance:com.endava.ai.atlas.tests.AtlasGeneratedOutputContractTest@2bec068b]" started-at="2026-06-30T13:03:11 EEST" name="atlasKeepsSourceAnalysisReadOnly" finished-at="2026-06-30T13:03:11 EEST" duration-ms="6" status="PASS">
+        <test-method signature="atlasKeepsSourceAnalysisReadOnly()[pri:0, instance:com.ai.atlas.tests.AtlasGeneratedOutputContractTest@2bec068b]" started-at="2026-06-30T13:03:11 EEST" name="atlasKeepsSourceAnalysisReadOnly" finished-at="2026-06-30T13:03:11 EEST" duration-ms="6" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- atlasKeepsSourceAnalysisReadOnly -->
-        <test-method signature="atlasOutputExists()[pri:0, instance:com.endava.ai.atlas.tests.AtlasGeneratedOutputContractTest@2bec068b]" started-at="2026-06-30T13:03:11 EEST" name="atlasOutputExists" finished-at="2026-06-30T13:03:11 EEST" duration-ms="6" status="PASS">
+        <test-method signature="atlasOutputExists()[pri:0, instance:com.ai.atlas.tests.AtlasGeneratedOutputContractTest@2bec068b]" started-at="2026-06-30T13:03:11 EEST" name="atlasOutputExists" finished-at="2026-06-30T13:03:11 EEST" duration-ms="6" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- atlasOutputExists -->
-        <test-method signature="atlasRowsExposeBusinessMappingTemplate()[pri:0, instance:com.endava.ai.atlas.tests.AtlasGeneratedOutputContractTest@2bec068b]" started-at="2026-06-30T13:03:11 EEST" name="atlasRowsExposeBusinessMappingTemplate" finished-at="2026-06-30T13:03:11 EEST" duration-ms="7" status="PASS">
+        <test-method signature="atlasRowsExposeBusinessMappingTemplate()[pri:0, instance:com.ai.atlas.tests.AtlasGeneratedOutputContractTest@2bec068b]" started-at="2026-06-30T13:03:11 EEST" name="atlasRowsExposeBusinessMappingTemplate" finished-at="2026-06-30T13:03:11 EEST" duration-ms="7" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- atlasRowsExposeBusinessMappingTemplate -->
-        <test-method signature="atlasSectionsAreCollapsible()[pri:0, instance:com.endava.ai.atlas.tests.AtlasGeneratedOutputContractTest@2bec068b]" started-at="2026-06-30T13:03:11 EEST" name="atlasSectionsAreCollapsible" finished-at="2026-06-30T13:03:11 EEST" duration-ms="7" status="PASS">
+        <test-method signature="atlasSectionsAreCollapsible()[pri:0, instance:com.ai.atlas.tests.AtlasGeneratedOutputContractTest@2bec068b]" started-at="2026-06-30T13:03:11 EEST" name="atlasSectionsAreCollapsible" finished-at="2026-06-30T13:03:11 EEST" duration-ms="7" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- atlasSectionsAreCollapsible -->
-        <test-method signature="atlasUsesDeclaredOutputArtifact()[pri:0, instance:com.endava.ai.atlas.tests.AtlasGeneratedOutputContractTest@2bec068b]" started-at="2026-06-30T13:03:11 EEST" name="atlasUsesDeclaredOutputArtifact" finished-at="2026-06-30T13:03:11 EEST" duration-ms="7" status="PASS">
+        <test-method signature="atlasUsesDeclaredOutputArtifact()[pri:0, instance:com.ai.atlas.tests.AtlasGeneratedOutputContractTest@2bec068b]" started-at="2026-06-30T13:03:11 EEST" name="atlasUsesDeclaredOutputArtifact" finished-at="2026-06-30T13:03:11 EEST" duration-ms="7" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- atlasUsesDeclaredOutputArtifact -->
-        <test-method signature="atlasUsesSharedCss()[pri:0, instance:com.endava.ai.atlas.tests.AtlasGeneratedOutputContractTest@2bec068b]" started-at="2026-06-30T13:03:11 EEST" name="atlasUsesSharedCss" finished-at="2026-06-30T13:03:11 EEST" duration-ms="3" status="PASS">
+        <test-method signature="atlasUsesSharedCss()[pri:0, instance:com.ai.atlas.tests.AtlasGeneratedOutputContractTest@2bec068b]" started-at="2026-06-30T13:03:11 EEST" name="atlasUsesSharedCss" finished-at="2026-06-30T13:03:11 EEST" duration-ms="3" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- atlasUsesSharedCss -->
-      </class> <!-- com.endava.ai.atlas.tests.AtlasGeneratedOutputContractTest -->
-      <class name="com.endava.ai.atlas.tests.AtlasCandidateGraphContractTest">
-        <test-method signature="candidateAtlasBusinessFlowsExcludeMetaContractGraphs()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateGraphContractTest@4eeab3e]" started-at="2026-06-30T13:03:01 EEST" name="candidateAtlasBusinessFlowsExcludeMetaContractGraphs" finished-at="2026-06-30T13:03:01 EEST" duration-ms="9" status="PASS">
+      </class> <!-- com.ai.atlas.tests.AtlasGeneratedOutputContractTest -->
+      <class name="com.ai.atlas.tests.AtlasCandidateGraphContractTest">
+        <test-method signature="candidateAtlasBusinessFlowsExcludeMetaContractGraphs()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateGraphContractTest@4eeab3e]" started-at="2026-06-30T13:03:01 EEST" name="candidateAtlasBusinessFlowsExcludeMetaContractGraphs" finished-at="2026-06-30T13:03:01 EEST" duration-ms="9" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasBusinessFlowsExcludeMetaContractGraphs -->
-        <test-method signature="candidateAtlasBusinessGraphHasCollapsedLegend()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateGraphContractTest@4eeab3e]" started-at="2026-06-30T13:03:01 EEST" name="candidateAtlasBusinessGraphHasCollapsedLegend" finished-at="2026-06-30T13:03:01 EEST" duration-ms="7" status="PASS">
+        <test-method signature="candidateAtlasBusinessGraphHasCollapsedLegend()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateGraphContractTest@4eeab3e]" started-at="2026-06-30T13:03:01 EEST" name="candidateAtlasBusinessGraphHasCollapsedLegend" finished-at="2026-06-30T13:03:01 EEST" duration-ms="7" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasBusinessGraphHasCollapsedLegend -->
-        <test-method signature="candidateAtlasBusinessSubgraphsUseFullWidthRhythm()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateGraphContractTest@4eeab3e]" started-at="2026-06-30T13:03:01 EEST" name="candidateAtlasBusinessSubgraphsUseFullWidthRhythm" finished-at="2026-06-30T13:03:01 EEST" duration-ms="8" status="PASS">
+        <test-method signature="candidateAtlasBusinessSubgraphsUseFullWidthRhythm()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateGraphContractTest@4eeab3e]" started-at="2026-06-30T13:03:01 EEST" name="candidateAtlasBusinessSubgraphsUseFullWidthRhythm" finished-at="2026-06-30T13:03:01 EEST" duration-ms="8" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasBusinessSubgraphsUseFullWidthRhythm -->
-        <test-method signature="candidateAtlasEachGraphUsesMinimalHtmlExampleStyle()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateGraphContractTest@4eeab3e]" started-at="2026-06-30T13:03:01 EEST" name="candidateAtlasEachGraphUsesMinimalHtmlExampleStyle" finished-at="2026-06-30T13:03:01 EEST" duration-ms="8" status="PASS">
+        <test-method signature="candidateAtlasEachGraphUsesMinimalHtmlExampleStyle()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateGraphContractTest@4eeab3e]" started-at="2026-06-30T13:03:01 EEST" name="candidateAtlasEachGraphUsesMinimalHtmlExampleStyle" finished-at="2026-06-30T13:03:01 EEST" duration-ms="8" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasEachGraphUsesMinimalHtmlExampleStyle -->
-        <test-method signature="candidateAtlasEachSubgraphHasLocalBusinessUnderstandingStrip()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateGraphContractTest@4eeab3e]" started-at="2026-06-30T13:03:01 EEST" name="candidateAtlasEachSubgraphHasLocalBusinessUnderstandingStrip" finished-at="2026-06-30T13:03:02 EEST" duration-ms="1023" status="PASS">
+        <test-method signature="candidateAtlasEachSubgraphHasLocalBusinessUnderstandingStrip()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateGraphContractTest@4eeab3e]" started-at="2026-06-30T13:03:01 EEST" name="candidateAtlasEachSubgraphHasLocalBusinessUnderstandingStrip" finished-at="2026-06-30T13:03:02 EEST" duration-ms="1023" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasEachSubgraphHasLocalBusinessUnderstandingStrip -->
-        <test-method signature="candidateAtlasGraphCssIsReusable()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateGraphContractTest@4eeab3e]" started-at="2026-06-30T13:03:02 EEST" name="candidateAtlasGraphCssIsReusable" finished-at="2026-06-30T13:03:02 EEST" duration-ms="10" status="PASS">
+        <test-method signature="candidateAtlasGraphCssIsReusable()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateGraphContractTest@4eeab3e]" started-at="2026-06-30T13:03:02 EEST" name="candidateAtlasGraphCssIsReusable" finished-at="2026-06-30T13:03:02 EEST" duration-ms="10" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasGraphCssIsReusable -->
-        <test-method signature="candidateAtlasGraphNodesHaveBusinessProofStrips()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateGraphContractTest@4eeab3e]" started-at="2026-06-30T13:03:02 EEST" name="candidateAtlasGraphNodesHaveBusinessProofStrips" finished-at="2026-06-30T13:03:04 EEST" duration-ms="1275" status="PASS">
+        <test-method signature="candidateAtlasGraphNodesHaveBusinessProofStrips()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateGraphContractTest@4eeab3e]" started-at="2026-06-30T13:03:02 EEST" name="candidateAtlasGraphNodesHaveBusinessProofStrips" finished-at="2026-06-30T13:03:04 EEST" duration-ms="1275" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasGraphNodesHaveBusinessProofStrips -->
-        <test-method signature="candidateAtlasGraphUsesHtmlExamplePrimitives()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateGraphContractTest@4eeab3e]" started-at="2026-06-30T13:03:04 EEST" name="candidateAtlasGraphUsesHtmlExamplePrimitives" finished-at="2026-06-30T13:03:04 EEST" duration-ms="3" status="PASS">
+        <test-method signature="candidateAtlasGraphUsesHtmlExamplePrimitives()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateGraphContractTest@4eeab3e]" started-at="2026-06-30T13:03:04 EEST" name="candidateAtlasGraphUsesHtmlExamplePrimitives" finished-at="2026-06-30T13:03:04 EEST" duration-ms="3" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasGraphUsesHtmlExamplePrimitives -->
-        <test-method signature="candidateAtlasGraphsKeepConsistentVisualScale()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateGraphContractTest@4eeab3e]" started-at="2026-06-30T13:03:04 EEST" name="candidateAtlasGraphsKeepConsistentVisualScale" finished-at="2026-06-30T13:03:04 EEST" duration-ms="6" status="PASS">
+        <test-method signature="candidateAtlasGraphsKeepConsistentVisualScale()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateGraphContractTest@4eeab3e]" started-at="2026-06-30T13:03:04 EEST" name="candidateAtlasGraphsKeepConsistentVisualScale" finished-at="2026-06-30T13:03:04 EEST" duration-ms="6" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasGraphsKeepConsistentVisualScale -->
-        <test-method signature="candidateAtlasLegendsAreCollapsedByDefault()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateGraphContractTest@4eeab3e]" started-at="2026-06-30T13:03:04 EEST" name="candidateAtlasLegendsAreCollapsedByDefault" finished-at="2026-06-30T13:03:04 EEST" duration-ms="7" status="PASS">
+        <test-method signature="candidateAtlasLegendsAreCollapsedByDefault()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateGraphContractTest@4eeab3e]" started-at="2026-06-30T13:03:04 EEST" name="candidateAtlasLegendsAreCollapsedByDefault" finished-at="2026-06-30T13:03:04 EEST" duration-ms="7" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasLegendsAreCollapsedByDefault -->
-        <test-method signature="candidateAtlasLegendsExplainBusinessValueWithBullets()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateGraphContractTest@4eeab3e]" started-at="2026-06-30T13:03:04 EEST" name="candidateAtlasLegendsExplainBusinessValueWithBullets" finished-at="2026-06-30T13:03:04 EEST" duration-ms="8" status="PASS">
+        <test-method signature="candidateAtlasLegendsExplainBusinessValueWithBullets()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateGraphContractTest@4eeab3e]" started-at="2026-06-30T13:03:04 EEST" name="candidateAtlasLegendsExplainBusinessValueWithBullets" finished-at="2026-06-30T13:03:04 EEST" duration-ms="8" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasLegendsExplainBusinessValueWithBullets -->
-        <test-method signature="candidateAtlasLocalProofStripsAreBackedBySource()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateGraphContractTest@4eeab3e]" started-at="2026-06-30T13:03:04 EEST" name="candidateAtlasLocalProofStripsAreBackedBySource" finished-at="2026-06-30T13:03:05 EEST" duration-ms="1021" status="PASS">
+        <test-method signature="candidateAtlasLocalProofStripsAreBackedBySource()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateGraphContractTest@4eeab3e]" started-at="2026-06-30T13:03:04 EEST" name="candidateAtlasLocalProofStripsAreBackedBySource" finished-at="2026-06-30T13:03:05 EEST" duration-ms="1021" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasLocalProofStripsAreBackedBySource -->
-        <test-method signature="candidateAtlasSubgraphsReflectDominantSourceFamilies()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateGraphContractTest@4eeab3e]" started-at="2026-06-30T13:03:05 EEST" name="candidateAtlasSubgraphsReflectDominantSourceFamilies" finished-at="2026-06-30T13:03:06 EEST" duration-ms="953" status="PASS">
+        <test-method signature="candidateAtlasSubgraphsReflectDominantSourceFamilies()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateGraphContractTest@4eeab3e]" started-at="2026-06-30T13:03:05 EEST" name="candidateAtlasSubgraphsReflectDominantSourceFamilies" finished-at="2026-06-30T13:03:06 EEST" duration-ms="953" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasSubgraphsReflectDominantSourceFamilies -->
-        <test-method signature="candidateAtlasSupportingGraphsHaveLegends()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateGraphContractTest@4eeab3e]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasSupportingGraphsHaveLegends" finished-at="2026-06-30T13:03:06 EEST" duration-ms="11" status="PASS">
+        <test-method signature="candidateAtlasSupportingGraphsHaveLegends()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateGraphContractTest@4eeab3e]" started-at="2026-06-30T13:03:06 EEST" name="candidateAtlasSupportingGraphsHaveLegends" finished-at="2026-06-30T13:03:06 EEST" duration-ms="11" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasSupportingGraphsHaveLegends -->
-      </class> <!-- com.endava.ai.atlas.tests.AtlasCandidateGraphContractTest -->
-      <class name="com.endava.ai.atlas.tests.AtlasCandidateStructureContractTest">
-        <test-method signature="candidateAtlasBusinessSubgraphsAreCollapsedByDefault()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateStructureContractTest@5a2ae1ab]" started-at="2026-06-30T13:03:11 EEST" name="candidateAtlasBusinessSubgraphsAreCollapsedByDefault" finished-at="2026-06-30T13:03:11 EEST" duration-ms="9" status="PASS">
+      </class> <!-- com.ai.atlas.tests.AtlasCandidateGraphContractTest -->
+      <class name="com.ai.atlas.tests.AtlasCandidateStructureContractTest">
+        <test-method signature="candidateAtlasBusinessSubgraphsAreCollapsedByDefault()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateStructureContractTest@5a2ae1ab]" started-at="2026-06-30T13:03:11 EEST" name="candidateAtlasBusinessSubgraphsAreCollapsedByDefault" finished-at="2026-06-30T13:03:11 EEST" duration-ms="9" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasBusinessSubgraphsAreCollapsedByDefault -->
-        <test-method signature="candidateAtlasExecutiveContextIsCollapsedAndStructured()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateStructureContractTest@5a2ae1ab]" started-at="2026-06-30T13:03:11 EEST" name="candidateAtlasExecutiveContextIsCollapsedAndStructured" finished-at="2026-06-30T13:03:11 EEST" duration-ms="6" status="PASS">
+        <test-method signature="candidateAtlasExecutiveContextIsCollapsedAndStructured()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateStructureContractTest@5a2ae1ab]" started-at="2026-06-30T13:03:11 EEST" name="candidateAtlasExecutiveContextIsCollapsedAndStructured" finished-at="2026-06-30T13:03:11 EEST" duration-ms="6" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasExecutiveContextIsCollapsedAndStructured -->
-        <test-method signature="candidateAtlasSectionNumbersStayInTitlesNotHints()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateStructureContractTest@5a2ae1ab]" started-at="2026-06-30T13:03:11 EEST" name="candidateAtlasSectionNumbersStayInTitlesNotHints" finished-at="2026-06-30T13:03:11 EEST" duration-ms="5" status="PASS">
+        <test-method signature="candidateAtlasSectionNumbersStayInTitlesNotHints()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateStructureContractTest@5a2ae1ab]" started-at="2026-06-30T13:03:11 EEST" name="candidateAtlasSectionNumbersStayInTitlesNotHints" finished-at="2026-06-30T13:03:11 EEST" duration-ms="5" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasSectionNumbersStayInTitlesNotHints -->
-        <test-method signature="candidateAtlasSectionsAreNumberedForNavigation()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateStructureContractTest@5a2ae1ab]" started-at="2026-06-30T13:03:11 EEST" name="candidateAtlasSectionsAreNumberedForNavigation" finished-at="2026-06-30T13:03:11 EEST" duration-ms="14" status="PASS">
+        <test-method signature="candidateAtlasSectionsAreNumberedForNavigation()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateStructureContractTest@5a2ae1ab]" started-at="2026-06-30T13:03:11 EEST" name="candidateAtlasSectionsAreNumberedForNavigation" finished-at="2026-06-30T13:03:11 EEST" duration-ms="14" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasSectionsAreNumberedForNavigation -->
-        <test-method signature="candidateAtlasTopLevelSectionsRemainContinuous()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateStructureContractTest@5a2ae1ab]" started-at="2026-06-30T13:03:11 EEST" name="candidateAtlasTopLevelSectionsRemainContinuous" finished-at="2026-06-30T13:03:11 EEST" duration-ms="8" status="PASS">
+        <test-method signature="candidateAtlasTopLevelSectionsRemainContinuous()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateStructureContractTest@5a2ae1ab]" started-at="2026-06-30T13:03:11 EEST" name="candidateAtlasTopLevelSectionsRemainContinuous" finished-at="2026-06-30T13:03:11 EEST" duration-ms="8" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasTopLevelSectionsRemainContinuous -->
-        <test-method signature="candidateAtlasUsesSemanticContractMarkersInsteadOfHiddenKeywords()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateStructureContractTest@5a2ae1ab]" started-at="2026-06-30T13:03:11 EEST" name="candidateAtlasUsesSemanticContractMarkersInsteadOfHiddenKeywords" finished-at="2026-06-30T13:03:11 EEST" duration-ms="7" status="PASS">
+        <test-method signature="candidateAtlasUsesSemanticContractMarkersInsteadOfHiddenKeywords()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateStructureContractTest@5a2ae1ab]" started-at="2026-06-30T13:03:11 EEST" name="candidateAtlasUsesSemanticContractMarkersInsteadOfHiddenKeywords" finished-at="2026-06-30T13:03:11 EEST" duration-ms="7" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasUsesSemanticContractMarkersInsteadOfHiddenKeywords -->
-      </class> <!-- com.endava.ai.atlas.tests.AtlasCandidateStructureContractTest -->
-      <class name="com.endava.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest">
-        <test-method signature="candidateAtlasContainsLayerTraceMap()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:02:59 EEST" name="candidateAtlasContainsLayerTraceMap" finished-at="2026-06-30T13:03:00 EEST" duration-ms="451" status="PASS">
+      </class> <!-- com.ai.atlas.tests.AtlasCandidateStructureContractTest -->
+      <class name="com.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest">
+        <test-method signature="candidateAtlasContainsLayerTraceMap()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:02:59 EEST" name="candidateAtlasContainsLayerTraceMap" finished-at="2026-06-30T13:03:00 EEST" duration-ms="451" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasContainsLayerTraceMap -->
-        <test-method signature="candidateAtlasDoesNotSellPartialFlowsAsOwned()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:03:00 EEST" name="candidateAtlasDoesNotSellPartialFlowsAsOwned" finished-at="2026-06-30T13:03:00 EEST" duration-ms="21" status="PASS">
+        <test-method signature="candidateAtlasDoesNotSellPartialFlowsAsOwned()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:03:00 EEST" name="candidateAtlasDoesNotSellPartialFlowsAsOwned" finished-at="2026-06-30T13:03:00 EEST" duration-ms="21" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasDoesNotSellPartialFlowsAsOwned -->
-        <test-method signature="candidateAtlasExplainsFlowMaturityDistribution()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:03:00 EEST" name="candidateAtlasExplainsFlowMaturityDistribution" finished-at="2026-06-30T13:03:00 EEST" duration-ms="12" status="PASS">
+        <test-method signature="candidateAtlasExplainsFlowMaturityDistribution()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:03:00 EEST" name="candidateAtlasExplainsFlowMaturityDistribution" finished-at="2026-06-30T13:03:00 EEST" duration-ms="12" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasExplainsFlowMaturityDistribution -->
-        <test-method signature="candidateAtlasFlowsTellCompleteProductStories()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:03:00 EEST" name="candidateAtlasFlowsTellCompleteProductStories" finished-at="2026-06-30T13:03:00 EEST" duration-ms="11" status="PASS">
+        <test-method signature="candidateAtlasFlowsTellCompleteProductStories()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:03:00 EEST" name="candidateAtlasFlowsTellCompleteProductStories" finished-at="2026-06-30T13:03:00 EEST" duration-ms="11" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasFlowsTellCompleteProductStories -->
-        <test-method signature="candidateAtlasGraphsStayBusinessObjectCentered()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:03:00 EEST" name="candidateAtlasGraphsStayBusinessObjectCentered" finished-at="2026-06-30T13:03:00 EEST" duration-ms="14" status="PASS">
+        <test-method signature="candidateAtlasGraphsStayBusinessObjectCentered()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:03:00 EEST" name="candidateAtlasGraphsStayBusinessObjectCentered" finished-at="2026-06-30T13:03:00 EEST" duration-ms="14" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasGraphsStayBusinessObjectCentered -->
-        <test-method signature="candidateAtlasHasObjectMaturityMatrix()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:03:00 EEST" name="candidateAtlasHasObjectMaturityMatrix" finished-at="2026-06-30T13:03:00 EEST" duration-ms="11" status="PASS">
+        <test-method signature="candidateAtlasHasObjectMaturityMatrix()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:03:00 EEST" name="candidateAtlasHasObjectMaturityMatrix" finished-at="2026-06-30T13:03:00 EEST" duration-ms="11" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasHasObjectMaturityMatrix -->
-        <test-method signature="candidateAtlasKeepsComprehensionLimitsSecondary()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:03:00 EEST" name="candidateAtlasKeepsComprehensionLimitsSecondary" finished-at="2026-06-30T13:03:00 EEST" duration-ms="7" status="PASS">
+        <test-method signature="candidateAtlasKeepsComprehensionLimitsSecondary()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:03:00 EEST" name="candidateAtlasKeepsComprehensionLimitsSecondary" finished-at="2026-06-30T13:03:00 EEST" duration-ms="7" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasKeepsComprehensionLimitsSecondary -->
-        <test-method signature="candidateAtlasLayerTraceNamesConcreteSourceEvidence()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:03:00 EEST" name="candidateAtlasLayerTraceNamesConcreteSourceEvidence" finished-at="2026-06-30T13:03:00 EEST" duration-ms="9" status="PASS">
+        <test-method signature="candidateAtlasLayerTraceNamesConcreteSourceEvidence()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:03:00 EEST" name="candidateAtlasLayerTraceNamesConcreteSourceEvidence" finished-at="2026-06-30T13:03:00 EEST" duration-ms="9" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasLayerTraceNamesConcreteSourceEvidence -->
-        <test-method signature="candidateAtlasShowsEndToEndClosureLadder()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:03:00 EEST" name="candidateAtlasShowsEndToEndClosureLadder" finished-at="2026-06-30T13:03:00 EEST" duration-ms="8" status="PASS">
+        <test-method signature="candidateAtlasShowsEndToEndClosureLadder()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:03:00 EEST" name="candidateAtlasShowsEndToEndClosureLadder" finished-at="2026-06-30T13:03:00 EEST" duration-ms="8" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasShowsEndToEndClosureLadder -->
-        <test-method signature="candidateAtlasSourceTraceContainsMethodLevelEvidence()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:03:00 EEST" name="candidateAtlasSourceTraceContainsMethodLevelEvidence" finished-at="2026-06-30T13:03:00 EEST" duration-ms="5" status="PASS">
+        <test-method signature="candidateAtlasSourceTraceContainsMethodLevelEvidence()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:03:00 EEST" name="candidateAtlasSourceTraceContainsMethodLevelEvidence" finished-at="2026-06-30T13:03:00 EEST" duration-ms="5" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasSourceTraceContainsMethodLevelEvidence -->
-        <test-method signature="candidateAtlasSourceTraceContainsOnlyApplicationBusinessRows()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:03:00 EEST" name="candidateAtlasSourceTraceContainsOnlyApplicationBusinessRows" finished-at="2026-06-30T13:03:00 EEST" duration-ms="8" status="PASS">
+        <test-method signature="candidateAtlasSourceTraceContainsOnlyApplicationBusinessRows()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:03:00 EEST" name="candidateAtlasSourceTraceContainsOnlyApplicationBusinessRows" finished-at="2026-06-30T13:03:00 EEST" duration-ms="8" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasSourceTraceContainsOnlyApplicationBusinessRows -->
-        <test-method signature="candidateAtlasSourceTraceIsBackedByAnalyzedSource()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:03:00 EEST" name="candidateAtlasSourceTraceIsBackedByAnalyzedSource" finished-at="2026-06-30T13:03:01 EEST" duration-ms="1047" status="PASS">
+        <test-method signature="candidateAtlasSourceTraceIsBackedByAnalyzedSource()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:03:00 EEST" name="candidateAtlasSourceTraceIsBackedByAnalyzedSource" finished-at="2026-06-30T13:03:01 EEST" duration-ms="1047" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasSourceTraceIsBackedByAnalyzedSource -->
-        <test-method signature="candidateAtlasSubgraphsAreBusinessComplexEnough()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:03:01 EEST" name="candidateAtlasSubgraphsAreBusinessComplexEnough" finished-at="2026-06-30T13:03:01 EEST" duration-ms="13" status="PASS">
+        <test-method signature="candidateAtlasSubgraphsAreBusinessComplexEnough()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:03:01 EEST" name="candidateAtlasSubgraphsAreBusinessComplexEnough" finished-at="2026-06-30T13:03:01 EEST" duration-ms="13" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasSubgraphsAreBusinessComplexEnough -->
-        <test-method signature="candidateAtlasTestToBusinessMappingIsDeepEnough()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:03:01 EEST" name="candidateAtlasTestToBusinessMappingIsDeepEnough" finished-at="2026-06-30T13:03:01 EEST" duration-ms="10" status="PASS">
+        <test-method signature="candidateAtlasTestToBusinessMappingIsDeepEnough()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:03:01 EEST" name="candidateAtlasTestToBusinessMappingIsDeepEnough" finished-at="2026-06-30T13:03:01 EEST" duration-ms="10" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasTestToBusinessMappingIsDeepEnough -->
-        <test-method signature="candidateAtlasUsesBusinessComprehensionVocabulary()[pri:0, instance:com.endava.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:03:01 EEST" name="candidateAtlasUsesBusinessComprehensionVocabulary" finished-at="2026-06-30T13:03:01 EEST" duration-ms="7" status="PASS">
+        <test-method signature="candidateAtlasUsesBusinessComprehensionVocabulary()[pri:0, instance:com.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest@38159384]" started-at="2026-06-30T13:03:01 EEST" name="candidateAtlasUsesBusinessComprehensionVocabulary" finished-at="2026-06-30T13:03:01 EEST" duration-ms="7" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- candidateAtlasUsesBusinessComprehensionVocabulary -->
-      </class> <!-- com.endava.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest -->
+      </class> <!-- com.ai.atlas.tests.AtlasCandidateBusinessComprehensionContractTest -->
     </test> <!-- atlas-contracts -->
   </suite> <!-- framework-under-test Atlas Contracts -->
 </testng-results>

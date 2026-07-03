@@ -38,10 +38,10 @@ run learning yield: 100
 
 | Run | Delta | Diff | State | Source path |
 |---|---|---|---|---|
-| run_01_delta | Flow plus customer-visible lifecycle tests | [diff](../runs/run_01/review/thin-no-index.diff) | [state](../runs/run_01/review/run-state.json) | `src/main/java/com/endava/ai/ui/support/flows/support/RefundSupportRequestFlow.java` |
-| run_02_delta | Admin/customer messages API client plus lifecycle tests | [diff](../runs/run_02/review/thin-no-index.diff) | [state](../runs/run_02/review/run-state.json) | `src/main/java/com/endava/ai/ui/support/service/SupportMessagesClient.java` |
-| run_03_delta | Progressed support context plus lifecycle tests | [diff](../runs/run_03/review/thin-no-index.diff) | [state](../runs/run_03/review/run-state.json) | `src/main/java/com/endava/ai/ui/support/model/RefundSupportRequestContext.java` |
-| run_04_delta | Shared request cache plus lifecycle tests | [diff](../runs/run_04/review/thin-no-index.diff) | [state](../runs/run_04/review/run-state.json) | `src/test/java/com/endava/ai/ui/tests/refunds/support/RefundSupportRequestTestSupport.java` |
+| run_01_delta | Flow plus customer-visible lifecycle tests | [diff](../runs/run_01/review/thin-no-index.diff) | [state](../runs/run_01/review/run-state.json) | `src/main/java/com/ai/ui/support/flows/support/RefundSupportRequestFlow.java` |
+| run_02_delta | Admin/customer messages API client plus lifecycle tests | [diff](../runs/run_02/review/thin-no-index.diff) | [state](../runs/run_02/review/run-state.json) | `src/main/java/com/ai/ui/support/service/SupportMessagesClient.java` |
+| run_03_delta | Progressed support context plus lifecycle tests | [diff](../runs/run_03/review/thin-no-index.diff) | [state](../runs/run_03/review/run-state.json) | `src/main/java/com/ai/ui/support/model/RefundSupportRequestContext.java` |
+| run_04_delta | Shared request cache plus lifecycle tests | [diff](../runs/run_04/review/thin-no-index.diff) | [state](../runs/run_04/review/run-state.json) | `src/test/java/com/ai/ui/tests/refunds/support/RefundSupportRequestTestSupport.java` |
 | run_05_delta | Suite routing plus lifecycle tests | [diff](../runs/run_05/review/thin-no-index.diff) | [state](../runs/run_05/review/run-state.json) | `src/test/resources/ui/testng-atf1-refund-support-customer-messages-run.xml` |
 
 ## Business Claims Owned

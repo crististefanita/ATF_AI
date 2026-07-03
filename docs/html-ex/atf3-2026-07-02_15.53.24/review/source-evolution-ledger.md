@@ -1,4 +1,4 @@
-﻿# Source Evolution Ledger
+# Source Evolution Ledger
 
 baseline_before_run_0: protected framework roots clean after stabilization commit; generated package work is limited to UI support/test surfaces.
 final_before_closeout: final root diff is frozen in [root-source-thin-no-index.diff](root-source-thin-no-index.diff) before package close-out rerun.
@@ -30,11 +30,11 @@ protected-root purity: 100 - no ATF core, MCP, Atlas, core.ui, core, api protect
 artifact truth score: 96 - per-run TestNG/JUnit XML parity is repaired and audited, with Extent, SHA/origin and command-result artifacts linked per slot.
 run learning yield: 100 - five run deltas publish distinct business claim slices.
 
-run_01_delta: identity source slice. Diff [runs/run_01/review/thin-no-index.diff](../runs/run_01/review/thin-no-index.diff), state [runs/run_01/review/run-state.json](../runs/run_01/review/run-state.json), source path src/test/java/com/endava/ai/ui/tests/cart/lifecycle/CartLineLifecycleContractTest.java.
-run_02_delta: quantity validation source slice. Diff [runs/run_02/review/thin-no-index.diff](../runs/run_02/review/thin-no-index.diff), state [runs/run_02/review/run-state.json](../runs/run_02/review/run-state.json), source path `src/main/java/com/endava/ai/ui/support/validation/CartBusinessValidation.java`.
-run_03_delta: cart actions source slice. Diff [runs/run_03/review/thin-no-index.diff](../runs/run_03/review/thin-no-index.diff), state [runs/run_03/review/run-state.json](../runs/run_03/review/run-state.json), source path `src/main/java/com/endava/ai/ui/support/actions/cart/CartLineActions.java`.
-run_04_delta: cart context model source slice. Diff [runs/run_04/review/thin-no-index.diff](../runs/run_04/review/thin-no-index.diff), state [runs/run_04/review/run-state.json](../runs/run_04/review/run-state.json), source path `src/main/java/com/endava/ai/ui/support/model/cart/CartContexts.java`.
-run_05_delta: product page cart locator source slice. Diff [runs/run_05/review/thin-no-index.diff](../runs/run_05/review/thin-no-index.diff), state [runs/run_05/review/run-state.json](../runs/run_05/review/run-state.json), source path `src/main/java/com/endava/ai/ui/support/pages/ProductPage.java`.
+run_01_delta: identity source slice. Diff [runs/run_01/review/thin-no-index.diff](../runs/run_01/review/thin-no-index.diff), state [runs/run_01/review/run-state.json](../runs/run_01/review/run-state.json), source path src/test/java/com/ai/ui/tests/cart/lifecycle/CartLineLifecycleContractTest.java.
+run_02_delta: quantity validation source slice. Diff [runs/run_02/review/thin-no-index.diff](../runs/run_02/review/thin-no-index.diff), state [runs/run_02/review/run-state.json](../runs/run_02/review/run-state.json), source path `src/main/java/com/ai/ui/support/validation/CartBusinessValidation.java`.
+run_03_delta: cart actions source slice. Diff [runs/run_03/review/thin-no-index.diff](../runs/run_03/review/thin-no-index.diff), state [runs/run_03/review/run-state.json](../runs/run_03/review/run-state.json), source path `src/main/java/com/ai/ui/support/actions/cart/CartLineActions.java`.
+run_04_delta: cart context model source slice. Diff [runs/run_04/review/thin-no-index.diff](../runs/run_04/review/thin-no-index.diff), state [runs/run_04/review/run-state.json](../runs/run_04/review/run-state.json), source path `src/main/java/com/ai/ui/support/model/cart/CartContexts.java`.
+run_05_delta: product page cart locator source slice. Diff [runs/run_05/review/thin-no-index.diff](../runs/run_05/review/thin-no-index.diff), state [runs/run_05/review/run-state.json](../runs/run_05/review/run-state.json), source path `src/main/java/com/ai/ui/support/pages/ProductPage.java`.
 
 calibrated_replacement_score=94
 calibrated_replacement_reason=Artifact truth is repaired, but the package still covers pre-invoice cart-line lifecycle rather than payment settlement ledger, account-bound cart restore or cart-to-payment-to-invoice continuity.

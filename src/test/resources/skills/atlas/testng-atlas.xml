@@ -2,21 +2,21 @@
 <suite name="Framework Atlas Contracts" verbose="1">
     <test name="atlas-contracts">
         <classes>
-            <class name="com.endava.ai.skills.atlas.tests.profile.AtlasTestNgProfileContractTest"/>
-            <class name="com.endava.ai.skills.atlas.tests.candidate.AtlasCandidateBusinessComprehensionContractTest"/>
-            <class name="com.endava.ai.skills.atlas.tests.candidate.AtlasCandidateGraphContractTest"/>
-            <class name="com.endava.ai.skills.atlas.tests.candidate.AtlasCandidateGraphNegativeFixtureContractTest"/>
-            <class name="com.endava.ai.skills.atlas.tests.candidate.AtlasCandidateScoreContractTest"/>
-            <class name="com.endava.ai.skills.atlas.tests.candidate.AtlasCandidateSkillReadinessContractTest"/>
-            <class name="com.endava.ai.skills.atlas.tests.candidate.AtlasCandidateStructureContractTest"/>
-            <class name="com.endava.ai.skills.atlas.tests.candidate.AtlasGeneratedOutputContractTest"/>
-            <class name="com.endava.ai.skills.atlas.tests.report.AtlasReportModelContractTest"/>
-            <class name="com.endava.ai.skills.atlas.tests.catalog.AtlasRuleCatalogContractTest"/>
-            <class name="com.endava.ai.skills.atlas.tests.catalog.AtlasLombokArchitectureContractTest"/>
-            <class name="com.endava.ai.skills.atlas.tests.architecture.AtlasPackageShapeContractTest"/>
-            <class name="com.endava.ai.skills.atlas.tests.yaml.AtlasBusinessUnderstandingConsumerContractTest"/>
-            <class name="com.endava.ai.skills.atlas.tests.yaml.AtlasYamlRulePolicyContractTest"/>
-            <class name="com.endava.ai.skills.atlas.tests.yaml.AtlasYamlSuiteContractTest"/>
+            <class name="com.ai.skills.atlas.tests.profile.AtlasTestNgProfileContractTest"/>
+            <class name="com.ai.skills.atlas.tests.candidate.AtlasCandidateBusinessComprehensionContractTest"/>
+            <class name="com.ai.skills.atlas.tests.candidate.AtlasCandidateGraphContractTest"/>
+            <class name="com.ai.skills.atlas.tests.candidate.AtlasCandidateGraphNegativeFixtureContractTest"/>
+            <class name="com.ai.skills.atlas.tests.candidate.AtlasCandidateScoreContractTest"/>
+            <class name="com.ai.skills.atlas.tests.candidate.AtlasCandidateSkillReadinessContractTest"/>
+            <class name="com.ai.skills.atlas.tests.candidate.AtlasCandidateStructureContractTest"/>
+            <class name="com.ai.skills.atlas.tests.candidate.AtlasGeneratedOutputContractTest"/>
+            <class name="com.ai.skills.atlas.tests.report.AtlasReportModelContractTest"/>
+            <class name="com.ai.skills.atlas.tests.catalog.AtlasRuleCatalogContractTest"/>
+            <class name="com.ai.skills.atlas.tests.catalog.AtlasLombokArchitectureContractTest"/>
+            <class name="com.ai.skills.atlas.tests.architecture.AtlasPackageShapeContractTest"/>
+            <class name="com.ai.skills.atlas.tests.yaml.AtlasBusinessUnderstandingConsumerContractTest"/>
+            <class name="com.ai.skills.atlas.tests.yaml.AtlasYamlRulePolicyContractTest"/>
+            <class name="com.ai.skills.atlas.tests.yaml.AtlasYamlSuiteContractTest"/>
         </classes>
     </test>
 </suite>

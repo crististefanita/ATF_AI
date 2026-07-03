@@ -7,7 +7,7 @@ contracts:
     section: Artifact Index
     requiredLinks: validation/mcp/ExtentReport.html,validation/mcp/ExtentReport.sha256,validation/mcp/extent-origin.json,validation/mcp/mcp-gate-result.md,validation/mcp/TEST-TestSuite.xml|validation/mcp/testng-results.xml,validation/mcp/full-mcp-method-ledger.md,validation/mcp/mcp-kpi-matrix.md,validation/mcp/mcp-kpi-matrix.html,validation/mcp/mcp-kpi-formula-trace.md,validation/mcp/mcp-kpi-repair-board.md,validation/mcp/mcp-kpi-repair-board.html,validation/mcp/mcp-score-cap-rationale.md,review/source-evolution-ledger.md,review/root-source-thin-no-index.diff,review/package-state.json,review/package-close-out.md,review/execution-gate-card.md
     repairTarget: analysis/langgraph-business-understanding.html
-    validator: com.endava.ai.skills.mcp.rules.report.ProofMappingReportRule
+    validator: com.ai.skills.mcp.rules.report.ProofMappingReportRule
     capImpact: missing final MCP or source-evolution hyperlink blocks 95+
     publishabilityImpact: final report is not reopenable if artifact links are stale, prose-only, or point at old runs
   - id: mcp.report.closeout-summary-links
@@ -17,6 +17,6 @@ contracts:
     section: Final MCP Close-Out
     requiredLinks: validation/mcp/ExtentReport.html,validation/mcp/mcp-gate-result.md,analysis/langgraph-business-understanding.html
     repairTarget: README.md
-    validator: com.endava.ai.skills.mcp.validation.report.McpReportEvidenceAssertions
+    validator: com.ai.skills.mcp.validation.report.McpReportEvidenceAssertions
     capImpact: missing README close-out links caps package below publishable candidate
     publishabilityImpact: agents must not close a run without a human-readable entry point to MCP evidence

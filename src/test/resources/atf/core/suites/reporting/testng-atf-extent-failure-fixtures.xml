@@ -3,9 +3,9 @@
     <test name="extent-failure-fixture-visual-contract">
         <parameter name="atf.failure.fixtures.enabled" value="true"/>
         <classes>
-            <class name="com.endava.ai.atf.core.reporting.failurefixtures.BeforeMethodFailureFixture"/>
-            <class name="com.endava.ai.atf.core.reporting.failurefixtures.TestBodyFailureFixture"/>
-            <class name="com.endava.ai.atf.core.reporting.failurefixtures.AfterMethodFailureFixture"/>
+            <class name="com.ai.atf.core.reporting.failurefixtures.BeforeMethodFailureFixture"/>
+            <class name="com.ai.atf.core.reporting.failurefixtures.TestBodyFailureFixture"/>
+            <class name="com.ai.atf.core.reporting.failurefixtures.AfterMethodFailureFixture"/>
         </classes>
     </test>
 </suite>

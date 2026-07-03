@@ -2,7 +2,7 @@
 <suite name="ATF Core Smoke Contracts" verbose="1">
     <test name="core-skill-boundary-smoke">
         <classes>
-            <class name="com.endava.ai.atf.core.support.profiles.AtfCoreSmokeProfileContractTest"/>
+            <class name="com.ai.atf.core.support.profiles.AtfCoreSmokeProfileContractTest"/>
         </classes>
     </test>
 </suite>

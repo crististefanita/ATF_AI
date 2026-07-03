@@ -3251,7 +3251,7 @@ same as Selenium's.
   � Wait for input value: profile street equals expected value
   ? FAIL: Validation failed for profile street
 [ERROR] Tests run: 70, Failures: 15, Errors: 0, Skipped: 50, Time elapsed: 409.8 s <<< FAILURE! -- in TestSuite
-[ERROR] com.endava.ai.ui.tests.adminorderstatus.AdminOrderStatusRun01OnHoldTests.createOrderStatusTransition -- Time elapsed: 29.74 s <<< FAILURE!
+[ERROR] com.ai.ui.tests.adminorderstatus.AdminOrderStatusRun01OnHoldTests.createOrderStatusTransition -- Time elapsed: 29.74 s <<< FAILURE!
 org.openqa.selenium.InvalidSelectorException: 
 invalid selector: An invalid or illegal selector was specified
   (Session info: chrome=149.0.7827.201)
@@ -3279,14 +3279,14 @@ Session ID: af23df104dfa78922fdc0e10903ff8bb
 	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:194)
 	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:190)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
-	at com.endava.ai.ui.core.engine.selenium.element.SeleniumElementActions.waitForVisible(SeleniumElementActions.java:117)
-	at com.endava.ai.ui.core.engine.selenium.SeleniumEngine.waitForVisible(SeleniumEngine.java:141)
-	at com.endava.ai.ui.support.wait.WaitUtils.waitForVisible(WaitUtils.java:40)
-	at com.endava.ai.ui.support.actions.AccountInvoiceActions.payAndConfirm(AccountInvoiceActions.java:224)
-	at com.endava.ai.ui.support.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoices(AccountInvoiceActions.java:37)
-	at com.endava.ai.ui.support.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoiceDetails(AccountInvoiceActions.java:59)
-	at com.endava.ai.ui.support.actions.AdminOrderStatusActions.createInvoiceThenChangeStatusAsAdmin(AdminOrderStatusActions.java:22)
-	at com.endava.ai.ui.tests.adminorderstatus.AdminOrderStatusRun01OnHoldTests.createOrderStatusTransition(AdminOrderStatusRun01OnHoldTests.java:17)
+	at com.ai.ui.core.engine.selenium.element.SeleniumElementActions.waitForVisible(SeleniumElementActions.java:117)
+	at com.ai.ui.core.engine.selenium.SeleniumEngine.waitForVisible(SeleniumEngine.java:141)
+	at com.ai.ui.support.wait.WaitUtils.waitForVisible(WaitUtils.java:40)
+	at com.ai.ui.support.actions.AccountInvoiceActions.payAndConfirm(AccountInvoiceActions.java:224)
+	at com.ai.ui.support.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoices(AccountInvoiceActions.java:37)
+	at com.ai.ui.support.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoiceDetails(AccountInvoiceActions.java:59)
+	at com.ai.ui.support.actions.AdminOrderStatusActions.createInvoiceThenChangeStatusAsAdmin(AdminOrderStatusActions.java:22)
+	at com.ai.ui.tests.adminorderstatus.AdminOrderStatusRun01OnHoldTests.createOrderStatusTransition(AdminOrderStatusRun01OnHoldTests.java:17)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -3346,7 +3346,7 @@ Session ID: af23df104dfa78922fdc0e10903ff8bb
 	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:361)
 	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:314)
 
-[ERROR] com.endava.ai.ui.tests.adminorderstatus.AdminOrderStatusRun02AwaitingShipmentTests.createOrderStatusTransition -- Time elapsed: 28.99 s <<< FAILURE!
+[ERROR] com.ai.ui.tests.adminorderstatus.AdminOrderStatusRun02AwaitingShipmentTests.createOrderStatusTransition -- Time elapsed: 28.99 s <<< FAILURE!
 org.openqa.selenium.InvalidSelectorException: 
 invalid selector: An invalid or illegal selector was specified
   (Session info: chrome=149.0.7827.201)
@@ -3374,14 +3374,14 @@ Session ID: 3310997578a9a6bae2d21a840f3c925e
 	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:194)
 	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:190)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
-	at com.endava.ai.ui.core.engine.selenium.element.SeleniumElementActions.waitForVisible(SeleniumElementActions.java:117)
-	at com.endava.ai.ui.core.engine.selenium.SeleniumEngine.waitForVisible(SeleniumEngine.java:141)
-	at com.endava.ai.ui.support.wait.WaitUtils.waitForVisible(WaitUtils.java:40)
-	at com.endava.ai.ui.support.actions.AccountInvoiceActions.payAndConfirm(AccountInvoiceActions.java:224)
-	at com.endava.ai.ui.support.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoices(AccountInvoiceActions.java:37)
-	at com.endava.ai.ui.support.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoiceDetails(AccountInvoiceActions.java:59)
-	at com.endava.ai.ui.support.actions.AdminOrderStatusActions.createInvoiceThenChangeStatusAsAdmin(AdminOrderStatusActions.java:22)
-	at com.endava.ai.ui.tests.adminorderstatus.AdminOrderStatusRun02AwaitingShipmentTests.createOrderStatusTransition(AdminOrderStatusRun02AwaitingShipmentTests.java:17)
+	at com.ai.ui.core.engine.selenium.element.SeleniumElementActions.waitForVisible(SeleniumElementActions.java:117)
+	at com.ai.ui.core.engine.selenium.SeleniumEngine.waitForVisible(SeleniumEngine.java:141)
+	at com.ai.ui.support.wait.WaitUtils.waitForVisible(WaitUtils.java:40)
+	at com.ai.ui.support.actions.AccountInvoiceActions.payAndConfirm(AccountInvoiceActions.java:224)
+	at com.ai.ui.support.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoices(AccountInvoiceActions.java:37)
+	at com.ai.ui.support.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoiceDetails(AccountInvoiceActions.java:59)
+	at com.ai.ui.support.actions.AdminOrderStatusActions.createInvoiceThenChangeStatusAsAdmin(AdminOrderStatusActions.java:22)
+	at com.ai.ui.tests.adminorderstatus.AdminOrderStatusRun02AwaitingShipmentTests.createOrderStatusTransition(AdminOrderStatusRun02AwaitingShipmentTests.java:17)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -3441,7 +3441,7 @@ Session ID: 3310997578a9a6bae2d21a840f3c925e
 	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:361)
 	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:314)
 
-[ERROR] com.endava.ai.ui.tests.adminorderstatus.AdminOrderStatusRun03ShippedTests.createOrderStatusTransition -- Time elapsed: 25.38 s <<< FAILURE!
+[ERROR] com.ai.ui.tests.adminorderstatus.AdminOrderStatusRun03ShippedTests.createOrderStatusTransition -- Time elapsed: 25.38 s <<< FAILURE!
 org.openqa.selenium.InvalidSelectorException: 
 invalid selector: An invalid or illegal selector was specified
   (Session info: chrome=149.0.7827.201)
@@ -3469,14 +3469,14 @@ Session ID: 43bea20dc88b6bb353bad1a38e5f75df
 	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:194)
 	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:190)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
-	at com.endava.ai.ui.core.engine.selenium.element.SeleniumElementActions.waitForVisible(SeleniumElementActions.java:117)
-	at com.endava.ai.ui.core.engine.selenium.SeleniumEngine.waitForVisible(SeleniumEngine.java:141)
-	at com.endava.ai.ui.support.wait.WaitUtils.waitForVisible(WaitUtils.java:40)
-	at com.endava.ai.ui.support.actions.AccountInvoiceActions.payAndConfirm(AccountInvoiceActions.java:224)
-	at com.endava.ai.ui.support.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoices(AccountInvoiceActions.java:37)
-	at com.endava.ai.ui.support.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoiceDetails(AccountInvoiceActions.java:59)
-	at com.endava.ai.ui.support.actions.AdminOrderStatusActions.createInvoiceThenChangeStatusAsAdmin(AdminOrderStatusActions.java:22)
-	at com.endava.ai.ui.tests.adminorderstatus.AdminOrderStatusRun03ShippedTests.createOrderStatusTransition(AdminOrderStatusRun03ShippedTests.java:17)
+	at com.ai.ui.core.engine.selenium.element.SeleniumElementActions.waitForVisible(SeleniumElementActions.java:117)
+	at com.ai.ui.core.engine.selenium.SeleniumEngine.waitForVisible(SeleniumEngine.java:141)
+	at com.ai.ui.support.wait.WaitUtils.waitForVisible(WaitUtils.java:40)
+	at com.ai.ui.support.actions.AccountInvoiceActions.payAndConfirm(AccountInvoiceActions.java:224)
+	at com.ai.ui.support.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoices(AccountInvoiceActions.java:37)
+	at com.ai.ui.support.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoiceDetails(AccountInvoiceActions.java:59)
+	at com.ai.ui.support.actions.AdminOrderStatusActions.createInvoiceThenChangeStatusAsAdmin(AdminOrderStatusActions.java:22)
+	at com.ai.ui.tests.adminorderstatus.AdminOrderStatusRun03ShippedTests.createOrderStatusTransition(AdminOrderStatusRun03ShippedTests.java:17)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -3536,7 +3536,7 @@ Session ID: 43bea20dc88b6bb353bad1a38e5f75df
 	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:361)
 	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:314)
 
-[ERROR] com.endava.ai.ui.tests.adminorderstatus.AdminOrderStatusRun04CompletedTests.createOrderStatusTransition -- Time elapsed: 26.65 s <<< FAILURE!
+[ERROR] com.ai.ui.tests.adminorderstatus.AdminOrderStatusRun04CompletedTests.createOrderStatusTransition -- Time elapsed: 26.65 s <<< FAILURE!
 org.openqa.selenium.InvalidSelectorException: 
 invalid selector: An invalid or illegal selector was specified
   (Session info: chrome=149.0.7827.201)
@@ -3564,14 +3564,14 @@ Session ID: 67e8004c6339b05e89fdbd93e962e336
 	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:194)
 	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:190)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
-	at com.endava.ai.ui.core.engine.selenium.element.SeleniumElementActions.waitForVisible(SeleniumElementActions.java:117)
-	at com.endava.ai.ui.core.engine.selenium.SeleniumEngine.waitForVisible(SeleniumEngine.java:141)
-	at com.endava.ai.ui.support.wait.WaitUtils.waitForVisible(WaitUtils.java:40)
-	at com.endava.ai.ui.support.actions.AccountInvoiceActions.payAndConfirm(AccountInvoiceActions.java:224)
-	at com.endava.ai.ui.support.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoices(AccountInvoiceActions.java:37)
-	at com.endava.ai.ui.support.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoiceDetails(AccountInvoiceActions.java:59)
-	at com.endava.ai.ui.support.actions.AdminOrderStatusActions.createInvoiceThenChangeStatusAsAdmin(AdminOrderStatusActions.java:22)
-	at com.endava.ai.ui.tests.adminorderstatus.AdminOrderStatusRun04CompletedTests.createOrderStatusTransition(AdminOrderStatusRun04CompletedTests.java:17)
+	at com.ai.ui.core.engine.selenium.element.SeleniumElementActions.waitForVisible(SeleniumElementActions.java:117)
+	at com.ai.ui.core.engine.selenium.SeleniumEngine.waitForVisible(SeleniumEngine.java:141)
+	at com.ai.ui.support.wait.WaitUtils.waitForVisible(WaitUtils.java:40)
+	at com.ai.ui.support.actions.AccountInvoiceActions.payAndConfirm(AccountInvoiceActions.java:224)
+	at com.ai.ui.support.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoices(AccountInvoiceActions.java:37)
+	at com.ai.ui.support.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoiceDetails(AccountInvoiceActions.java:59)
+	at com.ai.ui.support.actions.AdminOrderStatusActions.createInvoiceThenChangeStatusAsAdmin(AdminOrderStatusActions.java:22)
+	at com.ai.ui.tests.adminorderstatus.AdminOrderStatusRun04CompletedTests.createOrderStatusTransition(AdminOrderStatusRun04CompletedTests.java:17)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -3631,7 +3631,7 @@ Session ID: 67e8004c6339b05e89fdbd93e962e336
 	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:361)
 	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:314)
 
-[ERROR] com.endava.ai.ui.tests.adminorderstatus.AdminOrderStatusRun05ReopenTests.createOrderStatusTransition -- Time elapsed: 22.18 s <<< FAILURE!
+[ERROR] com.ai.ui.tests.adminorderstatus.AdminOrderStatusRun05ReopenTests.createOrderStatusTransition -- Time elapsed: 22.18 s <<< FAILURE!
 org.openqa.selenium.InvalidSelectorException: 
 invalid selector: An invalid or illegal selector was specified
   (Session info: chrome=149.0.7827.201)
@@ -3659,14 +3659,14 @@ Session ID: 9bee21bdcd7ee78b732ea29264f548b2
 	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:194)
 	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:190)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
-	at com.endava.ai.ui.core.engine.selenium.element.SeleniumElementActions.waitForVisible(SeleniumElementActions.java:117)
-	at com.endava.ai.ui.core.engine.selenium.SeleniumEngine.waitForVisible(SeleniumEngine.java:141)
-	at com.endava.ai.ui.support.wait.WaitUtils.waitForVisible(WaitUtils.java:40)
-	at com.endava.ai.ui.support.actions.AccountInvoiceActions.payAndConfirm(AccountInvoiceActions.java:224)
-	at com.endava.ai.ui.support.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoices(AccountInvoiceActions.java:37)
-	at com.endava.ai.ui.support.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoiceDetails(AccountInvoiceActions.java:59)
-	at com.endava.ai.ui.support.actions.AdminOrderStatusActions.createInvoiceThenChangeStatusAsAdmin(AdminOrderStatusActions.java:22)
-	at com.endava.ai.ui.tests.adminorderstatus.AdminOrderStatusRun05ReopenTests.createOrderStatusTransition(AdminOrderStatusRun05ReopenTests.java:17)
+	at com.ai.ui.core.engine.selenium.element.SeleniumElementActions.waitForVisible(SeleniumElementActions.java:117)
+	at com.ai.ui.core.engine.selenium.SeleniumEngine.waitForVisible(SeleniumEngine.java:141)
+	at com.ai.ui.support.wait.WaitUtils.waitForVisible(WaitUtils.java:40)
+	at com.ai.ui.support.actions.AccountInvoiceActions.payAndConfirm(AccountInvoiceActions.java:224)
+	at com.ai.ui.support.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoices(AccountInvoiceActions.java:37)
+	at com.ai.ui.support.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoiceDetails(AccountInvoiceActions.java:59)
+	at com.ai.ui.support.actions.AdminOrderStatusActions.createInvoiceThenChangeStatusAsAdmin(AdminOrderStatusActions.java:22)
+	at com.ai.ui.tests.adminorderstatus.AdminOrderStatusRun05ReopenTests.createOrderStatusTransition(AdminOrderStatusRun05ReopenTests.java:17)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -3726,7 +3726,7 @@ Session ID: 9bee21bdcd7ee78b732ea29264f548b2
 	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:361)
 	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:314)
 
-[ERROR] com.endava.ai.ui.tests.AdminOrderStatusRun01OnHoldTests.createOrderStatusTransition -- Time elapsed: 27.74 s <<< FAILURE!
+[ERROR] com.ai.ui.tests.AdminOrderStatusRun01OnHoldTests.createOrderStatusTransition -- Time elapsed: 27.74 s <<< FAILURE!
 org.openqa.selenium.InvalidSelectorException: 
 invalid selector: An invalid or illegal selector was specified
   (Session info: chrome=149.0.7827.201)
@@ -3754,14 +3754,14 @@ Session ID: b8cf7510fa6ee1c223e7dda940978dc8
 	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:194)
 	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:190)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
-	at com.endava.ai.ui.core.engine.selenium.element.SeleniumElementActions.waitForVisible(SeleniumElementActions.java:117)
-	at com.endava.ai.ui.core.engine.selenium.SeleniumEngine.waitForVisible(SeleniumEngine.java:141)
-	at com.endava.ai.ui.support.wait.WaitUtils.waitForVisible(WaitUtils.java:40)
-	at com.endava.ai.ui.actions.AccountInvoiceActions.payAndConfirm(AccountInvoiceActions.java:224)
-	at com.endava.ai.ui.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoices(AccountInvoiceActions.java:37)
-	at com.endava.ai.ui.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoiceDetails(AccountInvoiceActions.java:59)
-	at com.endava.ai.ui.actions.AdminOrderStatusActions.createInvoiceThenChangeStatusAsAdmin(AdminOrderStatusActions.java:22)
-	at com.endava.ai.ui.tests.AdminOrderStatusRun01OnHoldTests.createOrderStatusTransition(AdminOrderStatusRun01OnHoldTests.java:17)
+	at com.ai.ui.core.engine.selenium.element.SeleniumElementActions.waitForVisible(SeleniumElementActions.java:117)
+	at com.ai.ui.core.engine.selenium.SeleniumEngine.waitForVisible(SeleniumEngine.java:141)
+	at com.ai.ui.support.wait.WaitUtils.waitForVisible(WaitUtils.java:40)
+	at com.ai.ui.actions.AccountInvoiceActions.payAndConfirm(AccountInvoiceActions.java:224)
+	at com.ai.ui.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoices(AccountInvoiceActions.java:37)
+	at com.ai.ui.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoiceDetails(AccountInvoiceActions.java:59)
+	at com.ai.ui.actions.AdminOrderStatusActions.createInvoiceThenChangeStatusAsAdmin(AdminOrderStatusActions.java:22)
+	at com.ai.ui.tests.AdminOrderStatusRun01OnHoldTests.createOrderStatusTransition(AdminOrderStatusRun01OnHoldTests.java:17)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -3821,7 +3821,7 @@ Session ID: b8cf7510fa6ee1c223e7dda940978dc8
 	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:361)
 	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:314)
 
-[ERROR] com.endava.ai.ui.tests.AdminOrderStatusRun02AwaitingShipmentTests.createOrderStatusTransition -- Time elapsed: 22.87 s <<< FAILURE!
+[ERROR] com.ai.ui.tests.AdminOrderStatusRun02AwaitingShipmentTests.createOrderStatusTransition -- Time elapsed: 22.87 s <<< FAILURE!
 org.openqa.selenium.InvalidSelectorException: 
 invalid selector: An invalid or illegal selector was specified
   (Session info: chrome=149.0.7827.201)
@@ -3849,14 +3849,14 @@ Session ID: 132c2fe3c0336c2a9337b5327cc51190
 	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:194)
 	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:190)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
-	at com.endava.ai.ui.core.engine.selenium.element.SeleniumElementActions.waitForVisible(SeleniumElementActions.java:117)
-	at com.endava.ai.ui.core.engine.selenium.SeleniumEngine.waitForVisible(SeleniumEngine.java:141)
-	at com.endava.ai.ui.support.wait.WaitUtils.waitForVisible(WaitUtils.java:40)
-	at com.endava.ai.ui.actions.AccountInvoiceActions.payAndConfirm(AccountInvoiceActions.java:224)
-	at com.endava.ai.ui.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoices(AccountInvoiceActions.java:37)
-	at com.endava.ai.ui.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoiceDetails(AccountInvoiceActions.java:59)
-	at com.endava.ai.ui.actions.AdminOrderStatusActions.createInvoiceThenChangeStatusAsAdmin(AdminOrderStatusActions.java:22)
-	at com.endava.ai.ui.tests.AdminOrderStatusRun02AwaitingShipmentTests.createOrderStatusTransition(AdminOrderStatusRun02AwaitingShipmentTests.java:17)
+	at com.ai.ui.core.engine.selenium.element.SeleniumElementActions.waitForVisible(SeleniumElementActions.java:117)
+	at com.ai.ui.core.engine.selenium.SeleniumEngine.waitForVisible(SeleniumEngine.java:141)
+	at com.ai.ui.support.wait.WaitUtils.waitForVisible(WaitUtils.java:40)
+	at com.ai.ui.actions.AccountInvoiceActions.payAndConfirm(AccountInvoiceActions.java:224)
+	at com.ai.ui.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoices(AccountInvoiceActions.java:37)
+	at com.ai.ui.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoiceDetails(AccountInvoiceActions.java:59)
+	at com.ai.ui.actions.AdminOrderStatusActions.createInvoiceThenChangeStatusAsAdmin(AdminOrderStatusActions.java:22)
+	at com.ai.ui.tests.AdminOrderStatusRun02AwaitingShipmentTests.createOrderStatusTransition(AdminOrderStatusRun02AwaitingShipmentTests.java:17)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -3916,7 +3916,7 @@ Session ID: 132c2fe3c0336c2a9337b5327cc51190
 	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:361)
 	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:314)
 
-[ERROR] com.endava.ai.ui.tests.AdminOrderStatusRun03ShippedTests.createOrderStatusTransition -- Time elapsed: 24.15 s <<< FAILURE!
+[ERROR] com.ai.ui.tests.AdminOrderStatusRun03ShippedTests.createOrderStatusTransition -- Time elapsed: 24.15 s <<< FAILURE!
 org.openqa.selenium.InvalidSelectorException: 
 invalid selector: An invalid or illegal selector was specified
   (Session info: chrome=149.0.7827.201)
@@ -3944,14 +3944,14 @@ Session ID: 408d8d41037feec9c332fbb42a42ac12
 	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:194)
 	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:190)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
-	at com.endava.ai.ui.core.engine.selenium.element.SeleniumElementActions.waitForVisible(SeleniumElementActions.java:117)
-	at com.endava.ai.ui.core.engine.selenium.SeleniumEngine.waitForVisible(SeleniumEngine.java:141)
-	at com.endava.ai.ui.support.wait.WaitUtils.waitForVisible(WaitUtils.java:40)
-	at com.endava.ai.ui.actions.AccountInvoiceActions.payAndConfirm(AccountInvoiceActions.java:224)
-	at com.endava.ai.ui.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoices(AccountInvoiceActions.java:37)
-	at com.endava.ai.ui.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoiceDetails(AccountInvoiceActions.java:59)
-	at com.endava.ai.ui.actions.AdminOrderStatusActions.createInvoiceThenChangeStatusAsAdmin(AdminOrderStatusActions.java:22)
-	at com.endava.ai.ui.tests.AdminOrderStatusRun03ShippedTests.createOrderStatusTransition(AdminOrderStatusRun03ShippedTests.java:17)
+	at com.ai.ui.core.engine.selenium.element.SeleniumElementActions.waitForVisible(SeleniumElementActions.java:117)
+	at com.ai.ui.core.engine.selenium.SeleniumEngine.waitForVisible(SeleniumEngine.java:141)
+	at com.ai.ui.support.wait.WaitUtils.waitForVisible(WaitUtils.java:40)
+	at com.ai.ui.actions.AccountInvoiceActions.payAndConfirm(AccountInvoiceActions.java:224)
+	at com.ai.ui.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoices(AccountInvoiceActions.java:37)
+	at com.ai.ui.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoiceDetails(AccountInvoiceActions.java:59)
+	at com.ai.ui.actions.AdminOrderStatusActions.createInvoiceThenChangeStatusAsAdmin(AdminOrderStatusActions.java:22)
+	at com.ai.ui.tests.AdminOrderStatusRun03ShippedTests.createOrderStatusTransition(AdminOrderStatusRun03ShippedTests.java:17)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -4011,7 +4011,7 @@ Session ID: 408d8d41037feec9c332fbb42a42ac12
 	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:361)
 	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:314)
 
-[ERROR] com.endava.ai.ui.tests.AdminOrderStatusRun04CompletedTests.createOrderStatusTransition -- Time elapsed: 26.18 s <<< FAILURE!
+[ERROR] com.ai.ui.tests.AdminOrderStatusRun04CompletedTests.createOrderStatusTransition -- Time elapsed: 26.18 s <<< FAILURE!
 org.openqa.selenium.InvalidSelectorException: 
 invalid selector: An invalid or illegal selector was specified
   (Session info: chrome=149.0.7827.201)
@@ -4039,14 +4039,14 @@ Session ID: 758d8a60a67159b9d1865b93a3337469
 	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:194)
 	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:190)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
-	at com.endava.ai.ui.core.engine.selenium.element.SeleniumElementActions.waitForVisible(SeleniumElementActions.java:117)
-	at com.endava.ai.ui.core.engine.selenium.SeleniumEngine.waitForVisible(SeleniumEngine.java:141)
-	at com.endava.ai.ui.support.wait.WaitUtils.waitForVisible(WaitUtils.java:40)
-	at com.endava.ai.ui.actions.AccountInvoiceActions.payAndConfirm(AccountInvoiceActions.java:224)
-	at com.endava.ai.ui.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoices(AccountInvoiceActions.java:37)
-	at com.endava.ai.ui.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoiceDetails(AccountInvoiceActions.java:59)
-	at com.endava.ai.ui.actions.AdminOrderStatusActions.createInvoiceThenChangeStatusAsAdmin(AdminOrderStatusActions.java:22)
-	at com.endava.ai.ui.tests.AdminOrderStatusRun04CompletedTests.createOrderStatusTransition(AdminOrderStatusRun04CompletedTests.java:17)
+	at com.ai.ui.core.engine.selenium.element.SeleniumElementActions.waitForVisible(SeleniumElementActions.java:117)
+	at com.ai.ui.core.engine.selenium.SeleniumEngine.waitForVisible(SeleniumEngine.java:141)
+	at com.ai.ui.support.wait.WaitUtils.waitForVisible(WaitUtils.java:40)
+	at com.ai.ui.actions.AccountInvoiceActions.payAndConfirm(AccountInvoiceActions.java:224)
+	at com.ai.ui.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoices(AccountInvoiceActions.java:37)
+	at com.ai.ui.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoiceDetails(AccountInvoiceActions.java:59)
+	at com.ai.ui.actions.AdminOrderStatusActions.createInvoiceThenChangeStatusAsAdmin(AdminOrderStatusActions.java:22)
+	at com.ai.ui.tests.AdminOrderStatusRun04CompletedTests.createOrderStatusTransition(AdminOrderStatusRun04CompletedTests.java:17)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -4106,7 +4106,7 @@ Session ID: 758d8a60a67159b9d1865b93a3337469
 	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:361)
 	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:314)
 
-[ERROR] com.endava.ai.ui.tests.AdminOrderStatusRun05ReopenTests.createOrderStatusTransition -- Time elapsed: 28.84 s <<< FAILURE!
+[ERROR] com.ai.ui.tests.AdminOrderStatusRun05ReopenTests.createOrderStatusTransition -- Time elapsed: 28.84 s <<< FAILURE!
 org.openqa.selenium.InvalidSelectorException: 
 invalid selector: An invalid or illegal selector was specified
   (Session info: chrome=149.0.7827.201)
@@ -4134,14 +4134,14 @@ Session ID: 83ed10880edc7efd1b5a7ce1d65e811d
 	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:194)
 	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:190)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
-	at com.endava.ai.ui.core.engine.selenium.element.SeleniumElementActions.waitForVisible(SeleniumElementActions.java:117)
-	at com.endava.ai.ui.core.engine.selenium.SeleniumEngine.waitForVisible(SeleniumEngine.java:141)
-	at com.endava.ai.ui.support.wait.WaitUtils.waitForVisible(WaitUtils.java:40)
-	at com.endava.ai.ui.actions.AccountInvoiceActions.payAndConfirm(AccountInvoiceActions.java:224)
-	at com.endava.ai.ui.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoices(AccountInvoiceActions.java:37)
-	at com.endava.ai.ui.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoiceDetails(AccountInvoiceActions.java:59)
-	at com.endava.ai.ui.actions.AdminOrderStatusActions.createInvoiceThenChangeStatusAsAdmin(AdminOrderStatusActions.java:22)
-	at com.endava.ai.ui.tests.AdminOrderStatusRun05ReopenTests.createOrderStatusTransition(AdminOrderStatusRun05ReopenTests.java:17)
+	at com.ai.ui.core.engine.selenium.element.SeleniumElementActions.waitForVisible(SeleniumElementActions.java:117)
+	at com.ai.ui.core.engine.selenium.SeleniumEngine.waitForVisible(SeleniumEngine.java:141)
+	at com.ai.ui.support.wait.WaitUtils.waitForVisible(WaitUtils.java:40)
+	at com.ai.ui.actions.AccountInvoiceActions.payAndConfirm(AccountInvoiceActions.java:224)
+	at com.ai.ui.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoices(AccountInvoiceActions.java:37)
+	at com.ai.ui.actions.AccountInvoiceActions.createRegisteredInvoiceAndOpenInvoiceDetails(AccountInvoiceActions.java:59)
+	at com.ai.ui.actions.AdminOrderStatusActions.createInvoiceThenChangeStatusAsAdmin(AdminOrderStatusActions.java:22)
+	at com.ai.ui.tests.AdminOrderStatusRun05ReopenTests.createOrderStatusTransition(AdminOrderStatusRun05ReopenTests.java:17)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -4201,13 +4201,13 @@ Session ID: 83ed10880edc7efd1b5a7ce1d65e811d
 	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:361)
 	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:314)
 
-[ERROR] com.endava.ai.ui.tests.ProfileContactAddressMemoryTests.profileKeepsRegisteredCityAndState -- Time elapsed: 21.27 s <<< FAILURE!
+[ERROR] com.ai.ui.tests.ProfileContactAddressMemoryTests.profileKeepsRegisteredCityAndState -- Time elapsed: 21.27 s <<< FAILURE!
 java.lang.AssertionError: Timed out waiting for input value: profile city equals expected value
-	at com.endava.ai.ui.support.wait.WaitUtils.waitForInputValue(WaitUtils.java:97)
-	at com.endava.ai.ui.support.wait.WaitUtils.waitForInputValue(WaitUtils.java:80)
-	at com.endava.ai.ui.support.validation.ProfileAccountValidation.assertValue(ProfileAccountValidation.java:68)
-	at com.endava.ai.ui.support.validation.ProfileAccountValidation.assertProfileAddress(ProfileAccountValidation.java:26)
-	at com.endava.ai.ui.tests.ProfileContactAddressMemoryTests.profileKeepsRegisteredCityAndState(ProfileContactAddressMemoryTests.java:41)
+	at com.ai.ui.support.wait.WaitUtils.waitForInputValue(WaitUtils.java:97)
+	at com.ai.ui.support.wait.WaitUtils.waitForInputValue(WaitUtils.java:80)
+	at com.ai.ui.support.validation.ProfileAccountValidation.assertValue(ProfileAccountValidation.java:68)
+	at com.ai.ui.support.validation.ProfileAccountValidation.assertProfileAddress(ProfileAccountValidation.java:26)
+	at com.ai.ui.tests.ProfileContactAddressMemoryTests.profileKeepsRegisteredCityAndState(ProfileContactAddressMemoryTests.java:41)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -4269,13 +4269,13 @@ java.lang.AssertionError: Timed out waiting for input value: profile city equals
 	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:361)
 	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:314)
 
-[ERROR] com.endava.ai.ui.tests.ProfileContactAddressMemoryTests.profileKeepsRegisteredCountryCode -- Time elapsed: 21.28 s <<< FAILURE!
+[ERROR] com.ai.ui.tests.ProfileContactAddressMemoryTests.profileKeepsRegisteredCountryCode -- Time elapsed: 21.28 s <<< FAILURE!
 java.lang.AssertionError: Timed out waiting for input value: profile city equals expected value
-	at com.endava.ai.ui.support.wait.WaitUtils.waitForInputValue(WaitUtils.java:97)
-	at com.endava.ai.ui.support.wait.WaitUtils.waitForInputValue(WaitUtils.java:80)
-	at com.endava.ai.ui.support.validation.ProfileAccountValidation.assertValue(ProfileAccountValidation.java:68)
-	at com.endava.ai.ui.support.validation.ProfileAccountValidation.assertProfileAddress(ProfileAccountValidation.java:26)
-	at com.endava.ai.ui.tests.ProfileContactAddressMemoryTests.profileKeepsRegisteredCountryCode(ProfileContactAddressMemoryTests.java:47)
+	at com.ai.ui.support.wait.WaitUtils.waitForInputValue(WaitUtils.java:97)
+	at com.ai.ui.support.wait.WaitUtils.waitForInputValue(WaitUtils.java:80)
+	at com.ai.ui.support.validation.ProfileAccountValidation.assertValue(ProfileAccountValidation.java:68)
+	at com.ai.ui.support.validation.ProfileAccountValidation.assertProfileAddress(ProfileAccountValidation.java:26)
+	at com.ai.ui.tests.ProfileContactAddressMemoryTests.profileKeepsRegisteredCountryCode(ProfileContactAddressMemoryTests.java:47)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -4337,13 +4337,13 @@ java.lang.AssertionError: Timed out waiting for input value: profile city equals
 	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:361)
 	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:314)
 
-[ERROR] com.endava.ai.ui.tests.ProfileContactAddressMemoryTests.profileKeepsRegisteredPhone -- Time elapsed: 21.22 s <<< FAILURE!
+[ERROR] com.ai.ui.tests.ProfileContactAddressMemoryTests.profileKeepsRegisteredPhone -- Time elapsed: 21.22 s <<< FAILURE!
 java.lang.AssertionError: Timed out waiting for input value: profile street equals expected value
-	at com.endava.ai.ui.support.wait.WaitUtils.waitForInputValue(WaitUtils.java:97)
-	at com.endava.ai.ui.support.wait.WaitUtils.waitForInputValue(WaitUtils.java:80)
-	at com.endava.ai.ui.support.validation.ProfileAccountValidation.assertValue(ProfileAccountValidation.java:68)
-	at com.endava.ai.ui.support.validation.ProfileAccountValidation.assertProfileContact(ProfileAccountValidation.java:21)
-	at com.endava.ai.ui.tests.ProfileContactAddressMemoryTests.profileKeepsRegisteredPhone(ProfileContactAddressMemoryTests.java:23)
+	at com.ai.ui.support.wait.WaitUtils.waitForInputValue(WaitUtils.java:97)
+	at com.ai.ui.support.wait.WaitUtils.waitForInputValue(WaitUtils.java:80)
+	at com.ai.ui.support.validation.ProfileAccountValidation.assertValue(ProfileAccountValidation.java:68)
+	at com.ai.ui.support.validation.ProfileAccountValidation.assertProfileContact(ProfileAccountValidation.java:21)
+	at com.ai.ui.tests.ProfileContactAddressMemoryTests.profileKeepsRegisteredPhone(ProfileContactAddressMemoryTests.java:23)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -4405,13 +4405,13 @@ java.lang.AssertionError: Timed out waiting for input value: profile street equa
 	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:361)
 	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:314)
 
-[ERROR] com.endava.ai.ui.tests.ProfileContactAddressMemoryTests.profileKeepsRegisteredPostalCode -- Time elapsed: 21.17 s <<< FAILURE!
+[ERROR] com.ai.ui.tests.ProfileContactAddressMemoryTests.profileKeepsRegisteredPostalCode -- Time elapsed: 21.17 s <<< FAILURE!
 java.lang.AssertionError: Timed out waiting for input value: profile city equals expected value
-	at com.endava.ai.ui.support.wait.WaitUtils.waitForInputValue(WaitUtils.java:97)
-	at com.endava.ai.ui.support.wait.WaitUtils.waitForInputValue(WaitUtils.java:80)
-	at com.endava.ai.ui.support.validation.ProfileAccountValidation.assertValue(ProfileAccountValidation.java:68)
-	at com.endava.ai.ui.support.validation.ProfileAccountValidation.assertProfileAddress(ProfileAccountValidation.java:26)
-	at com.endava.ai.ui.tests.ProfileContactAddressMemoryTests.profileKeepsRegisteredPostalCode(ProfileContactAddressMemoryTests.java:35)
+	at com.ai.ui.support.wait.WaitUtils.waitForInputValue(WaitUtils.java:97)
+	at com.ai.ui.support.wait.WaitUtils.waitForInputValue(WaitUtils.java:80)
+	at com.ai.ui.support.validation.ProfileAccountValidation.assertValue(ProfileAccountValidation.java:68)
+	at com.ai.ui.support.validation.ProfileAccountValidation.assertProfileAddress(ProfileAccountValidation.java:26)
+	at com.ai.ui.tests.ProfileContactAddressMemoryTests.profileKeepsRegisteredPostalCode(ProfileContactAddressMemoryTests.java:35)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -4473,13 +4473,13 @@ java.lang.AssertionError: Timed out waiting for input value: profile city equals
 	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:361)
 	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:314)
 
-[ERROR] com.endava.ai.ui.tests.ProfileContactAddressMemoryTests.profileKeepsRegisteredStreet -- Time elapsed: 21.07 s <<< FAILURE!
+[ERROR] com.ai.ui.tests.ProfileContactAddressMemoryTests.profileKeepsRegisteredStreet -- Time elapsed: 21.07 s <<< FAILURE!
 java.lang.AssertionError: Timed out waiting for input value: profile street equals expected value
-	at com.endava.ai.ui.support.wait.WaitUtils.waitForInputValue(WaitUtils.java:97)
-	at com.endava.ai.ui.support.wait.WaitUtils.waitForInputValue(WaitUtils.java:80)
-	at com.endava.ai.ui.support.validation.ProfileAccountValidation.assertValue(ProfileAccountValidation.java:68)
-	at com.endava.ai.ui.support.validation.ProfileAccountValidation.assertProfileContact(ProfileAccountValidation.java:21)
-	at com.endava.ai.ui.tests.ProfileContactAddressMemoryTests.profileKeepsRegisteredStreet(ProfileContactAddressMemoryTests.java:29)
+	at com.ai.ui.support.wait.WaitUtils.waitForInputValue(WaitUtils.java:97)
+	at com.ai.ui.support.wait.WaitUtils.waitForInputValue(WaitUtils.java:80)
+	at com.ai.ui.support.validation.ProfileAccountValidation.assertValue(ProfileAccountValidation.java:68)
+	at com.ai.ui.support.validation.ProfileAccountValidation.assertProfileContact(ProfileAccountValidation.java:21)
+	at com.ai.ui.tests.ProfileContactAddressMemoryTests.profileKeepsRegisteredStreet(ProfileContactAddressMemoryTests.java:29)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)

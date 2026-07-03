@@ -214,8 +214,8 @@ contracts:
     kind: contract
     area: REPORTING_LIFECYCLE
     owner: ATF-core Extent readability contract
-    expected: Every ATF contract test class in com.endava.ai.atf is either listener-backed or explicitly self-auditing for Extent rendering.
-    observed: The test walks source files under src/test/java/com/endava/ai/atf and checks report auditability for every executable contract suite.
+    expected: Every ATF contract test class in com.ai.atf is either listener-backed or explicitly self-auditing for Extent rendering.
+    observed: The test walks source files under src/test/java/com/ai/atf and checks report auditability for every executable contract suite.
     repairHint: Add @Listeners(TestListener.class), or use @NoFrameworkReporting with extent-only only for self-auditing Extent browser/report tests.
   - id: core.contract-narrative.base-api-runtime-suite
     kind: suite
@@ -321,7 +321,7 @@ contracts:
     owner: ATF core aggregate runtime ownership
     expected: Reusable aggregate report writers, artifact utilities, runtime audit mappers and value objects live in main, while TestNG contract fixtures stay in test.
     observed: The test verifies the new aggregate main package and blocks the old test-side writer/artifact locations.
-    repairHint: Move reusable aggregate reporting code under com.endava.ai.core.reporting.aggregate; leave only listener wiring, fixtures and contract tests under com.endava.ai.atf.core.reporting.
+    repairHint: Move reusable aggregate reporting code under com.ai.core.reporting.aggregate; leave only listener wiring, fixtures and contract tests under com.ai.atf.core.reporting.
   - id: core.contract-narrative.reporting-package-shape-test-size
     kind: contract
     area: REPORTING_ADAPTER
@@ -341,7 +341,7 @@ contracts:
     area: REPORTING_ADAPTER
     owner: ATF core package boundary
     expected: ATF core remains a generic reporting/runtime layer and does not import UI implementation packages.
-    observed: The test scans main core source files for direct com.endava.ai.ui dependencies.
+    observed: The test scans main core source files for direct com.ai.ui dependencies.
     repairHint: Expose a core extension point and register UI contributors from ui.core instead of importing UI classes in core.
   - id: core.contract-narrative.reporting-package-shape-typed-end-status
     kind: contract
@@ -872,8 +872,8 @@ contracts:
     kind: contract
     area: REPORTING_LIFECYCLE
     owner: ATF-core test inventory report
-    expected: The Extent report exposes com.endava.ai.atf tests grouped by pure framework contracts, Extent/Allure contracts, and live UI/API boundaries.
-    observed: The test scans Java sources under src/test/java/com/endava/ai/atf and publishes a compact audit matrix into Extent.
+    expected: The Extent report exposes com.ai.atf tests grouped by pure framework contracts, Extent/Allure contracts, and live UI/API boundaries.
+    observed: The test scans Java sources under src/test/java/com/ai/atf and publishes a compact audit matrix into Extent.
     repairHint: Add precise @AtfContractSuite profiles, and keep UI/API live smoke separate from pure ATF-core health.
   - id: core.contract-narrative.atf-test-inventory-extent-audit
     kind: contract
@@ -894,7 +894,7 @@ contracts:
     area: REPORTING_LIFECYCLE
     owner: ATF expected-failure contract style
     expected: Every ATF test marked with an expected-failure group declares metadata and uses the shared expected-failure helper.
-    observed: The test scans com.endava.ai.atf sources for expected-failure groups and helper usage.
+    observed: The test scans com.ai.atf sources for expected-failure groups and helper usage.
     repairHint: Replace raw Assert.expectThrows blocks in expected-failure tests with AtfExpectedFailure.expect(...).
   - id: core.contract-narrative.expected-failure-style-shared-narrative
     kind: contract
@@ -984,7 +984,7 @@ contracts:
     kind: contract
     area: UI_ENGINE
     owner: UI engine package boundary
-    expected: Selenium and Playwright imports stay inside com.endava.ai.ui.core.engine so generated tests and support layers remain browser-agnostic.
+    expected: Selenium and Playwright imports stay inside com.ai.ui.core.engine so generated tests and support layers remain browser-agnostic.
     observed: The test scans src/main/java and rejects browser-specific imports outside the UI engine package.
     repairHint: Move direct Selenium/Playwright usage behind UIEngine, UIActions, or an engine-specific adapter.
   - id: core.contract-narrative.ui-engine-capability-package-architecture
@@ -1057,7 +1057,7 @@ contracts:
     area: CORE_ARCHITECTURE
     capability: 'ATF core / MCP boundary'
     purpose: 'Keep ATF core reusable and independent from MCP package-audit policy.'
-    reportHint: 'Move MCP/package-audit vocabulary back to com.endava.ai.skills.mcp instead of importing it into core.'
+    reportHint: 'Move MCP/package-audit vocabulary back to com.ai.skills.mcp instead of importing it into core.'
   - id: core.contract-narrative.html-table-contract-test-class
     kind: contract
     area: REPORTING_ADAPTER

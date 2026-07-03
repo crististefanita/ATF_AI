@@ -74,7 +74,7 @@
     <property name="library.jansi.path" value="c:\tools\apache-maven-3.9.14\lib\jansi-native"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="refundSupportRequestIsAcceptedByMessagesApi" classname="com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest" time="0.509">
+  <testcase name="refundSupportRequestIsAcceptedByMessagesApi" classname="com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest" time="0.509">
     <system-out><![CDATA[  • Playwright pages after init: 1
 ▶ Clear browser session
   ✅ PASS: Session cleared
@@ -409,22 +409,22 @@ SLF4J: Defaulting to no-operation (NOP) logger implementation
 SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
 ]]></system-err>
   </testcase>
-  <testcase name="refundSupportMessagesApiReturnsSuccessStatus" classname="com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest" time="0.421">
+  <testcase name="refundSupportMessagesApiReturnsSuccessStatus" classname="com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest" time="0.421">
     <system-out><![CDATA[▶ Validate messages API response success
   ✅ PASS: Validate messages API response success passed
 ]]></system-out>
   </testcase>
-  <testcase name="refundSupportMessagesApiUsesPost" classname="com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest" time="0.456">
+  <testcase name="refundSupportMessagesApiUsesPost" classname="com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest" time="0.456">
     <system-out><![CDATA[▶ Validate messages API method
   ✅ PASS: Validate messages API method passed
 ]]></system-out>
   </testcase>
-  <testcase name="refundSupportMessagesApiUsesMessagesRoute" classname="com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest" time="0.448">
+  <testcase name="refundSupportMessagesApiUsesMessagesRoute" classname="com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest" time="0.448">
     <system-out><![CDATA[▶ Validate messages API route
   ✅ PASS: Validate messages API route passed
 ]]></system-out>
   </testcase>
-  <testcase name="refundSupportMessagesApiUsesConcreteRealUrl" classname="com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest" time="0.43">
+  <testcase name="refundSupportMessagesApiUsesConcreteRealUrl" classname="com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest" time="0.43">
     <system-out><![CDATA[▶ Validate messages API URL is captured
   ✅ PASS: Validate messages API URL is captured passed
 ▶ Validate messages API is not data URL

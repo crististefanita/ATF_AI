@@ -6,36 +6,36 @@
     <groups>
     </groups>
     <test started-at="2026-07-02T16:13:57 EEST" name="Surefire test" finished-at="2026-07-02T16:14:37 EEST" duration-ms="40732">
-      <class name="com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest@24134cbc]" started-at="2026-07-02T16:13:57 EEST" name="setUp" finished-at="2026-07-02T16:14:16 EEST" duration-ms="18993" status="PASS">
+      <class name="com.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest@24134cbc]" started-at="2026-07-02T16:13:57 EEST" name="setUp" finished-at="2026-07-02T16:14:16 EEST" duration-ms="18993" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="cart_line_preserves_countable_quantity_before_invoice()[pri:0, instance:com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest@24134cbc]" started-at="2026-07-02T16:14:16 EEST" name="cart_line_preserves_countable_quantity_before_invoice" finished-at="2026-07-02T16:14:22 EEST" duration-ms="5908" status="PASS">
+        <test-method signature="cart_line_preserves_countable_quantity_before_invoice()[pri:0, instance:com.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest@24134cbc]" started-at="2026-07-02T16:14:16 EEST" name="cart_line_preserves_countable_quantity_before_invoice" finished-at="2026-07-02T16:14:22 EEST" duration-ms="5908" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- cart_line_preserves_countable_quantity_before_invoice -->
-        <test-method signature="cart_line_quantity_has_selected_product_owner()[pri:0, instance:com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest@24134cbc]" started-at="2026-07-02T16:14:22 EEST" name="cart_line_quantity_has_selected_product_owner" finished-at="2026-07-02T16:14:25 EEST" duration-ms="3174" status="PASS">
+        <test-method signature="cart_line_quantity_has_selected_product_owner()[pri:0, instance:com.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest@24134cbc]" started-at="2026-07-02T16:14:22 EEST" name="cart_line_quantity_has_selected_product_owner" finished-at="2026-07-02T16:14:25 EEST" duration-ms="3174" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- cart_line_quantity_has_selected_product_owner -->
-        <test-method signature="cart_line_quantity_is_positive_before_invoice()[pri:0, instance:com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest@24134cbc]" started-at="2026-07-02T16:14:26 EEST" name="cart_line_quantity_is_positive_before_invoice" finished-at="2026-07-02T16:14:29 EEST" duration-ms="2983" status="PASS">
+        <test-method signature="cart_line_quantity_is_positive_before_invoice()[pri:0, instance:com.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest@24134cbc]" started-at="2026-07-02T16:14:26 EEST" name="cart_line_quantity_is_positive_before_invoice" finished-at="2026-07-02T16:14:29 EEST" duration-ms="2983" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- cart_line_quantity_is_positive_before_invoice -->
-        <test-method signature="cart_line_quantity_matches_review_body()[pri:0, instance:com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest@24134cbc]" started-at="2026-07-02T16:14:29 EEST" name="cart_line_quantity_matches_review_body" finished-at="2026-07-02T16:14:32 EEST" duration-ms="3051" status="PASS">
+        <test-method signature="cart_line_quantity_matches_review_body()[pri:0, instance:com.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest@24134cbc]" started-at="2026-07-02T16:14:29 EEST" name="cart_line_quantity_matches_review_body" finished-at="2026-07-02T16:14:32 EEST" duration-ms="3051" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- cart_line_quantity_matches_review_body -->
-        <test-method signature="cart_line_quantity_stays_pre_invoice()[pri:0, instance:com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest@24134cbc]" started-at="2026-07-02T16:14:32 EEST" name="cart_line_quantity_stays_pre_invoice" finished-at="2026-07-02T16:14:35 EEST" duration-ms="2956" status="PASS">
+        <test-method signature="cart_line_quantity_stays_pre_invoice()[pri:0, instance:com.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest@24134cbc]" started-at="2026-07-02T16:14:32 EEST" name="cart_line_quantity_stays_pre_invoice" finished-at="2026-07-02T16:14:35 EEST" duration-ms="2956" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- cart_line_quantity_stays_pre_invoice -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest@24134cbc]" started-at="2026-07-02T16:14:36 EEST" name="tearDown" finished-at="2026-07-02T16:14:37 EEST" duration-ms="1820" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest@24134cbc]" started-at="2026-07-02T16:14:36 EEST" name="tearDown" finished-at="2026-07-02T16:14:37 EEST" duration-ms="1820" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest -->
+      </class> <!-- com.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest -->
     </test> <!-- Surefire test -->
   </suite> <!-- Surefire suite -->
 </testng-results>

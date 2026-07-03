@@ -74,7 +74,7 @@
     <property name="library.jansi.path" value="c:\tools\apache-maven-3.9.14\lib\jansi-native"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="refundSupportRequestCarriesInvoiceAmountAndCustomerBridge" classname="com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest" time="0.255">
+  <testcase name="refundSupportRequestCarriesInvoiceAmountAndCustomerBridge" classname="com.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest" time="0.255">
     <system-out><![CDATA[  • Playwright pages after init: 1
 ▶ Clear browser session
   ✅ PASS: Session cleared
@@ -411,22 +411,22 @@ SLF4J: Defaulting to no-operation (NOP) logger implementation
 SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
 ]]></system-err>
   </testcase>
-  <testcase name="refundSupportRequestUsesReturnBusinessCategory" classname="com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest" time="0.242">
+  <testcase name="refundSupportRequestUsesReturnBusinessCategory" classname="com.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest" time="0.242">
     <system-out><![CDATA[▶ Validate refund support subject
   ✅ PASS: Validate refund support subject passed
 ]]></system-out>
   </testcase>
-  <testcase name="refundSupportRequestMessageNamesPurchasedInvoice" classname="com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest" time="0.252">
+  <testcase name="refundSupportRequestMessageNamesPurchasedInvoice" classname="com.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest" time="0.252">
     <system-out><![CDATA[▶ Validate refund message references invoice
   ✅ PASS: Validate refund message references invoice passed
 ]]></system-out>
   </testcase>
-  <testcase name="refundSupportRequestMessageCarriesChargedAmount" classname="com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest" time="0.192">
+  <testcase name="refundSupportRequestMessageCarriesChargedAmount" classname="com.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest" time="0.192">
     <system-out><![CDATA[▶ Validate refund message references amount
   ✅ PASS: Validate refund message references amount passed
 ]]></system-out>
   </testcase>
-  <testcase name="refundSupportRequestMessageCarriesRegisteredCustomer" classname="com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest" time="0.199">
+  <testcase name="refundSupportRequestMessageCarriesRegisteredCustomer" classname="com.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest" time="0.199">
     <system-out><![CDATA[▶ Validate refund message references customer
   ✅ PASS: Validate refund message references customer passed
 ]]></system-out>

@@ -1,7 +1,7 @@
-﻿# Run Manifest
+# Run Manifest
 
 - run: run_05
-- class: com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentReopenTest
+- class: com.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentReopenTest
 - claim: Invoice Reopen Boundary
 - target_tests: 5
 - evidence: validation/testng-results.xml

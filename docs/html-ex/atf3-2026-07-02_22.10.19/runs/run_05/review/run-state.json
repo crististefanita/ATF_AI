@@ -1,12 +1,12 @@
-﻿{
+{
     "run":  "run_05",
-    "class":  "com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentReopenTest",
+    "class":  "com.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentReopenTest",
     "actor":  "registered shopper",
     "user_intent":  "open and verify account invoice document evidence",
     "ui_handoff":  "BaseTestUI test imports RegisteredInvoiceFlow, which routes through UIActions and page/action support",
     "business_object":  "Registered Invoice Document",
     "claim":  "Invoice Reopen Boundary",
-    "source_path":  "src/test/java/com/endava/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentReopenTest.java",
+    "source_path":  "src/test/java/com/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentReopenTest.java",
     "status":  "PASS",
     "tests_expected":  5,
     "tests_total":  5,

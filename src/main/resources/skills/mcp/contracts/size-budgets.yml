@@ -2,102 +2,102 @@ schemaVersion: 1
 contracts:
   - id: mcp.package.default-main-class-count
     type: package-default
-    root: src/main/java/com/endava/ai/skills/mcp
+    root: src/main/java/com/ai/skills/mcp
     maxClasses: 10
     reason: main MCP packages should stay narrow enough for fast rule ownership review
   - id: mcp.package.default-test-class-count
     type: package-default
-    root: src/test/java/com/endava/ai/skills/mcp/tests
+    root: src/test/java/com/ai/skills/mcp/tests
     maxClasses: 8
     reason: MCP test packages should split by contract family before becoming dumping grounds
   - id: mcp.package.contract-annotations
     type: package-override
-    path: src/main/java/com/endava/ai/skills/mcp/contract
+    path: src/main/java/com/ai/skills/mcp/contract
     maxClasses: 10
     reason: contract annotations have settled on YAML-backed suite/check refs; legacy inline annotations must not return
   - id: mcp.package.contract-catalog-transitional
     type: package-override
-    path: src/main/java/com/endava/ai/skills/mcp/contracts
+    path: src/main/java/com/ai/skills/mcp/contracts
     maxClasses: 15
     reason: contract catalog package is temporarily broad while YAML facades are being split by policy/execution/check domains; do not grow beyond current count
   - id: mcp.package.contract-policy-transitional
     type: package-override
-    path: src/main/java/com/endava/ai/skills/mcp/contracts/policy
+    path: src/main/java/com/ai/skills/mcp/contracts/policy
     maxClasses: 13
     reason: policy spec package includes score, report, root-cause and claim-action specs; next refactor should split evidence/report/source policies before raising this cap
   - id: mcp.package.context-transitional
     type: package-override
-    path: src/main/java/com/endava/ai/skills/mcp/context
+    path: src/main/java/com/ai/skills/mcp/context
     maxClasses: 9
     reason: context helpers are capped at the current count while package, html-ex and project-root contexts are split by ownership
   - id: mcp.package.provenance-transitional
     type: package-override
-    path: src/main/java/com/endava/ai/skills/mcp/provenance
+    path: src/main/java/com/ai/skills/mcp/provenance
     maxClasses: 10
     reason: provenance helpers are capped at the current count while origin, command and artifact-hash responsibilities are split
   - id: mcp.package.rules-root-transitional
     type: package-override
-    path: src/main/java/com/endava/ai/skills/mcp/rules
+    path: src/main/java/com/ai/skills/mcp/rules
     maxClasses: 9
     reason: root rule package is capped at the current count; new rules should move into a cohesive rules subpackage
   - id: mcp.package.packageaudit-transitional
     type: package-override
-    path: src/main/java/com/endava/ai/skills/mcp/rules/packageaudit
+    path: src/main/java/com/ai/skills/mcp/rules/packageaudit
     maxClasses: 15
     reason: package-audit rules are intentionally capped at the current broad close-out surface until FullMcpGate collaborators are split further
   - id: mcp.package.packageaudit-closeout-transitional
     type: package-override
-    path: src/main/java/com/endava/ai/skills/mcp/rules/packageaudit/closeout
+    path: src/main/java/com/ai/skills/mcp/rules/packageaudit/closeout
     maxClasses: 10
     reason: close-out collaborators are capped at the current count; new parsing or command helpers should be extracted into narrower closeout subpackages
   - id: mcp.package.report-rules-transitional
     type: package-override
-    path: src/main/java/com/endava/ai/skills/mcp/rules/report
+    path: src/main/java/com/ai/skills/mcp/rules/report
     maxClasses: 10
     reason: report rules are capped at the current count while template, graph, hyperlink and visual-shell validators are separated further
   - id: mcp.package.run-rules-transitional
     type: package-override
-    path: src/main/java/com/endava/ai/skills/mcp/rules/run
+    path: src/main/java/com/ai/skills/mcp/rules/run
     maxClasses: 10
     reason: run rules are capped at the current count while run diff, learning, evidence and countability rules are split by lifecycle stage
   - id: mcp.package.source-rules-transitional
     type: package-override
-    path: src/main/java/com/endava/ai/skills/mcp/rules/source
+    path: src/main/java/com/ai/skills/mcp/rules/source
     maxClasses: 15
     reason: source rules are capped at current count while source-evolution KPI and inventory helpers are reorganized into narrower subpackages
   - id: mcp.package.source-kpi-rules-transitional
     type: package-override
-    path: src/main/java/com/endava/ai/skills/mcp/rules/source/kpi
+    path: src/main/java/com/ai/skills/mcp/rules/source/kpi
     maxClasses: 9
     reason: KPI source rules are capped at the current count; new KPI formulas should move behind catalog/inventory collaborators before this package grows
   - id: mcp.package.ui-rules-transitional
     type: package-override
-    path: src/main/java/com/endava/ai/skills/mcp/rules/ui
+    path: src/main/java/com/ai/skills/mcp/rules/ui
     maxClasses: 9
     reason: UI package rules are capped at the current count while UI evidence, helper reuse and support-shape checks are split
   - id: mcp.package.validation-root-transitional
     type: package-override
-    path: src/main/java/com/endava/ai/skills/mcp/validation
+    path: src/main/java/com/ai/skills/mcp/validation
     maxClasses: 9
     reason: validation root helpers are capped at the current count; new validation models should live under focused validation subpackages
   - id: mcp.package.validation-report-transitional
     type: package-override
-    path: src/main/java/com/endava/ai/skills/mcp/validation/report
+    path: src/main/java/com/ai/skills/mcp/validation/report
     maxClasses: 9
     reason: report validation helpers are capped at the current count while visual shell, template and evidence assertions are separated
   - id: mcp.surface.rules-recursive-ratchet
     type: recursive-package-cap
-    path: src/main/java/com/endava/ai/skills/mcp/rules
+    path: src/main/java/com/ai/skills/mcp/rules
     maxClasses: 118
     reason: executable rule surface may grow only through focused rule families and routed contract metadata
   - id: mcp.surface.validation-recursive-ratchet
     type: recursive-package-cap
-    path: src/main/java/com/endava/ai/skills/mcp/validation
+    path: src/main/java/com/ai/skills/mcp/validation
     maxClasses: 92
     reason: validation helpers may grow only through focused assertion/model subpackages, not generic root helpers
   - id: mcp.surface.contracts-recursive-ratchet
     type: recursive-package-cap
-    path: src/main/java/com/endava/ai/skills/mcp/contracts
+    path: src/main/java/com/ai/skills/mcp/contracts
     maxClasses: 42
     reason: contract model growth must stay typed and facade-backed; advisor/governance subpackages are accepted only as focused non-blocking guidance surfaces
   - id: mcp.yaml.ai-task-advisor-byte-ratchet
@@ -107,92 +107,92 @@ contracts:
     reason: advisor YAML should stay compact and non-blocking, not become a parallel planning engine
   - id: mcp.surface.tests-recursive-ratchet
     type: recursive-package-cap
-    path: src/test/java/com/endava/ai/skills/mcp/tests
+    path: src/test/java/com/ai/skills/mcp/tests
     maxClasses: 64
     reason: MCP tests may grow only as focused suites with YAML metadata and profile ownership
   - id: mcp.large-class.full-gate
     type: line-cap
-    path: src/main/java/com/endava/ai/skills/mcp/rules/packageaudit/closeout/FullMcpGateRule.java
+    path: src/main/java/com/ai/skills/mcp/rules/packageaudit/closeout/FullMcpGateRule.java
     maxLines: 760
     reason: keep package close-out gate from growing while collaborators are extracted
   - id: mcp.large-class.closeout-counts
     type: line-cap
-    path: src/main/java/com/endava/ai/skills/mcp/rules/packageaudit/closeout/McpCloseoutCounts.java
+    path: src/main/java/com/ai/skills/mcp/rules/packageaudit/closeout/McpCloseoutCounts.java
     maxLines: 120
     reason: close-out parsing helper should stay focused
   - id: mcp.large-class.closeout-command-profile
     type: line-cap
-    path: src/main/java/com/endava/ai/skills/mcp/rules/packageaudit/closeout/McpCloseoutCommandProfile.java
+    path: src/main/java/com/ai/skills/mcp/rules/packageaudit/closeout/McpCloseoutCommandProfile.java
     maxLines: 80
     reason: profile classifier should stay small
   - id: mcp.large-class.closeout-text
     type: line-cap
-    path: src/main/java/com/endava/ai/skills/mcp/rules/packageaudit/closeout/McpCloseoutText.java
+    path: src/main/java/com/ai/skills/mcp/rules/packageaudit/closeout/McpCloseoutText.java
     maxLines: 80
     reason: close-out text helper should stay small
   - id: mcp.large-class.run-calibration-test
     type: line-cap
-    path: src/test/java/com/endava/ai/skills/mcp/tests/core/calibration/McpRunCalibrationContractTest.java
+    path: src/test/java/com/ai/skills/mcp/tests/core/calibration/McpRunCalibrationContractTest.java
     maxLines: 720
     reason: calibration contract remains large but must not grow while being split
   - id: mcp.large-class.run-calibration-fixtures
     type: line-cap
-    path: src/test/java/com/endava/ai/skills/mcp/tests/core/support/McpRunCalibrationFixtures.java
+    path: src/test/java/com/ai/skills/mcp/tests/core/support/McpRunCalibrationFixtures.java
     maxLines: 320
     reason: calibration fixtures should stay below support-class budget
   - id: mcp.large-class.package-shape-test
     type: line-cap
-    path: src/test/java/com/endava/ai/skills/mcp/tests/core/shape/McpPackageShapeContractTest.java
+    path: src/test/java/com/ai/skills/mcp/tests/core/shape/McpPackageShapeContractTest.java
     maxLines: 130
     reason: package-shape contract is now an orchestrator over focused assertion objects; keep scan/setup logic out of this class.
   - id: mcp.shape-support.budget-assertions
     type: line-cap
-    path: src/test/java/com/endava/ai/skills/mcp/support/shape/McpPackageShapeBudgetAssertions.java
+    path: src/test/java/com/ai/skills/mcp/support/shape/McpPackageShapeBudgetAssertions.java
     maxLines: 110
     reason: package-shape budget assertions own line, YAML and recursive surface ratchets; split by budget type before growing.
   - id: mcp.shape-support.policy-assertions
     type: line-cap
-    path: src/test/java/com/endava/ai/skills/mcp/support/shape/McpPackageShapePolicyAssertions.java
+    path: src/test/java/com/ai/skills/mcp/support/shape/McpPackageShapePolicyAssertions.java
     maxLines: 210
     reason: package-shape policy assertions own manifest, package-cap and skill-surface scans and must stay below the long-class threshold.
   - id: mcp.shape-support.source-assertions
     type: line-cap
-    path: src/test/java/com/endava/ai/skills/mcp/support/shape/McpPackageShapeSourceAssertions.java
+    path: src/test/java/com/ai/skills/mcp/support/shape/McpPackageShapeSourceAssertions.java
     maxLines: 140
     reason: package-shape source assertions own imports, console gateway, README and Lombok scans; split by concern before growing.
   - id: mcp.large-class.yaml-contract-schema-test
     type: line-cap
-    path: src/test/java/com/endava/ai/skills/mcp/tests/contracts/McpYamlContractSchemaTest.java
+    path: src/test/java/com/ai/skills/mcp/tests/contracts/McpYamlContractSchemaTest.java
     maxLines: 240
     reason: YAML schema contract is now an orchestrator over focused schema assertion helpers; keep YAML traversal and policy checks out of this class.
   - id: mcp.contract.yaml-check-ref-test
     type: line-cap
-    path: src/test/java/com/endava/ai/skills/mcp/tests/contracts/McpYamlCheckRefContractTest.java
+    path: src/test/java/com/ai/skills/mcp/tests/contracts/McpYamlCheckRefContractTest.java
     maxLines: 95
     reason: CheckRef contract is now an index over catalog and evidence assertions; keep scanning/rendering logic in support helpers.
   - id: mcp.contract-support.yaml-check-ref-scanner
     type: line-cap
-    path: src/test/java/com/endava/ai/skills/mcp/support/contracts/McpYamlCheckRefScanner.java
+    path: src/test/java/com/ai/skills/mcp/support/contracts/McpYamlCheckRefScanner.java
     maxLines: 180
     reason: CheckRef scanner owns Java/TestNG source discovery only; split pattern or XML parsing before growing.
   - id: mcp.contract-support.yaml-check-ref-catalog
     type: line-cap
-    path: src/test/java/com/endava/ai/skills/mcp/support/contracts/McpYamlCheckRefCatalogAssertions.java
+    path: src/test/java/com/ai/skills/mcp/support/contracts/McpYamlCheckRefCatalogAssertions.java
     maxLines: 180
     reason: CheckRef catalog assertions own YAML/schema/source parity only; evidence rendering belongs in a separate helper.
   - id: mcp.contract-support.yaml-check-ref-evidence
     type: line-cap
-    path: src/test/java/com/endava/ai/skills/mcp/support/contracts/McpYamlCheckRefEvidenceAssertions.java
+    path: src/test/java/com/ai/skills/mcp/support/contracts/McpYamlCheckRefEvidenceAssertions.java
     maxLines: 105
     reason: CheckRef evidence assertions own matrix/governance-map receipts only; keep it below the long-test threshold.
   - id: mcp.contract.prompt-ownership-test
     type: line-cap
-    path: src/test/java/com/endava/ai/skills/mcp/tests/contracts/prompt/McpPromptContractOwnershipTest.java
+    path: src/test/java/com/ai/skills/mcp/tests/contracts/prompt/McpPromptContractOwnershipTest.java
     maxLines: 230
     reason: Prompt ownership checks are intentionally isolated from YAML schema checks and should stay below the preferred new contract-test size.
   - id: mcp.large-class.yaml-contract-schema-expectations
     type: line-cap
-    path: src/test/java/com/endava/ai/skills/mcp/tests/contracts/support/McpYamlContractSchemaExpectations.java
+    path: src/test/java/com/ai/skills/mcp/tests/contracts/support/McpYamlContractSchemaExpectations.java
     maxLines: 90
     reason: YAML schema expectations are a navigation helper, not a second test catalog; split by profile/prompt/governance family before growing it.
   - id: mcp.yaml.source-evolution-byte-ratchet

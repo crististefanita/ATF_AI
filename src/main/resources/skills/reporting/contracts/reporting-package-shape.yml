@@ -37,27 +37,27 @@ contracts:
 
   - id: core.reporting.package-shape.core-readme
     kind: required-readme
-    path: src/main/java/com/endava/ai/core/README.md
+    path: src/main/java/com/ai/core/README.md
     reason: Core library ownership must remain visible before changing reporting infrastructure.
 
   - id: core.reporting.package-shape.reporting-readme
     kind: required-readme
-    path: src/main/java/com/endava/ai/core/reporting/README.md
+    path: src/main/java/com/ai/core/reporting/README.md
     reason: Reporting ownership, entry points and verification must remain local to the reporting package.
 
   - id: core.reporting.package-shape.adapters-readme
     kind: required-readme
-    path: src/main/java/com/endava/ai/core/reporting/adapters/README.md
+    path: src/main/java/com/ai/core/reporting/adapters/README.md
     reason: Reporting adapters are dense enough to need a local backend ownership map.
 
   - id: core.reporting.package-shape.listener-readme
     kind: required-readme
-    path: src/main/java/com/endava/ai/core/reporting/listener/README.md
+    path: src/main/java/com/ai/core/reporting/listener/README.md
     reason: Reporting listener lifecycle ownership must stay discoverable without reading every internal class.
 
   - id: core.reporting.package-shape.aggregate-readme
     kind: required-readme
-    path: src/main/java/com/endava/ai/core/reporting/aggregate/README.md
+    path: src/main/java/com/ai/core/reporting/aggregate/README.md
     reason: Aggregate reporting must expose ownership, entry points and validation before agents inspect writer internals.
 
   - id: core.reporting.package-shape.contract-index-readme
@@ -67,18 +67,18 @@ contracts:
 
   - id: core.reporting.package-shape.no-mcp-imports
     kind: forbidden-import
-    root: src/main/java/com/endava/ai/core/reporting
-    forbiddenPackage: com.endava.ai.skills.mcp
+    root: src/main/java/com/ai/core/reporting
+    forbiddenPackage: com.ai.skills.mcp
     reason: Core Reporting is a reusable library and must not depend on MCP package governance.
 
   - id: core.reporting.package-shape.no-atlas-imports
     kind: forbidden-import
-    root: src/main/java/com/endava/ai/core/reporting
-    forbiddenPackage: com.endava.ai.skills.atlas
+    root: src/main/java/com/ai/core/reporting
+    forbiddenPackage: com.ai.skills.atlas
     reason: Core Reporting is a reusable library and must not depend on Atlas business understanding.
 
   - id: core.reporting.package-shape.no-ui-imports
     kind: forbidden-import
-    root: src/main/java/com/endava/ai/core/reporting
-    forbiddenPackage: com.endava.ai.ui
+    root: src/main/java/com/ai/core/reporting
+    forbiddenPackage: com.ai.ui
     reason: Core Reporting must stay generic and must not couple directly to UI engine packages.

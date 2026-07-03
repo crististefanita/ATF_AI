@@ -74,7 +74,7 @@
     <property name="library.jansi.path" value="c:\tools\apache-maven-3.9.14\lib\jansi-native"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="refundSupportRequestUsesVisibleReturnContactForm" classname="com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest" time="0.215">
+  <testcase name="refundSupportRequestUsesVisibleReturnContactForm" classname="com.ai.ui.tests.refunds.support.RefundSupportContactFormTest" time="0.215">
     <system-out><![CDATA[  • Playwright pages after init: 1
 ▶ Clear browser session
   ✅ PASS: Session cleared
@@ -409,22 +409,22 @@ SLF4J: Defaulting to no-operation (NOP) logger implementation
 SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
 ]]></system-err>
   </testcase>
-  <testcase name="refundSupportContactFormExposesReturnSubject" classname="com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest" time="0.211">
+  <testcase name="refundSupportContactFormExposesReturnSubject" classname="com.ai.ui.tests.refunds.support.RefundSupportContactFormTest" time="0.211">
     <system-out><![CDATA[▶ Validate contact form exposes Return subject
   ✅ PASS: Validate contact form exposes Return subject passed
 ]]></system-out>
   </testcase>
-  <testcase name="refundSupportContactFormExposesMessageField" classname="com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest" time="0.179">
+  <testcase name="refundSupportContactFormExposesMessageField" classname="com.ai.ui.tests.refunds.support.RefundSupportContactFormTest" time="0.179">
     <system-out><![CDATA[▶ Validate contact form exposes message field
   ✅ PASS: Validate contact form exposes message field passed
 ]]></system-out>
   </testcase>
-  <testcase name="refundSupportContactFormExposesEmailField" classname="com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest" time="0.194">
+  <testcase name="refundSupportContactFormExposesEmailField" classname="com.ai.ui.tests.refunds.support.RefundSupportContactFormTest" time="0.194">
     <system-out><![CDATA[▶ Validate contact form exposes email field
   ✅ PASS: Validate contact form exposes email field passed
 ]]></system-out>
   </testcase>
-  <testcase name="refundSupportPayloadNamesPurchasedProduct" classname="com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest" time="0.188">
+  <testcase name="refundSupportPayloadNamesPurchasedProduct" classname="com.ai.ui.tests.refunds.support.RefundSupportContactFormTest" time="0.188">
     <system-out><![CDATA[▶ Validate refund message references purchased product
   ✅ PASS: Validate refund message references purchased product passed
 ]]></system-out>

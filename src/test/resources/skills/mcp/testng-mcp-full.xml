@@ -7,7 +7,7 @@
             </run>
         </groups>
         <packages>
-            <package name="com.endava.ai.skills.mcp.tests.*"/>
+            <package name="com.ai.skills.mcp.tests.*"/>
         </packages>
     </test>
 </suite>

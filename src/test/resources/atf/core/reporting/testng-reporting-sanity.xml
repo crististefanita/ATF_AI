@@ -2,16 +2,16 @@
 <suite name="ATF Reporting Skill Sanity" verbose="1">
     <test name="reporting-skill-neutral-sanity">
         <classes>
-            <class name="com.endava.ai.skills.reporting.tests.ReportingSkillFacadeSmokeTest"/>
-            <class name="com.endava.ai.atf.core.reporting.architecture.ReportingSkillSurfaceContractTest"/>
-            <class name="com.endava.ai.atf.core.reporting.architecture.surface.AggregateReportSurfaceContractTest"/>
-            <class name="com.endava.ai.atf.core.reporting.aggregate.timing.AggregateExtentSummaryNodeTimingReconcilerContractTest"/>
-            <class name="com.endava.ai.atf.core.reporting.architecture.AtfReportingPackageShapeContractTest"/>
-            <class name="com.endava.ai.atf.core.reporting.htmlcontract.HtmlReportShellValidatorContractTest"/>
-            <class name="com.endava.ai.atf.core.reporting.graph.BusinessGraphLayoutAdapterContractTest"/>
-            <class name="com.endava.ai.atf.core.reporting.adapters.spark.ExtentSparkReportModeContractTest"/>
-            <class name="com.endava.ai.atf.core.reporting.regression.overview.ExtentPublishedOverviewInspectorContractTest"/>
-            <class name="com.endava.ai.atf.core.reporting.regression.RuntimeAuditPublisherCoordinatorContractTest"/>
+            <class name="com.ai.skills.reporting.tests.ReportingSkillFacadeSmokeTest"/>
+            <class name="com.ai.atf.core.reporting.architecture.ReportingSkillSurfaceContractTest"/>
+            <class name="com.ai.atf.core.reporting.architecture.surface.AggregateReportSurfaceContractTest"/>
+            <class name="com.ai.atf.core.reporting.aggregate.timing.AggregateExtentSummaryNodeTimingReconcilerContractTest"/>
+            <class name="com.ai.atf.core.reporting.architecture.AtfReportingPackageShapeContractTest"/>
+            <class name="com.ai.atf.core.reporting.htmlcontract.HtmlReportShellValidatorContractTest"/>
+            <class name="com.ai.atf.core.reporting.graph.BusinessGraphLayoutAdapterContractTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.spark.ExtentSparkReportModeContractTest"/>
+            <class name="com.ai.atf.core.reporting.regression.overview.ExtentPublishedOverviewInspectorContractTest"/>
+            <class name="com.ai.atf.core.reporting.regression.RuntimeAuditPublisherCoordinatorContractTest"/>
         </classes>
     </test>
 </suite>

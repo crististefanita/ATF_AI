@@ -1,8 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<testsuite name="run_01" tests="5" failures="0" errors="0" skipped="0" time="18.896" package="com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest">
-  <testcase classname="com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest" name="cart_line_exposes_review_vocabulary_before_identity" time="6.780" />
-  <testcase classname="com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest" name="cart_line_has_named_product_before_invoice" time="3.146" />
-  <testcase classname="com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest" name="cart_line_names_selected_catalog_product_before_checkout" time="2.907" />
-  <testcase classname="com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest" name="cart_line_preserves_catalog_price_token" time="3.073" />
-  <testcase classname="com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest" name="cart_line_stays_on_checkout_boundary" time="2.990" />
+<?xml version="1.0" encoding="utf-8"?>
+<testsuite name="run_01" tests="5" failures="0" errors="0" skipped="0" time="18.896" package="com.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest">
+  <testcase classname="com.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest" name="cart_line_exposes_review_vocabulary_before_identity" time="6.780" />
+  <testcase classname="com.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest" name="cart_line_has_named_product_before_invoice" time="3.146" />
+  <testcase classname="com.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest" name="cart_line_names_selected_catalog_product_before_checkout" time="2.907" />
+  <testcase classname="com.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest" name="cart_line_preserves_catalog_price_token" time="3.073" />
+  <testcase classname="com.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest" name="cart_line_stays_on_checkout_boundary" time="2.990" />
 </testsuite>

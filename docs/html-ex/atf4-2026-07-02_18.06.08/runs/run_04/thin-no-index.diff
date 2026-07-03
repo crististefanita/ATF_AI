@@ -1,6 +1,6 @@
-﻿diff --git a/src/test/java/com/endava/ai/ui/tests/support/staff/response/StaffSupportResponseLifecycleContractTest.java b/src/test/java/com/endava/ai/ui/tests/support/staff/response/StaffSupportResponseLifecycleContractTest.java
---- a/src/test/java/com/endava/ai/ui/tests/support/staff/response/StaffSupportResponseLifecycleContractTest.java
-+++ b/src/test/java/com/endava/ai/ui/tests/support/staff/response/StaffSupportResponseLifecycleContractTest.java
+diff --git a/src/test/java/com/ai/ui/tests/support/staff/response/StaffSupportResponseLifecycleContractTest.java b/src/test/java/com/ai/ui/tests/support/staff/response/StaffSupportResponseLifecycleContractTest.java
+--- a/src/test/java/com/ai/ui/tests/support/staff/response/StaffSupportResponseLifecycleContractTest.java
++++ b/src/test/java/com/ai/ui/tests/support/staff/response/StaffSupportResponseLifecycleContractTest.java
 @@ -1,5 +1,12 @@
 +// run_04 source delta for registered account payment settlement ledger audit
 +// claim, actor, intent, result, verdict, lesson, next implication

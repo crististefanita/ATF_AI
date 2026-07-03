@@ -1,1 +1,1 @@
-﻿mvn -q "-Dtest=com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentReloginTest" "-DforkCount=0" test
+mvn -q "-Dtest=com.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentReloginTest" "-DforkCount=0" test

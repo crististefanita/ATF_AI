@@ -1,7 +1,7 @@
-﻿diff --git a/src/main/java/com/endava/ai/ui/support/actions/cart/CartLineActions.java b/src/main/java/com/endava/ai/ui/support/actions/cart/CartLineActions.java
+diff --git a/src/main/java/com/ai/ui/support/actions/cart/CartLineActions.java b/src/main/java/com/ai/ui/support/actions/cart/CartLineActions.java
 new file mode 100644
 --- /dev/null
-+++ b/src/main/java/com/endava/ai/ui/support/actions/cart/CartLineActions.java
++++ b/src/main/java/com/ai/ui/support/actions/cart/CartLineActions.java
 @@ cart action support @@
 +public final class CartLineActions {
 +    public CartLineContext captureDefaultCartLine() { return captureOpenCartLine(); }
@@ -9,19 +9,19 @@ new file mode 100644
 +    public CartMutationContext captureRemovalRecord() { return CartMutationContext.removal(originalLine, body); }
 +    public CartLineContext captureReopenedCartLine() { return openCartLineContext(product); }
 +}
-diff --git a/src/main/java/com/endava/ai/ui/support/model/cart/CartContexts.java b/src/main/java/com/endava/ai/ui/support/model/cart/CartContexts.java
+diff --git a/src/main/java/com/ai/ui/support/model/cart/CartContexts.java b/src/main/java/com/ai/ui/support/model/cart/CartContexts.java
 new file mode 100644
 --- /dev/null
-+++ b/src/main/java/com/endava/ai/ui/support/model/cart/CartContexts.java
++++ b/src/main/java/com/ai/ui/support/model/cart/CartContexts.java
 @@ cart context model @@
 +public final class CartContexts {
 +    public static final class CartLineContext { }
 +    public static final class CartMutationContext { }
 +}
-diff --git a/src/main/java/com/endava/ai/ui/support/validation/CartBusinessValidation.java b/src/main/java/com/endava/ai/ui/support/validation/CartBusinessValidation.java
+diff --git a/src/main/java/com/ai/ui/support/validation/CartBusinessValidation.java b/src/main/java/com/ai/ui/support/validation/CartBusinessValidation.java
 new file mode 100644
 --- /dev/null
-+++ b/src/main/java/com/endava/ai/ui/support/validation/CartBusinessValidation.java
++++ b/src/main/java/com/ai/ui/support/validation/CartBusinessValidation.java
 @@ cart business validation @@
 +public final class CartBusinessValidation {
 +    public void assertCartLineNamesSelectedProduct(CartLineContext context) { StepLogger.pass("identity owned"); }
@@ -29,10 +29,10 @@ new file mode 100644
 +    public void assertCartLineCarriesProductPrice(CartLineContext context) { StepLogger.pass("price owned"); }
 +    public void assertCartRemovalClearsLineBeforeInvoice(CartMutationContext context) { StepLogger.pass("removal owned"); }
 +}
-diff --git a/src/test/java/com/endava/ai/ui/tests/cart/lifecycle/CartLineLifecycleContractTest.java b/src/test/java/com/endava/ai/ui/tests/cart/lifecycle/CartLineLifecycleContractTest.java
+diff --git a/src/test/java/com/ai/ui/tests/cart/lifecycle/CartLineLifecycleContractTest.java b/src/test/java/com/ai/ui/tests/cart/lifecycle/CartLineLifecycleContractTest.java
 new file mode 100644
 --- /dev/null
-+++ b/src/test/java/com/endava/ai/ui/tests/cart/lifecycle/CartLineLifecycleContractTest.java
++++ b/src/test/java/com/ai/ui/tests/cart/lifecycle/CartLineLifecycleContractTest.java
 @@ 25 disjoint cart lifecycle tests @@
 +    @Test
 +    public void cart_line_names_selected_catalog_product_before_checkout() { }
@@ -84,8 +84,8 @@ new file mode 100644
 +    public void cart_line_removal_preserves_original_evidence() { }
 +    @Test
 +    public void cart_line_removal_does_not_create_payment() { }
-diff --git a/src/main/java/com/endava/ai/ui/support/pages/ProductPage.java b/src/main/java/com/endava/ai/ui/support/pages/ProductPage.java
---- a/src/main/java/com/endava/ai/ui/support/pages/ProductPage.java
-+++ b/src/main/java/com/endava/ai/ui/support/pages/ProductPage.java
+diff --git a/src/main/java/com/ai/ui/support/pages/ProductPage.java b/src/main/java/com/ai/ui/support/pages/ProductPage.java
+--- a/src/main/java/com/ai/ui/support/pages/ProductPage.java
++++ b/src/main/java/com/ai/ui/support/pages/ProductPage.java
 @@ cart locators @@
 +    public static final String CART_NAV = "a[data-test=nav-cart]";

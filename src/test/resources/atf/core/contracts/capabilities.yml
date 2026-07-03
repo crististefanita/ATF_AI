@@ -109,7 +109,7 @@ contracts:
     suiteXml: src/test/resources/atf/core/suites/ui/testng-atf-ui-engine.xml
     primaryEvidence: target/reports/ExtentReport.html
     reportExpectation: "Extent audit contract: timestamped HTML, readable collapsed tree, runtime ledger, tags, failure triage, and contract narrative."
-    repairHint: Use com.endava.ai.ui.core.wait.UiSleeper for fixed UI pauses and keep conditional waits in engine-specific wait abstractions.
+    repairHint: Use com.ai.ui.core.wait.UiSleeper for fixed UI pauses and keep conditional waits in engine-specific wait abstractions.
   - id: api.base.lifecycle
     profile: API_BASE_CONTRACT
     area: API_LIFECYCLE

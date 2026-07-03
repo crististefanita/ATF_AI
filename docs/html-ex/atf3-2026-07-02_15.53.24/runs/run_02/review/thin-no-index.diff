@@ -1,7 +1,7 @@
-﻿diff --git a/src/main/java/com/endava/ai/ui/support/validation/CartBusinessValidation.java b/src/main/java/com/endava/ai/ui/support/validation/CartBusinessValidation.java
---- a/src/main/java/com/endava/ai/ui/support/validation/CartBusinessValidation.java
-+++ b/src/main/java/com/endava/ai/ui/support/validation/CartBusinessValidation.java
+diff --git a/src/main/java/com/ai/ui/support/validation/CartBusinessValidation.java b/src/main/java/com/ai/ui/support/validation/CartBusinessValidation.java
+--- a/src/main/java/com/ai/ui/support/validation/CartBusinessValidation.java
++++ b/src/main/java/com/ai/ui/support/validation/CartBusinessValidation.java
 @@ run_02 distinct source delta @@
-+ source path: src/main/java/com/endava/ai/ui/support/validation/CartBusinessValidation.java
++ source path: src/main/java/com/ai/ui/support/validation/CartBusinessValidation.java
 + business object: pre-invoice cart line lifecycle record
 + frontier: payment settlement ledger remains not claimed

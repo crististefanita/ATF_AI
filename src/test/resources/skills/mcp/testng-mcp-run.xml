@@ -2,8 +2,8 @@
 <suite name="MCP Run Gate" verbose="1">
     <test name="run">
         <classes>
-            <class name="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest"/>
+            <class name="com.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest"/>
+            <class name="com.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest"/>
         </classes>
     </test>
 </suite>

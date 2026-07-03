@@ -5,54 +5,54 @@ contracts:
     surface: console
     owner: StepLogger
     fragment: 'PASS: Call completed'
-    validator: com.endava.ai.atf.core.reporting.regression.ConsoleSignatureContractTest
+    validator: com.ai.atf.core.reporting.regression.ConsoleSignatureContractTest
     repair: Preserve the baseline live-console step signature through ConsoleLogger.
   - id: core.console.api-method-detail
     kind: required-fragment
     surface: console
     owner: ApiExecutionReporter
     fragment: method=POST
-    validator: com.endava.ai.atf.core.reporting.regression.ConsoleSignatureContractTest
+    validator: com.ai.atf.core.reporting.regression.ConsoleSignatureContractTest
     repair: Keep API request metadata visible in live console output.
   - id: core.console.ui-navigation-detail
     kind: required-fragment
     surface: console
     owner: StepLogger
     fragment: Navigate to URL
-    validator: com.endava.ai.atf.core.reporting.regression.ConsoleSignatureContractTest
+    validator: com.ai.atf.core.reporting.regression.ConsoleSignatureContractTest
     repair: Keep UI navigation messages business-readable and routed through ConsoleLogger.
   - id: core.console.no-framework-expected-narration
     kind: forbidden-fragment
     surface: console
     owner: ConsoleLogger
     fragment: Expected framework contract
-    validator: com.endava.ai.atf.core.reporting.regression.ConsoleSignatureContractTest
+    validator: com.ai.atf.core.reporting.regression.ConsoleSignatureContractTest
     repair: Framework contract narration belongs in reports, not the live business console.
   - id: core.console.no-framework-observed-narration
     kind: forbidden-fragment
     surface: console
     owner: ConsoleLogger
     fragment: Observed framework result
-    validator: com.endava.ai.atf.core.reporting.regression.ConsoleSignatureContractTest
+    validator: com.ai.atf.core.reporting.regression.ConsoleSignatureContractTest
     repair: Framework contract narration belongs in reports, not the live business console.
   - id: core.console.no-final-screenshot-noise
     kind: forbidden-fragment
     surface: console
     owner: ConsoleLogger
     fragment: Final UI screenshot
-    validator: com.endava.ai.atf.core.reporting.regression.ConsoleSignatureContractTest
+    validator: com.ai.atf.core.reporting.regression.ConsoleSignatureContractTest
     repair: Screenshot attachment narration belongs in report evidence, not ordinary live console flow.
   - id: core.console.no-framework-verdict-narration
     kind: forbidden-fragment
     surface: console
     owner: ConsoleLogger
     fragment: Cold framework verdict
-    validator: com.endava.ai.atf.core.reporting.regression.ConsoleSignatureContractTest
+    validator: com.ai.atf.core.reporting.regression.ConsoleSignatureContractTest
     repair: Framework contract verdicts belong in reports, not the live business console.
   - id: core.console.no-attachment-command-noise
     kind: forbidden-fragment
     surface: console
     owner: ConsoleLogger
     fragment: Attach final UI screenshot
-    validator: com.endava.ai.atf.core.reporting.regression.ConsoleSignatureContractTest
+    validator: com.ai.atf.core.reporting.regression.ConsoleSignatureContractTest
     repair: Attachment commands belong in report evidence, not ordinary live console flow.

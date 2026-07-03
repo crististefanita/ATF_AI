@@ -3,7 +3,7 @@ contracts:
   - id: mcp.capability-pack.orchestration
     kind: mcp-capability-pack
     owner: skill.mcp
-    packageRoots: src/main/java/com/endava/ai/skills/mcp/contract,src/main/java/com/endava/ai/skills/mcp/contracts
+    packageRoots: src/main/java/com/ai/skills/mcp/contract,src/main/java/com/ai/skills/mcp/contracts
     contracts: agentic-execution-flow.yml,profiles.yml,suites/mcp-suites.yml
     primarySuite: src/test/resources/skills/mcp/testng-mcp-sanity.xml
     role: Maps agentic stages, profiles and suite order before package evidence is trusted.
@@ -15,7 +15,7 @@ contracts:
   - id: mcp.capability-pack.package-governance
     kind: mcp-capability-pack
     owner: skill.mcp
-    packageRoots: src/main/java/com/endava/ai/skills/mcp/rules/packageaudit,src/main/java/com/endava/ai/skills/mcp/rules/source
+    packageRoots: src/main/java/com/ai/skills/mcp/rules/packageaudit,src/main/java/com/ai/skills/mcp/rules/source
     contracts: package-policy.yml,package-closeout-artifacts.yml,protected-roots.yml,source-evolution-ledger.yml,kpi/source-evolution.yml
     primarySuite: src/test/resources/skills/mcp/testng-mcp-package-closeout.xml
     role: Owns generated-package legality, protected roots, source evolution and close-out artifacts.
@@ -27,7 +27,7 @@ contracts:
   - id: mcp.capability-pack.report-closeout
     kind: mcp-capability-pack
     owner: skill.mcp
-    packageRoots: src/main/java/com/endava/ai/skills/mcp/rules/report,src/main/java/com/endava/ai/skills/mcp/validation/report
+    packageRoots: src/main/java/com/ai/skills/mcp/rules/report,src/main/java/com/ai/skills/mcp/validation/report
     contracts: report-sections.yml,report-hyperlinks.yml,report-template.yml,score-truth-sync.yml
     primarySuite: src/test/resources/skills/mcp/testng-mcp-final-report-closeout.xml
     followUpSuite: src/test/resources/skills/mcp/testng-mcp-langgraph-final-report.xml
@@ -40,7 +40,7 @@ contracts:
   - id: mcp.capability-pack.extent-provenance
     kind: mcp-capability-pack
     owner: skill.mcp
-    packageRoots: src/main/java/com/endava/ai/skills/mcp/provenance,src/main/java/com/endava/ai/skills/mcp/validation/run/extent
+    packageRoots: src/main/java/com/ai/skills/mcp/provenance,src/main/java/com/ai/skills/mcp/validation/run/extent
     contracts: extent-provenance.yml,package-closeout-artifacts.yml
     primarySuite: src/test/resources/skills/mcp/testng-mcp-package-closeout.xml
     role: Audits Maven command, origin, hash, Extent evidence freshness and proof class.
@@ -52,7 +52,7 @@ contracts:
   - id: mcp.capability-pack.candidate-promotion
     kind: mcp-capability-pack
     owner: skill.mcp
-    packageRoots: src/main/java/com/endava/ai/skills/mcp/rules/candidate,src/main/java/com/endava/ai/skills/mcp/validation/candidate
+    packageRoots: src/main/java/com/ai/skills/mcp/rules/candidate,src/main/java/com/ai/skills/mcp/validation/candidate
     contracts: candidate/html-ex-corpus.yml,checks/mcp-checks-candidate.yml
     primarySuite: src/test/resources/skills/mcp/testng-mcp-candidate.xml
     role: Separates html-ex promotion from generated-package close-out.

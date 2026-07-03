@@ -7,12 +7,12 @@
             </run>
         </groups>
         <classes>
-            <class name="com.endava.ai.atf.core.reporting.screenshot.UiEngineBrowserWindowContractSmokeTest"/>
-            <class name="com.endava.ai.atf.core.reporting.screenshot.UiEngineScreenshotSmokeTest"/>
-            <class name="com.endava.ai.atf.core.reporting.screenshot.ExtentScreenshotArtifactSmokeTest"/>
-            <class name="com.endava.ai.atf.core.reporting.screenshot.AllureScreenshotArtifactSmokeTest"/>
-            <class name="com.endava.ai.atf.core.reporting.screenshot.AllureUiZoomArtifactSmokeTest"/>
-            <class name="com.endava.ai.atf.core.reporting.window.UIZoomRuntimeReportingContractTest"/>
+            <class name="com.ai.atf.core.reporting.screenshot.UiEngineBrowserWindowContractSmokeTest"/>
+            <class name="com.ai.atf.core.reporting.screenshot.UiEngineScreenshotSmokeTest"/>
+            <class name="com.ai.atf.core.reporting.screenshot.ExtentScreenshotArtifactSmokeTest"/>
+            <class name="com.ai.atf.core.reporting.screenshot.AllureScreenshotArtifactSmokeTest"/>
+            <class name="com.ai.atf.core.reporting.screenshot.AllureUiZoomArtifactSmokeTest"/>
+            <class name="com.ai.atf.core.reporting.window.UIZoomRuntimeReportingContractTest"/>
         </classes>
     </test>
 </suite>

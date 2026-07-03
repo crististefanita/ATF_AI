@@ -2,211 +2,211 @@ schemaVersion: 1
 contracts:
   - id: core.reporting.package.main-default
     kind: package-root
-    path: src/main/java/com/endava/ai/core/reporting
+    path: src/main/java/com/ai/core/reporting
     max: 10
     owner: ATF reporting package architecture
     repair: Split reporting packages by adapter or presentation responsibility before adding more direct classes.
   - id: core.reporting.package.test-default
     kind: package-root
-    path: src/test/java/com/endava/ai/atf/core/reporting
+    path: src/test/java/com/ai/atf/core/reporting
     max: 10
     owner: ATF reporting package architecture
     repair: Split reporting contract packages by capability before adding more direct classes.
   - id: core.reporting.package.legacy-extent-adapter
     kind: legacy-package-cap
-    path: src/main/java/com/endava/ai/core/reporting/adapters/extent
+    path: src/main/java/com/ai/core/reporting/adapters/extent
     max: 26
     owner: ATF reporting legacy ratchet
     repair: Ratcheted to the current Extent adapter count after timing-node extraction; shrink this cap after splitting the legacy Extent adapter package.
   - id: core.reporting.package.legacy-atf-adapter-tests
     kind: legacy-package-cap
-    path: src/test/java/com/endava/ai/atf/core/reporting/adapters
+    path: src/test/java/com/ai/atf/core/reporting/adapters
     max: 12
     owner: ATF reporting legacy ratchet
     repair: Shrink this cap only after moving broad adapter tests into focused packages.
   - id: core.reporting.package.legacy-extent-patch
     kind: legacy-package-cap
-    path: src/main/java/com/endava/ai/core/reporting/adapters/extent/patch
+    path: src/main/java/com/ai/core/reporting/adapters/extent/patch
     max: 19
     owner: ATF reporting legacy ratchet
     repair: Ratcheted to the current Extent patch pipeline count; split into planner/applier/normalizer packages before adding more classes.
   - id: core.reporting.package.listener-internal
     kind: legacy-package-cap
-    path: src/main/java/com/endava/ai/core/reporting/listener/internal
+    path: src/main/java/com/ai/core/reporting/listener/internal
     max: 13
     owner: ATF reporting listener ownership ratchet
     repair: Listener internals moved under reporting; split context, flow, step and contract narration packages before adding more direct classes.
   - id: core.reporting.package.listener-runtime
     kind: legacy-package-cap
-    path: src/main/java/com/endava/ai/core/reporting/listener/internal/runtime
+    path: src/main/java/com/ai/core/reporting/listener/internal/runtime
     max: 16
     owner: ATF reporting runtime audit ownership ratchet
     repair: Listener runtime moved under reporting; split dashboard, tags, timeline and failure renderers before adding more direct classes.
   - id: core.reporting.package.listener-runtime-audit
     kind: legacy-package-cap
-    path: src/main/java/com/endava/ai/core/reporting/listener/internal/runtime/audit
+    path: src/main/java/com/ai/core/reporting/listener/internal/runtime/audit
     max: 13
     owner: ATF reporting runtime audit ownership ratchet
     repair: Split runtime audit into model, write, locate and publish packages before adding more direct classes.
   - id: core.reporting.package.core-reporting-tests
     kind: legacy-package-cap
-    path: src/test/java/com/endava/ai/atf/core/reporting
+    path: src/test/java/com/ai/atf/core/reporting
     max: 13
     owner: ATF reporting test ownership ratchet
     repair: Reporting tests moved under atf.core.reporting; split aggregate/listener/html contract roots before adding more direct classes.
   - id: core.reporting.package.aggregate-tests
     kind: legacy-package-cap
-    path: src/test/java/com/endava/ai/atf/core/reporting/aggregate
+    path: src/test/java/com/ai/atf/core/reporting/aggregate
     max: 10
     owner: ATF aggregate reporting test ownership ratchet
     repair: Aggregate reporting tests are in a transition package; split artifact sync, Extent shell and command evidence tests before adding another direct class.
   - id: core.reporting.class.listener
     kind: file-max-lines
-    path: src/main/java/com/endava/ai/core/reporting/listener/TestListener.java
+    path: src/main/java/com/ai/core/reporting/listener/TestListener.java
     max: 220
     owner: ATF core listener
     repair: Keep TestListener as orchestration; move behavior into lifecycle/reporting collaborators.
   - id: core.reporting.class.extent-collapse-policy
     kind: file-max-lines
-    path: src/main/java/com/endava/ai/core/reporting/adapters/extent/spark/style/ExtentSparkCollapsePolicy.java
+    path: src/main/java/com/ai/core/reporting/adapters/extent/spark/style/ExtentSparkCollapsePolicy.java
     max: 50
     owner: Extent Spark collapse composer
     repair: Keep policy as a tiny composer over sections/collapse.
   - id: core.reporting.class.extent-typography-css
     kind: file-max-lines
-    path: src/main/java/com/endava/ai/core/reporting/adapters/extent/spark/style/ExtentSparkContentTypographyCss.java
+    path: src/main/java/com/ai/core/reporting/adapters/extent/spark/style/ExtentSparkContentTypographyCss.java
     max: 50
     owner: Extent Spark typography composer
     repair: Keep typography CSS split into semantic section fragments.
   - id: core.reporting.class.extent-sections
     kind: recursive-file-max-lines
-    path: src/main/java/com/endava/ai/core/reporting/adapters/extent/spark/sections
+    path: src/main/java/com/ai/core/reporting/adapters/extent/spark/sections
     max: 180
     owner: Extent Spark section packages
     repair: Split section classes by visible responsibility before expanding them.
   - id: core.reporting.class.adapter-direct-files
     kind: direct-file-max-lines
-    path: src/main/java/com/endava/ai/core/reporting/adapters
+    path: src/main/java/com/ai/core/reporting/adapters
     max: 180
     owner: ATF reporting adapter facades
     repair: Move adapter behavior into focused collaborators when direct adapter classes grow.
   - id: core.reporting.spark.root
     kind: package-cap
-    path: src/main/java/com/endava/ai/core/reporting/adapters/extent/spark
+    path: src/main/java/com/ai/core/reporting/adapters/extent/spark
     max: 14
     owner: Extent Spark package ownership map
     repair: Ratcheted to the current Spark root count; move behavior into tokens or section packages before adding more classes.
   - id: core.reporting.spark.tokens
     kind: package-cap
-    path: src/main/java/com/endava/ai/core/reporting/adapters/extent/spark/tokens
+    path: src/main/java/com/ai/core/reporting/adapters/extent/spark/tokens
     max: 8
     owner: Extent Spark package ownership map
     repair: Keep token classes semantic and split by token family only when needed.
   - id: core.reporting.spark.sections
     kind: package-cap
-    path: src/main/java/com/endava/ai/core/reporting/adapters/extent/spark/sections
+    path: src/main/java/com/ai/core/reporting/adapters/extent/spark/sections
     max: 4
     owner: Extent Spark package ownership map
     repair: Create focused section subpackages instead of growing the section root.
   - id: core.reporting.spark.sections-collapse
     kind: package-cap
-    path: src/main/java/com/endava/ai/core/reporting/adapters/extent/spark/sections/collapse
+    path: src/main/java/com/ai/core/reporting/adapters/extent/spark/sections/collapse
     max: 8
     owner: Extent Spark package ownership map
     repair: Keep collapse state, CSS and scripts in separate collaborators.
   - id: core.reporting.spark.sections-failure
     kind: package-cap
-    path: src/main/java/com/endava/ai/core/reporting/adapters/extent/spark/sections/failure
+    path: src/main/java/com/ai/core/reporting/adapters/extent/spark/sections/failure
     max: 9
     owner: Extent Spark package ownership map
     repair: Split failure grouping, empty state and detail rendering when this cap is reached.
   - id: core.reporting.spark.sections-theme
     kind: package-cap
-    path: src/main/java/com/endava/ai/core/reporting/adapters/extent/spark/sections/theme
+    path: src/main/java/com/ai/core/reporting/adapters/extent/spark/sections/theme
     max: 10
     owner: Extent Spark package ownership map
     repair: Keep theme behavior separated by sidebar, palette, layout and typography.
   - id: core.reporting.htmlcontract-transitional
     kind: package-cap
-    path: src/main/java/com/endava/ai/core/reporting/htmlcontract
+    path: src/main/java/com/ai/core/reporting/htmlcontract
     max: 14
     owner: Core Reporting HTML contract ownership map
     repair: Ratcheted to the current validator split; create focused subpackages before adding another htmlcontract root class.
   - id: core.tests.default-class-limit
     kind: test-root
-    path: src/test/java/com/endava/ai/atf
+    path: src/test/java/com/ai/atf
     max: 450
     owner: ATF contract-test size guardrails
     repair: Split large contract tests by capability before adding more assertions.
   - id: core.tests.support-default-class-limit
     kind: support-root
-    path: src/test/java/com/endava/ai/atf
+    path: src/test/java/com/ai/atf
     max: 300
     owner: ATF core test support architecture
     repair: Split large support classes into fixture builder, DOM query and assertion helpers.
   - id: core.tests.legacy.extent-presentation-support
     kind: legacy-test-cap
-    path: src/test/java/com/endava/ai/atf/core/reporting/adapters/ExtentSparkPresentationContractSupport.java
+    path: src/test/java/com/ai/atf/core/reporting/adapters/ExtentSparkPresentationContractSupport.java
     max: 60
     owner: ATF reporting legacy fixture ratchet
     repair: Keep this facade tiny; put fixture, DOM, lifecycle and HTML behavior in focused support classes.
   - id: core.tests.legacy.extent-adapter
     kind: legacy-test-cap
-    path: src/test/java/com/endava/ai/atf/core/reporting/adapters/ExtentAdapterTest.java
+    path: src/test/java/com/ai/atf/core/reporting/adapters/ExtentAdapterTest.java
     max: 410
     owner: ATF reporting legacy fixture ratchet
     repair: Split adapter coverage by Extent concern before adding more assertions to the legacy aggregate test.
   - id: core.tests.legacy.reporting-package-shape
     kind: legacy-test-cap
-    path: src/test/java/com/endava/ai/atf/core/reporting/architecture/AtfReportingPackageShapeContractTest.java
+    path: src/test/java/com/ai/atf/core/reporting/architecture/AtfReportingPackageShapeContractTest.java
     max: 390
     owner: ATF reporting package-shape contract ratchet
     repair: Keep package-shape policy in the test and move reusable source scanning into ArchitectureSourceScanner before adding more assertions.
   - id: core.tests.legacy.contract-annotation-best-practice
     kind: legacy-test-cap
-    path: src/test/java/com/endava/ai/atf/core/support/contracts/annotations/ContractAnnotationBestPracticeTest.java
+    path: src/test/java/com/ai/atf/core/support/contracts/annotations/ContractAnnotationBestPracticeTest.java
     max: 455
     owner: ATF contract annotation ratchet
     repair: Split annotation metadata, listener, and coverage checks before adding more assertions.
   - id: core.tests.legacy.yaml-contract-manifest
     kind: legacy-test-cap
-    path: src/test/java/com/endava/ai/atf/core/support/contract/core/yaml/AtfCoreYamlContractManifestTest.java
+    path: src/test/java/com/ai/atf/core/support/contract/core/yaml/AtfCoreYamlContractManifestTest.java
     max: 447
     owner: ATF core contract manifest ratchet
     repair: Split YAML catalog, routing, and manifest integrity checks before adding more assertions.
   - id: core.tests.legacy.aggregate-extent-contract
     kind: legacy-test-cap
-    path: src/test/java/com/endava/ai/atf/core/reporting/aggregate/AtfCoreAggregateExtentContractTest.java
+    path: src/test/java/com/ai/atf/core/reporting/aggregate/AtfCoreAggregateExtentContractTest.java
     max: 275
     owner: ATF aggregate Extent legacy contract ratchet
     repair: Keep aggregate shell/runtime ledger checks here; listener harness, publish manifest, and timing contracts must stay in focused subpackages.
   - id: core.tests.legacy.extent-report-fixtures
     kind: legacy-test-cap
-    path: src/test/java/com/endava/ai/atf/core/reporting/adapters/support/ExtentSparkReportFixtures.java
+    path: src/test/java/com/ai/atf/core/reporting/adapters/support/ExtentSparkReportFixtures.java
     max: 410
     owner: ATF reporting legacy fixture ratchet
     repair: Split report fixture creation from invariant assertions before adding more Extent fixture behavior.
   - id: core.tests.legacy.zoom-runtime-reporting
     kind: legacy-test-cap
-    path: src/test/java/com/endava/ai/atf/core/reporting/window/UIZoomRuntimeReportingContractTest.java
+    path: src/test/java/com/ai/atf/core/reporting/window/UIZoomRuntimeReportingContractTest.java
     max: 323
     owner: ATF reporting legacy fixture ratchet
     repair: Keep zoom runtime scenarios below the ratchet and move reusable browser setup into support.
   - id: core.tests.legacy.final-ui-screenshot
     kind: legacy-test-cap
-    path: src/test/java/com/endava/ai/atf/core/reporting/screenshot/FinalUiScreenshotContractTest.java
+    path: src/test/java/com/ai/atf/core/reporting/screenshot/FinalUiScreenshotContractTest.java
     max: 285
     owner: ATF reporting legacy fixture ratchet
     repair: Keep final screenshot scenarios below the ratchet and move reusable evidence setup into support.
   - id: core.tests.legacy.skill-architecture-contract
     kind: legacy-test-cap
-    path: src/test/java/com/endava/ai/atf/core/skills/architecture/AtfSkillArchitectureContractTest.java
+    path: src/test/java/com/ai/atf/core/skills/architecture/AtfSkillArchitectureContractTest.java
     max: 161
     owner: ATF skill architecture legacy contract ratchet
     repair: Split skill ownership, flow ordering, Reporting surface, MCP capability packs and Atlas rule packs into focused contract tests before adding more assertions.
   - id: core.tests.legacy.business-understanding-kernel-contract
     kind: legacy-test-cap
-    path: src/test/java/com/endava/ai/skills/business/tests/BusinessUnderstandingKernelContractTest.java
+    path: src/test/java/com/ai/skills/business/tests/BusinessUnderstandingKernelContractTest.java
     max: 400
     owner: ATF business-understanding legacy contract ratchet
     repair: Split semantic model, package-shape and calibration assertions before adding more business-understanding kernel checks.

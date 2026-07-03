@@ -25,8 +25,8 @@ Focus strictly on strengthening coverage around EXISTING modified classes and EX
 Ignore adding new business/UI suites unless they are strictly necessary for validating a framework contract.
 
 Prioritize test additions under:
-- src/test/java/com/endava/ai/atf
-- src/test/java/com/endava/ai/atf/ui
+- src/test/java/com/ai/atf
+- src/test/java/com/ai/atf/ui
 
 Preserve all existing modifications in current production classes unless a real defect is proven.
 

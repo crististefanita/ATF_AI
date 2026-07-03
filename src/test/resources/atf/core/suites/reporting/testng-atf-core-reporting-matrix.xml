@@ -2,7 +2,7 @@
 <suite name="ATF Core Reporting Matrix" verbose="1">
     <test name="core-reporting-pass-fail-skip-aggregate">
         <classes>
-            <class name="com.endava.ai.atf.core.reporting.integration.skills.CoreReportingMatrixContractTest"/>
+            <class name="com.ai.atf.core.reporting.integration.skills.CoreReportingMatrixContractTest"/>
         </classes>
     </test>
 </suite>

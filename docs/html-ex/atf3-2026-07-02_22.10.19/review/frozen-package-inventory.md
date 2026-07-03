@@ -1,4 +1,4 @@
-﻿analysis/shared-report-reference.css
+analysis/shared-report-reference.css
 CALIBRATION.md
 docs/prompts/html_ro/mcp/agent-runtime.properties
 manifests/package-manifest.md
@@ -23,7 +23,7 @@ runs/run_01/validation/command.txt
 runs/run_01/validation/command-output.txt
 runs/run_01/validation/command-result.md
 runs/run_01/validation/reports/ExtentReport.html
-runs/run_01/validation/TEST-com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentCreationTest.xml
+runs/run_01/validation/TEST-com.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentCreationTest.xml
 runs/run_01/validation/testng-results.xml
 runs/run_02/manifests/run-manifest.md
 runs/run_02/prompt/input-snapshot.md
@@ -36,7 +36,7 @@ runs/run_02/validation/command.txt
 runs/run_02/validation/command-output.txt
 runs/run_02/validation/command-result.md
 runs/run_02/validation/reports/ExtentReport.html
-runs/run_02/validation/TEST-com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentAuditTrailTest.xml
+runs/run_02/validation/TEST-com.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentAuditTrailTest.xml
 runs/run_02/validation/testng-results.xml
 runs/run_03/manifests/run-manifest.md
 runs/run_03/prompt/input-snapshot.md
@@ -49,7 +49,7 @@ runs/run_03/validation/command.txt
 runs/run_03/validation/command-output.txt
 runs/run_03/validation/command-result.md
 runs/run_03/validation/reports/ExtentReport.html
-runs/run_03/validation/TEST-com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentContractTest.xml
+runs/run_03/validation/TEST-com.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentContractTest.xml
 runs/run_03/validation/testng-results.xml
 runs/run_04/manifests/run-manifest.md
 runs/run_04/prompt/input-snapshot.md
@@ -62,7 +62,7 @@ runs/run_04/validation/command.txt
 runs/run_04/validation/command-output.txt
 runs/run_04/validation/command-result.md
 runs/run_04/validation/reports/ExtentReport.html
-runs/run_04/validation/TEST-com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentReloginTest.xml
+runs/run_04/validation/TEST-com.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentReloginTest.xml
 runs/run_04/validation/testng-results.xml
 runs/run_05/manifests/run-manifest.md
 runs/run_05/prompt/input-snapshot.md
@@ -75,5 +75,5 @@ runs/run_05/validation/command.txt
 runs/run_05/validation/command-output.txt
 runs/run_05/validation/command-result.md
 runs/run_05/validation/reports/ExtentReport.html
-runs/run_05/validation/TEST-com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentReopenTest.xml
+runs/run_05/validation/TEST-com.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentReopenTest.xml
 runs/run_05/validation/testng-results.xml

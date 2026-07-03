@@ -8,16 +8,16 @@
             </run>
         </groups>
         <classes>
-            <class name="com.endava.ai.atf.ui.component.config.FrameworkRuntimeUiDefaultsContractTest"/>
-            <class name="com.endava.ai.atf.ui.component.UiCoreConfigOverrideDisciplineTest"/>
-            <class name="com.endava.ai.atf.ui.component.UiEngineActionParityContractTest"/>
-            <class name="com.endava.ai.atf.ui.component.UiEngineCapabilityContractTest"/>
-            <class name="com.endava.ai.atf.ui.component.engine.UiEngineBoundaryContractTest"/>
-            <class name="com.endava.ai.atf.ui.component.engine.SeleniumEngineInternalContractTest"/>
-            <class name="com.endava.ai.atf.ui.component.UiEngineDelegationContractTest"/>
-            <class name="com.endava.ai.atf.ui.component.UiEngineRuntimeOptionsContractTest"/>
-            <class name="com.endava.ai.atf.ui.component.WaitUtilsContractTest"/>
-            <class name="com.endava.ai.atf.ui.component.RegistrationValidationContractTest"/>
+            <class name="com.ai.atf.ui.component.config.FrameworkRuntimeUiDefaultsContractTest"/>
+            <class name="com.ai.atf.ui.component.UiCoreConfigOverrideDisciplineTest"/>
+            <class name="com.ai.atf.ui.component.UiEngineActionParityContractTest"/>
+            <class name="com.ai.atf.ui.component.UiEngineCapabilityContractTest"/>
+            <class name="com.ai.atf.ui.component.engine.UiEngineBoundaryContractTest"/>
+            <class name="com.ai.atf.ui.component.engine.SeleniumEngineInternalContractTest"/>
+            <class name="com.ai.atf.ui.component.UiEngineDelegationContractTest"/>
+            <class name="com.ai.atf.ui.component.UiEngineRuntimeOptionsContractTest"/>
+            <class name="com.ai.atf.ui.component.WaitUtilsContractTest"/>
+            <class name="com.ai.atf.ui.component.RegistrationValidationContractTest"/>
         </classes>
     </test>
 </suite>

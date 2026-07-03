@@ -3,7 +3,7 @@ contracts:
   - id: atlas.rule-pack.business-semantics
     kind: atlas-rule-pack
     owner: skill.atlas
-    packageRoots: src/main/java/com/endava/ai/skills/atlas/rules/business,src/main/java/com/endava/ai/skills/atlas/rules/business/trace
+    packageRoots: src/main/java/com/ai/skills/atlas/rules/business,src/main/java/com/ai/skills/atlas/rules/business/trace
     contracts: agentic-quality-lanes.yml,rule-policies.yml
     primarySuite: src/test/resources/skills/atlas/testng-atlas-sanity.xml
     role: Owns source-backed business meaning, comprehension vocabulary and source-to-business trace.
@@ -15,7 +15,7 @@ contracts:
   - id: atlas.rule-pack.graph-proof
     kind: atlas-rule-pack
     owner: skill.atlas
-    packageRoots: src/main/java/com/endava/ai/skills/atlas/rules/graph,src/main/java/com/endava/ai/skills/atlas/report
+    packageRoots: src/main/java/com/ai/skills/atlas/rules/graph,src/main/java/com/ai/skills/atlas/report
     contracts: graph-reporting.yml,report-sections.yml
     primarySuite: src/test/resources/skills/atlas/testng-atlas.xml
     role: Owns graph structure, legends, proof strips and local graph proof readability.
@@ -27,7 +27,7 @@ contracts:
   - id: atlas.rule-pack.score-truth
     kind: atlas-rule-pack
     owner: skill.atlas
-    packageRoots: src/main/java/com/endava/ai/skills/atlas/rules/scoring
+    packageRoots: src/main/java/com/ai/skills/atlas/rules/scoring
     contracts: agentic-quality-lanes.yml,rule-policies.yml
     primarySuite: src/test/resources/skills/atlas/testng-atlas.xml
     role: Owns source-backed score truth, cap rationale and business understanding limits.
@@ -39,7 +39,7 @@ contracts:
   - id: atlas.rule-pack.audit-publication
     kind: atlas-rule-pack
     owner: skill.atlas
-    packageRoots: src/main/java/com/endava/ai/skills/atlas/rules/audit,src/main/java/com/endava/ai/skills/atlas/validation
+    packageRoots: src/main/java/com/ai/skills/atlas/rules/audit,src/main/java/com/ai/skills/atlas/validation
     contracts: suites.yml,package-shape.yml,rule-policies.yml
     primarySuite: src/test/resources/skills/atlas/testng-atlas-sanity.xml
     role: Owns Atlas test audit, rule catalog synchronization and generated Atlas output publication.

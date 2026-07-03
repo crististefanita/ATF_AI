@@ -163,8 +163,8 @@ PACKAGE RULES
 
 Keep:
 
-- business API tests under `src/test/java/com/endava/ai/api/tests`
-- reusable API logic under `src/main/java/com/endava/ai/api`
+- business API tests under `src/test/java/com/ai/api/tests`
+- reusable API logic under `src/main/java/com/ai/api`
 
 Follow repository conventions.
 Do not invent new top-level patterns unless clearly justified by existing code style.

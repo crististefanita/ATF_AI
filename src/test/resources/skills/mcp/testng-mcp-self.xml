@@ -2,36 +2,36 @@
 <suite name="MCP Self Contracts" verbose="1">
     <test name="mcp-self">
         <classes>
-            <class name="com.endava.ai.skills.mcp.tests.core.calibration.McpRunCalibrationContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.core.calibration.McpRunEvidenceCalibrationContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.core.calibration.McpRunCountabilityRuleContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.core.profiles.McpTestNgProfileContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.core.shape.McpPackageShapeContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.core.McpProjectLocatorContractTest"/>
-            <class name="com.endava.ai.skills.mcp.validation.McpPackageAuditContextCacheContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.core.McpReportProfileClassloadingContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.core.McpSemanticPackageValidatorTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.contracts.McpBusinessUnderstandingConsumerContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.contracts.McpRuleRoutingCatalogContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.contracts.McpYamlCheckRefContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.contracts.McpYamlContractSchemaTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.contracts.prompt.McpPromptContractOwnershipTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.contracts.McpYamlContractSyncTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.contracts.McpYamlContractMatrixTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.contracts.McpPackageReadmeContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.negative.McpBusinessNegativeContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.negative.McpCandidateNegativeContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.negative.McpGeneratedPackageValidatorTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.negative.McpReportNegativeContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.negative.McpRuntimeNegativeContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.negative.McpScoreNegativeContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.negative.McpSourceNegativeContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.negative.McpUiNegativeContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.negative.run.McpRunDiffNegativeContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.negative.run.McpRunExtentNegativeContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.negative.run.McpRunExtentProvenanceNegativeContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.negative.run.McpRunLearningNegativeContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.negative.run.McpRunStateNegativeContractTest"/>
+            <class name="com.ai.skills.mcp.tests.core.calibration.McpRunCalibrationContractTest"/>
+            <class name="com.ai.skills.mcp.tests.core.calibration.McpRunEvidenceCalibrationContractTest"/>
+            <class name="com.ai.skills.mcp.tests.core.calibration.McpRunCountabilityRuleContractTest"/>
+            <class name="com.ai.skills.mcp.tests.core.profiles.McpTestNgProfileContractTest"/>
+            <class name="com.ai.skills.mcp.tests.core.shape.McpPackageShapeContractTest"/>
+            <class name="com.ai.skills.mcp.tests.core.McpProjectLocatorContractTest"/>
+            <class name="com.ai.skills.mcp.validation.McpPackageAuditContextCacheContractTest"/>
+            <class name="com.ai.skills.mcp.tests.core.McpReportProfileClassloadingContractTest"/>
+            <class name="com.ai.skills.mcp.tests.core.McpSemanticPackageValidatorTest"/>
+            <class name="com.ai.skills.mcp.tests.contracts.McpBusinessUnderstandingConsumerContractTest"/>
+            <class name="com.ai.skills.mcp.tests.contracts.McpRuleRoutingCatalogContractTest"/>
+            <class name="com.ai.skills.mcp.tests.contracts.McpYamlCheckRefContractTest"/>
+            <class name="com.ai.skills.mcp.tests.contracts.McpYamlContractSchemaTest"/>
+            <class name="com.ai.skills.mcp.tests.contracts.prompt.McpPromptContractOwnershipTest"/>
+            <class name="com.ai.skills.mcp.tests.contracts.McpYamlContractSyncTest"/>
+            <class name="com.ai.skills.mcp.tests.contracts.McpYamlContractMatrixTest"/>
+            <class name="com.ai.skills.mcp.tests.contracts.McpPackageReadmeContractTest"/>
+            <class name="com.ai.skills.mcp.tests.negative.McpBusinessNegativeContractTest"/>
+            <class name="com.ai.skills.mcp.tests.negative.McpCandidateNegativeContractTest"/>
+            <class name="com.ai.skills.mcp.tests.negative.McpGeneratedPackageValidatorTest"/>
+            <class name="com.ai.skills.mcp.tests.negative.McpReportNegativeContractTest"/>
+            <class name="com.ai.skills.mcp.tests.negative.McpRuntimeNegativeContractTest"/>
+            <class name="com.ai.skills.mcp.tests.negative.McpScoreNegativeContractTest"/>
+            <class name="com.ai.skills.mcp.tests.negative.McpSourceNegativeContractTest"/>
+            <class name="com.ai.skills.mcp.tests.negative.McpUiNegativeContractTest"/>
+            <class name="com.ai.skills.mcp.tests.negative.run.McpRunDiffNegativeContractTest"/>
+            <class name="com.ai.skills.mcp.tests.negative.run.McpRunExtentNegativeContractTest"/>
+            <class name="com.ai.skills.mcp.tests.negative.run.McpRunExtentProvenanceNegativeContractTest"/>
+            <class name="com.ai.skills.mcp.tests.negative.run.McpRunLearningNegativeContractTest"/>
+            <class name="com.ai.skills.mcp.tests.negative.run.McpRunStateNegativeContractTest"/>
         </classes>
     </test>
 </suite>

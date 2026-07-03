@@ -2,22 +2,22 @@
 <suite name="MCP Package Close-Out" verbose="1">
     <!-- Final publishability evidence: same checks as package-audit, but this frozen profile is the canonical close-out artifact source. -->
     <listeners>
-        <listener class-name="com.endava.ai.skills.mcp.tests.support.McpPackageAuditSuiteInterceptor"/>
+        <listener class-name="com.ai.skills.mcp.tests.support.McpPackageAuditSuiteInterceptor"/>
     </listeners>
     <test name="mcp-package-closeout">
         <classes>
-            <class name="com.endava.ai.skills.mcp.tests.core.McpPackageAuditPreflightTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.core.McpConfiguredPackageAuditTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageArchitectureContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageLinkContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest"/>
-            <class name="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest"/>
+            <class name="com.ai.skills.mcp.tests.core.McpPackageAuditPreflightTest"/>
+            <class name="com.ai.skills.mcp.tests.core.McpConfiguredPackageAuditTest"/>
+            <class name="com.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest"/>
+            <class name="com.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest"/>
+            <class name="com.ai.skills.mcp.tests.latest.McpLatestPackageArchitectureContractTest"/>
+            <class name="com.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest"/>
+            <class name="com.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest"/>
+            <class name="com.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest"/>
+            <class name="com.ai.skills.mcp.tests.latest.McpLatestPackageLinkContractTest"/>
+            <class name="com.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest"/>
+            <class name="com.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest"/>
+            <class name="com.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest"/>
         </classes>
     </test>
 </suite>

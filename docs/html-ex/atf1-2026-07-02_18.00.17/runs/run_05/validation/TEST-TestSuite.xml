@@ -74,7 +74,7 @@
     <property name="library.jansi.path" value="c:\tools\apache-maven-3.9.14\lib\jansi-native"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="refundSupportRequestReopensAsSameIntakeSurface" classname="com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest" time="0.268">
+  <testcase name="refundSupportRequestReopensAsSameIntakeSurface" classname="com.ai.ui.tests.refunds.support.RefundSupportReopenTest" time="0.268">
     <system-out><![CDATA[  • Playwright pages after init: 1
 ▶ Clear browser session
   ✅ PASS: Session cleared
@@ -415,22 +415,22 @@ SLF4J: Defaulting to no-operation (NOP) logger implementation
 SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
 ]]></system-err>
   </testcase>
-  <testcase name="refundSupportReopenKeepsReturnSubject" classname="com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest" time="0.213">
+  <testcase name="refundSupportReopenKeepsReturnSubject" classname="com.ai.ui.tests.refunds.support.RefundSupportReopenTest" time="0.213">
     <system-out><![CDATA[▶ Validate reopened refund support subject
   ✅ PASS: Validate reopened refund support subject passed
 ]]></system-out>
   </testcase>
-  <testcase name="refundSupportReopenKeepsInvoiceBridge" classname="com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest" time="0.207">
+  <testcase name="refundSupportReopenKeepsInvoiceBridge" classname="com.ai.ui.tests.refunds.support.RefundSupportReopenTest" time="0.207">
     <system-out><![CDATA[▶ Validate reopened refund support invoice
   ✅ PASS: Validate reopened refund support invoice passed
 ]]></system-out>
   </testcase>
-  <testcase name="refundSupportReopenExposesReturnSurface" classname="com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest" time="0.223">
+  <testcase name="refundSupportReopenExposesReturnSurface" classname="com.ai.ui.tests.refunds.support.RefundSupportReopenTest" time="0.223">
     <system-out><![CDATA[▶ Validate reopened support surface still exposes Return subject
   ✅ PASS: Validate reopened support surface still exposes Return subject passed
 ]]></system-out>
   </testcase>
-  <testcase name="refundSupportReopenUsesRealContactRoute" classname="com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest" time="0.217">
+  <testcase name="refundSupportReopenUsesRealContactRoute" classname="com.ai.ui.tests.refunds.support.RefundSupportReopenTest" time="0.217">
     <system-out><![CDATA[▶ Validate reopened support route
   ✅ PASS: Validate reopened support route passed
 ]]></system-out>

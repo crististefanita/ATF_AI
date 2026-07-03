@@ -18,7 +18,7 @@ contracts:
     repairCommand: mvn -q -Dsurefire.suiteXmlFiles=src/test/resources/skills/mcp/testng-mcp-package-closeout.xml test
     capImpact: 95+ blocked until this KPI matches source evidence
     publishabilityImpact: package close-out cannot be trusted when declared KPI differs from diff evidence
-    validator: com.endava.ai.skills.mcp.rules.source.kpi.SourceEvolutionKpiConsistencyRule
+    validator: com.ai.skills.mcp.rules.source.kpi.SourceEvolutionKpiConsistencyRule
   - id: src_main_files
     profile: package-closeout
     category: source
@@ -37,7 +37,7 @@ contracts:
     repairCommand: regenerate root-source-thin-no-index.diff and source-evolution-ledger.md
     capImpact: 95+ blocked until this KPI matches source evidence
     publishabilityImpact: package close-out cannot be trusted when declared KPI differs from diff evidence
-    validator: com.endava.ai.skills.mcp.rules.source.kpi.SourceEvolutionKpiConsistencyRule
+    validator: com.ai.skills.mcp.rules.source.kpi.SourceEvolutionKpiConsistencyRule
   - id: src_test_files
     profile: package-closeout
     category: test-design
@@ -56,7 +56,7 @@ contracts:
     repairCommand: regenerate root-source-thin-no-index.diff and source-evolution-ledger.md
     capImpact: 95+ blocked until this KPI matches source evidence
     publishabilityImpact: package close-out cannot be trusted when declared KPI differs from diff evidence
-    validator: com.endava.ai.skills.mcp.rules.source.kpi.SourceEvolutionKpiConsistencyRule
+    validator: com.ai.skills.mcp.rules.source.kpi.SourceEvolutionKpiConsistencyRule
   - id: files_added
     profile: package-closeout
     category: source
@@ -75,7 +75,7 @@ contracts:
     repairCommand: recalculate file status counters from root diff
     capImpact: 95+ blocked until this KPI matches source evidence
     publishabilityImpact: package close-out cannot be trusted when declared KPI differs from diff evidence
-    validator: com.endava.ai.skills.mcp.rules.source.kpi.SourceEvolutionKpiConsistencyRule
+    validator: com.ai.skills.mcp.rules.source.kpi.SourceEvolutionKpiConsistencyRule
   - id: files_modified
     profile: package-closeout
     category: source
@@ -94,7 +94,7 @@ contracts:
     repairCommand: recalculate file status counters from root diff
     capImpact: 95+ blocked until this KPI matches source evidence
     publishabilityImpact: package close-out cannot be trusted when declared KPI differs from diff evidence
-    validator: com.endava.ai.skills.mcp.rules.source.kpi.SourceEvolutionKpiConsistencyRule
+    validator: com.ai.skills.mcp.rules.source.kpi.SourceEvolutionKpiConsistencyRule
   - id: files_deleted
     profile: package-closeout
     category: source
@@ -113,7 +113,7 @@ contracts:
     repairCommand: recalculate file status counters from root diff
     capImpact: 95+ blocked until this KPI matches source evidence
     publishabilityImpact: package close-out cannot be trusted when declared KPI differs from diff evidence
-    validator: com.endava.ai.skills.mcp.rules.source.kpi.SourceEvolutionKpiConsistencyRule
+    validator: com.ai.skills.mcp.rules.source.kpi.SourceEvolutionKpiConsistencyRule
   - id: test_methods_added
     profile: package-closeout
     category: test-design
@@ -132,7 +132,7 @@ contracts:
     repairCommand: recalculate @Test deltas from root diff
     capImpact: 95+ blocked until this KPI matches source evidence
     publishabilityImpact: package close-out cannot be trusted when declared KPI differs from diff evidence
-    validator: com.endava.ai.skills.mcp.rules.source.kpi.SourceEvolutionKpiConsistencyRule
+    validator: com.ai.skills.mcp.rules.source.kpi.SourceEvolutionKpiConsistencyRule
   - id: protected_root_dirty_count
     profile: package-closeout
     category: protected-boundary
@@ -151,7 +151,7 @@ contracts:
     repairCommand: git status --short -- protected roots; undo framework/MCP/Atlas changes
     capImpact: 95+ blocked until this KPI matches source evidence
     publishabilityImpact: package close-out cannot be trusted when declared KPI differs from diff evidence
-    validator: com.endava.ai.skills.mcp.rules.source.kpi.SourceEvolutionKpiConsistencyRule
+    validator: com.ai.skills.mcp.rules.source.kpi.SourceEvolutionKpiConsistencyRule
   - id: test_classes_added
     profile: diagnostic
     category: test-design

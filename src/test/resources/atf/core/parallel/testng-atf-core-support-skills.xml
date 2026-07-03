@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="ATF Core Parallel Support Skills Slice" verbose="1">
     <listeners>
-        <listener class-name="com.endava.ai.atf.core.reporting.aggregate.AtfCoreAggregateReportListener"/>
+        <listener class-name="com.ai.atf.core.reporting.aggregate.AtfCoreAggregateReportListener"/>
     </listeners>
     <test name="core-support-skills">
         <groups>
@@ -12,8 +12,8 @@
             </run>
         </groups>
         <packages>
-            <package name="com.endava.ai.atf.core.support.*"/>
-            <package name="com.endava.ai.atf.core.skills.*"/>
+            <package name="com.ai.atf.core.support.*"/>
+            <package name="com.ai.atf.core.skills.*"/>
         </packages>
     </test>
 </suite>

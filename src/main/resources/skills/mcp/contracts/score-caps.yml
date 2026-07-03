@@ -5,7 +5,7 @@ contracts:
     severity: BLOCKER
     trigger: any required validation/mcp close-out artifact is missing
     maxScore: 88
-    validator: com.endava.ai.skills.mcp.rules.packageaudit.closeout.FullMcpGateRule
+    validator: com.ai.skills.mcp.rules.packageaudit.closeout.FullMcpGateRule
     repairTarget: validation/mcp
     capImpact: missing frozen MCP evidence blocks 95+
     publishabilityImpact: package cannot be promoted when the close-out spine is incomplete
@@ -14,7 +14,7 @@ contracts:
     severity: BLOCKER
     trigger: final origin/gate/XML names full sweep, candidate, or ad-hoc MCP instead of package-closeout
     maxScore: 88
-    validator: com.endava.ai.skills.mcp.rules.packageaudit.closeout.FullMcpGateRule
+    validator: com.ai.skills.mcp.rules.packageaudit.closeout.FullMcpGateRule
     repairTarget: validation/mcp/extent-origin.json
     capImpact: 95+ requires testng-mcp-package-closeout.xml as primary evidence
     publishabilityImpact: full sweep can be health evidence, not final close-out proof
@@ -23,7 +23,7 @@ contracts:
     severity: MAJOR
     trigger: package close-out reports skipped methods
     maxScore: 92
-    validator: com.endava.ai.skills.mcp.rules.packageaudit.closeout.FullMcpGateRule
+    validator: com.ai.skills.mcp.rules.packageaudit.closeout.FullMcpGateRule
     repairTarget: validation/mcp/full-mcp-method-ledger.md
     capImpact: skipped close-out needs explicit discovered/executed/skipped disclosure and score cap
     publishabilityImpact: skipped methods may be accepted only when justified in final report
@@ -32,7 +32,7 @@ contracts:
     severity: BLOCKER
     trigger: root diff or git status touches protected ATF core, MCP, Atlas, ui.core, api.core, or prompt policy
     maxScore: 88
-    validator: com.endava.ai.skills.mcp.rules.source.protectedroot.ProtectedGitWorkspaceRule
+    validator: com.ai.skills.mcp.rules.source.protectedroot.ProtectedGitWorkspaceRule
     repairTarget: review/root-source-thin-no-index.diff
     capImpact: protected-root drift blocks 95+ unless undone and re-audited
     publishabilityImpact: generated package quality cannot be bought by patching the validator/framework
@@ -41,7 +41,7 @@ contracts:
     severity: BLOCKER
     trigger: final report/README links do not target latest validation/mcp artifacts
     maxScore: 90
-    validator: com.endava.ai.skills.mcp.rules.report.ProofMappingReportRule
+    validator: com.ai.skills.mcp.rules.report.ProofMappingReportRule
     repairTarget: analysis/langgraph-business-understanding.html
     capImpact: stale links block publishable scoring
     publishabilityImpact: reviewers must be able to reopen exactly the final MCP evidence

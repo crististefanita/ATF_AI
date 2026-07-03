@@ -2,11 +2,11 @@
 <suite name="MCP LangGraph Final Report Validation" verbose="1">
     <!-- Last MCP report-meaning gate: run after package-closeout, post-sync-smoke and final-report-closeout are green. -->
     <listeners>
-        <listener class-name="com.endava.ai.skills.mcp.tests.support.McpPackageAuditSuiteInterceptor"/>
+        <listener class-name="com.ai.skills.mcp.tests.support.McpPackageAuditSuiteInterceptor"/>
     </listeners>
     <test name="mcp-langgraph-final-report">
         <classes>
-            <class name="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest">
+            <class name="com.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest">
                 <methods>
                     <include name="finalReportHasRequiredBusinessStructure"/>
                     <include name="finalReportContainsCanonicalBusinessSections"/>
@@ -15,13 +15,13 @@
                     <include name="finalReportDoesNotLeakExternalCalibrationSources"/>
                 </methods>
             </class>
-            <class name="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageLinkContractTest">
+            <class name="com.ai.skills.mcp.tests.latest.McpLatestPackageLinkContractTest">
                 <methods>
                     <include name="everyLocalHrefInFinalReportResolves"/>
                     <include name="savedLinkAuditReportsNoMissingLinks"/>
                 </methods>
             </class>
-            <class name="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest">
+            <class name="com.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest">
                 <methods>
                     <include name="finalReportUsesSharedCssAndDocumentChrome"/>
                     <include name="finalReportUsesHtmlExampleVisualShell"/>
@@ -37,7 +37,7 @@
                     <include name="finalReportLinksFrozenMcpContractEvidence"/>
                 </methods>
             </class>
-            <class name="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest">
+            <class name="com.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest">
                 <methods>
                     <include name="finalReportScoreOverviewUsesCanonicalBusinessAxes"/>
                     <include name="finalReportScoreNarrativeDoesNotGradeRuntimeAccountingAsBusinessDepth"/>
@@ -54,7 +54,7 @@
                     <include name="finalReportOpeningMatchesCanonicalHtmlExampleShape"/>
                 </methods>
             </class>
-            <class name="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest">
+            <class name="com.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest">
                 <methods>
                     <include name="businessFlowGraphIsRenderedAsDiagram"/>
                     <include name="businessFlowGraphUsesBalancedCanvasDensity"/>

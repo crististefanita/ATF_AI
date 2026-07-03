@@ -184,7 +184,7 @@ Score cards -> overall last -> Context -> collapsed -> Main graph -> business-fi
 | Business proof strips | after each graph and each subgraph 3.x there is a collapsible subsection `Node Evidence Strip` : node, test/method, layer path, proven business understanding, limit | closed by default; the named methods/classes exist in sourceRoot/UI layers |
 | Business Evidence Tables | coverage, repeated corridors, layer trace, maturity and limits | closed / supporting evidence |
 | Source-to-Business Trace | class/method -> actor -> object -> proven business understanding | closed |
-| Atlas Test Audit | link to the Extent of atlas tests + order + cold result; the declared total must be identical to the linked Extent; for joint publication includes `Full Atlas regression command` : `mvn -q "-Dtest=com.endava.ai.skills.atlas.tests.*Test,com.endava.ai.atf.frameworkatlas.*Test" test` | closed / audit-only / verified before publication |
+| Atlas Test Audit | link to the Extent of atlas tests + order + cold result; the declared total must be identical to the linked Extent; for joint publication includes `Full Atlas regression command` : `mvn -q "-Dtest=com.ai.skills.atlas.tests.*Test,com.ai.atf.frameworkatlas.*Test" test` | closed / audit-only / verified before publication |
 
 <!-- /table -->
 
@@ -286,8 +286,8 @@ Score cards -> overall last -> Context -> collapsed -> Main graph -> business-fi
 | Source | What does it extract? | What does NOT inherit |
 | --- | --- | --- |
 | `< input-folder >` | the real scope of the analyzed source code | external artifacts or old runtimes |
-| `src/test/java/com/endava/ai/ui/tests` | methods, classes, claims, business family | score because the tests are green |
-| `src/main/java/com/endava/ai/ui` | page/actions/service/validation layering | business ownership if it's just a helper |
+| `src/test/java/com/ai/ui/tests` | methods, classes, claims, business family | score because the tests are green |
+| `src/main/java/com/ai/ui` | page/actions/service/validation layering | business ownership if it's just a helper |
 | `docs/Living_Architecture_UI_API_doc_v1_0.html` | UI/API/core/reporting responsibilities and the separation of support vs protected core | the right to overwrite MCP contracts or modify core/MCP/atlas for a single business context |
 
 <!-- /table -->
@@ -485,7 +485,7 @@ This vocabulary is intentionally small. If the agent wants another wording, he m
 
 | Parameter | Skill-ready description | Anti-drift |
 | --- | --- | --- |
-| `INPUT_TEST_PACKAGE_ROOT` | folder / package explicitly received for analysis | it is not assumed `com.endava.ai.ui.tests` decat ca default ATF |
+| `INPUT_TEST_PACKAGE_ROOT` | folder / package explicitly received for analysis | it is not assumed `com.ai.ui.tests` decat ca default ATF |
 | `OUTPUT_ATLAS_HTML` | the HTML file produced, usually `business-test-atlas.html` | not to be confused with final run report |
 | `SHARED_REPORT_REFERENCE_CSS` | Reused common CSS | local overrides are reported |
 | `LIVING_ARCHITECTURE_REFERENCE` | layers document for interpreting test/action/page/validation/model | does not become the source of new business |

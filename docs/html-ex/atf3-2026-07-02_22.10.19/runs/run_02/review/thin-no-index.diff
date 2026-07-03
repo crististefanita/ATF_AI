@@ -1,12 +1,12 @@
-﻿diff --git a/src/main/java/com/endava/ai/ui/support/model/invoice/AccountInvoiceSnapshot.java b/src/main/java/com/endava/ai/ui/support/model/invoice/AccountInvoiceSnapshot.java
+diff --git a/src/main/java/com/ai/ui/support/model/invoice/AccountInvoiceSnapshot.java b/src/main/java/com/ai/ui/support/model/invoice/AccountInvoiceSnapshot.java
 new file mode 100644
 index 00000000..8e244c40
 --- /dev/null
-+++ b/src/main/java/com/endava/ai/ui/support/model/invoice/AccountInvoiceSnapshot.java
++++ b/src/main/java/com/ai/ui/support/model/invoice/AccountInvoiceSnapshot.java
 @@ -0,0 +1,57 @@
-+package com.endava.ai.ui.support.model.invoice;
++package com.ai.ui.support.model.invoice;
 +
-+import com.endava.ai.ui.support.model.CustomerData;
++import com.ai.ui.support.model.CustomerData;
 +
 +public final class AccountInvoiceSnapshot {
 +    private final CustomerData customer;
@@ -61,16 +61,16 @@ index 00000000..8e244c40
 +        return invoiceNumber;
 +    }
 +}
-diff --git a/src/main/java/com/endava/ai/ui/support/validation/invoice/AccountInvoiceRowValidation.java b/src/main/java/com/endava/ai/ui/support/validation/invoice/AccountInvoiceRowValidation.java
+diff --git a/src/main/java/com/ai/ui/support/validation/invoice/AccountInvoiceRowValidation.java b/src/main/java/com/ai/ui/support/validation/invoice/AccountInvoiceRowValidation.java
 new file mode 100644
 index 00000000..78fccb10
 --- /dev/null
-+++ b/src/main/java/com/endava/ai/ui/support/validation/invoice/AccountInvoiceRowValidation.java
++++ b/src/main/java/com/ai/ui/support/validation/invoice/AccountInvoiceRowValidation.java
 @@ -0,0 +1,91 @@
-+package com.endava.ai.ui.support.validation.invoice;
++package com.ai.ui.support.validation.invoice;
 +
-+import com.endava.ai.core.reporting.StepLogger;
-+import com.endava.ai.ui.support.model.invoice.AccountInvoiceSnapshot;
++import com.ai.core.reporting.StepLogger;
++import com.ai.ui.support.model.invoice.AccountInvoiceSnapshot;
 +import org.testng.Assert;
 +
 +import java.util.regex.Pattern;
@@ -158,18 +158,18 @@ index 00000000..78fccb10
 +        support.pass(AccountInvoiceEvidence.PAYMENT_METHOD);
 +    }
 +}
-diff --git a/src/test/java/com/endava/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentAuditTrailTest.java b/src/test/java/com/endava/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentAuditTrailTest.java
+diff --git a/src/test/java/com/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentAuditTrailTest.java b/src/test/java/com/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentAuditTrailTest.java
 new file mode 100644
 index 00000000..c3b4c22e
 --- /dev/null
-+++ b/src/test/java/com/endava/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentAuditTrailTest.java
++++ b/src/test/java/com/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentAuditTrailTest.java
 @@ -0,0 +1,39 @@
-+package com.endava.ai.ui.tests.invoice.account.document;
++package com.ai.ui.tests.invoice.account.document;
 +
-+import com.endava.ai.ui.core.runtime.BaseTestUI;
-+import com.endava.ai.ui.support.flows.invoice.RegisteredInvoiceFlow;
-+import com.endava.ai.ui.support.validation.invoice.AccountInvoiceValidation;
-+import com.endava.ai.ui.tests.fixture.invoice.RegisteredInvoiceFixture;
++import com.ai.ui.core.runtime.BaseTestUI;
++import com.ai.ui.support.flows.invoice.RegisteredInvoiceFlow;
++import com.ai.ui.support.validation.invoice.AccountInvoiceValidation;
++import com.ai.ui.tests.fixture.invoice.RegisteredInvoiceFixture;
 +import org.testng.annotations.Test;
 +
 +public final class RegisteredInvoiceDocumentAuditTrailTest extends BaseTestUI {

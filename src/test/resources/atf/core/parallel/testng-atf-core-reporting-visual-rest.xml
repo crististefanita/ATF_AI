@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="ATF Core Parallel Reporting Visual Rest Slice" verbose="1">
     <listeners>
-        <listener class-name="com.endava.ai.atf.core.reporting.aggregate.AtfCoreAggregateReportListener"/>
+        <listener class-name="com.ai.atf.core.reporting.aggregate.AtfCoreAggregateReportListener"/>
     </listeners>
     <test name="core-reporting-visual-rest">
         <groups>
@@ -12,9 +12,9 @@
             </run>
         </groups>
         <classes>
-            <class name="com.endava.ai.atf.core.reporting.window.UIWindowSizeResolverContractTest"/>
-            <class name="com.endava.ai.atf.core.reporting.screenshot.ExtentScreenshotArtifactSmokeTest"/>
-            <class name="com.endava.ai.atf.core.reporting.screenshot.FinalUiScreenshotContractTest"/>
+            <class name="com.ai.atf.core.reporting.window.UIWindowSizeResolverContractTest"/>
+            <class name="com.ai.atf.core.reporting.screenshot.ExtentScreenshotArtifactSmokeTest"/>
+            <class name="com.ai.atf.core.reporting.screenshot.FinalUiScreenshotContractTest"/>
         </classes>
     </test>
 </suite>

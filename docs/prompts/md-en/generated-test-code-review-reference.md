@@ -54,9 +54,9 @@ Generated tests -> input source root -> Trace Architecture -> test -> layers -> 
 
 | Parameter | Example | Role |
 | --- | --- | --- |
-| `INPUT_TEST_SOURCE_ROOT` | `src/test/java/com/endava/ai/ui/tests` or `src/test/java/com/endava/ai/api/tests` | the root of the analyzed tests |
-| `INPUT_TEST_PACKAGE` | `com.endava.ai.ui.tests` / `com.endava.ai.api.tests` | namespace for mapping |
-| `INPUT_MAIN_SUPPORT_ROOTS` | `src/main/java/com/endava/ai/ui/support` / `src/main/java/com/endava/ai/api/support` | support allowed for generated tests |
+| `INPUT_TEST_SOURCE_ROOT` | `src/test/java/com/ai/ui/tests` or `src/test/java/com/ai/api/tests` | the root of the analyzed tests |
+| `INPUT_TEST_PACKAGE` | `com.ai.ui.tests` / `com.ai.api.tests` | namespace for mapping |
+| `INPUT_MAIN_SUPPORT_ROOTS` | `src/main/java/com/ai/ui/support` / `src/main/java/com/ai/api/support` | support allowed for generated tests |
 | `PROTECTED_FRAMEWORK_ROOTS` | `core`, `mcp`, `atlas`, `ui/core`, `ui/engine`, `api/core` | surfaces that do not change in the generated package |
 | `LIVING_ARCHITECTURE_REFERENCE` | `docs/Living_Architecture_UI_API_doc_v1_0.html` | the UI/API layering law |
 | `OPTIONAL_BUSINESS_ATLAS` | `docs/atlas/<ATF_NAME>_business-test-atlas.html` | the business map is used as a guide, not as a single source |
@@ -209,15 +209,15 @@ Test method -> entrypoint -> Action / service -> business action -> Page / compo
 <summary>5.1 Target shape</summary>
 
 ```text
-src/test/java/com/endava/ai/ui/tests
+src/test/java/com/ai/ui/tests
   account | checkout | support | admin | catalog | common
     <BusinessObject><LifecycleOrBoundary>Tests
 
-src/test/java/com/endava/ai/api/tests
+src/test/java/com/ai/api/tests
   users | posts | comments | auth | common
     <Resource><ContractOrLifecycle>Tests
 
-src/main/java/com/endava/ai/ui/support
+src/main/java/com/ai/ui/support
   flows        // reusable UI workflow services, no assertions hidden in core
   pages        // UI page/screen surface
   validation   // business-visible UI assertions
@@ -225,7 +225,7 @@ src/main/java/com/endava/ai/ui/support
   factory      // UI test data builders/factories
   utils        // low-level UI helpers only when reusable
 
-src/main/java/com/endava/ai/api/support
+src/main/java/com/ai/api/support
   client       // HTTP mechanics outside api.core
   service      // API resource service
   steps        // reusable API flow steps
@@ -234,8 +234,8 @@ src/main/java/com/endava/ai/api/support
   factory      // payload builders/factories
   utils        // serialization/wait/data utilities
 
-src/main/java/com/endava/ai/ui/core
-src/main/java/com/endava/ai/api/core
+src/main/java/com/ai/ui/core
+src/main/java/com/ai/api/core
   protected framework contracts; generated packages must not modify these roots
 ```
 
@@ -247,11 +247,11 @@ Names are examples of form, not necessarily business. The rule is: packages are 
 
 | Area | Rule | Review verdict |
 | --- | --- | --- |
-| `com.endava.ai.core` | ATF core protected | FAIL if the generated package modifies it without a separately reported blocker framework |
-| `com.endava.ai.skills.mcp` | MCP protected validator | FAIL if the agent adjusts the validator to pass its own packet |
-| `com.endava.ai.skills.atlas` | Atlas protected | FAIL if it is changed for a single business context |
-| `com.endava.ai.ui.core` / `ui.engine` | Protected runtime UI | FAIL if test workarounds appear in the engine/core |
-| `com.endava.ai.api.core` | Protected runtime API | FAIL if local business rules appear in API core |
+| `com.ai.core` | ATF core protected | FAIL if the generated package modifies it without a separately reported blocker framework |
+| `com.ai.skills.mcp` | MCP protected validator | FAIL if the agent adjusts the validator to pass its own packet |
+| `com.ai.skills.atlas` | Atlas protected | FAIL if it is changed for a single business context |
+| `com.ai.ui.core` / `ui.engine` | Protected runtime UI | FAIL if test workarounds appear in the engine/core |
+| `com.ai.api.core` | Protected runtime API | FAIL if local business rules appear in API core |
 | `ui/pages\|service\|validation\|model\|factory` | UI support allowed | PASS/WARN after cohesion, naming and reuse |
 | `api/client\|service\|steps\|validation\|model\|factory` | API support allowed | PASS/WARN according to contract, payload and clarity scheme |
 

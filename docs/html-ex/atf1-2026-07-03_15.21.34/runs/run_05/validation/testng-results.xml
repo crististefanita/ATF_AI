@@ -5,58 +5,58 @@
   <suite started-at="2026-07-02T18:23:07 EEST" name="ATF1 refund support run 05 reopen" finished-at="2026-07-02T18:23:38 EEST" duration-ms="31084">
     <groups>
       <group name="ui.refund-support">
-        <method signature="RefundSupportReopenTest.refundSupportReopenExposesReturnSurface()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" name="refundSupportReopenExposesReturnSurface" class="com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest"/>
-        <method signature="RefundSupportReopenTest.refundSupportReopenKeepsInvoiceBridge()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" name="refundSupportReopenKeepsInvoiceBridge" class="com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest"/>
-        <method signature="RefundSupportReopenTest.refundSupportReopenKeepsReturnSubject()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" name="refundSupportReopenKeepsReturnSubject" class="com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest"/>
-        <method signature="RefundSupportReopenTest.refundSupportReopenUsesRealContactRoute()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" name="refundSupportReopenUsesRealContactRoute" class="com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest"/>
-        <method signature="RefundSupportReopenTest.refundSupportRequestReopensAsSameIntakeSurface()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" name="refundSupportRequestReopensAsSameIntakeSurface" class="com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest"/>
+        <method signature="RefundSupportReopenTest.refundSupportReopenExposesReturnSurface()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" name="refundSupportReopenExposesReturnSurface" class="com.ai.ui.tests.refunds.support.RefundSupportReopenTest"/>
+        <method signature="RefundSupportReopenTest.refundSupportReopenKeepsInvoiceBridge()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" name="refundSupportReopenKeepsInvoiceBridge" class="com.ai.ui.tests.refunds.support.RefundSupportReopenTest"/>
+        <method signature="RefundSupportReopenTest.refundSupportReopenKeepsReturnSubject()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" name="refundSupportReopenKeepsReturnSubject" class="com.ai.ui.tests.refunds.support.RefundSupportReopenTest"/>
+        <method signature="RefundSupportReopenTest.refundSupportReopenUsesRealContactRoute()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" name="refundSupportReopenUsesRealContactRoute" class="com.ai.ui.tests.refunds.support.RefundSupportReopenTest"/>
+        <method signature="RefundSupportReopenTest.refundSupportRequestReopensAsSameIntakeSurface()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" name="refundSupportRequestReopensAsSameIntakeSurface" class="com.ai.ui.tests.refunds.support.RefundSupportReopenTest"/>
       </group> <!-- ui.refund-support -->
       <group name="ui.invoice-bridge">
-        <method signature="RefundSupportReopenTest.refundSupportReopenKeepsInvoiceBridge()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" name="refundSupportReopenKeepsInvoiceBridge" class="com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest"/>
+        <method signature="RefundSupportReopenTest.refundSupportReopenKeepsInvoiceBridge()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" name="refundSupportReopenKeepsInvoiceBridge" class="com.ai.ui.tests.refunds.support.RefundSupportReopenTest"/>
       </group> <!-- ui.invoice-bridge -->
       <group name="ui.reopen">
-        <method signature="RefundSupportReopenTest.refundSupportReopenExposesReturnSurface()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" name="refundSupportReopenExposesReturnSurface" class="com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest"/>
-        <method signature="RefundSupportReopenTest.refundSupportReopenKeepsInvoiceBridge()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" name="refundSupportReopenKeepsInvoiceBridge" class="com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest"/>
-        <method signature="RefundSupportReopenTest.refundSupportReopenKeepsReturnSubject()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" name="refundSupportReopenKeepsReturnSubject" class="com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest"/>
-        <method signature="RefundSupportReopenTest.refundSupportReopenUsesRealContactRoute()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" name="refundSupportReopenUsesRealContactRoute" class="com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest"/>
-        <method signature="RefundSupportReopenTest.refundSupportRequestReopensAsSameIntakeSurface()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" name="refundSupportRequestReopensAsSameIntakeSurface" class="com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest"/>
+        <method signature="RefundSupportReopenTest.refundSupportReopenExposesReturnSurface()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" name="refundSupportReopenExposesReturnSurface" class="com.ai.ui.tests.refunds.support.RefundSupportReopenTest"/>
+        <method signature="RefundSupportReopenTest.refundSupportReopenKeepsInvoiceBridge()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" name="refundSupportReopenKeepsInvoiceBridge" class="com.ai.ui.tests.refunds.support.RefundSupportReopenTest"/>
+        <method signature="RefundSupportReopenTest.refundSupportReopenKeepsReturnSubject()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" name="refundSupportReopenKeepsReturnSubject" class="com.ai.ui.tests.refunds.support.RefundSupportReopenTest"/>
+        <method signature="RefundSupportReopenTest.refundSupportReopenUsesRealContactRoute()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" name="refundSupportReopenUsesRealContactRoute" class="com.ai.ui.tests.refunds.support.RefundSupportReopenTest"/>
+        <method signature="RefundSupportReopenTest.refundSupportRequestReopensAsSameIntakeSurface()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" name="refundSupportRequestReopensAsSameIntakeSurface" class="com.ai.ui.tests.refunds.support.RefundSupportReopenTest"/>
       </group> <!-- ui.reopen -->
     </groups>
     <test started-at="2026-07-02T18:23:07 EEST" name="refund support reopen" finished-at="2026-07-02T18:23:38 EEST" duration-ms="31084">
-      <class name="com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" started-at="2026-07-02T18:23:07 EEST" name="setUp" finished-at="2026-07-02T18:23:22 EEST" duration-ms="15855" status="PASS">
+      <class name="com.ai.ui.tests.refunds.support.RefundSupportReopenTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" started-at="2026-07-02T18:23:07 EEST" name="setUp" finished-at="2026-07-02T18:23:22 EEST" duration-ms="15855" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method is-config="true" signature="createRefundSupportRequest()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" started-at="2026-07-02T18:23:22 EEST" name="createRefundSupportRequest" finished-at="2026-07-02T18:23:34 EEST" duration-ms="11629" status="PASS">
+        <test-method is-config="true" signature="createRefundSupportRequest()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" started-at="2026-07-02T18:23:22 EEST" name="createRefundSupportRequest" finished-at="2026-07-02T18:23:34 EEST" duration-ms="11629" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createRefundSupportRequest -->
-        <test-method signature="refundSupportRequestReopensAsSameIntakeSurface()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" started-at="2026-07-02T18:23:34 EEST" name="refundSupportRequestReopensAsSameIntakeSurface" description="Reopened contact surface preserves the same refund intake category and invoice bridge." finished-at="2026-07-02T18:23:35 EEST" duration-ms="431" status="PASS">
+        <test-method signature="refundSupportRequestReopensAsSameIntakeSurface()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" started-at="2026-07-02T18:23:34 EEST" name="refundSupportRequestReopensAsSameIntakeSurface" description="Reopened contact surface preserves the same refund intake category and invoice bridge." finished-at="2026-07-02T18:23:35 EEST" duration-ms="431" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- refundSupportRequestReopensAsSameIntakeSurface -->
-        <test-method signature="refundSupportReopenKeepsReturnSubject()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" started-at="2026-07-02T18:23:35 EEST" name="refundSupportReopenKeepsReturnSubject" description="Reopened contact surface keeps the same Return category." finished-at="2026-07-02T18:23:35 EEST" duration-ms="7" status="PASS">
+        <test-method signature="refundSupportReopenKeepsReturnSubject()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" started-at="2026-07-02T18:23:35 EEST" name="refundSupportReopenKeepsReturnSubject" description="Reopened contact surface keeps the same Return category." finished-at="2026-07-02T18:23:35 EEST" duration-ms="7" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- refundSupportReopenKeepsReturnSubject -->
-        <test-method signature="refundSupportReopenKeepsInvoiceBridge()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" started-at="2026-07-02T18:23:35 EEST" name="refundSupportReopenKeepsInvoiceBridge" description="Reopened contact surface keeps the purchased invoice bridge." finished-at="2026-07-02T18:23:35 EEST" duration-ms="6" status="PASS">
+        <test-method signature="refundSupportReopenKeepsInvoiceBridge()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" started-at="2026-07-02T18:23:35 EEST" name="refundSupportReopenKeepsInvoiceBridge" description="Reopened contact surface keeps the purchased invoice bridge." finished-at="2026-07-02T18:23:35 EEST" duration-ms="6" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- refundSupportReopenKeepsInvoiceBridge -->
-        <test-method signature="refundSupportReopenExposesReturnSurface()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" started-at="2026-07-02T18:23:35 EEST" name="refundSupportReopenExposesReturnSurface" description="Reopened contact surface still exposes Return as support intake." finished-at="2026-07-02T18:23:35 EEST" duration-ms="4" status="PASS">
+        <test-method signature="refundSupportReopenExposesReturnSurface()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" started-at="2026-07-02T18:23:35 EEST" name="refundSupportReopenExposesReturnSurface" description="Reopened contact surface still exposes Return as support intake." finished-at="2026-07-02T18:23:35 EEST" duration-ms="4" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- refundSupportReopenExposesReturnSurface -->
-        <test-method signature="refundSupportReopenUsesRealContactRoute()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" started-at="2026-07-02T18:23:36 EEST" name="refundSupportReopenUsesRealContactRoute" description="Reopened contact route is the real application contact route." finished-at="2026-07-02T18:23:36 EEST" duration-ms="8" status="PASS">
+        <test-method signature="refundSupportReopenUsesRealContactRoute()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" started-at="2026-07-02T18:23:36 EEST" name="refundSupportReopenUsesRealContactRoute" description="Reopened contact route is the real application contact route." finished-at="2026-07-02T18:23:36 EEST" duration-ms="8" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- refundSupportReopenUsesRealContactRoute -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" started-at="2026-07-02T18:23:36 EEST" name="tearDown" finished-at="2026-07-02T18:23:38 EEST" duration-ms="1870" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportReopenTest@1c62c3fd]" started-at="2026-07-02T18:23:36 EEST" name="tearDown" finished-at="2026-07-02T18:23:38 EEST" duration-ms="1870" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- com.endava.ai.ui.tests.refunds.support.RefundSupportReopenTest -->
+      </class> <!-- com.ai.ui.tests.refunds.support.RefundSupportReopenTest -->
     </test> <!-- refund support reopen -->
   </suite> <!-- ATF1 refund support run 05 reopen -->
 </testng-results>

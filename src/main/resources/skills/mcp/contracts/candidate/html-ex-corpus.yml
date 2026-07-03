@@ -8,7 +8,7 @@ contracts:
     primaryStructuralReference: auto
     minimumExamples: 2
     matrixArtifact: target/mcp-html-ex-corpus-matrix.md
-    validator: com.endava.ai.skills.mcp.tests.candidate.McpHtmlExampleCorpusContractTest
+    validator: com.ai.skills.mcp.tests.candidate.McpHtmlExampleCorpusContractTest
     repairTarget: target/mcp-html-ex-corpus-matrix.md
     capImpact: html-ex promotion cannot be trusted until the corpus classifier has a complete matrix.
     publishabilityImpact: candidate examples cannot replace html-ex entries without a corpus classification baseline.

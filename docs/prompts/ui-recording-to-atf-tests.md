@@ -1,4 +1,4 @@
-﻿# UI Recording To ATF Tests Prompt
+# UI Recording To ATF Tests Prompt
 
 Reusable Codex/MCP prompt for converting a recorded Playwright flow into ATF-compliant UI tests inside this repository.
 
@@ -40,13 +40,13 @@ MAIN FOCUS
 
 The PRIMARY behavioral source is:
 
-- `src/test/java/com/endava/ai/ui/tests/Example.java`
+- `src/test/java/com/ai/ui/tests/Example.java`
 
 Treat `Example` as the flow that must be understood, decomposed, and transformed into proper ATF tests.
 
 The PRIMARY target location for the resulting business tests is:
 
-- `src/test/java/com/endava/ai/ui/tests`
+- `src/test/java/com/ai/ui/tests`
 
 The SECONDARY style reference is:
 
@@ -58,8 +58,8 @@ In short:
 
 1. understand the business flow from `Example`
 2. split it into focused tests
-3. place those focused UI tests under `com.endava.ai.ui.tests`
-4. add reusable support under `src/main/java/com/endava/ai/ui`
+3. place those focused UI tests under `com.ai.ui.tests`
+4. add reusable support under `src/main/java/com/ai/ui`
 
 GOAL
 ==================================================
@@ -84,8 +84,8 @@ ARCHITECTURE RULES
 
 Keep:
 
-- business UI tests under `src/test/java/com/endava/ai/ui/tests`
-- reusable UI logic under `src/main/java/com/endava/ai/ui`
+- business UI tests under `src/test/java/com/ai/ui/tests`
+- reusable UI logic under `src/main/java/com/ai/ui`
 
 Strictly reuse existing:
 
@@ -250,7 +250,7 @@ FINAL VALIDATION
 Before finishing:
 
 1. run the relevant Maven suites
-2. run the affected business tests under `com.endava.ai.ui.tests`
+2. run the affected business tests under `com.ai.ui.tests`
 3. validate Selenium coverage
 4. validate Playwright coverage where practical
 5. validate Extent behavior where practical
@@ -265,8 +265,8 @@ FINAL OUTPUT
 
 Provide:
 
-- tests created or updated under `com.endava.ai.ui.tests`
-- support files created or updated under `src/main/java/com/endava/ai/ui`
+- tests created or updated under `com.ai.ui.tests`
+- support files created or updated under `src/main/java/com/ai/ui`
 - behavior extracted from `Example`
 - coverage added
 - reporting validations performed

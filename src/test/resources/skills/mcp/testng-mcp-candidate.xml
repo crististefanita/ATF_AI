@@ -2,11 +2,11 @@
 <suite name="MCP Candidate Gate" verbose="1">
     <!-- Promotion gate: run only after package-closeout and final-report-closeout already passed. -->
     <listeners>
-        <listener class-name="com.endava.ai.skills.mcp.tests.support.McpPackageAuditSuiteInterceptor"/>
+        <listener class-name="com.ai.skills.mcp.tests.support.McpPackageAuditSuiteInterceptor"/>
     </listeners>
     <test name="candidate">
         <classes>
-            <class name="com.endava.ai.skills.mcp.tests.candidate.McpCandidateContractTest">
+            <class name="com.ai.skills.mcp.tests.candidate.McpCandidateContractTest">
                 <methods>
                     <include name="latestPackageIsTeacherGradeHtmlExampleCandidate"/>
                 </methods>

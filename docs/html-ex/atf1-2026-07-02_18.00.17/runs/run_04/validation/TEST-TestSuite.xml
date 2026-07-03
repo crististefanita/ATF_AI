@@ -74,7 +74,7 @@
     <property name="library.jansi.path" value="c:\tools\apache-maven-3.9.14\lib\jansi-native"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="refundSupportCustomerAccountExposesMessagesRoute" classname="com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest" time="16.214">
+  <testcase name="refundSupportCustomerAccountExposesMessagesRoute" classname="com.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest" time="16.214">
     <system-out><![CDATA[  • Playwright pages after init: 1
 ▶ Clear browser session
   ✅ PASS: Session cleared
@@ -407,7 +407,7 @@ SLF4J: Defaulting to no-operation (NOP) logger implementation
 SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
 ]]></system-err>
   </testcase>
-  <testcase name="refundSupportCustomerMessagesShowCreatedRequest" classname="com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest" time="3.576">
+  <testcase name="refundSupportCustomerMessagesShowCreatedRequest" classname="com.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest" time="3.576">
     <system-out><![CDATA[▶ Navigate to URL: https://practicesoftwaretesting.com/account/messages
   • base.url=https://practicesoftwaretesting.com
   • relativePath=/account/messages
@@ -420,7 +420,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: Validate customer messages status passed
 ]]></system-out>
   </testcase>
-  <testcase name="refundSupportCustomerVisibleLifecycleConnectsInvoiceSubjectAndStatus" classname="com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest" time="0.477">
+  <testcase name="refundSupportCustomerVisibleLifecycleConnectsInvoiceSubjectAndStatus" classname="com.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest" time="0.477">
     <system-out><![CDATA[▶ Validate refund support subject
   ✅ PASS: Validate refund support subject passed
 ▶ Validate refund message references invoice
@@ -449,14 +449,14 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: Validate customer messages status passed
 ]]></system-out>
   </testcase>
-  <testcase name="refundSupportMessageApiCreatesDurableCaseIdentity" classname="com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest" time="0.38">
+  <testcase name="refundSupportMessageApiCreatesDurableCaseIdentity" classname="com.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest" time="0.38">
     <system-out><![CDATA[▶ Validate refund support message id
   ✅ PASS: Validate refund support message id passed
 ▶ Validate refund support message created_at
   ✅ PASS: Validate refund support message created_at passed
 ]]></system-out>
   </testcase>
-  <testcase name="refundSupportMessageApiCreatesNewCaseState" classname="com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest" time="0.377">
+  <testcase name="refundSupportMessageApiCreatesNewCaseState" classname="com.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest" time="0.377">
     <system-out><![CDATA[▶ Validate refund support message status
   ✅ PASS: Validate refund support message status passed
 ]]></system-out>

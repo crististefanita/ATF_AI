@@ -6,36 +6,36 @@
     <groups>
     </groups>
     <test started-at="2026-07-02T22:41:29 EEST" name="Surefire test" finished-at="2026-07-02T22:42:51 EEST" duration-ms="81665">
-      <class name="com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentCreationTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentCreationTest@6da54910]" started-at="2026-07-02T22:41:29 EEST" name="setUp" finished-at="2026-07-02T22:41:46 EEST" duration-ms="17191" status="PASS">
+      <class name="com.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentCreationTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentCreationTest@6da54910]" started-at="2026-07-02T22:41:29 EEST" name="setUp" finished-at="2026-07-02T22:41:46 EEST" duration-ms="17191" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="invoice_document_details_name_invoice()[pri:0, instance:com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentCreationTest@6da54910]" started-at="2026-07-02T22:41:46 EEST" name="invoice_document_details_name_invoice" finished-at="2026-07-02T22:42:47 EEST" duration-ms="60422" status="PASS">
+        <test-method signature="invoice_document_details_name_invoice()[pri:0, instance:com.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentCreationTest@6da54910]" started-at="2026-07-02T22:41:46 EEST" name="invoice_document_details_name_invoice" finished-at="2026-07-02T22:42:47 EEST" duration-ms="60422" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- invoice_document_details_name_invoice -->
-        <test-method signature="invoice_document_generation_status_completes()[pri:0, instance:com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentCreationTest@6da54910]" started-at="2026-07-02T22:42:47 EEST" name="invoice_document_generation_status_completes" finished-at="2026-07-02T22:42:47 EEST" duration-ms="11" status="PASS">
+        <test-method signature="invoice_document_generation_status_completes()[pri:0, instance:com.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentCreationTest@6da54910]" started-at="2026-07-02T22:42:47 EEST" name="invoice_document_generation_status_completes" finished-at="2026-07-02T22:42:47 EEST" duration-ms="11" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- invoice_document_generation_status_completes -->
-        <test-method signature="invoice_document_response_is_successful()[pri:0, instance:com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentCreationTest@6da54910]" started-at="2026-07-02T22:42:48 EEST" name="invoice_document_response_is_successful" finished-at="2026-07-02T22:42:48 EEST" duration-ms="7" status="PASS">
+        <test-method signature="invoice_document_response_is_successful()[pri:0, instance:com.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentCreationTest@6da54910]" started-at="2026-07-02T22:42:48 EEST" name="invoice_document_response_is_successful" finished-at="2026-07-02T22:42:48 EEST" duration-ms="7" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- invoice_document_response_is_successful -->
-        <test-method signature="invoice_document_starts_from_invoice_details()[pri:0, instance:com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentCreationTest@6da54910]" started-at="2026-07-02T22:42:48 EEST" name="invoice_document_starts_from_invoice_details" finished-at="2026-07-02T22:42:48 EEST" duration-ms="6" status="PASS">
+        <test-method signature="invoice_document_starts_from_invoice_details()[pri:0, instance:com.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentCreationTest@6da54910]" started-at="2026-07-02T22:42:48 EEST" name="invoice_document_starts_from_invoice_details" finished-at="2026-07-02T22:42:48 EEST" duration-ms="6" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- invoice_document_starts_from_invoice_details -->
-        <test-method signature="invoice_document_url_remains_invoice_scoped()[pri:0, instance:com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentCreationTest@6da54910]" started-at="2026-07-02T22:42:48 EEST" name="invoice_document_url_remains_invoice_scoped" finished-at="2026-07-02T22:42:48 EEST" duration-ms="7" status="PASS">
+        <test-method signature="invoice_document_url_remains_invoice_scoped()[pri:0, instance:com.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentCreationTest@6da54910]" started-at="2026-07-02T22:42:48 EEST" name="invoice_document_url_remains_invoice_scoped" finished-at="2026-07-02T22:42:48 EEST" duration-ms="7" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- invoice_document_url_remains_invoice_scoped -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentCreationTest@6da54910]" started-at="2026-07-02T22:42:49 EEST" name="tearDown" finished-at="2026-07-02T22:42:51 EEST" duration-ms="2272" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentCreationTest@6da54910]" started-at="2026-07-02T22:42:49 EEST" name="tearDown" finished-at="2026-07-02T22:42:51 EEST" duration-ms="2272" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentCreationTest -->
+      </class> <!-- com.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentCreationTest -->
     </test> <!-- Surefire test -->
   </suite> <!-- Surefire suite -->
 </testng-results>

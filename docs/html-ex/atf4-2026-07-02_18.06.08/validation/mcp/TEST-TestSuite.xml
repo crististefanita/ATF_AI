@@ -75,10 +75,10 @@
     <property name="library.jansi.path" value="c:\tools\apache-maven-3.9.14\lib\jansi-native"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="reportsPackageAuditInputContractOnce[org.testng.TestRunner@59ec7020](1)" classname="com.endava.ai.skills.mcp.tests.core.McpPackageAuditPreflightTest" time="0.441">
+  <testcase name="reportsPackageAuditInputContractOnce[org.testng.TestRunner@59ec7020](1)" classname="com.ai.skills.mcp.tests.core.McpPackageAuditPreflightTest" time="0.441">
     <system-out><![CDATA[▶ MCP package-audit preflight
   • Scheduled MCP package-audit methods: 93
-  • Scheduled MCP package-audit classes: [com.endava.ai.skills.mcp.tests.core.McpConfiguredPackageAuditTest, com.endava.ai.skills.mcp.tests.core.McpPackageAuditPreflightTest, com.endava.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest, com.endava.ai.skills.mcp.tests.latest.McpLatestPackageArchitectureContractTest, com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest, com.endava.ai.skills.mcp.tests.latest.McpLatestPackageLinkContractTest, com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest, com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest, com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest, com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest, com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest, com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest]
+  • Scheduled MCP package-audit classes: [com.ai.skills.mcp.tests.core.McpConfiguredPackageAuditTest, com.ai.skills.mcp.tests.core.McpPackageAuditPreflightTest, com.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest, com.ai.skills.mcp.tests.latest.McpLatestPackageArchitectureContractTest, com.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest, com.ai.skills.mcp.tests.latest.McpLatestPackageLinkContractTest, com.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest, com.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest, com.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest, com.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest, com.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest, com.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest]
   ✅ PASS: MCP package-audit target: C:\work\ex\java\demo\atf4\test-framework\docs\out\2026-07-02_18.06.08
 ]]></system-out>
     <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
@@ -86,7 +86,7 @@ SLF4J: Defaulting to no-operation (NOP) logger implementation
 SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
 ]]></system-err>
   </testcase>
-  <testcase name="latestAndCandidateSuitesExposeRepresentativeMcpChecks" classname="com.endava.ai.skills.mcp.tests.core.McpConfiguredPackageAuditTest" time="0.101">
+  <testcase name="latestAndCandidateSuitesExposeRepresentativeMcpChecks" classname="com.ai.skills.mcp.tests.core.McpConfiguredPackageAuditTest" time="0.101">
     <system-out><![CDATA[▶ MCP suite check metadata coverage
   • Suites checked: 31
   • Suite family: major contract
@@ -94,7 +94,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP major contract suites expose representative check metadata
 ]]></system-out>
   </testcase>
-  <testcase name="validatesConfiguredOrLatestGeneratedPackage" classname="com.endava.ai.skills.mcp.tests.core.McpConfiguredPackageAuditTest" time="5.8">
+  <testcase name="validatesConfiguredOrLatestGeneratedPackage" classname="com.ai.skills.mcp.tests.core.McpConfiguredPackageAuditTest" time="5.8">
     <system-out><![CDATA[▶ Complete MCP generated package audit
   • Validation axis: Complete MCP generated package audit
   • Outcome: PASS
@@ -122,7 +122,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Complete MCP generated package audit
 ]]></system-out>
   </testcase>
-  <testcase name="artifactFreshnessIsCoherent" classname="com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest" time="0.031">
+  <testcase name="artifactFreshnessIsCoherent" classname="com.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest" time="0.031">
     <system-out><![CDATA[▶ Artifact freshness
   • Validation axis: Artifact freshness
   • Outcome: PASS
@@ -150,7 +150,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Artifact freshness
 ]]></system-out>
   </testcase>
-  <testcase name="decisionTraceIsAuditable" classname="com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest" time="0.021">
+  <testcase name="decisionTraceIsAuditable" classname="com.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest" time="0.021">
     <system-out><![CDATA[▶ Decision trace
   • Validation axis: Decision trace
   • Outcome: PASS
@@ -178,7 +178,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Decision trace
 ]]></system-out>
   </testcase>
-  <testcase name="fullMcpGateUsesCompleteSuite" classname="com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest" time="0.026">
+  <testcase name="fullMcpGateUsesCompleteSuite" classname="com.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest" time="0.026">
     <system-out><![CDATA[▶ Frozen MCP gate uses publishable close-out evidence
   • Validation axis: Frozen MCP gate uses publishable close-out evidence
   • Outcome: PASS
@@ -206,7 +206,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Frozen MCP gate uses publishable close-out evidence
 ]]></system-out>
   </testcase>
-  <testcase name="packageAccountingMatchesRuntimeWindow" classname="com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest" time="0.027">
+  <testcase name="packageAccountingMatchesRuntimeWindow" classname="com.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest" time="0.027">
     <system-out><![CDATA[▶ Package accounting vs runtime window
   • Validation axis: Package accounting vs runtime window
   • Outcome: PASS
@@ -234,7 +234,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Package accounting vs runtime window
 ]]></system-out>
   </testcase>
-  <testcase name="packageLevelArtifactsExistAndAreNotEmpty" classname="com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest" time="0.029">
+  <testcase name="packageLevelArtifactsExistAndAreNotEmpty" classname="com.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest" time="0.029">
     <system-out><![CDATA[▶ Package-level artifact spine
   • Validation axis: Package-level artifact spine
   • Outcome: PASS
@@ -262,7 +262,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Package-level artifact spine
 ]]></system-out>
   </testcase>
-  <testcase name="publishedArtifactsHaveNoTemplateNoise" classname="com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest" time="0.025">
+  <testcase name="publishedArtifactsHaveNoTemplateNoise" classname="com.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest" time="0.025">
     <system-out><![CDATA[▶ Published artifacts contain no template noise
   • Validation axis: Published artifacts contain no template noise
   • Outcome: PASS
@@ -290,7 +290,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Published artifacts contain no template noise
 ]]></system-out>
   </testcase>
-  <testcase name="readmeMatchesPackageStateTruth" classname="com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest" time="0.036">
+  <testcase name="readmeMatchesPackageStateTruth" classname="com.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest" time="0.036">
     <system-out><![CDATA[▶ README vs package-state truth
   • Validation axis: README vs package-state truth
   • Outcome: PASS
@@ -318,7 +318,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: README vs package-state truth
 ]]></system-out>
   </testcase>
-  <testcase name="reportStateArtifactsTellSameTruth" classname="com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest" time="0.019">
+  <testcase name="reportStateArtifactsTellSameTruth" classname="com.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest" time="0.019">
     <system-out><![CDATA[▶ Report-state sync
   • Validation axis: Report-state sync
   • Outcome: PASS
@@ -346,7 +346,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Report-state sync
 ]]></system-out>
   </testcase>
-  <testcase name="runtimeReferencedPromptDocumentsExist" classname="com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest" time="0.029">
+  <testcase name="runtimeReferencedPromptDocumentsExist" classname="com.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest" time="0.029">
     <system-out><![CDATA[▶ Runtime referenced prompt documents
   • Validation axis: Runtime referenced prompt documents
   • Outcome: PASS
@@ -374,7 +374,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Runtime referenced prompt documents
 ]]></system-out>
   </testcase>
-  <testcase name="runtimeValuesArePublishedFromAgentRuntime" classname="com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest" time="0.026">
+  <testcase name="runtimeValuesArePublishedFromAgentRuntime" classname="com.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest" time="0.026">
     <system-out><![CDATA[▶ Runtime values from agent-runtime.properties
   • Validation axis: Runtime values from agent-runtime.properties
   • Outcome: PASS
@@ -402,7 +402,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Runtime values from agent-runtime.properties
 ]]></system-out>
   </testcase>
-  <testcase name="claimToEvidenceChainIsComplete" classname="com.endava.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest" time="0.031">
+  <testcase name="claimToEvidenceChainIsComplete" classname="com.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest" time="0.031">
     <system-out><![CDATA[▶ Claim-to-evidence chain
   • Validation axis: Claim-to-evidence chain
   • Outcome: PASS
@@ -430,7 +430,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Claim-to-evidence chain
 ]]></system-out>
   </testcase>
-  <testcase name="claimedCommercialAbsenceHasUiAssertion" classname="com.endava.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest" time="0.026">
+  <testcase name="claimedCommercialAbsenceHasUiAssertion" classname="com.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest" time="0.026">
     <system-out><![CDATA[▶ Claimed absence assertion
   • Validation axis: Claimed absence assertion
   • Outcome: PASS
@@ -458,7 +458,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Claimed absence assertion
 ]]></system-out>
   </testcase>
-  <testcase name="finalReportAvoidsUnverifiableLanguage" classname="com.endava.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest" time="0.02">
+  <testcase name="finalReportAvoidsUnverifiableLanguage" classname="com.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest" time="0.02">
     <system-out><![CDATA[▶ No unverifiable language
   • Validation axis: No unverifiable language
   • Outcome: PASS
@@ -486,7 +486,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: No unverifiable language
 ]]></system-out>
   </testcase>
-  <testcase name="learningTraceQualityIsAuditable" classname="com.endava.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest" time="0.02">
+  <testcase name="learningTraceQualityIsAuditable" classname="com.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest" time="0.02">
     <system-out><![CDATA[▶ Run learning trace quality
   • Validation axis: Run learning trace quality
   • Outcome: PASS
@@ -514,7 +514,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Run learning trace quality
 ]]></system-out>
   </testcase>
-  <testcase name="pretrainingIntakeQualityIsAuditable" classname="com.endava.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest" time="0.019">
+  <testcase name="pretrainingIntakeQualityIsAuditable" classname="com.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest" time="0.019">
     <system-out><![CDATA[▶ Pretraining intake quality
   • Validation axis: Pretraining intake quality
   • Outcome: PASS
@@ -542,7 +542,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Pretraining intake quality
 ]]></system-out>
   </testcase>
-  <testcase name="rootDiffReferencesExistingSourceFiles" classname="com.endava.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest" time="0.019">
+  <testcase name="rootDiffReferencesExistingSourceFiles" classname="com.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest" time="0.019">
     <system-out><![CDATA[▶ Root diff source file existence
   • Validation axis: Root diff source file existence
   • Outcome: PASS
@@ -570,7 +570,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Root diff source file existence
 ]]></system-out>
   </testcase>
-  <testcase name="sourceEvolutionLedgerIsAuditable" classname="com.endava.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest" time="0.012">
+  <testcase name="sourceEvolutionLedgerIsAuditable" classname="com.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest" time="0.012">
     <system-out><![CDATA[▶ Source evolution ledger
   • Validation axis: Source evolution ledger
   • Outcome: PASS
@@ -598,7 +598,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Source evolution ledger
 ]]></system-out>
   </testcase>
-  <testcase name="uiWrapperHandoffQualityIsAuditable" classname="com.endava.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest" time="0.014">
+  <testcase name="uiWrapperHandoffQualityIsAuditable" classname="com.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest" time="0.014">
     <system-out><![CDATA[▶ UI wrapper handoff quality
   • Validation axis: UI wrapper handoff quality
   • Outcome: PASS
@@ -626,7 +626,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: UI wrapper handoff quality
 ]]></system-out>
   </testcase>
-  <testcase name="diffTouchedUiTestsRespectLivingArchitecture" classname="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageArchitectureContractTest" time="0.02">
+  <testcase name="diffTouchedUiTestsRespectLivingArchitecture" classname="com.ai.skills.mcp.tests.latest.McpLatestPackageArchitectureContractTest" time="0.02">
     <system-out><![CDATA[▶ Diff-touched UI test architecture contract
   • Validation axis: Diff-touched UI test architecture contract
   • Outcome: PASS
@@ -654,7 +654,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Diff-touched UI test architecture contract
 ]]></system-out>
   </testcase>
-  <testcase name="generatedPackageDoesNotMutateProtectedFrameworkLayers" classname="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageArchitectureContractTest" time="0.017">
+  <testcase name="generatedPackageDoesNotMutateProtectedFrameworkLayers" classname="com.ai.skills.mcp.tests.latest.McpLatestPackageArchitectureContractTest" time="0.017">
     <system-out><![CDATA[▶ Generated package protected framework mutation gate
   • Validation axis: Generated package protected framework mutation gate
   • Outcome: PASS
@@ -682,7 +682,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Generated package protected framework mutation gate
 ]]></system-out>
   </testcase>
-  <testcase name="businessFlowGraphAvoidsCompactPackageOverlayNodeList" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest" time="0.029">
+  <testcase name="businessFlowGraphAvoidsCompactPackageOverlayNodeList" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest" time="0.029">
     <system-out><![CDATA[▶ Final report Business Flow Graph separates run evidence from business map
   • Validation axis: Final report Business Flow Graph separates run evidence from business map
   • Outcome: PASS
@@ -710,7 +710,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report Business Flow Graph separates run evidence from business map
 ]]></system-out>
   </testcase>
-  <testcase name="businessFlowGraphDoesNotExposeRunIdsAsBusinessNodes" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest" time="0.057">
+  <testcase name="businessFlowGraphDoesNotExposeRunIdsAsBusinessNodes" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest" time="0.057">
     <system-out><![CDATA[▶ Final report Business Flow Graph business-only map
   • Validation axis: Final report Business Flow Graph business-only map
   • Outcome: PASS
@@ -738,7 +738,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report Business Flow Graph business-only map
 ]]></system-out>
   </testcase>
-  <testcase name="businessFlowGraphDoesNotRenderInlineSvgLegendBand" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest" time="0.019">
+  <testcase name="businessFlowGraphDoesNotRenderInlineSvgLegendBand" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest" time="0.019">
     <system-out><![CDATA[▶ Final report Business Flow Graph has no inline SVG legend band
   • Validation axis: Final report Business Flow Graph has no inline SVG legend band
   • Outcome: PASS
@@ -766,7 +766,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report Business Flow Graph has no inline SVG legend band
 ]]></system-out>
   </testcase>
-  <testcase name="businessFlowGraphEdgesDoNotCrossNodeText" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest" time="0.067">
+  <testcase name="businessFlowGraphEdgesDoNotCrossNodeText" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest" time="0.067">
     <system-out><![CDATA[▶ Final report Business Flow Graph edge-to-text clearance
   • Validation axis: Final report Business Flow Graph edge-to-text clearance
   • Outcome: PASS
@@ -794,7 +794,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report Business Flow Graph edge-to-text clearance
 ]]></system-out>
   </testcase>
-  <testcase name="businessFlowGraphIsRenderedAsDiagram" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest" time="0.037">
+  <testcase name="businessFlowGraphIsRenderedAsDiagram" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest" time="0.037">
     <system-out><![CDATA[▶ Final report Business Flow Graph rendered diagram
   • Validation axis: Final report Business Flow Graph rendered diagram
   • Outcome: PASS
@@ -822,7 +822,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report Business Flow Graph rendered diagram
 ]]></system-out>
   </testcase>
-  <testcase name="businessFlowGraphLabelsAreCenteredInsideNodes" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest" time="0.032">
+  <testcase name="businessFlowGraphLabelsAreCenteredInsideNodes" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest" time="0.032">
     <system-out><![CDATA[▶ Final report Business Flow Graph label alignment
   • Validation axis: Final report Business Flow Graph label alignment
   • Outcome: PASS
@@ -850,7 +850,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report Business Flow Graph label alignment
 ]]></system-out>
   </testcase>
-  <testcase name="businessFlowGraphLegendContentIsRelevant" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest" time="0.033">
+  <testcase name="businessFlowGraphLegendContentIsRelevant" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest" time="0.033">
     <system-out><![CDATA[▶ Final report Business Flow Graph legend content
   • Validation axis: Final report Business Flow Graph legend content
   • Outcome: PASS
@@ -878,7 +878,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report Business Flow Graph legend content
 ]]></system-out>
   </testcase>
-  <testcase name="businessFlowGraphLegendIsCollapsible" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest" time="0.034">
+  <testcase name="businessFlowGraphLegendIsCollapsible" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest" time="0.034">
     <system-out><![CDATA[▶ Final report Business Flow Graph collapsible legend
   • Validation axis: Final report Business Flow Graph collapsible legend
   • Outcome: PASS
@@ -906,7 +906,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report Business Flow Graph collapsible legend
 ]]></system-out>
   </testcase>
-  <testcase name="businessFlowGraphStylesVisibleSvgShapes" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest" time="0.027">
+  <testcase name="businessFlowGraphStylesVisibleSvgShapes" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest" time="0.027">
     <system-out><![CDATA[▶ Final report Business Flow Graph visible node styling
   • Validation axis: Final report Business Flow Graph visible node styling
   • Outcome: PASS
@@ -934,7 +934,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report Business Flow Graph visible node styling
 ]]></system-out>
   </testcase>
-  <testcase name="businessFlowGraphUsesCalmNodeTypography" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest" time="0.037">
+  <testcase name="businessFlowGraphUsesCalmNodeTypography" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest" time="0.037">
     <system-out><![CDATA[▶ Final report Business Flow Graph calm typography
   • Validation axis: Final report Business Flow Graph calm typography
   • Outcome: PASS
@@ -962,7 +962,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report Business Flow Graph calm typography
 ]]></system-out>
   </testcase>
-  <testcase name="businessFlowGraphUsesDeclaredEdgeVariants" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest" time="0.031">
+  <testcase name="businessFlowGraphUsesDeclaredEdgeVariants" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest" time="0.031">
     <system-out><![CDATA[▶ Final report Business Flow Graph declared edge variants
   • Validation axis: Final report Business Flow Graph declared edge variants
   • Outcome: PASS
@@ -990,7 +990,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report Business Flow Graph declared edge variants
 ]]></system-out>
   </testcase>
-  <testcase name="everyRunHasExtentReport" classname="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest" time="0.04">
+  <testcase name="everyRunHasExtentReport" classname="com.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest" time="0.04">
     <system-out><![CDATA[▶ Per-run Extent report presence
   • Validation axis: Per-run Extent report presence
   • Outcome: PASS
@@ -1018,7 +1018,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Per-run Extent report presence
 ]]></system-out>
   </testcase>
-  <testcase name="extentProofClassIsPublishedAndReflectedInScoring" classname="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest" time="0.099">
+  <testcase name="extentProofClassIsPublishedAndReflectedInScoring" classname="com.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest" time="0.099">
     <system-out><![CDATA[▶ Extent proof class is published and reflected in scoring
   • Validation axis: Extent proof class is published and reflected in scoring
   • Outcome: PASS
@@ -1046,7 +1046,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Extent proof class is published and reflected in scoring
 ]]></system-out>
   </testcase>
-  <testcase name="extentReportsDoNotUseExternalScreenshotFolderReferences" classname="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest" time="0.041">
+  <testcase name="extentReportsDoNotUseExternalScreenshotFolderReferences" classname="com.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest" time="0.041">
     <system-out><![CDATA[▶ Extent screenshot embedding contract
   • Validation axis: Extent screenshot embedding contract
   • Outcome: PASS
@@ -1074,7 +1074,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Extent screenshot embedding contract
 ]]></system-out>
   </testcase>
-  <testcase name="extentReportsEmbedScreenshotsWhenUiProofClaimsScreenshots" classname="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest" time="0.287">
+  <testcase name="extentReportsEmbedScreenshotsWhenUiProofClaimsScreenshots" classname="com.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest" time="0.287">
     <system-out><![CDATA[▶ Extent base64 screenshot evidence
   • Validation axis: Extent base64 screenshot evidence
   • Outcome: PASS
@@ -1102,7 +1102,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Extent base64 screenshot evidence
 ]]></system-out>
   </testcase>
-  <testcase name="extentReportsHaveNoManualProofInjection" classname="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest" time="0.112">
+  <testcase name="extentReportsHaveNoManualProofInjection" classname="com.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest" time="0.112">
     <system-out><![CDATA[▶ Per-run Extent no manual proof injection
   • Validation axis: Per-run Extent no manual proof injection
   • Outcome: PASS
@@ -1130,7 +1130,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Per-run Extent no manual proof injection
 ]]></system-out>
   </testcase>
-  <testcase name="frozenMcpExtentReportContainsReadableContractDetails" classname="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest" time="0.172">
+  <testcase name="frozenMcpExtentReportContainsReadableContractDetails" classname="com.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest" time="0.172">
     <system-out><![CDATA[▶ Frozen MCP Extent report detail contract
   • Validation axis: Frozen MCP Extent report detail contract
   • Outcome: PASS
@@ -1158,7 +1158,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Frozen MCP Extent report detail contract
 ]]></system-out>
   </testcase>
-  <testcase name="frozenMcpGateResultMatchesCurrentValidatorState" classname="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest" time="0.02">
+  <testcase name="frozenMcpGateResultMatchesCurrentValidatorState" classname="com.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest" time="0.02">
     <system-out><![CDATA[▶ Frozen MCP gate result freshness
   • Validation axis: Frozen MCP gate result freshness
   • Outcome: PASS
@@ -1186,7 +1186,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Frozen MCP gate result freshness
 ]]></system-out>
   </testcase>
-  <testcase name="perRunExtentReportsAreGeneratedAndSubstantive" classname="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest" time="0.942">
+  <testcase name="perRunExtentReportsAreGeneratedAndSubstantive" classname="com.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest" time="0.942">
     <system-out><![CDATA[▶ Per-run Extent report generated shell and detail contract
   • Validation axis: Per-run Extent report generated shell and detail contract
   • Outcome: PASS
@@ -1214,7 +1214,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Per-run Extent report generated shell and detail contract
 ]]></system-out>
   </testcase>
-  <testcase name="perRunExtentReportsAreSingleFileProofsWithoutSparkAssets" classname="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest" time="0.519">
+  <testcase name="perRunExtentReportsAreSingleFileProofsWithoutSparkAssets" classname="com.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest" time="0.519">
     <system-out><![CDATA[▶ Per-run Extent report single-file proof contract
   • Validation axis: Per-run Extent report single-file proof contract
   • Outcome: PASS
@@ -1242,7 +1242,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Per-run Extent report single-file proof contract
 ]]></system-out>
   </testcase>
-  <testcase name="perRunExtentReportsHaveMavenProvenanceAndHashChain" classname="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest" time="0.088">
+  <testcase name="perRunExtentReportsHaveMavenProvenanceAndHashChain" classname="com.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest" time="0.088">
     <system-out><![CDATA[▶ Per-run Extent Maven provenance and hash chain
   • Validation axis: Per-run Extent Maven provenance and hash chain
   • Outcome: PASS
@@ -1270,7 +1270,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Per-run Extent Maven provenance and hash chain
 ]]></system-out>
   </testcase>
-  <testcase name="perRunExtentReportsHaveNativeTestListenerProvenance" classname="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest" time="0.098">
+  <testcase name="perRunExtentReportsHaveNativeTestListenerProvenance" classname="com.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest" time="0.098">
     <system-out><![CDATA[▶ Per-run Extent native TestListener provenance
   • Validation axis: Per-run Extent native TestListener provenance
   • Outcome: PASS
@@ -1298,7 +1298,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Per-run Extent native TestListener provenance
 ]]></system-out>
   </testcase>
-  <testcase name="finalReportContainsCanonicalBusinessSections" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest" time="0.03">
+  <testcase name="finalReportContainsCanonicalBusinessSections" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest" time="0.03">
     <system-out><![CDATA[▶ Final report canonical business sections
   • Validation axis: Final report canonical business sections
   • Outcome: PASS
@@ -1326,7 +1326,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report canonical business sections
 ]]></system-out>
   </testcase>
-  <testcase name="finalReportDoesNotLeakExternalCalibrationSources" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest" time="0.015">
+  <testcase name="finalReportDoesNotLeakExternalCalibrationSources" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest" time="0.015">
     <system-out><![CDATA[▶ Final report external calibration leak check
   • Validation axis: Final report external calibration leak check
   • Outcome: PASS
@@ -1354,7 +1354,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report external calibration leak check
 ]]></system-out>
   </testcase>
-  <testcase name="finalReportHasRequiredBusinessStructure" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest" time="0.015">
+  <testcase name="finalReportHasRequiredBusinessStructure" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest" time="0.015">
     <system-out><![CDATA[▶ Final report business structure
   • Validation axis: Final report business structure
   • Outcome: PASS
@@ -1382,7 +1382,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report business structure
 ]]></system-out>
   </testcase>
-  <testcase name="finalReportLinksEveryRunEvidenceFamily" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest" time="0.026">
+  <testcase name="finalReportLinksEveryRunEvidenceFamily" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest" time="0.026">
     <system-out><![CDATA[▶ Final report per-run evidence links
   • Validation axis: Final report per-run evidence links
   • Outcome: PASS
@@ -1410,7 +1410,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report per-run evidence links
 ]]></system-out>
   </testcase>
-  <testcase name="finalReportLinksPackageGovernanceArtifacts" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest" time="0.017">
+  <testcase name="finalReportLinksPackageGovernanceArtifacts" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest" time="0.017">
     <system-out><![CDATA[▶ Final report package governance artifact links
   • Validation axis: Final report package governance artifact links
   • Outcome: PASS
@@ -1438,7 +1438,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report package governance artifact links
 ]]></system-out>
   </testcase>
-  <testcase name="finalReportPublishesAiTaskAdvisorSection" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest" time="0.024">
+  <testcase name="finalReportPublishesAiTaskAdvisorSection" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest" time="0.024">
     <system-out><![CDATA[▶ Final report AI task advisor section
   • Validation axis: Final report AI task advisor section
   • Outcome: PASS
@@ -1466,7 +1466,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report AI task advisor section
 ]]></system-out>
   </testcase>
-  <testcase name="finalReportPublishesRuntimeConstantsAndCounters" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest" time="0.019">
+  <testcase name="finalReportPublishesRuntimeConstantsAndCounters" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest" time="0.019">
     <system-out><![CDATA[▶ Final report runtime constants and counters
   • Validation axis: Final report runtime constants and counters
   • Outcome: PASS
@@ -1494,7 +1494,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report runtime constants and counters
 ]]></system-out>
   </testcase>
-  <testcase name="everyLocalHrefInFinalReportResolves" classname="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageLinkContractTest" time="0.038">
+  <testcase name="everyLocalHrefInFinalReportResolves" classname="com.ai.skills.mcp.tests.latest.McpLatestPackageLinkContractTest" time="0.038">
     <system-out><![CDATA[▶ Final report local href filesystem resolution
   • Validation axis: Final report local href filesystem resolution
   • Outcome: PASS
@@ -1522,7 +1522,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report local href filesystem resolution
 ]]></system-out>
   </testcase>
-  <testcase name="finalReportLocalHyperlinksResolve" classname="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageLinkContractTest" time="0.019">
+  <testcase name="finalReportLocalHyperlinksResolve" classname="com.ai.skills.mcp.tests.latest.McpLatestPackageLinkContractTest" time="0.019">
     <system-out><![CDATA[▶ Final report local hyperlinks
   • Validation axis: Final report local hyperlinks
   • Outcome: PASS
@@ -1550,7 +1550,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report local hyperlinks
 ]]></system-out>
   </testcase>
-  <testcase name="savedLinkAuditReportsNoMissingLinks" classname="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageLinkContractTest" time="0.026">
+  <testcase name="savedLinkAuditReportsNoMissingLinks" classname="com.ai.skills.mcp.tests.latest.McpLatestPackageLinkContractTest" time="0.026">
     <system-out><![CDATA[▶ Saved local-link-check verdict
   • Validation axis: Saved local-link-check verdict
   • Outcome: PASS
@@ -1578,7 +1578,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Saved local-link-check verdict
 ]]></system-out>
   </testcase>
-  <testcase name="analysisSharedCssIsExactCopyOfProjectReference" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.015">
+  <testcase name="analysisSharedCssIsExactCopyOfProjectReference" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.015">
     <system-out><![CDATA[▶ Final report shared CSS exact reuse
   • Validation axis: Final report shared CSS exact reuse
   • Outcome: PASS
@@ -1606,7 +1606,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report shared CSS exact reuse
 ]]></system-out>
   </testcase>
-  <testcase name="finalReportAvoidsPlainWhiteDefaultTheme" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.018">
+  <testcase name="finalReportAvoidsPlainWhiteDefaultTheme" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.018">
     <system-out><![CDATA[▶ Final report non-plain-white visual theme
   • Validation axis: Final report non-plain-white visual theme
   • Outcome: PASS
@@ -1634,7 +1634,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report non-plain-white visual theme
 ]]></system-out>
   </testcase>
-  <testcase name="finalReportDoesNotExposeRootRunTimestampIdentity" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.033">
+  <testcase name="finalReportDoesNotExposeRootRunTimestampIdentity" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.033">
     <system-out><![CDATA[▶ Final report hides raw ROOT_RUN identity
   • Validation axis: Final report hides raw ROOT_RUN identity
   • Outcome: PASS
@@ -1662,7 +1662,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report hides raw ROOT_RUN identity
 ]]></system-out>
   </testcase>
-  <testcase name="finalReportDoesNotExposeRunSliceIndexBeforeExecutiveContext" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.03">
+  <testcase name="finalReportDoesNotExposeRunSliceIndexBeforeExecutiveContext" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.03">
     <system-out><![CDATA[▶ Final report opening has no pre-context run-slice index
   • Validation axis: Final report opening has no pre-context run-slice index
   • Outcome: PASS
@@ -1690,7 +1690,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report opening has no pre-context run-slice index
 ]]></system-out>
   </testcase>
-  <testcase name="finalReportDoesNotUseInlineStyleOverrides" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.022">
+  <testcase name="finalReportDoesNotUseInlineStyleOverrides" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.022">
     <system-out><![CDATA[▶ Final report has no inline CSS overrides
   • Validation axis: Final report has no inline CSS overrides
   • Outcome: PASS
@@ -1718,7 +1718,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report has no inline CSS overrides
 ]]></system-out>
   </testcase>
-  <testcase name="finalReportFollowsPrimaryHtmlExampleTemplateProfile" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.126">
+  <testcase name="finalReportFollowsPrimaryHtmlExampleTemplateProfile" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.126">
     <system-out><![CDATA[▶ Final report follows primary html-ex template profile
   • Validation axis: Final report follows primary html-ex template profile
   • Outcome: PASS
@@ -1746,7 +1746,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report follows primary html-ex template profile
 ]]></system-out>
   </testcase>
-  <testcase name="finalReportLinksAuditedFrameworkPropertiesSnapshot" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.02">
+  <testcase name="finalReportLinksAuditedFrameworkPropertiesSnapshot" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.02">
     <system-out><![CDATA[▶ Final report audited framework.properties hyperlink
   • Validation axis: Final report audited framework.properties hyperlink
   • Outcome: PASS
@@ -1774,7 +1774,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report audited framework.properties hyperlink
 ]]></system-out>
   </testcase>
-  <testcase name="finalReportLinksFrozenMcpContractEvidence" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.072">
+  <testcase name="finalReportLinksFrozenMcpContractEvidence" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.072">
     <system-out><![CDATA[▶ Final report frozen MCP evidence links
   • Validation axis: Final report frozen MCP evidence links
   • Outcome: PASS
@@ -1802,7 +1802,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report frozen MCP evidence links
 ]]></system-out>
   </testcase>
-  <testcase name="finalReportMainSectionsAreCollapsibleWithOnlyGraphOpen" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.043">
+  <testcase name="finalReportMainSectionsAreCollapsibleWithOnlyGraphOpen" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.043">
     <system-out><![CDATA[▶ Final report collapsible section contract
   • Validation axis: Final report collapsible section contract
   • Outcome: PASS
@@ -1830,7 +1830,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report collapsible section contract
 ]]></system-out>
   </testcase>
-  <testcase name="finalReportOpeningHasVisiblePillRow" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.021">
+  <testcase name="finalReportOpeningHasVisiblePillRow" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.021">
     <system-out><![CDATA[▶ Final report opening visible pill row
   • Validation axis: Final report opening visible pill row
   • Outcome: PASS
@@ -1858,7 +1858,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report opening visible pill row
 ]]></system-out>
   </testcase>
-  <testcase name="finalReportProofMappingLinksAllMandatoryArtifactFamilies" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.039">
+  <testcase name="finalReportProofMappingLinksAllMandatoryArtifactFamilies" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.039">
     <system-out><![CDATA[▶ Final report proof and artifact link families
   • Validation axis: Final report proof and artifact link families
   • Outcome: PASS
@@ -1886,7 +1886,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report proof and artifact link families
 ]]></system-out>
   </testcase>
-  <testcase name="finalReportRunAuditUsesStructuredEvidenceRows" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.027">
+  <testcase name="finalReportRunAuditUsesStructuredEvidenceRows" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.027">
     <system-out><![CDATA[▶ Final report Run Audit structured evidence rows
   • Validation axis: Final report Run Audit structured evidence rows
   • Outcome: PASS
@@ -1914,7 +1914,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report Run Audit structured evidence rows
 ]]></system-out>
   </testcase>
-  <testcase name="finalReportUsesHtmlExampleVisualShell" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.068">
+  <testcase name="finalReportUsesHtmlExampleVisualShell" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.068">
     <system-out><![CDATA[▶ Final report html-ex visual shell
   • Validation axis: Final report html-ex visual shell
   • Outcome: PASS
@@ -1942,7 +1942,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report html-ex visual shell
 ]]></system-out>
   </testcase>
-  <testcase name="finalReportUsesSharedCssAndDocumentChrome" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.025">
+  <testcase name="finalReportUsesSharedCssAndDocumentChrome" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.025">
     <system-out><![CDATA[▶ Final report shared CSS and document chrome
   • Validation axis: Final report shared CSS and document chrome
   • Outcome: PASS
@@ -1970,7 +1970,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report shared CSS and document chrome
 ]]></system-out>
   </testcase>
-  <testcase name="sharedCssLooksLikeCanonicalReferenceStylesheet" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.017">
+  <testcase name="sharedCssLooksLikeCanonicalReferenceStylesheet" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest" time="0.017">
     <system-out><![CDATA[▶ Final report shared CSS canonical reference contract
   • Validation axis: Final report shared CSS canonical reference contract
   • Outcome: PASS
@@ -1998,7 +1998,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report shared CSS canonical reference contract
 ]]></system-out>
   </testcase>
-  <testcase name="eachRunDiffAndFeedbackAreSubstantiveEnoughToReopen" classname="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest" time="0.022">
+  <testcase name="eachRunDiffAndFeedbackAreSubstantiveEnoughToReopen" classname="com.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest" time="0.022">
     <system-out><![CDATA[▶ Per-run diff and feedback reopenability
   • Validation axis: Per-run diff and feedback reopenability
   • Outcome: PASS
@@ -2026,7 +2026,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Per-run diff and feedback reopenability
 ]]></system-out>
   </testcase>
-  <testcase name="eachRunScoreSupportMeetsRuntimeDeltaQualityWhenPublished" classname="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest" time="0.038">
+  <testcase name="eachRunScoreSupportMeetsRuntimeDeltaQualityWhenPublished" classname="com.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest" time="0.038">
     <system-out><![CDATA[▶ Per-run score support delta quality
   • Validation axis: Per-run score support delta quality
   • Outcome: PASS
@@ -2054,7 +2054,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Per-run score support delta quality
 ]]></system-out>
   </testcase>
-  <testcase name="eachRunStatePublishesTargetTestsAndBusinessStatus" classname="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest" time="0.03">
+  <testcase name="eachRunStatePublishesTargetTestsAndBusinessStatus" classname="com.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest" time="0.03">
     <system-out><![CDATA[▶ Per-run state target and business status
   • Validation axis: Per-run state target and business status
   • Outcome: PASS
@@ -2082,7 +2082,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Per-run state target and business status
 ]]></system-out>
   </testcase>
-  <testcase name="eachRunXmlMatchesRuntimeTargetAndHasNoFailures" classname="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest" time="0.04">
+  <testcase name="eachRunXmlMatchesRuntimeTargetAndHasNoFailures" classname="com.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest" time="0.04">
     <system-out><![CDATA[▶ Per-run TestNG XML target and failures
   • Validation axis: Per-run TestNG XML target and failures
   • Outcome: PASS
@@ -2110,7 +2110,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Per-run TestNG XML target and failures
 ]]></system-out>
   </testcase>
-  <testcase name="runDiffHistoryIsColdDistinct" classname="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest" time="0.018">
+  <testcase name="runDiffHistoryIsColdDistinct" classname="com.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest" time="0.018">
     <system-out><![CDATA[▶ Per-run diff history distinctness
   • Validation axis: Per-run diff history distinctness
   • Outcome: PASS
@@ -2138,7 +2138,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Per-run diff history distinctness
 ]]></system-out>
   </testcase>
-  <testcase name="runDiffTimelineCompilesIntoRootDiff" classname="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest" time="0.015">
+  <testcase name="runDiffTimelineCompilesIntoRootDiff" classname="com.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest" time="0.015">
     <system-out><![CDATA[▶ Diff progression from baseline to final
   • Validation axis: Diff progression from baseline to final
   • Outcome: PASS
@@ -2166,7 +2166,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Diff progression from baseline to final
 ]]></system-out>
   </testcase>
-  <testcase name="runIndependenceIsAuditable" classname="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest" time="0.025">
+  <testcase name="runIndependenceIsAuditable" classname="com.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest" time="0.025">
     <system-out><![CDATA[▶ Run independence
   • Validation axis: Run independence
   • Outcome: PASS
@@ -2194,7 +2194,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Run independence
 ]]></system-out>
   </testcase>
-  <testcase name="runStatesExposeTestsAndBusinessVerdict" classname="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest" time="0.014">
+  <testcase name="runStatesExposeTestsAndBusinessVerdict" classname="com.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest" time="0.014">
     <system-out><![CDATA[▶ Run state countability and test accounting
   • Validation axis: Run state countability and test accounting
   • Outcome: PASS
@@ -2222,7 +2222,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Run state countability and test accounting
 ]]></system-out>
   </testcase>
-  <testcase name="runWindowAndRunArtifactsExist" classname="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest" time="0.025">
+  <testcase name="runWindowAndRunArtifactsExist" classname="com.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest" time="0.025">
     <system-out><![CDATA[▶ Run window and per-run artifact spine
   • Validation axis: Run window and per-run artifact spine
   • Outcome: PASS
@@ -2250,7 +2250,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Run window and per-run artifact spine
 ]]></system-out>
   </testcase>
-  <testcase name="runXmlMapsToRealJavaTestMethods" classname="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest" time="0.065">
+  <testcase name="runXmlMapsToRealJavaTestMethods" classname="com.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest" time="0.065">
     <system-out><![CDATA[▶ Run XML to real Java @Test countability
   • Validation axis: Run XML to real Java @Test countability
   • Outcome: PASS
@@ -2278,7 +2278,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Run XML to real Java @Test countability
 ]]></system-out>
   </testcase>
-  <testcase name="executiveContextCarriesVerdictAndRuntimeAsCollapsedSubsections" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest" time="0.016">
+  <testcase name="executiveContextCarriesVerdictAndRuntimeAsCollapsedSubsections" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest" time="0.016">
     <system-out><![CDATA[▶ Executive Context collapsed verdict/runtime subsections
   • Validation axis: Executive Context collapsed verdict/runtime subsections
   • Outcome: PASS
@@ -2306,7 +2306,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Executive Context collapsed verdict/runtime subsections
 ]]></system-out>
   </testcase>
-  <testcase name="executiveContextIsCollapsedByDefault" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest" time="0.017">
+  <testcase name="executiveContextIsCollapsedByDefault" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest" time="0.017">
     <system-out><![CDATA[▶ Executive Context is collapsed by default
   • Validation axis: Executive Context is collapsed by default
   • Outcome: PASS
@@ -2334,7 +2334,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Executive Context is collapsed by default
 ]]></system-out>
   </testcase>
-  <testcase name="finalReportOpeningMatchesCanonicalHtmlExampleShape" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest" time="0.013">
+  <testcase name="finalReportOpeningMatchesCanonicalHtmlExampleShape" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest" time="0.013">
     <system-out><![CDATA[▶ Final report canonical opening shape
   • Validation axis: Final report canonical opening shape
   • Outcome: PASS
@@ -2362,7 +2362,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report canonical opening shape
 ]]></system-out>
   </testcase>
-  <testcase name="finalReportOpeningScoreCardsUseReadableStructure" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest" time="0.019">
+  <testcase name="finalReportOpeningScoreCardsUseReadableStructure" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest" time="0.019">
     <system-out><![CDATA[▶ Final report opening score-card readable structure
   • Validation axis: Final report opening score-card readable structure
   • Outcome: PASS
@@ -2390,7 +2390,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report opening score-card readable structure
 ]]></system-out>
   </testcase>
-  <testcase name="finalReportOpeningScoreWallHasNoLooseScoreElements" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest" time="0.014">
+  <testcase name="finalReportOpeningScoreWallHasNoLooseScoreElements" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest" time="0.014">
     <system-out><![CDATA[▶ Final report opening score-wall has no loose score elements
   • Validation axis: Final report opening score-wall has no loose score elements
   • Outcome: PASS
@@ -2418,7 +2418,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report opening score-wall has no loose score elements
 ]]></system-out>
   </testcase>
-  <testcase name="finalReportScoreCardsFollowPrimaryHtmlExampleReferenceOrder" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest" time="0.064">
+  <testcase name="finalReportScoreCardsFollowPrimaryHtmlExampleReferenceOrder" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest" time="0.064">
     <system-out><![CDATA[▶ Final report score cards follow primary html-ex reference order
   • Validation axis: Final report score cards follow primary html-ex reference order
   • Outcome: PASS
@@ -2446,7 +2446,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report score cards follow primary html-ex reference order
 ]]></system-out>
   </testcase>
-  <testcase name="finalReportScoreOverviewUsesCanonicalBusinessAxes" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest" time="0.02">
+  <testcase name="finalReportScoreOverviewUsesCanonicalBusinessAxes" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest" time="0.02">
     <system-out><![CDATA[▶ Final report Score Overview canonical axes
   • Validation axis: Final report Score Overview canonical axes
   • Outcome: PASS
@@ -2474,7 +2474,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report Score Overview canonical axes
 ]]></system-out>
   </testcase>
-  <testcase name="modelOnlyPackagesStayCappedBelowUiOwnedPackages" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest" time="0.019">
+  <testcase name="modelOnlyPackagesStayCappedBelowUiOwnedPackages" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest" time="0.019">
     <system-out><![CDATA[▶ Model/service-only package score ceiling
   • Validation axis: Model/service-only package score ceiling
   • Outcome: PASS
@@ -2502,7 +2502,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Model/service-only package score ceiling
 ]]></system-out>
   </testcase>
-  <testcase name="openingDoesNotExposeVerdictOrRuntimeBeforeScoreCards" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest" time="0.017">
+  <testcase name="openingDoesNotExposeVerdictOrRuntimeBeforeScoreCards" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest" time="0.017">
     <system-out><![CDATA[▶ Final report opening has no visible Verdict/runtime block before score cards
   • Validation axis: Final report opening has no visible Verdict/runtime block before score cards
   • Outcome: PASS
@@ -2530,7 +2530,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report opening has no visible Verdict/runtime block before score cards
 ]]></system-out>
   </testcase>
-  <testcase name="overallTruthIsSynchronizedAcrossCanonicalArtifacts" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest" time="0.017">
+  <testcase name="overallTruthIsSynchronizedAcrossCanonicalArtifacts" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest" time="0.017">
     <system-out><![CDATA[▶ Overall truth synchronized across README, package-state, report, and MCP gate
   • Validation axis: Overall truth synchronized across README, package-state, report, and MCP gate
   • Outcome: PASS
@@ -2558,7 +2558,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Overall truth synchronized across README, package-state, report, and MCP gate
 ]]></system-out>
   </testcase>
-  <testcase name="publishedOverallDoesNotExceedPackageStateCap" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest" time="0.016">
+  <testcase name="publishedOverallDoesNotExceedPackageStateCap" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest" time="0.016">
     <system-out><![CDATA[▶ Published Overall does not exceed package-state cap
   • Validation axis: Published Overall does not exceed package-state cap
   • Outcome: PASS
@@ -2586,7 +2586,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Published Overall does not exceed package-state cap
 ]]></system-out>
   </testcase>
-  <testcase name="runtimeCountersAreNotDisplayedBetweenScoreCardsAndExecutiveContext" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest" time="0.013">
+  <testcase name="runtimeCountersAreNotDisplayedBetweenScoreCardsAndExecutiveContext" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest" time="0.013">
     <system-out><![CDATA[▶ Final report opening has no runtime strip between score cards and Executive Context
   • Validation axis: Final report opening has no runtime strip between score cards and Executive Context
   • Outcome: PASS
@@ -2614,7 +2614,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ✅ PASS: MCP audit passed: Final report opening has no runtime strip between score cards and Executive Context
 ]]></system-out>
   </testcase>
-  <testcase name="scoreCapIsConsistentWithWeakestAxis" classname="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest" time="0.014">
+  <testcase name="scoreCapIsConsistentWithWeakestAxis" classname="com.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest" time="0.014">
     <system-out><![CDATA[▶ Score-cap consistency
   • Validation axis: Score-cap consistency
   • Outcome: PASS

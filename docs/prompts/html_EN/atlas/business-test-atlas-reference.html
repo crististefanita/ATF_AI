@@ -410,8 +410,8 @@
           <thead><tr><th>Source</th><th>What does it extract?</th><th>What does NOT inherit</th></tr></thead>
           <tbody>
             <tr><td><code>&lt;input-folder&gt;</code></td><td>the real scope of the analyzed source code</td><td>external artifacts or old runtimes</td></tr>
-            <tr><td><code>src/test/java/com/endava/ai/ui/tests</code></td><td>methods, classes, claims, business family</td><td>score because the tests are green</td></tr>
-            <tr><td><code>src/main/java/com/endava/ai/ui</code></td><td>page/actions/service/validation layering</td><td>business ownership if it's just a helper</td></tr>
+            <tr><td><code>src/test/java/com/ai/ui/tests</code></td><td>methods, classes, claims, business family</td><td>score because the tests are green</td></tr>
+            <tr><td><code>src/main/java/com/ai/ui</code></td><td>page/actions/service/validation layering</td><td>business ownership if it's just a helper</td></tr>
             <tr><td><code>docs/Living_Architecture_UI_API_doc_v1_0.html</code></td><td>UI/API/core/reporting responsibilities and the separation of support vs protected core</td><td>the right to overwrite MCP contracts or modify core/MCP/atlas for a single business context</td></tr>
           </tbody>
         </table>
@@ -611,7 +611,7 @@
         <table>
           <thead><tr><th>Parameter</th><th>Skill-ready description</th><th>Anti-drift</th></tr></thead>
           <tbody>
-            <tr><td><code>INPUT_TEST_PACKAGE_ROOT</code></td><td>folder / package explicitly received for analysis</td><td>it is not assumed <code>com.endava.ai.ui.tests</code> decat ca default ATF</td></tr>
+            <tr><td><code>INPUT_TEST_PACKAGE_ROOT</code></td><td>folder / package explicitly received for analysis</td><td>it is not assumed <code>com.ai.ui.tests</code> decat ca default ATF</td></tr>
             <tr><td><code>OUTPUT_ATLAS_HTML</code></td><td>the HTML file produced, usually <code>business-test-atlas.html</code></td><td>not to be confused with final run report</td></tr>
             <tr><td><code>SHARED_REPORT_REFERENCE_CSS</code></td><td>Reused common CSS</td><td>local overrides are reported</td></tr>
             <tr><td><code>LIVING_ARCHITECTURE_REFERENCE</code></td><td>layers document for interpreting test/action/page/validation/model</td><td>does not become the source of new business</td></tr>

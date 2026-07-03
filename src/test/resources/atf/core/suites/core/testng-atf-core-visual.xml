@@ -10,15 +10,15 @@
             </run>
         </groups>
         <classes>
-            <class name="com.endava.ai.atf.core.reporting.adapters.css.ExtentSparkCollapsePolicyComponentTest"/>
-            <class name="com.endava.ai.atf.core.reporting.adapters.css.ExtentSparkFailureTriageCssComponentTest"/>
-            <class name="com.endava.ai.atf.core.reporting.adapters.css.ExtentSparkRuntimeAuditCssComponentTest"/>
-            <class name="com.endava.ai.atf.core.reporting.adapters.css.ExtentSparkThemeCompositionContractTest"/>
-            <class name="com.endava.ai.atf.core.reporting.adapters.css.ExtentSparkVisualTokensComponentTest"/>
-            <class name="com.endava.ai.atf.core.reporting.adapters.spark.ExtentSparkStatusDropdownContractTest"/>
-            <class name="com.endava.ai.atf.core.reporting.adapters.allure.AllurePresentationContractTest"/>
-            <class name="com.endava.ai.atf.core.reporting.screenshot.AllureScreenshotArtifactSmokeTest"/>
-            <class name="com.endava.ai.atf.core.reporting.screenshot.FinalUiScreenshotContractTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.css.ExtentSparkCollapsePolicyComponentTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.css.ExtentSparkFailureTriageCssComponentTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.css.ExtentSparkRuntimeAuditCssComponentTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.css.ExtentSparkThemeCompositionContractTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.css.ExtentSparkVisualTokensComponentTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.spark.ExtentSparkStatusDropdownContractTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.allure.AllurePresentationContractTest"/>
+            <class name="com.ai.atf.core.reporting.screenshot.AllureScreenshotArtifactSmokeTest"/>
+            <class name="com.ai.atf.core.reporting.screenshot.FinalUiScreenshotContractTest"/>
         </classes>
     </test>
 </suite>

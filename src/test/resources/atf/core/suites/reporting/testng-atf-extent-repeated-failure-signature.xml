@@ -3,7 +3,7 @@
     <parameter name="atf.failure.fixtures.enabled" value="true"/>
     <test name="extent-repeated-failure-signature-visual-contract">
         <classes>
-            <class name="com.endava.ai.atf.core.reporting.failurefixtures.RepeatedHttpStatusFailureSignatureFixture"/>
+            <class name="com.ai.atf.core.reporting.failurefixtures.RepeatedHttpStatusFailureSignatureFixture"/>
         </classes>
     </test>
 </suite>

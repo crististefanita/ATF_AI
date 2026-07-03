@@ -9,7 +9,7 @@ SLF4J: Defaulting to no-operation (NOP) logger implementation
 SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
 ? MCP package-audit preflight
   ? Scheduled MCP package-audit methods: 93
-  ? Scheduled MCP package-audit classes: [com.endava.ai.skills.mcp.tests.core.McpConfiguredPackageAuditTest, com.endava.ai.skills.mcp.tests.core.McpPackageAuditPreflightTest, com.endava.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest, com.endava.ai.skills.mcp.tests.latest.McpLatestPackageArchitectureContractTest, com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest, com.endava.ai.skills.mcp.tests.latest.McpLatestPackageLinkContractTest, com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest, com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest, com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest, com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest, com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest, com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest]
+  ? Scheduled MCP package-audit classes: [com.ai.skills.mcp.tests.core.McpConfiguredPackageAuditTest, com.ai.skills.mcp.tests.core.McpPackageAuditPreflightTest, com.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest, com.ai.skills.mcp.tests.latest.McpLatestPackageArchitectureContractTest, com.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest, com.ai.skills.mcp.tests.latest.McpLatestPackageLinkContractTest, com.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest, com.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest, com.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest, com.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest, com.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest, com.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest]
   ? PASS: MCP package-audit target: C:\work\ex\java\demo\atf1\test-framework\docs\out\2026-07-02_14.59.34
 ? MCP suite check metadata coverage
   ? Suites checked: 31
@@ -2318,17 +2318,17 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
   ? PASS: Repair hint recorded
   ? PASS: MCP audit passed: Score-cap consistency
 [ERROR] Tests run: 93, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 36.32 s <<< FAILURE! -- in TestSuite
-[ERROR] com.endava.ai.skills.mcp.tests.core.McpConfiguredPackageAuditTest.validatesConfiguredOrLatestGeneratedPackage -- Time elapsed: 21.35 s <<< FAILURE!
+[ERROR] com.ai.skills.mcp.tests.core.McpConfiguredPackageAuditTest.validatesConfiguredOrLatestGeneratedPackage -- Time elapsed: 21.35 s <<< FAILURE!
 java.lang.AssertionError: 
 
 Package: C:\work\ex\java\demo\atf1\test-framework\docs\out\2026-07-02_14.59.34
 Blockers: 1
 - BLOCKER framework-mutation.protected-git-status: Protected source surface has live git changes outside the frozen package diff: docs/prompts/html_ro/mcp/agent-runtime.properties. Reason: prompts define execution requirements and cannot be weakened by a candidate [C:\work\ex\java\demo\atf1\test-framework\docs\prompts\html_ro\mcp\agent-runtime.properties]
-	at com.endava.ai.skills.mcp.validation.McpAuditViolationAssertions.assertNoBlockers(McpAuditViolationAssertions.java:35)
-	at com.endava.ai.skills.mcp.validation.McpPackageAuditValidation.assertNoBlockers(McpPackageAuditValidation.java:77)
-	at com.endava.ai.skills.mcp.validation.artifacts.McpCloseoutArtifactAssertions.assertCompletePackageHasNoNonRegenerableBlockers(McpCloseoutArtifactAssertions.java:24)
-	at com.endava.ai.skills.mcp.validation.artifacts.McpArtifactAssertions.assertCompletePackageHasNoNonRegenerableBlockers(McpArtifactAssertions.java:21)
-	at com.endava.ai.skills.mcp.tests.core.McpConfiguredPackageAuditTest.validatesConfiguredOrLatestGeneratedPackage(McpConfiguredPackageAuditTest.java:48)
+	at com.ai.skills.mcp.validation.McpAuditViolationAssertions.assertNoBlockers(McpAuditViolationAssertions.java:35)
+	at com.ai.skills.mcp.validation.McpPackageAuditValidation.assertNoBlockers(McpPackageAuditValidation.java:77)
+	at com.ai.skills.mcp.validation.artifacts.McpCloseoutArtifactAssertions.assertCompletePackageHasNoNonRegenerableBlockers(McpCloseoutArtifactAssertions.java:24)
+	at com.ai.skills.mcp.validation.artifacts.McpArtifactAssertions.assertCompletePackageHasNoNonRegenerableBlockers(McpArtifactAssertions.java:21)
+	at com.ai.skills.mcp.tests.core.McpConfiguredPackageAuditTest.validatesConfiguredOrLatestGeneratedPackage(McpConfiguredPackageAuditTest.java:48)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -2390,17 +2390,17 @@ Blockers: 1
 	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:361)
 	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:314)
 
-[ERROR] com.endava.ai.skills.mcp.tests.latest.McpLatestPackageArchitectureContractTest.generatedPackageDoesNotMutateProtectedFrameworkLayers -- Time elapsed: 0.017 s <<< FAILURE!
+[ERROR] com.ai.skills.mcp.tests.latest.McpLatestPackageArchitectureContractTest.generatedPackageDoesNotMutateProtectedFrameworkLayers -- Time elapsed: 0.017 s <<< FAILURE!
 java.lang.AssertionError: 
 
 Package: C:\work\ex\java\demo\atf1\test-framework\docs\out\2026-07-02_14.59.34
 Blockers: 1
 - BLOCKER framework-mutation.protected-git-status: Protected source surface has live git changes outside the frozen package diff: docs/prompts/html_ro/mcp/agent-runtime.properties. Reason: prompts define execution requirements and cannot be weakened by a candidate [C:\work\ex\java\demo\atf1\test-framework\docs\prompts\html_ro\mcp\agent-runtime.properties]
-	at com.endava.ai.skills.mcp.validation.McpAuditViolationAssertions.assertNoBlockers(McpAuditViolationAssertions.java:35)
-	at com.endava.ai.skills.mcp.validation.McpPackageAuditValidation.assertNoBlockers(McpPackageAuditValidation.java:77)
-	at com.endava.ai.skills.mcp.validation.artifacts.McpBusinessEvidenceAssertions.assertGeneratedPackageDoesNotMutateProtectedFrameworkLayers(McpBusinessEvidenceAssertions.java:31)
-	at com.endava.ai.skills.mcp.validation.artifacts.McpArtifactAssertions.assertGeneratedPackageDoesNotMutateProtectedFrameworkLayers(McpArtifactAssertions.java:53)
-	at com.endava.ai.skills.mcp.tests.latest.McpLatestPackageArchitectureContractTest.generatedPackageDoesNotMutateProtectedFrameworkLayers(McpLatestPackageArchitectureContractTest.java:25)
+	at com.ai.skills.mcp.validation.McpAuditViolationAssertions.assertNoBlockers(McpAuditViolationAssertions.java:35)
+	at com.ai.skills.mcp.validation.McpPackageAuditValidation.assertNoBlockers(McpPackageAuditValidation.java:77)
+	at com.ai.skills.mcp.validation.artifacts.McpBusinessEvidenceAssertions.assertGeneratedPackageDoesNotMutateProtectedFrameworkLayers(McpBusinessEvidenceAssertions.java:31)
+	at com.ai.skills.mcp.validation.artifacts.McpArtifactAssertions.assertGeneratedPackageDoesNotMutateProtectedFrameworkLayers(McpArtifactAssertions.java:53)
+	at com.ai.skills.mcp.tests.latest.McpLatestPackageArchitectureContractTest.generatedPackageDoesNotMutateProtectedFrameworkLayers(McpLatestPackageArchitectureContractTest.java:25)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -2462,18 +2462,18 @@ Blockers: 1
 	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:361)
 	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:314)
 
-[ERROR] com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest.finalReportFollowsPrimaryHtmlExampleTemplateProfile -- Time elapsed: 0.312 s <<< FAILURE!
+[ERROR] com.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest.finalReportFollowsPrimaryHtmlExampleTemplateProfile -- Time elapsed: 0.312 s <<< FAILURE!
 java.lang.AssertionError: 
 
 Package: C:\work\ex\java\demo\atf1\test-framework\docs\out\2026-07-02_14.59.34
 Blockers: 1
 - BLOCKER report.template-profile.drift: collapsed sections missing value from html-ex consensus profile: Proof Mapping [C:\work\ex\java\demo\atf1\test-framework\docs\out\2026-07-02_14.59.34\analysis\langgraph-business-understanding.html]
-	at com.endava.ai.skills.mcp.validation.McpAuditViolationAssertions.assertNoViolations(McpAuditViolationAssertions.java:61)
-	at com.endava.ai.skills.mcp.validation.McpAuditViolationAssertions.assertNoSyntheticViolations(McpAuditViolationAssertions.java:51)
-	at com.endava.ai.skills.mcp.validation.McpPackageAuditValidation.assertNoSyntheticViolations(McpPackageAuditValidation.java:88)
-	at com.endava.ai.skills.mcp.validation.report.McpReportTemplateAssertions.assertFinalReportFollowsPrimaryHtmlExampleTemplateProfile(McpReportTemplateAssertions.java:137)
-	at com.endava.ai.skills.mcp.validation.report.McpReportAssertions.assertFinalReportFollowsPrimaryHtmlExampleTemplateProfile(McpReportAssertions.java:72)
-	at com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest.finalReportFollowsPrimaryHtmlExampleTemplateProfile(McpLatestPackageReportPresentationContractTest.java:41)
+	at com.ai.skills.mcp.validation.McpAuditViolationAssertions.assertNoViolations(McpAuditViolationAssertions.java:61)
+	at com.ai.skills.mcp.validation.McpAuditViolationAssertions.assertNoSyntheticViolations(McpAuditViolationAssertions.java:51)
+	at com.ai.skills.mcp.validation.McpPackageAuditValidation.assertNoSyntheticViolations(McpPackageAuditValidation.java:88)
+	at com.ai.skills.mcp.validation.report.McpReportTemplateAssertions.assertFinalReportFollowsPrimaryHtmlExampleTemplateProfile(McpReportTemplateAssertions.java:137)
+	at com.ai.skills.mcp.validation.report.McpReportAssertions.assertFinalReportFollowsPrimaryHtmlExampleTemplateProfile(McpReportAssertions.java:72)
+	at com.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest.finalReportFollowsPrimaryHtmlExampleTemplateProfile(McpLatestPackageReportPresentationContractTest.java:41)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)

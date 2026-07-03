@@ -2,35 +2,35 @@ schemaVersion: 1
 contracts:
   - id: business-understanding.package-shape.main-default
     kind: package-default
-    root: src/main/java/com/endava/ai/skills/business
+    root: src/main/java/com/ai/skills/business
     maxClasses: 17
     reason: The shared business-understanding kernel may contain small neutral semantic value objects plus parser/reducer helpers; BusinessGraphConstruction is accepted as the common graph recipe, but the kernel must stay free of MCP, Atlas and Reporting ownership.
 
   - id: business-understanding.package-shape.test-default
     kind: package-default
-    root: src/test/java/com/endava/ai/skills/business/tests
+    root: src/test/java/com/ai/skills/business/tests
     maxClasses: 6
     reason: Business-understanding tests should remain focused on kernel semantics, not MCP or Atlas workflows.
 
   - id: business-understanding.package-shape.main-no-mcp-imports
     kind: forbidden-import
-    root: src/main/java/com/endava/ai/skills/business
-    forbiddenPackage: com.endava.ai.skills.mcp
+    root: src/main/java/com/ai/skills/business
+    forbiddenPackage: com.ai.skills.mcp
     reason: The shared semantic kernel must not depend on MCP package governance.
 
   - id: business-understanding.package-shape.main-no-atlas-imports
     kind: forbidden-import
-    root: src/main/java/com/endava/ai/skills/business
-    forbiddenPackage: com.endava.ai.skills.atlas
+    root: src/main/java/com/ai/skills/business
+    forbiddenPackage: com.ai.skills.atlas
     reason: The shared semantic kernel must not depend on Atlas artifact ownership.
 
   - id: business-understanding.package-shape.main-no-reporting-imports
     kind: forbidden-import
-    root: src/main/java/com/endava/ai/skills/business
-    forbiddenPackage: com.endava.ai.core.reporting
+    root: src/main/java/com/ai/skills/business
+    forbiddenPackage: com.ai.core.reporting
     reason: Business understanding defines meaning; Reporting defines presentation.
 
   - id: business-understanding.package-shape.readme
     kind: required-readme
-    path: src/main/java/com/endava/ai/skills/business/README.md
+    path: src/main/java/com/ai/skills/business/README.md
     reason: The shared semantic kernel must explain ownership before MCP or Atlas consume it.

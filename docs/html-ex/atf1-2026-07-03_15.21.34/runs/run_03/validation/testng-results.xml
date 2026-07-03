@@ -5,62 +5,62 @@
   <suite started-at="2026-07-02T18:20:49 EEST" name="ATF1 refund support run 03 messages API" finished-at="2026-07-02T18:21:30 EEST" duration-ms="40745">
     <groups>
       <group name="ui.refund-support">
-        <method signature="RefundSupportMessagesApiTest.refundSupportMessagesApiReturnsSuccessStatus()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportMessagesApiReturnsSuccessStatus" class="com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
-        <method signature="RefundSupportMessagesApiTest.refundSupportMessagesApiUsesConcreteRealUrl()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportMessagesApiUsesConcreteRealUrl" class="com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
-        <method signature="RefundSupportMessagesApiTest.refundSupportMessagesApiUsesMessagesRoute()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportMessagesApiUsesMessagesRoute" class="com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
-        <method signature="RefundSupportMessagesApiTest.refundSupportMessagesApiUsesPost()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportMessagesApiUsesPost" class="com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
-        <method signature="RefundSupportMessagesApiTest.refundSupportRequestIsAcceptedByMessagesApi()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportRequestIsAcceptedByMessagesApi" class="com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
+        <method signature="RefundSupportMessagesApiTest.refundSupportMessagesApiReturnsSuccessStatus()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportMessagesApiReturnsSuccessStatus" class="com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
+        <method signature="RefundSupportMessagesApiTest.refundSupportMessagesApiUsesConcreteRealUrl()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportMessagesApiUsesConcreteRealUrl" class="com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
+        <method signature="RefundSupportMessagesApiTest.refundSupportMessagesApiUsesMessagesRoute()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportMessagesApiUsesMessagesRoute" class="com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
+        <method signature="RefundSupportMessagesApiTest.refundSupportMessagesApiUsesPost()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportMessagesApiUsesPost" class="com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
+        <method signature="RefundSupportMessagesApiTest.refundSupportRequestIsAcceptedByMessagesApi()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportRequestIsAcceptedByMessagesApi" class="com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
       </group> <!-- ui.refund-support -->
       <group name="api.backed">
-        <method signature="RefundSupportMessagesApiTest.refundSupportMessagesApiReturnsSuccessStatus()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportMessagesApiReturnsSuccessStatus" class="com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
-        <method signature="RefundSupportMessagesApiTest.refundSupportMessagesApiUsesConcreteRealUrl()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportMessagesApiUsesConcreteRealUrl" class="com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
-        <method signature="RefundSupportMessagesApiTest.refundSupportMessagesApiUsesMessagesRoute()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportMessagesApiUsesMessagesRoute" class="com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
-        <method signature="RefundSupportMessagesApiTest.refundSupportMessagesApiUsesPost()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportMessagesApiUsesPost" class="com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
-        <method signature="RefundSupportMessagesApiTest.refundSupportRequestIsAcceptedByMessagesApi()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportRequestIsAcceptedByMessagesApi" class="com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
+        <method signature="RefundSupportMessagesApiTest.refundSupportMessagesApiReturnsSuccessStatus()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportMessagesApiReturnsSuccessStatus" class="com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
+        <method signature="RefundSupportMessagesApiTest.refundSupportMessagesApiUsesConcreteRealUrl()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportMessagesApiUsesConcreteRealUrl" class="com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
+        <method signature="RefundSupportMessagesApiTest.refundSupportMessagesApiUsesMessagesRoute()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportMessagesApiUsesMessagesRoute" class="com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
+        <method signature="RefundSupportMessagesApiTest.refundSupportMessagesApiUsesPost()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportMessagesApiUsesPost" class="com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
+        <method signature="RefundSupportMessagesApiTest.refundSupportRequestIsAcceptedByMessagesApi()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportRequestIsAcceptedByMessagesApi" class="com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
       </group> <!-- api.backed -->
       <group name="ui.final-proof">
-        <method signature="RefundSupportMessagesApiTest.refundSupportMessagesApiReturnsSuccessStatus()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportMessagesApiReturnsSuccessStatus" class="com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
-        <method signature="RefundSupportMessagesApiTest.refundSupportMessagesApiUsesConcreteRealUrl()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportMessagesApiUsesConcreteRealUrl" class="com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
-        <method signature="RefundSupportMessagesApiTest.refundSupportMessagesApiUsesMessagesRoute()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportMessagesApiUsesMessagesRoute" class="com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
-        <method signature="RefundSupportMessagesApiTest.refundSupportMessagesApiUsesPost()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportMessagesApiUsesPost" class="com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
-        <method signature="RefundSupportMessagesApiTest.refundSupportRequestIsAcceptedByMessagesApi()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportRequestIsAcceptedByMessagesApi" class="com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
+        <method signature="RefundSupportMessagesApiTest.refundSupportMessagesApiReturnsSuccessStatus()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportMessagesApiReturnsSuccessStatus" class="com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
+        <method signature="RefundSupportMessagesApiTest.refundSupportMessagesApiUsesConcreteRealUrl()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportMessagesApiUsesConcreteRealUrl" class="com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
+        <method signature="RefundSupportMessagesApiTest.refundSupportMessagesApiUsesMessagesRoute()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportMessagesApiUsesMessagesRoute" class="com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
+        <method signature="RefundSupportMessagesApiTest.refundSupportMessagesApiUsesPost()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportMessagesApiUsesPost" class="com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
+        <method signature="RefundSupportMessagesApiTest.refundSupportRequestIsAcceptedByMessagesApi()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" name="refundSupportRequestIsAcceptedByMessagesApi" class="com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest"/>
       </group> <!-- ui.final-proof -->
     </groups>
     <test started-at="2026-07-02T18:20:49 EEST" name="refund support messages API" finished-at="2026-07-02T18:21:30 EEST" duration-ms="40745">
-      <class name="com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" started-at="2026-07-02T18:20:50 EEST" name="setUp" finished-at="2026-07-02T18:21:08 EEST" duration-ms="18298" status="PASS">
+      <class name="com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" started-at="2026-07-02T18:20:50 EEST" name="setUp" finished-at="2026-07-02T18:21:08 EEST" duration-ms="18298" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method is-config="true" signature="createRefundSupportRequest()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" started-at="2026-07-02T18:21:08 EEST" name="createRefundSupportRequest" finished-at="2026-07-02T18:21:24 EEST" duration-ms="16336" status="PASS">
+        <test-method is-config="true" signature="createRefundSupportRequest()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" started-at="2026-07-02T18:21:08 EEST" name="createRefundSupportRequest" finished-at="2026-07-02T18:21:24 EEST" duration-ms="16336" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createRefundSupportRequest -->
-        <test-method signature="refundSupportRequestIsAcceptedByMessagesApi()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" started-at="2026-07-02T18:21:24 EEST" name="refundSupportRequestIsAcceptedByMessagesApi" description="Refund support request is accepted by the real messages API." finished-at="2026-07-02T18:21:25 EEST" duration-ms="1271" status="PASS">
+        <test-method signature="refundSupportRequestIsAcceptedByMessagesApi()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" started-at="2026-07-02T18:21:24 EEST" name="refundSupportRequestIsAcceptedByMessagesApi" description="Refund support request is accepted by the real messages API." finished-at="2026-07-02T18:21:25 EEST" duration-ms="1271" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- refundSupportRequestIsAcceptedByMessagesApi -->
-        <test-method signature="refundSupportMessagesApiReturnsSuccessStatus()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" started-at="2026-07-02T18:21:26 EEST" name="refundSupportMessagesApiReturnsSuccessStatus" description="Messages API returns a success status for the refund support request." finished-at="2026-07-02T18:21:26 EEST" duration-ms="26" status="PASS">
+        <test-method signature="refundSupportMessagesApiReturnsSuccessStatus()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" started-at="2026-07-02T18:21:26 EEST" name="refundSupportMessagesApiReturnsSuccessStatus" description="Messages API returns a success status for the refund support request." finished-at="2026-07-02T18:21:26 EEST" duration-ms="26" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- refundSupportMessagesApiReturnsSuccessStatus -->
-        <test-method signature="refundSupportMessagesApiUsesPost()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" started-at="2026-07-02T18:21:27 EEST" name="refundSupportMessagesApiUsesPost" description="Messages API receives the refund support request by POST." finished-at="2026-07-02T18:21:27 EEST" duration-ms="11" status="PASS">
+        <test-method signature="refundSupportMessagesApiUsesPost()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" started-at="2026-07-02T18:21:27 EEST" name="refundSupportMessagesApiUsesPost" description="Messages API receives the refund support request by POST." finished-at="2026-07-02T18:21:27 EEST" duration-ms="11" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- refundSupportMessagesApiUsesPost -->
-        <test-method signature="refundSupportMessagesApiUsesMessagesRoute()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" started-at="2026-07-02T18:21:27 EEST" name="refundSupportMessagesApiUsesMessagesRoute" description="Messages API proof is tied to the application messages route." finished-at="2026-07-02T18:21:27 EEST" duration-ms="14" status="PASS">
+        <test-method signature="refundSupportMessagesApiUsesMessagesRoute()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" started-at="2026-07-02T18:21:27 EEST" name="refundSupportMessagesApiUsesMessagesRoute" description="Messages API proof is tied to the application messages route." finished-at="2026-07-02T18:21:27 EEST" duration-ms="14" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- refundSupportMessagesApiUsesMessagesRoute -->
-        <test-method signature="refundSupportMessagesApiUsesConcreteRealUrl()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" started-at="2026-07-02T18:21:28 EEST" name="refundSupportMessagesApiUsesConcreteRealUrl" description="Messages API proof captures a concrete non-synthetic URL." finished-at="2026-07-02T18:21:28 EEST" duration-ms="13" status="PASS">
+        <test-method signature="refundSupportMessagesApiUsesConcreteRealUrl()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" started-at="2026-07-02T18:21:28 EEST" name="refundSupportMessagesApiUsesConcreteRealUrl" description="Messages API proof captures a concrete non-synthetic URL." finished-at="2026-07-02T18:21:28 EEST" duration-ms="13" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- refundSupportMessagesApiUsesConcreteRealUrl -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" started-at="2026-07-02T18:21:28 EEST" name="tearDown" finished-at="2026-07-02T18:21:30 EEST" duration-ms="2193" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest@24197b13]" started-at="2026-07-02T18:21:28 EEST" name="tearDown" finished-at="2026-07-02T18:21:30 EEST" duration-ms="2193" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- com.endava.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest -->
+      </class> <!-- com.ai.ui.tests.refunds.support.RefundSupportMessagesApiTest -->
     </test> <!-- refund support messages API -->
   </suite> <!-- ATF1 refund support run 03 messages API -->
 </testng-results>

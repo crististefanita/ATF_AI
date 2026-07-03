@@ -2,10 +2,10 @@
 <suite name="ATF Reporting Skill Integration" verbose="1">
     <test name="reporting-skill-consumer-integration">
         <classes>
-            <class name="com.endava.ai.atf.core.reporting.integration.skills.DiagnosticHtmlReportShellContractTest"/>
-            <class name="com.endava.ai.atf.core.reporting.integration.skills.CoreReportingMatrixContractTest"/>
-            <class name="com.endava.ai.atf.core.reporting.integration.skills.ExtentSparkCanonicalShellContractTest"/>
-            <class name="com.endava.ai.atf.core.reporting.integration.skills.ExtentFailurePlacementContractTest"/>
+            <class name="com.ai.atf.core.reporting.integration.skills.DiagnosticHtmlReportShellContractTest"/>
+            <class name="com.ai.atf.core.reporting.integration.skills.CoreReportingMatrixContractTest"/>
+            <class name="com.ai.atf.core.reporting.integration.skills.ExtentSparkCanonicalShellContractTest"/>
+            <class name="com.ai.atf.core.reporting.integration.skills.ExtentFailurePlacementContractTest"/>
         </classes>
     </test>
 </suite>

@@ -2,11 +2,11 @@
 <suite name="MCP Final Report Close-Out" verbose="1">
     <!-- Surface gate: run after package-closeout artifacts are frozen; semantic LangGraph validation follows separately. -->
     <listeners>
-        <listener class-name="com.endava.ai.skills.mcp.tests.support.McpPackageAuditSuiteInterceptor"/>
+        <listener class-name="com.ai.skills.mcp.tests.support.McpPackageAuditSuiteInterceptor"/>
     </listeners>
     <test name="mcp-final-report-closeout">
         <classes>
-            <class name="com.endava.ai.skills.mcp.tests.smoke.McpPostSyncSmokeContractTest">
+            <class name="com.ai.skills.mcp.tests.smoke.McpPostSyncSmokeContractTest">
                 <methods>
                     <include name="requiredFrozenMcpArtifactsArePresent"/>
                     <include name="finalReportLinksFrozenMcpAndKpiEvidence"/>
@@ -16,20 +16,20 @@
                     <include name="gateResultAndFinalReportAgreeWithGreenCloseoutCounts"/>
                 </methods>
             </class>
-            <class name="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageLinkContractTest">
+            <class name="com.ai.skills.mcp.tests.latest.McpLatestPackageLinkContractTest">
                 <methods>
                     <include name="everyLocalHrefInFinalReportResolves"/>
                     <include name="savedLinkAuditReportsNoMissingLinks"/>
                 </methods>
             </class>
-            <class name="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest">
+            <class name="com.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest">
                 <methods>
                     <include name="finalReportUsesSharedCssAndDocumentChrome"/>
                     <include name="finalReportUsesHtmlExampleVisualShell"/>
                     <include name="finalReportMainSectionsAreCollapsibleWithOnlyGraphOpen"/>
                 </methods>
             </class>
-            <class name="com.endava.ai.skills.mcp.tests.core.McpExtentScreenshotBrowserVisibilityContractTest"/>
+            <class name="com.ai.skills.mcp.tests.core.McpExtentScreenshotBrowserVisibilityContractTest"/>
         </classes>
     </test>
 </suite>

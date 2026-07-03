@@ -2,18 +2,18 @@
 <suite name="framework-under-test UI Selenium All" verbose="1">
   <test name="framework-under-test UI Selenium All">
     <classes>
-      <class name="com.endava.ai.ui.tests.AccountAuthenticatedAreaTests"/>
-      <class name="com.endava.ai.ui.tests.adminorderstatus.AdminOrderStatusRun01OnHoldTests"/>
-      <class name="com.endava.ai.ui.tests.adminorderstatus.AdminOrderStatusRun02AwaitingShipmentTests"/>
-      <class name="com.endava.ai.ui.tests.adminorderstatus.AdminOrderStatusRun03ShippedTests"/>
-      <class name="com.endava.ai.ui.tests.adminorderstatus.AdminOrderStatusRun04CompletedTests"/>
-      <class name="com.endava.ai.ui.tests.adminorderstatus.AdminOrderStatusRun05ReopenTests"/>
-      <class name="com.endava.ai.ui.tests.AdminOrderStatusRun01OnHoldTests"/>
-      <class name="com.endava.ai.ui.tests.AdminOrderStatusRun02AwaitingShipmentTests"/>
-      <class name="com.endava.ai.ui.tests.AdminOrderStatusRun03ShippedTests"/>
-      <class name="com.endava.ai.ui.tests.AdminOrderStatusRun04CompletedTests"/>
-      <class name="com.endava.ai.ui.tests.AdminOrderStatusRun05ReopenTests"/>
-      <class name="com.endava.ai.ui.tests.ProfileContactAddressMemoryTests"/>
+      <class name="com.ai.ui.tests.AccountAuthenticatedAreaTests"/>
+      <class name="com.ai.ui.tests.adminorderstatus.AdminOrderStatusRun01OnHoldTests"/>
+      <class name="com.ai.ui.tests.adminorderstatus.AdminOrderStatusRun02AwaitingShipmentTests"/>
+      <class name="com.ai.ui.tests.adminorderstatus.AdminOrderStatusRun03ShippedTests"/>
+      <class name="com.ai.ui.tests.adminorderstatus.AdminOrderStatusRun04CompletedTests"/>
+      <class name="com.ai.ui.tests.adminorderstatus.AdminOrderStatusRun05ReopenTests"/>
+      <class name="com.ai.ui.tests.AdminOrderStatusRun01OnHoldTests"/>
+      <class name="com.ai.ui.tests.AdminOrderStatusRun02AwaitingShipmentTests"/>
+      <class name="com.ai.ui.tests.AdminOrderStatusRun03ShippedTests"/>
+      <class name="com.ai.ui.tests.AdminOrderStatusRun04CompletedTests"/>
+      <class name="com.ai.ui.tests.AdminOrderStatusRun05ReopenTests"/>
+      <class name="com.ai.ui.tests.ProfileContactAddressMemoryTests"/>
     </classes>
   </test>
 </suite>

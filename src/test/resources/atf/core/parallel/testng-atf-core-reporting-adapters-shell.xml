@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="ATF Core Parallel Reporting Adapters Shell Slice" verbose="1">
     <listeners>
-        <listener class-name="com.endava.ai.atf.core.reporting.aggregate.AtfCoreAggregateReportListener"/>
+        <listener class-name="com.ai.atf.core.reporting.aggregate.AtfCoreAggregateReportListener"/>
     </listeners>
     <test name="core-reporting-adapters-shell">
         <groups>
@@ -12,10 +12,10 @@
             </run>
         </groups>
         <classes>
-            <class name="com.endava.ai.atf.core.reporting.adapters.spark.ExtentSparkShellStyleContractTest"/>
-            <class name="com.endava.ai.atf.core.reporting.adapters.failure.ExtentSparkFailureTriageContractTest"/>
-            <class name="com.endava.ai.atf.core.reporting.adapters.spark.ExtentSparkTreeCollapseContractTest"/>
-            <class name="com.endava.ai.atf.core.reporting.adapters.allure.EmptyPayloadAttachmentContractTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.spark.ExtentSparkShellStyleContractTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.failure.ExtentSparkFailureTriageContractTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.spark.ExtentSparkTreeCollapseContractTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.allure.EmptyPayloadAttachmentContractTest"/>
         </classes>
     </test>
 </suite>

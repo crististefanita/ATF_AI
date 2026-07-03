@@ -1,22 +1,22 @@
-diff --git a/src/main/java/com/endava/ai/ui/support/flows/support/RefundSupportRequestFlow.java b/src/main/java/com/endava/ai/ui/support/flows/support/RefundSupportRequestFlow.java
+diff --git a/src/main/java/com/ai/ui/support/flows/support/RefundSupportRequestFlow.java b/src/main/java/com/ai/ui/support/flows/support/RefundSupportRequestFlow.java
 new file mode 100644
 index 00000000..3c3c2563
 --- /dev/null
-+++ b/src/main/java/com/endava/ai/ui/support/flows/support/RefundSupportRequestFlow.java
++++ b/src/main/java/com/ai/ui/support/flows/support/RefundSupportRequestFlow.java
 @@ -0,0 +1,190 @@
-+package com.endava.ai.ui.support.flows.support;
++package com.ai.ui.support.flows.support;
 +
-+import com.endava.ai.ui.core.engine.UiNetworkResponse;
-+import com.endava.ai.ui.core.runtime.DriverManager;
-+import com.endava.ai.ui.support.actions.AccountInvoiceActions;
-+import com.endava.ai.ui.support.actions.UIActions;
-+import com.endava.ai.ui.support.model.AccountInvoiceContext;
-+import com.endava.ai.ui.support.model.CustomerData;
-+import com.endava.ai.ui.support.model.RefundSupportRequestContext;
-+import com.endava.ai.ui.support.pages.AccountPage;
-+import com.endava.ai.ui.support.pages.ContactPage;
-+import com.endava.ai.ui.support.service.SupportMessagesClient;
-+import com.endava.ai.ui.support.wait.WaitUtils;
++import com.ai.ui.core.engine.UiNetworkResponse;
++import com.ai.ui.core.runtime.DriverManager;
++import com.ai.ui.support.actions.AccountInvoiceActions;
++import com.ai.ui.support.actions.UIActions;
++import com.ai.ui.support.model.AccountInvoiceContext;
++import com.ai.ui.support.model.CustomerData;
++import com.ai.ui.support.model.RefundSupportRequestContext;
++import com.ai.ui.support.pages.AccountPage;
++import com.ai.ui.support.pages.ContactPage;
++import com.ai.ui.support.service.SupportMessagesClient;
++import com.ai.ui.support.wait.WaitUtils;
 +
 +import java.time.Duration;
 +import java.util.regex.Matcher;
@@ -194,21 +194,21 @@ index 00000000..3c3c2563
 +        return matcher.find() ? matcher.group(1) : "";
 +    }
 +}
-diff --git a/src/test/java/com/endava/ai/ui/tests/refunds/support/RefundSupportCustomerMessagesLifecycleTest.java b/src/test/java/com/endava/ai/ui/tests/refunds/support/RefundSupportCustomerMessagesLifecycleTest.java
+diff --git a/src/test/java/com/ai/ui/tests/refunds/support/RefundSupportCustomerMessagesLifecycleTest.java b/src/test/java/com/ai/ui/tests/refunds/support/RefundSupportCustomerMessagesLifecycleTest.java
 new file mode 100644
 index 00000000..cadf688f
 --- /dev/null
-+++ b/src/test/java/com/endava/ai/ui/tests/refunds/support/RefundSupportCustomerMessagesLifecycleTest.java
++++ b/src/test/java/com/ai/ui/tests/refunds/support/RefundSupportCustomerMessagesLifecycleTest.java
 @@ -0,0 +1,57 @@
-+package com.endava.ai.ui.tests.refunds.support;
++package com.ai.ui.tests.refunds.support;
 +
-+import com.endava.ai.ui.core.runtime.BaseTestUI;
-+import com.endava.ai.ui.support.model.RefundSupportRequestContext;
-+import com.endava.ai.ui.support.validation.support.RefundSupportRequestValidation;
++import com.ai.ui.core.runtime.BaseTestUI;
++import com.ai.ui.support.model.RefundSupportRequestContext;
++import com.ai.ui.support.validation.support.RefundSupportRequestValidation;
 +import org.testng.annotations.Test;
 +
-+import static com.endava.ai.ui.tests.refunds.support.RefundSupportRequestTestSupport.adminProgressedRequest;
-+import static com.endava.ai.ui.tests.refunds.support.RefundSupportRequestTestSupport.request;
++import static com.ai.ui.tests.refunds.support.RefundSupportRequestTestSupport.adminProgressedRequest;
++import static com.ai.ui.tests.refunds.support.RefundSupportRequestTestSupport.request;
 +
 +public final class RefundSupportCustomerMessagesLifecycleTest extends BaseTestUI {
 +    private final RefundSupportRequestValidation validation = new RefundSupportRequestValidation();

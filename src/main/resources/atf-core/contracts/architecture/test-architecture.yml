@@ -3,8 +3,8 @@ contracts:
   - id: test.product.api
     kind: product-test-lane
     owner: Product API tests
-    sourceRoot: src/test/java/com/endava/ai/api/tests
-    productionRoot: src/main/java/com/endava/ai/api
+    sourceRoot: src/test/java/com/ai/api/tests
+    productionRoot: src/main/java/com/ai/api
     purpose: Product API behavior and application-facing API workflows
     linkedSkill: none
     suitePolicy: Product API tests may run through Maven -Dtest or product suite XML; they are not Core, MCP, Atlas or Reporting sanity tests.
@@ -13,8 +13,8 @@ contracts:
   - id: test.product.ui
     kind: product-test-lane
     owner: Product UI tests
-    sourceRoot: src/test/java/com/endava/ai/ui/tests
-    productionRoot: src/main/java/com/endava/ai/ui
+    sourceRoot: src/test/java/com/ai/ui/tests
+    productionRoot: src/main/java/com/ai/ui
     purpose: Product UI behavior and user-visible business workflows
     linkedSkill: none
     suitePolicy: Product UI tests may use API shortcuts for setup and polling, but final user-visible proof stays UI-owned.
@@ -23,8 +23,8 @@ contracts:
   - id: test.framework.core
     kind: framework-test-lane
     owner: ATF Core tests
-    sourceRoot: src/test/java/com/endava/ai/atf
-    productionRoot: src/main/java/com/endava/ai/core
+    sourceRoot: src/test/java/com/ai/atf
+    productionRoot: src/main/java/com/ai/core
     purpose: Reusable ATF core, runtime, support and reporting-library contract tests
     linkedSkill: skill.core
     suitePolicy: Core sanity starts from src/test/resources/atf/core/suites/core/testng-atf-core-sanity.xml.
@@ -33,8 +33,8 @@ contracts:
   - id: test.skill.reporting
     kind: skill-test-lane
     owner: Reporting skill tests
-    sourceRoot: src/test/java/com/endava/ai/atf/core/reporting
-    productionRoot: src/main/java/com/endava/ai/skills/reporting
+    sourceRoot: src/test/java/com/ai/atf/core/reporting
+    productionRoot: src/main/java/com/ai/skills/reporting
     purpose: Shared report shell, Extent/Spark behavior, score cards, artifact links and visual/report contracts
     linkedSkill: skill.reporting
     suitePolicy: Reporting sanity is routed through Core sanity and deep Extent profiles.
@@ -43,8 +43,8 @@ contracts:
   - id: test.skill.reporting-facade
     kind: skill-test-lane
     owner: Reporting facade smoke tests
-    sourceRoot: src/test/java/com/endava/ai/skills/reporting
-    productionRoot: src/main/java/com/endava/ai/skills/reporting
+    sourceRoot: src/test/java/com/ai/skills/reporting
+    productionRoot: src/main/java/com/ai/skills/reporting
     purpose: Small public-skill smoke tests proving the Reporting facade stays visible, small and Core-backed
     linkedSkill: skill.reporting
     suitePolicy: Included in testng-reporting-sanity.xml before heavier core.reporting contracts.
@@ -53,8 +53,8 @@ contracts:
   - id: test.skill.business-understanding
     kind: skill-test-lane
     owner: Business Understanding skill tests
-    sourceRoot: src/test/java/com/endava/ai/skills/business/tests
-    productionRoot: src/main/java/com/endava/ai/skills/business
+    sourceRoot: src/test/java/com/ai/skills/business/tests
+    productionRoot: src/main/java/com/ai/skills/business
     purpose: Shared input-agnostic business semantics consumed by MCP and Atlas
     linkedSkill: skill.business-understanding
     suitePolicy: Business Understanding sanity starts from src/test/resources/skills/business/testng-business-understanding-sanity.xml.
@@ -63,8 +63,8 @@ contracts:
   - id: test.skill.mcp
     kind: skill-test-lane
     owner: MCP skill tests
-    sourceRoot: src/test/java/com/endava/ai/skills/mcp
-    productionRoot: src/main/java/com/endava/ai/skills/mcp
+    sourceRoot: src/test/java/com/ai/skills/mcp
+    productionRoot: src/main/java/com/ai/skills/mcp
     purpose: Agentic package governance, artifact truth, package close-out and candidate promotion contracts
     linkedSkill: skill.mcp
     suitePolicy: MCP sanity starts from src/test/resources/skills/mcp/testng-mcp-sanity.xml and close-out uses the typed MCP profiles.
@@ -73,8 +73,8 @@ contracts:
   - id: test.skill.atlas
     kind: skill-test-lane
     owner: Atlas skill tests
-    sourceRoot: src/test/java/com/endava/ai/skills/atlas
-    productionRoot: src/main/java/com/endava/ai/skills/atlas
+    sourceRoot: src/test/java/com/ai/skills/atlas
+    productionRoot: src/main/java/com/ai/skills/atlas
     purpose: Business graph, source trace, score truth and Atlas output quality contracts
     linkedSkill: skill.atlas
     suitePolicy: Atlas sanity starts from src/test/resources/skills/atlas/testng-atlas-sanity.xml.

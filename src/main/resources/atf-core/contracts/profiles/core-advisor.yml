@@ -4,7 +4,7 @@ contracts:
     severity: WARN
     signal: A change adds package-audit, candidate, graph, html-ex or atlas scoring vocabulary under ATF core.
     recommendation: Move package-specific validation back to MCP or Atlas and keep Core as reusable runtime/reporting infrastructure.
-    repairTarget: src/main/java/com/endava/ai/core
+    repairTarget: src/main/java/com/ai/core
     recommendedProfile: src/test/resources/atf/core/suites/core/testng-atf-core-smoke.xml
     reportAnchor: atf-core-advisor
     blocking: false
@@ -12,7 +12,7 @@ contracts:
     severity: WARN
     signal: A reporting change edits Extent/Spark patching, overview cards, runtime audit, collapse behavior or finalization.
     recommendation: Run the focused Extent reporting contracts and update reporting-architecture.yml when ownership moves.
-    repairTarget: src/main/java/com/endava/ai/core/reporting/adapters/extent
+    repairTarget: src/main/java/com/ai/core/reporting/adapters/extent
     recommendedProfile: src/test/resources/atf/core/suites/reporting/testng-atf-extent.xml
     reportAnchor: atf-core-advisor
     blocking: false
@@ -20,7 +20,7 @@ contracts:
     severity: INFO
     signal: A listener or runtime audit change mixes TestNG lifecycle, rendering, config, clock or file IO in one class.
     recommendation: Split lifecycle orchestration, typed audit models and pure renderers before increasing size budgets.
-    repairTarget: src/main/java/com/endava/ai/core/reporting/listener/internal
+    repairTarget: src/main/java/com/ai/core/reporting/listener/internal
     recommendedProfile: src/test/resources/atf/core/suites/core/testng-atf-core-smoke.xml
     reportAnchor: atf-core-advisor
     blocking: false

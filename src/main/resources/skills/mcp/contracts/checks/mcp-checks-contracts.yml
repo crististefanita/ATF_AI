@@ -42,7 +42,7 @@ contracts:
     repairHint: Remove duplicate keys; the parser must fail fast before the contract catalog is used.
   - id: mcp.yaml-contract.scalar-parser-guardrail
     expected: YAML contract specs parse booleans and integers through YamlScalars instead of raw Java parse helpers.
-    artifacts: src/main/java/com/endava/ai/**/*yaml*,src/main/java/com/endava/ai/skills/mcp/contracts
+    artifacts: src/main/java/com/ai/**/*yaml*,src/main/java/com/ai/skills/mcp/contracts
     failureMeaning: Raw Boolean.parseBoolean can silently convert invalid values to false, and raw integer parsing loses contract context.
     repairHint: Use YamlScalars.requiredInt, optionalInt, requiredBoolean or optionalBoolean for flattened YAML scalar fields.
   - id: mcp.yaml-contract.check-ref.schema
@@ -57,12 +57,12 @@ contracts:
     repairHint: Add the new mcp-checks-*.yml resource constant to McpContractResources.MCP_CHECKS, or remove the orphan file.
   - id: mcp.yaml-contract.check-ref.source-scan
     expected: Every @McpCheckRef used by MCP tests resolves to an entry in the YAML check catalog.
-    artifacts: src/test/java/com/endava/ai/skills/mcp,src/main/resources/skills/mcp/contracts/checks/mcp-checks-*.yml
+    artifacts: src/test/java/com/ai/skills/mcp,src/main/resources/skills/mcp/contracts/checks/mcp-checks-*.yml
     failureMeaning: A concise Java annotation could reference contract text that does not exist.
     repairHint: Add the missing YAML check entry or correct the @McpCheckRef id.
   - id: mcp.yaml-contract.check-ref.no-inline-mcp-check
     expected: MCP tests use @McpCheckRef for check narratives and do not add new inline @McpCheck blocks.
-    artifacts: src/test/java/com/endava/ai/skills/mcp,src/main/resources/skills/mcp/contracts/checks/mcp-checks-*.yml
+    artifacts: src/test/java/com/ai/skills/mcp,src/main/resources/skills/mcp/contracts/checks/mcp-checks-*.yml
     failureMeaning: Inline check narratives make MCP tests noisy and split the contract catalog across Java and YAML.
     repairHint: Move expected, artifacts, failureMeaning and repairHint into mcp-checks-*.yml, then reference the id with @McpCheckRef.
   - id: mcp.yaml-contract.check-ref.evidence-rendering
@@ -77,17 +77,17 @@ contracts:
     repairHint: Complete the YAML suite entry and keep suite classes on @McpSuiteRef only; legacy inline @McpSuite must not return.
   - id: mcp.yaml-contract.suite-ref.source-scan
     expected: Every @McpSuiteRef used by MCP tests resolves to an entry in the YAML suite catalog.
-    artifacts: src/test/java/com/endava/ai/skills/mcp,src/main/resources/skills/mcp/contracts/suites/mcp-suites.yml
+    artifacts: src/test/java/com/ai/skills/mcp,src/main/resources/skills/mcp/contracts/suites/mcp-suites.yml
     failureMeaning: A concise suite annotation could reference suite metadata that does not exist.
     repairHint: Add the missing YAML suite entry or correct the @McpSuiteRef id.
   - id: mcp.yaml-contract.suite-ref.no-inline-mcp-suite
     expected: MCP tests use @McpSuiteRef for suite narratives and do not add new inline @McpSuite blocks.
-    artifacts: src/test/java/com/endava/ai/skills/mcp,src/main/resources/skills/mcp/contracts/suites/mcp-suites.yml
+    artifacts: src/test/java/com/ai/skills/mcp,src/main/resources/skills/mcp/contracts/suites/mcp-suites.yml
     failureMeaning: Inline suite narratives make MCP test classes noisy and split suite profile metadata across Java and YAML.
     repairHint: Move profile, category, title, htmlReq and purpose into mcp-suites.yml, then reference the id with @McpSuiteRef.
   - id: mcp.yaml-contract.suite-ref.testng-profile-coverage
     expected: Every class named by MCP TestNG profiles is backed by mcp-suites.yml and every suite YAML class points back to the same @McpSuiteRef.
-    artifacts: src/test/resources/skills/mcp/testng-mcp-*.xml,src/main/resources/skills/mcp/contracts/suites/mcp-suites.yml,src/test/java/com/endava/ai/skills/mcp
+    artifacts: src/test/resources/skills/mcp/testng-mcp-*.xml,src/main/resources/skills/mcp/contracts/suites/mcp-suites.yml,src/test/java/com/ai/skills/mcp
     failureMeaning: Final close-out or self-health profiles can contain classes whose agent-facing profile, purpose and repair context are invisible or stale.
     repairHint: Add or correct the mcp-suites.yml entry, then make the Java class use the matching @McpSuiteRef id.
   - id: mcp.rule-routing.profiles.visible
@@ -101,8 +101,8 @@ contracts:
     failureMeaning: A generated matrix can duplicate rules, hide close-out routing, blur html-ex candidate validation with package publishability, or leave agents guessing which existing artifact family to repair.
     repairHint: Deduplicate routed profile/rule pairs, keep descriptor family/artifact-family/cost/repair route complete, and regenerate the all-profile rule matrix from the routing catalog.
   - id: mcp.testng.self-profile.contract-health
-    expected: The MCP self-health TestNG profile includes every class under com.endava.ai.skills.mcp.tests.contracts.
-    artifacts: src/test/resources/skills/mcp/testng-mcp-self.xml,src/test/java/com/endava/ai/skills/mcp/tests/contracts
+    expected: The MCP self-health TestNG profile includes every class under com.ai.skills.mcp.tests.contracts.
+    artifacts: src/test/resources/skills/mcp/testng-mcp-self.xml,src/test/java/com/ai/skills/mcp/tests/contracts
     failureMeaning: YAML, CheckRef, routing or matrix contract drift can be missed by the validator self-suite.
     repairHint: Add the missing tests.contracts class to testng-mcp-self.xml and keep profiles.yml self requiredClasses aligned.
   - id: mcp.yaml-contract.profile-schema
@@ -122,7 +122,7 @@ contracts:
     repairHint: 'Keep bridge entries non-blocking, scoped to mcp-langgraph-final-report, and synchronized with skills/atlas/contracts/agentic-quality-lanes.yml.'
   - id: 'mcp.package-shape.tests.no-atlas-imports'
     expected: 'MCP test code does not import Atlas product code; MCP remains the agentic governance skill and Atlas remains the business-understanding skill.'
-    artifacts: 'src/test/java/com/endava/ai/skills/mcp,src/main/java/com/endava/ai/skills/atlas,src/test/java/com/endava/ai/skills/atlas'
+    artifacts: 'src/test/java/com/ai/skills/mcp,src/main/java/com/ai/skills/atlas,src/test/java/com/ai/skills/atlas'
     failureMeaning: 'MCP tests can accidentally turn Atlas business-quality judgment into a Java dependency or hidden package gate.'
     repairHint: 'Move Atlas-specific assertions to Atlas suites, or keep MCP/Atlas coordination through YAML bridge metadata and published artifacts.'
   - id: mcp.yaml-contract.closeout-artifact-schema
@@ -197,14 +197,14 @@ contracts:
     repairHint: 'Open the blocker matrix, repair artifacts/state/report/code, then rerun the MCP package close-out profile.'
   - id: 'mcp-suite.check-metadata.coverage'
     expected: 'Every major latest/candidate/core/negative MCP suite exposes at least one representative @McpCheckRef.'
-    artifacts: 'src/test/java/com/endava/ai/skills/mcp/tests'
+    artifacts: 'src/test/java/com/ai/skills/mcp/tests'
     failureMeaning: 'A public MCP suite can pass but remain hard for agents to understand in Extent.'
     repairHint: 'Add @McpCheckRef and store expected contract, artifacts, failure meaning and repair hint in mcp-checks-*.yml.'
   - id: 'mcp.negative-support.testng-classloader.loadable'
     expected: 'Shared MCP negative fixtures are public support classes loadable through the TestNG context classloader.'
-    artifacts: 'src/test/java/com/endava/ai/skills/mcp/tests/support/McpRunNegativeSupport.java'
+    artifacts: 'src/test/java/com/ai/skills/mcp/tests/support/McpRunNegativeSupport.java'
     failureMeaning: 'Subset Maven/TestNG runs can fail before validating Extent provenance because helper classes are package-local.'
-    repairHint: 'Keep shared negative helpers public under com.endava.ai.skills.mcp.tests.support.'
+    repairHint: 'Keep shared negative helpers public under com.ai.skills.mcp.tests.support.'
   - id: 'mcp.html-ex-reference.template-consensus'
     expected: 'The active html-ex library exposes a reusable structural consensus for score cards, visual shell, collapse policy, Proof Mapping, Run Audit and Artifact Index.'
     artifacts: 'docs/html-ex/README.md,docs/html-ex/*/analysis/langgraph-business-understanding.html'
@@ -216,10 +216,10 @@ contracts:
     failureMeaning: 'Candidate promotion becomes ambiguous when it also reruns post-sync, browser-render or final-report close-out checks.'
     repairHint: 'Keep candidate promotion scoped to McpCandidateContractTest; run mcp-final-report-closeout and mcp-langgraph-final-report before candidate promotion, and keep html-ex corpus classification separate.'
   - id: 'mcp.testng.full-profile.package-scope'
-    expected: 'mcp/testng-mcp-full.xml runs the broad com.endava.ai.skills.mcp.tests.* diagnostic sweep, but excludes the final-only mcp-final-report-closeout browser/render group.'
+    expected: 'mcp/testng-mcp-full.xml runs the broad com.ai.skills.mcp.tests.* diagnostic sweep, but excludes the final-only mcp-final-report-closeout browser/render group.'
     artifacts: 'src/test/resources/skills/mcp/testng-mcp-full.xml,src/main/resources/skills/mcp/contracts/profiles.yml'
     failureMeaning: 'The diagnostic full sweep can either become too narrow or drag final browser/render validation into calibration runs.'
-    repairHint: 'Keep the full profile package-scoped to com.endava.ai.skills.mcp.tests.* and keep <exclude name="mcp-final-report-closeout"/> aligned with profiles.yml.'
+    repairHint: 'Keep the full profile package-scoped to com.ai.skills.mcp.tests.* and keep <exclude name="mcp-final-report-closeout"/> aligned with profiles.yml.'
   - id: 'mcp.testng.html-ex-corpus-profile.scope'
     expected: 'mcp/testng-mcp-html-ex-corpus.xml runs only the historical html-ex corpus classifier.'
     artifacts: 'src/test/resources/skills/mcp/testng-mcp-html-ex-corpus.xml,-Dmcp.html.ex.root'

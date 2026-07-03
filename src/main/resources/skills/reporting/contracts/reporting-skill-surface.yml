@@ -3,8 +3,8 @@ contracts:
   - id: reporting.skill-surface.facade
     kind: reporting-skill-surface
     owner: skill.reporting
-    facadeRoot: src/main/java/com/endava/ai/skills/reporting
-    implementationRoot: src/main/java/com/endava/ai/core/reporting
+    facadeRoot: src/main/java/com/ai/skills/reporting
+    implementationRoot: src/main/java/com/ai/core/reporting
     promptRoot: docs/prompts/html_ro/shared
     sanitySuite: src/test/resources/atf/core/reporting/testng-reporting-sanity.xml
     integrationSuite: src/test/resources/atf/core/reporting/testng-reporting-integration.xml
@@ -31,8 +31,8 @@ contracts:
     consumesModel: BusinessGraphConstruction
     adapter: BusinessGraphLayoutAdapter
     layoutModel: BusinessGraphLayoutModel
-    sourceRoot: src/main/java/com/endava/ai/core/reporting/graph
-    contractTest: com.endava.ai.atf.core.reporting.graph.BusinessGraphLayoutAdapterContractTest
+    sourceRoot: src/main/java/com/ai/core/reporting/graph
+    contractTest: com.ai.atf.core.reporting.graph.BusinessGraphLayoutAdapterContractTest
     owns: SVG/HTML composition,lanes,spacing,owned node class,single primary owned node,outcome node class,frontier node class,data graph roles,accessible SVG title and description,readable truncated labels with full-text audit attributes,relationship label fallback,supplemental relationship audit,supplemental relationship SVG cues,MCP-aligned graph density,collapsed legend,collapsed proof boundary placement
     forbiddenOwnership: business truth scoring,MCP package publishability,Atlas maturity judgment,proof artifact authenticity
     routeWhen: a shared business graph needs reusable visual layout from Business Understanding semantics

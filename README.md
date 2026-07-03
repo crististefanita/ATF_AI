@@ -44,10 +44,10 @@ Governed package work
 | --- | --- | --- | --- |
 | Framework plane | [docs/Living_Architecture_UI_API_doc_v1_0.md](docs/Living_Architecture_UI_API_doc_v1_0.md) + `src/main/java` | how UI/API/core/reporting code is layered | package legality or final package score |
 | Agent workflow plane | [docs/prompts/md-en](docs/prompts/md-en) + [agent-runtime.properties](docs/prompts/md-en/agent-runtime.properties) | how a governed agent run reads, spends, freezes, reports, and learns | framework implementation patterns by itself |
-| MCP audit plane | `com.endava.ai.skills.mcp.*` | whether a generated package is auditable against executable contracts | which business frontier the agent should choose |
-| Atlas understanding plane | `com.endava.ai.skills.atlas.*` | whether business graphs, scores, source trace, and report meaning are evidence-backed | package close-out or MCP artifact truth |
-| Core reporting plane | `com.endava.ai.core.reporting.*` | reusable reporting, Extent, diagnostics, runtime audit, and aggregate report infrastructure | MCP/Atlas-specific business or package rules |
-| Business understanding plane | `com.endava.ai.skills.business.*` | shared semantic language for business objects, flow stories, proof chains, score rationale, and limits | package publishability, Atlas artifact ownership, or report shell rendering |
+| MCP audit plane | `com.ai.skills.mcp.*` | whether a generated package is auditable against executable contracts | which business frontier the agent should choose |
+| Atlas understanding plane | `com.ai.skills.atlas.*` | whether business graphs, scores, source trace, and report meaning are evidence-backed | package close-out or MCP artifact truth |
+| Core reporting plane | `com.ai.core.reporting.*` | reusable reporting, Extent, diagnostics, runtime audit, and aggregate report infrastructure | MCP/Atlas-specific business or package rules |
+| Business understanding plane | `com.ai.skills.business.*` | shared semantic language for business objects, flow stories, proof chains, score rationale, and limits | package publishability, Atlas artifact ownership, or report shell rendering |
 
 <!-- /table -->
 
@@ -72,9 +72,9 @@ Use this when you only need to prove the workspace is alive:
 
 ```bash
 mvn test-compile
-mvn "-Dtest=com.endava.ai.atf.*" test
-mvn "-Dtest=com.endava.ai.api.tests.PositiveUserTests" test
-mvn "-Dtest=com.endava.ai.skills.mcp.tests.latest.McpLatestPackageArtifactAuditTest" "-Dmcp.package.root=latest" test
+mvn "-Dtest=com.ai.atf.*" test
+mvn "-Dtest=com.ai.api.tests.PositiveUserTests" test
+mvn "-Dtest=com.ai.skills.mcp.tests.latest.McpLatestPackageArtifactAuditTest" "-Dmcp.package.root=latest" test
 ```
 
 Then inspect:
@@ -153,7 +153,7 @@ mvn test-compile
 Run a narrow product test:
 
 ```bash
-mvn "-Dtest=com.endava.ai.api.tests.PositiveUserTests" test
+mvn "-Dtest=com.ai.api.tests.PositiveUserTests" test
 ```
 
 Run Core skill sanity after architecture, reporting, receipt or profile changes:
@@ -208,16 +208,16 @@ Inspect reports:
 
 | Layer | Main package / file | Owns | Must not own |
 | --- | --- | --- | --- |
-| ATF core | `com.endava.ai.core` | config, listeners, reporting hooks, shared lifecycle | product business assertions |
-| API core/runtime | `com.endava.ai.api.core` + API runtime packages | API clients, actions, schemas, payloads, API lifecycle | UI/browser mechanics |
-| UI core/runtime | `com.endava.ai.ui.core` + `com.endava.ai.ui.engine` | browser lifecycle, engines, waits, shared UI mechanics | product-specific business shortcuts |
-| UI support | `com.endava.ai.ui.support` | reusable product-facing pages, services, validations, factories | engine/core behavior |
-| API support | `com.endava.ai.api.support` | reusable product-facing clients, services, validations, factories | API core behavior |
-| Product API tests | `com.endava.ai.api.tests` | API product behavior | framework contract validation |
-| Product UI tests | `com.endava.ai.ui.tests` | UI product behavior | framework self-tests |
-| ATF self-tests | `com.endava.ai.atf.*` | lifecycle, reporting, engine, smoke, regression contracts | product business coverage |
-| MCP validation | `com.endava.ai.skills.mcp.*` | generated-package contract validation | choosing business frontier |
-| Atlas validation | `com.endava.ai.skills.atlas.*` | business-understanding, graph, trace, score, and report-quality validation | MCP package close-out |
+| ATF core | `com.ai.core` | config, listeners, reporting hooks, shared lifecycle | product business assertions |
+| API core/runtime | `com.ai.api.core` + API runtime packages | API clients, actions, schemas, payloads, API lifecycle | UI/browser mechanics |
+| UI core/runtime | `com.ai.ui.core` + `com.ai.ui.engine` | browser lifecycle, engines, waits, shared UI mechanics | product-specific business shortcuts |
+| UI support | `com.ai.ui.support` | reusable product-facing pages, services, validations, factories | engine/core behavior |
+| API support | `com.ai.api.support` | reusable product-facing clients, services, validations, factories | API core behavior |
+| Product API tests | `com.ai.api.tests` | API product behavior | framework contract validation |
+| Product UI tests | `com.ai.ui.tests` | UI product behavior | framework self-tests |
+| ATF self-tests | `com.ai.atf.*` | lifecycle, reporting, engine, smoke, regression contracts | product business coverage |
+| MCP validation | `com.ai.skills.mcp.*` | generated-package contract validation | choosing business frontier |
+| Atlas validation | `com.ai.skills.atlas.*` | business-understanding, graph, trace, score, and report-quality validation | MCP package close-out |
 
 <!-- /table -->
 
@@ -379,8 +379,8 @@ Canonical read order:
 | --- | --- | --- |
 | Generated package close-out | `docs/prompts/md-en/orchestrate-iterative-runs.md` | `execute-and-understand-run.md`, then `reporting.md` only for final publication |
 | Business understanding audit | `docs/prompts/md-en/business-test-atlas-reference.md` | Atlas sanity, then full Atlas profile |
-| Shared business-understanding change | `src/main/java/com/endava/ai/skills/business/README.md` | `skills/business/contracts/semantic-pipeline.yml`, then business-understanding sanity |
-| Core library change | `src/main/java/com/endava/ai/core/README.md` | Core sanity, then deeper Core profile |
+| Shared business-understanding change | `src/main/java/com/ai/skills/business/README.md` | `skills/business/contracts/semantic-pipeline.yml`, then business-understanding sanity |
+| Core library change | `src/main/java/com/ai/core/README.md` | Core sanity, then deeper Core profile |
 
 `AtfSkillArchitectureContractTest` enforces this routing: every use-case starts with the primary skill sanity profile, declares its prompt/readme source, and keeps candidate/html-ex promotion outside generated-package close-out.
 
@@ -475,22 +475,22 @@ If a protected root really needs a change, stop treating it as package work. Rep
 
 | Path | Meaning |
 | --- | --- |
-| `src/main/java/com/endava/ai/core` | reusable Core runtime library: listener, lifecycle, support kernel, reporting library and skill facades |
-| `src/main/java/com/endava/ai/core/support` | shared low-level support kernel, including `core.support.config`, YAML contracts, annotations and small HTML primitives |
-| `src/main/java/com/endava/ai/core/reporting` | reusable reporting implementation library |
-| `src/main/java/com/endava/ai/skills/business` | shared Business Understanding semantic skill consumed by MCP and Atlas |
-| `src/main/java/com/endava/ai/skills/reporting` | Reporting skill facade; implementation stays in `core.reporting` |
-| `src/main/java/com/endava/ai/api` | API runtime layers |
-| `src/main/java/com/endava/ai/ui` | UI runtime layers |
-| `src/main/java/com/endava/ai/skills/mcp` | reusable MCP validation engine |
-| `src/main/java/com/endava/ai/skills/atlas` | reusable Atlas business-understanding validator |
-| `src/test/java/com/endava/ai/api/tests` | product/API tests |
-| `src/test/java/com/endava/ai/ui/tests` | product/UI tests |
-| `src/test/java/com/endava/ai/atf` | framework self-tests |
-| `src/test/java/com/endava/ai/atf/core/reporting` | Reporting skill / Core reporting contract tests |
-| `src/test/java/com/endava/ai/skills/business/tests` | Business Understanding skill contract tests |
-| `src/test/java/com/endava/ai/skills/mcp` | executable MCP skill contract tests |
-| `src/test/java/com/endava/ai/skills/atlas` | executable Atlas skill contract tests |
+| `src/main/java/com/ai/core` | reusable Core runtime library: listener, lifecycle, support kernel, reporting library and skill facades |
+| `src/main/java/com/ai/core/support` | shared low-level support kernel, including `core.support.config`, YAML contracts, annotations and small HTML primitives |
+| `src/main/java/com/ai/core/reporting` | reusable reporting implementation library |
+| `src/main/java/com/ai/skills/business` | shared Business Understanding semantic skill consumed by MCP and Atlas |
+| `src/main/java/com/ai/skills/reporting` | Reporting skill facade; implementation stays in `core.reporting` |
+| `src/main/java/com/ai/api` | API runtime layers |
+| `src/main/java/com/ai/ui` | UI runtime layers |
+| `src/main/java/com/ai/skills/mcp` | reusable MCP validation engine |
+| `src/main/java/com/ai/skills/atlas` | reusable Atlas business-understanding validator |
+| `src/test/java/com/ai/api/tests` | product/API tests |
+| `src/test/java/com/ai/ui/tests` | product/UI tests |
+| `src/test/java/com/ai/atf` | framework self-tests |
+| `src/test/java/com/ai/atf/core/reporting` | Reporting skill / Core reporting contract tests |
+| `src/test/java/com/ai/skills/business/tests` | Business Understanding skill contract tests |
+| `src/test/java/com/ai/skills/mcp` | executable MCP skill contract tests |
+| `src/test/java/com/ai/skills/atlas` | executable Atlas skill contract tests |
 | `src/main/resources/atf-core/contracts/architecture/test-architecture.yml` | executable test-lane ownership map for product tests, framework tests and skill tests |
 | `docs/prompts/md-en` | English Markdown prompt contracts, best default for agents |
 | `docs/prompts/html_EN` | English HTML prompt family, split by MCP / Atlas / Shared ownership |
@@ -544,21 +544,21 @@ Anti-patterns:
 
 | If you add | Put it in | Keep out |
 | --- | --- | --- |
-| product API test | `src/test/java/com/endava/ai/api/tests` | browser logic, UI screenshots, MCP assertions |
-| product UI test | `src/test/java/com/endava/ai/ui/tests` | raw API contract testing, direct reporting adapters |
-| UI page mechanics | `src/main/java/com/endava/ai/ui/.../pages` | business assertions |
-| UI business action | `src/main/java/com/endava/ai/ui/.../services` or actions | selectors and low-level waits in tests |
+| product API test | `src/test/java/com/ai/api/tests` | browser logic, UI screenshots, MCP assertions |
+| product UI test | `src/test/java/com/ai/ui/tests` | raw API contract testing, direct reporting adapters |
+| UI page mechanics | `src/main/java/com/ai/ui/.../pages` | business assertions |
+| UI business action | `src/main/java/com/ai/ui/.../services` or actions | selectors and low-level waits in tests |
 | assertion meaning | validation classes | mixed helper/test classes |
-| framework lifecycle test | `src/test/java/com/endava/ai/atf` | product business claims |
-| low-level config/support primitive | `src/main/java/com/endava/ai/core/support` | MCP/Atlas/package-specific behavior |
-| runtime config key or config loader | `src/main/java/com/endava/ai/core/support/config` | top-level `core.config` package |
-| shared business-understanding semantic primitive | `src/main/java/com/endava/ai/skills/business` | MCP gate decisions, Atlas artifact ownership, reporting shell rules |
-| shared reporting skill facade | `src/main/java/com/endava/ai/skills/reporting` | Extent implementation details, MCP/Atlas domain decisions |
-| reusable reporting implementation | `src/main/java/com/endava/ai/core/reporting` | MCP publishability, Atlas business meaning |
-| generated-package validator | `src/main/java/com/endava/ai/skills/mcp` | site-specific business expectations |
-| MCP executable test | `src/test/java/com/endava/ai/skills/mcp` | brittle checks tied to one current application story |
-| Atlas executable test | `src/test/java/com/endava/ai/skills/atlas` | MCP package publishability |
-| Business Understanding executable test | `src/test/java/com/endava/ai/skills/business/tests` | report presentation and package gate decisions |
+| framework lifecycle test | `src/test/java/com/ai/atf` | product business claims |
+| low-level config/support primitive | `src/main/java/com/ai/core/support` | MCP/Atlas/package-specific behavior |
+| runtime config key or config loader | `src/main/java/com/ai/core/support/config` | top-level `core.config` package |
+| shared business-understanding semantic primitive | `src/main/java/com/ai/skills/business` | MCP gate decisions, Atlas artifact ownership, reporting shell rules |
+| shared reporting skill facade | `src/main/java/com/ai/skills/reporting` | Extent implementation details, MCP/Atlas domain decisions |
+| reusable reporting implementation | `src/main/java/com/ai/core/reporting` | MCP publishability, Atlas business meaning |
+| generated-package validator | `src/main/java/com/ai/skills/mcp` | site-specific business expectations |
+| MCP executable test | `src/test/java/com/ai/skills/mcp` | brittle checks tied to one current application story |
+| Atlas executable test | `src/test/java/com/ai/skills/atlas` | MCP package publishability |
+| Business Understanding executable test | `src/test/java/com/ai/skills/business/tests` | report presentation and package gate decisions |
 
 <!-- /table -->
 
@@ -1015,8 +1015,8 @@ UI tests should use:
 Examples:
 
 ```bash
-mvn "-Dtest=com.endava.ai.api.tests.PositiveUserTests" test
-mvn "-Dtest=com.endava.ai.ui.tests.*" test
+mvn "-Dtest=com.ai.api.tests.PositiveUserTests" test
+mvn "-Dtest=com.ai.ui.tests.*" test
 ```
 
 </details>
@@ -1024,7 +1024,7 @@ mvn "-Dtest=com.endava.ai.ui.tests.*" test
 <details>
 <summary>Run Framework / Contract Tests</summary>
 
-Use `com.endava.ai.atf.*` for framework behavior:
+Use `com.ai.atf.*` for framework behavior:
 
 - lifecycle ordering;
 - screenshot contracts;
@@ -1033,7 +1033,7 @@ Use `com.endava.ai.atf.*` for framework behavior:
 - engine contracts;
 - smoke/regression checks.
 
-Use `com.endava.ai.skills.mcp.tests` for generated-package validation:
+Use `com.ai.skills.mcp.tests` for generated-package validation:
 
 - package artifact spine;
 - final report contract;

@@ -112,9 +112,9 @@
         <table>
           <thead><tr><th>Parameter</th><th>Example</th><th>Role</th></tr></thead>
           <tbody>
-            <tr><td><code>INPUT_TEST_SOURCE_ROOT</code></td><td><code>src/test/java/com/endava/ai/ui/tests</code> or <code>src/test/java/com/endava/ai/api/tests</code></td><td>the root of the analyzed tests</td></tr>
-            <tr><td><code>INPUT_TEST_PACKAGE</code></td><td><code>com.endava.ai.ui.tests</code> / <code>com.endava.ai.api.tests</code></td><td>namespace for mapping</td></tr>
-            <tr><td><code>INPUT_MAIN_SUPPORT_ROOTS</code></td><td><code>src/main/java/com/endava/ai/ui/support</code> / <code>src/main/java/com/endava/ai/api/support</code></td><td>support allowed for generated tests</td></tr>
+            <tr><td><code>INPUT_TEST_SOURCE_ROOT</code></td><td><code>src/test/java/com/ai/ui/tests</code> or <code>src/test/java/com/ai/api/tests</code></td><td>the root of the analyzed tests</td></tr>
+            <tr><td><code>INPUT_TEST_PACKAGE</code></td><td><code>com.ai.ui.tests</code> / <code>com.ai.api.tests</code></td><td>namespace for mapping</td></tr>
+            <tr><td><code>INPUT_MAIN_SUPPORT_ROOTS</code></td><td><code>src/main/java/com/ai/ui/support</code> / <code>src/main/java/com/ai/api/support</code></td><td>support allowed for generated tests</td></tr>
             <tr><td><code>PROTECTED_FRAMEWORK_ROOTS</code></td><td><code>core</code>, <code>mcp</code>, <code>atlas</code>, <code>ui/core</code>, <code>ui/engine</code>, <code>api/core</code></td><td>surfaces that do not change in the generated package</td></tr>
             <tr><td><code>LIVING_ARCHITECTURE_REFERENCE</code></td><td><code>docs/Living_Architecture_UI_API_doc_v1_0.html</code></td><td>the UI/API layering law</td></tr>
             <tr><td><code>OPTIONAL_BUSINESS_ATLAS</code></td><td><code>docs/atlas/&lt;ATF_NAME&gt;_business-test-atlas.html</code></td><td>the business map is used as a guide, not as a single source</td></tr>
@@ -288,15 +288,15 @@
     <div class="content">
       <details class="subsection" open>
         <summary>5.1 Target shape</summary>
-        <pre><code>src/test/java/com/endava/ai/ui/tests
+        <pre><code>src/test/java/com/ai/ui/tests
   account | checkout | support | admin | catalog | common
     &lt;BusinessObject&gt;&lt;LifecycleOrBoundary&gt;Tests
 
-src/test/java/com/endava/ai/api/tests
+src/test/java/com/ai/api/tests
   users | posts | comments | auth | common
     &lt;Resource&gt;&lt;ContractOrLifecycle&gt;Tests
 
-src/main/java/com/endava/ai/ui/support
+src/main/java/com/ai/ui/support
   flows        // reusable UI workflow services, no assertions hidden in core
   pages        // UI page/screen surface
   validation   // business-visible UI assertions
@@ -304,7 +304,7 @@ src/main/java/com/endava/ai/ui/support
   factory      // UI test data builders/factories
   utils        // low-level UI helpers only when reusable
 
-src/main/java/com/endava/ai/api/support
+src/main/java/com/ai/api/support
   client       // HTTP mechanics outside api.core
   service      // API resource service
   steps        // reusable API flow steps
@@ -313,8 +313,8 @@ src/main/java/com/endava/ai/api/support
   factory      // payload builders/factories
   utils        // serialization/wait/data utilities
 
-src/main/java/com/endava/ai/ui/core
-src/main/java/com/endava/ai/api/core
+src/main/java/com/ai/ui/core
+src/main/java/com/ai/api/core
   protected framework contracts; generated packages must not modify these roots</code></pre>
         <div class="callout">
           Names are examples of form, not necessarily business. The rule is: packages are organized according to flows
@@ -328,11 +328,11 @@ src/main/java/com/endava/ai/api/core
         <table>
           <thead><tr><th>Area</th><th>Rule</th><th>Review verdict</th></tr></thead>
           <tbody>
-            <tr><td><code>com.endava.ai.core</code></td><td>ATF core protected</td><td>FAIL if the generated package modifies it without a separately reported blocker framework</td></tr>
-            <tr><td><code>com.endava.ai.skills.mcp</code></td><td>MCP protected validator</td><td>FAIL if the agent adjusts the validator to pass its own packet</td></tr>
-            <tr><td><code>com.endava.ai.skills.atlas</code></td><td>Atlas protected</td><td>FAIL if it is changed for a single business context</td></tr>
-            <tr><td><code>com.endava.ai.ui.core</code> / <code>ui.engine</code></td><td>Protected runtime UI</td><td>FAIL if test workarounds appear in the engine/core</td></tr>
-            <tr><td><code>com.endava.ai.api.core</code></td><td>Protected runtime API</td><td>FAIL if local business rules appear in API core</td></tr>
+            <tr><td><code>com.ai.core</code></td><td>ATF core protected</td><td>FAIL if the generated package modifies it without a separately reported blocker framework</td></tr>
+            <tr><td><code>com.ai.skills.mcp</code></td><td>MCP protected validator</td><td>FAIL if the agent adjusts the validator to pass its own packet</td></tr>
+            <tr><td><code>com.ai.skills.atlas</code></td><td>Atlas protected</td><td>FAIL if it is changed for a single business context</td></tr>
+            <tr><td><code>com.ai.ui.core</code> / <code>ui.engine</code></td><td>Protected runtime UI</td><td>FAIL if test workarounds appear in the engine/core</td></tr>
+            <tr><td><code>com.ai.api.core</code></td><td>Protected runtime API</td><td>FAIL if local business rules appear in API core</td></tr>
             <tr><td><code>ui/pages|service|validation|model|factory</code></td><td>UI support allowed</td><td>PASS/WARN after cohesion, naming and reuse</td></tr>
             <tr><td><code>api/client|service|steps|validation|model|factory</code></td><td>API support allowed</td><td>PASS/WARN according to contract, payload and clarity scheme</td></tr>
           </tbody>

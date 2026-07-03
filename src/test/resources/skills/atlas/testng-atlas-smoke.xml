@@ -2,13 +2,13 @@
 <suite name="Framework Atlas Smoke Contracts" verbose="1">
     <test name="atlas-smoke-contracts">
         <classes>
-            <class name="com.endava.ai.skills.atlas.tests.profile.AtlasTestNgProfileContractTest"/>
-            <class name="com.endava.ai.skills.atlas.tests.report.AtlasReportModelContractTest"/>
-            <class name="com.endava.ai.skills.atlas.tests.catalog.AtlasRuleCatalogContractTest"/>
-            <class name="com.endava.ai.skills.atlas.tests.architecture.AtlasPackageShapeContractTest"/>
-            <class name="com.endava.ai.skills.atlas.tests.yaml.AtlasBusinessUnderstandingConsumerContractTest"/>
-            <class name="com.endava.ai.skills.atlas.tests.yaml.AtlasYamlRulePolicyContractTest"/>
-            <class name="com.endava.ai.skills.atlas.tests.yaml.AtlasYamlSuiteContractTest"/>
+            <class name="com.ai.skills.atlas.tests.profile.AtlasTestNgProfileContractTest"/>
+            <class name="com.ai.skills.atlas.tests.report.AtlasReportModelContractTest"/>
+            <class name="com.ai.skills.atlas.tests.catalog.AtlasRuleCatalogContractTest"/>
+            <class name="com.ai.skills.atlas.tests.architecture.AtlasPackageShapeContractTest"/>
+            <class name="com.ai.skills.atlas.tests.yaml.AtlasBusinessUnderstandingConsumerContractTest"/>
+            <class name="com.ai.skills.atlas.tests.yaml.AtlasYamlRulePolicyContractTest"/>
+            <class name="com.ai.skills.atlas.tests.yaml.AtlasYamlSuiteContractTest"/>
         </classes>
     </test>
 </suite>

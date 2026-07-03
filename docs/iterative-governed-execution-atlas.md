@@ -10,7 +10,7 @@ This file is routing memory only. It is not a package HTML template and it is no
 | Atlas business understanding | Atlas skill | `docs/prompts/html_ro/atlas` and `docs/prompts/html_EN/atlas` |
 | Shared prompt primitives | Shared prompt assets | `docs/prompts/html_ro/shared`, `docs/prompts/html_EN/shared`, `docs/prompts/assets` |
 | Prompt ownership | Executable manifest | `docs/prompts/html-contract-ownership.yml` |
-| Core framework/library | ATF Core | `src/main/java/com/endava/ai/core`, `src/main/java/com/endava/ai/api/core`, `src/main/java/com/endava/ai/ui/core` |
+| Core framework/library | ATF Core | `src/main/java/com/ai/core`, `src/main/java/com/ai/api/core`, `src/main/java/com/ai/ui/core` |
 
 ## Read Order
 
@@ -26,7 +26,7 @@ This file is routing memory only. It is not a package HTML template and it is no
 | --- | --- |
 | Use MCP skill for generated-package close-out | Start with `html_ro/mcp/orchestrate-iterative-runs.html`; run MCP sanity first; finish with package-closeout, post-sync-smoke and final-report-closeout. |
 | Use Atlas skill for business understanding | Start with `html_ro/atlas/business-test-atlas-reference.html`; run Atlas sanity first; finish with the business-closeout profile. Use the full profile only for diagnostics, including adapter parity. |
-| Change Core library behavior | Start with `src/main/java/com/endava/ai/core/README.md`; run Core sanity first; keep MCP/Atlas rules outside Core. |
+| Change Core library behavior | Start with `src/main/java/com/ai/core/README.md`; run Core sanity first; keep MCP/Atlas rules outside Core. |
 
 ## Execution Profiles
 

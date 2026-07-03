@@ -1,6 +1,6 @@
 # ATF Core Aggregate Summary
 
-This folder is the official aggregate reporting artifact for `com.endava.ai.atf TestNG sweep`.
+This folder is the official aggregate reporting artifact for `com.ai.atf TestNG sweep`.
 Adapter-local reports may exist elsewhere, but they are support artifacts, not the final audit surface.
 Every test node publishes TestNG result plus available @AtfContract / @AtfContractSuite metadata.
 

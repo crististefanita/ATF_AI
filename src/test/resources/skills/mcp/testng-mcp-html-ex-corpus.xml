@@ -2,7 +2,7 @@
 <suite name="MCP html-ex Corpus Contracts" verbose="1">
     <test name="mcp-html-ex-corpus">
         <classes>
-            <class name="com.endava.ai.skills.mcp.tests.candidate.McpHtmlExampleCorpusContractTest"/>
+            <class name="com.ai.skills.mcp.tests.candidate.McpHtmlExampleCorpusContractTest"/>
         </classes>
     </test>
 </suite>

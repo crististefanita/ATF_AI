@@ -1,49 +1,49 @@
 schemaVersion: 1
 contracts:
   - id: protected.atf-core-main
-    path: src/main/java/com/endava/ai/core/
+    path: src/main/java/com/ai/core/
     severity: BLOCKER
     owner: ATF core reusable testing framework
     reason: generic framework infrastructure must stay business-context independent
     allowedAgentAction: report need for framework change, do not patch inside generated package work
   - id: protected.ui-core-main
-    path: src/main/java/com/endava/ai/ui/core/
+    path: src/main/java/com/ai/ui/core/
     severity: BLOCKER
     owner: UI core reusable testing framework
     reason: generated MCP UI code may use ui.core but must not mutate it
     allowedAgentAction: move generated support to ui.support or tests, then rerun MCP close-out
   - id: protected.api-core-main
-    path: src/main/java/com/endava/ai/api/core/
+    path: src/main/java/com/ai/api/core/
     severity: BLOCKER
     owner: API core reusable testing framework
     reason: generated API support may use api.core but must not mutate it
     allowedAgentAction: move generated support to api.support or tests, then rerun MCP close-out
   - id: protected.mcp-main
-    path: src/main/java/com/endava/ai/skills/mcp/
+    path: src/main/java/com/ai/skills/mcp/
     severity: BLOCKER
     owner: MCP validator
     reason: the gate cannot be changed by the generated package it validates
     allowedAgentAction: report MCP blocker separately, do not hide package failure by patching MCP
   - id: protected.mcp-tests
-    path: src/test/java/com/endava/ai/skills/mcp/
+    path: src/test/java/com/ai/skills/mcp/
     severity: BLOCKER
     owner: MCP contract tests
     reason: contract tests are audit policy and cannot be changed by generated package work
     allowedAgentAction: report contract problem separately and wait for framework update
   - id: protected.atf-contract-tests
-    path: src/test/java/com/endava/ai/atf/
+    path: src/test/java/com/ai/atf/
     severity: BLOCKER
     owner: ATF framework contract tests
     reason: ATF framework evidence is not generated business work
     allowedAgentAction: keep generated tests in business package boundaries
   - id: protected.atlas-main
-    path: src/main/java/com/endava/ai/skills/atlas/
+    path: src/main/java/com/ai/skills/atlas/
     severity: BLOCKER
     owner: Atlas shared analysis infrastructure
     reason: Atlas is framework analysis infrastructure and not candidate package code
     allowedAgentAction: report Atlas improvement separately
   - id: protected.atlas-tests
-    path: src/test/java/com/endava/ai/skills/atlas/
+    path: src/test/java/com/ai/skills/atlas/
     severity: BLOCKER
     owner: Atlas contract tests
     reason: Atlas tests are shared framework analysis contracts

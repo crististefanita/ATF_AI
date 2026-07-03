@@ -10,7 +10,7 @@ This Markdown version preserves the same architectural intent in a collapsible, 
 `[REPORTING]` specialized subset of CORE dedicated to reporting
 
 Technologies: `Java 11` | `Maven` | `TestNG` | `RestAssured`  
-Root package: `{framework.basePackage} = com.endava.ai`  
+Root package: `{framework.basePackage} = com.ai`  
 Unified config: `framework.properties` in `src/main/resources`
 
 ## 1) Approach

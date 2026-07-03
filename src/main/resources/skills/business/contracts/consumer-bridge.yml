@@ -4,9 +4,9 @@ contracts:
     kind: semantic-consumer
     consumer: skill.mcp
     ownerSuite: src/test/resources/skills/mcp/testng-mcp-sanity.xml
-    consumerContract: src/test/java/com/endava/ai/skills/mcp/tests/contracts/McpBusinessUnderstandingConsumerContractTest.java
+    consumerContract: src/test/java/com/ai/skills/mcp/tests/contracts/McpBusinessUnderstandingConsumerContractTest.java
     contractResource: src/main/resources/skills/mcp/contracts/profiles.yml
-    artifactReducer: com.endava.ai.skills.business.parse.BusinessUnderstandingArtifactParser
+    artifactReducer: com.ai.skills.business.parse.BusinessUnderstandingArtifactParser
     evidenceEntry: analysis/langgraph-business-understanding.html
     inputTypes: GIT_DIFF,EXTENT_REPORT,FINAL_BUSINESS_REPORT
     requiredModels: BusinessObject,BusinessClaim,BusinessFlowStory,BusinessGraphConstruction,BusinessProofChain,BusinessProofStripRow,BusinessScoreRationale
@@ -20,9 +20,9 @@ contracts:
     kind: semantic-consumer
     consumer: skill.atlas
     ownerSuite: src/test/resources/skills/atlas/testng-atlas-sanity.xml
-    consumerContract: src/test/java/com/endava/ai/skills/atlas/tests/yaml/AtlasBusinessUnderstandingConsumerContractTest.java
+    consumerContract: src/test/java/com/ai/skills/atlas/tests/yaml/AtlasBusinessUnderstandingConsumerContractTest.java
     contractResource: src/main/resources/skills/atlas/contracts/agentic-quality-lanes.yml
-    artifactReducer: com.endava.ai.skills.business.parse.BusinessUnderstandingArtifactParser
+    artifactReducer: com.ai.skills.business.parse.BusinessUnderstandingArtifactParser
     evidenceEntry: business-test-atlas.html
     inputTypes: SOURCE_STRUCTURE,ATLAS_REPORT
     requiredModels: BusinessObject,BusinessFlowStory,BusinessGraphConstruction,BusinessMaturity,BusinessProofStripRow,BusinessSourceTraceRow,BusinessScoreRationale

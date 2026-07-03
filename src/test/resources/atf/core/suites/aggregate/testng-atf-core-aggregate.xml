@@ -7,10 +7,10 @@
             </run>
         </groups>
         <classes>
-            <class name="com.endava.ai.atf.core.reporting.aggregate.AtfCoreAggregateExtentContractTest"/>
-            <class name="com.endava.ai.atf.core.reporting.aggregate.parallel.AggregateParallelCollectionContractTest"/>
-            <class name="com.endava.ai.atf.core.reporting.aggregate.parallel.AggregateParallelExtentPublisherContractTest"/>
-            <class name="com.endava.ai.atf.core.reporting.aggregate.publish.AtfCoreAggregatePublishedManifestContractTest"/>
+            <class name="com.ai.atf.core.reporting.aggregate.AtfCoreAggregateExtentContractTest"/>
+            <class name="com.ai.atf.core.reporting.aggregate.parallel.AggregateParallelCollectionContractTest"/>
+            <class name="com.ai.atf.core.reporting.aggregate.parallel.AggregateParallelExtentPublisherContractTest"/>
+            <class name="com.ai.atf.core.reporting.aggregate.publish.AtfCoreAggregatePublishedManifestContractTest"/>
         </classes>
     </test>
 </suite>

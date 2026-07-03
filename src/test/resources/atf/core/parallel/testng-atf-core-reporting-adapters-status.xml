@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="ATF Core Parallel Reporting Adapters Status Slice" verbose="1">
     <listeners>
-        <listener class-name="com.endava.ai.atf.core.reporting.aggregate.AtfCoreAggregateReportListener"/>
+        <listener class-name="com.ai.atf.core.reporting.aggregate.AtfCoreAggregateReportListener"/>
     </listeners>
     <test name="core-reporting-adapters-status">
         <groups>
@@ -12,8 +12,8 @@
             </run>
         </groups>
         <classes>
-            <class name="com.endava.ai.atf.core.reporting.adapters.spark.ExtentSparkStatusDropdownContractTest"/>
-            <class name="com.endava.ai.atf.core.reporting.adapters.spark.ExtentSparkRuntimeTimelineContractTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.spark.ExtentSparkStatusDropdownContractTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.spark.ExtentSparkRuntimeTimelineContractTest"/>
         </classes>
     </test>
 </suite>
