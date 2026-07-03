@@ -1,0 +1,154 @@
+schemaVersion: 1
+contracts:
+  - id: atlas.candidate.graph.reference-primitives
+    profile: CANDIDATE
+    owner: atlas-graph
+    category: GRAPH_STYLE
+    requiredClasses:
+      - graph-panel
+      - diag
+      - node
+      - nt
+      - ns
+      - edge
+    visibleNodeShapeTags:
+      - rect
+      - circle
+      - polygon
+    forbiddenWrapperClassTags:
+      - g.node
+    requiredTextAnchor: middle
+    repair: Use shared report graph primitives; node classes belong on visible SVG shapes, node labels must be centered, and relationship labels may use the existing ns text style or the reusable el primitive when styled in shared CSS.
+  - id: atlas.candidate.graph-node.business-proof-strip
+    profile: CANDIDATE
+    owner: atlas-graph
+    category: GRAPH_PROOF
+    proofStripRole: business-proof-strip
+    proofStripLabels:
+      - Banda de dovada noduri
+      - proof strip
+    requiredConcepts:
+      - test
+      - method
+      - layer
+      - business
+      - limit
+    minSourceBackedMethods: 4
+    repair: Publish a collapsed proof strip under the main graph and enough real methodName() entries to reopen graph claims from source.
+  - id: atlas.candidate.graphs.visual-scale
+    profile: CANDIDATE
+    owner: atlas-graph
+    category: GRAPH_STYLE
+    mainGraphReadability:
+      referenceCalibration: atf1-2026-07-02_14.59.34
+      minYBandsForFivePlusNodes: 3
+      minRichGraphViewBoxHeight: 500
+      requirePathEdgesForRichMainGraph: true
+      requireCurvedOrSoftPath: true
+      requirePrimaryOwnedObjectHighlight: true
+      requireCappedFrontierAndDashedRelationship: true
+      supportingGraphsUsePathEdges: true
+      supportingGraphsUseCompactVerticalSpace: true
+      supportingGraphEdgesRequireArrowheads: true
+      supportingGraphEdgesRequireRelationshipLabels: true
+      minVisibleRelationshipLabels: 3
+      minSemanticRelationshipLabels: 3
+      semanticRelationshipLabelShape: short verb plus business object or state cue
+      visibleMaturityCueRequiredWhenDataMaturityExists: exact data-maturity value must be visible, allowing hyphen or space form
+    agentFeedback:
+      failureMustName:
+        - missing relationship labels
+        - terse relationship labels
+        - compressed ATF1-style business map
+        - line-only graph
+        - line-only supporting graph
+        - vertical dead space in supporting graph
+        - supporting graph edges missing arrowheads
+        - supporting graph missing relationship labels
+        - missing primary owned object
+        - missing capped frontier and dashed frontier relationship
+        - graph node missing visible maturity cue
+        - expected data-maturity value
+      repair: "make the primary graph ATF1-calibrated and keep 3.x subgraphs visually consistent: taller three-band main map, path relationships with at least one curved or soft edge, explicit primary owned object, capped/dashed frontier, specific relationship labels, visible maturity cues, and compact supporting subgraphs whose path.edge relationships have marker-end arrowheads and visible business relationship labels"
+    repair: Keep the primary Business Flow Graph readable at report scale; avoid a diagram that is technically marked up but visually unclear.
+  - id: atlas.candidate.main-graph-node.maturity-proof
+    profile: CANDIDATE
+    owner: atlas-graph
+    category: GRAPH_PROOF
+    proofStripRole: business-proof-strip
+    requiredPerNodeFields:
+      - business object
+      - method
+      - layer path
+      - maturity
+      - business evidence
+      - limit
+    requiredGraphNodeAttribute:
+      - data-maturity
+    allowedMaturityValues:
+      - owned
+      - partial
+      - diagnostic
+      - surface-only
+      - frontier
+    agentFeedback:
+      failureMustName:
+        - exact graph node label
+        - expected maturity value
+        - required SVG attribute
+      repairSource: derive data-maturity from the matching local proof-strip row; do not require prompt-only hints
+      requiredPatchShape: add data-maturity to the same SVG <g> or visible shape that renders the node label
+    repair: Every primary Business Flow Graph node must have a local proof-strip row that states maturity and limit, and the SVG node itself must carry matching data-maturity so surface, diagnostic, partial or frontier nodes are not visually sold as owned.
+  - id: atlas.candidate.graph-proof-strip.placement
+    profile: CANDIDATE
+    owner: atlas-graph
+    category: GRAPH_PROOF
+    repair: "For every graph panel publish local collapsed support in this exact order: SVG graph, Legend, Banda de dovada noduri. Do not use inline legends or move proof strips to distant sections."
+  - id: atlas.candidate.subgraph.semantic-density
+    profile: CANDIDATE
+    owner: atlas-graph
+    category: GRAPH_PROOF
+    genericNodeLabels:
+      - Actor
+      - Observable result
+      - Business object
+      - Visible action
+      - Source evidence
+      - Test method
+    minDomainNodeLabelsPerSubgraph: 2
+    minDistinctSubgraphSignatures: 4
+    repair: Keep the shared graph style, but make every 3.x subgraph visibly source/domain-specific with at least two domain-bearing node labels and distinct subgraph signatures.
+  - id: atlas.candidate.sections.toolbar
+    profile: CANDIDATE
+    owner: atlas-structure
+    category: STRUCTURE
+    toolbarClass: toolbar
+    toolbarAriaLabel: Controale sectiuni
+    openLabel: Deschide sectiunile
+    closeLabel: Inchide sectiunile
+    openAction: toggleAll(true)
+    closeAction: toggleAll(false)
+    functionName: toggleAll
+    repair: Publish explicit open-all and close-all controls for Atlas sections, backed by toggleAll(open).
+  - id: atlas.candidate.report-language.romanian
+    profile: CANDIDATE
+    owner: atlas-language
+    category: STRUCTURE
+    expectedLanguage: ro
+    requiredVisibleTokens:
+      - Limba raportului
+      - romana
+    requiredRomanianSentences:
+      - Acest atlas citeste sursa si cartografiaza intelegerea business fara sa modifice codul analizat.
+      - Verdictul este un atlas business candidate-grade pentru testele UI Agentic analizate.
+      - Scope-ul analizat declara fisierele Java si metodele @Test.
+      - Limitele de intelegere sunt explicite si nu devin claim-uri business noi.
+      - Overall-ul este calculat si plafonat pe baza limitelor de scope.
+      - Auditul Atlas publica rapoartele Extent si comenzile Maven reproductibile.
+    forbiddenKeyEnglishPhrases:
+      - Source-read-only atlas for the UI tests
+      - The atlas reads source and maps business comprehension
+      - Score-card audit path
+      - "Comprehension limits:"
+      - Declared from linked ATF6 atlas Extent report
+    repair: Published Atlas reports for ATF6 may keep canonical section titles in English but key explanatory sentences must be Romanian and checked through this YAML contract.

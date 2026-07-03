@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<title>Reusable reference for Score Overview</title>
+<link href="../../assets/shared-report-reference.css" rel="stylesheet">
+<style>
+.grid { grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 12px; }
+.right-rail table td:first-child { width: 180px; font-weight: 600; }
+.diag{margin-top:10px;border:1px solid var(--border);border-radius:14px;background:#08101a;padding:12px;overflow:auto}
+.diag svg{display:block;width:100%;height:auto}
+.kvs{display:grid;grid-template-columns:120px 1fr;gap:8px 12px}
+.k{color:var(--muted);font-weight:600}
+.pillline{display:flex;flex-direction:column;gap:8px;align-items:flex-start;margin-top:10px}
+.pillrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.pilllabel{color:var(--muted);font-size:12px;font-weight:700;margin-right:2px}
+.header-meta{display:grid;gap:8px;margin-top:12px;max-width:760px}
+.meta-row{display:grid;grid-template-columns:92px minmax(0,1fr);gap:10px;align-items:start}
+.meta-label{color:var(--muted);font-size:12px;font-weight:800;letter-spacing:.02em;padding-top:4px}
+.meta-pills{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+pre,
+pre code{
+  line-height:1.04;
+}
+.toolbar{display:flex;justify-content:flex-start;gap:8px;margin:10px 0 14px}
+.toolbar button{border:1px solid var(--border);background:#111826;color:var(--text);border-radius:999px;padding:7px 12px;font-size:12px;font-weight:700;cursor:pointer}
+.toolbar button:hover{border-color:#7aa2ff;color:#dbe7ff}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Reference for Score Overview <span class="badge">slag</span> <span class="badge">OVERALL</span> <span class="badge">HEAD</span> <span class="badge">HE SUCCEEDED</span></h1>
+  <div class="sub">
+    <ul>
+      <li>Only explain the <code class="inline">Score Overview</code> section from the final report.</li>
+      <li>Fixes the canonical shape for axes, weight, ceiling and <code class="inline">Overall</code>.</li>
+      <li><code class="inline">reporting.html</code> remains the owner for the final page skeleton.</li>
+    </ul>
+  </div>
+  
+</header>
+<div class="toolbar" aria-label="Control sections"><button type="button" onclick="toggleAll(true)">Open the sections</button><button type="button" onclick="toggleAll(false)">Close sections</button></div>
+
+<div class="grid">
+  <section class="card">
+    <h2>Overview</h2>
+    <table>
+      <thead><tr><th>Badge</th><th>Read here</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge">slag</span></td><td>what do the cards published in the opening mean</td></tr>
+        <tr><td><span class="badge">OVERALL</span></td><td>why the final score remains where it is</td></tr>
+        <tr><td><span class="badge">HEAD</span></td><td>why good reporting does not compensate for the missing business object</td></tr>
+        <tr><td><span class="badge">HE SUCCEEDED</span></td><td>the canonical form that the report reuses without drift</td></tr>
+        <tr><td><span class="badge">INVALID</span></td><td>aesthetic set score, axes renamed locally or long self-defense</td></tr>
+      </tbody>
+    </table>
+    <div class="header-meta">
+      <div class="meta-row">
+        <span class="meta-label">Owner:</span>
+        <div class="meta-pills">
+          <span class="pill">Score Overview</span>
+          <span class="pill">Overall</span>
+          <span class="pill">cold ceiling</span>
+        </div>
+      </div>
+      <div class="meta-row">
+        <span class="meta-label">Use:</span>
+        <div class="meta-pills">
+          <span class="pill">score cards</span>
+          <span class="pill">canonical axes</span>
+          <span class="pill">business substance</span>
+        </div>
+      </div>
+      <div class="meta-row">
+        <span class="meta-label">Does not produce:</span>
+        <div class="meta-pills">
+          <span class="pill">report skeleton</span>
+          <span class="pill">legality run</span>
+          <span class="pill">artifact production</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card right-rail">
+    <details>
+    <summary><span class="summary-title">Minimum contract</span><span class="sumhint">reference closed by default</span></summary>
+    <table>
+      <thead>
+        <tr>
+          <th>Elements</th>
+          <th>Rule</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>position</td><td>under opening, collapsed and closed by default; in the final report it remains closed, just like the rest of the main sections</td></tr>
+        <tr><td>CARDS</td><td>only the canonical cards used in the current report</td></tr>
+        <tr><td>single source</td><td>if there is drift between report and scoring, this file beats the local form</td></tr>
+        <tr><td>overall</td><td>explicit and cold, not an ornament</td></tr>
+        <tr><td>explanation</td><td>why is the overall sitting here, not just what number it has</td></tr>
+        <tr><td>limit</td><td>do not let the audit or form compensate for the missing business object</td></tr>
+        <tr><td>good form</td><td>the table model is: <code class="inline">Axa | Nota | Pondere | De ce sta aici</code></td></tr>
+        <tr><td>the same axes</td><td>the visible cards and the table must talk about the same axes; do not rename or duplicate</td></tr>
+      </tbody>
+    </table>
+    <div class="rule">Overall = canonical calculation from axes; it is not set aesthetically in HTML.</div>
+    <details class="subdetails">
+    <summary><span class="summary-title">Minimal mechanical model</span><span class="sumhint">closed by default</span></summary>
+    <table>
+      <thead><tr><th>Step</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>read the canonical axes</td></tr>
+        <tr><td>2</td><td>identify the business owned object or lack thereof</td></tr>
+        <tr><td>3</td><td>capped <code class="inline">Overall</code> dupa substanta, nu dupa design</td></tr>
+        <tr><td>4</td><td>write in 1-2 lines what keeps the score up and down</td></tr>
+      </tbody>
+    </table>
+    </details>
+    </details>
+  </section>
+</div>
+
+<details open><summary><span class="summary-title">1. Flows and diagrams</span><span class="sumhint">how to read the section</span></summary>
+  <details class="subdetails">
+  <summary><span class="summary-title">1.1 Quick reading map</span><span class="sumhint">short orientation</span></summary>
+  <table>
+    <thead>
+      <tr>
+        <th>If you ask</th>
+        <th>open</th>
+        <th>You get cold</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>what should the section explain?</td><td><code class="inline">1.2</code></td><td>the scores and the ceiling of the overall</td></tr>
+      <tr><td>what are the good axles?</td><td><code class="inline">1.3</code></td><td>short cards, business-first</td></tr>
+      <tr><td>how do you read the overall?</td><td><code class="inline">1.4</code></td><td>cool number, not design award</td></tr>
+      <tr><td>what's wrong with it?</td><td><code class="inline">1.5</code></td><td>over-notation, duplication, jargon</td></tr>
+    </tbody>
+  </table>
+  </details>
+
+  <details class="subdetails" open>
+    <summary><span class="summary-title">1.2 State machine minimum</span><span class="sumhint">cards -&gt; overview -&gt; limit</span></summary>
+<pre><code>read_cards
+-&gt; read_owner_scores
+-&gt; publish_overall
+-&gt; explain_why_here
+-&gt; stop
+</code></pre>
+    <table>
+      <thead>
+        <tr>
+          <th>Step</th>
+          <th>what are you doing</th>
+          <th>What don't you do?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code class="inline">read_cards</code></td><td>read the cards already frozen</td><td>you don't invent new axes to inflate the score</td></tr>
+        <tr><td><code class="inline">publish_overall</code></td><td>show the current overall</td><td>do not let it appear independent of the business substance</td></tr>
+        <tr><td><code class="inline">explain_why_here</code></td><td>you say what keeps him up and what keeps him down</td><td>you don't write long self-defense essay</td></tr>
+      </tbody>
+    </table>
+  </details>
+
+  <details class="subdetails">
+    <summary><span class="summary-title">1.3 Minimum heading for cards</span><span class="sumhint">what deserves to remain visible</span></summary>
+    <table>
+      <thead>
+        <tr>
+          <th>Axis</th>
+          <th>What question does it answer?</th>
+          <th>What invalidates it</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code class="inline">Business Substance</code></td><td>what real business object was owned?</td><td>good form without persistent object or real closure</td></tr>
+        <tr><td><code class="inline">Business Graph Realism</code></td><td>does the graph sound like a real application?</td><td>the graph sounds like a log of runs or a list of tests</td></tr>
+        <tr><td><code class="inline">Historical Reopenability</code></td><td>can I cold reopen the package through diffs and artifacts?</td><td>history only through prose, without a clear diff spine</td></tr>
+        <tr><td><code class="inline">Proof Chain Quality</code></td><td>claim -&gt; diff -&gt; Extent -&gt; XML / result is easy to follow?</td><td>the claim floats without concrete proof</td></tr>
+        <tr><td><code class="inline">Contract Artefacte Noi</code></td><td>are state files, gate card, render/link proof clean?</td><td>new artifacts missing or only mentioned, not saved</td></tr>
+      </tbody>
+    </table>
+    <div class="note">
+      <ul>
+        <li><code class="inline">Overall</code> remains mandatory in the canonical table.</li>
+        <li>Score cards visible may vary.</li>
+        <li>If the opening has a card of <code class="inline">Overall</code>, nu il dubla sub alt nume.</li>
+      </ul>
+    </div>
+    <div class="note">
+      <ul>
+        <li><code class="inline">Business Substance</code></li>
+        <li><code class="inline">Business Graph Realism</code></li>
+        <li><code class="inline">Historical Reopenability</code></li>
+        <li><code class="inline">Proof Chain Quality</code></li>
+        <li><code class="inline">Contract Artefacte Noi</code></li>
+        <li><code class="inline">Overall</code></li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="subdetails">
+    <summary><span class="summary-title">1.3.1 Canonical table model</span><span class="sumhint">taken as the form from the good example</span></summary>
+    <table>
+      <thead>
+        <tr>
+          <th>Axis</th>
+          <th>Note</th>
+          <th>Weight</th>
+          <th>Why is he standing here?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Business Substance</td><td>..</td><td>40%</td><td>what real business object was owned and what is still missing</td></tr>
+        <tr><td>Business Graph Realism</td><td>..</td><td>20%</td><td>how good the graph sounds as a real application, not as a test suite</td></tr>
+        <tr><td>Historical Reopenability</td><td>..</td><td>15%</td><td>how well the package can be reopened through diffs and artifacts</td></tr>
+        <tr><td>Proof Chain Quality</td><td>..</td><td>15%</td><td>how clearly you can see the claim -&gt; diff -&gt; Extent -&gt; verdict chain</td></tr>
+        <tr><td>Contract New Artifacts</td><td>..</td><td>10%</td><td>if state files, gate card and publication proof are complete</td></tr>
+        <tr><td>Overall</td><td>..</td><td>final</td><td>final score of the package, read through the missing or closed business object</td></tr>
+      </tbody>
+    </table>
+    <div class="note">
+      This is the good way to reuse.
+      Do not change the columns and do not replace the column <code class="inline">Why it belongs here</code> with long prose or self-defense.
+    </div>
+    <div class="mini">
+      <ul>
+        <li>The opening cards may vary.</li>
+        <li>They summarize the canonical axes.</li>
+        <li>No parallel axes appear.</li>
+        <li><code class="inline">Overall</code> nu dispare din tabel.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="subdetails">
+    <summary><span class="summary-title">1.4 How to write overall</span><span class="sumhint">cold number, not prize</span></summary>
+    <div class="diag"><svg viewbox="0 0 1080 180" role="img" aria-label="Overall">
+    <defs><marker id="ov" markerwidth="10" markerheight="10" refx="8" refy="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7aa2ff"></path></marker></defs>
+    <rect x="40" y="58" width="220" height="64" rx="14" fill="#111826" stroke="#35507a"></rect>
+    <text x="150" y="84" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">canonical cards</text>
+    <text x="150" y="104" text-anchor="middle" fill="#a8b3cf" font-size="11">separate axes</text>
+    <rect x="340" y="58" width="180" height="64" rx="14" fill="#111826" stroke="#35507a"></rect>
+    <text x="430" y="84" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">overall</text>
+    <text x="430" y="104" text-anchor="middle" fill="#a8b3cf" font-size="11">final number</text>
+    <rect x="600" y="58" width="420" height="64" rx="14" fill="#111826" stroke="#35507a"></rect>
+    <text x="810" y="84" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">why overall stays here</text>
+    <text x="810" y="104" text-anchor="middle" fill="#a8b3cf" font-size="11">what keeps it up and what limits it</text>
+    <path d="M260 90 H340" stroke="#7aa2ff" stroke-width="2" marker-end="url(#ov)"></path>
+    <path d="M520 90 H600" stroke="#7aa2ff" stroke-width="2" marker-end="url(#ov)"></path>
+    </svg></div>
+    <div class="note">
+      Good short formula:
+      <br><code class="inline">Overall = the final package score; read it cold, not as a reward for form.</code>
+    </div>
+    <table>
+      <thead><tr><th>Step</th><th>Rule</th><th>servants</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>you calculate raw weighted from the canonical axes</td><td><code class="inline">weighted raw = N</code></td></tr>
+        <tr><td>2</td><td>apply the business substance head, if there is one</td><td><code class="inline">cap reason</code></td></tr>
+        <tr><td>3</td><td>round only after the head</td><td><code class="inline">Overall = min(round(raw), cap)</code></td></tr>
+      </tbody>
+    </table>
+  </details>
+
+  <details class="subdetails">
+    <summary><span class="summary-title">1.4.1 MCP candidate threshold <span class="badge">MCP</span></span><span class="sumhint">MCP-valid does not mean html-ex-ready</span></summary>
+    <table>
+      <thead><tr><th>Value</th><th>Role</th><th>Consequence</th></tr></thead>
+      <tbody>
+        <tr><td><code class="inline">RUN_EXPECTED_DELTA_QUALITY</code></td><td>runtime quality threshold on a scale of 0-100</td><td>it is read from <code class="inline">agent-runtime.properties</code>, is not hardcoded and is not converted to the old 8.50 scale</td></tr>
+        <tr><td>run kept</td><td>calibrate <code class="inline">actual_delta_quality</code>, if the value is published</td><td>below the threshold must be explained as partial / blocker / rerank</td></tr>
+        <tr><td>candidate <code class="inline">html-ex</code></td><td>minimum threshold for <code class="inline">Overall</code> and <code class="inline">cap</code></td><td>below the threshold means FAIL candidates, even if the package is MCP-valid</td></tr>
+        <tr><td><code class="inline">Overall</code></td><td>final score published</td><td>it must be below or equal to the cold head</td></tr>
+        <tr><td><code class="inline">cap</code></td><td>business substance ceiling</td><td>if it is below the threshold, the package is not teacher-ready</td></tr>
+      </tbody>
+    </table>
+    <div class="rule">
+      Overall does not receive credit for narrative claims without executed action.
+      The score follows the strongest business object proven by source action and proof trace.
+    </div>
+    <div class="note">
+      <ul>
+        <li>The same constant has two applications: run-level quality and candidate-level teacher threshold.</li>
+        <li><code class="inline">testng-mcp-full.xml</code> is health/diagnostic and can be green without making the package teacher-ready.</li>
+        <li><code class="inline">testng-mcp-package-closeout.xml</code> decides whether the package is MCP-publishable: Extent/XML/ledger/gate/origin complete, with 0 failures, 0 errors, and 0 skipped in the final profile.</li>
+        <li><code class="inline">testng-mcp-candidate.xml</code> is separate promotion and must fail when <code class="inline">Overall</code> or <code class="inline">cap</code> are below the threshold.</li>
+        <li>Candidate/html-ex is a separate promotion over publishability; does not repair or replace the MCP close-out.</li>
+        <li>This protects honesty: technically valid does not mean library example.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="subdetails">
+    <summary><span class="summary-title">1.5 Typical mistakes</span><span class="sumhint">what should be avoided</span></summary>
+    <table>
+      <thead>
+        <tr>
+          <th>Mistake</th>
+          <th>Why is it wrong?</th>
+          <th>Good cold form</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>high score on report sold as <code class="inline">Overall</code></td><td>the form does not compensate for the lack of the business object</td><td>the overall follows the substance, not the polish</td></tr>
+        <tr><td>too many cards</td><td>it dilutes the message and helps self-justification</td><td>you only keep the canonical axes</td></tr>
+        <tr><td>``Cold overall'' or the parallel label</td><td>creates drift compared to the canonical form</td><td>you just use <code class="inline">Overall</code></td></tr>
+        <tr><td>long scoring essay</td><td>the reader loses the rule and is left with prose</td><td>short explanation: what keeps him up, what keeps him down</td></tr>
+        <tr><td>audit jargon in the opening</td><td>hide the product</td><td>the detail goes down in the legend or proof mapping</td></tr>
+      </tbody>
+    </table>
+  </details>
+</details>
+
+<details>
+  <summary><span class="summary-title">2. Minimal reusable template</span><span class="sumhint">what can be copied without drift</span></summary>
+<pre><code>&lt;details&gt;
+  &lt;summary&gt;Score Overview&lt;/summary&gt;
+  &lt;p&gt;Overall = XX. Good reporting does not compensate for a missing business object.&lt;/p&gt;
+  &lt;table&gt;
+    &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Axa&lt;/th&gt;&lt;th&gt;Nota&lt;/th&gt;&lt;th&gt;Pondere&lt;/th&gt;&lt;th&gt;De ce sta aici&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;&lt;td&gt;Business Substance&lt;/td&gt;&lt;td&gt;...&lt;/td&gt;&lt;td&gt;40%&lt;/td&gt;&lt;td&gt;...&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Business Graph Realism&lt;/td&gt;&lt;td&gt;...&lt;/td&gt;&lt;td&gt;20%&lt;/td&gt;&lt;td&gt;...&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Historical Reopenability&lt;/td&gt;&lt;td&gt;...&lt;/td&gt;&lt;td&gt;15%&lt;/td&gt;&lt;td&gt;...&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Proof Chain Quality&lt;/td&gt;&lt;td&gt;...&lt;/td&gt;&lt;td&gt;15%&lt;/td&gt;&lt;td&gt;...&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Contract Artefacte Noi&lt;/td&gt;&lt;td&gt;...&lt;/td&gt;&lt;td&gt;10%&lt;/td&gt;&lt;td&gt;...&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Overall&lt;/td&gt;&lt;td&gt;...&lt;/td&gt;&lt;td&gt;final&lt;/td&gt;&lt;td&gt;...&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/details&gt;
+</code></pre>
+  <div class="mini">If it starts to sound like self-defense, it's already too much.</div>
+</details>
+
+</div>
+
+<script>function toggleAll(openState){document.querySelectorAll('details').forEach(function(el){el.open=openState;});}</script>
+</body>
+</html>

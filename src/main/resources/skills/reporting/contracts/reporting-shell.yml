@@ -1,0 +1,154 @@
+schemaVersion: 1
+contracts:
+  - id: core.reporting-shell.small-diagnostic-document-shell
+    kind: required-token
+    surface: Small diagnostic HTML
+    owner: HtmlText.diagnosticDocument
+    source: src/main/java/com/endava/ai/core/support/html/HtmlText.java
+    token: diagnosticDocument
+    validator: com.endava.ai.atf.core.reporting.integration.skills.DiagnosticHtmlReportShellContractTest
+    repair: Route small standalone diagnostic reports through HtmlText.diagnosticDocument; do not copy a private HTML shell.
+  - id: core.reporting-shell.small-diagnostic-table-model
+    kind: required-token
+    surface: Small diagnostic HTML
+    owner: HtmlTable and HtmlTableColumn
+    source: src/main/java/com/endava/ai/core/support/html/HtmlTable.java
+    token: HTML table must declare at least one heading.
+    validator: com.endava.ai.atf.core.reporting.integration.skills.DiagnosticHtmlReportShellContractTest
+    repair: Build diagnostic tables through HtmlTable and HtmlTableColumn instead of hand-written table markup.
+  - id: core.reporting-shell.small-diagnostic-status-palette
+    kind: required-token
+    surface: Small diagnostic HTML
+    owner: HtmlText.diagnosticCss
+    source: src/main/java/com/endava/ai/core/support/html/HtmlText.java
+    token: .pass{color:#166534;font-weight:700}
+    validator: com.endava.ai.atf.core.reporting.integration.skills.DiagnosticHtmlReportShellContractTest
+    repair: Keep pass, fail, risk and info classes in the shared diagnostic CSS and render status cells through HtmlTableColumn.status.
+  - id: core.reporting-shell.no-extent-shell-in-small-diagnostics
+    kind: forbidden-visible-fallback
+    surface: Small diagnostic HTML
+    owner: DiagnosticHtmlReportShellContractTest
+    source: src/test/java/com/endava/ai/atf/core/reporting/integration/skills/DiagnosticHtmlReportShellContractTest.java
+    token: assertNoExtentShellMarkup
+    validator: com.endava.ai.atf.core.reporting.integration.skills.DiagnosticHtmlReportShellContractTest
+    repair: Keep small diagnostic reports on HtmlText.diagnosticDocument and keep Extent Spark markup only in Extent reports.
+  - id: core.reporting-shell.extent-mode-marker
+    kind: required-token
+    surface: Extent Spark HTML
+    owner: ExtentSparkHtmlPostProcessor
+    source: src/main/java/com/endava/ai/core/reporting/adapters/extent/tokens/ExtentMarkers.java
+    token: ATF_EXTENT_REPORT_MODE
+    validator: com.endava.ai.atf.core.reporting.adapters.spark.ExtentSparkReportModeContractTest
+    repair: Keep Extent report mode machine-readable; do not replace it with visible dashboard prose.
+  - id: core.reporting-shell.native-spark-dashboard
+    kind: required-token
+    surface: Extent Spark HTML
+    owner: Extent Spark shell
+    source: src/main/java/com/endava/ai/core/reporting/adapters/extent/tokens/ExtentDomIds.java
+    token: nav-dashboard
+    validator: com.endava.ai.atf.core.reporting.adapters.spark.ExtentSparkShellStyleContractTest
+    repair: Preserve the native Spark dashboard tab and patch it through stable DOM ids.
+  - id: core.reporting-shell.runtime-audited-mode
+    kind: required-mode
+    surface: Extent Spark HTML
+    owner: ExtentReportModeType
+    source: src/main/java/com/endava/ai/core/reporting/adapters/extent/mode/ExtentReportModeType.java
+    token: runtime-audited
+    validator: com.endava.ai.atf.core.reporting.adapters.spark.ExtentSparkReportModeContractTest
+    repair: Use runtime-audited mode only when runtime audit sections are present.
+  - id: core.reporting-shell.component-adapter-mode
+    kind: required-mode
+    surface: Extent Spark HTML
+    owner: ExtentReportModeType
+    source: src/main/java/com/endava/ai/core/reporting/adapters/extent/mode/ExtentReportModeType.java
+    token: component-adapter
+    validator: com.endava.ai.atf.core.reporting.adapters.spark.ExtentSparkReportModeContractTest
+    repair: Use component-adapter mode only for internal adapter/component fixtures; published validation, frozen package, Atlas, MCP and MPS artifacts must be runtime-audited.
+  - id: core.reporting-shell.published-artifacts-runtime-only
+    kind: publish-policy
+    surface: Published Extent Spark HTML
+    owner: ExtentReportPublishPolicy
+    source: src/main/java/com/endava/ai/core/reporting/adapters/extent/contract/ExtentReportPublishPolicy.java
+    token: PUBLISHED_VALIDATION
+    validator: com.endava.ai.atf.core.reporting.regression.overview.ExtentPublishedOverviewInspectorContractTest
+    repair: Validate final ATF core, Atlas, MCP and MPS Extent artifacts with PUBLISHED_VALIDATION/FROZEN_PACKAGE policy; component-adapter is an internal fixture mode only.
+  - id: core.reporting-shell.report-kind-runtime-validation
+    kind: report-kind
+    surface: Runtime Extent Spark HTML
+    owner: ExtentReportKind
+    source: src/main/java/com/endava/ai/core/reporting/adapters/extent/contract/ExtentReportKind.java
+    token: RUNTIME_VALIDATION
+    validator: com.endava.ai.atf.core.reporting.regression.overview.ExtentPublishedOverviewInspectorContractTest
+    repair: Runtime validation reports must use the shared runtime-audited shell and must not expose aggregate final-audit sections.
+  - id: core.reporting-shell.report-kind-atlas-validation
+    kind: report-kind
+    surface: Atlas Extent Spark HTML
+    owner: ExtentReportKind
+    source: src/main/java/com/endava/ai/core/reporting/adapters/extent/contract/ExtentReportKind.java
+    token: ATLAS_VALIDATION
+    validator: com.endava.ai.skills.atlas.tests.report.AtlasPublishedExtentReportContractTest
+    repair: Atlas validation reports must use ATLAS_VALIDATION so copied UI/API/core artifacts cannot silently fall back to component fixture mode.
+  - id: core.reporting-shell.report-kind-mcp-closeout
+    kind: report-kind
+    surface: MCP close-out Extent Spark HTML
+    owner: ExtentReportKind
+    source: src/main/java/com/endava/ai/core/reporting/adapters/extent/contract/ExtentReportKind.java
+    token: MCP_CLOSEOUT
+    validator: com.endava.ai.skills.mcp.tests.core.calibration.McpRunCalibrationContractTest
+    repair: MCP final close-out reports must use MCP_CLOSEOUT/FROZEN_PACKAGE semantics and reject component-adapter artifacts.
+  - id: core.reporting-shell.report-kind-aggregate-validation
+    kind: report-kind
+    surface: Aggregate Extent Spark HTML
+    owner: ExtentReportKind
+    source: src/main/java/com/endava/ai/core/reporting/adapters/extent/contract/ExtentReportKind.java
+    token: AGGREGATE_VALIDATION
+    validator: com.endava.ai.atf.core.reporting.aggregate.AtfCoreAggregateExtentContractTest
+    repair: Aggregate validation reports must share the runtime-audited shell and explicitly publish the aggregate final-audit section.
+  - id: core.reporting-shell.report-kind-internal-component-fixture
+    kind: report-kind
+    surface: Internal Extent component fixture
+    owner: ExtentReportKind
+    source: src/main/java/com/endava/ai/core/reporting/adapters/extent/contract/ExtentReportKind.java
+    token: INTERNAL_COMPONENT_FIXTURE
+    validator: com.endava.ai.atf.core.reporting.regression.overview.ExtentPublishedOverviewInspectorContractTest
+    repair: INTERNAL_COMPONENT_FIXTURE is allowed only for adapter/component test fixtures; never freeze it as Atlas, MCP, MPS or final validation evidence.
+  - id: core.reporting-shell.html-ex-current-standard-corpus
+    kind: html-ex-current-standard-corpus
+    surface: Published Extent html-ex corpus
+    owner: docs/html-ex
+    source: docs/html-ex
+    token: validation/mcp/ExtentReport.html
+    validator: com.endava.ai.atf.core.reporting.regression.overview.ExtentPublishedOverviewInspectorContractTest
+    repair: Keep every current html-ex folder publishable through the shared Extent Overview contract; do not pin this contract to a specific dated example folder.
+  - id: core.reporting-shell.forbidden-visible-vocabulary
+    kind: forbidden-visible-token
+    surface: Published Extent Overview
+    owner: ExtentDashboardLabels
+    source: src/main/java/com/endava/ai/core/reporting/adapters/extent/tokens/ExtentDashboardLabels.java
+    token: Configuration methods
+    validator: com.endava.ai.atf.core.reporting.regression.overview.ExtentPublishedOverviewInspectorContractTest
+    repair: Keep published Overview score-cards on Tests Passed, Tests Failed and Test cases; class and method distribution belongs in audit tables.
+  - id: core.reporting-shell.forbidden-testng-invocation-score-card
+    kind: forbidden-visible-token
+    surface: Published Extent Overview
+    owner: ExtentDashboardLabels
+    source: src/main/java/com/endava/ai/core/reporting/adapters/extent/tokens/ExtentDashboardLabels.java
+    token: TestNG invocations
+    validator: com.endava.ai.atf.core.reporting.regression.overview.ExtentPublishedOverviewInspectorContractTest
+    repair: Never expose TestNG invocation counting as an Overview score-card; the canonical unit is Test cases.
+  - id: core.reporting-shell.forbidden-steps-score-card
+    kind: forbidden-visible-token
+    surface: Published Extent Overview
+    owner: ExtentDashboardLabels
+    source: src/main/java/com/endava/ai/core/reporting/adapters/extent/tokens/ExtentDashboardLabels.java
+    token: Steps
+    validator: com.endava.ai.atf.core.reporting.regression.overview.ExtentPublishedOverviewInspectorContractTest
+    repair: Never expose step counting as an Overview score-card; execution details belong inside the test drill-down.
+  - id: core.reporting-shell.no-component-fallback-card
+    kind: forbidden-visible-fallback
+    surface: Extent Overview
+    owner: ExtentSparkHtmlPostProcessor
+    source: src/main/java/com/endava/ai/core/reporting/adapters/extent/tokens/ExtentMarkers.java
+    token: ATF_EXTENT_COMPONENT_FALLBACK
+    validator: com.endava.ai.atf.core.reporting.adapters.spark.ExtentSparkReportModeContractTest
+    repair: Keep component/adapter mode metadata-only; Overview must stay native Spark unless runtime audit content exists.

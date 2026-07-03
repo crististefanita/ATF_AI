@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="ATF Core Aggregate Parallel Full Sweep" verbose="1">
+    <test name="parallel-full-package-sweep">
+        <classes>
+            <class name="com.endava.ai.atf.core.reporting.aggregate.parallel.AggregateParallelFullSweepContractTest">
+                <methods>
+                    <include name="full_atf_core_package_sweep_runs_as_isolated_parallel_collections"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

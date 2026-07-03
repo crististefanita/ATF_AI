@@ -1,0 +1,104 @@
+diff --git a/src/test/java/com/endava/ai/ui/tests/refunds/support/RefundSupportCustomerMessagesLifecycleTest.java b/src/test/java/com/endava/ai/ui/tests/refunds/support/RefundSupportCustomerMessagesLifecycleTest.java
+new file mode 100644
+index 00000000..cadf688f
+--- /dev/null
++++ b/src/test/java/com/endava/ai/ui/tests/refunds/support/RefundSupportCustomerMessagesLifecycleTest.java
+@@ -0,0 +1,57 @@
++package com.endava.ai.ui.tests.refunds.support;
++
++import com.endava.ai.ui.core.runtime.BaseTestUI;
++import com.endava.ai.ui.support.model.RefundSupportRequestContext;
++import com.endava.ai.ui.support.validation.support.RefundSupportRequestValidation;
++import org.testng.annotations.Test;
++
++import static com.endava.ai.ui.tests.refunds.support.RefundSupportRequestTestSupport.adminProgressedRequest;
++import static com.endava.ai.ui.tests.refunds.support.RefundSupportRequestTestSupport.request;
++
++public final class RefundSupportCustomerMessagesLifecycleTest extends BaseTestUI {
++    private final RefundSupportRequestValidation validation = new RefundSupportRequestValidation();
++
++    @Test(description = "Refund support message API returns durable case identity.",
++            groups = {"ui.refund-support", "ui.customer-messages", "ui.business"})
++    public void refundSupportMessageApiCreatesDurableCaseIdentity() {
++        RefundSupportRequestContext context = request();
++
++        validation.assertMessagesApiCreatedDurableMessageIdentity(context);
++    }
++
++    @Test(description = "Refund support message starts from explicit NEW case state.",
++            groups = {"ui.refund-support", "ui.customer-messages", "ui.business"})
++    public void refundSupportMessageApiCreatesNewCaseState() {
++        RefundSupportRequestContext context = request();
++
++        validation.assertMessagesApiCreatedNewSupportCase(context);
++    }
++
++    @Test(description = "Customer account exposes the support messages route after request creation.",
++            groups = {"ui.refund-support", "ui.customer-messages", "ui.business"})
++    public void refundSupportCustomerAccountExposesMessagesRoute() {
++        RefundSupportRequestContext context = request();
++
++        validation.assertCustomerMessagesSurfaceIsAccountScoped(context);
++    }
++
++    @Test(description = "Customer messages page shows the created refund support request.",
++            groups = {"ui.refund-support", "ui.customer-messages", "ui.business"})
++    public void refundSupportCustomerMessagesShowCreatedRequest() {
++        RefundSupportRequestContext context = adminProgressedRequest();
++
++        validation.assertCustomerMessagesSurfaceShowsCreatedRequest(context);
++    }
++
++    @Test(description = "Customer-visible support request keeps invoice, subject and status in one proof chain.",
++            groups = {"ui.refund-support", "ui.customer-messages", "ui.business"})
++    public void refundSupportCustomerVisibleLifecycleConnectsInvoiceSubjectAndStatus() {
++        RefundSupportRequestContext context = adminProgressedRequest();
++
++        validation.assertInvoiceBackedRefundMessage(context);
++        validation.assertMessagesApiCreatedDurableMessageIdentity(context);
++        validation.assertMessagesApiCreatedNewSupportCase(context);
++        validation.assertAdminReplyProgressesSupportCase(context);
++        validation.assertCustomerMessagesSurfaceShowsCreatedRequest(context);
++    }
++}
+diff --git a/src/test/java/com/endava/ai/ui/tests/refunds/support/RefundSupportRequestTestSupport.java b/src/test/java/com/endava/ai/ui/tests/refunds/support/RefundSupportRequestTestSupport.java
+new file mode 100644
+index 00000000..b1c3c41e
+--- /dev/null
++++ b/src/test/java/com/endava/ai/ui/tests/refunds/support/RefundSupportRequestTestSupport.java
+@@ -0,0 +1,35 @@
++package com.endava.ai.ui.tests.refunds.support;
++
++import com.endava.ai.ui.support.flows.support.RefundSupportRequestFlow;
++import com.endava.ai.ui.support.model.RefundSupportRequestContext;
++
++final class RefundSupportRequestTestSupport {
++    private static final RefundSupportRequestFlow FLOW = new RefundSupportRequestFlow();
++    private static RefundSupportRequestContext request;
++    private static RefundSupportRequestContext adminProgressedRequest;
++    private static RefundSupportRequestContext reopenedRequest;
++
++    private RefundSupportRequestTestSupport() {
++    }
++
++    static RefundSupportRequestContext request() {
++        if (request == null) {
++            request = FLOW.createRefundSupportRequestForPurchasedInvoice();
++        }
++        return request;
++    }
++
++    static RefundSupportRequestContext reopenedRequest() {
++        if (reopenedRequest == null) {
++            reopenedRequest = FLOW.reopenSubmittedRequest(request());
++        }
++        return reopenedRequest;
++    }
++
++    static RefundSupportRequestContext adminProgressedRequest() {
++        if (adminProgressedRequest == null) {
++            adminProgressedRequest = FLOW.progressRequestWithAdminReplyAndOpenCustomerMessages(request());
++        }
++        return adminProgressedRequest;
++    }
++}

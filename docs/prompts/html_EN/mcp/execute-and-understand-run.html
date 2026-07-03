@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<title>Execute and Understand Run</title>
+<link href="../../assets/shared-report-reference.css" rel="stylesheet">
+<style>
+.grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.diag{margin-top:10px;border:1px solid var(--border);border-radius:14px;background:#08101a;padding:12px;overflow:auto}
+.diag svg{display:block;width:100%;height:auto}
+.kvs{display:grid;grid-template-columns:120px 1fr;gap:8px 12px}
+.k{color:var(--muted);font-weight:600}
+.pillline{display:flex;flex-direction:column;gap:8px;align-items:flex-start;margin-top:10px}
+.pillrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.pillgroup{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.pilllabel{color:var(--muted);font-size:12px;font-weight:700;margin-right:2px}
+.constants-table th:first-child,
+.constants-table td:first-child{
+  width:140px;
+  min-width:140px;
+  max-width:140px;
+  white-space:nowrap;
+}
+pre,
+pre code{
+  line-height:1.04;
+}
+.toolbar{display:flex;justify-content:flex-start;gap:8px;margin:10px 0 14px}
+.toolbar button{border:1px solid var(--border);background:#111826;color:var(--text);border-radius:999px;padding:7px 12px;font-size:12px;font-weight:700;cursor:pointer}
+.toolbar button:hover{border-color:#7aa2ff;color:#dbe7ff}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Execute and Understand Run <span class="badge">RUN</span> <span class="badge">ARTIFACTS</span> <span class="badge">PROOF</span> <span class="badge">Member</span></h1>
+  <div class="sub">
+    <ul>
+      <li>Run the governed slot.</li>
+      <li>Produce tests.</li>
+      <li>Save diff, proof and state.</li>
+      <li>Explain the understanding gained.</li>
+      <li>The orchestrator decides the legality of the next movement; the execution works the approved slot.</li>
+    </ul>
+  </div>
+  
+</header>
+<div class="toolbar" aria-label="Control sections"><button type="button" onclick="toggleAll(true)">Open the sections</button><button type="button" onclick="toggleAll(false)">Close sections</button></div>
+
+<div class="grid">
+<section class="card"><h2>Overview</h2>
+  <table>
+  <thead><tr><th>Badge</th><th>Read here</th></tr></thead>
+  <tbody>
+          <tr><td><span class="badge">RUN</span></td><td>slot approved by the orchestrator; here it is executed and explained</td></tr>
+    <tr><td><span class="badge">ARTIFACTS</span></td><td>diff, proof, XML, Extent, state and feedback saved on disk</td></tr>
+    <tr><td><span class="badge">PROOF</span></td><td>claim related to reopenable evidence, not just narrative text</td></tr>
+    <tr><td><span class="badge">Member</span></td><td><code class="inline">run-state.json</code>, <code class="inline">package-state.json</code>, <code class="inline">execution-gate-card.md</code></td></tr>
+    <tr><td><span class="badge">ACCOUNTING</span></td><td>countability, active target, kept / partial / blocked</td></tr>
+    <tr><td><span class="badge">HANDOFF</span></td><td>cold memory for the next agent and for reporting</td></tr>
+  </tbody>
+</table>
+<div class="pillline">
+  <div class="pillrow"><span class="pilllabel">Owner:</span><span class="pill">fix run</span><span class="pill">artifacts</span><span class="pill">Member</span></div>
+          <div class="pillrow"><span class="pilllabel">Use:</span><span class="pill">slot approved</span><span class="pill">matter from the wrapper</span><span class="pill">runtime active</span><span class="pill">local proof</span><span class="pill">diff</span></div>
+          <div class="pillrow"><span class="pilllabel">Produce:</span><span class="pill">memory package</span><span class="pill">file states</span><span class="pill">handoff reporting</span></div>
+          <div class="pillrow"><span class="pilllabel">Does not produce:</span><span class="pill">package legality</span><span class="pill">UI border</span><span class="pill">report layout</span></div>
+</div>
+<details class="mini-note">
+  <summary>Minimum contract</summary>
+  <table>
+    <tbody>
+      <tr><td>Runtime</td><td>the active values ​​are read live and become the law of the current package</td></tr>
+      <tr><td>test</td><td><code class="inline">ROUND_TARGET_TEST_COUNT</code> cere teste countable: distincte business, auditabile, sustinute de proof</td></tr>
+      <tr><td>Run sites</td><td><code class="inline">META_ITERATION_COUNT</code> requires fully judged, cold-frozen, and explained runs</td></tr>
+      <tr><td>Separation</td><td>the two counters do not compensate and do not mix</td></tr>
+    </tbody>
+  </table>
+</details>
+</section>
+
+<section class="card">
+<details>
+<summary><span class="summary-title">Common Runtime Reference</span><span class="sumhint">runtime, targets, diffs, state files</span></summary>
+<table class="constants-table">
+  <thead>
+    <tr>
+      <th>Subject</th>
+      <th>What fixes</th>
+      <th>Action here</th>
+      <th>artifacts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>agent-runtime.properties</code></td>
+      <td>active values ​​and common paths</td>
+      <td>reopen live; do not redefine local</td>
+      <td><code class="inline">execution-gate-card.md</code></td>
+    </tr>
+    <tr>
+      <td>UI wrapper</td>
+      <td>specialized UI matter of the slot</td>
+      <td>you turn it into canonical fixation, without moving the UI owner here</td>
+      <td><code class="inline">ui-business-frontier-adapter.html</code></td>
+    </tr>
+    <tr>
+      <td><code>RUN_EXPECTED_DELTA_QUALITY</code></td>
+      <td>quality runtime threshold for the kept slot</td>
+      <td>if you publish <code class="inline">actual_delta_quality</code>, il explici fata de prag; sub prag = partial / blocker / rerank</td>
+      <td><code class="inline">score-support.md</code> + <code class="inline">run-state.json</code></td>
+    </tr>
+    <tr>
+      <td><code>ROUND_TARGET_TEST_COUNT</code></td>
+      <td>the active target of good tests per run</td>
+      <td>produce, group, count and explain <code class="inline">x / target</code></td>
+      <td><code class="inline">run-state.json</code> + <code class="inline">quality-accounting-verdict.md</code></td>
+    </tr>
+    <tr>
+      <td><code>META_ITERATION_COUNT</code></td>
+      <td>the active target of runs per package</td>
+      <td>you judge and fix each slot coldly</td>
+      <td><code class="inline">package-state.json</code> + <code class="inline">execution-gate-card.md</code></td>
+    </tr>
+    <tr>
+      <td>running diff</td>
+      <td>the small mutation of the claim</td>
+      <td>save per run</td>
+      <td><code class="inline">thin-no-index.diff</code></td>
+    </tr>
+    <tr>
+      <td>root diff</td>
+      <td>the compiled mutation of the package</td>
+      <td>compile at the package level</td>
+      <td><code class="inline">root-source-thin-no-index.diff</code></td>
+    </tr>
+    <tr>
+      <td>carrier</td>
+      <td>support, not primary truth</td>
+      <td>you only write when the diff doesn't arrive</td>
+      <td>optional <code class="inline">source-delta-carrier.md</code></td>
+    </tr>
+    <tr>
+      <td>file states</td>
+      <td>the cold state of the run and the package</td>
+      <td>write the status; the report reads it</td>
+      <td><code class="inline">run-state.json</code> + <code class="inline">package-state.json</code> + <code class="inline">execution-gate-card.md</code></td>
+    </tr>
+  </tbody>
+</table>
+</details>
+</section>
+</div>
+<details><summary><span class="summary-title">1. The boundary of the execution</span><span class="sumhint">artefact law, not launch law</span></summary>
+<table>
+  <thead><tr><th>Hold</th><th>Don't own</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>
+        <ul>
+          <li>artifact inventory</li>
+          <li>cold fix pack</li>
+          <li>source diff-first truth</li>
+          <li>proof carriers</li>
+          <li>Learning MDs</li>
+          <li>ready-for-report links</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>the legality of borders</li>
+          <li>the number of runs allowed</li>
+          <li>continuation in the same package</li>
+          <li>final report layout</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="note">
+  <ul>
+    <li>The agent freely chooses the implementation, samples and auxiliary notes.</li>
+    <li>The execution demands evidence and lessons saved cold on disk.</li>
+    <li>Under target is explained in <code class="inline">quality-accounting-verdict.md</code> and <code class="inline">package-close-out.md</code>.</li>
+          <li>The orchestrator verifies the legality of the next move; the execution does not launch itself.</li>
+  </ul>
+</div>
+</details>
+<details open>
+  <summary>
+    <span class="summary-title">2. Flows and diagrams</span>
+    <span class="sumhint">artifact tape</span>
+  </summary>
+  <details class="subdetails">
+  <summary><span class="summary-title">2.1 Quick reading map</span><span class="sumhint">short orientation</span></summary>
+  <table>
+    <thead>
+      <tr>
+        <th>If you ask</th>
+        <th>open</th>
+        <th>You get cold</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr><td>who fixes and who publishes?</td><td><code class="inline">2.2</code></td><td>split runtime -&gt; orchestrator -&gt; execution -&gt; reporting</td></tr>
+    <tr><td>what does a full run have to do?</td><td><code class="inline">2.3</code></td><td>reopening, pretraining, execution, cold fixation, surrender</td></tr>
+      <tr><td>what status files make the execution verifiable?</td><td><code class="inline">2.3.1</code></td><td><code class="inline">run-state.json</code>, <code class="inline">package-state.json</code>, <code class="inline">execution-gate-card.md</code></td></tr>
+      <tr><td>when I group several tests in the same run?</td><td><code class="inline">2.4</code></td><td>grouping rule on the functional anchor</td></tr>
+      <tr><td>how do reopenable artifacts become cool?</td><td><code class="inline">2.5</code></td><td>chain diff -&gt; proof -&gt; learning -&gt; handoff</td></tr>
+    </tbody>
+  </table>
+  <div class="mini">
+    <ul>
+      <li><code class="inline">2.2</code> = owneri</li>
+      <li><code class="inline">2.3</code> = ciclul unui run</li>
+      <li><code class="inline">2.5</code> = claim -&gt; diff -&gt; proof -&gt; feedback</li>
+    </ul>
+  </div>
+  </details>
+  <details class="subdetails" open>
+    <summary>
+      <span class="summary-title">2.2 Split runtime -&gt; orchestrator -&gt; execution -&gt; reporting</span>
+      <span class="sumhint">who fixes, who decides, who publishes</span>
+    </summary>
+  <div class="diag"><svg viewbox="0 0 1160 220" role="img" aria-label="Runtime ownership split">
+  <defs><marker id="rr" markerwidth="10" markerheight="10" refx="8" refy="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7aa2ff"></path></marker></defs>
+  <rect x="40" y="78" width="220" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+  <text x="150" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">agent-runtime.properties</text>
+  <text x="150" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">thresholds + paths + libraries</text>
+  <rect x="360" y="28" width="220" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+  <text x="470" y="54" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">orchestrate</text>
+  <text x="470" y="76" text-anchor="middle" fill="#a8b3cf" font-size="11">legality + continuation</text>
+  <rect x="360" y="124" width="220" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+  <text x="470" y="150" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">execute</text>
+<text x="470" y="172" text-anchor="middle" fill="#a8b3cf" font-size="11">produce + fix + explain</text>
+  <rect x="680" y="124" width="220" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+  <text x="790" y="150" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Report</text>
+<text x="790" y="172" text-anchor="middle" fill="#a8b3cf" font-size="11">publish the fixed verdict</text>
+  <rect x="1000" y="124" width="120" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+  <text x="1060" y="150" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">final html</text>
+  <text x="1060" y="172" text-anchor="middle" fill="#a8b3cf" font-size="11">navigable</text>
+  <path d="M260 112 H360" stroke="#7aa2ff" stroke-width="2" marker-end="url(#rr)"></path>
+  <path d="M260 112 C320 112, 300 62, 360 62" stroke="#7aa2ff" stroke-width="2" fill="none" marker-end="url(#rr)"></path>
+  <path d="M580 158 H680" stroke="#7aa2ff" stroke-width="2" marker-end="url(#rr)"></path>
+  <path d="M900 158 H1000" stroke="#7aa2ff" stroke-width="2" marker-end="url(#rr)"></path>
+  </svg></div>
+  <details class="mini-note">
+    <summary>Legend</summary>
+    <ul>
+      <li>The runtime fixes the common configuration; it does not decide on its own either the legality or the publication.</li>
+      <li>The orchestrator decides if the next slot is legal.</li>
+  <li>The execution produces the artifacts, explains the progress and cold fixing of the package.</li>
+  <li>Reporting only publishes the already established truth.</li>
+    </ul>
+  </details>
+  </details>
+  <details class="subdetails" open>
+    <summary>
+      <span class="summary-title">2.3 Single run cycle</span>
+      <span class="sumhint">what each run must do</span>
+    </summary>
+
+  <div class="diag"><svg viewbox="0 0 1160 300" role="img" aria-label="Single run cycle">
+  <defs><marker id="sr" markerwidth="10" markerheight="10" refx="8" refy="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7aa2ff"></path></marker></defs>
+  <rect x="35" y="110" width="150" height="72" rx="14" fill="#111826" stroke="#35507a"></rect><text x="110" y="138" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Reopen</text><text x="110" y="160" text-anchor="middle" fill="#a8b3cf" font-size="11">history + feedback</text>
+  <rect x="240" y="110" width="160" height="72" rx="14" fill="#111826" stroke="#35507a"></rect><text x="320" y="138" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Pretrain</text><text x="320" y="160" text-anchor="middle" fill="#a8b3cf" font-size="11">border rereading</text>
+  <rect x="455" y="110" width="160" height="72" rx="14" fill="#111826" stroke="#35507a"></rect><text x="535" y="138" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">execute</text><text x="535" y="160" text-anchor="middle" fill="#a8b3cf" font-size="11">a governed slot</text>
+<rect x="670" y="110" width="160" height="72" rx="14" fill="#111826" stroke="#35507a"></rect><text x="750" y="138" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">fixes</text><text x="750" y="160" text-anchor="middle" fill="#a8b3cf" font-size="11">diff / proof / xml</text>
+  <rect x="885" y="110" width="210" height="72" rx="14" fill="#111826" stroke="#35507a"></rect><text x="990" y="138" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Learn + teach</text><text x="990" y="160" text-anchor="middle" fill="#a8b3cf" font-size="11">md feedback + report links</text>
+  <path d="M185 146 H240" stroke="#7aa2ff" stroke-width="2" marker-end="url(#sr)"></path><path d="M400 146 H455" stroke="#7aa2ff" stroke-width="2" marker-end="url(#sr)"></path>
+  <path d="M615 146 H670" stroke="#7aa2ff" stroke-width="2" marker-end="url(#sr)"></path><path d="M830 146 H885" stroke="#7aa2ff" stroke-width="2" marker-end="url(#sr)"></path>
+  </svg></div>
+  <details class="mini-note">
+    <summary>What must remain in mind</summary>
+    <ul>
+      <li>The run must leave the re-openable proof: diff, proof, state and lesson.</li>
+      <li>What is not saved to disk cannot be safely used by the next agent.</li>
+      <li>Without diff, proof and running status, the cold fixation is not complete.</li>
+      <li>A run explains the active target or public defect / severe blocker.</li>
+      <li>Decisive learning should be saved to disk, not left in chat.</li>
+    </ul>
+  </details>
+
+  <details class="subdetails">
+  <summary><span class="summary-title">2.3.1 Mandatory Artifact Spines <span class="badge">Member</span></span><span class="sumhint">minimum verifiable condition</span></summary>
+    <table>
+      <thead>
+        <tr>
+          <th>Artifact</th>
+          <th>Owner</th>
+          <th>When it is written</th>
+          <th>His absence blocks</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr><td><code class="inline">run-state.json</code></td><td>execute</td><td>to the cold fixation of the run</td><td>tests produced, proof and kept-status per slot</td></tr>
+        <tr><td><code class="inline">package-state.json</code></td><td>execute</td><td>at each recompilation of the packet truth</td><td>runs consumed, breadth verdict and the cold handoff</td></tr>
+      <tr><td><code class="inline">execution-gate-card.md</code></td><td>execute writes, orchestrator checks, reporting reads</td><td>after the aggregate fixing of the package</td><td>cold surrender for reporting</td></tr>
+      </tbody>
+    </table>
+    <table>
+      <thead>
+        <tr>
+          <th>File</th>
+          <th>Canonical fields</th>
+          <th>Short enums</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code class="inline">runs/run_##/review/run-state.json</code></td>
+          <td><code class="inline">run_id</code>, <code class="inline">tests_target</code>, <code class="inline">tests_produced</code>, <code class="inline">target_status</code>, <code class="inline">delta_quality_status</code>, <code class="inline">run_diff</code>, <code class="inline">carrier</code>, <code class="inline">proof_ui</code>, <code class="inline">proof_machine</code>, <code class="inline">kept_status</code>, <code class="inline">blocker_status</code></td>
+          <td><code class="inline">met / under_target / blocked / missing</code>, <code class="inline">pass / fail / n-a</code>, <code class="inline">yes / no / partial</code></td>
+        </tr>
+        <tr>
+          <td><code class="inline">review/package-state.json</code></td>
+          <td><code class="inline">runs_target</code>, <code class="inline">runs_consumed</code>, <code class="inline">run_tests_target</code>, <code class="inline">root_diff</code>, <code class="inline">winner_macro_lane</code>, <code class="inline">breadth_verdict</code>, <code class="inline">same_package_legal</code>, <code class="inline">fresh_root_run_legal</code>, <code class="inline">report_status</code>, <code class="inline">render_status</code>, <code class="inline">link_audit_status</code></td>
+          <td><code class="inline">broad / partial / narrow</code>, <code class="inline">yes / no</code>, <code class="inline">ready / partial / blocked / missing</code>, <code class="inline">fresh / stale / missing</code></td>
+        </tr>
+        <tr>
+          <td><code class="inline">review/execution-gate-card.md</code></td>
+          <td>header aggregate + vector per run: <code class="inline">run_id</code>, <code class="inline">tests_produced</code>, <code class="inline">run_diff</code>, <code class="inline">proof</code>, <code class="inline">status</code></td>
+          <td><code class="inline">yes / no / partial / stale / missing</code>, <code class="inline">met / under_target / blocked</code></td>
+        </tr>
+      </tbody>
+    </table>
+<pre><code>{
+  "run_id": "run_03",
+  "tests_target": "ROUND_TARGET_TEST_COUNT",
+  "tests_produced": 5,
+  "target_status": "met",
+  "delta_quality_status": "pass",
+  "run_diff": "runs/run_03/review/thin-no-index.diff",
+  "carrier": "no",
+  "proof_ui": "yes",
+  "proof_machine": "yes",
+  "kept_status": "yes",
+  "blocker_status": "no"
+}
+
+{
+  "runs_target": "META_ITERATION_COUNT",
+  "runs_consumed": 5,
+  "run_tests_target": "ROUND_TARGET_TEST_COUNT",
+  "root_diff": "review/root-source-thin-no-index.diff",
+  "winner_macro_lane": "orders-history",
+  "breadth_verdict": "partial",
+  "same_package_legal": "no",
+  "fresh_root_run_legal": "yes",
+  "report_status": "ready",
+  "render_status": "fresh",
+  "link_audit_status": "yes"
+}
+</code></pre>
+    <div class="warn">
+      <ul>
+        <li>The orchestrator defines the cold checks.</li>
+        <li>The execution writes the files.</li>
+        <li>Reporting only reads them.</li>
+        <li>They do not replace the README, diff or final report.</li>
+        <li>Blocks the defense of weak execution through long prose.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="subdetails">
+    <summary><span class="summary-title">2.3.2 MCP checks per run and per package <span class="badge">MCP</span></span><span class="sumhint">what must pass without saving prose</span></summary>
+    <table>
+      <thead><tr><th>Gate</th><th>Check</th><th>Fails if</th></tr></thead>
+      <tbody>
+        <tr><td>XML -&gt; Java</td><td>each machine result maps to a real <code class="inline">@Test</code> method</td><td>XML or command-result are synthetic</td></tr>
+        <tr><td>Run Extent</td><td>the report per run is self-contained, non-toy, with steps and screenshot when it is UI</td><td>is full-suite copy, empty HTML or depends on missing <code class="inline">spark/</code></td></tr>
+        <tr><td>Run diff/state</td><td><code class="inline">thin-no-index.diff</code> and <code class="inline">run-state.json</code> are distinct and coherent</td><td>the runs repeat the same diff, the same verdict or the same lesson</td></tr>
+        <tr><td>Source truth</td><td>the files touched by diff exist in the current source</td><td>diff invokes nonexistent files or methods</td></tr>
+        <tr><td>UI architecture</td><td>the UI tests respect <code class="inline">BaseTestUI</code> and the validation layer</td><td>direct business assertions or direct access to the engine/reporting in the test layer</td></tr>
+      </tbody>
+    </table>
+    <table>
+      <thead><tr><th>Execution stage</th><th>Profile / order</th><th>What does the result mean?</th><th>Do not confuse with</th></tr></thead>
+      <tbody>
+        <tr><td>the business tests of the run</td><td>the normal Maven/TestNG package command</td><td>proves that the generated tests pass and produce Extent/XML per run</td><td>MCP package close-out</td></tr>
+        <tr><td>MCP self health</td><td><code class="inline">src/test/resources/skills/mcp/testng-mcp-self.xml</code></td><td>health of the validator</td><td>does not decide publishability for the generated package</td></tr>
+        <tr><td>Run preflight</td><td><code class="inline">src/test/resources/skills/mcp/testng-mcp-run-preflight.xml</code></td><td>run evidence plus runtime/package accounting while the agent can still calibrate</td><td>frozen close-out evidence</td></tr>
+        <tr><td>Full sweep</td><td><code class="inline">src/test/resources/skills/mcp/testng-mcp-full.xml</code></td><td>broad, secondary diagnosis</td><td>it is not the final publishable report</td></tr>
+        <tr><td>Package audit</td><td><code class="inline">src/test/resources/skills/mcp/testng-mcp-package-audit.xml</code></td><td>pre-close-out</td><td>it is not promotion <code class="inline">Candidate/html-ex</code></td></tr>
+        <tr><td>Package close-out</td><td><code class="inline">src/test/resources/skills/mcp/testng-mcp-package-closeout.xml</code></td><td>the frozen MCP artifact spine and Extent/XML/ledger basis</td><td>it is not full sweep or candidate report</td></tr>
+        <tr><td>Post-sync smoke</td><td><code class="inline">src/test/resources/skills/mcp/testng-mcp-post-sync-smoke.xml</code></td><td>fast verification that final report, Extent, origin, hash, XML, gate and KPI links remain synchronized after copy/update</td><td>it does not produce final close-out</td></tr>
+        <tr><td>Final report surface close-out</td><td><code class="inline">src/test/resources/skills/mcp/testng-mcp-final-report-closeout.xml</code></td><td>report shell, frozen links/counts and browser-render evidence</td><td>it does not run during calibration and does not replace package-closeout</td></tr>
+        <tr><td>LangGraph final report validation</td><td><code class="inline">src/test/resources/skills/mcp/testng-mcp-langgraph-final-report.xml</code></td><td>dedicated semantic validation of <code class="inline">analysis/langgraph-business-understanding.html</code>: business structure, graph, score truth and proof mapping</td><td>it is the last MCP report-meaning gate before candidate/html-ex</td></tr>
+        <tr><td>Candidate/html-ex</td><td><code class="inline">src/test/resources/skills/mcp/testng-mcp-candidate.xml</code></td><td>html-ex promotion: teacher-grade after package close-out, post-sync, final-report surface and LangGraph validation</td><td>it does not replace package-closeout; run only when copying/promoting</td></tr>
+      </tbody>
+    </table>
+    <div class="warn">
+      <ul>
+        <li>MCP does not validate the concrete business of the application.</li>
+        <li>MCP validates that the proof is real, re-openable and aligned with the architecture.</li>
+        <li>In the end, the agent does not close until he has <code class="inline">testng-mcp-package-closeout.xml</code> run on the frozen package, with 0 failures, 0 errors, and 0 skipped in the final subcollection.</li>
+        <li>If <code class="inline">validation/mcp</code> or final-report links are synchronized after close-out, run <code class="inline">testng-mcp-post-sync-smoke.xml</code>: 0 failures, 0 errors, 0 skipped.</li>
+        <li>When the agent declares there are no more artifact-spine changes planned, run <code class="inline">testng-mcp-final-report-closeout.xml</code> exactly once; if it fails, repair only the public report/link/sync surface and rerun the same profile.</li>
+        <li>After final-report surface close-out is green, run <code class="inline">testng-mcp-langgraph-final-report.xml</code>; if it fails, repair only <code class="inline">analysis/langgraph-business-understanding.html</code> semantics/links unless it exposes stale frozen evidence.</li>
+        <li>If the package is an <code class="inline">html-ex</code> candidate, run <code class="inline">testng-mcp-candidate.xml</code> after that, so promotion does not hide package close-out issues.</li>
+        <li>The number of MCP tests is not global. It belongs to the profile and the MCP version: 90, 89 or 102 can only be correct if the report names the profile, the order and the ledger that explains them.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="subdetails">
+    <summary><span class="summary-title">2.4 Grouping rule in the same run</span><span class="sumhint">when an area deserves more tests</span></summary>
+    <table>
+      <thead><tr><th>If you got here</th><th>judge</th><th>Good form</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>page / status / functionality with distinct business behaviors</td>
+          <td>maybe the same anchor closes the active target without mechanical sweep?</td>
+          <td>group related tests in the same run</td>
+        </tr>
+        <tr>
+          <td>the anchor that cannot support the active target</td>
+          <td>real blocker or wrongly chosen border?</td>
+          <td>public defect / severe blocker and rerank</td>
+        </tr>
+        <tr>
+          <td>area with another business identity or other proof</td>
+          <td>does separation help clarity, isolation or rerank?</td>
+          <td>split only if the new run can close the active target</td>
+        </tr>
+      </tbody>
+    </table>
+    <details class="mini-note">
+      <summary>Legend</summary>
+      <ul>
+        <li>Good example: same area <code class="inline">favorites</code> can produce empty-state, persistence, and collection behavior in the same run if they all come from the same functional anchor.</li>
+        <li>Bad example: five close variants of the same click or the same blocker just to inflate the number.</li>
+        <li>The good grouping is based on functionality and business truth, not on the convenience of implementation.</li>
+      <li>At the end of each run: tell if the active target was closed.</li>
+      <li>If not: the verdict is defective or a severe blocker.</li>
+      </ul>
+    </details>
+  </details>
+
+  <details class="subdetails">
+    <summary><span class="summary-title">2.4.1 Execution details</span><span class="sumhint">before / during / after the run</span></summary>
+    <table>
+      <thead><tr><th>time</th><th>Cool checklist</th><th>Don't accept</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Before</td>
+          <td>reopens the chosen pretraining, relevant artifacts, feedback, and frontier-changing runs</td>
+          <td>execution from memory or mechanically copied benchmark</td>
+        </tr>
+        <tr>
+          <td>During</td>
+          <td>track new business, close the active target per run, group related tests on the same functional anchor</td>
+          <td>sub-target hidden by the prose, helper-only, mechanical variants</td>
+        </tr>
+        <tr>
+          <td>After</td>
+          <td>saves diff, proof, XML/Extent, state, feedback and cold accounting</td>
+          <td>lessons left only in chat or proof without re-openable link</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="rule">The run closes the active target or public defect / severe blocker with rerank.</div>
+  </details>
+  </details>
+<details class="subdetails"><summary><span class="summary-title">2.5 Chain of Artifacts</span><span class="sumhint">claim -&gt; diff -&gt; proof -&gt; feedback</span></summary>
+<div class="note">
+  <ul>
+    <li><code class="inline">2.3.1 Mandatory Artifact Spine</code> = contractul.</li>
+    <li><code class="inline">2.5</code> = ordinea de citire.</li>
+    <li>Do not add new artifacts.</li>
+  </ul>
+</div>
+<details class="mini-note">
+  <summary>Run Fixation Card</summary>
+  <table>
+    <thead><tr><th>Field</th><th>Short answer</th><th>Cold link</th></tr></thead>
+    <tbody>
+      <tr><td>claim</td><td>published business truth</td><td><code class="inline">SUMMARY.md</code></td></tr>
+      <tr><td>delta</td><td>what has changed from the previous state</td><td><code class="inline">score-support.md</code></td></tr>
+      <tr><td>diff</td><td>the small mutation of the run</td><td><code class="inline">thin-no-index.diff</code></td></tr>
+      <tr><td>proof</td><td>confirmation of execution</td><td><code class="inline">Extent/XML/command-result</code></td></tr>
+      <tr><td>Member</td><td>tests produced, kept, blocker</td><td><code class="inline">run-state.json</code></td></tr>
+      <tr><td>feedback</td><td>lesson for the next agent</td><td><code class="inline">*.md</code> decisiv</td></tr>
+    </tbody>
+  </table>
+</details>
+<table><thead><tr><th>Step</th><th>Question</th><th>You read</th></tr></thead><tbody>
+<tr><td>claim</td><td>what is the truth of public business?</td><td>the short verdict of the run</td></tr>
+<tr><td>diff</td><td>what mutation supports the claim?</td><td>run diff for claim; root diff for synthesis</td></tr>
+<tr><td>proof</td><td>what does the execution confirm?</td><td>Extent, XML or command result</td></tr>
+<tr><td>feedback</td><td>what does the next agent learn?</td><td>The decisive MD, if he changes the rerank</td></tr>
+</tbody></table>
+</details>
+ </details>
+<details><summary><span class="summary-title">3. Minimal package skeleton</span><span class="sumhint">spine small, extensible</span></summary>
+<pre><code>&lt;timestamp&gt;/
+  README.md
+  CALIBRATION.md
+  manifests/package-manifest.md
+  prompt/input-snapshot.md
+
+  analysis/
+    langgraph-business-understanding.html
+    shared-report-reference.css
+    canonical-render-check.png
+
+  validation/mcp/
+    ExtentReport.html                            (produced by testng-mcp-package-closeout.xml for final close-out)
+    ExtentReport.sha256
+    extent-origin.json                           (auditable command; must contain package-close-out and explicit package.root)
+    mcp-gate-result.md
+    TEST-TestSuite.xml or testng-results.xml
+    full-mcp-method-ledger.md
+
+  review/
+    frozen-package-inventory.md
+    framework.properties                         (snapshot auditabil unic din src/main/resources/framework.properties)
+    local-link-check.txt
+    quality-accounting-verdict.md
+    next-run-eligibility-card.md
+    package-close-out.md
+    frontier-ranking-ledger.md                  (when there is competition between frontiers)
+    round-pretraining-brief.md                  (fresh ROOT_RUN; same-package only if rerank changes the winner)
+    *.md                                        (helper learning carriers decisive)
+
+  runs/run_##/
+    SUMMARY.md
+    manifests/run-manifest.md
+    prompt/input-snapshot.md
+    review/artifact-checklist.md
+    review/score-support.md
+    review/thin-no-index.diff                   (required when the run changed source/test)
+    review/source-delta-carrier.md              (required when the diff requires interpretation or selection)
+    review/*.md                                 (feedback / blocker / repair / invatare)
+    validation/command-output.txt
+    validation/command-result.md
+    validation/testng-results.xml or TEST-*.xml
+    validation/reports/ExtentReport_*.html      (execution report and reopenable evidence)
+</code></pre>
+<div class="warn">
+  <ul>
+    <li>Minimal does not mean little valuable.</li>
+    <li>Each mandatory file has a clear role.</li>
+    <li>Each decisive file must be linked from the report.</li>
+  </ul>
+</div>
+<div class="rule">
+  <ul>
+    <li>Run with claim + changed code/test =&gt; ask <code class="inline">runs/run_##/review/thin-no-index.diff</code>.</li>
+    <li>Package with several mutations =&gt; ask <code class="inline">review/root-source-thin-no-index.diff</code>.</li>
+  <li>Without the relevant diff, history is not completely fixed.</li>
+  </ul>
+</div>
+<details class="subdetails"><summary><span class="summary-title">3.1 Execution Gate Card <span class="badge">Member</span></span><span class="sumhint">the binary digest of the package</span></summary>
+<pre><code>execution-gate-card.md
+runtime read = yes / no
+memory read = yes / no
+runs consumed = n / META_ITERATION_COUNT
+tests produced = x / ROUND_TARGET_TEST_COUNT
+root diff saved = yes / no
+run_01 = tests:5 | diff:yes | proof:yes | status:met
+run_02 = tests:5 | diff:yes | proof:partial | status:under_target
+run_03 = tests:0 | diff:no | proof:no | status:blocked
+business graph ready = yes / no
+render proof = yes / no / stale
+link audit = yes / no
+ready for report handoff = yes / no
+</code></pre>
+<div class="note">
+  <ul>
+    <li>Short and binary card.</li>
+    <li>Header = aggregate state of the package.</li>
+    <li>Vector per run = target, diff, proof, status.</li>
+    <li>The lack of diff/proof remains immediately visible.</li>
+  </ul>
+</div>
+</details>
+</details>
+<details><summary><span class="summary-title">4. Taxonomy of artifacts</span><span class="sumhint">always / conditioned / support</span></summary>
+<div class="note">
+  <ul>
+    <li><b>Mandatory Artifact Spines</b> = the contract.</li>
+    <li>Taxonomy = severity of artifacts.</li>
+    <li>Do not move ownership.</li>
+  </ul>
+</div>
+<table><thead><tr><th>Level</th><th>Enter here</th><th>The cold rule</th></tr></thead><tbody>
+      <tr><td>always</td><td>diff relevant, proof relevant, state files, close-out</td><td>without them, the run or package is not completely fixed</td></tr>
+  <tr><td>conditioned</td><td><code class="inline">source-delta-carrier.md</code>, blocker/repair/frontier MD, subsectiune specializata</td><td>they become mandatory when you change the claim, interpretation or rerank</td></tr>
+  <tr><td>auditable config</td><td><code class="inline">review/framework.properties</code></td><td>required for UI packages; unique package snapshot that explains the actual screenshot, browser, zoom and runtime framework requirements</td></tr>
+  <tr><td>support</td><td>short notes, local explanations, auxiliary context</td><td>it is kept only if it helps to reopen it cold</td></tr>
+</tbody></table>
+<div class="rule">
+  <ul>
+    <li>Do not save artifacts as scenery.</li>
+    <li>Keep only truth, necessary interpretation or real support.</li>
+  <li>If the following agent does not help, do not enter the cold fixation.</li>
+  </ul>
+</div>
+</details>
+<details><summary><span class="summary-title">5. The diff-first rule for evolution <span class="badge">PROOF</span></span><span class="sumhint">git diff explains iterative evolution</span></summary>
+<table><thead><tr><th>If</th><th>save</th><th>Role</th></tr></thead><tbody>
+<tr><td>a single run changed the published claim</td><td><code class="inline">runs/run_##/review/thin-no-index.diff</code></td><td>the small mutation of the run</td></tr>
+<tr><td>several runs changed the deck</td><td><code class="inline">review/root-source-thin-no-index.diff</code></td><td>the compiled mutation of the package</td></tr>
+<tr><td>the diff alone does not clearly explain the claim</td><td><code class="inline">source-delta-carrier.md</code></td><td>support for interpretation, not primary truth</td></tr>
+</tbody></table>
+<pre><code>pe run
+  runs/run_##/review/thin-no-index.diff = small truth of the run claim
+  runs/run_##/review/source-delta-carrier.md = support only if the diff is not enough
+  SUMMARY.md = 1-3 linii despre mutatia istorica a the runui
+
+pe pachet
+  review/root-source-thin-no-index.diff = mutatia compilata a the packageui
+  the report uses the run diff for the small claim and the root diff for the large synthesis
+</code></pre>
+<div class="rule">
+  <ul>
+    <li>Diff is the primary truth of evolution.</li>
+    <li>File snapshots are supported.</li>
+    <li>The agent's explanations are support.</li>
+  </ul>
+</div>
+<div class="warn">
+  <ul>
+    <li><code class="inline">source-delta-carrier.md</code> explains the selection or meaning of the diff.</li>
+    <li>If the diff is missing, the carrier does not save the claim.</li>
+  </ul>
+</div>
+<div class="note">
+  <ul>
+    <li><code class="inline">SUMMARY.md</code>: 1-3 linii per run.</li>
+    <li>It says the historical change compared to the previous border.</li>
+    <li>The diff remains truly primary.</li>
+    <li>The summary just makes it reopen quickly.</li>
+  </ul>
+</div>
+</details>
+<details><summary><span class="summary-title">6. Extent as execution report <span class="badge">PROOF</span></span><span class="sumhint">steps, status, pictures when available</span></summary>
+<table><thead><tr><th>Case</th><th>What is required</th><th>Impact if missing</th></tr></thead><tbody>
+<tr><td>run kept / proof-bearing</td><td><code class="inline">ExtentReport_*.html</code> direct redeschis, when it exists for that run</td><td>trust decreases or the claim becomes partially auditable</td></tr>
+<tr><td>UI or visual flow</td><td>Extent with visible steps, screenshots or anchors</td><td>visual evidence is missing from the published chain</td></tr>
+<tr><td><code class="inline">review/framework.properties</code> cere <code class="inline">ui.screenshots.capture.final.state=true</code></td><td>each Extent per-run contains the final screenshot visible and labeled as the final UI proof</td><td>the run does not have full visual proof, again <code class="inline">run-state.json</code> cannot sell countable/owned status without a cold cap</td></tr>
+<tr><td>failure / blocker</td><td>Extent, XML or command output with relevant failure</td><td>the blocker remains an opinion</td></tr>
+<tr><td>final report</td><td>direct link in Run Audit Strip and Artifact Index</td><td>incomplete report</td></tr>
+</tbody></table>
+<div class="note">
+  <ul>
+    <li>Extent isn't just UI.</li>
+    <li>For UI: visible steps and images.</li>
+    <li>If the snapshot <code class="inline">review/framework.properties</code> requires final-state screenshots, the image must be in Extent as reopenable evidence, not only as a hidden payload.</li>
+    <li>The configuration is saved only once per package; the runs consume it through their proof, do not duplicate it.</li>
+    <li>For run: re-openable run report.</li>
+    <li>Role: supports proof-bearing claims.</li>
+  </ul>
+</div>
+</details>
+<details><summary><span class="summary-title">7. Constructive feedback per run <span class="badge">HANDOFF</span></span><span class="sumhint">maximum self-learning</span></summary>
+<table><thead><tr><th>Feedback type</th><th>Recommended file</th><th>Content</th></tr></thead><tbody>
+<tr><td>business learning</td><td><code class="inline">business-understanding.md</code></td><td>what business has become clearer</td></tr>
+<tr><td>border decision</td><td><code class="inline">frontier-decision.md</code></td><td>why I chose or pivoted the branch</td></tr>
+<tr><td>blocker</td><td><code class="inline">blocker-analysis.md</code></td><td>what blocks the proof and what input is missing</td></tr>
+<tr><td>repair</td><td><code class="inline">repair-analysis.md</code></td><td>what support has been repaired and what unlocks</td></tr>
+<tr><td>lesson</td><td><code class="inline">lesson-learned.md</code></td><td>a short lesson for the next agent</td></tr>
+</tbody></table>
+<div class="note">
+  <ul>
+    <li>Do not publish any grade.</li>
+    <li>Publish any note that influences the verdict.</li>
+    <li>Everything that influences the verdict must be linked from the report.</li>
+  </ul>
+</div>
+</details>
+<details><summary><span class="summary-title">8. Rigid minimal templates <span class="badge">ACCOUNTING</span></span><span class="sumhint">few, but firm</span></summary>
+<pre><code>artifact-checklist.md
+run frozen = yes / no
+business claim settled = yes / no
+thin-no-index.diff saved = yes / no / n/a
+if no, reason = ...
+source-delta-carrier required = yes / no
+if yes, why = ...
+run diff linked from SUMMARY/report = yes / no
+ExtentReport saved = yes / no / n/a
+machine result carrier saved = yes / no
+decisive learning md saved = yes / no
+countable kept run = yes / no
+missing mandatory artifact = yes / no
+notes = short only
+
+quality-accounting-verdict.md
+ROUND_TARGET_TEST_COUNT numeric = x / target
+accounting target met = yes / no
+business breadth verdict = broad / partial / narrow
+how many good tests this run produced = ...
+why these tests belong together in the same run = ...
+why this run stayed below configured ambition if it did = ...
+why countable = ...
+why breadth is still narrow if needed = ...
+what next frontier must add = ...
+
+lesson-learned.md
+what changed = ...
+what was learned = ...
+what should not be repeated = ...
+what next run should use = ...
+links = ...
+
+frontier-decision.md
+candidate frontier = ...
+why it is new business = ...
+why it beats alternatives = ...
+required evidence = ...
+fallback / blocker = ...
+
+package-close-out.md
+final MCP profile = testng-mcp-package-closeout.xml / not yet
+final MCP command audited in extent-origin.json = yes / no
+final MCP result = total x, passed x, failures 0, errors 0, skipped 0
+final MCP Extent linked from langgraph = yes / no
+final MCP XML + ledger + sha + origin linked = yes / no
+final report surface gate = testng-mcp-final-report-closeout.xml / passed / not yet
+langgraph final report validation = testng-mcp-langgraph-final-report.xml / passed / not yet
+full sweep used only as diagnostic = yes / no / n/a
+candidate/html-ex run separately = yes / no / n/a
+if skipped exists anywhere, where and why = profile, count, reason, accepted, cap
+</code></pre>
+</details>
+
+</div>
+
+<script>function toggleAll(openState){document.querySelectorAll('details').forEach(function(el){el.open=openState;});}</script>
+</body>
+</html>

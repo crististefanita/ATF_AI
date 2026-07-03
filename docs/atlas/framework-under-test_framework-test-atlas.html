@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Atlas Framework Pentru ATF Core</title>
+  <link rel="stylesheet" href="../shared-report-reference.css" />
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <p class="eyebrow">Atlas de capabilitati framework / rezultat skill doar de analiza</p>
+    <h1>Atlas Framework Pentru ATF Core</h1>
+    <p class="lead">
+      Pachet sursa: <code>src/test/java/com/endava/ai/atf</code>.
+      Acest atlas nu descrie business-ul aplicatiei testate. El aplica disciplina din
+      <code>business-test-atlas-reference.html</code> pe ATF-core: testele sunt intrarea,
+      layerele sunt dovada trasabila, iar obiectele reale sunt capabilitatile framework-ului.
+      Flow-urile de aici sunt flow-uri de produs-framework: raportare, lifecycle, screenshots, adapters,
+      configurare, API base si UI support.
+    </p>
+    <div class="pill-row">
+      <span class="pill">172 fisiere Java scanate</span>
+      <span class="pill">435 metode @Test</span>
+      <span class="pill">10 suite-uri core TestNG</span>
+      <span class="pill">atlas capabilitati framework</span>
+      <span class="pill">analysis only</span>
+      <span class="pill">CSS comun</span>
+    </div>
+  </header>
+
+  <div class="toolbar" aria-label="Controale sectiuni">
+    <button type="button" onclick="toggleAll(true)">Deschide sectiunile</button>
+    <button type="button" onclick="toggleAll(false)">Inchide sectiunile</button>
+  </div>
+
+  <section class="score-wall" aria-label="Carduri scor atlas framework" data-atlas-section="score cards">
+    <article class="score-card"><div class="label">Intelegere Business</div><div class="score">93</div><p>Capabilitatile framework sunt clare, dar nu sunt business app end-to-end.</p></article>
+    <article class="score-card"><div class="label">Reconstructie Flow</div><div class="score">94</div><p>Actor, intentie, actiune vizibila, obiect si rezultat observabil.</p></article>
+    <article class="score-card"><div class="label">Trasabilitate Layere</div><div class="score">95</div><p>Fiecare garantie se leaga de test, layer path si sursa.</p></article>
+    <article class="score-card"><div class="label">Claritate Obiect Business</div><div class="score">93</div><p>Reporting-ul este foarte clar; API/UI support raman partiale.</p></article>
+    <article class="score-card"><div class="label">Fidelitate Dovada</div><div class="score">93</div><p>Atlas si aggregate sunt redeschisibile, dar acopera profile diferite.</p></article>
+    <article class="score-card"><div class="label">Overall</div><div class="score">94</div><p>Scor derivat; sub 95 pentru API base, UI support si adancimea dovezilor Allure.</p></article>
+  </section>
+
+  <details class="executive-context" data-atlas-section="1. executive context">
+      <summary><span class="summary-title">1. Executive Context</span><span class="sumhint">scope, score rationale si comprehension limits</span></summary>
+    <details class="subdetails">
+      <summary>Verdict</summary>
+      <p>
+        ATF are un contract de framework puternic. Lifecycle raportare, dovada screenshot,
+        adapters si config/window sunt owned. API base si UI support raman partiale:
+        utile, dar nu la aceeasi adancime contractuala.
+      </p>
+    </details>
+    <details class="subdetails">
+      <summary>Scope</summary>
+      <table>
+        <thead><tr><th>Sursa</th><th>Ce se extrage</th><th>Rol in atlas</th></tr></thead>
+        <tbody>
+          <tr><td><code>src/test/java/com/endava/ai/atf</code></td><td>172 fisiere Java, 435 metode @Test, 10 suite-uri core TestNG si 19 suite-uri TestNG totale</td><td>input read-only</td></tr>
+          <tr><td><code>com.endava.ai.atf.contract</code></td><td><code>@AtfContract</code>, steps, assertions</td><td>vocabular executabil</td></tr>
+          <tr><td><code>docs/atlas/validation/framework-under-test/framework-under-test_framework-atlas-tests-extent-report.html</code></td><td>83 test cases / 0 failures in Extent; Surefire executa 83 metode</td><td>dovada scoped redeschisibila pentru auditul Atlas framework</td></tr>
+          <tr><td><code>core.listener</code> + <code>core.reporting</code></td><td>listener, logger, adapters</td><td>spine lifecycle si raportare</td></tr>
+          <tr><td><code>ui.engine</code> + <code>ui.reporting</code></td><td>window, screenshots, interactiune UI</td><td>dovada UI framework</td></tr>
+        </tbody>
+      </table>
+    </details>
+    <details class="subdetails">
+      <summary>score rationale - audit scor</summary>
+      <p>Score card-urile se redeschid in sectiunea 4.5, se recalculeaza in sectiunea 4.6 si se leaga de sursa in sectiunea 5.1.</p>
+      <table>
+        <thead><tr><th>Axa</th><th>Scor</th><th>Ratiune</th></tr></thead>
+        <tbody>
+          <tr><td>Intelegere Business</td><td>93</td><td>business goal: intelegem capabilitatile ATF-core ca garantii observabile; flow question: ce garantie observabila ofera fiecare familie? source/layer evidence: score cards, graph si trace; atlas score: 93, plafonat pentru ca nu este business app end-to-end.</td></tr>
+          <tr><td>Reconstructie Flow</td><td>94</td><td>business goal: reconstruim flow-uri framework; flow question: actor, intent, visible action, business object si observable result. source/layer evidence: subgrafuri si proof strips; atlas score: 94.</td></tr>
+          <tr><td>Trasabilitate Layere</td><td>95</td><td>business goal: legam garantia de cod; flow question: ce layer sustine capabilitatea? source/layer evidence: test -> action/component/page/service/validation/model/constants -> business object; atlas score: 95.</td></tr>
+          <tr><td>Claritate Obiect Business</td><td>93</td><td>business goal: separam obiectul framework de mecanica; flow question: obiectul este garantie observabila sau doar layer tehnic? source/layer evidence: coverage si maturity; atlas score: 93, plafonat de API base si UI support partiale.</td></tr>
+          <tr><td>Fidelitate Dovada</td><td>93</td><td>business goal: pastram dovada redeschisibila; flow question: ce artifact confirma rezultatul? source/layer evidence: metode, contract steps, Extent, screenshot si audit atlas; atlas score: 93, pentru ca Atlas, aggregate Extent si Allure evidence sunt profile diferite.</td></tr>
+          <tr><td>Overall</td><td>94</td><td>business goal: agregam intelegerea framework; flow question: scorul este calculabil si plafonat? source/layer evidence: formula Overall; atlas score: 94.</td></tr>
+        </tbody>
+      </table>
+    </details>
+    <details class="subdetails">
+      <summary>Comprehension Limits - limite de intelegere</summary>
+      <ul>
+        <li>API base este partial: smoke functional bun, mai putina contractare interna.</li>
+        <li>UI support este partial: registration-heavy, nu toata familia page/action/component.</li>
+        <li>Allure pastreaza dovezi auditabile, dar nu este obligat sa copieze structura vizuala Extent.</li>
+        <li>Atlasul explica capabilitati framework, nu business end-to-end al aplicatiei.</li>
+      </ul>
+    </details>
+  </details>
+
+  <details id="business-flow-graph" open data-atlas-section="2. business flow graph">
+    <summary><span class="summary-title">2. Business Flow Graph / Framework Capability Flow - Graful Capabilitatilor Framework</span><span class="sumhint">capability map, package overlay si comprehension limits</span></summary>
+    <div class="graph-panel">
+      <!-- Ancora de contract pastrata pentru testele framework-specific: role="img" aria-label="Business Flow Graph" -->
+      <svg class="diag" role="img" aria-label="Business Flow Graph" viewBox="0 0 1220 620">
+        <desc>Framework Capability Flow / Business Flow Graph: ATF test package, Contract vocabulary, Lifecycle control, Report artifacts, Screenshot evidence, Adapters, Config / window, API base, UI support, ATF core aggregate, Framework guarantees.</desc>
+        <defs><marker id="cap-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z"></path></marker></defs>
+        <rect class="node" x="40" y="70" width="200" height="68" rx="10"></rect><text class="nt" x="140" y="98" text-anchor="middle">ATF test package</text><text class="ns" x="140" y="120" text-anchor="middle">pachet teste ATF</text>
+        <rect class="node" x="315" y="70" width="215" height="68" rx="10"></rect><text class="nt" x="422" y="98" text-anchor="middle">Contract vocabulary</text><text class="ns" x="422" y="120" text-anchor="middle">@AtfContract / steps</text>
+        <rect class="node" x="600" y="70" width="225" height="68" rx="10"></rect><text class="nt" x="712" y="98" text-anchor="middle">Lifecycle control</text><text class="ns" x="712" y="120" text-anchor="middle">Before/Test/After</text>
+        <rect class="node" x="900" y="70" width="230" height="68" rx="10"></rect><text class="nt" x="1015" y="98" text-anchor="middle">Report artifacts</text><text class="ns" x="1015" y="120" text-anchor="middle">Extent / Allure / pasi</text>
+        <rect class="node" x="75" y="245" width="230" height="68" rx="10"></rect><text class="nt" x="190" y="273" text-anchor="middle">Screenshot evidence</text><text class="ns" x="190" y="295" text-anchor="middle">final / failure / fara duplicate</text>
+        <rect class="node" x="380" y="245" width="230" height="68" rx="10"></rect><text class="nt" x="495" y="273" text-anchor="middle">Adapters</text><text class="ns" x="495" y="295" text-anchor="middle">comportament Extent / Allure</text>
+        <rect class="node" x="685" y="245" width="230" height="68" rx="10"></rect><text class="nt" x="800" y="273" text-anchor="middle">Config / window</text><text class="ns" x="800" y="295" text-anchor="middle">dimensiune / mod / zoom</text>
+        <rect class="node" x="990" y="245" width="190" height="68" rx="10"></rect><text class="nt" x="1085" y="273" text-anchor="middle">API base</text><text class="ns" x="1085" y="295" text-anchor="middle">pasi / validator</text>
+        <rect class="node" x="240" y="430" width="250" height="68" rx="10"></rect><text class="nt" x="365" y="458" text-anchor="middle">UI support</text><text class="ns" x="365" y="480" text-anchor="middle">BaseTestUI / validare</text>
+        <rect class="node" x="570" y="430" width="280" height="68" rx="10"></rect><text class="nt" x="710" y="458" text-anchor="middle">Framework guarantees</text><text class="ns" x="710" y="480" text-anchor="middle">observabile / repetabile</text>
+        <rect class="node" x="910" y="430" width="250" height="68" rx="10"></rect><text class="nt" x="1035" y="458" text-anchor="middle">ATF Core Aggregate</text><text class="ns" x="1035" y="480" text-anchor="middle">441 passed / 0 failed</text>
+        <path class="edge" marker-end="url(#cap-arrow)" d="M240 104 H315"></path><path class="edge" marker-end="url(#cap-arrow)" d="M530 104 H600"></path><path class="edge" marker-end="url(#cap-arrow)" d="M825 104 H900"></path>
+        <path class="edge soft" marker-end="url(#cap-arrow)" d="M1015 138 C1015 190 495 195 495 245"></path><path class="edge soft" marker-end="url(#cap-arrow)" d="M1015 138 C1015 195 190 195 190 245"></path><path class="edge soft" marker-end="url(#cap-arrow)" d="M712 138 C712 190 800 195 800 245"></path>
+        <path class="edge soft" marker-end="url(#cap-arrow)" d="M1085 313 C1085 390 780 395 780 430"></path><path class="edge soft" marker-end="url(#cap-arrow)" d="M365 498 H570"></path><path class="edge soft" marker-end="url(#cap-arrow)" d="M190 313 C190 380 570 390 570 430"></path><path class="edge soft" marker-end="url(#cap-arrow)" d="M495 313 C495 365 620 380 620 430"></path><path class="edge soft" marker-end="url(#cap-arrow)" d="M800 313 C800 370 735 380 735 430"></path><path class="edge soft" marker-end="url(#cap-arrow)" d="M850 464 H910"></path><path class="edge soft" marker-end="url(#cap-arrow)" d="M1015 138 C1145 230 1110 360 1060 430"></path>
+      </svg>
+    </div>
+    <details class="subdetails graph-legend">
+      <summary>Legend</summary>
+      <ul class="graph-legend-list">
+        <li>Application map / capability map: nodurile arata obiectele de capabilitate ale framework-ului, adica garantii observabile pentru teste si rapoarte.</li>
+        <li>Package overlay: muchiile arata cum contractul executabil devine artefact, screenshot, config sau validator.</li>
+        <li>Maturity owned/partial: Owned inseamna capabilitate inchisa rece prin teste; Partial inseamna suport util, dar incomplet.</li>
+        <li>Comprehension limits: API base, UI support si adancimea dovezilor Allure raman limite explicite, nu sunt ascunse de scor.</li>
+      </ul>
+    </details>
+    <details class="subdetails node-proof-strip">
+      <summary>Framework Capability Proof Strip / Business Understanding Strip - Banda de dovada noduri</summary>
+      <table>
+        <thead><tr><th>Node/flow</th><th>Test/method</th><th>Layer path</th><th>Business evidence</th><th>Comprehension limit</th></tr></thead>
+        <tbody>
+          <tr><td>ATF test package</td><td><code>atfCoreTestInventoryIsVisibleInExtentReport()</code></td><td>AtfCoreTestInventoryExtentAuditTest -> AtfCapabilityCatalog</td><td>atlasul framework este ancorat in metode si suite reale ATF-core</td><td>contractul framework-atlas trebuie regenerat dupa schimbari majore</td></tr>
+          <tr><td>Report artifacts</td><td><code>extent_does_not_crash_on_failure_outside_step()</code></td><td>TestListenerFailureContractTest -> ExtentAdapter</td><td>failure-ul poate fi publicat ca artefact redeschisibil</td><td>randare vizuala partial smoke-based</td></tr>
+          <tr><td>Screenshot evidence</td><td><code>successful_ui_tests_follow_final_screenshot_contract()</code></td><td>FinalUiScreenshotContractTest -> TestListener -> UIEngine</td><td>politica de screenshot final/failure este verificabila</td><td>matrice browser partiala</td></tr>
+          <tr><td>ATF Core Aggregate</td><td><code>testng-atf-core.xml</code></td><td>TestNG suite -> AtfCoreAggregateReportListener -> Extent aggregate artifact</td><td>sweep-ul ATF-core publica 441 test cases verzi intr-un raport aggregate redeschisibil</td><td>Allure-only este validat separat ca evidence profile</td></tr>
+        </tbody>
+      </table>
+    </details>
+  </details>
+
+  <details data-atlas-section="3. business flow understanding">
+    <summary><span class="summary-title">3. Business Flow Understanding / Framework Capability Understanding - Intelegerea Capabilitatilor Framework</span><span class="sumhint">subgrafuri framework source-specific</span></summary>
+
+    <details class="subdetails" data-business-flow="reporting-lifecycle" data-capability-flow="reporting lifecycle">
+      <summary>3.1 Lifecycle raportare</summary>
+      <svg class="diag" role="img" aria-label="Graf flow lifecycle raportare" viewBox="0 0 1220 260">
+        <rect class="node" x="70" y="85" width="210" height="58" rx="10"></rect><text class="nt" x="175" y="110" text-anchor="middle">Autor test</text><text class="ns" x="175" y="130" text-anchor="middle">are nevoie de o poveste de failure</text>
+        <rect class="node" x="350" y="85" width="210" height="58" rx="10"></rect><text class="nt" x="455" y="110" text-anchor="middle">Eveniment pas</text><text class="ns" x="455" y="130" text-anchor="middle">actiune vizibila</text>
+        <rect class="node" x="630" y="85" width="230" height="58" rx="10"></rect><text class="nt" x="745" y="110" text-anchor="middle">Artefacte raport</text><text class="ns" x="745" y="130" text-anchor="middle">obiect capabilitate</text>
+        <rect class="node" x="930" y="85" width="230" height="58" rx="10"></rect><text class="nt" x="1045" y="110" text-anchor="middle">Rezultat observabil</text><text class="ns" x="1045" y="130" text-anchor="middle">failure unic rece</text>
+        <path class="edge" d="M280 114 H350"></path><path class="edge" d="M560 114 H630"></path><path class="edge" d="M860 114 H930"></path>
+      </svg>
+      <details class="subdetails node-proof-strip" data-atlas-role="local-proof-strip">
+      <summary>Framework Capability Proof Strip / Business Understanding Strip - Banda de dovada noduri</summary>
+      <table>
+        <thead><tr><th>Node/flow</th><th>Test/method</th><th>Layer path</th><th>Proven business understanding</th><th>Limit</th></tr></thead>
+        <tbody>
+          <tr><td>node/flow: poveste failure</td><td><code>logs_fail_only_once_when_step_already_failed()</code></td><td><code>TestListenerFailureContractTest</code> -> StepLogger -> TestListener</td><td>capability object: artefactele de raport raman unice si redeschisibile</td><td>limit: focus pe listener</td></tr>
+          <tr><td>node/flow: expected failure contract</td><td><code>expectedFailureTestsUseSharedContractNarrative()</code></td><td><code>AtfExpectedFailureContractTest</code> -> AtfExpectedFailure -> AtfContractSteps</td><td>capability object: fail-ul controlat devine PASS auditat, nu rosu fals</td><td>limit: contract helper, nu raport vizual complet</td></tr>
+        </tbody>
+      </table>
+      </details>
+      <details class="subdetails graph-legend"><summary>Legend</summary><ul class="graph-legend-list"><li>Arata scopul slice-ului: lifecycle reporting si failure ownership.</li><li>Acest slice aprofundeaza Framework Capability Flow (Business Flow Graph anchor) printr-un obiect Owned: failure reporting redeschisibil.</li><li>Limita: output vizual final ramane partial smoke-tested.</li></ul></details>
+    </details>
+
+    <details class="subdetails" data-business-flow="dovada-screenshot" data-capability-flow="dovada screenshot">
+      <summary>3.2 Dovada screenshot</summary>
+      <svg class="diag" role="img" aria-label="Graf flow dovada screenshot" viewBox="0 0 1220 260">
+        <rect class="node" x="70" y="85" width="210" height="58" rx="10"></rect><text class="nt" x="175" y="110" text-anchor="middle">Autor test UI</text><text class="ns" x="175" y="130" text-anchor="middle">are nevoie de dovada vizuala</text>
+        <rect class="node" x="350" y="85" width="210" height="58" rx="10"></rect><text class="nt" x="455" y="110" text-anchor="middle">Interactiune UI</text><text class="ns" x="455" y="130" text-anchor="middle">actiune vizibila</text>
+        <rect class="node" x="630" y="85" width="230" height="58" rx="10"></rect><text class="nt" x="745" y="110" text-anchor="middle">Dovada screenshot</text><text class="ns" x="745" y="130" text-anchor="middle">obiect capabilitate</text>
+        <rect class="node" x="930" y="85" width="230" height="58" rx="10"></rect><text class="nt" x="1045" y="110" text-anchor="middle">Rezultat observabil</text><text class="ns" x="1045" y="130" text-anchor="middle">imagine final/failure</text>
+        <path class="edge" d="M280 114 H350"></path><path class="edge" d="M560 114 H630"></path><path class="edge" d="M860 114 H930"></path>
+      </svg>
+      <details class="subdetails node-proof-strip" data-atlas-role="local-proof-strip">
+      <summary>Framework Capability Proof Strip / Business Understanding Strip - Banda de dovada noduri</summary>
+      <table>
+        <thead><tr><th>Node/flow</th><th>Test/method</th><th>Layer path</th><th>Proven business understanding</th><th>Limit</th></tr></thead>
+        <tbody>
+          <tr><td>node/flow: screenshot final</td><td><code>successful_ui_tests_follow_final_screenshot_contract()</code></td><td><code>FinalUiScreenshotContractTest</code> -> UiInteractionTracker -> UIEngine</td><td>capability object: dovada screenshot exista doar pentru actiune UI reala</td><td>limit: matrice browser partiala</td></tr>
+          <tr><td>node/flow: screenshot Allure smoke</td><td><code>allure_receives_final_and_failure_screenshots_without_duplicates()</code></td><td><code>AllureScreenshotArtifactSmokeTest</code> -> <code>AllureResultFixture</code> -> screenshot attachments</td><td>capability object: screenshot-ul Allure ramane artifact, nu eticheta decorativa</td><td>limit: Allure-only smoke</td></tr>
+        </tbody>
+      </table>
+      </details>
+      <details class="subdetails graph-legend"><summary>Legend</summary><ul class="graph-legend-list"><li>Arata scopul slice-ului: dovada screenshot si artifact ownership.</li><li>Acest slice aprofundeaza Framework Capability Flow (Business Flow Graph anchor) printr-un obiect Owned: screenshot final/failure.</li><li>Limita: nu acopera toate combinatiile browser/reporter.</li></ul></details>
+    </details>
+
+    <details class="subdetails" data-business-flow="adapters" data-capability-flow="adapters">
+      <summary>3.3 Adapters</summary>
+      <svg class="diag" role="img" aria-label="Graf flow adapters" viewBox="0 0 1220 260">
+        <rect class="node" x="70" y="85" width="210" height="58" rx="10"></rect><text class="nt" x="175" y="110" text-anchor="middle">Owner raportare</text><text class="ns" x="175" y="130" text-anchor="middle">are nevoie de output curat</text>
+        <rect class="node" x="350" y="85" width="210" height="58" rx="10"></rect><text class="nt" x="455" y="110" text-anchor="middle">Payload logger</text><text class="ns" x="455" y="130" text-anchor="middle">actiune vizibila</text>
+        <rect class="node" x="630" y="85" width="230" height="58" rx="10"></rect><text class="nt" x="745" y="110" text-anchor="middle">Adapters</text><text class="ns" x="745" y="130" text-anchor="middle">obiect capabilitate</text>
+        <rect class="node" x="930" y="85" width="230" height="58" rx="10"></rect><text class="nt" x="1045" y="110" text-anchor="middle">Rezultat observabil</text><text class="ns" x="1045" y="130" text-anchor="middle">fara dovada falsa</text>
+        <path class="edge" d="M280 114 H350"></path><path class="edge" d="M560 114 H630"></path><path class="edge" d="M860 114 H930"></path>
+      </svg>
+      <details class="subdetails node-proof-strip" data-atlas-role="local-proof-strip">
+      <summary>Framework Capability Proof Strip / Business Understanding Strip - Banda de dovada noduri</summary>
+      <table>
+        <thead><tr><th>Node/flow</th><th>Test/method</th><th>Layer path</th><th>Proven business understanding</th><th>Limit</th></tr></thead>
+        <tbody>
+          <tr><td>node/flow: payload gol Extent</td><td><code>extent_does_not_log_empty_payload_code_blocks()</code></td><td><code>EmptyPayloadAttachmentContractTest</code> -> ExtentAdapter -> ExtentTestContext</td><td>capability object: adapters nu transforma payload-ul gol in dovada</td><td>limit: taxonomie payload partiala</td></tr>
+          <tr><td>node/flow: presentation Allure</td><td><code>allure_step_details_do_not_pollute_test_level_parameters()</code></td><td><code>AllurePresentationContractTest</code> -> <code>AllureResultFixture</code> -> result JSON</td><td>capability object: detaliile stau in steps, nu polueaza nivelul testului</td><td>limit: Allure renderer separat</td></tr>
+        </tbody>
+      </table>
+      </details>
+      <details class="subdetails graph-legend"><summary>Legend</summary><ul class="graph-legend-list"><li>Arata scopul slice-ului: adapters si igiena output-ului.</li><li>Acest slice aprofundeaza Framework Capability Flow (Business Flow Graph anchor) prin obiecte Owned si partiale: Extent curat, Allure ca dovada separata.</li><li>Limita: Allure este validat ca evidence contract, nu ca dublura vizuala Extent.</li></ul></details>
+    </details>
+
+    <details class="subdetails" data-business-flow="config-window" data-capability-flow="config window">
+      <summary>3.4 Config / window</summary>
+      <svg class="diag" role="img" aria-label="Graf flow config/window" viewBox="0 0 1220 260">
+        <rect class="node" x="70" y="85" width="210" height="58" rx="10"></rect><text class="nt" x="175" y="110" text-anchor="middle">Runner</text><text class="ns" x="175" y="130" text-anchor="middle">are nevoie de suprafata stabila</text>
+        <rect class="node" x="350" y="85" width="210" height="58" rx="10"></rect><text class="nt" x="455" y="110" text-anchor="middle">Config runtime</text><text class="ns" x="455" y="130" text-anchor="middle">actiune vizibila</text>
+        <rect class="node" x="630" y="85" width="230" height="58" rx="10"></rect><text class="nt" x="745" y="110" text-anchor="middle">Config / window</text><text class="ns" x="745" y="130" text-anchor="middle">obiect capabilitate</text>
+        <rect class="node" x="930" y="85" width="230" height="58" rx="10"></rect><text class="nt" x="1045" y="110" text-anchor="middle">Rezultat observabil</text><text class="ns" x="1045" y="130" text-anchor="middle">fereastra determinista</text>
+        <path class="edge" d="M280 114 H350"></path><path class="edge" d="M560 114 H630"></path><path class="edge" d="M860 114 H930"></path>
+      </svg>
+      <details class="subdetails node-proof-strip" data-atlas-role="local-proof-strip">
+      <summary>Framework Capability Proof Strip / Business Understanding Strip - Banda de dovada noduri</summary>
+      <table>
+        <thead><tr><th>Node/flow</th><th>Test/method</th><th>Layer path</th><th>Proven business understanding</th><th>Limit</th></tr></thead>
+        <tbody>
+          <tr><td>node/flow: resolver fereastra</td><td><code>window_size_resolution_contract_is_declarative()</code></td><td><code>UIWindowSizeResolverContractTest</code> -> UIWindowSizeResolver -> UIWindowConfiguration</td><td>capability object: config/window este determinist din valorile runtime</td><td>limit: matrice OS/window partiala</td></tr>
+          <tr><td>node/flow: zoom Allure evidence</td><td><code>allure_final_screenshots_reflect_real_zoom_difference()</code></td><td><code>AllureUiZoomArtifactSmokeTest</code> -> <code>AllureZoomEvidenceFixture</code> -> PlaywrightEngine</td><td>capability object: zoom-ul runtime este dovedit prin artifact vizual</td><td>limit: engine smoke</td></tr>
+        </tbody>
+      </table>
+      </details>
+      <details class="subdetails graph-legend"><summary>Legend</summary><ul class="graph-legend-list"><li>Arata scopul slice-ului: runtime config si zoom evidence.</li><li>Acest slice aprofundeaza Framework Capability Flow (Business Flow Graph anchor) printr-un obiect Owned: size/mode/zoom determinist.</li><li>Limita: nu este matrice completa OS/window manager.</li></ul></details>
+    </details>
+
+    <details class="subdetails" data-business-flow="api-base" data-capability-flow="api base">
+      <summary>3.5 API base</summary>
+      <svg class="diag" role="img" aria-label="Graf flow API base" viewBox="0 0 1220 260">
+        <rect class="node" x="70" y="85" width="210" height="58" rx="10"></rect><text class="nt" x="175" y="110" text-anchor="middle">Tester API</text><text class="ns" x="175" y="130" text-anchor="middle">are nevoie de pasi reutilizabili</text>
+        <rect class="node" x="350" y="85" width="210" height="58" rx="10"></rect><text class="nt" x="455" y="110" text-anchor="middle">Request invalid</text><text class="ns" x="455" y="130" text-anchor="middle">actiune vizibila</text>
+        <rect class="node" x="630" y="85" width="230" height="58" rx="10"></rect><text class="nt" x="745" y="110" text-anchor="middle">API base</text><text class="ns" x="745" y="130" text-anchor="middle">obiect capabilitate</text>
+        <rect class="node" x="930" y="85" width="230" height="58" rx="10"></rect><text class="nt" x="1045" y="110" text-anchor="middle">Rezultat observabil</text><text class="ns" x="1045" y="130" text-anchor="middle">raspuns validat</text>
+        <path class="edge" d="M280 114 H350"></path><path class="edge" d="M560 114 H630"></path><path class="edge" d="M860 114 H930"></path>
+      </svg>
+      <details class="subdetails node-proof-strip" data-atlas-role="local-proof-strip">
+      <summary>Framework Capability Proof Strip / Business Understanding Strip - Banda de dovada noduri</summary>
+      <table>
+        <thead><tr><th>Node/flow</th><th>Test/method</th><th>Layer path</th><th>Proven business understanding</th><th>Limit</th></tr></thead>
+        <tbody>
+          <tr><td>node/flow: email invalid</td><td><code>invalid_email_is_rejected()</code></td><td><code>NegativeUserTests</code> -> UsersSteps -> ResponseValidator</td><td>capability object: API base expune raspuns negativ prin validator reutilizabil</td><td>limit: specific endpoint</td></tr>
+          <tr><td>node/flow: cleanup boundary</td><td><code>cleanup_respects_reporting_engine_contract()</code></td><td><code>AllureResultsCleanupTest</code> -> ReportingEngineCleanup -> ReportingPaths</td><td>capability object: cleanup-ul respecta ownership-ul engine-ului de raportare</td><td>limit: filesystem contract</td></tr>
+        </tbody>
+      </table>
+      </details>
+      <details class="subdetails graph-legend"><summary>Legend</summary><ul class="graph-legend-list"><li>Arata scopul slice-ului: API base si validator behavior.</li><li>Acest slice aprofundeaza Framework Capability Flow (Business Flow Graph anchor) printr-un obiect Partial: API base reutilizabil.</li><li>Limita: mai mult endpoint smoke decat contract intern complet.</li></ul></details>
+    </details>
+
+    <details class="subdetails" data-business-flow="ui-support" data-capability-flow="ui support">
+      <summary>3.6 UI support</summary>
+      <svg class="diag" role="img" aria-label="Graf flow UI support" viewBox="0 0 1220 260">
+        <rect class="node" x="70" y="85" width="210" height="58" rx="10"></rect><text class="nt" x="175" y="110" text-anchor="middle">Tester UI</text><text class="ns" x="175" y="130" text-anchor="middle">are nevoie de validare clara</text>
+        <rect class="node" x="350" y="85" width="210" height="58" rx="10"></rect><text class="nt" x="455" y="110" text-anchor="middle">Redirect registration</text><text class="ns" x="455" y="130" text-anchor="middle">actiune vizibila</text>
+        <rect class="node" x="630" y="85" width="230" height="58" rx="10"></rect><text class="nt" x="745" y="110" text-anchor="middle">UI support</text><text class="ns" x="745" y="130" text-anchor="middle">obiect capabilitate</text>
+        <rect class="node" x="930" y="85" width="230" height="58" rx="10"></rect><text class="nt" x="1045" y="110" text-anchor="middle">Rezultat observabil</text><text class="ns" x="1045" y="130" text-anchor="middle">URL + buton login</text>
+        <path class="edge" d="M280 114 H350"></path><path class="edge" d="M560 114 H630"></path><path class="edge" d="M860 114 H930"></path>
+      </svg>
+      <details class="subdetails node-proof-strip" data-atlas-role="local-proof-strip">
+      <summary>Framework Capability Proof Strip / Business Understanding Strip - Banda de dovada noduri</summary>
+      <table>
+        <thead><tr><th>Node/flow</th><th>Test/method</th><th>Layer path</th><th>Proven business understanding</th><th>Limit</th></tr></thead>
+        <tbody>
+          <tr><td>node/flow: validare redirect</td><td><code>redirected_to_login_contract_waits_for_url_and_login_button()</code></td><td><code>RegistrationValidationContractTest</code> -> RegistrationValidation -> StubUiEngine</td><td>capability object: UI support asteapta URL si element vizibil</td><td>limit: registration-heavy</td></tr>
+          <tr><td>node/flow: after-method boundary</td><td><code>test_body_passes_before_after_failure()</code></td><td><code>AfterMethodFailureFixture</code> -> TestListener -> teardown reporting</td><td>capability object: after-method failure ramane boundary auditat, nu test body fals</td><td>limit: fixture diagnostic</td></tr>
+        </tbody>
+      </table>
+      </details>
+      <details class="subdetails graph-legend"><summary>Legend</summary><ul class="graph-legend-list"><li>Arata scopul slice-ului: UI support si validation boundaries.</li><li>Acest slice aprofundeaza Framework Capability Flow (Business Flow Graph anchor) printr-un obiect Partial: UI support registration-heavy.</li><li>Limita: registration-heavy, nu toate page/action/component patterns.</li></ul></details>
+    </details>
+
+    <details class="subdetails" data-business-flow="atf-core-aggregate" data-capability-flow="atf core aggregate">
+      <summary>3.7 ATF-core aggregate audit</summary>
+      <svg class="diag" role="img" aria-label="Graf flow ATF core aggregate audit" viewBox="0 0 1220 260">
+        <rect class="node" x="70" y="85" width="210" height="58" rx="10"></rect><text class="nt" x="175" y="110" text-anchor="middle">Maintainer ATF</text><text class="ns" x="175" y="130" text-anchor="middle">are nevoie de verdict global</text>
+        <rect class="node" x="350" y="85" width="210" height="58" rx="10"></rect><text class="nt" x="455" y="110" text-anchor="middle">Core sweep</text><text class="ns" x="455" y="130" text-anchor="middle">441 test cases</text>
+        <rect class="node" x="630" y="85" width="230" height="58" rx="10"></rect><text class="nt" x="745" y="110" text-anchor="middle">Aggregate report</text><text class="ns" x="745" y="130" text-anchor="middle">obiect capabilitate</text>
+        <rect class="node" x="930" y="85" width="230" height="58" rx="10"></rect><text class="nt" x="1045" y="110" text-anchor="middle">Rezultat observabil</text><text class="ns" x="1045" y="130" text-anchor="middle">441 passed / 0 failed</text>
+        <path class="edge" d="M280 114 H350"></path><path class="edge" d="M560 114 H630"></path><path class="edge" d="M860 114 H930"></path>
+      </svg>
+      <details class="subdetails node-proof-strip" data-atlas-role="local-proof-strip">
+      <summary>Framework Capability Proof Strip / Business Understanding Strip - Banda de dovada noduri</summary>
+      <table>
+        <thead><tr><th>Node/flow</th><th>Test/method</th><th>Layer path</th><th>Proven business understanding</th><th>Limit</th></tr></thead>
+        <tbody>
+          <tr><td>node/flow: core sweep verdict</td><td><code>generateReport()</code></td><td>TestNG package sweep -> AtfCoreAggregateReportListener -> <code>ATFCoreAggregateExtentReport.html</code></td><td>capability object: rezultatul ATF-core este un artifact aggregate, nu o lista de clase</td><td>limit: exclude intentionat <code>allure-only</code> si fixture-urile controlled-failure</td></tr>
+          <tr><td>node/flow: aggregate manifest</td><td><code>writeManifest()</code></td><td>AtfCoreAggregateReportListener -> runtime manifest -> validation README -> atlas audit row</td><td>capability object: totalul, passed/failed/skipped si engine-ul sunt redeschisibile</td><td>limit: manifestul reflecta ultimul run publicat</td></tr>
+        </tbody>
+      </table>
+      </details>
+      <details class="subdetails graph-legend"><summary>Legend</summary><ul class="graph-legend-list"><li>Arata scopul slice-ului: verdict global ATF-core si artifact aggregate publicabil.</li><li>Acest slice aprofundeaza Framework Capability Flow (Business Flow Graph anchor) printr-un obiect Owned: aggregate Extent cu 441 test cases passed.</li><li>Maturity: Owned pentru Extent aggregate, separat de Allure evidence profile.</li><li>Limita: Allure-only ramane separat pentru ca Allure este evidence contract, nu layout clone Extent.</li></ul></details>
+    </details>
+  </details>
+
+  <details data-atlas-section="4. business evidence tables">
+    <summary><span class="summary-title">4. Business Evidence Tables / Framework Capability Evidence Tables - Tabele De Dovada Framework</span><span class="sumhint">capability object coverage, trace, scor, audit</span></summary>
+    <details class="subdetails">
+      <summary>4.1 Capability Object Coverage / Business Object Coverage - Acoperire Obiecte Capabilitate</summary>
+      <table>
+        <thead><tr><th>Business object / obiect capabilitate</th><th>Maturitate</th><th>Dovada</th><th>Comprehension limit / limita intelegere</th></tr></thead>
+        <tbody>
+          <tr><td>Reporting lifecycle</td><td>Owned</td><td>TestListenerFailureContractTest, StepLoggerContractTest</td><td>output-ul vizual al reporterului este partial smoke-based</td></tr>
+          <tr><td>Screenshot evidence</td><td>Owned</td><td>FinalUiScreenshotContractTest, ExtentScreenshotArtifactSmokeTest</td><td>matricea browser poate creste</td></tr>
+          <tr><td>Adapters raportare</td><td>Owned</td><td>ExtentAdapterTest, EmptyPayloadAttachmentContractTest</td><td>Allure are contract de dovezi, nu paritate vizuala cu Extent</td></tr>
+          <tr><td>Config / window</td><td>Owned</td><td>UIWindowSizeResolverContractTest</td><td>nu fiecare ramura OS/window manager</td></tr>
+          <tr><td>API base</td><td>Partial</td><td>EndToEndUserLifecycleTests, NegativeUserTests</td><td>smoke functional mai puternic decat contractul base-layer</td></tr>
+          <tr><td>UI support</td><td>Partial</td><td>RegistrationTests, RegistrationValidationContractTest</td><td>acoperire registration-heavy</td></tr>
+          <tr><td>ATF Core Aggregate</td><td>Owned</td><td>testng-atf-core.xml, ATFCoreAggregateExtentReport.html, README.md</td><td>exclude Allure-only by design; Allure evidence este auditata separat</td></tr>
+        </tbody>
+      </table>
+    </details>
+    <details class="subdetails">
+      <summary>4.2 Layer Trace Map - Harta Trace Pe Layere</summary>
+      <table>
+        <thead><tr><th>Intrebare flow</th><th>Test</th><th>Trasabilitate layer</th><th>Model / constant / capability object</th></tr></thead>
+        <tbody>
+          <tr><td>Poate un pas esuat sa ramana unic si lizibil?</td><td>TestListenerFailureContractTest</td><td>test -> action StepLogger -> validation TestListener -> model ReportingManager -> capability object Artefacte raport</td><td>model: report step; constant: failure status; capability object: Artefacte raport</td></tr>
+          <tr><td>Poate screenshot-ul UI final sa fie atasat doar cand exista UI real?</td><td>FinalUiScreenshotContractTest</td><td>test -> component UiInteractionTracker -> action UiScreenshotFailureHandler -> model UIEngine -> capability object Dovada screenshot</td><td>model: screenshot artifact; constant: final/failure policy; capability object: Dovada screenshot</td></tr>
+          <tr><td>Poate fi blocat payload-ul gol Extent?</td><td>EmptyPayloadAttachmentContractTest</td><td>test -> action ReportLogger -> validation ExtentAdapter -> model ExtentTestContext -> capability object Adapter hygiene</td><td>model: report attachment; constant: empty payload; capability object: Adapters</td></tr>
+          <tr><td>Poate cleanup-ul Allure sa respecte ownership-ul raportarii?</td><td>AllureResultsCleanupTest</td><td>test -> service ReportingEngineCleanup -> validation AtfReportingArtifactAssertions -> model ReportingPaths -> capability object Cleanup boundary</td><td>model: report directory; constant: reporting engine; capability object: Adapter cleanup</td></tr>
+          <tr><td>Poate config-ul runtime al ferestrei sa se rezolve determinist?</td><td>UIWindowSizeResolverContractTest</td><td>test -> service ConfigManager -> validation UIWindowSizeResolver -> model UIWindowConfiguration -> capability object Config / window</td><td>model: UIWindowConfiguration; constant: size/mode/zoom; capability object: Config / window</td></tr>
+          <tr><td>Pot pasii API sa expuna contracte negative?</td><td>NegativeUserTests</td><td>test -> service UsersSteps -> validation ResponseValidator -> model response body -> capability object API base</td><td>model: response body; constant: expected status; capability object: API base</td></tr>
+          <tr><td>Poate validarea UI sa astepte starea vizibila de login?</td><td>RegistrationValidationContractTest</td><td>test -> page LoginPage -> service RegistrationValidation -> component StubUiEngine -> capability object UI support</td><td>model: visible login state; constant: URL fragment; capability object: UI support</td></tr>
+          <tr><td>Poate sweep-ul ATF-core sa publice un verdict aggregate redeschisibil?</td><td>testng-atf-core.xml</td><td>suite -> package sweep -> AtfCoreAggregateReportListener -> Extent aggregate report -> validation artifact</td><td>model: aggregate summary; constant: reporting engine extent; capability object: ATF Core Aggregate</td></tr>
+        </tbody>
+      </table>
+    </details>
+    <details class="subdetails">
+      <summary>4.3 Repeated Business Corridors - Coridoare Repetate De Capabilitate</summary>
+      <table>
+        <thead><tr><th>Coridor</th><th>De ce se repeta</th><th>Risc</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr><td>Lifecycle raportare</td><td>listener, logger si adapters se intalnesc acolo</td><td>poate deveni procedural daca nu e legat de artefacte</td><td>sanatos, sustinut de sursa</td></tr>
+          <tr><td>Dovada screenshot</td><td>final, failure, Extent si Allure depind de el</td><td>poate ascunde gap-uri de matrice browser</td><td>owned cu limita declarata</td></tr>
+          <tr><td>Aggregate ATF-core</td><td>contractele core, reporting, UI/API support si Extent presentation converg intr-un singur artifact</td><td>poate fi confundat cu Allure-only daca nu se noteaza separarea</td><td>owned, publicat ca Extent aggregate</td></tr>
+          <tr><td>Registration UI support</td><td>layer-ul UI sample foloseste registration ca fixture</td><td>poate parea mai larg decat este</td><td>partial, neumflat</td></tr>
+        </tbody>
+      </table>
+    </details>
+    <details class="subdetails">
+      <summary>4.4 Comprehension Limits - Limite si riscuri de capabilitate</summary>
+      <table>
+        <thead><tr><th>Capabilitate</th><th>Ce este owned</th><th>Ce ramane partial</th><th>Impact pe scor</th></tr></thead>
+        <tbody>
+          <tr><td>Lifecycle raportare</td><td>poveste failure, step logging, supravietuire nod raport</td><td>randarea vizuala finala ramane partial smoke-based</td><td>tine scorul sus, dar nu perfect</td></tr>
+          <tr><td>Dovada screenshot</td><td>politica final/failure si duplicate guard</td><td>matricea browser si adancimea dovezilor pe report engine pot creste</td><td>limiteaza pretentia de 95+</td></tr>
+          <tr><td>API base</td><td>validare raspuns si flow negativ smoke</td><td>contract intern de base layer mai subtire</td><td>partial declarat, nu supra-vandut</td></tr>
+          <tr><td>UI support</td><td>stare vizibila redirect/login</td><td>acoperire registration-heavy, nu toate pattern-urile UI</td><td>scade claritatea obiectului framework</td></tr>
+          <tr><td>ATF Core Aggregate</td><td>441 test cases sunt publicate ca passed in raportul aggregate Extent</td><td>Allure-only si controlled-failure fixtures raman profile separate, nu lipsuri ascunse</td><td>creste fidelitatea dovezii, dar nu sterge limitele de scope</td></tr>
+          <tr><td>Closure ladder</td><td>start -> visible action -> durable object -> reopen/relogin -> unowned lifecycle boundary</td><td>reopen/relogin pressure este documentata ca limita unde flow-ul nu are dovada completa</td><td>plafoneaza pretentia de 95+</td></tr>
+        </tbody>
+      </table>
+    </details>
+    <details class="subdetails">
+      <summary>4.5 Suport scor</summary>
+      <table>
+        <thead><tr><th>Axa</th><th>Dovada</th><th>Suport scor</th></tr></thead>
+        <tbody>
+          <tr><td>Intelegere Business</td><td>Dovada: graful arata capabilitati framework ca business object-uri / capability objects observabile; nu revendica business app end-to-end.</td><td>93</td></tr>
+          <tr><td>Reconstructie Flow</td><td>Dovada: flow-urile 3.x au actor, intentie, actiune vizibila, business object si rezultat observabil.</td><td>94</td></tr>
+          <tr><td>Trasabilitate Layere</td><td>Dovada: test -> action/component/page/service/validation/model/constants -> business object in Layer Trace Map.</td><td>95</td></tr>
+          <tr><td>Claritate Obiect Business</td><td>Dovada: Business Object Coverage separa obiectele framework de layerele tehnice, cu API/UI support declarate partial.</td><td>93</td></tr>
+          <tr><td>Fidelitate Dovada</td><td>Dovada: trace-ul sursa, contract steps, Extent si artifactele atlas sunt redeschisibile, dar sunt profile distincte.</td><td>93</td></tr>
+        </tbody>
+      </table>
+    </details>
+    <details class="subdetails">
+      <summary>4.6 Formula Overall</summary>
+      <table>
+        <thead><tr><th>Axa</th><th>Nota</th><th>Pondere</th><th>Contributie</th></tr></thead>
+        <tbody>
+          <tr><td>Intelegere Business</td><td>93</td><td>20%</td><td>18.60</td></tr>
+          <tr><td>Reconstructie Flow</td><td>94</td><td>20%</td><td>18.80</td></tr>
+          <tr><td>Trasabilitate Layere</td><td>95</td><td>25%</td><td>23.75</td></tr>
+          <tr><td>Claritate Obiect Business</td><td>93</td><td>15%</td><td>13.95</td></tr>
+          <tr><td>Fidelitate Dovada</td><td>93</td><td>20%</td><td>18.60</td></tr>
+          <tr><td><strong>Overall</strong></td><td><strong>94</strong></td><td>100%</td><td><strong>93.70 calculat si rotunjit la 94, cu cap sub 95</strong></td></tr>
+        </tbody>
+      </table>
+      <p>
+        Formula foloseste doar cele cinci axe framework publicate in score cards. Ponderile insumeaza 100%.
+        Overall 94 este calculat si rotunjit rece din axe; nu este readiness de pachet sau html-ex si nu ascunde limitele partiale pe API base,
+        UI support, profilele separate Atlas/aggregate si adancimea dovezilor Allure.
+      </p>
+    </details>
+  </details>
+
+  <details data-atlas-section="5. source-to-business trace">
+    <summary><span class="summary-title">5. Source-to-Business Trace / Source-to-Capability Trace - Trace Sursa-Catre-Capabilitate</span><span class="sumhint">metode reale -> capability object framework -> scor</span></summary>
+    <p>
+      Source trace / layer traceability este contractul central: test method -> actions -> component -> page -> service -> validation -> model -> context -> constants -> capability object.
+      Layerele sunt dovada, iar obiectul de capabilitate ramane subiectul atlasului.
+    </p>
+    <table>
+      <thead><tr><th>Lane trace</th><th>Business object / obiect capabilitate</th><th>Evidence layer</th><th>Maturity</th><th>Observable result</th><th>Comprehension limit</th></tr></thead>
+      <tbody>
+        <tr><td>reporting lifecycle</td><td>Artefacte raport</td><td>test -> action StepLogger -> validation TestListener -> context ReportingManager</td><td>Owned</td><td>poveste failure unica si redeschisibila</td><td>rendering vizual partial smoke-based</td></tr>
+        <tr><td>dovada screenshot</td><td>Dovada screenshot</td><td>test -> component tracker -> page/browser engine -> screenshot model</td><td>Owned</td><td>imagine final/failure attached</td><td>matrice browser partiala</td></tr>
+        <tr><td>adapter hygiene</td><td>Adapter output cleanliness</td><td>test -> service adapter -> validation attachment policy -> context result JSON</td><td>Owned</td><td>payload gol blocat</td><td>Allure validat ca evidence contract separat</td></tr>
+        <tr><td>runtime config</td><td>Window configuration state</td><td>test -> service config -> validation resolver -> model window context</td><td>Owned</td><td>suprafata browser determinista</td><td>nu acopera fiecare OS/window manager</td></tr>
+        <tr><td>api base</td><td>Contract raspuns API</td><td>test -> actions UsersSteps -> service API -> validation ResponseValidator</td><td>Partial</td><td>raspuns negativ validat</td><td>smoke functional mai puternic decat base-layer intern</td></tr>
+        <tr><td>ui support</td><td>Stare login UI</td><td>test -> page LoginPage -> component StubUiEngine -> validation RegistrationValidation</td><td>Partial</td><td>URL plus buton login vizibil</td><td>registration-heavy</td></tr>
+        <tr><td>atf core aggregate</td><td>ATF Core Aggregate</td><td>suite -> TestNG package sweep -> aggregate listener -> Extent artifact</td><td>Owned</td><td>441 test cases passed, 0 failed, 0 skipped</td><td>Allure-only evidence este separat</td></tr>
+      </tbody>
+    </table>
+    <details class="subdetails">
+      <summary>5.1 Suport scor - trace scor sursa-catre-capabilitate</summary>
+      <table>
+        <thead><tr><th>Axa scor</th><th>Obiectiv</th><th>Intrebare flow</th><th>Dovada sursa/layer</th><th>Scor atlas</th></tr></thead>
+        <tbody>
+          <tr><td>Intelegere Business</td><td>business goal: intelegerea garantiilor framework ca business object-uri / capability objects</td><td>flow question: ce capabilitate este owned, partiala sau limitata?</td><td>source/layer evidence: graf contract, Business Object Coverage anchor si subgrafuri 3.x</td><td>atlas score: 93</td></tr>
+          <tr><td>Reconstructie Flow</td><td>business goal: reconstruirea flow-urilor framework</td><td>flow question: cine actioneaza, cu ce intentie si ce rezultat observabil ramane?</td><td>source/layer evidence: subgrafuri 3.x si Source-to-Business Trace</td><td>atlas score: 94</td></tr>
+          <tr><td>Trasabilitate Layere</td><td>business goal: legarea garantiei de clase reale</td><td>flow question: care layer dovedeste capabilitatea?</td><td>source/layer evidence: Layer Trace Map si randuri metoda-level</td><td>atlas score: 95</td></tr>
+          <tr><td>Claritate Obiect Business</td><td>business goal: separarea obiectului de capabilitate de mecanica</td><td>flow question: obiectul este garantie observabila sau layer tehnic?</td><td>source/layer evidence: Business Object Coverage anchor si maturitate owned/partial</td><td>atlas score: 93</td></tr>
+          <tr><td>Fidelitate Dovada</td><td>business goal: dovada redeschisibila</td><td>flow question: ce artifact confirma rezultatul?</td><td>source/layer evidence: contract steps, Extent reports si audit Atlas</td><td>atlas score: 93</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Lant GQM:</strong> obiectiv -> intrebare flow -> dovada sursa/layer -> scor atlas.</p>
+    </details>
+    <details class="subdetails">
+      <summary>5.2 Trace sursa la nivel de metoda</summary>
+      <p>Each row is a product-story chain: actor -> intent -> actiune vizibila -> obiect capabilitate -> observable result.</p>
+      <table>
+        <thead><tr><th>Method</th><th>Obiect capabilitate</th><th>Evidence layer</th><th>Source trace / layer traceability</th><th>Actor / intent / actiune vizibila</th><th>Rezultat observabil</th><th>Limita intelegere</th></tr></thead>
+        <tbody>
+          <tr><td><code>successful_ui_tests_follow_final_screenshot_contract()</code></td><td>Dovada screenshot</td><td>test -> component tracker -> page/browser engine</td><td><code>FinalUiScreenshotContractTest</code> -> TestListener -> UIEngine</td><td>actor: Autor test UI; intent: visual proof; actiune vizibila: UI flow executes</td><td>rezultat observabil: politica de screenshot final este vizibila</td><td>matrice browser partiala</td></tr>
+          <tr><td><code>failed_ui_tests_preserve_existing_failure_screenshot_contract()</code></td><td>Dovada failure</td><td>test -> validation failure registry -> screenshot model</td><td><code>FinalUiScreenshotContractTest</code> -> FailureAttachmentRegistry</td><td>actor: reviewer; intent: diagnose failure; actiune vizibila: failing UI flow emits image</td><td>rezultat observabil: screenshot-ul de failure nu este duplicat</td><td>fake engine plus smoke proof</td></tr>
+          <tr><td><code>logs_fail_only_once_when_step_already_failed()</code></td><td>Lifecycle raportare</td><td>test -> action StepLogger -> validation listener</td><td><code>TestListenerFailureContractTest</code> -> StepLogger -> TestListener</td><td>actor: test author; intent: one failure story; actiune vizibila: failed step is logged</td><td>rezultat observabil: failure-ul nu este dublu numarat</td><td>focus pe listener</td></tr>
+          <tr><td><code>extent_does_not_crash_on_failure_outside_step()</code></td><td>Artefacte raport</td><td>test -> service report adapter -> context Extent</td><td><code>TestListenerFailureContractTest</code> -> ExtentAdapter</td><td>actor: framework maintainer; intent: robust reporting; actiune vizibila: failure outside step occurs</td><td>rezultat observabil: failure in afara pasului este raportabil</td><td>focus pe Extent</td></tr>
+          <tr><td><code>window_size_resolution_contract_is_declarative()</code></td><td>Stare config/window</td><td>test -> service config -> validation resolver -> model context</td><td><code>UIWindowSizeResolverContractTest</code> -> UIWindowSizeResolver</td><td>actor: runner; intent: deterministic surface; actiune vizibila: runtime window config is resolved</td><td>rezultat observabil: size/mode/zoom sunt deterministe</td><td>matrice OS partiala</td></tr>
+          <tr><td><code>extent_does_not_log_empty_payload_code_blocks()</code></td><td>Igiena adapter Extent</td><td>test -> service adapter -> validation payload policy</td><td><code>EmptyPayloadAttachmentContractTest</code> -> ExtentAdapter</td><td>actor: report reader; intent: no fake proof; actiune vizibila: empty payload is submitted</td><td>rezultat observabil: payload gol ignorat</td><td>taxonomie payload partiala</td></tr>
+          <tr><td><code>allure_step_details_do_not_pollute_test_level_parameters()</code></td><td>Igiena adapter Allure</td><td>test -> service adapter -> context result JSON</td><td><code>AllurePresentationContractTest</code> -> <code>AllureResultFixture</code></td><td>actor: report reader; intent: clean Allure output; actiune vizibila: step details are recorded</td><td>rezultat observabil: parametrii testului raman curati</td><td>Allure nu copiaza layout-ul Extent; pastreaza dovezi curate</td></tr>
+          <tr><td><code>cleanup_respects_reporting_engine_contract()</code></td><td>Cleanup boundary</td><td>test -> service cleanup -> validation artifact assertion</td><td><code>AllureResultsCleanupTest</code> -> AtfReportingArtifactAssertions</td><td>actor: maintainer; intent: clean report ownership; actiune vizibila: engine cleanup executes</td><td>rezultat observabil: directorul de rezultate respecta engine-ul</td><td>filesystem contract</td></tr>
+          <tr><td><code>allure_final_screenshots_reflect_real_zoom_difference()</code></td><td>Zoom evidence</td><td>test -> page/browser engine -> context screenshot result</td><td><code>AllureUiZoomArtifactSmokeTest</code> -> <code>AllureZoomEvidenceFixture</code></td><td>actor: UI reporter; intent: prove zoom; actiune vizibila: screenshot at zoomed page</td><td>rezultat observabil: zoom real in artifact</td><td>engine smoke</td></tr>
+          <tr><td><code>invalid_email_is_rejected()</code></td><td>Contract raspuns API</td><td>test -> actions UsersSteps -> service API -> validation ResponseValidator</td><td><code>NegativeUserTests</code> -> UsersSteps -> ResponseValidator</td><td>actor: Tester API; intent: reusable flow negativ; actiune vizibila: invalid request is sent</td><td>rezultat observabil: raspuns validat</td><td>specific endpoint</td></tr>
+          <tr><td><code>redirected_to_login_contract_waits_for_url_and_login_button()</code></td><td>Stare login UI</td><td>test -> page LoginPage -> component StubUiEngine -> validation RegistrationValidation</td><td><code>RegistrationValidationContractTest</code> -> RegistrationValidation -> StubUiEngine</td><td>actor: Tester UI; intent: stable redirect validation; actiune vizibila: registration redirect is checked</td><td>rezultat observabil: URL si buton login vizibile</td><td>registration-heavy</td></tr>
+          <tr><td><code>test_body_passes_before_after_failure()</code></td><td>After-method boundary</td><td>test -> lifecycle after-method -> validation listener context</td><td><code>AfterMethodFailureFixture</code> -> TestListener</td><td>actor: framework reviewer; intent: isolate teardown failure; actiune vizibila: after-method fails</td><td>rezultat observabil: body pass si after failure nu se confunda</td><td>fixture diagnostic</td></tr>
+          <tr><td><code>atfCoreTestInventoryIsVisibleInExtentReport()</code></td><td>Trace atlas framework</td><td>test -> source inventory -> model capability catalog -> context profile</td><td><code>AtfCoreTestInventoryExtentAuditTest</code> -> AtfCapabilityCatalog -> AtfContractProfile</td><td>actor: atlas reviewer; intent: source-backed atlas; actiune vizibila: inventarul ATF-core este publicat</td><td>rezultat observabil: 172 fisiere, 435 metode @Test, 10 suite-uri core TestNG si 19 suite-uri TestNG totale sunt inventariate</td><td>nu inlocuieste testele vizuale Extent/Allure</td></tr>
+          <tr><td><code>core/testng-atf-core.xml</code></td><td>ATF Core Aggregate</td><td>suite -> package sweep -> aggregate listener -> Extent artifact</td><td><code>src/test/resources/core/testng-atf-core.xml</code> -> <code>AtfCoreAggregateReportListener</code> -> <code>ATFCoreAggregateExtentReport.html</code></td><td>actor: ATF maintainer; intent: verdict global; actiune vizibila: core sweep runs</td><td>rezultat observabil: 441 passed / 0 failed / 0 skipped in artifactul aggregate publicat</td><td>Allure-only ramane evidence profile separat</td></tr>
+        </tbody>
+      </table>
+    </details>
+  </details>
+
+  <details data-atlas-section="6. atlas test audit">
+    <summary><span class="summary-title">6. Atlas Test Audit / Audit Teste Atlas</span><span class="sumhint">contract executabil si dovada Extent</span></summary>
+    <table>
+      <thead><tr><th>Element</th><th>Valoare</th><th>Verdict</th></tr></thead>
+      <tbody>
+        <tr><td>Result expected by this atlas</td><td><code>83 test cases / 0 failures</code></td><td>total sincronizat cu score-cardurile Extent <code>Tests Passed</code>/<code>Tests Failed</code>; Surefire method-level este publicat separat</td></tr>
+        <tr><td>Comanda framework-atlas</td><td><code>mvn -q surefire:test "-Dtest=com.endava.ai.atlas.tests.*Test" "-Datlas.html=docs/atlas/framework-under-test_framework-test-atlas.html" "-Datlas.sourceRoot=C:/work/ex/java/demo/framework-under-test/test-framework/src/test/java/com/endava/ai/atf" "-Datlas.uiSourceRoot=C:/work/ex/java/demo/framework-under-test/test-framework/src/main/java/com/endava/ai" "-Dreporting.engine=extent" "-Dreports.dir=docs/atlas/validation" "-Dreports.file.name=framework-under-test_framework-atlas-tests-extent-report.html" "-Dreports.timestamp.enabled=false" "-DforkCount=0"</code></td><td>ruleaza contractele Atlas direct peste artifactul framework-atlas framework-under-test si publica Extent-ul scoped link-uit in validation</td></tr>
+        <tr><td>Rezultat framework-atlas</td><td><code>83 test cases passed / 0 failed / 0 skipped</code></td><td>atlas framework aliniat cu score-cardurile Extent; suita Maven ruleaza 83 metode contract</td></tr>
+        <tr><td>Raport framework-atlas publicat</td><td><a href="validation/framework-under-test/framework-under-test_framework-atlas-tests-extent-report.html">validation/framework-under-test/framework-under-test_framework-atlas-tests-extent-report.html</a></td><td>dovada Extent scoped pentru rularea Atlas framework</td></tr>
+        <tr><td>Surefire XML framework-atlas publicat</td><td><a href="validation/framework-under-test/framework-under-test_framework-atlas-surefire-testsuite.xml">validation/framework-under-test/framework-under-test_framework-atlas-surefire-testsuite.xml</a></td><td>dovada XML Maven/Surefire pentru aceeasi rulare Atlas framework</td></tr>
+        <tr><td>TestNG XML framework-atlas publicat</td><td><a href="validation/framework-under-test/framework-under-test_framework-atlas-testng-results.xml">validation/framework-under-test/framework-under-test_framework-atlas-testng-results.xml</a></td><td>dovada XML TestNG pentru aceeasi rulare Atlas framework</td></tr>
+        <tr><td>Comanda ATF-core Extent</td><td><code>mvn -q test '-Dsurefire.suiteXmlFiles=src/test/resources/core/testng-atf-core.xml' '-DforkCount=0' '-Dreporting.engine=extent' '-Dreports.dir=target/reports' '-Dreports.timestamp.enabled=true' '-Dui.headless=true' '-Datf.core.aggregate.report.enabled=true' '-Datf.core.aggregate.report.engine=extent' '-Datf.core.aggregate.report.root=target/atf-core-aggregate-report-extent' '-Datf.core.aggregate.report.clean=true'</code></td><td>ruleaza umbrella ATF-core non-Allure si genereaza artifactul aggregate Extent intr-o radacina curatata inainte de publicare; in PowerShell, proprietatile Maven punctate trebuie citate</td></tr>
+        <tr><td>Rezultat Maven ATF-core</td><td><code>441 test cases / 0 failures / 0 errors / 0 skipped</code></td><td>rezultatul complet al comenzii Maven pentru sweep-ul ATF-core Extent</td></tr>
+        <tr><td>Rezultat raport ATF-core Extent</td><td><code>441 aggregate Extent invocations / 441 passed / 0 failed / 0 skipped</code></td><td>artifact agregat generat din rezultatele TestNG; rapoartele adapter-locale raman suport, nu suprafata finala de audit</td></tr>
+        <tr><td>Raport ATF-core Extent publicat</td><td><a href="validation/framework-under-test/framework-under-test_atf-core-aggregate-extent-report.html">validation/framework-under-test/framework-under-test_atf-core-aggregate-extent-report.html</a></td><td>dovada Extent agregata pentru sweep-ul ATF-core</td></tr>
+        <tr><td>Manifest ATF-core Extent publicat</td><td><a href="validation/framework-under-test/framework-under-test_atf-core-aggregate-extent-report.README.md">validation/framework-under-test/framework-under-test_atf-core-aggregate-extent-report.README.md</a></td><td>manifestul exact al raportului agregat: engine, total, passed, failed, skipped</td></tr>
+      </tbody>
+    </table>
+    <details class="subdetails">
+      <summary>Ce valideaza raportul publicat</summary>
+      <ul>
+        <li>Atlasul foloseste CSS comun, fara sistem vizual local suprascris.</li>
+        <li>Score card-urile, formula Overall si maturitatea capabilitatilor sunt auditabile.</li>
+        <li>Graful principal si subgrafurile acopera familiile framework reale.</li>
+        <li>Trace-ul metoda -> layer -> capabilitate se rezolva in sursele ATF reale.</li>
+        <li>Raportul complet include contractele Atlas rulate peste artifactul framework si sweep-ul ATF-core Extent non-Allure.</li>
+        <li>Aggregate Extent cases inseamna invocations reconciliate de listener-ul aggregate pentru sweep-ul ATF-core publicat; Allure-only ramane evidence profile separat.</li>
+      </ul>
+    </details>
+  </details>
+</div>
+
+<script>
+function toggleAll(openState){document.querySelectorAll('details').forEach(function(el){el.open=openState;});}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

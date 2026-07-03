@@ -1,0 +1,98 @@
+schemaVersion: 1
+contracts:
+  - id: html-contract.agent-closeout-cheatsheet
+    file: mcp/agent-closeout-cheatsheet.md
+    owner: MCP
+    appliesTo: [MCP]
+    role: short MCP close-out checklist aligned with typed close-out evidence plan
+    usage: informational
+  - id: html-contract.agent-runtime
+    file: mcp/agent-runtime.properties
+    owner: MCP
+    appliesTo: [MCP]
+    role: active runtime thresholds, prompt paths and agentic run constants
+    usage: referenced
+  - id: html-contract.orchestrate-iterative-runs
+    file: mcp/orchestrate-iterative-runs.html
+    owner: MCP
+    appliesTo: [MCP]
+    role: agentic execution lifecycle, run legality, stop/continue decisions and handoff
+    usage: referenced
+  - id: html-contract.execute-and-understand-run
+    file: mcp/execute-and-understand-run.html
+    owner: MCP
+    appliesTo: [MCP]
+    role: single-run execution, evidence understanding and per-run artifact expectations
+    usage: referenced
+  - id: html-contract.reporting
+    file: mcp/reporting.html
+    owner: MCP
+    appliesTo: [MCP]
+    role: MCP final package publication, artifact linking, close-out surface and navigability
+    usage: referenced
+  - id: html-contract.score-overview-reference
+    file: mcp/score-overview-reference.html
+    owner: MCP
+    appliesTo: [MCP]
+    role: MCP score meaning, caps and opening score overview pattern
+    usage: referenced
+  - id: html-contract.business-flow-graph-rubric
+    file: mcp/business-flow-graph-rubric.html
+    owner: MCP
+    appliesTo: [MCP]
+    role: MCP business graph shape, proof strips, object-centered flow and graph vocabulary
+    usage: referenced
+  - id: html-contract.ui-business-frontier-adapter
+    file: mcp/ui-business-frontier-adapter.html
+    owner: MCP
+    appliesTo: [MCP]
+    role: UI/API frontier guidance, efficient setup paths and UI validation boundary
+    usage: referenced
+  - id: html-contract.generated-test-code-review-reference
+    file: mcp/generated-test-code-review-reference.html
+    owner: MCP
+    appliesTo: [MCP]
+    role: generated test code quality, layering, helper extraction and anti-workaround review
+    usage: informational
+  - id: html-contract.pretraining-reference
+    file: mcp/pretraining-reference.html
+    owner: MCP
+    appliesTo: [MCP]
+    role: pretraining intake, runtime orientation and agent bootstrap reference
+    usage: informational
+  - id: html-contract.business-test-atlas-reference
+    file: atlas/business-test-atlas-reference.html
+    owner: Atlas
+    appliesTo: [Atlas]
+    role: business understanding atlas, business flow graph quality and Atlas skill reference
+    usage: referenced
+  - id: html-contract.report-shell
+    file: shared/report-shell.html
+    owner: Shared
+    appliesTo: [MCP, Atlas, Core]
+    role: reusable executable report shell primitive for document chrome, score opening, profile-owned sections and collapsed evidence layout
+    usage: referenced
+  - id: html-contract.shared-readme
+    file: shared/README.md
+    owner: Shared
+    appliesTo: [MCP, Atlas, Core]
+    role: owner index for shared Reporting skill primitives consumed by MCP and Atlas
+    usage: informational
+  - id: html-contract.score-card-patterns
+    file: shared/score-card-patterns.html
+    owner: Shared
+    appliesTo: [MCP, Atlas]
+    role: reusable score card primitive for score evidence, caps and opening score wall
+    usage: referenced
+  - id: html-contract.graph-style-primitives
+    file: shared/graph-style-primitives.html
+    owner: Shared
+    appliesTo: [MCP, Atlas]
+    role: reusable graph primitive for business nodes, proof strips and graph readability
+    usage: referenced
+  - id: html-contract.artifact-linking
+    file: shared/artifact-linking.html
+    owner: Shared
+    appliesTo: [MCP, Atlas]
+    role: reusable artifact link primitive for durable proof references
+    usage: referenced

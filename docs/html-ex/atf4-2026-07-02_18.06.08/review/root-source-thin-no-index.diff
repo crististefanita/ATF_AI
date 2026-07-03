@@ -1,0 +1,298 @@
+﻿diff --git a/src/main/java/com/endava/ai/ui/support/pages/AccountPage.java b/src/main/java/com/endava/ai/ui/support/pages/AccountPage.java
+index 244c896e..26394342 100644
+--- a/src/main/java/com/endava/ai/ui/support/pages/AccountPage.java
++++ b/src/main/java/com/endava/ai/ui/support/pages/AccountPage.java
+@@ -11,17 +11,20 @@ public final class AccountPage {
+     public static final String SIGN_OUT = "a[data-test='nav-sign-out']";
+     public static final String INVOICES_PATH = "/account/invoices";
+     public static final String INVOICES_TITLE = "text=Invoices";
+-    public static final String INVOICE_ROWS = "tbody tr";
+-    public static final String INVOICE_DETAILS_BODY = "body";
+-    public static final String ACCOUNT_CARD = "app-overview";
+-    public static final String FAVORITES_LINK = "a[data-test='nav-favorites'], a[href*='favorites']";
++    public static final String INVOICE_ROWS = "tbody tr";
++    public static final String INVOICE_DETAILS_BODY = "body";
++    public static final String INVOICES_BODY = "body";
++    public static final String ACCOUNT_CARD = "app-overview";
++    public static final String FIRST_NAME = "input[data-test='first-name']";
++    public static final String FAVORITES_LINK = "a[data-test='nav-favorites'], a[href*='favorites']";
+     public static final String PROFILE_LINK = "a[data-test='nav-profile'], a[href*='profile']";
+     public static final String INVOICES_LINK = "a[data-test='nav-invoices'], a[href*='invoices']";
+     public static final String MESSAGES_LINK = "a[data-test='nav-messages'], a[href*='messages']";
+     public static final String NAV_MY_INVOICES = "[data-test='nav-my-invoices']";
+-    public static final String NAV_SIGN_OUT = "[data-test='nav-sign-out']";
++    public static final String NAV_SIGN_OUT = "[data-test='nav-sign-out']";
+     public static final String BODY = "body";
+     public static final String INVOICE_TABLE = "table";
++    public static final String NEXT_PAGE = "a:has-text('»'), a[aria-label='Next'], .pagination-next a";
+ 
+     public static String invoiceDetailsPath(String invoiceId) {
+         return INVOICES_PATH + "/" + invoiceId;
+diff --git a/src/main/java/com/endava/ai/ui/support/pages/CheckoutPage.java b/src/main/java/com/endava/ai/ui/support/pages/CheckoutPage.java
+index f0330867..c9a6f292 100644
+--- a/src/main/java/com/endava/ai/ui/support/pages/CheckoutPage.java
++++ b/src/main/java/com/endava/ai/ui/support/pages/CheckoutPage.java
+@@ -13,8 +13,9 @@ public final class CheckoutPage {
+     public static final String GUEST_FIRST_NAME = "[data-test='guest-first-name']";
+     public static final String GUEST_LAST_NAME = "[data-test='guest-last-name']";
+     public static final String GUEST_SUBMIT = "[data-test='guest-submit']";
+-    public static final String PROCEED_FROM_GUEST = "[data-test='proceed-2-guest']";
+-    public static final String PROCEED_FROM_ACCOUNT = "[data-test='proceed-2']";
++    public static final String PROCEED_FROM_GUEST = "[data-test='proceed-2-guest']";
++    public static final String PROCEED_FROM_ACCOUNT = "[data-test='proceed-2']";
++    public static final String PROCEED_FROM_SIGN_IN = PROCEED_FROM_ACCOUNT;
+     public static final String COUNTRY = "[data-test='country']";
+     public static final String POSTAL_CODE = "[data-test='postal_code']";
+     public static final String HOUSE_NUMBER = "[data-test='house_number']";
+@@ -22,7 +23,8 @@ public final class CheckoutPage {
+     public static final String CITY = "[data-test='city']";
+     public static final String STATE = "[data-test='state']";
+     public static final String PROCEED_FROM_BILLING = "[data-test='proceed-3']";
+-    public static final String PAYMENT_METHOD = "select[data-test='payment-method']:visible";
+-    public static final String FINISH = "[data-test='finish']:visible";
+-    public static final String BODY = "body";
+-}
++    public static final String PAYMENT_METHOD = "select[data-test='payment-method']:visible";
++    public static final String FINISH = "[data-test='finish']:visible";
++    public static final String REMOVE_CART_LINE = "app-cart a.btn-danger";
++    public static final String BODY = "body";
++}
+diff --git a/src/main/java/com/endava/ai/ui/support/pages/ContactPage.java b/src/main/java/com/endava/ai/ui/support/pages/ContactPage.java
+index 28eedc37..8031cb2d 100644
+--- a/src/main/java/com/endava/ai/ui/support/pages/ContactPage.java
++++ b/src/main/java/com/endava/ai/ui/support/pages/ContactPage.java
+@@ -4,7 +4,8 @@ public final class ContactPage {
+     private ContactPage() {
+     }
+ 
+-    public static final String CONTACT_PATH = "/contact";
++    public static final String CONTACT_PATH = "/contact";
++    public static final String PATH = CONTACT_PATH;
+     public static final String SUBJECT = "[data-test='subject']";
+     public static final String MESSAGE = "[data-test='message']";
+     public static final String SUBMIT = "[data-test='contact-submit']";
+diff --git a/src/main/java/com/endava/ai/ui/support/pages/ProductPage.java b/src/main/java/com/endava/ai/ui/support/pages/ProductPage.java
+index 330951f0..bcb56e7f 100644
+--- a/src/main/java/com/endava/ai/ui/support/pages/ProductPage.java
++++ b/src/main/java/com/endava/ai/ui/support/pages/ProductPage.java
+@@ -4,13 +4,15 @@ public final class ProductPage {
+     private ProductPage() {
+     }
+ 
+-    public static final String PRODUCT_CARD = "a[data-test^='product-']";
+-    public static final String PRODUCT_NAME = "[data-test='product-name']";
++    public static final String PRODUCT_CARD = "a[data-test^='product-']";
++    public static final String FIRST_CATALOG_PRODUCT = PRODUCT_CARD;
++    public static final String PRODUCT_NAME = "[data-test='product-name']";
+     public static final String PRODUCT_PRICE = "[data-test='product-price']";
+     public static final String QUANTITY = "[data-test='quantity']";
+     public static final String ADD_TO_CART = "[data-test='add-to-cart']";
+     public static final String ADD_TO_FAVORITES = "[data-test='add-to-favorites']";
+-    public static final String ADD_TO_COMPARE = "[data-test='add-to-compare']";
+-    public static final String CART_LINK = "[data-test='nav-cart']";
+-    public static final String CART_TOAST = ".toast-body, .alert, body";
+-}
++    public static final String ADD_TO_COMPARE = "[data-test='add-to-compare']";
++    public static final String CART_LINK = "[data-test='nav-cart']";
++    public static final String CART_NAV = CART_LINK;
++    public static final String CART_TOAST = ".toast-body, .alert, body";
++}
+diff --git a/src/main/java/com/endava/ai/ui/support/validation/RegistrationValidation.java b/src/main/java/com/endava/ai/ui/support/validation/RegistrationValidation.java
+index 8812c613..b944fda3 100644
+--- a/src/main/java/com/endava/ai/ui/support/validation/RegistrationValidation.java
++++ b/src/main/java/com/endava/ai/ui/support/validation/RegistrationValidation.java
+@@ -1,78 +1,90 @@
+ package com.endava.ai.ui.support.validation;
+ 
++import com.endava.ai.core.reporting.StepLogger;
+ import com.endava.ai.ui.core.runtime.DriverManager;
++import com.endava.ai.ui.support.actions.UIActions;
+ import com.endava.ai.ui.support.pages.LoginPage;
+ import com.endava.ai.ui.support.pages.RegisterPage;
+-import com.endava.ai.ui.support.actions.UIActions;
+ import com.endava.ai.ui.support.wait.WaitUtils;
+ import org.testng.Assert;
+ 
+ import java.time.Duration;
+ 
+ /**
+- * Validations → assertions only.
++ * Registration validations keep assertions in the validation layer and publish report steps.
+  */
+ public final class RegistrationValidation {
+     public void assertRedirectedToLogin() {
+-        String outcome = WaitUtils.waitUntil(
+-                () -> {
+-                    String url = DriverManager.getEngine().getCurrentUrl();
+-                    String body = safeText("body");
+-                    boolean loginVisible = safeVisible(LoginPage.LOGIN_BUTTON);
+-                    boolean registerStillVisible = safeVisible(RegisterPage.FIRST_NAME);
+-                    String errorText = safeText(RegisterPage.ANY_ERROR);
+-
+-                    if (loginVisible && !registerStillVisible
+-                            && (url.contains("/auth/login")
+-                            || body.contains("Sign in with Google")
+-                            || body.contains("Email address *"))) {
+-                        return "login-surface";
+-                    }
+-
+-                    if (registerStillVisible
+-                            && url.contains("/auth/register")
+-                            && errorText != null
+-                            && !errorText.trim().isEmpty()) {
+-                        return "register-error";
+-                    }
+-
+-                    return "pending";
+-                },
+-                value -> !"pending".equals(value),
+-                Duration.ofSeconds(20),
+-                Duration.ofMillis(250)
+-        );
+-
+-        if (!"login-surface".equals(outcome)) {
+-            throw new AssertionError(
+-                    "Expected registration success to resolve to login surface, but browser ended on a register error surface. Current URL: "
+-                            + DriverManager.getEngine().getCurrentUrl()
++        validate("registration success redirects to login surface", () -> {
++            String outcome = WaitUtils.waitUntil(
++                    () -> {
++                        String url = DriverManager.getEngine().getCurrentUrl();
++                        String body = safeText("body");
++                        boolean loginVisible = safeVisible(LoginPage.LOGIN_BUTTON);
++                        boolean registerStillVisible = safeVisible(RegisterPage.FIRST_NAME);
++                        String errorText = safeText(RegisterPage.ANY_ERROR);
++
++                        if (loginVisible && !registerStillVisible
++                                && (url.contains("/auth/login")
++                                || body.contains("Sign in with Google")
++                                || body.contains("Email address *"))) {
++                            return "login-surface";
++                        }
++
++                        if (registerStillVisible
++                                && url.contains("/auth/register")
++                                && errorText != null
++                                && !errorText.trim().isEmpty()) {
++                            return "register-error";
++                        }
++
++                        return "pending";
++                    },
++                    value -> !"pending".equals(value),
++                    Duration.ofSeconds(20),
++                    Duration.ofMillis(250)
+             );
+-        }
+ 
+-        String url = DriverManager.getEngine().getCurrentUrl();
+-        Assert.assertTrue(
+-                url.contains("/auth/login") || DriverManager.getEngine().isVisible(LoginPage.LOGIN_BUTTON),
+-                "Expected redirect to login surface, but was: " + url
+-        );
++            StepLogger.logDetail("registrationOutcome=" + outcome);
++            if (!"login-surface".equals(outcome)) {
++                throw new AssertionError(
++                        "Expected registration success to resolve to login surface, but browser ended on a register error surface. Current URL: "
++                                + DriverManager.getEngine().getCurrentUrl()
++                );
++            }
++
++            String url = DriverManager.getEngine().getCurrentUrl();
++            StepLogger.logDetail("currentUrl=" + url);
++            Assert.assertTrue(
++                    url.contains("/auth/login") || DriverManager.getEngine().isVisible(LoginPage.LOGIN_BUTTON),
++                    "Expected redirect to login surface, but was: " + url
++            );
++        });
+     }
+ 
+     public void assertStillOnRegister() {
+-        String url = DriverManager.getEngine().getCurrentUrl();
+-        Assert.assertTrue(url.contains("/auth/register"), "Expected to remain on /auth/register, but was: " + url);
++        validate("registration form remains open", () -> {
++            String url = DriverManager.getEngine().getCurrentUrl();
++            StepLogger.logDetail("currentUrl=" + url);
++            Assert.assertTrue(url.contains("/auth/register"), "Expected to remain on /auth/register, but was: " + url);
++        });
+     }
+ 
+     public void assertAnyErrorVisibleOrPresent() {
+-        WaitUtils.waitForCondition(
+-                "registration error is visible",
+-                () -> {
+-                    String text = DriverManager.getEngine().getText(RegisterPage.ANY_ERROR);
+-                    return text != null && !text.trim().isEmpty();
+-                },
+-                "Expected some validation error to be present, but none found."
+-        );
+-        String text = UIActions.getText(RegisterPage.ANY_ERROR, "Any error message container");
+-        Assert.assertTrue(text != null && !text.trim().isEmpty(), "Expected some validation error to be present, but none found.");
++        validate("registration error is visible or present", () -> {
++            WaitUtils.waitForCondition(
++                    "registration error is visible",
++                    () -> {
++                        String text = DriverManager.getEngine().getText(RegisterPage.ANY_ERROR);
++                        return text != null && !text.trim().isEmpty();
++                    },
++                    "Expected some validation error to be present, but none found."
++            );
++            String text = UIActions.getText(RegisterPage.ANY_ERROR, "Any error message container");
++            StepLogger.logDetail("registrationError=" + text);
++            Assert.assertTrue(text != null && !text.trim().isEmpty(),
++                    "Expected some validation error to be present, but none found.");
++        });
+     }
+ 
+     public void assertErrorContains(String expectedText) {
+@@ -100,17 +112,32 @@ public final class RegistrationValidation {
+     }
+ 
+     private void assertTextContains(String locator, String description, String expectedText, Duration timeout) {
+-        WaitUtils.waitForCondition(
+-                description + " contains " + expectedText,
+-                () -> DriverManager.getEngine().getText(locator).contains(expectedText),
+-                "Expected " + description + " to contain '" + expectedText + "'",
+-                timeout
+-        );
+-        String text = UIActions.getText(locator, description);
+-        Assert.assertTrue(
+-                text.contains(expectedText),
+-                "Expected " + description + " to contain '" + expectedText + "', but was: " + text
+-        );
++        validate(description + " contains " + expectedText, () -> {
++            WaitUtils.waitForCondition(
++                    description + " contains " + expectedText,
++                    () -> DriverManager.getEngine().getText(locator).contains(expectedText),
++                    "Expected " + description + " to contain '" + expectedText + "'",
++                    timeout
++            );
++            String text = UIActions.getText(locator, description);
++            StepLogger.logDetail("expectedText=" + expectedText);
++            StepLogger.logDetail("actualText=" + text);
++            Assert.assertTrue(
++                    text.contains(expectedText),
++                    "Expected " + description + " to contain '" + expectedText + "', but was: " + text
++            );
++        });
++    }
++
++    private void validate(String description, Runnable assertion) {
++        StepLogger.startStep("Validate " + description);
++        try {
++            assertion.run();
++            StepLogger.pass("Validated " + description);
++        } catch (RuntimeException | AssertionError error) {
++            StepLogger.fail("Validation failed for " + description, error);
++            throw error;
++        }
+     }
+ 
+     private String safeText(String locator) {
+
+diff --git a/src/test/java/com/endava/ai/ui/tests/payment/settlement/AccountPaymentLedgerContractTest.java b/src/test/java/com/endava/ai/ui/tests/payment/settlement/AccountPaymentLedgerContractTest.java
+diff --git a/src/test/java/com/endava/ai/ui/tests/payment/settlement/PaymentSettlementHandshakeContractTest.java b/src/test/java/com/endava/ai/ui/tests/payment/settlement/PaymentSettlementHandshakeContractTest.java
+diff --git a/src/test/java/com/endava/ai/ui/tests/invoice/account/AccountInvoiceLifecycleContractTest.java b/src/test/java/com/endava/ai/ui/tests/invoice/account/AccountInvoiceLifecycleContractTest.java
+diff --git a/src/test/java/com/endava/ai/ui/tests/support/staff/response/StaffSupportResponseLifecycleContractTest.java b/src/test/java/com/endava/ai/ui/tests/support/staff/response/StaffSupportResponseLifecycleContractTest.java
+diff --git a/src/test/java/com/endava/ai/ui/tests/admin/fulfillment/CustomerFulfillmentTimelineBoundaryContractTest.java b/src/test/java/com/endava/ai/ui/tests/admin/fulfillment/CustomerFulfillmentTimelineBoundaryContractTest.java
+

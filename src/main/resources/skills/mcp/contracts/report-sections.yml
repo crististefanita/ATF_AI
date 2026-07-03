@@ -1,0 +1,24 @@
+schemaVersion: 1
+contracts:
+  - id: html-report.mcp-final
+    profile: MCP_FINAL_REPORT
+    owner: mcp-reporting
+    scope: MCP final package close-out report
+    expectedLanguage: any
+    requiredSections:
+      - Executive Context
+      - Business Flow Graph
+      - Score Overview
+      - Proof Mapping
+      - Run Audit
+      - MCP Gate References
+      - MCP AI Task Advisor
+      - Artifact Index
+      - Close-Out
+    collapsedSections:
+      - MCP AI Task Advisor
+    requiredShellClasses: []
+    requiredGraphClasses: []
+    visibleNodeShapeTags: []
+    forbiddenGraphWrapperTags: []
+    repair: MCP owns package close-out vocabulary, gate evidence, artifact links and run audit sections. Do not force Atlas sections into MCP reports.

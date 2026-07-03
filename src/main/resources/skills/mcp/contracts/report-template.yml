@@ -1,0 +1,430 @@
+schemaVersion: 1
+contracts:
+  - id: report-template.package-artifact.readme
+    kind: package-artifact
+    token: README.md
+    message: Package spine must include README.md.
+  - id: report-template.package-artifact.calibration
+    kind: package-artifact
+    token: CALIBRATION.md
+    message: Package spine must include CALIBRATION.md.
+  - id: report-template.package-artifact.package-manifest
+    kind: package-artifact
+    token: manifests/package-manifest.md
+    message: Package spine must include package-manifest.md.
+  - id: report-template.package-artifact.input-snapshot
+    kind: package-artifact
+    token: prompt/input-snapshot.md
+    message: Package spine must include input-snapshot.md.
+  - id: report-template.package-artifact.final-report
+    kind: package-artifact
+    token: analysis/langgraph-business-understanding.html
+    message: Package spine must include the final business understanding report.
+  - id: report-template.package-artifact.report-css
+    kind: package-artifact
+    token: analysis/shared-report-reference.css
+    message: Package spine must include report CSS.
+  - id: report-template.package-artifact.render-proof
+    kind: package-artifact
+    token: analysis/canonical-render-check.png
+    message: Package spine must include canonical render proof.
+  - id: report-template.package-artifact.package-state
+    kind: package-artifact
+    token: review/package-state.json
+    message: Package spine must include package-state.json.
+  - id: report-template.package-artifact.execution-gate
+    kind: package-artifact
+    token: review/execution-gate-card.md
+    message: Package spine must include execution-gate-card.md.
+  - id: report-template.package-artifact.quality-accounting
+    kind: package-artifact
+    token: review/quality-accounting-verdict.md
+    message: Package spine must include quality-accounting-verdict.md.
+  - id: report-template.package-artifact.framework-properties
+    kind: package-artifact
+    token: review/framework.properties
+    message: Package spine must include framework.properties snapshot.
+  - id: report-template.package-artifact.package-closeout
+    kind: package-artifact
+    token: review/package-close-out.md
+    message: Package spine must include package close-out.
+  - id: report-template.package-artifact.source-evolution
+    kind: package-artifact
+    token: review/source-evolution-ledger.md
+    message: Package spine must include source evolution ledger.
+  - id: report-template.package-artifact.root-diff
+    kind: package-artifact
+    token: review/root-source-thin-no-index.diff
+    message: Package spine must include root source diff.
+  - id: report-template.run-artifact.summary
+    kind: run-artifact
+    token: SUMMARY.md
+    message: Run spine must include SUMMARY.md.
+  - id: report-template.run-artifact.manifest
+    kind: run-artifact
+    token: manifests/run-manifest.md
+    message: Run spine must include run manifest.
+  - id: report-template.run-artifact.input-snapshot
+    kind: run-artifact
+    token: prompt/input-snapshot.md
+    message: Run spine must include prompt input snapshot.
+  - id: report-template.run-artifact.state
+    kind: run-artifact
+    token: review/run-state.json
+    message: Run spine must include run-state.json.
+  - id: report-template.run-artifact.checklist
+    kind: run-artifact
+    token: review/artifact-checklist.md
+    message: Run spine must include artifact checklist.
+  - id: report-template.run-artifact.score-support
+    kind: run-artifact
+    token: review/score-support.md
+    message: Run spine must include score support.
+  - id: report-template.run-artifact.business-understanding
+    kind: run-artifact
+    token: review/business-understanding.md
+    message: Run spine must include business understanding.
+  - id: report-template.run-artifact.diff
+    kind: run-artifact
+    token: review/thin-no-index.diff
+    message: Run spine must include per-run thin diff.
+  - id: report-template.proof-family.diff
+    kind: proof-family
+    token: diff
+    message: Proof families must include diffs.
+  - id: report-template.proof-family.run-state
+    kind: proof-family
+    token: run-state.json
+    message: Proof families must include run state.
+  - id: report-template.proof-family.extent
+    kind: proof-family
+    token: ExtentReport.html
+    message: Proof families must include Extent reports.
+  - id: report-template.proof-family.xml
+    kind: proof-family
+    token: testng-results.xml
+    message: Proof families must include TestNG XML.
+  - id: report-template.proof-family.command
+    kind: proof-family
+    token: command-result.md
+    message: Proof families must include command result.
+  - id: report-template.proof-family.mcp-gate
+    kind: proof-family
+    token: mcp-gate-result.md
+    message: Proof families must include MCP gate result.
+  - id: report-template.proof-family.render-proof
+    kind: proof-family
+    token: canonical-render-check.png
+    message: Proof families must include render proof.
+  - id: report-template.proof-family.link-check
+    kind: proof-family
+    token: local-link-check.txt
+    message: Proof families must include local link check.
+  - id: report-template.proof-mapping.claim
+    kind: proof-mapping-token
+    token: claim
+    message: Proof mapping must mention claims.
+  - id: report-template.proof-mapping.diff
+    kind: proof-mapping-token
+    token: diff
+    message: Proof mapping must mention diffs.
+  - id: report-template.proof-mapping.extent
+    kind: proof-mapping-token
+    token: Extent
+    message: Proof mapping must mention Extent.
+  - id: report-template.proof-mapping.xml
+    kind: proof-mapping-token
+    token: XML
+    message: Proof mapping must mention XML.
+  - id: report-template.proof-mapping.state
+    kind: proof-mapping-token
+    token: run-state.json
+    message: Proof mapping must mention run-state.json.
+  - id: report-template.opening.hero
+    kind: opening-marker
+    token: class="hero"
+    message: Final report must start with the canonical hero/opening shell.
+  - id: report-template.opening.score-wall
+    kind: opening-marker
+    token: class="score-wall"
+    message: Final report must publish the score wall before details.
+  - id: report-template.opening.executive-context
+    kind: opening-marker
+    token: Executive Context
+    message: Final report must publish Executive Context near the opening.
+  - id: report-template.opening.business-flow-graph
+    kind: opening-marker
+    token: Business Flow Graph
+    message: Final report must publish Business Flow Graph in the canonical opening sequence.
+  - id: report-template.score-card.business-substance
+    kind: score-card-label
+    token: Business Substance
+    message: Score wall must expose Business Substance.
+  - id: report-template.score-card.business-graph
+    kind: score-card-label
+    token: Business Graph
+    message: Score wall must expose Business Graph.
+  - id: report-template.score-card.historical-reopenability
+    kind: score-card-label
+    token: Historical Reopenability
+    message: Score wall must expose Historical Reopenability.
+  - id: report-template.score-card.proof-chain
+    kind: score-card-label
+    token: Proof Chain
+    message: Score wall must expose Proof Chain.
+  - id: report-template.score-card.overall
+    kind: score-card-label
+    token: Overall
+    message: Score wall must expose Overall.
+  - id: report-template.contract-artifact.contract-artifact
+    kind: contract-artifact-label
+    token: Contract Artifact
+    message: Score wall must expose Contract Artifact vocabulary.
+  - id: report-template.contract-artifact.contract-artefact
+    kind: contract-artifact-label
+    token: Contract Artefact
+    message: British spelling is accepted for Contract Artefact.
+  - id: report-template.contract-artifact.artifact
+    kind: contract-artifact-label
+    token: Artifact
+    message: Short artifact label is accepted.
+  - id: report-template.executive-evidence.winner
+    kind: executive-context-evidence
+    token: winner
+    message: Executive Context must identify the winner/candidate state.
+  - id: report-template.executive-evidence.cap
+    kind: executive-context-evidence
+    token: cap
+    message: Executive Context must mention score cap reality.
+  - id: report-template.executive-evidence.audit
+    kind: executive-context-evidence
+    token: audit
+    message: Executive Context must mention audit status.
+  - id: report-template.executive-evidence.owned
+    kind: executive-context-evidence
+    token: owned
+    message: Executive Context must mention owned evidence.
+  - id: report-template.executive-evidence.not-owned
+    kind: executive-context-evidence
+    token: not owned
+    message: Executive Context must mention not-owned/blocked surface.
+  - id: report-template.executive-evidence.blocked
+    kind: executive-context-evidence
+    token: blocked
+    message: Executive Context must mention blocker state when present.
+  - id: report-template.executive-evidence.next
+    kind: executive-context-evidence
+    token: next
+    message: Executive Context must name next calibration step.
+  - id: report-template.runtime.run-expected-delta-quality
+    kind: runtime-token
+    token: RUN_EXPECTED_DELTA_QUALITY
+    message: Runtime calibration constant must be visible in the executive context.
+  - id: report-template.runtime.round-target-test-count
+    kind: runtime-token
+    token: ROUND_TARGET_TEST_COUNT
+    message: Runtime target test count must be visible in the executive context.
+  - id: report-template.runtime.meta-iteration-count
+    kind: runtime-token
+    token: META_ITERATION_COUNT
+    message: Runtime meta iteration count must be visible in the executive context.
+  - id: report-template.runtime.runs
+    kind: runtime-token
+    token: runs
+    message: Runtime run count must be visible.
+  - id: report-template.runtime.tests
+    kind: runtime-token
+    token: tests
+    message: Runtime test count must be visible.
+  - id: report-template.forbidden-calibration.html-ex
+    kind: forbidden-calibration-token
+    token: html-ex
+    message: Opening score cards must not look calibrated against html-ex prose.
+  - id: report-template.forbidden-calibration.teacher
+    kind: forbidden-calibration-token
+    token: teacher
+    message: Opening score cards must not use teacher benchmark vocabulary.
+  - id: report-template.forbidden-calibration.benchmark
+    kind: forbidden-calibration-token
+    token: benchmark
+    message: Opening score cards must not use benchmark vocabulary before evidence.
+  - id: report-template.forbidden-calibration.comparison
+    kind: forbidden-calibration-token
+    token: comparison
+    message: Opening score cards must not use external comparison vocabulary before evidence.
+  - id: report-template.run-audit.diff
+    kind: run-audit-evidence-token
+    token: thin-no-index.diff
+    message: Run Audit must link per-run diff evidence.
+  - id: report-template.run-audit.extent
+    kind: run-audit-evidence-token
+    token: ExtentReport.html
+    message: Run Audit must link per-run Extent evidence.
+  - id: report-template.run-audit.xml
+    kind: run-audit-evidence-token
+    token: testng-results.xml
+    message: Run Audit must link per-run TestNG XML evidence.
+  - id: report-template.run-audit.state
+    kind: run-audit-evidence-token
+    token: run-state.json
+    message: Run Audit must link per-run state evidence.
+  - id: report-template.run-audit.command
+    kind: run-audit-evidence-token
+    token: command-result.md
+    message: Run Audit must link per-run command result.
+  - id: report-template.artifact-index.package-state
+    kind: artifact-index-token
+    token: package-state.json
+    message: Artifact Index must link package-state.json.
+  - id: report-template.artifact-index.execution-gate
+    kind: artifact-index-token
+    token: execution-gate-card.md
+    message: Artifact Index must link execution-gate-card.md.
+  - id: report-template.artifact-index.root-diff
+    kind: artifact-index-token
+    token: root-source-thin-no-index.diff
+    message: Artifact Index must link root diff.
+  - id: report-template.artifact-index.render-proof
+    kind: artifact-index-token
+    token: canonical-render-check.png
+    message: Artifact Index must link render proof.
+  - id: report-template.artifact-index.link-check
+    kind: artifact-index-token
+    token: local-link-check.txt
+    message: Artifact Index must link local link check.
+  - id: report-template.artifact-index.mcp-gate
+    kind: artifact-index-token
+    token: mcp-gate-result.md
+    message: Artifact Index must link MCP gate result.
+  - id: report-template.artifact-index.extent
+    kind: artifact-index-token
+    token: ExtentReport.html
+    message: Artifact Index must link Extent evidence.
+  - id: report-template.visual.wrap
+    kind: reusable-visual-class
+    token: wrap
+    message: Shared report CSS should reuse wrap.
+  - id: report-template.visual.hero
+    kind: reusable-visual-class
+    token: hero
+    message: Shared report CSS should reuse hero.
+  - id: report-template.visual.score-wall
+    kind: reusable-visual-class
+    token: score-wall
+    message: Shared report CSS should reuse score-wall.
+  - id: report-template.visual.score-card
+    kind: reusable-visual-class
+    token: score-card
+    message: Shared report CSS should reuse score-card.
+  - id: report-template.visual.pill-row
+    kind: reusable-visual-class
+    token: pill-row
+    message: Shared report CSS should reuse pill-row.
+  - id: report-template.visual.pill
+    kind: reusable-visual-class
+    token: pill
+    message: Shared report CSS should reuse pill.
+  - id: report-template.visual.executive-context
+    kind: reusable-visual-class
+    token: executive-context
+    message: Shared report CSS should reuse executive-context.
+  - id: report-template.visual.graph-legend
+    kind: reusable-visual-class
+    token: graph-legend
+    message: Shared report CSS should reuse graph-legend.
+  - id: report-template.visual.graph-legend-list
+    kind: reusable-visual-class
+    token: graph-legend-list
+    message: Shared report CSS should reuse graph-legend-list.
+  - id: report-template.visual.score-table
+    kind: reusable-visual-class
+    token: score-table
+    message: Shared report CSS should reuse score-table.
+  - id: report-template.visual.score-calculation-table
+    kind: reusable-visual-class
+    token: score-calculation-table
+    message: Shared report CSS should reuse score-calculation-table.
+  - id: report-template.visual.proof-table
+    kind: reusable-visual-class
+    token: proof-table
+    message: Shared report CSS should reuse proof-table.
+  - id: report-template.visual.run-audit-list
+    kind: reusable-visual-class
+    token: run-audit-list
+    message: Shared report CSS should reuse run-audit-list.
+  - id: report-template.visual.artifact-links
+    kind: reusable-visual-class
+    token: artifact-links
+    message: Shared report CSS should reuse artifact-links.
+  - id: report-template.visual.closeout-summary
+    kind: reusable-visual-class
+    token: closeout-summary
+    message: Shared report CSS should reuse closeout-summary.
+  - id: report-template.score-overview.overall
+    kind: score-overview-any
+    tokens: Overall
+    message: Score Overview missing Overall.
+  - id: report-template.score-overview.business-substance
+    kind: score-overview-any
+    tokens: Business Substance|business substance
+    message: Score Overview missing Business Substance axis.
+  - id: report-template.score-overview.business-graph
+    kind: score-overview-any
+    tokens: Business Graph|Graph Realism|business graph
+    message: Score Overview missing Business Graph / Graph Realism axis.
+  - id: report-template.score-overview.historical-reopenability
+    kind: score-overview-any
+    tokens: Historical Reopenability|history|reopen
+    message: Score Overview missing Historical Reopenability axis.
+  - id: report-template.score-overview.proof-chain
+    kind: score-overview-any
+    tokens: Proof Chain|proof chain|Proof
+    message: Score Overview missing Proof Chain axis.
+  - id: report-template.score-overview.contract-artifact
+    kind: score-overview-any
+    tokens: Contract|artifact|Artefact|Artifact
+    message: Score Overview missing artifact/contract axis.
+  - id: report-template.score-overview.table
+    kind: score-overview-any
+    tokens: <table
+    message: Score Overview must publish a canonical scoring table.
+  - id: report-template.score-overview.axis-column
+    kind: score-overview-any
+    tokens: Axis|Axa
+    message: Score Overview table missing Axis/Axa column.
+  - id: report-template.score-overview.score-column
+    kind: score-overview-any
+    tokens: Score|Nota
+    message: Score Overview table missing Score/Nota column.
+  - id: report-template.score-overview.weight-column
+    kind: score-overview-any
+    tokens: Weight|Pondere
+    message: Score Overview table missing Weight/Pondere column.
+  - id: report-template.score-overview.why-column
+    kind: score-overview-any
+    tokens: Why it sits here|De ce sta aici|Why
+    message: Score Overview table missing cold why-this-score column.
+  - id: report-template.score-overview.business-weight
+    kind: score-overview-any
+    tokens: 40%|0.40
+    message: Score Overview missing Business Substance weight.
+  - id: report-template.score-overview.graph-weight
+    kind: score-overview-any
+    tokens: 20%|0.20
+    message: Score Overview missing Business Graph weight.
+  - id: report-template.score-overview.history-proof-weight
+    kind: score-overview-any
+    tokens: 15%|0.15
+    message: Score Overview missing historical/proof weights.
+  - id: report-template.score-overview.contract-weight
+    kind: score-overview-any
+    tokens: 10%|0.10
+    message: Score Overview missing contract/artifact weight.
+  - id: report-template.score-overview.calculation
+    kind: score-overview-any
+    tokens: =|weighted|calculation|calcul
+    message: Score Overview missing explicit calculation/cap explanation.
+  - id: report-template.score-overview.cap
+    kind: score-overview-any
+    tokens: cap|capped|plafon
+    message: Score Overview missing business cap reason.

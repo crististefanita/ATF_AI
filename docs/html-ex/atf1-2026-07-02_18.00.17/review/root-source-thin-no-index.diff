@@ -1,0 +1,629 @@
+diff --git a/src/main/java/com/endava/ai/ui/support/flows/support/RefundSupportRequestFlow.java b/src/main/java/com/endava/ai/ui/support/flows/support/RefundSupportRequestFlow.java
+new file mode 100644
+index 00000000..3c3c2563
+--- /dev/null
++++ b/src/main/java/com/endava/ai/ui/support/flows/support/RefundSupportRequestFlow.java
+@@ -0,0 +1,190 @@
++package com.endava.ai.ui.support.flows.support;
++
++import com.endava.ai.ui.core.engine.UiNetworkResponse;
++import com.endava.ai.ui.core.runtime.DriverManager;
++import com.endava.ai.ui.support.actions.AccountInvoiceActions;
++import com.endava.ai.ui.support.actions.UIActions;
++import com.endava.ai.ui.support.model.AccountInvoiceContext;
++import com.endava.ai.ui.support.model.CustomerData;
++import com.endava.ai.ui.support.model.RefundSupportRequestContext;
++import com.endava.ai.ui.support.pages.AccountPage;
++import com.endava.ai.ui.support.pages.ContactPage;
++import com.endava.ai.ui.support.service.SupportMessagesClient;
++import com.endava.ai.ui.support.wait.WaitUtils;
++
++import java.time.Duration;
++import java.util.regex.Matcher;
++import java.util.regex.Pattern;
++
++public final class RefundSupportRequestFlow {
++    private static final String SUBJECT = "Return";
++    private static final Pattern STRING_FIELD = Pattern.compile("\"%s\"\\s*:\\s*\"([^\"]*)\"");
++    private static final Pattern NUMBER_FIELD = Pattern.compile("\"%s\"\\s*:\\s*(\\d+)");
++
++    private final AccountInvoiceActions invoiceActions = new AccountInvoiceActions();
++    private final SupportMessagesClient messagesClient = new SupportMessagesClient();
++
++    public RefundSupportRequestContext createRefundSupportRequestForPurchasedInvoice() {
++        AccountInvoiceContext invoice = invoiceActions.createRegisteredInvoiceAndOpenInvoices();
++        return createRefundSupportRequestForInvoice(invoice);
++    }
++
++    public RefundSupportRequestContext createRefundSupportRequestForInvoice(AccountInvoiceContext invoice) {
++        CustomerData customer = invoice.getCustomer();
++        String message = refundMessage(invoice);
++
++        UIActions.navigateToRelative(ContactPage.CONTACT_PATH);
++        WaitUtils.waitForVisible(ContactPage.SUBJECT);
++        UIActions.type(ContactPage.FIRST_NAME, "Refund support first name", customer.getFirstName());
++        UIActions.type(ContactPage.LAST_NAME, "Refund support last name", customer.getLastName());
++        UIActions.type(ContactPage.EMAIL, "Refund support email", customer.getEmail());
++        UIActions.select(ContactPage.SUBJECT, "Refund support subject", SUBJECT);
++        UIActions.type(ContactPage.MESSAGE, "Refund support message", message);
++        String beforeSubmit = currentBody();
++
++        UiNetworkResponse response = UIActions.waitForResponse(
++                "refund support request is accepted by messages API",
++                "/messages",
++                "POST",
++                () -> UIActions.click(ContactPage.SUBMIT, "Submit refund support request")
++        );
++        WaitUtils.waitForCondition(
++                "refund support contact success is visible",
++                () -> currentBody().contains(ContactPage.SUCCESS_MESSAGE),
++                "Expected contact success message after refund support request."
++        );
++        String afterSubmit = currentBody();
++        String contactUrl = DriverManager.getEngine().getCurrentUrl();
++        String responseBody = response.getBodyPreview();
++        String messageId = firstField(responseBody, "id");
++        String messageStatus = firstField(responseBody, "status");
++        String messageCreatedAt = firstField(responseBody, "created_at");
++
++        UIActions.navigateToRelative(AccountPage.MESSAGES_PATH);
++        WaitUtils.waitForCondition(
++                "account messages surface is visible",
++                () -> accountMessagesBody().contains("Messages")
++                        || accountMessagesBody().contains("Return")
++                        || accountMessagesBody().contains(messageId),
++                "Expected account messages surface after refund support request.",
++                Duration.ofSeconds(30)
++        );
++        String accountMessagesBody = accountMessagesBody();
++        String accountMessagesUrl = DriverManager.getEngine().getCurrentUrl();
++
++        return new RefundSupportRequestContext(
++                invoice,
++                SUBJECT,
++                message,
++                beforeSubmit,
++                afterSubmit,
++                contactUrl,
++                response,
++                messageId,
++                messageStatus,
++                messageCreatedAt,
++                accountMessagesBody,
++                accountMessagesUrl
++        );
++    }
++
++    public RefundSupportRequestContext reopenSubmittedRequest(RefundSupportRequestContext original) {
++        UIActions.navigateToRelative(ContactPage.CONTACT_PATH);
++        WaitUtils.waitForVisible(ContactPage.SUBJECT);
++        return new RefundSupportRequestContext(
++                original.getInvoice(),
++                original.getSubject(),
++                original.getMessage(),
++                currentBody(),
++                original.getContactBodyAfterSubmit(),
++                DriverManager.getEngine().getCurrentUrl(),
++                original.getMessageResponse(),
++                original.getMessageId(),
++                original.getMessageStatus(),
++                original.getMessageCreatedAt(),
++                original.getAccountMessagesBody(),
++                original.getAccountMessagesUrl()
++        );
++    }
++
++    public RefundSupportRequestContext progressRequestWithAdminReplyAndOpenCustomerMessages(
++            RefundSupportRequestContext original) {
++        String replyMessage = "Admin reply confirms refund support case is received for invoice "
++                + original.getInvoiceNumber() + ".";
++        SupportMessagesClient.SupportMessageReply reply =
++                messagesClient.replyAsAdmin(original.getMessageId(), replyMessage);
++        String customerMessagesApiBody = messagesClient.readCustomerMessages(original.getInvoice().getCustomer());
++        SupportMessagesClient.SupportMessageCase customerCase =
++                messagesClient.readCustomerMessage(original.getInvoice().getCustomer(), original.getMessageId());
++
++        UIActions.navigateToRelative(AccountPage.MESSAGES_PATH);
++        WaitUtils.waitForCondition(
++                "customer account messages shows admin-progressed support case",
++                () -> {
++                    String body = accountMessagesBody();
++                    return containsIgnoreCase(body, original.getSubject())
++                            && body.contains(customerCase.status());
++                },
++                "Expected account messages to show admin-progressed support case " + original.getMessageId(),
++                Duration.ofSeconds(30)
++        );
++        String customerMessagesBody = accountMessagesBody();
++        String customerMessagesUrl = DriverManager.getEngine().getCurrentUrl();
++
++        return new RefundSupportRequestContext(
++                original.getInvoice(),
++                original.getSubject(),
++                original.getMessage(),
++                original.getContactBodyBeforeSubmit(),
++                original.getContactBodyAfterSubmit(),
++                original.getContactUrl(),
++                original.getMessageResponse(),
++                original.getMessageId(),
++                original.getMessageStatus(),
++                original.getMessageCreatedAt(),
++                original.getAccountMessagesBody(),
++                original.getAccountMessagesUrl(),
++                reply.id(),
++                reply.message(),
++                reply.createdAt(),
++                customerCase.status(),
++                customerMessagesApiBody,
++                customerMessagesBody,
++                customerMessagesUrl
++        );
++    }
++
++    private String refundMessage(AccountInvoiceContext invoice) {
++        return "Refund request for invoice " + invoice.getInvoiceNumber()
++                + " amount " + invoice.getCartTotal()
++                + " because the purchased product " + invoice.getProductName()
++                + " arrived damaged. Customer email " + invoice.getCustomer().getEmail() + ".";
++    }
++
++    private String currentBody() {
++        return DriverManager.getEngine().getText(ContactPage.BODY);
++    }
++
++    private String accountMessagesBody() {
++        return DriverManager.getEngine().getText(AccountPage.MESSAGES_BODY);
++    }
++
++    private boolean containsIgnoreCase(String text, String expected) {
++        return text != null && expected != null
++                && text.toLowerCase().contains(expected.toLowerCase());
++    }
++
++    private String firstField(String json, String fieldName) {
++        String stringValue = match(STRING_FIELD, json, fieldName);
++        if (!stringValue.isBlank()) {
++            return stringValue;
++        }
++        return match(NUMBER_FIELD, json, fieldName);
++    }
++
++    private String match(Pattern patternTemplate, String json, String fieldName) {
++        Pattern pattern = Pattern.compile(String.format(patternTemplate.pattern(), Pattern.quote(fieldName)));
++        Matcher matcher = pattern.matcher(json == null ? "" : json);
++        return matcher.find() ? matcher.group(1) : "";
++    }
++}
+diff --git a/src/main/java/com/endava/ai/ui/support/model/RefundSupportRequestContext.java b/src/main/java/com/endava/ai/ui/support/model/RefundSupportRequestContext.java
+new file mode 100644
+index 00000000..83b1f32c
+--- /dev/null
++++ b/src/main/java/com/endava/ai/ui/support/model/RefundSupportRequestContext.java
+@@ -0,0 +1,96 @@
++package com.endava.ai.ui.support.model;
++
++import com.endava.ai.ui.core.engine.UiNetworkResponse;
++import lombok.Getter;
++
++@Getter
++public final class RefundSupportRequestContext {
++    private final AccountInvoiceContext invoice;
++    private final String subject;
++    private final String message;
++    private final String contactBodyBeforeSubmit;
++    private final String contactBodyAfterSubmit;
++    private final String contactUrl;
++    private final UiNetworkResponse messageResponse;
++    private final String messageId;
++    private final String messageStatus;
++    private final String messageCreatedAt;
++    private final String accountMessagesBody;
++    private final String accountMessagesUrl;
++    private final String adminReplyId;
++    private final String adminReplyMessage;
++    private final String adminReplyCreatedAt;
++    private final String customerMessageStatusAfterAdminReply;
++    private final String customerMessagesApiBodyAfterAdminReply;
++    private final String customerMessagesBodyAfterAdminReply;
++    private final String customerMessagesUrlAfterAdminReply;
++
++    public RefundSupportRequestContext(AccountInvoiceContext invoice,
++                                       String subject,
++                                       String message,
++                                       String contactBodyBeforeSubmit,
++                                       String contactBodyAfterSubmit,
++                                       String contactUrl,
++                                       UiNetworkResponse messageResponse,
++                                       String messageId,
++                                       String messageStatus,
++                                       String messageCreatedAt,
++                                       String accountMessagesBody,
++                                       String accountMessagesUrl) {
++        this(invoice, subject, message, contactBodyBeforeSubmit, contactBodyAfterSubmit, contactUrl, messageResponse,
++                messageId, messageStatus, messageCreatedAt, accountMessagesBody, accountMessagesUrl,
++                "", "", "", "", "", "", "");
++    }
++
++    public RefundSupportRequestContext(AccountInvoiceContext invoice,
++                                       String subject,
++                                       String message,
++                                       String contactBodyBeforeSubmit,
++                                       String contactBodyAfterSubmit,
++                                       String contactUrl,
++                                       UiNetworkResponse messageResponse,
++                                       String messageId,
++                                       String messageStatus,
++                                       String messageCreatedAt,
++                                       String accountMessagesBody,
++                                       String accountMessagesUrl,
++                                       String adminReplyId,
++                                       String adminReplyMessage,
++                                       String adminReplyCreatedAt,
++                                       String customerMessageStatusAfterAdminReply,
++                                       String customerMessagesApiBodyAfterAdminReply,
++                                       String customerMessagesBodyAfterAdminReply,
++                                       String customerMessagesUrlAfterAdminReply) {
++        this.invoice = invoice;
++        this.subject = subject;
++        this.message = message;
++        this.contactBodyBeforeSubmit = contactBodyBeforeSubmit;
++        this.contactBodyAfterSubmit = contactBodyAfterSubmit;
++        this.contactUrl = contactUrl;
++        this.messageResponse = messageResponse;
++        this.messageId = messageId;
++        this.messageStatus = messageStatus;
++        this.messageCreatedAt = messageCreatedAt;
++        this.accountMessagesBody = accountMessagesBody;
++        this.accountMessagesUrl = accountMessagesUrl;
++        this.adminReplyId = adminReplyId;
++        this.adminReplyMessage = adminReplyMessage;
++        this.adminReplyCreatedAt = adminReplyCreatedAt;
++        this.customerMessageStatusAfterAdminReply = customerMessageStatusAfterAdminReply;
++        this.customerMessagesApiBodyAfterAdminReply = customerMessagesApiBodyAfterAdminReply;
++        this.customerMessagesBodyAfterAdminReply = customerMessagesBodyAfterAdminReply;
++        this.customerMessagesUrlAfterAdminReply = customerMessagesUrlAfterAdminReply;
++    }
++
++    public String getInvoiceNumber() {
++        return invoice.getInvoiceNumber();
++    }
++
++    public String getCustomerEmail() {
++        return invoice.getCustomer().getEmail();
++    }
++
++    public String getRequestedAmount() {
++        return invoice.getCartTotal();
++    }
++}
+diff --git a/src/main/java/com/endava/ai/ui/support/service/SupportMessagesClient.java b/src/main/java/com/endava/ai/ui/support/service/SupportMessagesClient.java
+new file mode 100644
+index 00000000..e5cb10ce
+--- /dev/null
++++ b/src/main/java/com/endava/ai/ui/support/service/SupportMessagesClient.java
+@@ -0,0 +1,207 @@
++package com.endava.ai.ui.support.service;
++
++import com.endava.ai.core.support.config.ConfigManager;
++import com.endava.ai.core.reporting.StepLogger;
++import com.endava.ai.ui.support.model.CustomerData;
++
++import java.io.IOException;
++import java.net.URI;
++import java.net.http.HttpClient;
++import java.net.http.HttpRequest;
++import java.net.http.HttpResponse;
++import java.time.Duration;
++import java.util.regex.Matcher;
++import java.util.regex.Pattern;
++
++public final class SupportMessagesClient {
++    private static final String ADMIN_EMAIL = "admin@practicesoftwaretesting.com";
++    private static final String ADMIN_PASSWORD = "welcome01";
++    private static final Pattern STRING_FIELD = Pattern.compile("\"%s\"\\s*:\\s*\"([^\"]*)\"");
++
++    private final HttpClient http = HttpClient.newBuilder()
++            .connectTimeout(Duration.ofSeconds(10))
++            .build();
++
++    public SupportMessageReply replyAsAdmin(String messageId, String replyMessage) {
++        String token = login(ADMIN_EMAIL, ADMIN_PASSWORD);
++        HttpResponse<String> response = send(post("/messages/" + messageId + "/reply", token,
++                "{\"message\":\"" + json(replyMessage) + "\"}"));
++        requireStatus(response, 201, "admin support reply");
++        SupportMessageReply reply = new SupportMessageReply(
++                firstField(response.body(), "id"),
++                firstField(response.body(), "message"),
++                firstField(response.body(), "created_at"),
++                response.body()
++        );
++        logDetail("adminReplyBody=" + response.body());
++        return reply;
++    }
++
++    public SupportMessageCase readCustomerMessage(CustomerData customer, String messageId) {
++        String token = login(customer.getEmail(), customer.getPassword());
++        HttpResponse<String> response = send(get("/messages/" + messageId, token));
++        requireStatus(response, 200, "customer support message detail");
++        return new SupportMessageCase(
++                firstField(response.body(), "id"),
++                firstField(response.body(), "status"),
++                firstField(response.body(), "subject"),
++                firstField(response.body(), "message"),
++                response.body()
++        );
++    }
++
++    public String readCustomerMessages(CustomerData customer) {
++        String token = login(customer.getEmail(), customer.getPassword());
++        HttpResponse<String> response = send(get("/messages", token));
++        requireStatus(response, 200, "customer support messages list");
++        logDetail("customerMessagesBody=" + response.body());
++        return response.body();
++    }
++
++    private String login(String email, String password) {
++        HttpResponse<String> response = send(post("/users/login", null,
++                "{\"email\":\"" + json(email) + "\",\"password\":\"" + json(password) + "\"}"));
++        requireStatus(response, 200, "support message login for " + email);
++        String token = firstField(response.body(), "access_token");
++        if (token.isBlank()) {
++            throw new AssertionError("Expected login response to include access_token. Body: " + response.body());
++        }
++        return token;
++    }
++
++    private HttpRequest get(String path, String token) {
++        HttpRequest.Builder builder = HttpRequest.newBuilder(uri(path))
++                .timeout(Duration.ofSeconds(20))
++                .GET();
++        authorize(builder, token);
++        return builder.build();
++    }
++
++    private HttpRequest post(String path, String token, String body) {
++        HttpRequest.Builder builder = HttpRequest.newBuilder(uri(path))
++                .timeout(Duration.ofSeconds(20))
++                .header("Content-Type", "application/json")
++                .POST(HttpRequest.BodyPublishers.ofString(body));
++        authorize(builder, token);
++        return builder.build();
++    }
++
++    private void authorize(HttpRequest.Builder builder, String token) {
++        if (token != null && !token.isBlank()) {
++            builder.header("Authorization", "Bearer " + token);
++        }
++    }
++
++    private URI uri(String path) {
++        return URI.create(apiBaseUrl() + path);
++    }
++
++    private String apiBaseUrl() {
++        String uiBaseUrl = ConfigManager.require("base.url");
++        if (uiBaseUrl.contains("practicesoftwaretesting.com")) {
++            return "https://api.practicesoftwaretesting.com";
++        }
++        return ConfigManager.get("base.url.api", "https://api.practicesoftwaretesting.com");
++    }
++
++    private HttpResponse<String> send(HttpRequest request) {
++        try {
++            return http.send(request, HttpResponse.BodyHandlers.ofString());
++        } catch (IOException e) {
++            throw new AssertionError("HTTP call failed: " + request.method() + " " + request.uri(), e);
++        } catch (InterruptedException e) {
++            Thread.currentThread().interrupt();
++            throw new AssertionError("Interrupted during HTTP call: " + request.method() + " " + request.uri(), e);
++        }
++    }
++
++    private void requireStatus(HttpResponse<String> response, int expected, String action) {
++        if (response.statusCode() != expected) {
++            throw new AssertionError("Expected " + action + " to return " + expected
++                    + " but was " + response.statusCode() + ". Body: " + response.body());
++        }
++    }
++
++    private String firstField(String json, String fieldName) {
++        Pattern pattern = Pattern.compile(String.format(STRING_FIELD.pattern(), Pattern.quote(fieldName)));
++        Matcher matcher = pattern.matcher(json == null ? "" : json);
++        return matcher.find() ? matcher.group(1) : "";
++    }
++
++    private String json(String value) {
++        return value == null ? "" : value.replace("\\", "\\\\").replace("\"", "\\\"");
++    }
++
++    private void logDetail(String detail) {
++        try {
++            StepLogger.logDetail(detail);
++        } catch (IllegalStateException ignored) {
++        }
++    }
++
++    public static final class SupportMessageReply {
++        private final String id;
++        private final String message;
++        private final String createdAt;
++        private final String body;
++
++        public SupportMessageReply(String id, String message, String createdAt, String body) {
++            this.id = id;
++            this.message = message;
++            this.createdAt = createdAt;
++            this.body = body;
++        }
++
++        public String id() {
++            return id;
++        }
++
++        public String message() {
++            return message;
++        }
++
++        public String createdAt() {
++            return createdAt;
++        }
++
++        public String body() {
++            return body;
++        }
++    }
++
++    public static final class SupportMessageCase {
++        private final String id;
++        private final String status;
++        private final String subject;
++        private final String message;
++        private final String body;
++
++        public SupportMessageCase(String id, String status, String subject, String message, String body) {
++            this.id = id;
++            this.status = status;
++            this.subject = subject;
++            this.message = message;
++            this.body = body;
++        }
++
++        public String id() {
++            return id;
++        }
++
++        public String status() {
++            return status;
++        }
++
++        public String subject() {
++            return subject;
++        }
++
++        public String message() {
++            return message;
++        }
++
++        public String body() {
++            return body;
++        }
++    }
++}
+diff --git a/src/test/java/com/endava/ai/ui/tests/refunds/support/RefundSupportCustomerMessagesLifecycleTest.java b/src/test/java/com/endava/ai/ui/tests/refunds/support/RefundSupportCustomerMessagesLifecycleTest.java
+new file mode 100644
+index 00000000..cadf688f
+--- /dev/null
++++ b/src/test/java/com/endava/ai/ui/tests/refunds/support/RefundSupportCustomerMessagesLifecycleTest.java
+@@ -0,0 +1,57 @@
++package com.endava.ai.ui.tests.refunds.support;
++
++import com.endava.ai.ui.core.runtime.BaseTestUI;
++import com.endava.ai.ui.support.model.RefundSupportRequestContext;
++import com.endava.ai.ui.support.validation.support.RefundSupportRequestValidation;
++import org.testng.annotations.Test;
++
++import static com.endava.ai.ui.tests.refunds.support.RefundSupportRequestTestSupport.adminProgressedRequest;
++import static com.endava.ai.ui.tests.refunds.support.RefundSupportRequestTestSupport.request;
++
++public final class RefundSupportCustomerMessagesLifecycleTest extends BaseTestUI {
++    private final RefundSupportRequestValidation validation = new RefundSupportRequestValidation();
++
++    @Test(description = "Refund support message API returns durable case identity.",
++            groups = {"ui.refund-support", "ui.customer-messages", "ui.business"})
++    public void refundSupportMessageApiCreatesDurableCaseIdentity() {
++        RefundSupportRequestContext context = request();
++
++        validation.assertMessagesApiCreatedDurableMessageIdentity(context);
++    }
++
++    @Test(description = "Refund support message starts from explicit NEW case state.",
++            groups = {"ui.refund-support", "ui.customer-messages", "ui.business"})
++    public void refundSupportMessageApiCreatesNewCaseState() {
++        RefundSupportRequestContext context = request();
++
++        validation.assertMessagesApiCreatedNewSupportCase(context);
++    }
++
++    @Test(description = "Customer account exposes the support messages route after request creation.",
++            groups = {"ui.refund-support", "ui.customer-messages", "ui.business"})
++    public void refundSupportCustomerAccountExposesMessagesRoute() {
++        RefundSupportRequestContext context = request();
++
++        validation.assertCustomerMessagesSurfaceIsAccountScoped(context);
++    }
++
++    @Test(description = "Customer messages page shows the created refund support request.",
++            groups = {"ui.refund-support", "ui.customer-messages", "ui.business"})
++    public void refundSupportCustomerMessagesShowCreatedRequest() {
++        RefundSupportRequestContext context = adminProgressedRequest();
++
++        validation.assertCustomerMessagesSurfaceShowsCreatedRequest(context);
++    }
++
++    @Test(description = "Customer-visible support request keeps invoice, subject and status in one proof chain.",
++            groups = {"ui.refund-support", "ui.customer-messages", "ui.business"})
++    public void refundSupportCustomerVisibleLifecycleConnectsInvoiceSubjectAndStatus() {
++        RefundSupportRequestContext context = adminProgressedRequest();
++
++        validation.assertInvoiceBackedRefundMessage(context);
++        validation.assertMessagesApiCreatedDurableMessageIdentity(context);
++        validation.assertMessagesApiCreatedNewSupportCase(context);
++        validation.assertAdminReplyProgressesSupportCase(context);
++        validation.assertCustomerMessagesSurfaceShowsCreatedRequest(context);
++    }
++}
+diff --git a/src/test/java/com/endava/ai/ui/tests/refunds/support/RefundSupportRequestTestSupport.java b/src/test/java/com/endava/ai/ui/tests/refunds/support/RefundSupportRequestTestSupport.java
+new file mode 100644
+index 00000000..b1c3c41e
+--- /dev/null
++++ b/src/test/java/com/endava/ai/ui/tests/refunds/support/RefundSupportRequestTestSupport.java
+@@ -0,0 +1,35 @@
++package com.endava.ai.ui.tests.refunds.support;
++
++import com.endava.ai.ui.support.flows.support.RefundSupportRequestFlow;
++import com.endava.ai.ui.support.model.RefundSupportRequestContext;
++
++final class RefundSupportRequestTestSupport {
++    private static final RefundSupportRequestFlow FLOW = new RefundSupportRequestFlow();
++    private static RefundSupportRequestContext request;
++    private static RefundSupportRequestContext adminProgressedRequest;
++    private static RefundSupportRequestContext reopenedRequest;
++
++    private RefundSupportRequestTestSupport() {
++    }
++
++    static RefundSupportRequestContext request() {
++        if (request == null) {
++            request = FLOW.createRefundSupportRequestForPurchasedInvoice();
++        }
++        return request;
++    }
++
++    static RefundSupportRequestContext reopenedRequest() {
++        if (reopenedRequest == null) {
++            reopenedRequest = FLOW.reopenSubmittedRequest(request());
++        }
++        return reopenedRequest;
++    }
++
++    static RefundSupportRequestContext adminProgressedRequest() {
++        if (adminProgressedRequest == null) {
++            adminProgressedRequest = FLOW.progressRequestWithAdminReplyAndOpenCustomerMessages(request());
++        }
++        return adminProgressedRequest;
++    }
++}
+diff --git a/src/test/resources/ui/testng-atf1-refund-support-customer-messages-run.xml b/src/test/resources/ui/testng-atf1-refund-support-customer-messages-run.xml
+new file mode 100644
+index 00000000..2d3ea18a
+--- /dev/null
++++ b/src/test/resources/ui/testng-atf1-refund-support-customer-messages-run.xml
+@@ -0,0 +1,8 @@
++<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
++<suite name="ATF1 refund support customer messages lifecycle" verbose="1">
++  <test name="refund support customer messages lifecycle">
++    <classes>
++      <class name="com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest"/>
++    </classes>
++  </test>
++</suite>

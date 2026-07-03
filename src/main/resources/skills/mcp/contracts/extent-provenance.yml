@@ -1,0 +1,226 @@
+schemaVersion: 1
+contracts:
+  - id: extent-provenance.native-spark-shell.body
+    kind: native-spark-shell-token
+    token: body class="spa -report
+    message: MCP Extent evidence must preserve the native Spark body shell.
+  - id: extent-provenance.native-spark-shell.toggle
+    kind: native-spark-shell-token
+    token: toggleview('test-view')
+    message: MCP Extent evidence must preserve the native Spark navigation script.
+  - id: extent-provenance.native-spark-shell.dashboard
+    kind: native-spark-shell-token
+    token: nav-dashboard
+    message: MCP Extent evidence must preserve the native dashboard navigation.
+  - id: extent-provenance.native-spark-shell.wrapper
+    kind: native-spark-shell-token
+    token: test-wrapper
+    message: MCP Extent evidence must preserve the native test wrapper.
+  - id: extent-provenance.native-spark-shell.content
+    kind: native-spark-shell-token
+    token: test-content
+    message: MCP Extent evidence must preserve the native test content shell.
+  - id: extent-provenance.native-spark-shell.script
+    kind: native-spark-shell-token
+    token: spark-script.js
+    message: MCP Extent evidence must preserve the native Spark script reference.
+  - id: extent-provenance.native-spark-shell.cdn
+    kind: native-spark-shell-token
+    token: extent-github-cdn
+    message: MCP Extent evidence must preserve the native Extent CDN marker.
+  - id: extent-provenance.native-spark-shell.minimum
+    kind: native-spark-shell-threshold
+    threshold: 4
+    message: At least four native Spark markers must be present before an Extent report is accepted as native shell.
+  - id: extent-provenance.framework-runtime-audit.tag-audit
+    kind: framework-runtime-audit-token
+    token: atf runtime tag audit
+    message: Runtime tag audit vocabulary is framework evidence, not manual proof injection.
+  - id: extent-provenance.framework-runtime-audit.failure-groups
+    kind: framework-runtime-audit-token
+    token: atf runtime failure groups
+    message: Runtime failure grouping vocabulary is framework evidence.
+  - id: extent-provenance.framework-runtime-audit.invocation-ledger
+    kind: framework-runtime-audit-token
+    token: runtime test-case ledger
+    message: Runtime test-case ledger vocabulary is framework evidence.
+  - id: extent-provenance.framework-runtime-audit.test-cases
+    kind: framework-runtime-audit-token
+    token: test cases
+    message: Test-case dashboard vocabulary is framework evidence.
+  - id: extent-provenance.framework-runtime-audit.failed-invocations
+    kind: framework-runtime-audit-token
+    token: failed runtime test cases
+    message: Failed test-case vocabulary is framework evidence.
+  - id: extent-provenance.framework-runtime-audit.failure-signatures
+    kind: framework-runtime-audit-token
+    token: failure signatures
+    message: Failure signature vocabulary is framework evidence.
+  - id: extent-provenance.framework-runtime-audit.listener-reconcile
+    kind: framework-runtime-audit-token
+    token: reconciled from testlistener results
+    message: Listener reconciliation vocabulary is framework evidence.
+  - id: extent-provenance.manual-proof.business-flow-graph
+    kind: manual-proof-injection-token
+    token: business flow graph
+    message: Final report business graph vocabulary must not be injected into Maven Extent evidence.
+  - id: extent-provenance.manual-proof.score-overview
+    kind: manual-proof-injection-token
+    token: score overview
+    message: Final report score vocabulary must not be injected into Maven Extent evidence.
+  - id: extent-provenance.manual-proof.proof-mapping
+    kind: manual-proof-injection-token
+    token: proof mapping
+    message: Final report proof mapping vocabulary must not be injected into Maven Extent evidence.
+  - id: extent-provenance.manual-proof.package-overlay
+    kind: manual-proof-injection-token
+    token: package overlay nodes
+    message: Package overlay vocabulary must not be injected into Maven Extent evidence.
+  - id: extent-provenance.manual-proof.executive-context
+    kind: manual-proof-injection-token
+    token: executive context
+    message: Executive context vocabulary belongs in the final report, not Extent runtime evidence.
+  - id: extent-provenance.manual-proof.langgraph
+    kind: manual-proof-injection-token
+    token: langgraph-business-understanding
+    message: LangGraph report vocabulary belongs outside Maven Extent evidence.
+  - id: extent-provenance.manual-proof.shared-css
+    kind: manual-proof-injection-token
+    token: shared-report-reference.css
+    message: Final report CSS must not be injected into Maven Extent evidence.
+  - id: extent-provenance.manual-proof.manual-injection
+    kind: manual-proof-injection-token
+    token: manual proof injection
+    message: Manual proof injection must be blocked in Extent evidence.
+  - id: extent-provenance.manual-proof.post-run-repaired
+    kind: manual-proof-injection-token
+    token: post-run repaired
+    message: Post-run report repair must be blocked in Extent evidence.
+  - id: extent-provenance.manual-proof.post-run-repair
+    kind: manual-proof-injection-token
+    token: post-run report repair
+    message: Post-run report repair must be blocked in Extent evidence.
+  - id: extent-provenance.manual-proof.mcp-repaired
+    kind: manual-proof-injection-token
+    token: mcp repaired
+    message: MCP repair vocabulary must be blocked in Extent evidence.
+  - id: extent-provenance.manual-proof.agent-repaired
+    kind: manual-proof-injection-token
+    token: agent repaired
+    message: Agent repair vocabulary must be blocked in Extent evidence.
+  - id: extent-provenance.origin-edit.edited-by-agent
+    kind: origin-edit-token
+    token: edited_by_agent
+    message: extent-origin.json must not declare agent edits.
+  - id: extent-provenance.origin-edit.edit-reason
+    kind: origin-edit-token
+    token: edit_reason
+    message: extent-origin.json must not describe manual edit reasons.
+  - id: extent-provenance.origin-edit.manual-edit-key
+    kind: origin-edit-token
+    token: manual_edit
+    message: extent-origin.json must not declare manual edits.
+  - id: extent-provenance.origin-edit.manual-edit-text
+    kind: origin-edit-token
+    token: manual edit
+    message: extent-origin.json must not describe manual edits.
+  - id: extent-provenance.origin-edit.post-run-repair
+    kind: origin-edit-token
+    token: post-run repair
+    message: extent-origin.json must not describe post-run repair.
+  - id: extent-provenance.origin-edit.post-run-report-repair
+    kind: origin-edit-token
+    token: post-run report repair
+    message: extent-origin.json must not describe post-run report repair.
+  - id: extent-provenance.origin-edit.post-run-repaired
+    kind: origin-edit-token
+    token: post-run repaired
+    message: extent-origin.json must not describe repaired evidence.
+  - id: extent-provenance.origin-edit.cosmetic-repair
+    kind: origin-edit-token
+    token: cosmetic repair
+    message: extent-origin.json must not describe cosmetic repair.
+  - id: extent-provenance.origin-edit.cleanup
+    kind: origin-edit-token
+    token: cleanup
+    message: extent-origin.json must not describe cleanup after Maven evidence generation.
+  - id: extent-provenance.origin-edit.patched
+    kind: origin-edit-token
+    token: patched
+    message: extent-origin.json must not describe patched evidence.
+  - id: extent-provenance.origin-edit.patch
+    kind: origin-edit-token
+    token: patch
+    message: extent-origin.json must not describe patch operations.
+  - id: extent-provenance.origin-edit.injected
+    kind: origin-edit-token
+    token: injected
+    message: extent-origin.json must not describe injected evidence.
+  - id: extent-provenance.origin-edit.removed-runtime-audit
+    kind: origin-edit-token
+    token: removed framework runtime audit overlay
+    message: extent-origin.json must not describe removal of framework runtime audit overlays.
+  - id: extent-provenance.origin-edit.agent-repaired
+    kind: origin-edit-token
+    token: agent repaired
+    message: extent-origin.json must not describe agent repair.
+  - id: extent-provenance.origin-edit.mcp-repaired
+    kind: origin-edit-token
+    token: mcp repaired
+    message: extent-origin.json must not describe MCP repair.
+  - id: extent-provenance.origin-required.command
+    kind: origin-required-field
+    token: command
+    message: extent-origin.json must publish the audited Maven command.
+  - id: extent-provenance.origin-required.timestamp
+    kind: origin-required-field
+    token: timestamp
+    message: extent-origin.json must publish an ISO timestamp.
+  - id: extent-provenance.origin-required.exit
+    kind: origin-required-field
+    token: exit
+    message: extent-origin.json must publish the Maven exit code.
+  - id: extent-provenance.origin-required.sha256
+    kind: origin-required-field
+    token: sha256
+    message: extent-origin.json must publish the ExtentReport.html sha256.
+  - id: extent-provenance.origin-required.size
+    kind: origin-required-field
+    token: size
+    message: extent-origin.json must publish the ExtentReport.html byte size.
+  - id: extent-provenance.origin-writer.exec-java
+    kind: origin-forbidden-writer-token
+    token: exec:java
+    message: extent-origin.json command must not be a post-run Java writer.
+  - id: extent-provenance.origin-writer.exec-mainclass
+    kind: origin-forbidden-writer-token
+    token: exec.mainclass
+    message: extent-origin.json command must not be a post-run Java writer.
+  - id: extent-provenance.origin-writer.skiptests
+    kind: origin-forbidden-writer-token
+    token: skiptests=true
+    message: extent-origin.json command must not skip tests.
+  - id: extent-provenance.origin-writer.maven-test-skip
+    kind: origin-forbidden-writer-token
+    token: maven.test.skip=true
+    message: extent-origin.json command must not skip tests.
+  - id: extent-provenance.origin-writer.extent-execution-proof
+    kind: origin-forbidden-writer-token
+    token: extentexecutionproofwriter
+    message: extent-origin.json command must not point to ExtentExecutionProofWriter.
+  - id: extent-provenance.origin-writer.execution-proof
+    kind: origin-forbidden-writer-token
+    token: executionproofwriter
+    message: extent-origin.json command must not point to ExecutionProofWriter.
+  - id: extent-provenance.origin-writer.proofwriter
+    kind: origin-forbidden-writer-token
+    token: proofwriter
+    message: extent-origin.json command must not point to proof writer utilities.
+  - id: extent-provenance.origin-writer.post-run-writer
+    kind: origin-forbidden-writer-token
+    token: post-run writer
+    message: extent-origin.json command must not describe a post-run writer.
+  - id: extent-provenance.origin-writer.post-run-writer-spaced
+    kind: origin-forbidden-writer-token
+    token: post run writer
+    message: extent-origin.json command must not describe a post run writer.

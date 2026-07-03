@@ -1,0 +1,8 @@
+﻿diff --git a/src/test/java/com/endava/ai/ui/tests/payment/settlement/AccountPaymentLedgerContractTest.java b/src/test/java/com/endava/ai/ui/tests/payment/settlement/AccountPaymentLedgerContractTest.java
+--- a/src/test/java/com/endava/ai/ui/tests/payment/settlement/AccountPaymentLedgerContractTest.java
++++ b/src/test/java/com/endava/ai/ui/tests/payment/settlement/AccountPaymentLedgerContractTest.java
+@@ -1,5 +1,12 @@
++// run_01 source delta for registered account payment settlement ledger audit
++// claim, actor, intent, result, verdict, lesson, next implication
++// business proof is reopened through Extent, XML and run-state artifacts
+

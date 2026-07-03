@@ -1,0 +1,33 @@
+schemaVersion: 1
+contracts:
+  - id: business-understanding.consumer.mcp-langgraph-final-report
+    kind: semantic-consumer
+    consumer: skill.mcp
+    ownerSuite: src/test/resources/skills/mcp/testng-mcp-sanity.xml
+    consumerContract: src/test/java/com/endava/ai/skills/mcp/tests/contracts/McpBusinessUnderstandingConsumerContractTest.java
+    contractResource: src/main/resources/skills/mcp/contracts/profiles.yml
+    artifactReducer: com.endava.ai.skills.business.parse.BusinessUnderstandingArtifactParser
+    evidenceEntry: analysis/langgraph-business-understanding.html
+    inputTypes: GIT_DIFF,EXTENT_REPORT,FINAL_BUSINESS_REPORT
+    requiredModels: BusinessObject,BusinessClaim,BusinessFlowStory,BusinessGraphConstruction,BusinessProofChain,BusinessProofStripRow,BusinessScoreRationale
+    requiredConcepts: BUSINESS_OBJECT,BUSINESS_CLAIM,BUSINESS_FLOW_STORY,PROOF_CHAIN,PROOF_STRIP,SCORE_RATIONALE,UNDERSTANDING_LIMIT
+    requiredStages: NORMALIZE_INPUT,MAP_SUPPORT_LAYERS,IDENTIFY_BUSINESS_OBJECTS,TRACE_BUSINESS_CLAIMS,MAP_PROOF_CHAIN,SCORE_UNDERSTANDING_LIMITS,PUBLISH_SEMANTIC_SUMMARY
+    forbiddenOwner: skill.atlas
+    expected: MCP applies shared business semantics to final LangGraph report meaning while keeping package publishability in MCP gates.
+    repair: Keep MCP final-report rules mapped to shared Business Understanding models; do not import Atlas or move MCP close-out decisions into the shared kernel.
+
+  - id: business-understanding.consumer.atlas-business-audit
+    kind: semantic-consumer
+    consumer: skill.atlas
+    ownerSuite: src/test/resources/skills/atlas/testng-atlas-sanity.xml
+    consumerContract: src/test/java/com/endava/ai/skills/atlas/tests/yaml/AtlasBusinessUnderstandingConsumerContractTest.java
+    contractResource: src/main/resources/skills/atlas/contracts/agentic-quality-lanes.yml
+    artifactReducer: com.endava.ai.skills.business.parse.BusinessUnderstandingArtifactParser
+    evidenceEntry: business-test-atlas.html
+    inputTypes: SOURCE_STRUCTURE,ATLAS_REPORT
+    requiredModels: BusinessObject,BusinessFlowStory,BusinessGraphConstruction,BusinessMaturity,BusinessProofStripRow,BusinessSourceTraceRow,BusinessScoreRationale
+    requiredConcepts: BUSINESS_OBJECT,BUSINESS_FLOW_STORY,BUSINESS_MATURITY,SOURCE_TRACE,PROOF_STRIP,SCORE_RATIONALE,SCORE_TRUTH,UNDERSTANDING_LIMIT
+    requiredStages: NORMALIZE_INPUT,MAP_SUPPORT_LAYERS,IDENTIFY_BUSINESS_OBJECTS,TRACE_BUSINESS_CLAIMS,MAP_PROOF_CHAIN,SCORE_UNDERSTANDING_LIMITS,PUBLISH_SEMANTIC_SUMMARY
+    forbiddenOwner: skill.mcp
+    expected: Atlas applies shared business semantics to source-backed graph, proof strip, trace and score truth while keeping Atlas artifact ownership in Atlas.
+    repair: Keep Atlas graph/source-trace/score rules mapped to shared Business Understanding models; do not import MCP or turn Atlas into package close-out governance.

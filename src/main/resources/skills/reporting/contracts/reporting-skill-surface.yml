@@ -1,0 +1,41 @@
+schemaVersion: 1
+contracts:
+  - id: reporting.skill-surface.facade
+    kind: reporting-skill-surface
+    owner: skill.reporting
+    facadeRoot: src/main/java/com/endava/ai/skills/reporting
+    implementationRoot: src/main/java/com/endava/ai/core/reporting
+    promptRoot: docs/prompts/html_ro/shared
+    sanitySuite: src/test/resources/atf/core/reporting/testng-reporting-sanity.xml
+    integrationSuite: src/test/resources/atf/core/reporting/testng-reporting-integration.xml
+    consumerSmokeSuite: src/test/resources/atf/core/reporting/testng-reporting-consumer-smoke.xml
+    publicApi: ReportingManager,ReportLogger,StepLogger,HtmlReportShellValidator,BusinessGraphLayoutAdapter
+    routeWhen: shared report shell CSS score primitives business graph layout artifact links Extent/Spark output or runtime audit behavior changes
+    stopCondition: reporting sanity passes and consumer smoke is used only when MCP or Atlas report consumers may be affected
+    expected: Reporting facade routes agents to shared report contracts while implementation remains in core.reporting.
+    repair: Update ReportSkillSurface, Reporting README and skill-architecture.yml together; do not add MCP or Atlas meaning to Reporting.
+
+  - id: reporting.skill-surface.neutral-boundary
+    kind: reporting-skill-surface
+    owner: skill.reporting
+    owns: html shell,shared CSS,score card primitives,business graph layout composition,artifact links,Extent/Spark style,runtime audit rendering,console-safe report output
+    forbiddenOwnership: MCP package publishability,Atlas business meaning,Business Understanding semantic scoring,curated example promotion decision
+    routeWhen: report form or presentation changes, not generated-package legality or business comprehension scoring
+    stopCondition: shared shell stays generic and MCP/Atlas vocabulary remains in their owning skill contracts
+    expected: Reporting validates form and publishable shell quality, not domain meaning or generated-package gates.
+    repair: Move package gates to MCP, business meaning to Atlas/Business Understanding, and keep Reporting reusable.
+
+  - id: reporting.skill-surface.business-graph-layout
+    kind: reporting-skill-surface
+    owner: skill.reporting
+    consumesModel: BusinessGraphConstruction
+    adapter: BusinessGraphLayoutAdapter
+    layoutModel: BusinessGraphLayoutModel
+    sourceRoot: src/main/java/com/endava/ai/core/reporting/graph
+    contractTest: com.endava.ai.atf.core.reporting.graph.BusinessGraphLayoutAdapterContractTest
+    owns: SVG/HTML composition,lanes,spacing,owned node class,single primary owned node,outcome node class,frontier node class,data graph roles,accessible SVG title and description,readable truncated labels with full-text audit attributes,relationship label fallback,supplemental relationship audit,supplemental relationship SVG cues,MCP-aligned graph density,collapsed legend,collapsed proof boundary placement
+    forbiddenOwnership: business truth scoring,MCP package publishability,Atlas maturity judgment,proof artifact authenticity
+    routeWhen: a shared business graph needs reusable visual layout from Business Understanding semantics
+    stopCondition: adapter output passes shared HTML graph primitive contract, exposes auditable graph roles, labels the SVG accessibly, keeps exactly one primary owned node, keeps outcome/frontier nodes distinct from owned semantics, keeps at least five business nodes with meaningful vertical density, keeps long labels readable with full-text audit data, fills missing relationship labels safely, renders supplemental business relationship cues without turning them into nodes, preserves supplemental relationship labels in audit HTML, and keeps technical proof tokens outside SVG business nodes
+    expected: Reporting can render BusinessGraphConstruction as a reusable layout while Business Understanding, MCP and Atlas keep semantic judgment.
+    repair: Fix layout classes/spacing/legend/proof-boundary placement in Reporting; fix business meaning in Business Understanding, MCP or Atlas.

@@ -1,0 +1,9 @@
+﻿{
+    "run":  "run_02",
+    "command":  "mvn \"-q\" \"-Dtest=com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest#cart_line_preserves_countable_quantity_before_invoice+cart_line_quantity_is_positive_before_invoice+cart_line_quantity_matches_review_body+cart_line_quantity_stays_pre_invoice+cart_line_quantity_has_selected_product_owner\" \"-Dreporting.engine=extent\" \"-Dreports.dir=C:\\work\\ex\\java\\demo\\atf3\\test-framework\\docs\\out\\2026-07-02_15.53.24\\runs\\run_02\\validation\\reports\" \"-Dreports.file.name=ExtentReport.html\" \"-Dreports.timestamp.enabled=false\" \"-DforkCount=0\" \"test\"",
+    "exitCode":  0,
+    "report":  "ExtentReport.html",
+    "sha256":  "3a71d6a44ed9fbd2526ac9c646151e3cc24baabf5612ae4e916db17820875f3a",
+    "timestamp":  "2026-07-02T13:19:21.1845116Z",
+    "size":  626487
+}

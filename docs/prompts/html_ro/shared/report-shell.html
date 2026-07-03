@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<title>Shell comun de raport</title>
+<link href="../../assets/shared-report-reference.css" rel="stylesheet">
+<style>
+.grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.diag{margin-top:10px;border:1px solid var(--border);border-radius:14px;background:#08101a;padding:12px;overflow:auto}
+.diag svg{display:block;width:100%;height:auto}
+.kvs{display:grid;grid-template-columns:160px 1fr;gap:8px 12px}
+.k{color:var(--muted);font-weight:600}
+.pillline{display:flex;flex-direction:column;gap:8px;align-items:flex-start;margin-top:10px}
+.pillrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.pilllabel{color:var(--muted);font-size:12px;font-weight:700;margin-right:2px}
+.toolbar{display:flex;justify-content:flex-start;gap:8px;margin:10px 0 14px}
+.toolbar button{border:1px solid var(--border);background:#111826;color:var(--text);border-radius:999px;padding:7px 12px;font-size:12px;font-weight:700;cursor:pointer}
+.toolbar button:hover{border-color:#7aa2ff;color:#dbe7ff}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Shell comun de raport <span class="badge">REPORTING</span> <span class="badge">SHARED</span> <span class="badge">MCP</span> <span class="badge">ATLAS</span></h1>
+  <div class="sub">
+    <ul>
+      <li>Defineste forma comuna pentru rapoarte HTML redeschisibile, indiferent daca sunt produse de MCP, Atlas sau Core Reporting.</li>
+      <li>Pastreaza chrome-ul, CSS-ul, layout-ul, navigarea, score wall-ul si sectiunile colapsabile intr-un limbaj comun.</li>
+      <li>Nu decide publicabilitatea MCP si nu decide calitatea intelegerii business Atlas.</li>
+    </ul>
+  </div>
+</header>
+
+<div class="toolbar" aria-label="Controale sectiuni">
+  <button type="button" onclick="toggleAll(true)">Deschide sectiunile</button>
+  <button type="button" onclick="toggleAll(false)">Inchide sectiunile</button>
+</div>
+
+<div class="grid">
+  <section class="card">
+    <h2>Overview</h2>
+    <table>
+      <thead><tr><th>Badge</th><th>Ce inseamna</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge">REPORTING</span></td><td>mecanica HTML: shell, CSS, score wall, tabele, linkuri, grafuri, colapsare</td></tr>
+        <tr><td><span class="badge">SHARED</span></td><td>primitive neutre folosite de MCP, Atlas, Core si viitoare skills</td></tr>
+        <tr><td><span class="badge">MCP</span></td><td>consuma shell-ul, dar adauga close-out, gate, Extent/XML/ledger si package truth</td></tr>
+        <tr><td><span class="badge">ATLAS</span></td><td>consuma shell-ul, dar adauga business graph, source trace, proof strips si score truth</td></tr>
+        <tr><td><span class="badge">INVALID</span></td><td>un shared shell care contine reguli MCP-only sau Atlas-only</td></tr>
+      </tbody>
+    </table>
+    <div class="pillline">
+      <div class="pillrow"><span class="pilllabel">Owner:</span><span class="pill">Reporting skill</span><span class="pill">Core reporting</span></div>
+      <div class="pillrow"><span class="pilllabel">Define:</span><span class="pill">document chrome</span><span class="pill">shared CSS</span><span class="pill">collapse controls</span><span class="pill">section rhythm</span></div>
+      <div class="pillrow"><span class="pilllabel">Nu define:</span><span class="pill bad">MCP publishability</span><span class="pill bad">Atlas score meaning</span><span class="pill bad">business ownership</span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <details open>
+      <summary><span class="summary-title">Contract minim</span><span class="sumhint">shell neutru</span></summary>
+      <table>
+        <thead><tr><th>Primitive</th><th>Obligatoriu</th><th>Anti-drift</th></tr></thead>
+        <tbody>
+          <tr><td>CSS</td><td><code class="inline">../../assets/shared-report-reference.css</code></td><td>nu se includ inline stilurile canonice in fiecare document prompt</td></tr>
+          <tr><td>Header</td><td>h1 clar, badge-uri scurte, descriere a rolului</td><td>nu devine landing page sau marketing</td></tr>
+          <tr><td>Toolbar</td><td><code class="inline">Deschide sectiunile</code> si <code class="inline">Inchide sectiunile</code></td><td>nu ascunde navigarea in JS complex</td></tr>
+          <tr><td>Sections</td><td>sectiuni colapsabile pentru detalii; opening-ul ramane scanabil</td><td>nu pune toate tabelele lungi in primul viewport</td></tr>
+          <tr><td>Cards</td><td>folosite pentru unitati repetabile sau sumar compact</td><td>nu se pun carduri in carduri</td></tr>
+          <tr><td>Tables</td><td>folosite pentru contracte, ownership si verificari</td><td>nu inlocuiesc dovada cu proza lunga</td></tr>
+        </tbody>
+      </table>
+    </details>
+  </section>
+</div>
+
+<details open>
+  <summary><span class="summary-title">1. Boundary de ownership</span><span class="sumhint">cine are voie sa decida ce</span></summary>
+  <div class="content">
+    <table>
+      <thead><tr><th>Zona</th><th>Owner</th><th>Are voie sa decida</th><th>Nu are voie sa decida</th></tr></thead>
+      <tbody>
+        <tr><td>Shell comun</td><td>Reporting</td><td>layout, CSS, colapsare, score-card shape, artifact link shape</td><td>scor MCP, scor Atlas, legalitate pachet</td></tr>
+        <tr><td>Raport MCP</td><td>MCP</td><td>package close-out, frozen evidence, gate, Extent/XML/ledger, final report truth</td><td>forma generica a shell-ului sau grafurile Atlas</td></tr>
+        <tr><td>Raport Atlas</td><td>Atlas</td><td>business understanding, source trace, proof strip, atlas score, test audit</td><td>MCP publishability sau final package close-out</td></tr>
+        <tr><td>Core Reporting</td><td>Core</td><td>API-uri si validatori generici pentru HTML contract</td><td>business meaning sau package governance</td></tr>
+      </tbody>
+    </table>
+    <div class="diag">
+      <svg viewBox="0 0 1160 260" role="img" aria-label="Shared report shell ownership">
+        <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7aa2ff"/></marker></defs>
+        <rect x="430" y="24" width="300" height="58" rx="14" fill="#111826" stroke="#7aa2ff"/>
+        <text x="580" y="58" text-anchor="middle" fill="#e6edf3" font-size="16" font-weight="700">Reporting shared shell</text>
+        <rect x="80" y="150" width="230" height="62" rx="14" fill="#111826" stroke="#35507a"/>
+        <text x="195" y="176" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">MCP report</text>
+        <text x="195" y="196" text-anchor="middle" fill="#a8b3cf" font-size="12">close-out + evidence</text>
+        <rect x="465" y="150" width="230" height="62" rx="14" fill="#111826" stroke="#35507a"/>
+        <text x="580" y="176" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Core reports</text>
+        <text x="580" y="196" text-anchor="middle" fill="#a8b3cf" font-size="12">diagnostic + runtime</text>
+        <rect x="850" y="150" width="230" height="62" rx="14" fill="#111826" stroke="#35507a"/>
+        <text x="965" y="176" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Atlas report</text>
+        <text x="965" y="196" text-anchor="middle" fill="#a8b3cf" font-size="12">business understanding</text>
+        <line x1="530" y1="82" x2="235" y2="150" stroke="#7aa2ff" stroke-width="2" marker-end="url(#arrow)"/>
+        <line x1="580" y1="82" x2="580" y2="150" stroke="#7aa2ff" stroke-width="2" marker-end="url(#arrow)"/>
+        <line x1="630" y1="82" x2="925" y2="150" stroke="#7aa2ff" stroke-width="2" marker-end="url(#arrow)"/>
+      </svg>
+    </div>
+  </div>
+</details>
+
+<details>
+  <summary><span class="summary-title">2. Profile de raport</span><span class="sumhint">shared vs consumer-owned</span></summary>
+  <div class="content">
+    <table>
+      <thead><tr><th>Profil</th><th>Shared cere</th><th>Consumer adauga</th><th>Regula rece</th></tr></thead>
+      <tbody>
+        <tr><td><code class="inline">SHARED_FINAL_REPORT</code></td><td>shell, CSS, opening, score primitive, link primitive, colapsare</td><td>nimic specific</td><td>profil de baza pentru validatori comuni</td></tr>
+        <tr><td><code class="inline">MCP_FINAL_REPORT</code></td><td>aceleasi primitive comune</td><td>Executive Context, Business Flow Graph, Score Overview, Proof Mapping, Run Audit, MCP Gate References, Artifact Index, Close-Out</td><td>MCP adauga sensul close-out; shared nu il impune</td></tr>
+        <tr><td><code class="inline">ATLAS_FINAL_REPORT</code></td><td>aceleasi primitive comune</td><td>Business Flow Graph, Business Flow Understanding, Source-to-Business Trace, Atlas Test Audit</td><td>Atlas adauga sensul business; shared nu il impune</td></tr>
+        <tr><td><code class="inline">CORE_DIAGNOSTIC_REPORT</code></td><td>aceleasi primitive comune</td><td>diagnostic, runtime audit, reporting proof</td><td>Core nu imprumuta vocabular MCP/Atlas</td></tr>
+      </tbody>
+    </table>
+  </div>
+</details>
+
+<details>
+  <summary><span class="summary-title">3. Checklist pentru documente noi</span><span class="sumhint">ce trebuie sa aiba fiecare</span></summary>
+  <div class="content">
+    <table>
+      <thead><tr><th>Element</th><th>Trebuie sa existe</th><th>De ce</th></tr></thead>
+      <tbody>
+        <tr><td>CSS relativ</td><td><code class="inline">&lt;link href="../../assets/shared-report-reference.css" rel="stylesheet"&gt;</code></td><td>documentul ramane relocabil in prompt tree</td></tr>
+        <tr><td>Opening scurt</td><td>h1 + badges + 3 bullets max</td><td>agentul intelege rapid rolul documentului</td></tr>
+        <tr><td>Overview table</td><td>badge -> ce citesti aici</td><td>reduce confuzia intre shared si skill-specific</td></tr>
+        <tr><td>Owner table</td><td>owner -> decide -> nu decide</td><td>previne mutarea regulilor in modulul gresit</td></tr>
+        <tr><td>Diagram</td><td>SVG simplu cu flow sau boundary</td><td>face contractul citibil si pentru oameni, nu doar pentru teste</td></tr>
+        <tr><td>Toggle script</td><td><code class="inline">toggleAll(openState)</code></td><td>aliniere cu documentele MCP/Atlas</td></tr>
+      </tbody>
+    </table>
+  </div>
+</details>
+
+</div>
+<script>function toggleAll(openState){document.querySelectorAll('details').forEach(function(el){el.open=openState;});}</script>
+</body>
+</html>

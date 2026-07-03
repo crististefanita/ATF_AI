@@ -1,0 +1,37 @@
+schemaVersion: 1
+contracts:
+  - id: business-understanding.calibration.class-reading-chain
+    kind: semantic-calibration
+    requiredModels: BusinessFlowStory,BusinessSourceTraceRow,BusinessProofStripRow,BusinessScoreRationale
+    expected: A class is understood only after the agent maps story, source trace, local proof and score rationale.
+    repair: Do not jump from class name to score. Build the story, trace it through layers, attach proof, then score.
+
+  - id: business-understanding.calibration.business-object-not-technical-layer
+    kind: semantic-calibration
+    requiredConcepts: BUSINESS_OBJECT,SUPPORT_LAYER,SOURCE_TRACE
+    expected: Business objects are domain outcomes or durable observable records; pages, selectors, helpers, adapters and validators are support evidence.
+    repair: Keep technical classes in layer trace or proof path; do not promote them to main graph business nodes.
+
+  - id: business-understanding.calibration.local-proof-before-global-summary
+    kind: semantic-calibration
+    requiredModels: BusinessProofStripRow,BusinessSourceTraceRow
+    expected: Every important graph/subgraph has local proof before the reader needs global evidence tables.
+    repair: Add graph-local proof-strip rows with method, layer path, business evidence and limit.
+
+  - id: business-understanding.calibration.maturity-before-95
+    kind: semantic-calibration
+    requiredModels: BusinessMaturity,BusinessScoreRationale
+    expected: 95+ business-understanding scores require mostly owned evidence, explicit limits and no hidden partial/diagnostic claims.
+    repair: If flows are partial, diagnostic or surface-only, publish a cap rationale before assigning high scores.
+
+  - id: business-understanding.calibration.suite-readiness-separated
+    kind: semantic-calibration
+    requiredConcepts: SCORE_TRUTH,UNDERSTANDING_LIMIT
+    expected: Business understanding score is not package readiness, MCP close-out readiness or html-ex promotion readiness.
+    repair: State what the score measures and keep package/artifact gates in the owning MCP or Atlas audit surface.
+
+  - id: business-understanding.calibration.repeated-corridor-signal
+    kind: semantic-calibration
+    requiredModels: BusinessFlowStory,BusinessMaturity,BusinessSourceTraceRow
+    expected: Repeated business corridors raise confidence only when repeated methods prove the same business object or lifecycle from different slices.
+    repair: Show repeated proof with real source methods and explain whether it proves ownership, partial coverage or diagnostic breadth.

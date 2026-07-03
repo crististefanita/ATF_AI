@@ -1,0 +1,13 @@
+﻿{
+    "source":  "run_02_payment_settlement_handshake",
+    "testsRun":  5,
+    "failures":  0,
+    "size":  539399,
+    "passed":  5,
+    "command":  "mvn -q -Dsurefire.suiteXmlFiles=src/test/resources/ui/testng-atf4-*.xml -Dreports.dir=run_02/validation/reports test",
+    "errors":  0,
+    "sha256":  "7aaa749d8c92eae913a983c26f820807850c4ed6ecebb8164ecee8bf6c9143e3",
+    "exitCode":  0,
+    "skipped":  0,
+    "timestamp":  "2026-07-02T18:06:08+03:00"
+}

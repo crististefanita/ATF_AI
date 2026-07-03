@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<title>Primitive comune pentru grafuri</title>
+<link href="../../assets/shared-report-reference.css" rel="stylesheet">
+<style>
+.grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.diag{margin-top:10px;border:1px solid var(--border);border-radius:14px;background:#08101a;padding:12px;overflow:auto}
+.diag svg{display:block;width:100%;height:auto}
+.pillline{display:flex;flex-direction:column;gap:8px;align-items:flex-start;margin-top:10px}
+.pillrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.pilllabel{color:var(--muted);font-size:12px;font-weight:700;margin-right:2px}
+.toolbar{display:flex;justify-content:flex-start;gap:8px;margin:10px 0 14px}
+.toolbar button{border:1px solid var(--border);background:#111826;color:var(--text);border-radius:999px;padding:7px 12px;font-size:12px;font-weight:700;cursor:pointer}
+.toolbar button:hover{border-color:#7aa2ff;color:#dbe7ff}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Primitive comune pentru grafuri <span class="badge">GRAPH</span> <span class="badge">NODE</span> <span class="badge">PROOF STRIP</span></h1>
+  <div class="sub">
+    <ul>
+      <li>Defineste stilul vizual si regulile de lizibilitate pentru grafuri business in MCP si Atlas.</li>
+      <li>Pastreaza nodurile business diferite de dovezile tehnice: test, run, selector, XML si diff raman in proof strip sau legenda.</li>
+      <li>Nu impune sectiuni MCP peste Atlas si nu impune scoruri Atlas peste MCP.</li>
+    </ul>
+  </div>
+</header>
+
+<div class="toolbar" aria-label="Controale sectiuni">
+  <button type="button" onclick="toggleAll(true)">Deschide sectiunile</button>
+  <button type="button" onclick="toggleAll(false)">Inchide sectiunile</button>
+</div>
+
+<div class="grid">
+  <section class="card">
+    <h2>Overview</h2>
+    <table>
+      <thead><tr><th>Badge</th><th>Regula</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge">GRAPH</span></td><td>graful explica flow-uri si obiecte business, nu structura codului</td></tr>
+        <tr><td><span class="badge">NODE</span></td><td>nodul contine actor, intentie, obiect, stare sau rezultat observabil</td></tr>
+        <tr><td><span class="badge">PROOF STRIP</span></td><td>dovada locala sta sub graf: test/metoda -> layer path -> artefact -> limita</td></tr>
+        <tr><td><span class="badge">INVALID</span></td><td>graf valid vizual, dar cu noduri de tip Page, Helper, Run 03 sau selector</td></tr>
+      </tbody>
+    </table>
+  </section>
+  <section class="card">
+    <details open>
+      <summary><span class="summary-title">Contract minim</span><span class="sumhint">business-first</span></summary>
+      <table>
+        <thead><tr><th>Element</th><th>Acceptat</th><th>Respins</th></tr></thead>
+        <tbody>
+          <tr><td>Nod principal</td><td>obiect business, actor, intentie, decizie, rezultat</td><td>clasa Java, helper, selector, run id</td></tr>
+          <tr><td>Muchie</td><td>tranzitie business sau relatie de dovada clara</td><td>ordonare artificiala a fisierelor</td></tr>
+          <tr><td>Legenda</td><td>status, owned/partial/blocked, cod vizual scurt</td><td>argumentatie lunga ascunsa in noduri</td></tr>
+          <tr><td>Proof strip</td><td>metoda, layer path, evidence, limit</td><td>tabel global fara legatura locala</td></tr>
+          <tr><td>Subgraf</td><td>slice source-specific cu vocabular diferit</td><td>template repetat Actor/Intent/Object/Result</td></tr>
+        </tbody>
+      </table>
+    </details>
+  </section>
+</div>
+
+<details open>
+  <summary><span class="summary-title">1. Model vizual comun</span><span class="sumhint">graful si dovada lui</span></summary>
+  <div class="content">
+    <div class="diag">
+      <svg viewBox="0 0 1160 330" role="img" aria-label="Shared business graph primitive">
+        <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7aa2ff"/></marker></defs>
+        <rect x="70" y="60" width="190" height="62" rx="14" fill="#111826" stroke="#7aa2ff"/>
+        <text x="165" y="86" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Actor</text>
+        <text x="165" y="106" text-anchor="middle" fill="#a8b3cf" font-size="12">user / system</text>
+        <rect x="335" y="60" width="190" height="62" rx="14" fill="#111826" stroke="#7aa2ff"/>
+        <text x="430" y="86" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Intentie</text>
+        <text x="430" y="106" text-anchor="middle" fill="#a8b3cf" font-size="12">business goal</text>
+        <rect x="600" y="60" width="190" height="62" rx="14" fill="#111826" stroke="#7aa2ff"/>
+        <text x="695" y="86" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Obiect business</text>
+        <text x="695" y="106" text-anchor="middle" fill="#a8b3cf" font-size="12">durable / observable</text>
+        <rect x="865" y="60" width="220" height="62" rx="14" fill="#111826" stroke="#7aa2ff"/>
+        <text x="975" y="86" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Rezultat</text>
+        <text x="975" y="106" text-anchor="middle" fill="#a8b3cf" font-size="12">state / audit / reopen</text>
+        <line x1="260" y1="91" x2="335" y2="91" stroke="#7aa2ff" stroke-width="2" marker-end="url(#arrow)"/>
+        <line x1="525" y1="91" x2="600" y2="91" stroke="#7aa2ff" stroke-width="2" marker-end="url(#arrow)"/>
+        <line x1="790" y1="91" x2="865" y2="91" stroke="#7aa2ff" stroke-width="2" marker-end="url(#arrow)"/>
+        <rect x="145" y="208" width="870" height="64" rx="14" fill="#0b1420" stroke="#35507a" stroke-dasharray="7 5"/>
+        <text x="580" y="235" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Banda de dovada noduri</text>
+        <text x="580" y="256" text-anchor="middle" fill="#a8b3cf" font-size="12">test/metoda -> layer path -> artefact -> intelegere dovedita -> limita</text>
+        <line x1="695" y1="122" x2="580" y2="208" stroke="#a8b3cf" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+      </svg>
+    </div>
+  </div>
+</details>
+
+<details>
+  <summary><span class="summary-title">2. Diferente MCP vs Atlas</span><span class="sumhint">aceeasi primitiva, sens diferit</span></summary>
+  <div class="content">
+    <table>
+      <thead><tr><th>Consumer</th><th>Foloseste graful pentru</th><th>Proof strip contine</th><th>Nu muta in shared</th></tr></thead>
+      <tbody>
+        <tr><td>MCP</td><td>business flow din pachet, overlay de runs, closure si proof mapping</td><td>claim, run, diff, Extent/XML, gate, cap</td><td>reguli de package close-out</td></tr>
+        <tr><td>Atlas</td><td>reconstructie business din sursa, source trace si maturitate flow</td><td>test method, layer path, business evidence, comprehension limit</td><td>formule Atlas score si source-only ownership</td></tr>
+        <tr><td>Core</td><td>doar graf diagnostic daca este cazul</td><td>runtime/reporting evidence</td><td>business meaning</td></tr>
+      </tbody>
+    </table>
+  </div>
+</details>
+
+<details>
+  <summary><span class="summary-title">3. Checklist de calitate</span><span class="sumhint">ce prind contractele</span></summary>
+  <div class="content">
+    <table>
+      <thead><tr><th>Check</th><th>Intrebare</th><th>Reparare</th></tr></thead>
+      <tbody>
+        <tr><td>business-first</td><td>nodurile se citesc ca produs, nu ca Java?</td><td>muta clasele in trace/proof strip</td></tr>
+        <tr><td>local proof</td><td>fiecare graf important are dovada langa el?</td><td>adauga proof strip imediat sub graf</td></tr>
+        <tr><td>semantic density</td><td>subgrafurile au vocabular specific, nu template repetat?</td><td>alege familii dominante reale din sursa</td></tr>
+        <tr><td>limit honesty</td><td>flow-urile partiale sunt marcate ca partiale?</td><td>adauga limita si cap in scor</td></tr>
+      </tbody>
+    </table>
+  </div>
+</details>
+
+</div>
+<script>function toggleAll(openState){document.querySelectorAll('details').forEach(function(el){el.open=openState;});}</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-07-02T18:20:08 EEST" name="ATF1 refund support run 02 contact form" finished-at="2026-07-02T18:20:38 EEST" duration-ms="30300">
+    <groups>
+      <group name="ui.refund-support">
+        <method signature="RefundSupportContactFormTest.refundSupportContactFormExposesEmailField()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest@24197b13]" name="refundSupportContactFormExposesEmailField" class="com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest"/>
+        <method signature="RefundSupportContactFormTest.refundSupportContactFormExposesMessageField()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest@24197b13]" name="refundSupportContactFormExposesMessageField" class="com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest"/>
+        <method signature="RefundSupportContactFormTest.refundSupportContactFormExposesReturnSubject()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest@24197b13]" name="refundSupportContactFormExposesReturnSubject" class="com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest"/>
+        <method signature="RefundSupportContactFormTest.refundSupportPayloadNamesPurchasedProduct()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest@24197b13]" name="refundSupportPayloadNamesPurchasedProduct" class="com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest"/>
+        <method signature="RefundSupportContactFormTest.refundSupportRequestUsesVisibleReturnContactForm()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest@24197b13]" name="refundSupportRequestUsesVisibleReturnContactForm" class="com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest"/>
+      </group> <!-- ui.refund-support -->
+      <group name="ui.contact-form">
+        <method signature="RefundSupportContactFormTest.refundSupportContactFormExposesEmailField()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest@24197b13]" name="refundSupportContactFormExposesEmailField" class="com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest"/>
+        <method signature="RefundSupportContactFormTest.refundSupportContactFormExposesMessageField()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest@24197b13]" name="refundSupportContactFormExposesMessageField" class="com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest"/>
+        <method signature="RefundSupportContactFormTest.refundSupportContactFormExposesReturnSubject()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest@24197b13]" name="refundSupportContactFormExposesReturnSubject" class="com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest"/>
+        <method signature="RefundSupportContactFormTest.refundSupportPayloadNamesPurchasedProduct()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest@24197b13]" name="refundSupportPayloadNamesPurchasedProduct" class="com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest"/>
+        <method signature="RefundSupportContactFormTest.refundSupportRequestUsesVisibleReturnContactForm()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest@24197b13]" name="refundSupportRequestUsesVisibleReturnContactForm" class="com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest"/>
+      </group> <!-- ui.contact-form -->
+      <group name="ui.invoice-bridge">
+        <method signature="RefundSupportContactFormTest.refundSupportPayloadNamesPurchasedProduct()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest@24197b13]" name="refundSupportPayloadNamesPurchasedProduct" class="com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest"/>
+      </group> <!-- ui.invoice-bridge -->
+    </groups>
+    <test started-at="2026-07-02T18:20:08 EEST" name="refund support contact form" finished-at="2026-07-02T18:20:38 EEST" duration-ms="30300">
+      <class name="com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest@24197b13]" started-at="2026-07-02T18:20:08 EEST" name="setUp" finished-at="2026-07-02T18:20:24 EEST" duration-ms="16089" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="createRefundSupportRequest()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest@24197b13]" started-at="2026-07-02T18:20:24 EEST" name="createRefundSupportRequest" finished-at="2026-07-02T18:20:35 EEST" duration-ms="10781" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createRefundSupportRequest -->
+        <test-method signature="refundSupportRequestUsesVisibleReturnContactForm()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest@24197b13]" started-at="2026-07-02T18:20:35 EEST" name="refundSupportRequestUsesVisibleReturnContactForm" description="Contact form captures refund intent through real Return subject before submit." finished-at="2026-07-02T18:20:35 EEST" duration-ms="406" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- refundSupportRequestUsesVisibleReturnContactForm -->
+        <test-method signature="refundSupportContactFormExposesReturnSubject()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest@24197b13]" started-at="2026-07-02T18:20:35 EEST" name="refundSupportContactFormExposesReturnSubject" description="Contact form exposes the Return option used for refund support." finished-at="2026-07-02T18:20:35 EEST" duration-ms="6" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- refundSupportContactFormExposesReturnSubject -->
+        <test-method signature="refundSupportContactFormExposesMessageField()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest@24197b13]" started-at="2026-07-02T18:20:36 EEST" name="refundSupportContactFormExposesMessageField" description="Contact form exposes a visible message field for refund details." finished-at="2026-07-02T18:20:36 EEST" duration-ms="4" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- refundSupportContactFormExposesMessageField -->
+        <test-method signature="refundSupportContactFormExposesEmailField()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest@24197b13]" started-at="2026-07-02T18:20:36 EEST" name="refundSupportContactFormExposesEmailField" description="Contact form exposes customer email capture for ownership boundary." finished-at="2026-07-02T18:20:36 EEST" duration-ms="3" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- refundSupportContactFormExposesEmailField -->
+        <test-method signature="refundSupportPayloadNamesPurchasedProduct()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest@24197b13]" started-at="2026-07-02T18:20:36 EEST" name="refundSupportPayloadNamesPurchasedProduct" description="Refund support payload describes the purchased product that needs refund help." finished-at="2026-07-02T18:20:36 EEST" duration-ms="4" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- refundSupportPayloadNamesPurchasedProduct -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest@24197b13]" started-at="2026-07-02T18:20:36 EEST" name="tearDown" finished-at="2026-07-02T18:20:38 EEST" duration-ms="1881" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.endava.ai.ui.tests.refunds.support.RefundSupportContactFormTest -->
+    </test> <!-- refund support contact form -->
+  </suite> <!-- ATF1 refund support run 02 contact form -->
+</testng-results>

@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="MCP Sanity" verbose="1">
+    <test name="mcp-sanity">
+        <classes>
+            <class name="com.endava.ai.skills.mcp.tests.core.profiles.McpTestNgProfileContractTest"/>
+            <class name="com.endava.ai.skills.mcp.tests.core.shape.McpPackageShapeContractTest"/>
+            <class name="com.endava.ai.skills.mcp.tests.core.McpProjectLocatorContractTest"/>
+            <class name="com.endava.ai.skills.mcp.tests.core.McpHtmlExReferenceHealthContractTest"/>
+            <class name="com.endava.ai.skills.mcp.tests.contracts.McpBusinessUnderstandingConsumerContractTest"/>
+            <class name="com.endava.ai.skills.mcp.tests.contracts.McpRuleRoutingCatalogContractTest"/>
+            <class name="com.endava.ai.skills.mcp.tests.contracts.McpYamlContractSchemaTest"/>
+            <class name="com.endava.ai.skills.mcp.tests.contracts.prompt.McpPromptContractOwnershipTest"/>
+            <class name="com.endava.ai.skills.mcp.tests.contracts.McpYamlContractSyncTest"/>
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testsuite name="run_03" tests="5" failures="0" errors="0" skipped="0" time="18.154" package="com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest">
+  <testcase classname="com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest" name="cart_review_carries_price_and_total_before_invoice" time="5.555" />
+  <testcase classname="com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest" name="cart_total_belongs_to_selected_product" time="3.268" />
+  <testcase classname="com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest" name="cart_total_is_money_before_invoice" time="3.185" />
+  <testcase classname="com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest" name="cart_value_proof_has_price_and_total" time="3.149" />
+  <testcase classname="com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest" name="cart_value_proof_stays_before_payment" time="2.997" />
+</testsuite>

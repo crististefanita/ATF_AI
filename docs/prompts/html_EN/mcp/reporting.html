@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<title>Reporting standard</title>
+<link href="../../assets/shared-report-reference.css" rel="stylesheet">
+<style>
+.grid { grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 12px; }
+.right-rail table td:first-child { width: 180px; font-weight: 600; }
+.tight li { margin: 3px 0; }
+.diag{margin-top:10px;border:1px solid var(--border);border-radius:14px;background:#08101a;padding:12px;overflow:auto}
+.diag svg{display:block;width:100%;height:auto}
+.kvs{display:grid;grid-template-columns:120px 1fr;gap:8px 12px}
+.k{color:var(--muted);font-weight:600}
+.pillline{display:flex;flex-direction:column;gap:8px;align-items:flex-start;margin-top:10px}
+.pillrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.pilllabel{color:var(--muted);font-size:12px;font-weight:700;margin-right:2px}
+pre,
+pre code{
+  line-height:1.04;
+}
+.toolbar{display:flex;justify-content:flex-start;gap:8px;margin:10px 0 14px}
+.toolbar button{border:1px solid var(--border);background:#111826;color:var(--text);border-radius:999px;padding:7px 12px;font-size:12px;font-weight:700;cursor:pointer}
+.toolbar button:hover{border-color:#7aa2ff;color:#dbe7ff}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Reporting standard <span class="badge">OPENING</span> <span class="badge">GRAPH</span> <span class="badge">PROOF</span> <span class="badge">CLOSE-OUT</span></h1>
+  <div class="sub">
+    <ul>
+      <li>Define the canonical form for <code class="inline">analysis/langgraph-business-understanding.html</code>.</li>
+      <li>Publish the frozen truth: business, proof, accounting, next move.</li>
+      <li>It does not reinterpret the runtime, launch legality or production artifacts.</li>
+    </ul>
+  </div>
+  
+</header>
+<div class="toolbar" aria-label="Control sections"><button type="button" onclick="toggleAll(true)">Open the sections</button><button type="button" onclick="toggleAll(false)">Close sections</button></div>
+
+<div class="grid">
+  <section class="card">
+    <h2>Overview</h2>
+    <table>
+      <thead><tr><th>Badge</th><th>Read here</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge">OPENING</span></td><td>hero, runtime strip, score cards, Score Overview, accounting compact</td></tr>
+        <tr><td><span class="badge">GRAPH</span></td><td>the real business map of the application + the package overlay</td></tr>
+        <tr><td><span class="badge">PROOF</span></td><td>claim -&gt; run -&gt; diff -&gt; Extent/XML -&gt; verdict</td></tr>
+        <tr><td><span class="badge">auditor</span></td><td>run audit, Artifact Index, state files, render proof and link audit</td></tr>
+        <tr><td><span class="badge">CLOSE-OUT</span></td><td>countability, runs consumed, same-round, fresh ROOT_RUN, next move</td></tr>
+        <tr><td><span class="badge">INVALID</span></td><td>nice report that raises the score above the business substance or hides the lack of evidence</td></tr>
+      </tbody>
+    </table>
+    <div class="pillline">
+      <div class="pillrow"><span class="pilllabel">Owner:</span><span class="pill">final page</span><span class="pill">published form</span></div>
+      <div class="pillrow"><span class="pilllabel">Use:</span><span class="pill">ice cream truth</span><span class="pill">proof links</span><span class="pill">file states</span></div>
+          <div class="pillrow"><span class="pilllabel">Does not produce:</span><span class="pill">runtime</span><span class="pill">launch legality</span><span class="pill">production accounting</span></div>
+      <div class="pillrow"><span class="pilllabel">Appendices:</span><span class="pill">score overview</span><span class="pill">business graph heading</span></div>
+    </div>
+  </section>
+
+  <section class="card right-rail">
+    <details>
+    <summary><span class="summary-title">Mandatory structure</span><span class="sumhint">reference closed by default</span></summary>
+    <table>
+      <thead>
+        <tr>
+          <th>Area</th>
+          <th>Is it visible up?</th>
+          <th>The cold rule</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Visible top</td><td>Yes</td><td>hero verdict, runtime strip, score wall, rapid access to <code class="inline">Score Overview</code></td></tr>
+        <tr><td>Folded top</td><td>only in the fold</td><td>Executive Context, extended accounting, jump links, controls, longer explanations</td></tr>
+        <tr><td>Never top</td><td>not</td><td>run audit, complete Artifact Index, long proof tables, detailed close-out, score argumentation</td></tr>
+      </tbody>
+    </table>
+    <table>
+      <thead>
+        <tr>
+          <th>Section</th>
+          <th>What should it contain?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1. Opening</td>
+          <td>
+            <ul>
+              <li>hero verdict</li>
+              <li>runtime strip</li>
+              <li>score wall</li>
+              <li>direct access to <code class="inline">Score Overview</code></li>
+              <li>short compact accounting; the rest of the accounting goes down into the fold</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>1a. Score Overview</td>
+          <td>
+            <ul>
+              <li>subsection collapsed and short</li>
+              <li>form comes from <code class="inline">score-overview-reference.html</code></li>
+              <li>it does not reinvent itself locally</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>2. Executive verdict</td>
+          <td>winner truth, strongest unresolved truth, same-round truth, fresh ROOT_RUN truth and the historical mutation compared to the previous package</td>
+        </tr>
+        <tr>
+          <td>4. Business flow graph</td>
+          <td>
+            <ul>
+              <li>application macro-map + package overlay</li>
+              <li>form comes from <code class="inline">business-flow-graph-rubric.html</code></li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>5. Evidence and coverage</td>
+          <td>proof mapping + Artifact Index; each major claim has run, run diff, Extent/XML, MD verdict and state file</td>
+        </tr>
+        <tr>
+          <td>6. Audit tape per run</td>
+          <td>a short band per run: claim, delta, kept, diff, Extent/XML and MD feedback</td>
+        </tr>
+        <tr>
+          <td>7. The closing truth</td>
+          <td>
+            <ul>
+              <li>x / ROUND_TARGET_TEST_COUNT</li>
+              <li>runs consumed = n / META_ITERATION_COUNT</li>
+              <li>target meth</li>
+              <li>same-round / fresh ROOT_RUN legality</li>
+              <li>open problems and under-spend</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>8. Rendering and auditing</td>
+          <td><ul><li>canonical page + shared CSS</li><li>render proof + link audit</li><li>collapsible main sections</li><li><code class="inline">4. Graful fluxului business</code> deschis implicit</li></ul></td>
+        </tr>
+      </tbody>
+    </table>
+    </details>
+  </section>
+</div>
+<details open><summary><span class="summary-title">1. Flows and diagrams</span><span class="sumhint">form and proof of the final page</span></summary>
+  <details class="subdetails">
+  <summary><span class="summary-title">1.1 Quick reading map</span><span class="sumhint">short orientation</span></summary>
+  <table>
+    <thead>
+      <tr>
+        <th>If you ask</th>
+        <th>open</th>
+        <th>You get cold</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>what should the first screen look like?</td><td><code class="inline">1.2</code></td><td>order hero -&gt; runtime -&gt; score cards -&gt; Score Overview -&gt; accounting -&gt; verdict</td></tr>
+      <tr><td>how does reporting the frozen truth read?</td><td><code class="inline">1.2.1</code></td><td>the read-only state machine of the final page</td></tr>
+      <tr><td>how should the application be drawn, not the package?</td><td><code class="inline">1.3</code></td><td>business macro map + local overlay</td></tr>
+      <tr><td>how do I link the claim to the proof?</td><td><code class="inline">1.4</code></td><td>the chain claim -&gt; run -&gt; diff -&gt; Extent -&gt; verdict</td></tr>
+      <tr><td>what truths am I not allowed to mix?</td><td><code class="inline">1.5</code></td><td>countability, runs consumed, same-package, fresh-root</td></tr>
+    </tbody>
+  </table>
+  <div class="mini">
+    <ul>
+      <li><code class="inline">1.2</code> = opening.</li>
+      <li><code class="inline">1.3</code> = harta aplicatiei.</li>
+      <li><code class="inline">1.4</code> = evidence.</li>
+      <li><code class="inline">1.5</code> = verdicte separate.</li>
+    </ul>
+  </div>
+  </details>
+  <details class="subdetails" open id="opening-shape">
+    <summary><span class="summary-title">1.2 Opening shape</span><span class="sumhint">the shape of the first screen</span></summary>
+    <div class="diag"><svg viewbox="0 0 1160 220" role="img" aria-label="Opening shape">
+    <defs><marker id="op" markerwidth="10" markerheight="10" refx="8" refy="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7aa2ff"></path></marker></defs>
+    <rect x="20" y="78" width="160" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+    <text x="100" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">hero</text>
+    <text x="100" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">short verdict</text>
+    <rect x="200" y="78" width="160" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+    <text x="280" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">runtime strip</text>
+    <text x="280" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">active values</text>
+    <rect x="380" y="78" width="160" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+    <text x="460" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">score cards</text>
+    <text x="460" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">visible cards</text>
+    <rect x="560" y="78" width="160" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+    <text x="640" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Score Overview</text>
+    <text x="640" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">separate subsection</text>
+    <rect x="740" y="78" width="180" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+    <text x="830" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">accounting compact</text>
+    <text x="830" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">integrated, not separate</text>
+    <rect x="940" y="78" width="180" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+    <text x="1030" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">section 2</text>
+    <text x="1030" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">Executive verdict</text>
+    <path d="M180 112 H200" stroke="#7aa2ff" stroke-width="2" marker-end="url(#op)"></path>
+    <path d="M360 112 H380" stroke="#7aa2ff" stroke-width="2" marker-end="url(#op)"></path>
+    <path d="M540 112 H560" stroke="#7aa2ff" stroke-width="2" marker-end="url(#op)"></path>
+    <path d="M720 112 H740" stroke="#7aa2ff" stroke-width="2" marker-end="url(#op)"></path>
+    <path d="M920 112 H940" stroke="#7aa2ff" stroke-width="2" marker-end="url(#op)"></path>
+    </svg></div>
+    <details class="mini-note">
+      <summary>Legend</summary>
+      <ul>
+        <li>Score cards and <code class="inline">Score Overview</code> are not the same block; the overview remains a separate subsection.</li>
+        <li>Accounting must be integrated according to the scoring area, not a weak separate helper.</li>
+        <li>Jump links are only good if they don't fill the opening with noise.</li>
+      </ul>
+    </details>
+  </details>
+  <details class="subdetails">
+    <summary><span class="summary-title">1.2.1 State machine minimum reporting</span><span class="sumhint">ice cream truth -&gt; final page</span></summary>
+<pre><code>read_package_state
+-&gt; read_frozen_truth
+-&gt; build_business_graph
+-&gt; map_claims_to_proof
+-&gt; assemble_run_audit
+-&gt; render_and_link_audit
+-&gt; publish_final_html
+</code></pre>
+    <table>
+      <thead>
+        <tr>
+          <th>Step</th>
+          <th>what are you reading</th>
+          <th>What you are not allowed to do</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code class="inline">read_package_state</code></td><td>state files and close-out carriers</td><td>you do not invent new values ​​or new legality</td></tr>
+        <tr><td><code class="inline">build_business_graph</code></td><td>application macro map + package overlay</td><td>do not turn the graph into a log of runs</td></tr>
+        <tr><td><code class="inline">map_claims_to_proof</code></td><td>run diff, Extent, XML, decisive MDs</td><td>don't leave claims without an owner and without proof</td></tr>
+        <tr><td><code class="inline">render_and_link_audit</code></td><td>Common CSS, render proof, link audit</td><td>don't publish a beautiful but unauditable page</td></tr>
+      </tbody>
+    </table>
+    <div class="note">
+      <ul>
+        <li>Reporting does not rejudge.</li>
+        <li>Read the status and the truth already frozen.</li>
+        <li>Check if the final page is navigable and cool.</li>
+      </ul>
+    </div>
+  </details>
+  <details class="subdetails">
+    <summary><span class="summary-title">1.3 Business Flow Graph</span><span class="sumhint">application map + package overlay</span></summary>
+    <div class="note">
+      <ul>
+        <li>Here reporting only validates the form.</li>
+        <li>The canonical LangGraph stands in <code class="inline">business-flow-graph-rubric.html</code>.</li>
+        <li>The rubric, examples and bad smells are also there.</li>
+      </ul>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Place</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code class="inline">1.3</code></td><td>validate the shape of the graph and send to the reusable column</td></tr>
+        <tr><td><code class="inline">4</code></td><td>describes the minimum mandatory content of the final report</td></tr>
+      </tbody>
+    </table>
+    <div class="mini">
+      <ul>
+        <li><code class="inline">1.3</code> nu dubleaza sectiunea <code class="inline">4</code>.</li>
+        <li>The form is calibrated in the rubric.</li>
+        <li>The published content remains in the report.</li>
+      </ul>
+    </div>
+  </details>
+  <details class="subdetails" id="claim-proof-artifact">
+    <summary><span class="summary-title">1.4 Claim -&gt; proof -&gt; artifact</span><span class="sumhint">minimum publication chain</span></summary>
+    <div class="diag"><svg viewbox="0 0 1160 220" role="img" aria-label="Claim to proof to artifact">
+    <defs><marker id="cp" markerwidth="10" markerheight="10" refx="8" refy="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7aa2ff"></path></marker></defs>
+    <rect x="35" y="78" width="180" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+    <text x="125" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">business claim</text>
+    <text x="125" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">what are you posting?</text>
+    <rect x="255" y="78" width="150" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+    <text x="330" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">run</text>
+    <text x="330" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">local owner</text>
+    <rect x="445" y="78" width="150" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+    <text x="520" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">diff</text>
+    <text x="520" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">evolution</text>
+    <rect x="635" y="78" width="150" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+    <text x="710" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">extents</text>
+    <text x="710" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">proof UI</text>
+    <rect x="825" y="78" width="150" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+    <text x="900" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">MD verdict</text>
+    <text x="900" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">owned / blocked</text>
+    <path d="M215 112 H255" stroke="#7aa2ff" stroke-width="2" marker-end="url(#cp)"></path>
+    <path d="M405 112 H445" stroke="#7aa2ff" stroke-width="2" marker-end="url(#cp)"></path>
+    <path d="M595 112 H635" stroke="#7aa2ff" stroke-width="2" marker-end="url(#cp)"></path>
+    <path d="M785 112 H825" stroke="#7aa2ff" stroke-width="2" marker-end="url(#cp)"></path>
+    </svg></div>
+    <details class="mini-note">
+      <summary>Legend</summary>
+      <ul>
+        <li>Each published claim must have an owner and seaworthy proof.</li>
+        <li>If the owner, diff or proof carrier is missing, the claim is not cold.</li>
+        <li>The published claim must sound higher than the name of the test that supports it.</li>
+      </ul>
+    </details>
+  </details>
+  <details class="subdetails" id="truths-not-mixed">
+    <summary><span class="summary-title">1.5 Truths that must not be mixed</span><span class="sumhint">countability, runs consumed, same-round, fresh-root</span></summary>
+    <div class="diag"><svg viewbox="0 0 1160 220" role="img" aria-label="Truths not mixed">
+    <rect x="35" y="78" width="220" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+    <text x="145" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">countability</text>
+    <text x="145" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">x / ROUND_TARGET_TEST_COUNT</text>
+    <rect x="325" y="78" width="220" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+    <text x="435" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">runs consumed</text>
+    <text x="435" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">slots spent</text>
+    <rect x="615" y="78" width="220" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+    <text x="725" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">same-package blocked</text>
+    <text x="725" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">don't continue here</text>
+    <rect x="905" y="78" width="220" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+    <text x="1015" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">fresh ROOT_RUN legal</text>
+    <text x="1015" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">the next package</text>
+    </svg></div>
+    <details class="mini-note">
+      <summary>Legend</summary>
+      <ul>
+        <li>These four verdicts are different even if they appear in the same close-out.</li>
+        <li><code class="inline">same-package blocked</code> nu inseamna automat <code class="inline">fresh ROOT_RUN legal = no</code>.</li>
+        <li>If these truths are mixed up, the report sounds more certain than it is.</li>
+      </ul>
+    </details>
+  </details>
+</details>
+
+<details>
+  <summary><span class="summary-title">2. Opening <span class="badge">OPENING</span></span><span class="sumhint">hero, score wall, Score Overview, accounting compact</span></summary>
+  <details class="subdetails">
+    <summary><span class="summary-title">2.1 Opening Contract Card</span><span class="sumhint">what stays up and what comes down</span></summary>
+    <table>
+      <thead><tr><th>Visible above</th><th>Collapsed / below</th></tr></thead>
+      <tbody>
+        <tr><td>hero verdict</td><td>long explanations of scoring</td></tr>
+        <tr><td>runtime strip</td><td>runtime doctrine</td></tr>
+        <tr><td>score wall visible + Score Overview collapsed</td><td>self-defense argumentation</td></tr>
+        <tr><td>accounting compact</td><td>wide audit tables</td></tr>
+        <tr><td>short executive verdict</td><td>details of test, repair, helper, selector</td></tr>
+      </tbody>
+    </table>
+    <div class="note">
+      <ul>
+        <li>The report is public, not a retrial.</li>
+        <li>Each important claim has a local hyperlink to the proof.</li>
+        <li>The final published form lives here, not in the execution documents.</li>
+        <li>All main sections are collapsible.</li>
+        <li>The only main section open by default: <code class="inline">4. Graful fluxului business</code>.</li>
+      </ul>
+    </div>
+  </details>
+  <details class="subdetails">
+    <summary><span class="summary-title">2.2 Mandatory opening elements</span><span class="sumhint">hero + score wall visible; the hard collapsed context</span></summary>
+  <table>
+    <thead>
+      <tr>
+        <th>Area</th>
+        <th>Model requested</th>
+        <th>The cold rule</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Hero</td><td>short title + status badge</td><td>tell the truth of the package, not the marketing</td></tr>
+      <tr><td>Score wall</td><td>visible cards for canonical axes, incl <code class="inline">Overall</code></td><td>values ​​follow <code class="inline">score-overview-reference.html</code></td></tr>
+      <tr><td>Executive Context</td><td>collapsed subsection with runtime pills, short context, owned / blocked</td><td>don't keep the hard context open by default</td></tr>
+      <tr><td>Read First</td><td>mini-card with root diff or main historical artifact</td><td>the first link should help the cold reopen</td></tr>
+      <tr><td>Compiled States</td><td>mini-card with <code class="inline">package-state.json</code></td><td>the compiled state is not hidden in the Artifact Index</td></tr>
+      <tr><td>Execution Gate</td><td>mini-card with <code class="inline">execution-gate-card.md</code></td><td>the completeness of the package must be quickly verifiable</td></tr>
+      <tr><td>Jump links</td><td>short links to Score Overview, Business Flow Graph, Proof, Close-out</td><td>navigation, not ornament</td></tr>
+      <tr><td>Collapse</td><td>after opening, the main sections are collapsible</td><td>in the final report, only the Business Flow Graph remains open by default</td></tr>
+    </tbody>
+  </table>
+  <div class="note">
+    <ul>
+      <li>The good model: <code class="inline">score wall</code> vizibil, contextul greu in <code class="inline">Executive Context</code> colapsat.</li>
+      <li>Do not put wide tables, full audit or long explanations in the first screen.</li>
+      <li>Runtime and counters appear as short pills; their doctrine remains in the owner artifacts.</li>
+    </ul>
+  </div>
+  </details>
+  <details class="subdetails">
+    <summary><span class="summary-title">2.3 Accounting Compact</span><span class="sumhint">the short form published in the opening</span></summary>
+  <pre><code>Accounting Compact
+  tests produced = x / ROUND_TARGET_TEST_COUNT
+  runs consumed = n / META_ITERATION_COUNT
+  breadth = broad / partial / narrow
+  same-round continuation = yes / no / blocked
+  fresh ROOT_RUN = yes / no
+  owner = quality-accounting-verdict.md
+</code></pre>
+  </details>
+</details>
+
+<details>
+  <summary><span class="summary-title">3. Executive verdict <span class="badge">CLOSE-OUT</span></span><span class="sumhint">winner, under-spend, next move</span></summary>
+  <table>
+    <thead>
+      <tr>
+        <th>Block</th>
+        <th>Minimal content</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Winner truth</td><td>what new business has become cool, owned and countable</td></tr>
+      <tr><td>Strongest unresolved truth</td><td>which relevant border remained partial, blocked or fresh-round-only</td></tr>
+      <tr><td>Same-round stop truth</td><td>why the continuation in the same package is legal or not</td></tr>
+      <tr><td>Fresh ROOT_RUN truth</td><td>if the next step must be moved to a new package</td></tr>
+      <tr><td>Historical mutation</td><td>in 1-3 lines: what has changed this package compared to the previous package, with early link to <code class="inline">root-source-thin-no-index.diff</code></td></tr>
+    </tbody>
+  </table>
+  <div class="note">
+    <ul>
+      <li>The final report does not become a long log.</li>
+      <li>However, the opening must have a short historical mutation.</li>
+      <li>Without it, the diffs remain too low and difficult to read pedagogically.</li>
+    </ul>
+  </div>
+  <details class="subdetails">
+    <summary><span class="summary-title">3.1 Cold reading discipline</span><span class="sumhint">opening shape, good order, cold benchmark</span></summary>
+    <div class="diag"><svg viewbox="0 0 1160 220" role="img" aria-label="The discipline of cold reading">
+    <defs><marker id="dr" markerwidth="10" markerheight="10" refx="8" refy="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7aa2ff"></path></marker></defs>
+    <rect x="35" y="78" width="170" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+    <text x="120" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">opening</text>
+    <text x="120" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">hero + cards + accounting</text>
+    <rect x="245" y="78" width="170" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+    <text x="330" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">verdict</text>
+    <text x="330" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">winner + under-spend + next move</text>
+    <rect x="455" y="78" width="170" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+    <text x="540" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">graph</text>
+    <text x="540" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">the business story</text>
+    <rect x="665" y="78" width="170" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+    <text x="750" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">proof mapping</text>
+    <text x="750" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">claim -&gt; run -&gt; proof</text>
+    <rect x="875" y="78" width="110" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+    <text x="930" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">auditor</text>
+    <text x="930" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">strip</text>
+    <rect x="1025" y="78" width="100" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+    <text x="1075" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">close-out</text>
+    <text x="1075" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">final truth</text>
+    <path d="M205 112 H245" stroke="#7aa2ff" stroke-width="2" marker-end="url(#dr)"></path>
+    <path d="M415 112 H455" stroke="#7aa2ff" stroke-width="2" marker-end="url(#dr)"></path>
+    <path d="M625 112 H665" stroke="#7aa2ff" stroke-width="2" marker-end="url(#dr)"></path>
+    <path d="M835 112 H875" stroke="#7aa2ff" stroke-width="2" marker-end="url(#dr)"></path>
+    <path d="M985 112 H1025" stroke="#7aa2ff" stroke-width="2" marker-end="url(#dr)"></path>
+    </svg></div>
+    <details class="mini-note">
+      <summary>Legend</summary>
+      <ul>
+        <li>Do not let the opening become a technical index.</li>
+        <li>Don't let the tests explain the business before the verdict.</li>
+        <li>Do not raise the heavy payload above the proof mapping.</li>
+      </ul>
+    </details>
+    <table>
+      <thead>
+        <tr>
+          <th>Rule</th>
+          <th>Cold form</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Opening shape</td>
+        <td>
+          <ul>
+            <li>hero -&gt; runtime strip -&gt; canonical score wall</li>
+            <li>Score Overview -&gt; integrated accounting -&gt; section 3</li>
+            <li>without a separate contradictory block between score and verdict</li>
+          </ul>
+        </td>
+      </tr>
+        <tr><td>Opening clutter</td><td>do not publish accounting, yield, comparator or weak helper as a separate block in the opening</td></tr>
+        <tr><td>Reading order</td><td>the reader must first understand the verdict and the business, not the tests or the repair trail</td></tr>
+        <tr>
+          <td>Payload moved down</td>
+          <td>
+            <ul>
+              <li>run ids, test names, repair steps</li>
+              <li>selectors, concrete payload, micro-mutations</li>
+              <li>place: legend, proof mapping, audit strip, artifact index</li>
+            </ul>
+          </td>
+        </tr>
+        <tr><td>Cool benchmark</td><td>for the shape comparison, the benchmarks selected in pretraining are reopened; there is no single rigid teacher</td></tr>
+      </tbody>
+    </table>
+    <div class="warn">If the reader must first understand the tests to understand the business winner, the report is wrong.</div>
+  </details>
+</details>
+
+<details>
+  <summary><span class="summary-title">4. Business flow graph <span class="badge">GRAPH</span></span><span class="sumhint">the pedagogical center of the report</span></summary>
+  <div class="note">
+    <ul>
+      <li>Here only the mandatory slot of the final report remains.</li>
+      <li>In this requirements document: collapsed by default.</li>
+      <li>In the final report: the only section open by default.</li>
+      <li>Form and validation come from <code class="inline">business-flow-graph-rubric.html</code>.</li>
+    </ul>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>The report must be published here</th>
+        <th>Minimum accepted</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>macro-map of the application</td><td>actual lanes of the product, not the list of runs</td></tr>
+      <tr><td>the package overlay</td><td>what has become owned, partial, blocked or fresh-round-only</td></tr>
+      <tr><td>legend collapsed</td><td>the test details, run ids, method and repair trail are under the graph, not in the nodes</td></tr>
+      <tr><td>connection with the evidence</td><td>refer the reader to proof mapping, run audit and Artifact Index</td></tr>
+    </tbody>
+  </table>
+  <div class="rule">
+    <ul>
+      <li>The application is the map.</li>
+      <li>The package colors only what it touches.</li>
+      <li>Design and validation: <code class="inline">business-flow-graph-rubric.html</code>.</li>
+    </ul>
+  </div>
+</details>
+
+<details>
+  <summary><span class="summary-title">5. Evidence and coverage <span class="badge">PROOF</span></span><span class="sumhint">mapping, diff, Extent, artifact index</span></summary>
+
+  <details class="subdetails">
+    <summary><span class="summary-title">5.1 Ownership = closed truth</span><span class="sumhint">claim -&gt; run -&gt; proof</span></summary>
+    <table>
+      <thead>
+        <tr>
+          <th>Column</th>
+          <th>What must exist</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Business claim</td><td>cold claim about a business step or identity, not just about a green test</td></tr>
+        <tr><td>Run owner</td><td>link to <code class="inline">runs/run_##/SUMMARY.md</code></td></tr>
+        <tr><td>Evolution truth</td><td>link to <code class="inline">runs/run_##/review/thin-no-index.diff</code> for the run claim; <code class="inline">root-source-thin-no-index.diff</code> only for package synthesis</td></tr>
+        <tr><td>UI proof</td><td>link to <code class="inline">ExtentReport_*.html</code> for UI packages</td></tr>
+        <tr><td>Machine proof</td><td>link to XML or <code class="inline">command-result.md</code></td></tr>
+        <tr><td>Cold verdict</td><td>owned / partial / blocked / fresh-round-only</td></tr>
+      </tbody>
+    </table>
+    <pre><code>run diff = mutatia mica
+root diff = mutatia compilata
+carrier = support only if the diff is not enough
+</code></pre>
+    <div class="note">
+      <ul>
+        <li>Every important claim has a link to the diff.</li>
+        <li>Each claim also has a historical mutation sentence.</li>
+        <li>Say: what opened, closed or narrowed.</li>
+      </ul>
+    </div>
+    <div class="warn">
+      <ul>
+        <li>Without a run diff, the claim does not have a complete cold history.</li>
+        <li>The root diff does not compensate for the lack of the small diff.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="subdetails">
+    <summary><span class="summary-title">5.2 Artifact Index = where you reopen the proof</span><span class="sumhint">what should be hyperlink-uit</span></summary>
+    <div class="rule">
+      <ul>
+        <li>Formula: <code class="inline">claim major -&gt; run -&gt; run diff -&gt; Extent/XML -&gt; verdict MD -&gt; state file -&gt; status</code>.</li>
+        <li>One row per major claim published in Verdict, Business Flow Graph or Proof Mapping.</li>
+        <li>Proof Mapping cannot use a stronger verb than executed proof.</li>
+        <li>Cold formula: <code class="inline">claim verb = source action = proof trace</code>.</li>
+        <li>If one is missing, the claim becomes <code class="inline">partial</code>, <code class="inline">support-only</code> or <code class="inline">blocked</code>.</li>
+        <li>The gross inventory is in frozen inventory.</li>
+      </ul>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Family</th>
+          <th>Mandatory Artifact</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Runtime</td><td><code class="inline">agent-runtime.properties</code></td><td>the common truth of thresholds and horses</td></tr>
+        <tr><td>Evolution</td><td><code class="inline">runs/run_##/review/thin-no-index.diff</code> + <code class="inline">review/root-source-thin-no-index.diff</code></td><td>run diff for local mutation; root diff to compile the package</td></tr>
+        <tr><td>Proof of UI</td><td><code class="inline">ExtentReport_*.html</code></td><td>main evidence column for UI; if the framework snapshot asks <code class="inline">ui.screenshots.capture.final.state=true</code>, the link must reopen the visible final screenshot</td></tr>
+        <tr><td>Config framework</td><td><code class="inline">review/framework.properties</code></td><td>unique auditable snapshot for screenshot/browser/zoom and other active framework settings; explain why UI images are mandatory or not</td></tr>
+        <tr><td>Machine proof</td><td><code class="inline">testng-results.xml</code>, <code class="inline">TEST-*.xml</code>, <code class="inline">command-result.md</code></td><td>machine-readable execution truth</td></tr>
+        <tr><td>Audit on the run</td><td><code class="inline">SUMMARY.md</code>, <code class="inline">artifact-checklist.md</code>, <code class="inline">score-support.md</code></td><td>the truth kept/countable</td></tr>
+        <tr><td>governance</td><td><code class="inline">quality-accounting-verdict.md</code>, <code class="inline">next-run-eligibility-card.md</code>, <code class="inline">package-close-out.md</code>, <code class="inline">package-state.json</code>, <code class="inline">execution-gate-card.md</code></td><td>accounting, legality, close-out and compiled status</td></tr>
+        <tr><td>State files per run</td><td><code class="inline">runs/run_##/review/run-state.json</code></td><td>links each big claim to the cold state of the run that produced it</td></tr>
+        <tr><td>Constructive learning</td><td>any <code class="inline">*.md</code> care a influentat verdictul</td><td>auditable feedback from the agent</td></tr>
+        <tr><td>Publication</td><td><code class="inline">shared-report-reference.css</code>, <code class="inline">canonical-render-check.png</code>, <code class="inline">local-link-check.txt</code></td><td>the test of rendering and reopening the links</td></tr>
+      </tbody>
+    </table>
+    <div class="rule">Artifact Index is mandatory per major claim; the extra value does not replace it.</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Major claim</th>
+          <th>Run</th>
+          <th>Run diff / source</th>
+          <th>Extent / XML</th>
+          <th>Verdict MD</th>
+          <th>Tab states</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>claim published in verdict, graph or proof mapping</td>
+          <td><code class="inline">run_##</code> or <code class="inline">package</code></td>
+          <td>link to diff/source or <code class="inline">missing</code></td>
+          <td>link to Extent/XML or <code class="inline">n/a</code></td>
+          <td>link to the MD holding the verdict</td>
+          <td>link to <code class="inline">run-state.json</code> or <code class="inline">package-state.json</code></td>
+          <td><code class="inline">linked / missing / n/a</code></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="warn">
+      <ul>
+        <li>Artifact Index is not decorative inventory.</li>
+        <li>Claim without full chain remains partial.</li>
+      </ul>
+    </div>
+    <div class="note">
+      <ul>
+        <li>claim -&gt; run diff</li>
+        <li>synthesis -&gt; root diff</li>
+        <li>carrier -&gt; only when the claim requires additional interpretation</li>
+      </ul>
+    </div>
+    <div class="note">
+      <ul>
+        <li>State files appear here and in Close-out.</li>
+        <li><code class="inline">package-state.json</code> = adevar compilat.</li>
+        <li><code class="inline">run-state.json</code> = claim greu dependent de un slot.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="subdetails">
+    <summary><span class="summary-title">5.3 Allowed extra value</span><span class="sumhint">freedom after the mandatory skeleton</span></summary>
+    <table>
+      <thead>
+        <tr>
+          <th>You can add</th>
+          <th>When it's worth it</th>
+          <th>Cold condition</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>additional business subgraphs</td><td>when a single large graph becomes difficult to read</td><td>the short, collapsed legend below each subgraph</td></tr>
+        <tr><td>mini-array of blockers</td><td>when the blockers need to be separated more clearly</td><td>each row has a link to the proof</td></tr>
+        <tr><td>short local comparator</td><td>when a real comparator clarifies the standing</td><td>not to become a vanity strip</td></tr>
+        <tr><td>learning notes per border</td><td>when the saved feedback really changes the next run</td><td>only with md local hyperlink-uit</td></tr>
+        <tr><td>subsections of specialized evidence</td><td>when a flow requires separate explanations for diff, Extent, XML or render</td><td>do not double the Artifact Index</td></tr>
+      </tbody>
+    </table>
+    <div class="note">
+      <ul>
+        <li>The mandatory skeleton comes first.</li>
+        <li>After it, the agent can add useful subsections.</li>
+        <li>Condition: to increase the reopening clarity.</li>
+      </ul>
+    </div>
+    <div class="note">
+      <ul>
+        <li>Lack <code class="inline">package-state.json</code> = raport partial.</li>
+        <li>Lack of promised run-states = partial report.</li>
+        <li>Beautiful HTML does not compensate for missing state files.</li>
+      </ul>
+    </div>
+  </details>
+</details>
+
+<details>
+  <summary><span class="summary-title">6. Audit tape per run <span class="badge">auditor</span></span><span class="sumhint">one cold strip per run</span></summary>
+  <table>
+    <thead>
+      <tr>
+        <th>Column</th>
+        <th>Minimal content</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Run</td><td><code class="inline">run_##</code> + link la <code class="inline">SUMMARY.md</code></td></tr>
+      <tr><td>Business claim</td><td>what he tried to defend and why that run is worth consuming</td></tr>
+      <tr><td>Expected delta</td><td>what kind of novelty or depth was expected</td></tr>
+      <tr><td>Current delta</td><td>what materialized cold and what historical mutation it brought compared to the previous state</td></tr>
+      <tr><td>Kept?</td><td>yes / no</td></tr>
+      <tr><td>Why countable / not countable</td><td>cool, short reason</td></tr>
+      <tr><td>diff</td><td>link to the relevant small diff of the run; not just at the root diff</td></tr>
+      <tr><td>extents</td><td>link for UI or <code class="inline">n/a</code> explicit</td></tr>
+      <tr><td>Feedback</td><td>link to saved constructive feedback</td></tr>
+    </tbody>
+  </table>
+  <div class="note">
+    <ul>
+      <li>Root diff only = partial history.</li>
+      <li>Run audit must lead to small deltas per run.</li>
+    </ul>
+  </div>
+  <div class="note">
+    <ul>
+      <li>Good order: claim -&gt; run -&gt; run diff -&gt; Extent/XML -&gt; verdict.</li>
+      <li>Another order slows down the historical reading.</li>
+    </ul>
+  </div>
+  <div class="warn">
+    <ul>
+      <li>Run with changed source asks for link to <code class="inline">runs/run_##/review/thin-no-index.diff</code>.</li>
+      <li>Without a link, the queue is incompletely public.</li>
+    </ul>
+  </div>
+  <div class="note">
+    <ul>
+      <li>What did the run prove?</li>
+      <li>What has changed in the history of the package?</li>
+    </ul>
+  </div>
+</details>
+
+<details>
+  <summary><span class="summary-title">7. The closing truth <span class="badge">CLOSE-OUT</span></span><span class="sumhint">countability, legality, next move</span></summary>
+  <details class="subdetails">
+    <summary><span class="summary-title">7.1 Separate publication of closing facts</span><span class="sumhint">separate countability, runs consumed and next move</span></summary>
+  <table>
+    <thead>
+      <tr>
+        <th>It needs to be separated</th>
+        <th>What are you publishing?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Countability</td><td><code class="inline">materially turned into tests = x / ROUND_TARGET_TEST_COUNT</code></td></tr>
+      <tr><td>Runs consumed</td><td><code class="inline">runs consumed = n / META_ITERATION_COUNT</code></td></tr>
+      <tr><td>Accounting target</td><td><code class="inline">accounting target met = yes / no</code></td></tr>
+      <tr><td>Business breadth verdict</td><td><code class="inline">broad / partial / narrow</code> + motiv rece</td></tr>
+      <tr><td>Same-round continuation</td><td><code class="inline">same-round continuation legal = yes / no</code></td></tr>
+      <tr><td>Fresh ROOT_RUN legality</td><td><code class="inline">fresh ROOT_RUN legal = yes / no</code></td></tr>
+      <tr><td>Open problems</td><td>the hardest remaining truths and any unresolved under-spend on tests or runs</td></tr>
+    </tbody>
+  </table>
+  <div class="warn">
+    <ul>
+      <li>Do not mix in a single sentence:</li>
+      <li>countability, breadth, runs consumed, yield, application exhaustion.</li>
+      <li>The counters remain separate.</li>
+    </ul>
+  </div>
+  <div class="note">
+    <ul>
+      <li>The public accounting report and close-out already decided.</li>
+      <li>Do not move the theory of target production here.</li>
+      <li>It clearly shows what came out and the final verdict.</li>
+    </ul>
+  </div>
+  <div class="note">
+    <ul>
+      <li>Close-out shows <code class="inline">package-state.json</code>.</li>
+      <li>Close-out shows <code class="inline">execution-gate-card.md</code>.</li>
+      <li>If the verdict depends on a run, it shows <code class="inline">run-state.json</code>.</li>
+    </ul>
+  </div>
+  </details>
+</details>
+
+<details>
+  <summary><span class="summary-title">8. Rendering and auditing <span class="badge">auditor</span></span><span class="sumhint">style, screenshot, hyperlinks</span></summary>
+  <table>
+    <thead>
+      <tr>
+        <th>Check</th>
+        <th>It must be published</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Canonical page exists</td><td><code class="inline">analysis/langgraph-business-understanding.html</code></td></tr>
+      <tr><td>Shared CSS used</td><td>local link to <code class="inline">shared-report-reference.css</code></td></tr>
+      <tr><td>Render proof</td><td><code class="inline">canonical-render-check.png</code></td></tr>
+      <tr><td>Audit link</td><td><code class="inline">local-link-check.txt</code></td></tr>
+      <tr><td>Collapsible disciplines</td><td>large collapsible sections, short captions subgraphs</td></tr>
+    </tbody>
+  </table>
+  <div class="warn">
+    <ul>
+      <li><code class="inline">canonical-render-check.png</code> must show the real report.</li>
+      <li><code class="inline">not found</code>, ecran gri, cookie wall or foreign page = invalid.</li>
+      <li>The report falls cold even if the HTML and links exist.</li>
+    </ul>
+  </div>
+  <div class="note">
+    <ul>
+      <li>Without valid render proof: <code class="inline">New Artifact Contract</code> remains at most partial.</li>
+      <li>The publication blocker must be explicitly linked.</li>
+    </ul>
+  </div>
+  <details class="subdetails">
+    <summary><span class="summary-title">8.1 MCP report contract <span class="badge">MCP</span></span><span class="sumhint">which checks the tests automatically</span></summary>
+    <table>
+      <thead><tr><th>Report area</th><th>MCP rule</th><th>Invalid if</th></tr></thead>
+      <tbody>
+        <tr><td>CSS</td><td><code class="inline">analysis/shared-report-reference.css</code> is the exact copy of the canonical CSS</td><td>the report overrides the styling with inline CSS or altered CSS</td></tr>
+        <tr><td>Collapse</td><td>the main sections are collapsible; only the Business Flow Graph remains open by default</td><td>Executive Context, Score or audit are open by default</td></tr>
+        <tr><td>Proof Mapping</td><td>claim -&gt; run diff -&gt; state -&gt; execution proof -&gt; cold verdict</td><td>the claim only has beautiful text, without a line of proof</td></tr>
+        <tr><td>Score Overview</td><td><code class="inline">Overall</code> respects the cap and the canonical axes</td><td>reporting increases the score over the substance or over the states</td></tr>
+        <tr><td>MCP status</td><td>MCP-green means auditable; it does not mean automatically <code class="inline">html-ex</code>-ready</td><td>the report sells MCP green as a teacher-grade score</td></tr>
+        <tr><td>MCP close-out profile</td><td>the final report is based on <code class="inline">testng-mcp-package-closeout.xml</code>, publishes total/passed for this subcollection and must have 0 failures, 0 errors, 0 skipped</td><td>report mixes publishability with <code class="inline">testng-mcp-candidate.xml</code>, does not publish the subcollection/counts or closes with skipped/failures</td></tr>
+        <tr><td>MCP close-out evidence</td><td>Artifact Index links <code class="inline">validation/mcp/ExtentReport.html</code>, <code class="inline">ExtentReport.sha256</code>, <code class="inline">extent-origin.json</code>, gate result, XML and <code class="inline">full-mcp-method-ledger.md</code></td><td>the report says MCP PASS but hides the Extent report or the final ledger</td></tr>
+        <tr><td>MCP skipped disclosure</td><td>if a diagnostic MCP sweep is skipped, the page publishes separately total/passed/skipped, the reason, <code class="inline">accepted=true</code>, the cap and the ledger link</td><td>skipped appear only in the ledger/Extent, and the final reader does not see why they are not close-out</td></tr>
+        <tr><td>Foreign language</td><td>the final report does not mention <code class="inline">html-ex</code>, benchmark or teacher</td><td>the external calibration is included in the published report</td></tr>
+      </tbody>
+    </table>
+    <div class="warn">
+      <table>
+        <thead><tr><th>Stage</th><th>Profile</th><th>Role</th></tr></thead>
+        <tbody>
+          <tr><td>MCP self health</td><td><code class="inline">testng-mcp-self.xml</code></td><td>health of the validator</td></tr>
+          <tr><td>Run preflight</td><td><code class="inline">testng-mcp-run-preflight.xml</code></td><td>run evidence plus runtime/package accounting before package audit</td></tr>
+          <tr><td>Full sweep</td><td><code class="inline">testng-mcp-full.xml</code></td><td>broad, secondary diagnosis</td></tr>
+          <tr><td>Package audit</td><td><code class="inline">testng-mcp-package-audit.xml</code></td><td>pre-close-out</td></tr>
+          <tr><td>Package close-out</td><td><code class="inline">testng-mcp-package-closeout.xml</code></td><td>the frozen MCP artifact spine and Extent/XML/ledger basis</td></tr>
+          <tr><td>Post-sync smoke</td><td><code class="inline">testng-mcp-post-sync-smoke.xml</code></td><td>fast verification after copying/link updates that the final report and validation/mcp still agree</td></tr>
+          <tr><td>Final report surface close-out</td><td><code class="inline">testng-mcp-final-report-closeout.xml</code></td><td>report shell, hyperlinks, counts and browser-render evidence after artifact freeze</td></tr>
+          <tr><td>LangGraph final report validation</td><td><code class="inline">testng-mcp-langgraph-final-report.xml</code></td><td>dedicated semantic validation of <code class="inline">analysis/langgraph-business-understanding.html</code></td></tr>
+          <tr><td>Candidate/html-ex</td><td><code class="inline">testng-mcp-candidate.xml</code></td><td>html-ex promotion: teacher-grade after package close-out, post-sync, final-report surface and LangGraph validation</td></tr>
+        </tbody>
+      </table>
+      <ul>
+        <li>The agent does not close the package only with <code class="inline">mcp-gate-result.md</code> verde.</li>
+        <li>The agent closes only after <code class="inline">testng-mcp-package-closeout.xml</code>, <code class="inline">testng-mcp-post-sync-smoke.xml</code>, <code class="inline">testng-mcp-final-report-closeout.xml</code> and <code class="inline">testng-mcp-langgraph-final-report.xml</code> are green in order; candidate/html-ex runs separately and becomes required before copying into <code class="inline">html-ex</code>.</li>
+        <li>The final auditable command is <code class="inline">mvn -q "-Dsurefire.suiteXmlFiles=src/test/resources/skills/mcp/testng-mcp-package-closeout.xml" "-Dmcp.package.root=&lt;PACKAGE_ROOT&gt;" "-Dmcp.project.root=&lt;PROJECT_ROOT&gt;" "-DforkCount=0" test</code>; <code class="inline">validation/mcp/ExtentReport.html</code>, the XML and <code class="inline">extent-origin.json</code> must prove exactly this subcollection.</li>
+        <li>After any final artifact/link update, run <code class="inline">testng-mcp-post-sync-smoke.xml</code>; it must be fully green and cannot replace close-out.</li>
+        <li>After the final report is composed and the agent has no artifact-spine changes planned, run <code class="inline">testng-mcp-final-report-closeout.xml</code> for browser/render and surface checks.</li>
+        <li>Then run <code class="inline">testng-mcp-langgraph-final-report.xml</code>; this is the dedicated last MCP validation for the meaning, graph, score truth, proof mapping and links of <code class="inline">analysis/langgraph-business-understanding.html</code>.</li>
+        <li>For <code class="inline">html-ex</code> promotion, then run <code class="inline">testng-mcp-candidate.xml</code>; it repeats essential final checks so copied packages do not fail after replacement.</li>
+        <li><code class="inline">testng-mcp-full.xml</code> may be linked only as a separate health sweep; it is not the final package close-out Extent.</li>
+        <li>The last readable surface is <code class="inline">analysis/langgraph-business-understanding.html</code>; it must explain MCP close-out and, separately, any accepted skipped tests from diagnostic sweeps.</li>
+        <li>Do not copy the explanation in the README as a substitute. The README may link, but the final report bears the publishable truth.</li>
+      </ul>
+    </div>
+    <pre><code>Minimum MCP close-out summary in the final report
+profile = testng-mcp-package-closeout.xml
+command = mvn -q "-Dsurefire.suiteXmlFiles=src/test/resources/skills/mcp/testng-mcp-package-closeout.xml" "-Dmcp.package.root=&lt;PACKAGE_ROOT&gt;" "-Dmcp.project.root=&lt;PROJECT_ROOT&gt;" "-DforkCount=0" test
+result = total N, passed N, failures 0, errors 0, skipped 0
+primary Extent = validation/mcp/ExtentReport.html
+machine XML = validation/mcp/TEST-TestSuite.xml or validation/mcp/testng-results.xml
+provenance = validation/mcp/extent-origin.json + validation/mcp/ExtentReport.sha256
+ledger = validation/mcp/full-mcp-method-ledger.md
+gate = validation/mcp/mcp-gate-result.md
+kpi matrix = validation/mcp/mcp-kpi-matrix.md + validation/mcp/mcp-kpi-matrix.html
+kpi formula trace = validation/mcp/mcp-kpi-formula-trace.md
+kpi repair board = validation/mcp/mcp-kpi-repair-board.md + validation/mcp/mcp-kpi-repair-board.html
+kpi score cap rationale = validation/mcp/mcp-score-cap-rationale.md
+full sweep = diagnostic only / not used as final close-out
+candidate html-ex = separate / n/a
+langgraph final report validation = testng-mcp-langgraph-final-report.xml / passed / not yet
+</code></pre>
+  </details>
+</details>
+</div>
+
+<script>function toggleAll(openState){document.querySelectorAll('details').forEach(function(el){el.open=openState;});}</script>
+</body>
+</html>

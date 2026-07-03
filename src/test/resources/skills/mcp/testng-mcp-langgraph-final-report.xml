@@ -1,0 +1,79 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="MCP LangGraph Final Report Validation" verbose="1">
+    <!-- Last MCP report-meaning gate: run after package-closeout, post-sync-smoke and final-report-closeout are green. -->
+    <listeners>
+        <listener class-name="com.endava.ai.skills.mcp.tests.support.McpPackageAuditSuiteInterceptor"/>
+    </listeners>
+    <test name="mcp-langgraph-final-report">
+        <classes>
+            <class name="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest">
+                <methods>
+                    <include name="finalReportHasRequiredBusinessStructure"/>
+                    <include name="finalReportContainsCanonicalBusinessSections"/>
+                    <include name="finalReportLinksPackageGovernanceArtifacts"/>
+                    <include name="finalReportPublishesAiTaskAdvisorSection"/>
+                    <include name="finalReportDoesNotLeakExternalCalibrationSources"/>
+                </methods>
+            </class>
+            <class name="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageLinkContractTest">
+                <methods>
+                    <include name="everyLocalHrefInFinalReportResolves"/>
+                    <include name="savedLinkAuditReportsNoMissingLinks"/>
+                </methods>
+            </class>
+            <class name="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest">
+                <methods>
+                    <include name="finalReportUsesSharedCssAndDocumentChrome"/>
+                    <include name="finalReportUsesHtmlExampleVisualShell"/>
+                    <include name="finalReportFollowsPrimaryHtmlExampleTemplateProfile"/>
+                    <include name="finalReportMainSectionsAreCollapsibleWithOnlyGraphOpen"/>
+                    <include name="finalReportDoesNotExposeRunSliceIndexBeforeExecutiveContext"/>
+                    <include name="finalReportProofMappingLinksAllMandatoryArtifactFamilies"/>
+                    <include name="finalReportProofMappingUsesBalancedTableColumns"/>
+                    <include name="finalReportRunAuditUsesStructuredEvidenceRows"/>
+                    <include name="finalReportArtifactIndexUsesGroupedEvidenceFamilies"/>
+                    <include name="finalReportArtifactIndexSeparatesDecisiveIndexFromPerRunAuditDump"/>
+                    <include name="finalReportArtifactIndexUsesComparableTableStructure"/>
+                    <include name="finalReportLinksFrozenMcpContractEvidence"/>
+                </methods>
+            </class>
+            <class name="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest">
+                <methods>
+                    <include name="finalReportScoreOverviewUsesCanonicalBusinessAxes"/>
+                    <include name="finalReportScoreNarrativeDoesNotGradeRuntimeAccountingAsBusinessDepth"/>
+                    <include name="finalReportOpeningScoreCardsUseReadableStructure"/>
+                    <include name="finalReportOpeningScoreWallHasNoLooseScoreElements"/>
+                    <include name="finalReportScoreCardsFollowPrimaryHtmlExampleReferenceOrder"/>
+                    <include name="overallTruthIsSynchronizedAcrossCanonicalArtifacts"/>
+                    <include name="scoreCapIsConsistentWithWeakestAxis"/>
+                    <include name="publishedOverallDoesNotExceedPackageStateCap"/>
+                    <include name="runtimeCountersAreNotDisplayedBetweenScoreCardsAndExecutiveContext"/>
+                    <include name="openingDoesNotExposeVerdictOrRuntimeBeforeScoreCards"/>
+                    <include name="executiveContextCarriesVerdictAndRuntimeAsCollapsedSubsections"/>
+                    <include name="executiveContextIsCollapsedByDefault"/>
+                    <include name="finalReportOpeningMatchesCanonicalHtmlExampleShape"/>
+                </methods>
+            </class>
+            <class name="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest">
+                <methods>
+                    <include name="businessFlowGraphIsRenderedAsDiagram"/>
+                    <include name="businessFlowGraphUsesBalancedCanvasDensity"/>
+                    <include name="businessFlowGraphUsesVisibleOwnedAndFrontierSemantics"/>
+                    <include name="businessFlowGraphUsesCalmNodeTypography"/>
+                    <include name="businessFlowGraphLegendIsCollapsible"/>
+                    <include name="businessFlowGraphDoesNotRenderInlineSvgLegendBand"/>
+                    <include name="businessFlowGraphLegendContentIsRelevant"/>
+                    <include name="businessFlowGraphLegendNamesEvidencePlacementAndRelationshipMeaning"/>
+                    <include name="businessFlowGraphUsesHtmlExampleScaleForMultiNodeApplicationMap"/>
+                    <include name="businessFlowGraphEdgesDoNotCrossNodeText"/>
+                    <include name="businessFlowGraphLabelsAreCenteredInsideNodes"/>
+                    <include name="businessFlowGraphStylesVisibleSvgShapes"/>
+                    <include name="businessFlowGraphUsesDeclaredEdgeVariants"/>
+                    <include name="businessFlowGraphUsesFrontierEdgeCue"/>
+                    <include name="businessFlowGraphDoesNotExposeRunIdsAsBusinessNodes"/>
+                    <include name="businessFlowGraphAvoidsCompactPackageOverlayNodeList"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,11 @@
+﻿schemaVersion: 1
+contracts:
+  - id: mcp.closeout.required-artifacts
+    profile: package-closeout
+    severity: BLOCKER
+    requiredArtifacts: validation/mcp/ExtentReport.html,validation/mcp/ExtentReport.sha256,validation/mcp/extent-origin.json,validation/mcp/mcp-gate-result.md,validation/mcp/TEST-TestSuite.xml|validation/mcp/testng-results.xml,validation/mcp/full-mcp-method-ledger.md,validation/mcp/mcp-kpi-matrix.md,validation/mcp/mcp-kpi-matrix.html,validation/mcp/mcp-kpi-formula-trace.md,validation/mcp/mcp-kpi-repair-board.md,validation/mcp/mcp-kpi-repair-board.html,validation/mcp/mcp-score-cap-rationale.md
+    requiredGateResultMentions: validation/mcp/ExtentReport.html,validation/mcp/ExtentReport.sha256,validation/mcp/extent-origin.json,validation/mcp/TEST-TestSuite.xml|validation/mcp/testng-results.xml,validation/mcp/full-mcp-method-ledger.md
+    requiredFinalReportLinks: validation/mcp/ExtentReport.html,validation/mcp/ExtentReport.sha256,validation/mcp/extent-origin.json,validation/mcp/mcp-gate-result.md,validation/mcp/TEST-TestSuite.xml|validation/mcp/testng-results.xml,validation/mcp/full-mcp-method-ledger.md,validation/mcp/mcp-kpi-matrix.md,validation/mcp/mcp-kpi-matrix.html,validation/mcp/mcp-kpi-formula-trace.md,validation/mcp/mcp-kpi-repair-board.md,validation/mcp/mcp-kpi-repair-board.html,validation/mcp/mcp-score-cap-rationale.md
+    requiredArtifactIndexLinks: validation/mcp/ExtentReport.html,validation/mcp/ExtentReport.sha256,validation/mcp/extent-origin.json,validation/mcp/mcp-gate-result.md,validation/mcp/TEST-TestSuite.xml|validation/mcp/testng-results.xml,validation/mcp/full-mcp-method-ledger.md,validation/mcp/mcp-kpi-matrix.md,validation/mcp/mcp-kpi-matrix.html,validation/mcp/mcp-kpi-formula-trace.md,validation/mcp/mcp-kpi-repair-board.md,validation/mcp/mcp-kpi-repair-board.html,validation/mcp/mcp-score-cap-rationale.md
+    capImpact: missing artifact or final report link blocks 95+
+    publishabilityImpact: final MCP close-out is not reopenable without the full artifact spine and hyperlinks

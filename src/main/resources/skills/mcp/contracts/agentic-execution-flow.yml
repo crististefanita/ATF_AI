@@ -1,0 +1,90 @@
+schemaVersion: 1
+contracts:
+  - id: agentic.execution.self-health
+    order: 10
+    profile: mcp-self
+    stage: validator-self-health
+    role: proves MCP validator health before it is trusted against generated packages
+    primaryArtifact: target/mcp-self/ExtentReport.html
+    reportLink: validation/mcp self-health evidence, not package final report evidence
+    stopCondition: continue only when validator self-health is green or a contract ambiguity is isolated
+    notFor: final package publishability or html-ex promotion
+    mustPass: true
+    allowedSkipped: 0
+  - id: agentic.execution.run-preflight
+    order: 20
+    profile: mcp-run-preflight
+    stage: run-evidence-calibration
+    role: checks latest package run window, Extent evidence and runtime accounting while the agent can still repair code or artifacts
+    primaryArtifact: docs/out/latest/runs/run_*/validation/reports/ExtentReport.html
+    reportLink: run evidence rows in analysis/langgraph-business-understanding.html
+    stopCondition: continue after run evidence is coherent or one concrete run blocker remains
+    notFor: frozen final browser-render report gate
+    mustPass: true
+    allowedSkipped: 0
+  - id: agentic.execution.package-audit
+    order: 30
+    profile: mcp-package-audit
+    stage: pre-closeout-package-gate
+    role: validates package publishability before final artifacts are frozen
+    primaryArtifact: validation/mcp/ExtentReport.html
+    reportLink: Artifact Index and MCP gate section
+    stopCondition: continue after blockers are fixed; do not rewrite source after package-closeout starts
+    notFor: candidate/html-ex promotion
+    mustPass: true
+    allowedSkipped: 0
+  - id: agentic.execution.package-closeout
+    order: 40
+    profile: mcp-package-closeout
+    stage: frozen-package-closeout
+    role: produces the primary final MCP Extent, XML, ledger, origin and gate evidence
+    primaryArtifact: validation/mcp/ExtentReport.html
+    reportLink: README.md and analysis/langgraph-business-understanding.html must link this frozen evidence
+    stopCondition: stop package artifact mutation after this profile is green
+    notFor: broad diagnostic sweep or browser screenshot report validation
+    mustPass: true
+    allowedSkipped: 0
+  - id: agentic.execution.post-sync-smoke
+    order: 50
+    profile: mcp-post-sync-smoke
+    stage: frozen-artifact-link-sync
+    role: verifies synchronized frozen MCP artifacts, command provenance, gate counts and final report links
+    primaryArtifact: validation/mcp/extent-origin.json
+    reportLink: final report Artifact Index and MCP close-out section
+    stopCondition: continue only for link/count/origin repair, not source refactoring
+    notFor: full validator self-suite or candidate scoring
+    mustPass: true
+    allowedSkipped: 0
+  - id: agentic.execution.final-report-closeout
+    order: 60
+    profile: mcp-final-report-closeout
+    stage: report-surface-closeout
+    role: final report browser/render, hyperlink, frozen artifact sync and screenshot surface validation
+    primaryArtifact: analysis/langgraph-business-understanding.html
+    reportLink: final report must link frozen MCP Extent/XML/ledger/origin/KPI artifacts
+    stopCondition: continue only to dedicated langgraph-business-understanding.html semantic validation
+    notFor: recalibrating source code or rerunning business tests
+    mustPass: true
+    allowedSkipped: 0
+  - id: agentic.execution.langgraph-final-report
+    order: 70
+    profile: mcp-langgraph-final-report
+    stage: langgraph-final-report-validation
+    role: validates analysis/langgraph-business-understanding.html business structure, score truth, graph meaning, proof mapping and local artifact links after the report surface is synchronized
+    primaryArtifact: analysis/langgraph-business-understanding.html
+    reportLink: the final LangGraph report is the artifact under validation
+    stopCondition: stop MCP close-out after this passes; only candidate/html-ex promotion may follow
+    notFor: package artifact mutation, source refactoring, broad full sweep or candidate scoring
+    mustPass: true
+    allowedSkipped: 0
+  - id: agentic.execution.candidate-promotion
+    order: 80
+    profile: mcp-candidate
+    stage: optional-html-ex-promotion
+    role: optional teacher-grade html-ex promotion after package and final report close-out are already green
+    primaryArtifact: docs/out/latest
+    reportLink: html-ex README update, not generated package close-out evidence
+    stopCondition: promote only when the candidate score and proof bundle beat the weakest retained example
+    notFor: fixing MCP package close-out failures
+    mustPass: true
+    allowedSkipped: 0

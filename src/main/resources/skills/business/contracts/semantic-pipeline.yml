@@ -1,0 +1,57 @@
+schemaVersion: 1
+contracts:
+  - id: business-understanding.stage.normalize-input
+    kind: semantic-stage
+    order: 10
+    stage: NORMALIZE_INPUT
+    inputAgnostic: true
+    expected: Evidence may start as source structure, git diff, Extent report, final business report or Atlas report, but it must be normalized before semantic judgment.
+    repair: Add a parser/adapter at the owning skill boundary; do not fork the semantic pipeline.
+
+  - id: business-understanding.stage.map-support-layers
+    kind: semantic-stage
+    order: 20
+    stage: MAP_SUPPORT_LAYERS
+    inputAgnostic: true
+    expected: The analysis maps support classes, product layers and framework boundaries before judging business meaning.
+    repair: Trace support/services/pages/actions/validators first, then map tests or report rows to those layers.
+
+  - id: business-understanding.stage.identify-business-objects
+    kind: semantic-stage
+    order: 30
+    stage: IDENTIFY_BUSINESS_OBJECTS
+    inputAgnostic: true
+    expected: Durable business objects are identified before score, graph or proof claims are accepted.
+    repair: Replace screen/run bookkeeping with named domain objects and observable business results.
+
+  - id: business-understanding.stage.trace-business-claims
+    kind: semantic-stage
+    order: 40
+    stage: TRACE_BUSINESS_CLAIMS
+    inputAgnostic: true
+    expected: Business claims are traced to source, diff, report row, Extent evidence or Atlas proof strips.
+    repair: Publish traceable claim rows instead of generic summaries.
+
+  - id: business-understanding.stage.map-proof-chain
+    kind: semantic-stage
+    order: 50
+    stage: MAP_PROOF_CHAIN
+    inputAgnostic: true
+    expected: Every important business claim maps to a proof chain that can be reopened cold.
+    repair: Link claim to source/support layer, test or report evidence, execution proof, and limitation.
+
+  - id: business-understanding.stage.score-understanding-limits
+    kind: semantic-stage
+    order: 60
+    stage: SCORE_UNDERSTANDING_LIMITS
+    inputAgnostic: true
+    expected: Scores explain proven business understanding and visible limits, not just artifact completeness.
+    repair: Separate business understanding score from MCP publishability and Atlas artifact completeness.
+
+  - id: business-understanding.stage.publish-semantic-summary
+    kind: semantic-stage
+    order: 70
+    stage: PUBLISH_SEMANTIC_SUMMARY
+    inputAgnostic: true
+    expected: The owning skill publishes semantic findings in its own artifact surface without taking over another skill's gate.
+    repair: MCP publishes final-report semantics; Atlas publishes Atlas business audit; neither owns the other's close-out.

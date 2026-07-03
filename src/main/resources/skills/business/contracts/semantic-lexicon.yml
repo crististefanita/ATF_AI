@@ -1,0 +1,79 @@
+schemaVersion: 1
+contracts:
+  - id: business-understanding.lexicon.business-object
+    kind: semantic-lexicon
+    concept: BUSINESS_OBJECT
+    tokens: business object,obiect business,owned object,durable result,domain outcome,observable business record
+    expected: Business object language names durable domain outcomes, not report widgets or run slots.
+    repair: Add domain object wording near graph nodes, proof rows or score rationales.
+
+  - id: business-understanding.lexicon.business-claim
+    kind: semantic-lexicon
+    concept: BUSINESS_CLAIM
+    tokens: claim,business claim,afirmatie,pretentie
+    expected: Claim language states what business behavior is proven.
+    repair: Tie each claim to a named business object and proof chain.
+
+  - id: business-understanding.lexicon.business-flow
+    kind: semantic-lexicon
+    concept: BUSINESS_FLOW
+    tokens: business flow,business flow graph,flux business,graful fluxului
+    impliedConcepts: BUSINESS_FLOW_STORY
+    expected: Flow language exposes actor, intent, visible action, object and result.
+    repair: Replace technical chains with product-facing flow stories.
+
+  - id: business-understanding.lexicon.support-layer
+    kind: semantic-lexicon
+    concept: SUPPORT_LAYER
+    tokens: support layer,layer path,layere,support,source layer
+    expected: Support layer language keeps pages, actions, services and validators as evidence.
+    repair: Keep technical classes in the layer path instead of promoting them to business nodes.
+
+  - id: business-understanding.lexicon.source-trace
+    kind: semantic-lexicon
+    concept: SOURCE_TRACE
+    tokens: source-to-business trace,source trace,trace,trasabilitate
+    expected: Source trace language links business claims back to classes, methods or report rows.
+    repair: Add class/method references and layer path evidence.
+
+  - id: business-understanding.lexicon.proof-chain
+    kind: semantic-lexicon
+    concept: PROOF_CHAIN
+    tokens: proof chain,proof mapping,evidence mapping,dovada,evidence
+    expected: Proof chain language makes claims reopenable through local artifacts.
+    repair: Link claims to source, runtime evidence, report rows and limits.
+
+  - id: business-understanding.lexicon.proof-strip
+    kind: semantic-lexicon
+    concept: PROOF_STRIP
+    tokens: proof strip,banda de dovada,local proof,proof row
+    expected: Proof strip language keeps proof local to a graph node or flow.
+    repair: Add local proof rows near graph/subgraph claims.
+
+  - id: business-understanding.lexicon.score-rationale
+    kind: semantic-lexicon
+    concept: SCORE_RATIONALE
+    tokens: score overview,score rationale,score card,scor,rationale
+    expected: Score rationale language explains the business question and evidence behind a score.
+    repair: Publish score axis, question, evidence, numeric score and cap rationale.
+
+  - id: business-understanding.lexicon.score-truth
+    kind: semantic-lexicon
+    concept: SCORE_TRUTH
+    tokens: score truth,score honesty,cap rationale,fidelitate
+    expected: Score truth language separates proven business understanding from aspirational scoring.
+    repair: Add cap rationale when evidence is partial, diagnostic or blocked.
+
+  - id: business-understanding.lexicon.business-maturity
+    kind: semantic-lexicon
+    concept: BUSINESS_MATURITY
+    tokens: maturity,maturitate,owned,partial,surface-only,blocked
+    expected: Maturity language classifies proof depth independently of pass/fail.
+    repair: Mark evidence as owned, partial, diagnostic, surface-only or blocked before 95+ scoring.
+
+  - id: business-understanding.lexicon.understanding-limit
+    kind: semantic-lexicon
+    concept: UNDERSTANDING_LIMIT
+    tokens: limit,understanding limit,comprehension limit,cap,limita
+    expected: Limit language exposes what the artifact does not prove.
+    repair: Add explicit understanding limits next to score and proof statements.

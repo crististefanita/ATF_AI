@@ -1,0 +1,29 @@
+﻿{
+    "run":  "run_03",
+    "class":  "com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentContractTest",
+    "actor":  "registered shopper",
+    "user_intent":  "open and verify account invoice document evidence",
+    "ui_handoff":  "BaseTestUI test imports RegisteredInvoiceFlow, which routes through UIActions and page/action support",
+    "business_object":  "Registered Invoice Document",
+    "claim":  "Invoice Document Response Contract",
+    "source_path":  "src/test/java/com/endava/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentContractTest.java",
+    "status":  "PASS",
+    "tests_expected":  5,
+    "tests_total":  5,
+    "tests_passed":  5,
+    "failures":  0,
+    "errors":  0,
+    "skipped":  0,
+    "countable":  true,
+    "actual_delta_quality":  95,
+    "progression_from_baseline":  "progresses from baseline cart-line evidence toward account invoice document ownership",
+    "evidence":  [
+                     "validation/command-result.md",
+                     "validation/testng-results.xml",
+                     "validation/reports/ExtentReport.html",
+                     "validation/reports/ExtentReport.sha256",
+                     "validation/reports/extent-origin.json",
+                     "review/thin-no-index.diff"
+                 ],
+    "tests_produced":  5
+}

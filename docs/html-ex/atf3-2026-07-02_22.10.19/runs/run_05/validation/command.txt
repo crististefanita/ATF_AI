@@ -1,0 +1,1 @@
+﻿mvn -q "-Dtest=com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentReopenTest" "-DforkCount=0" test

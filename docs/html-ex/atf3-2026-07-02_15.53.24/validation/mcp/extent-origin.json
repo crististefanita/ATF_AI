@@ -1,0 +1,17 @@
+﻿{
+    "profile":  "package-closeout",
+    "suite":  "src/test/resources/skills/mcp/testng-mcp-package-closeout.xml",
+    "package_root":  "2026-07-02_15.53.24",
+    "packageRoot":  "C:\\work\\ex\\java\\demo\\atf3\\test-framework\\docs\\out\\2026-07-02_15.53.24",
+    "projectRoot":  "C:\\work\\ex\\java\\demo\\atf3\\test-framework",
+    "command":  "mvn -q \"-Dsurefire.suiteXmlFiles=src/test/resources/skills/mcp/testng-mcp-package-closeout.xml\" \"-Dmcp.package.root=C:\\work\\ex\\java\\demo\\atf3\\test-framework\\docs\\out\\2026-07-02_15.53.24\" \"-Dmcp.project.root=C:\\work\\ex\\java\\demo\\atf3\\test-framework\" \"-DforkCount=0\" test",
+    "exitCode":  0,
+    "sha256":  "96c2781c0f0a46f23bd3d80039b682414b3ffd09f0127704b1219d614498eb15",
+    "timestamp":  "2026-07-02T13:37:26.9679148Z",
+    "size":  1617891,
+    "testsRun":  93,
+    "passed":  93,
+    "failures":  0,
+    "errors":  0,
+    "skipped":  0
+}

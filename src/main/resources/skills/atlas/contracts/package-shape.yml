@@ -1,0 +1,76 @@
+schemaVersion: 1
+contracts:
+  - id: atlas.package-shape.main-default
+    kind: package-default
+    root: src/main/java/com/endava/ai/skills/atlas
+    maxClasses: 10
+    reason: Atlas main packages should remain bounded by business rule family or validation role.
+
+  - id: atlas.package-shape.main-contract-override
+    kind: package-override
+    path: src/main/java/com/endava/ai/skills/atlas/contract
+    maxClasses: 12
+    reason: Contract root exposes the public Atlas annotation, id and rule metadata surface.
+
+  - id: atlas.package-shape.test-default
+    kind: package-default
+    root: src/test/java/com/endava/ai/skills/atlas
+    maxClasses: 8
+    reason: Atlas test packages should stay readable by profile, candidate, catalog, yaml or report lane.
+
+  - id: atlas.package-shape.test-root-override
+    kind: package-override
+    path: src/test/java/com/endava/ai/skills/atlas/tests
+    maxClasses: 10
+    reason: Root Atlas test package owns published artifact inventory and publisher helpers.
+
+  - id: atlas.package-shape.main-recursive-cap
+    kind: recursive-package-cap
+    path: src/main/java/com/endava/ai/skills/atlas
+    maxClasses: 149
+    reason: Atlas main can grow only through bounded catalog, rule, validation and small rule-pack facade families.
+
+  - id: atlas.package-shape.test-recursive-cap
+    kind: recursive-package-cap
+    path: src/test/java/com/endava/ai/skills/atlas
+    maxClasses: 32
+    reason: Atlas test growth must stay tied to explicit candidate, profile, catalog or yaml contract lanes.
+
+  - id: atlas.package-shape.rules-readme
+    kind: required-readme
+    path: src/main/java/com/endava/ai/skills/atlas/rules/README.md
+    reason: Rule ownership must be discoverable before changing Atlas business checks.
+
+  - id: atlas.package-shape.validation-readme
+    kind: required-readme
+    path: src/main/java/com/endava/ai/skills/atlas/validation/README.md
+    reason: Validation ownership must be discoverable before changing Atlas matrices or diagnostics.
+
+  - id: atlas.package-shape.skill-readme
+    kind: required-readme
+    path: src/main/java/com/endava/ai/skills/atlas/skill/README.md
+    reason: Atlas rule-pack facade ownership must be visible before agents enter broad business rule packages.
+
+  - id: atlas.package-shape.prompt-readme
+    kind: required-readme
+    path: docs/prompts/atlas/README.md
+    sourceRoot: docs/prompts/html_ro/atlas
+    mirrorRoot: docs/prompts/html_EN/atlas
+    reason: Atlas skill prompt ownership must stay visible outside Java source.
+
+  - id: atlas.package-shape.main-no-mcp-imports
+    kind: forbidden-import
+    root: src/main/java/com/endava/ai/skills/atlas
+    forbiddenPackage: com.endava.ai.skills.mcp
+    reason: Atlas is the business-understanding skill; MCP package governance must remain artifact or YAML based.
+
+  - id: atlas.package-shape.tests-no-mcp-imports
+    kind: forbidden-import
+    root: src/test/java/com/endava/ai/skills/atlas
+    forbiddenPackage: com.endava.ai.skills.mcp
+    reason: Atlas tests must not hide MCP package-gate coupling behind test helpers.
+
+  - id: atlas.package-shape.main-console-gateway
+    kind: console-gateway
+    root: src/main/java/com/endava/ai/skills/atlas
+    reason: Atlas main must not write direct console output; use framework reporting gateways.

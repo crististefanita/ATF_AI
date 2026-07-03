@@ -1,0 +1,14 @@
+{
+  "run": "run_02",
+  "status": "countable",
+  "business_status": "owned",
+  "tests_produced": 5,
+  "testsProduced": 5,
+  "tests_passed": 5,
+  "testsPassed": 5,
+  "business_slice": "customer-visible support case history after admin reply",
+  "businessSlice": "customer-visible support case history after admin reply",
+  "suite": "src/test/resources/ui/testng-atf1-refund-support-customer-messages-run.xml",
+  "actual_delta_quality": 95,
+  "actualDeltaQuality": 95
+}

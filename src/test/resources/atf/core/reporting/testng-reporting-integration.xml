@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="ATF Reporting Skill Integration" verbose="1">
+    <test name="reporting-skill-consumer-integration">
+        <classes>
+            <class name="com.endava.ai.atf.core.reporting.integration.skills.DiagnosticHtmlReportShellContractTest"/>
+            <class name="com.endava.ai.atf.core.reporting.integration.skills.CoreReportingMatrixContractTest"/>
+            <class name="com.endava.ai.atf.core.reporting.integration.skills.ExtentSparkCanonicalShellContractTest"/>
+            <class name="com.endava.ai.atf.core.reporting.integration.skills.ExtentFailurePlacementContractTest"/>
+        </classes>
+    </test>
+</suite>

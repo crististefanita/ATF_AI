@@ -1,0 +1,62 @@
+schemaVersion: 1
+contracts:
+  - id: mcp.yaml-contract.governance-map.evidence-rendering
+    expected: The generated MCP Governance Map connects every YAML-backed check to test location, artifacts, final-report anchor, repair hint and the non-blocking Atlas quality bridge.
+    artifacts: target/mcp-governance-map.md,target/mcp-governance-map.html,McpGovernanceMapRenderer.java,src/test/java/com/endava/ai/skills/mcp,src/main/resources/skills/mcp/contracts/checks/mcp-checks-*.yml,src/main/resources/skills/mcp/contracts/atlas-quality-bridge.yml
+    failureMeaning: Agents can still waste context discovering which test, YAML contract, artifact, final-report evidence and Atlas quality lane belong together.
+    repairHint: Generate the governance map from @McpCheckRef usages, ContractCatalog.mcpChecks and ContractCatalog.atlasQualityBridgeContracts; do not maintain a hand-written matrix.
+  - id: mcp.yaml-contract.ai-task-advisor.rendering
+    expected: The AI task advisor renders INFO/WARN guidance for model tier, acceptance criteria, stop condition and value rationale without becoming a blocker.
+    artifacts: src/main/resources/skills/mcp/contracts/ai-task-advisor.yml,target/mcp-ai-task-advisor.md,target/mcp-ai-task-advisor.html,target/mcp-ai-task-advisor-final-report-section.html,analysis/langgraph-business-understanding.html
+    failureMeaning: Agentic runs can pass hard MCP gates while still wasting credits or closing without clear next-run guidance.
+    repairHint: Keep advisor entries in ai-task-advisor.yml, render them through McpAiTaskAdvisorRenderer, and keep integrity failures in MCP blocker rules.
+  - id: mcp.yaml-contract.ai-task-advisor.contextual-nonblocking
+    expected: The AI task advisor evaluates run scope, model tier, acceptance criteria, stop condition and value rationale as contextual INFO/WARN findings only.
+    artifacts: src/main/resources/skills/mcp/contracts/ai-task-advisor.yml,McpAiTaskAdvisorEvaluator.java,target/mcp-ai-task-advisor.md,target/mcp-governance-map.md
+    failureMeaning: Agentic runs can either receive no useful next-step calibration or accidentally treat efficiency guidance as a hard MCP blocker.
+    repairHint: Keep contextual advisor logic deterministic, small and non-blocking; route integrity failures to executable MCP package rules instead.
+  - id: 'mcp.package-shape.large-class-ratchet'
+    expected: 'Known large MCP classes are capped and cannot grow while they are being split by responsibility.'
+    artifacts: 'src/main/resources/skills/mcp/contracts/package-shape.yml,src/main/resources/skills/mcp/contracts/size-budgets.yml,src/main/java/com/endava/ai/skills/mcp/rules/packageaudit/closeout/FullMcpGateRule.java,src/test/java/com/endava/ai/skills/mcp/tests/core/calibration/McpRunCalibrationContractTest.java'
+    failureMeaning: 'Large MCP classes can quietly become harder to reason about even when package counts remain acceptable.'
+    repairHint: 'Extract cohesive collaborators or split contract tests by capability before increasing a ratchet cap.'
+  - id: 'mcp.package-shape.yaml-resource-byte-ratchet'
+    expected: 'Known large MCP YAML contract resources are capped and cannot grow silently.'
+    artifacts: 'src/main/resources/skills/mcp/contracts/package-shape.yml,src/main/resources/skills/mcp/contracts/size-budgets.yml,src/main/resources/skills/mcp/contracts/**/*.yml'
+    failureMeaning: 'Declarative metadata can become a second hidden rules engine even when Java package and class budgets stay green.'
+    repairHint: 'Split YAML by cohesive contract family, add a typed spec/catalog if needed, and only then raise the byte cap with a clear reason.'
+  - id: 'mcp.package-shape.recursive-surface-ratchet'
+    expected: 'Broad MCP rules, validation, contracts and test surfaces are recursively capped.'
+    artifacts: 'src/main/resources/skills/mcp/contracts/package-shape.yml,src/main/resources/skills/mcp/contracts/size-budgets.yml,src/main/java/com/endava/ai/skills/mcp/rules,src/main/java/com/endava/ai/skills/mcp/validation,src/main/java/com/endava/ai/skills/mcp/contracts,src/test/java/com/endava/ai/skills/mcp/tests'
+    failureMeaning: 'A surface can grow across many small packages and still become too expensive for humans and agents to navigate.'
+    repairHint: 'Split ownership, add a local README or focused facade, and raise recursive caps only with a concrete reason in size-budgets.yml.'
+  - id: 'mcp.package-shape.main.max-ten-classes'
+    expected: 'No main package exceeds the readability threshold unless explicitly overridden.'
+    artifacts: 'src/main/resources/skills/mcp/contracts/package-shape.yml,src/main/resources/skills/mcp/contracts/size-budgets.yml,src/main/java/com/endava/ai/skills/mcp'
+    failureMeaning: 'A large MCP package makes the validator harder to navigate and easier to regress.'
+    repairHint: 'Split overloaded packages by cohesive responsibility before adding more rules or validators.'
+  - id: 'mcp.package-shape.tests.max-eight-classes'
+    expected: 'No test package exceeds the eight-class readability threshold unless explicitly overridden.'
+    artifacts: 'src/main/resources/skills/mcp/contracts/package-shape.yml,src/main/resources/skills/mcp/contracts/size-budgets.yml,src/test/java/com/endava/ai/skills/mcp/tests'
+    failureMeaning: 'Large test packages hide contract ownership and slow down targeted regression selection.'
+    repairHint: 'Create a focused subpackage when a test family reaches the package threshold.'
+  - id: 'mcp.package-shape.console-gateway'
+    expected: 'MCP main code routes CLI and diagnostic output through ConsoleLogger.'
+    artifacts: 'src/main/resources/skills/mcp/contracts/package-shape.yml,src/main/java/com/endava/ai/skills/mcp,src/main/java/com/endava/ai/core/reporting/utils/ConsoleLogger.java'
+    failureMeaning: 'Direct System.out/System.err calls bypass the framework console gateway and make output harder to capture in tests.'
+    repairHint: 'Use ConsoleLogger.console(...) and keep message formatting in focused collaborators.'
+  - id: 'mcp.package-shape.no-atlas-imports'
+    expected: 'MCP main code does not import Atlas product code; MCP to Atlas calibration stays artifact/YAML/report based.'
+    artifacts: 'src/main/resources/skills/mcp/contracts/package-shape.yml,src/main/java/com/endava/ai/skills/mcp,src/main/resources/skills/mcp/contracts/atlas-quality-bridge.yml,src/main/resources/skills/atlas/contracts/agentic-quality-lanes.yml'
+    failureMeaning: 'MCP can silently absorb Atlas business-quality ownership and stop being a standalone package governance validator.'
+    repairHint: 'Keep Atlas references as ids, YAML metadata, report links or validation artifacts; do not add com.endava.ai.skills.atlas imports under MCP main.'
+  - id: 'mcp.package-shape.local-readmes.credit-efficient'
+    expected: 'Major MCP packages expose compact local README maps with Purpose, Entry points, Change here when, Do not and Verification sections.'
+    artifacts: 'src/main/resources/skills/mcp/contracts/package-shape.yml,src/main/java/com/endava/ai/skills/mcp/rules/README.md,src/main/java/com/endava/ai/skills/mcp/contracts/README.md,src/main/java/com/endava/ai/skills/mcp/validation/README.md'
+    failureMeaning: 'Codex/agent runs spend extra context discovering ownership, entry points and stop conditions from scattered code instead of a small local map.'
+    repairHint: 'Add or update the local README with the standard five sections; keep it short and point to executable profiles/tests instead of writing long prose.'
+  - id: 'mcp.package-shape.skill-surfaces'
+    expected: 'MCP declares its skill surfaces as contracts, rules, validation and prompts, each with root, README, role and sanity route.'
+    artifacts: 'src/main/resources/skills/mcp/contracts/package-shape.yml,src/main/java/com/endava/ai/skills/mcp/contracts/README.md,src/main/java/com/endava/ai/skills/mcp/rules/README.md,src/main/java/com/endava/ai/skills/mcp/validation/README.md,docs/prompts/mcp/README.md,src/test/resources/skills/mcp/testng-mcp-sanity.xml'
+    failureMeaning: 'Agents can treat MCP as one large validator blob instead of choosing the correct skill surface for YAML metadata, executable rules, reusable assertions or prompts.'
+    repairHint: 'Update the skill-surface entries in package-shape.yml and keep each referenced README short, operational and linked to the MCP sanity profile.'

@@ -1,0 +1,19 @@
+schemaVersion: 1
+contracts:
+  - id: html-report.atlas-final
+    profile: ATLAS_FINAL_REPORT
+    owner: atlas-reporting
+    scope: Atlas business understanding report
+    expectedLanguage: ro
+    requiredSections:
+      - Executive Context
+      - Business Flow Graph
+      - Business Flow Understanding
+      - Business Evidence Tables
+      - Source-to-Business Trace
+      - Atlas Test Audit
+    requiredShellClasses: []
+    requiredGraphClasses: []
+    visibleNodeShapeTags: []
+    forbiddenGraphWrapperTags: []
+    repair: Atlas owns business comprehension, source trace, graph proof and validation audit. Do not force MCP gate sections into Atlas reports.

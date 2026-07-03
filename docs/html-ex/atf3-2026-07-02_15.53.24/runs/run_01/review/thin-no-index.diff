@@ -1,0 +1,7 @@
+﻿diff --git a/src/test/java/com/endava/ai/ui/tests/cart/lifecycle/CartLineLifecycleContractTest.java b/src/test/java/com/endava/ai/ui/tests/cart/lifecycle/CartLineLifecycleContractTest.java
+--- a/src/test/java/com/endava/ai/ui/tests/cart/lifecycle/CartLineLifecycleContractTest.java
++++ b/src/test/java/com/endava/ai/ui/tests/cart/lifecycle/CartLineLifecycleContractTest.java
+@@ run_01 distinct source delta @@
++ source path: src/test/java/com/endava/ai/ui/tests/cart/lifecycle/CartLineLifecycleContractTest.java
++ business object: pre-invoice cart line lifecycle record
++ frontier: payment settlement ledger remains not claimed

@@ -1,0 +1,378 @@
+﻿diff --git a/src/main/java/com/endava/ai/ui/support/flows/invoice/RegisteredInvoiceAccountActions.java b/src/main/java/com/endava/ai/ui/support/flows/invoice/RegisteredInvoiceAccountActions.java
+new file mode 100644
+index 00000000..f5a588f4
+--- /dev/null
++++ b/src/main/java/com/endava/ai/ui/support/flows/invoice/RegisteredInvoiceAccountActions.java
+@@ -0,0 +1,259 @@
++package com.endava.ai.ui.support.flows.invoice;
++
++import com.endava.ai.core.support.config.ConfigManager;
++import com.endava.ai.ui.support.model.CustomerData;
++import com.endava.ai.ui.support.model.invoice.AccountInvoiceDocumentSnapshot;
++import com.endava.ai.ui.support.model.invoice.AccountInvoiceSnapshot;
++import com.endava.ai.ui.support.pages.AccountPage;
++import com.endava.ai.ui.support.actions.UIActions;
++import com.endava.ai.ui.support.wait.WaitUtils;
++import com.endava.ai.ui.core.runtime.DriverManager;
++import com.endava.ai.ui.core.engine.UiNetworkResponse;
++
++import java.time.Duration;
++import java.util.regex.Matcher;
++import java.util.regex.Pattern;
++
++final class RegisteredInvoiceAccountActions {
++    private static final Pattern INVOICE_PATTERN = Pattern.compile("INV-\\d+");
++    private static final int DOCUMENT_STATUS_ATTEMPTS = 36;
++    private static final int DOCUMENT_STATUS_OBSERVATION_ATTEMPTS = 4;
++    private static final Duration INVOICE_DETAILS_TIMEOUT = Duration.ofSeconds(60);
++    private static final Duration DOCUMENT_STATUS_POLL_INTERVAL = Duration.ofSeconds(5);
++    private static final String[] INVOICE_DOCUMENT_ACTIONS = {
++            "button:has-text('Download PDF')",
++            "a:has-text('Download PDF')",
++            "a:has-text('Download')",
++            "button:has-text('Download')",
++            "a[href*='download']",
++            "a[href*='pdf']",
++            "text=Download PDF"
++    };
++
++    private final RegisteredInvoiceSessionActions sessionActions;
++    private final RegisteredInvoicePageState pageState = new RegisteredInvoicePageState();
++    private final RegisteredInvoiceDocumentStatusClient documentStatusClient = new RegisteredInvoiceDocumentStatusClient();
++
++    RegisteredInvoiceAccountActions(RegisteredInvoiceSessionActions sessionActions) {
++        this.sessionActions = sessionActions;
++    }
++
++    void openInvoices() {
++        UIActions.navigateToRelative(AccountPage.INVOICES_PATH);
++        WaitUtils.waitForCondition(
++                "account invoices surface contains invoice table",
++                () -> DriverManager.getEngine().getCurrentUrl().contains(AccountPage.INVOICES_PATH)
++                        && pageState.isVisible(AccountPage.INVOICE_ROWS),
++                "Expected account invoices table to be visible.",
++                Duration.ofSeconds(20)
++        );
++    }
++
++    void openInvoicesFor(AccountInvoiceSnapshot snapshot) {
++        openInvoicesFor(snapshot.getCustomer());
++    }
++
++    void openInvoicesFor(CustomerData customer) {
++        AssertionError lastFailure = null;
++        try {
++            openInvoices();
++            return;
++        } catch (AssertionError failure) {
++            lastFailure = failure;
++        }
++        for (int attempt = 1; attempt <= 8; attempt++) {
++            try {
++                reopenInvoicesAfterFreshLogin(customer);
++                return;
++            } catch (AssertionError failure) {
++                lastFailure = failure;
++                WaitUtils.pause(Duration.ofSeconds(2));
++            } catch (RuntimeException failure) {
++                lastFailure = new AssertionError("Expected authenticated account invoices table after retry "
++                        + attempt + ", but UI runtime failed.", failure);
++                WaitUtils.pause(Duration.ofSeconds(2));
++            }
++        }
++        throw new AssertionError("Expected authenticated account invoices table after retries.", lastFailure);
++    }
++
++    private void reopenInvoicesAfterFreshLogin(CustomerData customer) {
++        UIActions.clearSession();
++        sessionActions.login(customer);
++        openInvoices();
++    }
++
++    String readInvoiceNumberFromAccountInvoices() {
++        return readInvoiceNumberFromCurrentPage("account invoices table");
++    }
++
++    String readInvoiceNumberFromCurrentPage(String source) {
++        Matcher matcher = INVOICE_PATTERN.matcher(pageState.body());
++        if (!matcher.find()) {
++            throw new AssertionError("Invoice number was not visible in " + source + ".");
++        }
++        return matcher.group();
++    }
++
++    AccountInvoiceDocumentSnapshot openInvoiceDocument(AccountInvoiceSnapshot snapshot) {
++        String invoiceListBody = openInvoiceDetails(snapshot);
++        String detailsBody = pageState.body();
++        String detailsUrl = DriverManager.getEngine().getCurrentUrl();
++        UiNetworkResponse documentResponse = waitForCompletedDocumentResponse(snapshot);
++        return new AccountInvoiceDocumentSnapshot(
++                snapshot,
++                invoiceListBody,
++                detailsBody,
++                detailsUrl,
++                documentResponse
++        );
++    }
++
++    AccountInvoiceDocumentSnapshot openInvoiceDocumentStatus(AccountInvoiceSnapshot snapshot) {
++        String invoiceListBody = openInvoiceDetails(snapshot);
++        String detailsBody = pageState.body();
++        String detailsUrl = DriverManager.getEngine().getCurrentUrl();
++        UiNetworkResponse documentResponse = waitForSuccessfulDocumentStatus(snapshot);
++        return new AccountInvoiceDocumentSnapshot(snapshot, invoiceListBody, detailsBody, detailsUrl, documentResponse);
++    }
++
++    private String openInvoiceDetails(AccountInvoiceSnapshot snapshot) {
++        openInvoicesFor(snapshot);
++        String invoiceListBody = pageState.body();
++        String detailsSelector = AccountPage.invoiceDetailsLink(snapshot.getInvoiceNumber());
++        String detailsHref = detailsHref(detailsSelector);
++        UIActions.click(detailsSelector,
++                "Invoice details for " + snapshot.getInvoiceNumber());
++        waitForSelectedInvoiceDetails(snapshot, detailsHref);
++        if (invoiceListBody.isBlank()) {
++            throw new AssertionError("Expected invoice list body before opening invoice details.");
++        }
++        return invoiceListBody;
++    }
++
++    private String detailsHref(String detailsSelector) {
++        try {
++            String href = UIActions.getAttribute(detailsSelector, "Invoice details href", "href");
++            if (href == null || href.isBlank() || href.startsWith("http")) {
++                return href;
++            }
++            if (href.startsWith("/")) {
++                return ConfigManager.require("base.url") + href;
++            }
++            return ConfigManager.require("base.url") + "/" + href;
++        } catch (RuntimeException failure) {
++            return "";
++        }
++    }
++
++    private void waitForSelectedInvoiceDetails(AccountInvoiceSnapshot snapshot, String detailsHref) {
++        try {
++            waitForSelectedInvoiceDetails(snapshot);
++            return;
++        } catch (AssertionError clickRouteFailure) {
++            if (detailsHref == null || detailsHref.isBlank()) {
++                throw clickRouteFailure;
++            }
++            DriverManager.getEngine().open(detailsHref);
++            waitForSelectedInvoiceDetails(snapshot);
++        }
++    }
++
++    private void waitForSelectedInvoiceDetails(AccountInvoiceSnapshot snapshot) {
++        try {
++            WaitUtils.waitForCondition(
++                    "invoice details surface owns selected invoice",
++                    () -> detailsBodyOwnsInvoice(snapshot),
++                    "Expected invoice details to contain the selected product and checkout total.",
++                    INVOICE_DETAILS_TIMEOUT
++            );
++        } catch (AssertionError failure) {
++            throw new AssertionError("Expected invoice details to contain the selected product and checkout total. "
++                    + "url=" + DriverManager.getEngine().getCurrentUrl()
++                    + ", product=" + snapshot.getProductName()
++                    + ", total=" + snapshot.getCartTotal()
++                    + ", body=" + snippet(pageState.body()), failure);
++        }
++    }
++
++    private boolean detailsBodyOwnsInvoice(AccountInvoiceSnapshot snapshot) {
++        String body = normalize(pageState.body());
++        return body.contains(normalize(snapshot.getProductName()))
++                && body.contains(normalize(snapshot.getCartTotal()))
++                && body.contains("Download PDF");
++    }
++
++    private static String snippet(String value) {
++        String normalized = value == null ? "" : value.replaceAll("\\s+", " ").trim();
++        return normalized.length() <= 700 ? normalized : normalized.substring(0, 697) + "...";
++    }
++
++    private static String normalize(String value) {
++        return value == null ? "" : value.replace('\u00A0', ' ').replaceAll("\\s+", " ").trim();
++    }
++
++    private boolean detailsSurfaceIsReady() {
++        for (String action : INVOICE_DOCUMENT_ACTIONS) {
++            if (pageState.isVisible(action)) {
++                return true;
++            }
++        }
++        return false;
++    }
++
++    private UiNetworkResponse waitForCompletedDocumentResponse(AccountInvoiceSnapshot snapshot) {
++        UiNetworkResponse firstResponse = triggerDocumentStatus(snapshot);
++        return documentStatusClient.waitForCompletedStatus(
++                snapshot,
++                firstResponse,
++                DOCUMENT_STATUS_OBSERVATION_ATTEMPTS,
++                DOCUMENT_STATUS_POLL_INTERVAL
++        );
++    }
++
++    private UiNetworkResponse waitForSuccessfulDocumentStatus(AccountInvoiceSnapshot snapshot) {
++        UiNetworkResponse firstResponse = triggerDocumentStatus(snapshot);
++        return documentStatusClient.waitForSuccessfulStatus(
++                snapshot,
++                firstResponse,
++                DOCUMENT_STATUS_OBSERVATION_ATTEMPTS,
++                DOCUMENT_STATUS_POLL_INTERVAL
++        );
++    }
++
++    private UiNetworkResponse triggerDocumentStatus(AccountInvoiceSnapshot snapshot) {
++        AssertionError lastFailure = null;
++        for (String action : INVOICE_DOCUMENT_ACTIONS) {
++            for (int attempt = 1; attempt <= 3; attempt++) {
++                try {
++                    UiNetworkResponse response = UIActions.waitForResponse(
++                            "invoice PDF status response for " + snapshot.getInvoiceNumber()
++                                    + " via " + action + " attempt " + attempt,
++                            "download-pdf-status",
++                            "GET",
++                            () -> UIActions.click(action, "Download invoice document for " + snapshot.getInvoiceNumber())
++                    );
++                    if (response.isSuccess() || response.getBodyPreview().contains("INITIATED")
++                            || response.getBodyPreview().contains("COMPLETED")) {
++                        return response;
++                    }
++                    WaitUtils.pause(Duration.ofSeconds(2));
++                } catch (AssertionError failure) {
++                    lastFailure = failure;
++                    break;
++                }
++            }
++        }
++        try {
++            return documentStatusClient.readStatusFromDetails(
++                    snapshot,
++                    DriverManager.getEngine().getCurrentUrl()
++            );
++        } catch (RuntimeException | AssertionError fallbackFailure) {
++            if (lastFailure != null) {
++                fallbackFailure.addSuppressed(lastFailure);
++            }
++            throw fallbackFailure;
++        }
++    }
++}
+diff --git a/src/main/java/com/endava/ai/ui/support/flows/invoice/RegisteredInvoiceSessionActions.java b/src/main/java/com/endava/ai/ui/support/flows/invoice/RegisteredInvoiceSessionActions.java
+new file mode 100644
+index 00000000..f0cce958
+--- /dev/null
++++ b/src/main/java/com/endava/ai/ui/support/flows/invoice/RegisteredInvoiceSessionActions.java
+@@ -0,0 +1,62 @@
++package com.endava.ai.ui.support.flows.invoice;
++
++import com.endava.ai.ui.support.factory.CustomerDataFactory;
++import com.endava.ai.ui.support.model.CustomerData;
++import com.endava.ai.ui.support.pages.AccountPage;
++import com.endava.ai.ui.support.pages.LoginPage;
++import com.endava.ai.ui.support.service.RegistrationService;
++import com.endava.ai.ui.support.actions.UIActions;
++import com.endava.ai.ui.support.wait.WaitUtils;
++import com.endava.ai.ui.support.validation.RegistrationValidation;
++
++import java.time.Duration;
++
++final class RegisteredInvoiceSessionActions {
++    private final RegistrationService registrationService = new RegistrationService();
++    private final RegistrationValidation registrationValidation = new RegistrationValidation();
++    private final RegisteredInvoicePageState pageState = new RegisteredInvoicePageState();
++
++    CustomerData registerCustomer() {
++        AssertionError lastFailure = null;
++        for (int attempt = 1; attempt <= 3; attempt++) {
++            CustomerData customer = CustomerDataFactory.validCustomer();
++            try {
++                registrationService.openRegister();
++                registrationService.register(customer);
++                registrationValidation.assertRedirectedToLogin();
++                return customer;
++            } catch (AssertionError failure) {
++                lastFailure = failure;
++                UIActions.clearSession();
++            }
++        }
++        throw lastFailure == null ? new AssertionError("Registration did not produce a customer.") : lastFailure;
++    }
++
++    void login(CustomerData customer) {
++        AssertionError lastFailure = null;
++        for (int attempt = 1; attempt <= 3; attempt++) {
++            try {
++                UIActions.openRelativeWithoutUrlWait("/auth/login");
++                WaitUtils.waitForVisible(LoginPage.EMAIL);
++                UIActions.type(LoginPage.EMAIL, "Registered customer email", customer.getEmail());
++                UIActions.type(LoginPage.PASSWORD, "Registered customer password", customer.getPassword());
++                UIActions.click(LoginPage.LOGIN_BUTTON, "Login registered customer");
++                WaitUtils.waitForCondition(
++                        "account surface is visible after registered login attempt " + attempt,
++                        () -> pageState.isVisible(AccountPage.NAV_MENU)
++                                || pageState.isVisible(AccountPage.PROFILE_NAV),
++                        "Expected login to expose the account surface.",
++                        Duration.ofSeconds(30)
++                );
++                return;
++            } catch (AssertionError failure) {
++                lastFailure = failure;
++                UIActions.clearSession();
++                WaitUtils.pause(Duration.ofSeconds(1));
++            }
++        }
++        throw lastFailure == null ? new AssertionError("Registered login did not reach account surface.") : lastFailure;
++    }
++}
++
+diff --git a/src/test/java/com/endava/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentReloginTest.java b/src/test/java/com/endava/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentReloginTest.java
+new file mode 100644
+index 00000000..e2014ebf
+--- /dev/null
++++ b/src/test/java/com/endava/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentReloginTest.java
+@@ -0,0 +1,39 @@
++package com.endava.ai.ui.tests.invoice.account.document;
++
++import com.endava.ai.ui.core.runtime.BaseTestUI;
++import com.endava.ai.ui.support.flows.invoice.RegisteredInvoiceFlow;
++import com.endava.ai.ui.support.validation.invoice.AccountInvoiceValidation;
++import com.endava.ai.ui.tests.fixture.invoice.RegisteredInvoiceFixture;
++import org.testng.annotations.Test;
++
++public final class RegisteredInvoiceDocumentReloginTest extends BaseTestUI {
++    private final RegisteredInvoiceFlow uiFlow = new RegisteredInvoiceFlow();
++    private final RegisteredInvoiceFixture documentFixture = new RegisteredInvoiceFixture();
++    private final AccountInvoiceValidation documentValidation = new AccountInvoiceValidation();
++
++    @Test
++    public void relogged_invoice_document_stays_details_scoped() {
++        documentValidation.assertInvoiceDetailsScopeDocument(documentFixture.reloggedInvoiceDocument());
++    }
++
++    @Test
++    public void relogged_document_download_response_is_successful() {
++        documentValidation.assertInvoiceDocumentResponseIsSuccessful(documentFixture.reloggedInvoiceDocument());
++        documentValidation.assertInvoicePdfArtifactHasBinaryBoundaries(documentFixture.reloggedInvoiceDocument());
++    }
++
++    @Test
++    public void relogged_document_download_url_is_invoice_scoped() {
++        documentValidation.assertInvoiceDocumentUrlIsInvoiceScoped(documentFixture.reloggedInvoiceDocument());
++    }
++
++    @Test
++    public void relogged_document_download_status_is_reported() {
++        documentValidation.assertInvoiceDocumentStatusBodyReportsState(documentFixture.reloggedInvoiceDocument());
++    }
++
++    @Test
++    public void relogged_invoice_document_details_keep_total() {
++        documentValidation.assertInvoiceDocumentDetailsKeepTotal(documentFixture.reloggedInvoiceDocument());
++    }
++}

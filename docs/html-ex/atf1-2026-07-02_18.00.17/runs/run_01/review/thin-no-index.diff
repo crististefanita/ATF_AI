@@ -1,0 +1,259 @@
+diff --git a/src/main/java/com/endava/ai/ui/support/flows/support/RefundSupportRequestFlow.java b/src/main/java/com/endava/ai/ui/support/flows/support/RefundSupportRequestFlow.java
+new file mode 100644
+index 00000000..3c3c2563
+--- /dev/null
++++ b/src/main/java/com/endava/ai/ui/support/flows/support/RefundSupportRequestFlow.java
+@@ -0,0 +1,190 @@
++package com.endava.ai.ui.support.flows.support;
++
++import com.endava.ai.ui.core.engine.UiNetworkResponse;
++import com.endava.ai.ui.core.runtime.DriverManager;
++import com.endava.ai.ui.support.actions.AccountInvoiceActions;
++import com.endava.ai.ui.support.actions.UIActions;
++import com.endava.ai.ui.support.model.AccountInvoiceContext;
++import com.endava.ai.ui.support.model.CustomerData;
++import com.endava.ai.ui.support.model.RefundSupportRequestContext;
++import com.endava.ai.ui.support.pages.AccountPage;
++import com.endava.ai.ui.support.pages.ContactPage;
++import com.endava.ai.ui.support.service.SupportMessagesClient;
++import com.endava.ai.ui.support.wait.WaitUtils;
++
++import java.time.Duration;
++import java.util.regex.Matcher;
++import java.util.regex.Pattern;
++
++public final class RefundSupportRequestFlow {
++    private static final String SUBJECT = "Return";
++    private static final Pattern STRING_FIELD = Pattern.compile("\"%s\"\\s*:\\s*\"([^\"]*)\"");
++    private static final Pattern NUMBER_FIELD = Pattern.compile("\"%s\"\\s*:\\s*(\\d+)");
++
++    private final AccountInvoiceActions invoiceActions = new AccountInvoiceActions();
++    private final SupportMessagesClient messagesClient = new SupportMessagesClient();
++
++    public RefundSupportRequestContext createRefundSupportRequestForPurchasedInvoice() {
++        AccountInvoiceContext invoice = invoiceActions.createRegisteredInvoiceAndOpenInvoices();
++        return createRefundSupportRequestForInvoice(invoice);
++    }
++
++    public RefundSupportRequestContext createRefundSupportRequestForInvoice(AccountInvoiceContext invoice) {
++        CustomerData customer = invoice.getCustomer();
++        String message = refundMessage(invoice);
++
++        UIActions.navigateToRelative(ContactPage.CONTACT_PATH);
++        WaitUtils.waitForVisible(ContactPage.SUBJECT);
++        UIActions.type(ContactPage.FIRST_NAME, "Refund support first name", customer.getFirstName());
++        UIActions.type(ContactPage.LAST_NAME, "Refund support last name", customer.getLastName());
++        UIActions.type(ContactPage.EMAIL, "Refund support email", customer.getEmail());
++        UIActions.select(ContactPage.SUBJECT, "Refund support subject", SUBJECT);
++        UIActions.type(ContactPage.MESSAGE, "Refund support message", message);
++        String beforeSubmit = currentBody();
++
++        UiNetworkResponse response = UIActions.waitForResponse(
++                "refund support request is accepted by messages API",
++                "/messages",
++                "POST",
++                () -> UIActions.click(ContactPage.SUBMIT, "Submit refund support request")
++        );
++        WaitUtils.waitForCondition(
++                "refund support contact success is visible",
++                () -> currentBody().contains(ContactPage.SUCCESS_MESSAGE),
++                "Expected contact success message after refund support request."
++        );
++        String afterSubmit = currentBody();
++        String contactUrl = DriverManager.getEngine().getCurrentUrl();
++        String responseBody = response.getBodyPreview();
++        String messageId = firstField(responseBody, "id");
++        String messageStatus = firstField(responseBody, "status");
++        String messageCreatedAt = firstField(responseBody, "created_at");
++
++        UIActions.navigateToRelative(AccountPage.MESSAGES_PATH);
++        WaitUtils.waitForCondition(
++                "account messages surface is visible",
++                () -> accountMessagesBody().contains("Messages")
++                        || accountMessagesBody().contains("Return")
++                        || accountMessagesBody().contains(messageId),
++                "Expected account messages surface after refund support request.",
++                Duration.ofSeconds(30)
++        );
++        String accountMessagesBody = accountMessagesBody();
++        String accountMessagesUrl = DriverManager.getEngine().getCurrentUrl();
++
++        return new RefundSupportRequestContext(
++                invoice,
++                SUBJECT,
++                message,
++                beforeSubmit,
++                afterSubmit,
++                contactUrl,
++                response,
++                messageId,
++                messageStatus,
++                messageCreatedAt,
++                accountMessagesBody,
++                accountMessagesUrl
++        );
++    }
++
++    public RefundSupportRequestContext reopenSubmittedRequest(RefundSupportRequestContext original) {
++        UIActions.navigateToRelative(ContactPage.CONTACT_PATH);
++        WaitUtils.waitForVisible(ContactPage.SUBJECT);
++        return new RefundSupportRequestContext(
++                original.getInvoice(),
++                original.getSubject(),
++                original.getMessage(),
++                currentBody(),
++                original.getContactBodyAfterSubmit(),
++                DriverManager.getEngine().getCurrentUrl(),
++                original.getMessageResponse(),
++                original.getMessageId(),
++                original.getMessageStatus(),
++                original.getMessageCreatedAt(),
++                original.getAccountMessagesBody(),
++                original.getAccountMessagesUrl()
++        );
++    }
++
++    public RefundSupportRequestContext progressRequestWithAdminReplyAndOpenCustomerMessages(
++            RefundSupportRequestContext original) {
++        String replyMessage = "Admin reply confirms refund support case is received for invoice "
++                + original.getInvoiceNumber() + ".";
++        SupportMessagesClient.SupportMessageReply reply =
++                messagesClient.replyAsAdmin(original.getMessageId(), replyMessage);
++        String customerMessagesApiBody = messagesClient.readCustomerMessages(original.getInvoice().getCustomer());
++        SupportMessagesClient.SupportMessageCase customerCase =
++                messagesClient.readCustomerMessage(original.getInvoice().getCustomer(), original.getMessageId());
++
++        UIActions.navigateToRelative(AccountPage.MESSAGES_PATH);
++        WaitUtils.waitForCondition(
++                "customer account messages shows admin-progressed support case",
++                () -> {
++                    String body = accountMessagesBody();
++                    return containsIgnoreCase(body, original.getSubject())
++                            && body.contains(customerCase.status());
++                },
++                "Expected account messages to show admin-progressed support case " + original.getMessageId(),
++                Duration.ofSeconds(30)
++        );
++        String customerMessagesBody = accountMessagesBody();
++        String customerMessagesUrl = DriverManager.getEngine().getCurrentUrl();
++
++        return new RefundSupportRequestContext(
++                original.getInvoice(),
++                original.getSubject(),
++                original.getMessage(),
++                original.getContactBodyBeforeSubmit(),
++                original.getContactBodyAfterSubmit(),
++                original.getContactUrl(),
++                original.getMessageResponse(),
++                original.getMessageId(),
++                original.getMessageStatus(),
++                original.getMessageCreatedAt(),
++                original.getAccountMessagesBody(),
++                original.getAccountMessagesUrl(),
++                reply.id(),
++                reply.message(),
++                reply.createdAt(),
++                customerCase.status(),
++                customerMessagesApiBody,
++                customerMessagesBody,
++                customerMessagesUrl
++        );
++    }
++
++    private String refundMessage(AccountInvoiceContext invoice) {
++        return "Refund request for invoice " + invoice.getInvoiceNumber()
++                + " amount " + invoice.getCartTotal()
++                + " because the purchased product " + invoice.getProductName()
++                + " arrived damaged. Customer email " + invoice.getCustomer().getEmail() + ".";
++    }
++
++    private String currentBody() {
++        return DriverManager.getEngine().getText(ContactPage.BODY);
++    }
++
++    private String accountMessagesBody() {
++        return DriverManager.getEngine().getText(AccountPage.MESSAGES_BODY);
++    }
++
++    private boolean containsIgnoreCase(String text, String expected) {
++        return text != null && expected != null
++                && text.toLowerCase().contains(expected.toLowerCase());
++    }
++
++    private String firstField(String json, String fieldName) {
++        String stringValue = match(STRING_FIELD, json, fieldName);
++        if (!stringValue.isBlank()) {
++            return stringValue;
++        }
++        return match(NUMBER_FIELD, json, fieldName);
++    }
++
++    private String match(Pattern patternTemplate, String json, String fieldName) {
++        Pattern pattern = Pattern.compile(String.format(patternTemplate.pattern(), Pattern.quote(fieldName)));
++        Matcher matcher = pattern.matcher(json == null ? "" : json);
++        return matcher.find() ? matcher.group(1) : "";
++    }
++}
+diff --git a/src/test/java/com/endava/ai/ui/tests/refunds/support/RefundSupportCustomerMessagesLifecycleTest.java b/src/test/java/com/endava/ai/ui/tests/refunds/support/RefundSupportCustomerMessagesLifecycleTest.java
+new file mode 100644
+index 00000000..cadf688f
+--- /dev/null
++++ b/src/test/java/com/endava/ai/ui/tests/refunds/support/RefundSupportCustomerMessagesLifecycleTest.java
+@@ -0,0 +1,57 @@
++package com.endava.ai.ui.tests.refunds.support;
++
++import com.endava.ai.ui.core.runtime.BaseTestUI;
++import com.endava.ai.ui.support.model.RefundSupportRequestContext;
++import com.endava.ai.ui.support.validation.support.RefundSupportRequestValidation;
++import org.testng.annotations.Test;
++
++import static com.endava.ai.ui.tests.refunds.support.RefundSupportRequestTestSupport.adminProgressedRequest;
++import static com.endava.ai.ui.tests.refunds.support.RefundSupportRequestTestSupport.request;
++
++public final class RefundSupportCustomerMessagesLifecycleTest extends BaseTestUI {
++    private final RefundSupportRequestValidation validation = new RefundSupportRequestValidation();
++
++    @Test(description = "Refund support message API returns durable case identity.",
++            groups = {"ui.refund-support", "ui.customer-messages", "ui.business"})
++    public void refundSupportMessageApiCreatesDurableCaseIdentity() {
++        RefundSupportRequestContext context = request();
++
++        validation.assertMessagesApiCreatedDurableMessageIdentity(context);
++    }
++
++    @Test(description = "Refund support message starts from explicit NEW case state.",
++            groups = {"ui.refund-support", "ui.customer-messages", "ui.business"})
++    public void refundSupportMessageApiCreatesNewCaseState() {
++        RefundSupportRequestContext context = request();
++
++        validation.assertMessagesApiCreatedNewSupportCase(context);
++    }
++
++    @Test(description = "Customer account exposes the support messages route after request creation.",
++            groups = {"ui.refund-support", "ui.customer-messages", "ui.business"})
++    public void refundSupportCustomerAccountExposesMessagesRoute() {
++        RefundSupportRequestContext context = request();
++
++        validation.assertCustomerMessagesSurfaceIsAccountScoped(context);
++    }
++
++    @Test(description = "Customer messages page shows the created refund support request.",
++            groups = {"ui.refund-support", "ui.customer-messages", "ui.business"})
++    public void refundSupportCustomerMessagesShowCreatedRequest() {
++        RefundSupportRequestContext context = adminProgressedRequest();
++
++        validation.assertCustomerMessagesSurfaceShowsCreatedRequest(context);
++    }
++
++    @Test(description = "Customer-visible support request keeps invoice, subject and status in one proof chain.",
++            groups = {"ui.refund-support", "ui.customer-messages", "ui.business"})
++    public void refundSupportCustomerVisibleLifecycleConnectsInvoiceSubjectAndStatus() {
++        RefundSupportRequestContext context = adminProgressedRequest();
++
++        validation.assertInvoiceBackedRefundMessage(context);
++        validation.assertMessagesApiCreatedDurableMessageIdentity(context);
++        validation.assertMessagesApiCreatedNewSupportCase(context);
++        validation.assertAdminReplyProgressesSupportCase(context);
++        validation.assertCustomerMessagesSurfaceShowsCreatedRequest(context);
++    }
++}

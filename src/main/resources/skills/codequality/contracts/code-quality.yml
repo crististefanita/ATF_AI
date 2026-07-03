@@ -1,0 +1,594 @@
+schemaVersion: 1
+contracts:
+  - id: code-quality.package-class-default
+    kind: direct-package-class-limit
+    max: 8
+    owner: Code Quality skill
+    repair: Split packages by responsibility before adding a ninth direct Java class.
+
+  - id: code-quality.legacy-ratchet-stale-slack
+    kind: stale-ratchet-slack
+    slack: 2
+    owner: Code Quality skill
+    repair: Lower legacy caps when actual package/class size is at least two below the cap.
+
+  - id: code-quality.legacy-yaml-ratchet-stale-slack
+    kind: stale-yaml-ratchet-slack
+    slackBytes: 1024
+    owner: Code Quality skill
+    repair: Lower legacy YAML caps when actual resource size is at least one kilobyte below the cap.
+
+  - id: code-quality.class-size-default
+    kind: class-size-default
+    warningLines: 220
+    maxLines: 320
+    maxWarningFiles: 75
+    maxOverMaxFiles: 23
+    owner: Code Quality skill
+    repair: Split large classes before adding new behavior; files above maxLines require a legacy class-size cap.
+
+  - id: code-quality.method-size-default
+    kind: method-size-default
+    warningLines: 60
+    maxLines: 100
+    maxWarningMethods: 12
+    maxOverMaxMethods: 0
+    owner: Code Quality skill
+    repair: Split long methods into named helpers before adding more branching or fixture setup.
+
+  - id: code-quality.assertion-density-default
+    kind: assertion-density-default
+    minimumCuePercent: 50
+    maxLowDensityClasses: 0
+    maxZeroCueClasses: 0
+    owner: Code Quality skill
+    repair: Test classes must expose executable assertion cues through Assert, assert*, require* or fail helpers.
+
+  - id: code-quality.yaml-size-default
+    kind: yaml-size-default
+    warningBytes: 10000
+    maxBytes: 20000
+    maxWarningFiles: 17
+    maxOverMaxFiles: 8
+    owner: Code Quality skill
+    repair: Split YAML contracts by ownership before growing large resource files.
+
+  - id: code-quality.suite-count-default
+    kind: suite-count-default
+    maxSuites: 40
+    owner: Code Quality skill
+    repair: Split or retire TestNG suites deliberately before adding more suite entry points; the current cap includes the Core smoke preflight suite.
+
+  - id: code-quality.java-compatibility.no-stream-to-list
+    kind: java-compatibility-ban
+    forbiddenApi: stream.toList
+    owner: Code Quality skill
+    repair: Use collect(Collectors.toList()) until the project baseline explicitly supports Stream.toList().
+
+  - id: code-quality.source-main
+    kind: source-root
+    path: src/main/java
+    owner: Code Quality skill
+    repair: Main Java source packages must stay readable and cohesive.
+
+  - id: code-quality.source-test
+    kind: source-root
+    path: src/test/java
+    owner: Code Quality skill
+    repair: Test source packages must stay readable and split by contract family.
+
+  - id: code-quality.resource-main
+    kind: resource-root
+    path: src/main/resources
+    owner: Code Quality skill
+    repair: Main resources must stay bounded and owned by skill or core contract surface.
+
+  - id: code-quality.resource-test
+    kind: resource-root
+    path: src/test/resources
+    owner: Code Quality skill
+    repair: Test resources and TestNG suites must stay bounded and profile-driven.
+
+  - id: code-quality.boundary.core-main-no-mcp
+    kind: dependency-boundary
+    root: src/main/java/com/endava/ai/core
+    forbiddenPackage: com.endava.ai.skills.mcp
+    owner: Code Quality dependency boundary
+    repair: Keep Core generic; expose shared contracts through core/support or core/skills only, not MCP imports.
+
+  - id: code-quality.boundary.core-main-no-atlas
+    kind: dependency-boundary
+    root: src/main/java/com/endava/ai/core
+    forbiddenPackage: com.endava.ai.skills.atlas
+    owner: Code Quality dependency boundary
+    repair: Keep Core generic; expose shared business/reporting primitives without depending on Atlas.
+
+  - id: code-quality.boundary.reporting-main-no-mcp
+    kind: dependency-boundary
+    root: src/main/java/com/endava/ai/core/reporting
+    forbiddenPackage: com.endava.ai.skills.mcp
+    owner: Code Quality dependency boundary
+    repair: Keep Reporting neutral; MCP-specific checks belong in the MCP skill.
+
+  - id: code-quality.boundary.reporting-main-no-atlas
+    kind: dependency-boundary
+    root: src/main/java/com/endava/ai/core/reporting
+    forbiddenPackage: com.endava.ai.skills.atlas
+    owner: Code Quality dependency boundary
+    repair: Keep Reporting neutral; Atlas-specific meaning belongs in the Atlas skill.
+
+  - id: code-quality.boundary.business-main-no-mcp
+    kind: dependency-boundary
+    root: src/main/java/com/endava/ai/skills/business
+    forbiddenPackage: com.endava.ai.skills.mcp
+    owner: Code Quality dependency boundary
+    repair: Keep Business Understanding semantic and reusable; MCP consumes it, not the reverse.
+
+  - id: code-quality.boundary.business-main-no-atlas
+    kind: dependency-boundary
+    root: src/main/java/com/endava/ai/skills/business
+    forbiddenPackage: com.endava.ai.skills.atlas
+    owner: Code Quality dependency boundary
+    repair: Keep Business Understanding semantic and reusable; Atlas consumes it, not the reverse.
+
+  - id: code-quality.boundary.mcp-main-no-atlas
+    kind: dependency-boundary
+    root: src/main/java/com/endava/ai/skills/mcp
+    forbiddenPackage: com.endava.ai.skills.atlas
+    owner: Code Quality dependency boundary
+    repair: Keep MCP and Atlas collaboration artifact/YAML based instead of Java-coupled.
+
+  - id: code-quality.boundary.atlas-main-no-mcp
+    kind: dependency-boundary
+    root: src/main/java/com/endava/ai/skills/atlas
+    forbiddenPackage: com.endava.ai.skills.mcp
+    owner: Code Quality dependency boundary
+    repair: Keep Atlas and MCP collaboration artifact/YAML based instead of Java-coupled.
+
+  - id: code-quality.boundary.mcp-tests-no-atlas
+    kind: dependency-boundary
+    root: src/test/java/com/endava/ai/skills/mcp
+    forbiddenPackage: com.endava.ai.skills.atlas
+    owner: Code Quality dependency boundary
+    repair: Keep MCP tests self-contained; validate Atlas integration through artifacts or dedicated cross-skill suites.
+
+  - id: code-quality.boundary.atlas-tests-no-mcp
+    kind: dependency-boundary
+    root: src/test/java/com/endava/ai/skills/atlas
+    forbiddenPackage: com.endava.ai.skills.mcp
+    owner: Code Quality dependency boundary
+    repair: Keep Atlas tests self-contained; validate MCP integration through artifacts or dedicated cross-skill suites.
+
+  - id: code-quality.legacy.api-client
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/api/core/client
+    max: 14
+    owner: API client package ratchet
+    repair: Split request, response, retry and transport concerns before adding more classes.
+
+  - id: code-quality.legacy.api-validation
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/api/core/validation
+    max: 12
+    owner: API validation package ratchet
+    repair: Split validation rules by request, response and schema concern.
+
+  - id: code-quality.legacy.core-reporting-root
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/core/reporting
+    max: 9
+    owner: Core Reporting root ratchet
+    repair: Keep public facade classes here; move behavior into focused subpackages.
+
+  - id: code-quality.legacy.spark-theme
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/core/reporting/adapters/extent/spark/sections/theme
+    max: 9
+    owner: Spark theme package ratchet
+    repair: Split theme layout, palette and typography before adding more classes.
+
+  - id: code-quality.legacy.spark-style
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/core/reporting/adapters/extent/spark/style
+    max: 10
+    owner: Spark style package ratchet
+    repair: Split style composers by visual primitive family.
+
+  - id: code-quality.legacy.business-model
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/skills/business/model
+    max: 9
+    owner: Business Understanding model ratchet
+    repair: Split semantic models by graph, proof, score and trace families.
+
+  - id: code-quality.legacy.core-yaml-model
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/core/support/contract/core/yaml/model
+    max: 10
+    owner: Core YAML model ratchet
+    repair: Split YAML model contracts by profile, reporting, boundary and size families.
+
+  - id: code-quality.legacy.atlas-contract
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/skills/atlas/contract
+    max: 11
+    owner: Atlas contract package ratchet
+    repair: Split catalog, execution and rule metadata concerns.
+
+  - id: code-quality.legacy.atlas-contract-yaml
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/skills/atlas/contract/yaml
+    max: 9
+    owner: Atlas YAML contract ratchet
+    repair: Split YAML parsing by rule pack, policy and package shape.
+
+  - id: code-quality.legacy.atlas-report
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/skills/atlas/report
+    max: 9
+    owner: Atlas report package ratchet
+    repair: Split report rendering from parsing and publication.
+
+  - id: code-quality.legacy.atlas-audit
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/skills/atlas/rules/audit
+    max: 10
+    owner: Atlas audit rules ratchet
+    repair: Split audit rules by evidence, score and publication concern.
+
+  - id: code-quality.legacy.atlas-business
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/skills/atlas/rules/business
+    max: 10
+    owner: Atlas business rules ratchet
+    repair: Split business rules by object, claim and proof family.
+
+  - id: code-quality.legacy.atlas-graph
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/skills/atlas/rules/graph
+    max: 9
+    owner: Atlas graph rules ratchet
+    repair: Split graph rules by ownership, frontier and source-trace concern.
+
+  - id: code-quality.legacy.atlas-scoring
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/skills/atlas/rules/scoring
+    max: 10
+    owner: Atlas scoring rules ratchet
+    repair: Split score rules by score axis.
+
+  - id: code-quality.legacy.atlas-validation
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/skills/atlas/validation
+    max: 9
+    owner: Atlas validation package ratchet
+    repair: Split validator orchestration from matrix and evidence helpers.
+
+  - id: code-quality.legacy.mcp-context
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/skills/mcp/context
+    max: 9
+    owner: MCP context package ratchet
+    repair: Split context readers by package, run and report context.
+
+  - id: code-quality.legacy.mcp-policy
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/skills/mcp/contracts/policy
+    max: 13
+    owner: MCP policy package ratchet
+    repair: Split policy by score, artifact, package and protected-root concern.
+
+  - id: code-quality.legacy.mcp-provenance
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/skills/mcp/provenance
+    max: 10
+    owner: MCP provenance package ratchet
+    repair: Split provenance hashing, origin metadata and validation.
+
+  - id: code-quality.legacy.mcp-rules
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/skills/mcp/rules
+    max: 9
+    owner: MCP rules root ratchet
+    repair: Move broad rule classes into focused rule-family packages.
+
+  - id: code-quality.legacy.mcp-closeout
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/skills/mcp/rules/packageaudit/closeout
+    max: 10
+    owner: MCP closeout rules ratchet
+    repair: Split closeout rules by package state, report, evidence and promotion concern.
+
+  - id: code-quality.legacy.mcp-report-rules
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/skills/mcp/rules/report
+    max: 10
+    owner: MCP report rules ratchet
+    repair: Split report rules by graph, links, score and artifact index concern.
+
+  - id: code-quality.legacy.mcp-run-rules
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/skills/mcp/rules/run
+    max: 10
+    owner: MCP run rules ratchet
+    repair: Split run rules by state, Extent, TestNG and learning trace concern.
+
+  - id: code-quality.legacy.mcp-kpi-source
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/skills/mcp/rules/source/kpi
+    max: 9
+    owner: MCP source KPI rules ratchet
+    repair: Split KPI rules by source evidence family.
+
+  - id: code-quality.legacy.mcp-ui-rules
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/skills/mcp/rules/ui
+    max: 9
+    owner: MCP UI rules ratchet
+    repair: Split UI rules by screenshots, layers and generated test shape.
+
+  - id: code-quality.legacy.mcp-validation
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/skills/mcp/validation
+    max: 9
+    owner: MCP validation package ratchet
+    repair: Split validation orchestration from assertion groups.
+
+  - id: code-quality.legacy.mcp-report-validation
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/skills/mcp/validation/report
+    max: 9
+    owner: MCP report validation ratchet
+    repair: Split report validation by graph, evidence, score and presentation concern.
+
+  - id: code-quality.legacy.mcp-graph-profile-validation
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/skills/mcp/validation/profile/graph
+    max: 9
+    owner: MCP graph profile validation ratchet
+    repair: Split graph profile validation by ownership, frontier, legend and semantic honesty concern.
+
+  - id: code-quality.legacy.selenium-engine
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/ui/core/engine/selenium
+    max: 7
+    owner: Selenium engine package ratchet
+    repair: Keep network/CDP helpers in selenium.network and split zoom or lifecycle helpers before adding more root classes.
+
+  - id: code-quality.legacy.playwright-element
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/ui/core/engine/playwright/element
+    max: 1
+    owner: Playwright element package ratchet
+    repair: Split locator, DOM, action and waiting concerns before adding more classes.
+
+  - id: code-quality.legacy.ui-actions
+    kind: legacy-package-cap
+    path: src/main/java/com/endava/ai/ui/support/actions
+    max: 9
+    owner: UI support actions ratchet
+    repair: Split actions by business domain and evidence read model.
+
+  - id: code-quality.legacy.reporting-adapter-support-tests
+    kind: legacy-package-cap
+    path: src/test/java/com/endava/ai/atf/core/reporting/adapters/support
+    max: 9
+    owner: Reporting adapter support test ratchet
+    repair: Split fixtures, DOM helpers and assertion support.
+
+  - id: code-quality.legacy.skill-architecture-tests
+    kind: legacy-package-cap
+    path: src/test/java/com/endava/ai/atf/core/skills/architecture
+    max: 16
+    owner: Skill architecture tests ratchet
+    repair: Split architecture tests by skill surface, flow, prompt routing and package governance.
+
+  - id: code-quality.legacy.atlas-tests
+    kind: legacy-package-cap
+    path: src/test/java/com/endava/ai/skills/atlas/tests
+    max: 10
+    owner: Atlas tests ratchet
+    repair: Split Atlas tests by publisher, parser, matrix and package-shape concern.
+
+  - id: code-quality.legacy.yaml.contract-narratives
+    kind: legacy-yaml-size-cap
+    path: src/main/resources/atf-core/contracts/narratives/contract-narratives.yml
+    max: 145000
+    owner: ATF core narrative YAML ratchet
+    repair: Split narrative ids by contract family before adding more rows.
+
+  - id: code-quality.legacy.yaml.source-evolution
+    kind: legacy-yaml-size-cap
+    path: src/main/resources/skills/mcp/contracts/kpi/source-evolution.yml
+    max: 38000
+    owner: MCP source-evolution KPI YAML ratchet
+    repair: Split KPI families by source, run, protected-root and score concern.
+
+  - id: code-quality.legacy.yaml.mcp-checks-contracts
+    kind: legacy-yaml-size-cap
+    path: src/main/resources/skills/mcp/contracts/checks/mcp-checks-contracts.yml
+    max: 36000
+    owner: MCP contract checks YAML ratchet
+    repair: Split contract check metadata by contract family before adding more checks.
+
+  - id: code-quality.legacy.yaml.mcp-checks-run
+    kind: legacy-yaml-size-cap
+    path: src/main/resources/skills/mcp/contracts/checks/mcp-checks-run.yml
+    max: 23000
+    owner: MCP run checks YAML ratchet
+    repair: Split run check metadata by lifecycle stage before adding more checks.
+
+  - id: code-quality.legacy.yaml.mcp-checks-package
+    kind: legacy-yaml-size-cap
+    path: src/main/resources/skills/mcp/contracts/checks/mcp-checks-package.yml
+    max: 21500
+    owner: MCP package checks YAML ratchet
+    repair: Split package check metadata by artifact, extent, gate and score concern.
+
+  - id: code-quality.legacy.yaml.skill-architecture
+    kind: legacy-yaml-size-cap
+    path: src/main/resources/atf-core/contracts/skills/skill-architecture.yml
+    max: 20500
+    owner: ATF skill architecture YAML ratchet
+    repair: Split skill architecture details into owned skill manifests before adding more flows.
+
+  - id: code-quality.legacy.yaml.profiles
+    kind: legacy-yaml-size-cap
+    path: src/main/resources/atf-core/contracts/profiles/profiles.yml
+    max: 21500
+    owner: ATF core profile YAML ratchet
+    repair: Split profile metadata by Core, Reporting, UI engine and aggregate profile families before adding more profile rows.
+
+  - id: code-quality.legacy.yaml.code-quality
+    kind: legacy-yaml-size-cap
+    path: src/main/resources/skills/codequality/contracts/code-quality.yml
+    max: 27000
+    owner: Code Quality YAML self-ratchet
+    repair: Split code-quality policy into package, class-size and resource policy files before adding much more.
+
+  - id: code-quality.legacy.class-size.src-test-java-com-endava-ai-atf-core-reporting-regression-extenthtmlpatchplancontracttest-java
+    kind: legacy-class-size-cap
+    path: src/test/java/com/endava/ai/atf/core/reporting/regression/ExtentHtmlPatchPlanContractTest.java
+    max: 449
+    owner: Code Quality class-size ratchet
+    repair: Split this large source by responsibility before adding more lines.
+
+  - id: code-quality.legacy.class-size.src-test-java-com-endava-ai-atf-core-support-contract-core-yaml-atfcoreyamlcontractmanifesttest-java
+    kind: legacy-class-size-cap
+    path: src/test/java/com/endava/ai/atf/core/support/contract/core/yaml/AtfCoreYamlContractManifestTest.java
+    max: 447
+    owner: Code Quality class-size ratchet
+    repair: Split this large source by responsibility before adding more lines.
+
+  - id: code-quality.legacy.class-size.src-test-java-com-endava-ai-atf-core-support-contracts-annotations-contractannotationbestpracticetest-java
+    kind: legacy-class-size-cap
+    path: src/test/java/com/endava/ai/atf/core/support/contracts/annotations/ContractAnnotationBestPracticeTest.java
+    max: 442
+    owner: Code Quality class-size ratchet
+    repair: Split this large source by responsibility before adding more lines.
+
+  - id: code-quality.legacy.class-size.src-main-java-com-endava-ai-ui-support-actions-accountinvoiceactions-java
+    kind: legacy-class-size-cap
+    path: src/main/java/com/endava/ai/ui/support/actions/AccountInvoiceActions.java
+    max: 420
+    owner: Code Quality class-size ratchet
+    repair: Split this large source by responsibility before adding more lines.
+
+  - id: code-quality.legacy.class-size.src-test-java-com-endava-ai-atf-core-skills-business-businessunderstandingkernelcontracttest-java
+    kind: legacy-class-size-cap
+    path: src/test/java/com/endava/ai/skills/business/tests/BusinessUnderstandingKernelContractTest.java
+    max: 399
+    owner: Code Quality class-size ratchet
+    repair: Split this large source by responsibility before adding more lines.
+
+  - id: code-quality.legacy.class-size.src-test-java-com-endava-ai-atf-core-reporting-adapters-extentadaptertest-java
+    kind: legacy-class-size-cap
+    path: src/test/java/com/endava/ai/atf/core/reporting/adapters/ExtentAdapterTest.java
+    max: 399
+    owner: Code Quality class-size ratchet
+    repair: Split this large source by responsibility before adding more lines.
+
+  - id: code-quality.legacy.class-size.src-test-java-com-endava-ai-atf-core-reporting-adapters-support-extentsparkreportfixtures-java
+    kind: legacy-class-size-cap
+    path: src/test/java/com/endava/ai/atf/core/reporting/adapters/support/ExtentSparkReportFixtures.java
+    max: 398
+    owner: Code Quality class-size ratchet
+    repair: Split this large source by responsibility before adding more lines.
+
+  - id: code-quality.legacy.class-size.src-test-java-com-endava-ai-atf-core-reporting-adapters-failure-extentsparkfailuretriagecontracttest-java
+    kind: legacy-class-size-cap
+    path: src/test/java/com/endava/ai/atf/core/reporting/adapters/failure/ExtentSparkFailureTriageContractTest.java
+    max: 394
+    owner: Code Quality class-size ratchet
+    repair: Split this large source by responsibility before adding more lines.
+
+  - id: code-quality.legacy.class-size.src-test-java-com-endava-ai-skills-mcp-tests-core-calibration-mcpruncalibrationcontracttest-java
+    kind: legacy-class-size-cap
+    path: src/test/java/com/endava/ai/skills/mcp/tests/core/calibration/McpRunCalibrationContractTest.java
+    max: 390
+    owner: Code Quality class-size ratchet
+    repair: Split this large source by responsibility before adding more lines.
+
+  - id: code-quality.legacy.class-size.src-test-java-com-endava-ai-atf-core-reporting-architecture-atfreportingpackageshapecontracttest-java
+    kind: legacy-class-size-cap
+    path: src/test/java/com/endava/ai/atf/core/reporting/architecture/AtfReportingPackageShapeContractTest.java
+    max: 384
+    owner: Code Quality class-size ratchet
+    repair: Split this large source by responsibility before adding more lines.
+
+  - id: code-quality.legacy.class-size.src-test-java-com-endava-ai-atf-core-reporting-lifecycle-testlistenerfailurecontracttest-java
+    kind: legacy-class-size-cap
+    path: src/test/java/com/endava/ai/atf/core/reporting/lifecycle/TestListenerFailureContractTest.java
+    max: 383
+    owner: Code Quality class-size ratchet
+    repair: Split this large source by responsibility before adding more lines.
+
+  - id: code-quality.legacy.class-size.src-test-java-com-endava-ai-atf-core-reporting-adapters-spark-extentsparktreecollapsecontracttest-java
+    kind: legacy-class-size-cap
+    path: src/test/java/com/endava/ai/atf/core/reporting/adapters/spark/ExtentSparkTreeCollapseContractTest.java
+    max: 381
+    owner: Code Quality class-size ratchet
+    repair: Split this large source by responsibility before adding more lines.
+
+  - id: code-quality.legacy.class-size.src-test-java-com-endava-ai-atf-core-reporting-adapters-spark-extentsparkruntimeauditcontracttest-java
+    kind: legacy-class-size-cap
+    path: src/test/java/com/endava/ai/atf/core/reporting/adapters/spark/ExtentSparkRuntimeAuditContractTest.java
+    max: 378
+    owner: Code Quality class-size ratchet
+    repair: Split this large source by responsibility before adding more lines.
+
+  - id: code-quality.legacy.class-size.src-main-java-com-endava-ai-core-reporting-adapters-extent-tokens-extentsemantictoken-java
+    kind: legacy-class-size-cap
+    path: src/main/java/com/endava/ai/core/reporting/adapters/extent/tokens/ExtentSemanticToken.java
+    max: 373
+    owner: Code Quality class-size ratchet
+    repair: Split this large source by responsibility before adding more lines.
+
+  - id: code-quality.legacy.class-size.src-test-java-com-endava-ai-skills-mcp-tests-negative-mcpreportnegativecontracttest-java
+    kind: legacy-class-size-cap
+    path: src/test/java/com/endava/ai/skills/mcp/tests/negative/McpReportNegativeContractTest.java
+    max: 372
+    owner: Code Quality class-size ratchet
+    repair: Split this large source by responsibility before adding more lines.
+
+  - id: code-quality.legacy.class-size.src-test-java-com-endava-ai-atf-core-reporting-adapters-spark-extentsparkreportmodecontracttest-java
+    kind: legacy-class-size-cap
+    path: src/test/java/com/endava/ai/atf/core/reporting/adapters/spark/ExtentSparkReportModeContractTest.java
+    max: 372
+    owner: Code Quality class-size ratchet
+    repair: Split this large source by responsibility before adding more lines.
+
+  - id: code-quality.legacy.class-size.src-test-java-com-endava-ai-skills-mcp-tests-core-profiles-mcptestngprofilecontracttest-java
+    kind: legacy-class-size-cap
+    path: src/test/java/com/endava/ai/skills/mcp/tests/core/profiles/McpTestNgProfileContractTest.java
+    max: 369
+    owner: Code Quality class-size ratchet
+    repair: Split this large source by responsibility before adding more lines.
+
+  - id: code-quality.legacy.class-size.src-test-java-com-endava-ai-atf-core-support-base-basetestapicontracttest-java
+    kind: legacy-class-size-cap
+    path: src/test/java/com/endava/ai/atf/core/support/base/BaseTestAPIContractTest.java
+    max: 355
+    owner: Code Quality class-size ratchet
+    repair: Split this large source by responsibility before adding more lines.
+
+  - id: code-quality.legacy.class-size.src-test-java-com-endava-ai-skills-mcp-tests-negative-mcpsourcenegativecontracttest-java
+    kind: legacy-class-size-cap
+    path: src/test/java/com/endava/ai/skills/mcp/tests/negative/McpSourceNegativeContractTest.java
+    max: 323
+    owner: Code Quality class-size ratchet
+    repair: Split this large source by responsibility before adding more lines.
+
+  - id: code-quality.legacy.class-size.src-main-java-com-endava-ai-skills-mcp-validation-report-evidence-mcpreportproofevidenceassertions-java
+    kind: legacy-class-size-cap
+    path: src/main/java/com/endava/ai/skills/mcp/validation/report/evidence/McpReportProofEvidenceAssertions.java
+    max: 321
+    owner: Code Quality class-size ratchet
+    repair: Split this large source by responsibility before adding more lines.
+
+  - id: code-quality.legacy.class-size.src-main-java-com-endava-ai-skills-atlas-rules-graph-style-atlasgraphvisualscalerule-java
+    kind: legacy-class-size-cap
+    path: src/main/java/com/endava/ai/skills/atlas/rules/graph/style/AtlasGraphVisualScaleRule.java
+    max: 335
+    owner: Code Quality class-size ratchet
+    repair: Split visual scale validation into canvas geometry, label readability and maturity/frontier checks.

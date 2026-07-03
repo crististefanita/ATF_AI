@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<title>UI adapter for the business frontier</title>
+<link href="../../assets/shared-report-reference.css" rel="stylesheet">
+<style>
+.grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.diag{margin-top:10px;border:1px solid var(--border);border-radius:14px;background:#08101a;padding:12px;overflow:auto}
+.diag svg{display:block;width:100%;height:auto}
+.kvs{display:grid;grid-template-columns:120px 1fr;gap:8px 12px}
+.k{color:var(--muted);font-weight:600}
+.pillline{display:flex;flex-direction:column;gap:8px;align-items:flex-start;margin-top:10px}
+.pillrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.pilllabel{color:var(--muted);font-size:12px;font-weight:700;margin-right:2px}
+pre,
+pre code{
+  line-height:1.04;
+}
+.toolbar{display:flex;justify-content:flex-start;gap:8px;margin:10px 0 14px}
+.toolbar button{border:1px solid var(--border);background:#111826;color:var(--text);border-radius:999px;padding:7px 12px;font-size:12px;font-weight:700;cursor:pointer}
+.toolbar button:hover{border-color:#7aa2ff;color:#dbe7ff}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>UI adapter for the business frontier <span class="badge">IU</span> <span class="badge">BORDER</span> <span class="badge">PROOF</span> <span class="badge">HANDOFF</span></h1>
+  <div class="sub">
+    <ul>
+      <li>Single run UI adapter.</li>
+      <li>Start from <code class="inline">SEED_RECORDING_CLASS</code>.</li>
+      <li>Choose a visible business border.</li>
+      <li>Produces the test/support slice.</li>
+      <li>Hand over the cold evidence to the execution.</li>
+    </ul>
+  </div>
+  
+</header>
+<div class="toolbar" aria-label="Control sections"><button type="button" onclick="toggleAll(true)">Open the sections</button><button type="button" onclick="toggleAll(false)">Close sections</button></div>
+
+<div class="grid">
+<section class="card"><h2>Overview</h2>
+<table>
+  <thead><tr><th>Badge</th><th>Read here</th></tr></thead>
+  <tbody>
+    <tr><td><span class="badge">IU</span></td><td>what is visible on the page: route, form, message, status, screenshot, anchor</td></tr>
+    <tr><td><span class="badge">BORDER</span></td><td>new uncovered business: actor, intention, visible step, result</td></tr>
+    <tr><td><span class="badge">DELTA</span></td><td>true new business; it is judged before proof UI</td></tr>
+    <tr><td><span class="badge">HANDOFF</span></td><td>the subject taught to <code class="inline">execute-and-understand-run.html</code></td></tr>
+    <tr><td><span class="badge">WRAPPERS</span></td><td>UI specialization over canonical run execution</td></tr>
+  </tbody>
+</table>
+<div class="pillline">
+  <div class="pillrow"><span class="pilllabel">Owner:</span><span class="pill">the UI border of the slot</span><span class="pill">actor</span><span class="pill">COVER</span><span class="pill">visible evidence</span></div>
+  <div class="pillrow"><span class="pilllabel">Use:</span><span class="pill">runtime UI</span><span class="pill">seeds</span><span class="pill">audited pretraining</span></div>
+          <div class="pillrow"><span class="pilllabel">Delegate:</span><span class="pill">slot matter to execute-and-understand-run</span></div>
+          <div class="pillrow"><span class="pilllabel">Produce:</span><span class="pill">UI subject</span><span class="pill">claim local</span><span class="pill">anchor proof</span></div>
+          <div class="pillrow"><span class="pilllabel">Does not produce:</span><span class="pill">package legality</span><span class="pill">fresh ROOT_RUN</span><span class="pill">final report</span></div>
+</div>
+</section>
+<section class="card">
+<details>
+<summary><span class="summary-title">UI runtime reference <span class="badge">RUNTIME</span></span><span class="sumhint">UI bindings read live</span></summary>
+<table><thead><tr><th>Binding</th><th>Role</th><th>Anti-drift</th></tr></thead><tbody>
+<tr><td><code class="inline">SEED_RECORDING_CLASS</code></td><td>visible entrance</td><td>it does not become a suite design</td></tr>
+<tr><td><code class="inline">TARGET_TEST_PACKAGE</code></td><td>destination UI tests</td><td>do not spread cold without reason</td></tr>
+<tr><td><code class="inline">UI_TEST_ROOT</code></td><td>test class root</td><td>you don't go out of the declared area</td></tr>
+<tr><td><code class="inline">UI_SUPPORT_ROOTS</code></td><td>pages, services, validations, models and UI factories allowed for reusable support</td><td>do not hide business in helpers and do not modify <code class="inline">ui.core</code>/<code class="inline">ui.engine</code></td></tr>
+<tr><td><code class="inline">API_TEST_ROOT</code></td><td>the root of the API tests when the UI boundary has preconditions or API checks</td><td>don't mix the API tests in the UI package</td></tr>
+<tr><td><code class="inline">API_SUPPORT_ROOTS</code></td><td>client, service, steps, validation, model and factory for API support</td><td>do not modify <code class="inline">api.core</code> and do not put UI rules into API support</td></tr>
+<tr><td><code class="inline">ATF_CORE_ROOT</code> / <code class="inline">MCP_ROOT</code> / <code class="inline">ATLAS_ROOT</code></td><td>protected framework surfaces</td><td>any need for change is reported separately, it is not resolved in the UI run</td></tr>
+</tbody></table>
+<div class="mini">
+  <ul>
+    <li>The UI adapter reads the live runtime.</li>
+    <li>Active values ​​become the law of the current slot.</li>
+    <li>General run artifacts remain in <code class="inline">execute-and-understand-run.html</code>.</li>
+    <li>If the flow has API support, it is separated into the appropriate tests/API support and is explicitly handed over to the execution; the adapter remains the owner for the visible UI proof.</li>
+  </ul>
+</div>
+</details>
+</section>
+</div>
+<details><summary><span class="summary-title">1. The adapter boundary <span class="badge">WRAPPERS</span></span><span class="sumhint">a UI run, not the package</span></summary>
+<table>
+  <thead><tr><th>It holds here</th><th>Send it on</th><th>It doesn't belong here</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><ul><li>seed UI</li><li>visible border</li><li>delta test/support</li><li>proof of UI</li><li>local feedback</li></ul></td>
+      <td><ul><li>claim UI</li><li>visible anchors</li><li>blockers</li><li>local lessons</li><li>the meaning of UI evidence</li></ul></td>
+      <td><ul><li>the legality of the package</li><li>consumption of runs</li><li>final close-out</li><li>final page</li></ul></td>
+    </tr>
+  </tbody>
+</table>
+<div class="rule">
+  <ul>
+    <li>If you are talking about what is seen in the UI, you are in the adapter.</li>
+    <li>If you are talking about what is saved, counted or fixed, you are in <code class="inline">execute-and-understand-run.html</code>.</li>
+  </ul>
+</div>
+<details class="mini-note">
+  <summary>1.1 Minimum contract</summary>
+  <ul>
+    <li>The seed is the input, not the verdict.</li>
+    <li>The frontier is business-first: actor, intent, visible step, result.</li>
+    <li>The run produces auditable tests for the chosen anchor or teaches the severe blocker.</li>
+    <li>Without a visible business result and explainable UI proof, the flow remains an investigation.</li>
+    <li>Minimal teaching: claim UI, visible anchors, local result, blocker and lesson.</li>
+  </ul>
+</details>
+<div class="mini">
+  <ul>
+    <li>Strict document for visible UI border.</li>
+  </ul>
+</div>
+</details>
+<details open><summary><span class="summary-title">2. Flows and diagrams</span><span class="sumhint">single run lane UI</span></summary>
+<details class="subdetails">
+<summary><span class="summary-title">2.1 Quick reading map</span><span class="sumhint">short orientation</span></summary>
+<table>
+  <thead>
+    <tr>
+      <th>Reading</th>
+      <th>open</th>
+      <th>are</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>band</td><td><code class="inline">2.2</code></td><td>UI wrapper over the canonical run execution</td></tr>
+    <tr><td>classification</td><td><code class="inline">2.3</code></td><td>owned / partially / blocked</td></tr>
+    <tr><td>rendition</td><td><code class="inline">2.4</code></td><td>claim UI, anchors, local verdict, blocker, lesson</td></tr>
+  </tbody>
+</table>
+</details>
+<details class="subdetails" open><summary><span class="summary-title">2.2 UI strip over execute-and-understand-run <span class="badge">WRAPPERS</span></span><span class="sumhint">UI specialization, canonical fixation</span></summary>
+<div class="diag"><svg viewbox="0 0 1160 300" role="img" aria-label="Ribbon UI over execute-and-understand-run">
+<defs><marker id="ui" markerwidth="10" markerheight="10" refx="8" refy="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7aa2ff"></path></marker></defs>
+<rect x="30" y="110" width="150" height="72" rx="14" fill="#111826" stroke="#35507a"></rect><text x="105" y="138" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Seed</text><text x="105" y="160" text-anchor="middle" fill="#a8b3cf" font-size="11">the first visible clue</text>
+<rect x="230" y="110" width="165" height="72" rx="14" fill="#111826" stroke="#35507a"></rect><text x="312" y="138" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Discover UI</text><text x="312" y="160" text-anchor="middle" fill="#a8b3cf" font-size="11">routes / forms / links</text>
+<rect x="445" y="110" width="165" height="72" rx="14" fill="#111826" stroke="#35507a"></rect><text x="527" y="138" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Choose the border</text><text x="527" y="160" text-anchor="middle" fill="#a8b3cf" font-size="11">new business</text>
+<rect x="660" y="110" width="165" height="72" rx="14" fill="#111826" stroke="#35507a"></rect><text x="742" y="138" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Implement the slice</text><text x="742" y="160" text-anchor="middle" fill="#a8b3cf" font-size="11">small but relevant delta</text>
+<rect x="875" y="110" width="220" height="72" rx="14" fill="#111826" stroke="#35507a"></rect><text x="985" y="138" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Handoff to execute</text><text x="985" y="160" text-anchor="middle" fill="#a8b3cf" font-size="11">anchors + lessons</text>
+<path d="M180 146 H230" stroke="#7aa2ff" stroke-width="2" marker-end="url(#ui)"></path><path d="M395 146 H445" stroke="#7aa2ff" stroke-width="2" marker-end="url(#ui)"></path><path d="M610 146 H660" stroke="#7aa2ff" stroke-width="2" marker-end="url(#ui)"></path><path d="M825 146 H875" stroke="#7aa2ff" stroke-width="2" marker-end="url(#ui)"></path>
+</svg></div>
+<details class="mini-note">
+<summary>What the UI adapter adds vs. what it manages executes</summary>
+<table>
+  <thead>
+    <tr>
+      <th>UI adapter adds</th>
+      <th><code class="inline">execute-and-understand-run.html</code> gestioneaza</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>actor, intent, visible step, UI state</td><td>the canonical fixation of the run</td></tr>
+    <tr><td>the meaning of screenshots and visible anchors</td><td>re-openable evidence</td></tr>
+    <tr><td>owned / partially / blocked locally</td><td>cold verdict and package memory</td></tr>
+  </tbody>
+</table>
+</details>
+<details class="mini-note">
+  <summary>How do you read the tape?</summary>
+  <ul>
+    <li><code class="inline">Seed</code> is only the entry point, not the verdict.</li>
+    <li><code class="inline">Discover UI</code> means visible routes, states, and intents, not recorder replay.</li>
+    <li><code class="inline">Alege frontiera</code> inseamna cea mai valoroasa mutatie business vizibila local.</li>
+    <li><code class="inline">Implement the slice</code> must leave a small but countable delta.</li>
+<li><code class="inline">Handoff to execute</code> leaves the UI material for canonical fixation.</li>
+  </ul>
+</details>
+</details>
+<details class="subdetails">
+<summary><span class="summary-title">2.2.1 Minimum state machine of the UI adapter</span><span class="sumhint">seed -&gt; proof -&gt; execute handoff</span></summary>
+<pre><code>read_seed
+-&gt; discover_business_object
+-&gt; choose_visible_frontier
+-&gt; implement_slice
+-&gt; execute_and_capture
+-&gt; handoff_to_execute_and_understand_run
+</code></pre>
+<table>
+  <thead>
+    <tr>
+      <th>Step</th>
+      <th>Minimum output</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><code class="inline">discover_business_object</code></td><td>actor, intent and business object, not just the page</td></tr>
+    <tr><td><code class="inline">choose_visible_frontier</code></td><td>local claim with possible visible result</td></tr>
+    <tr><td><code class="inline">execute_and_capture</code></td><td>visible anchors and the meaning of the UI proof</td></tr>
+<tr><td><code class="inline">handoff_to_execute_and_understand_run</code></td><td>UI matter for canonical fixation</td></tr>
+  </tbody>
+</table>
+<div class="note">
+  <ul>
+<li>The UI adapter does not fix the package by itself.</li>
+    <li>Surrender the cool matter of a single slot.</li>
+    <li><code class="inline">execute-and-understand-run.html</code> closes the verifiable run.</li>
+  </ul>
+</div>
+</details>
+<details class="subdetails" id="ui-owned-partial-blocked">
+<summary><span class="summary-title">2.3 Frontier UI: owned / partial / blocked</span><span class="sumhint">UI adapter specific reading</span></summary>
+<div class="diag"><svg viewbox="0 0 1160 220" role="img" aria-label="Owned partially blocked UI">
+<defs><marker id="upb" markerwidth="10" markerheight="10" refx="8" refy="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7aa2ff"></path></marker></defs>
+<rect x="35" y="78" width="240" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+<text x="155" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">visible flow</text>
+<text x="155" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">route / form / state</text>
+<rect x="345" y="30" width="230" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+<text x="460" y="56" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">owned</text>
+<text x="460" y="78" text-anchor="middle" fill="#a8b3cf" font-size="11">stable, visible result</text>
+<rect x="345" y="94" width="230" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+<text x="460" y="120" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">partial</text>
+<text x="460" y="142" text-anchor="middle" fill="#a8b3cf" font-size="11">useful support, not new business</text>
+<rect x="345" y="158" width="230" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+<text x="460" y="184" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">blocked</text>
+<text x="460" y="206" text-anchor="middle" fill="#a8b3cf" font-size="11">unstable or insufficient evidence</text>
+<path d="M275 112 H345" stroke="#7aa2ff" stroke-width="2" marker-end="url(#upb)"></path>
+</svg></div>
+<details class="mini-note">
+  <summary>Legend</summary>
+  <ul>
+    <li><code class="inline">owned</code> requires a stable visible result and explainable UI.</li>
+    <li><code class="inline">partial</code> can repair support without gaining a new business identity.</li>
+    <li><code class="inline">blocked</code> means the UI does not cold-close the frontier, not just that the test was inconvenient.</li>
+  </ul>
+</details>
+<table>
+  <thead><tr><th>Frontier quality</th><th>He must answer</th><th>If the answer is weak</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>expected business delta</td>
+      <td>what new truth about the application changes the business map, not just the visible proof?</td>
+      <td><ul><li>reject helper-only</li><li>reject selector-only</li><li>reject shell reachability without new business object</li></ul></td>
+    </tr>
+    <tr>
+      <td>materialized object / blocker</td>
+      <td>what object, property, history, ownership or severe blocker becomes verifiable?</td>
+      <td>reject the winner if only the visible page remains or a successful click</td>
+    </tr>
+    <tr><td>expected UI proof</td><td>what visible anchors and what screenshots can support the claim?</td><td>reject the winner if the meaning of the UI proof cannot be explained</td></tr>
+    <tr><td>helper / risk locator</td><td>does the business change or only the technical support?</td><td>marks <code class="inline">blocked if only locator-helper work</code></td></tr>
+</tbody>
+</table>
+<div class="rule">
+  <ul>
+    <li>Business delta is judged before proof UI.</li>
+    <li>The weak border stops here.</li>
+    <li>Without a tangible business object: it is not a winner.</li>
+    <li>Without explainable UI proof: it's not a winner.</li>
+  </ul>
+</div>
+</details>
+<details class="subdetails" id="ui-handoff">
+<summary><span class="summary-title">2.4 What the UI adapter teaches <span class="badge">HANDOFF</span></span><span class="sumhint">teach to execute-and-understand-run</span></summary>
+<div class="diag"><svg viewbox="0 0 1160 220" role="img" aria-label="UI handoff">
+<defs><marker id="uho" markerwidth="10" markerheight="10" refx="8" refy="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7aa2ff"></path></marker></defs>
+<rect x="35" y="78" width="180" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+<text x="125" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">business claim</text>
+<text x="125" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">what did he try</text>
+<rect x="255" y="78" width="170" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+<text x="340" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">UI anchors</text>
+<text x="340" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">what is seen</text>
+<rect x="465" y="78" width="160" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+<text x="545" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">local verdict</text>
+<text x="545" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">owned / partially / blocked</text>
+<rect x="665" y="78" width="170" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+<text x="750" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">blocker / lesson</text>
+<text x="750" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">what the run teaches</text>
+<rect x="875" y="78" width="230" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+<text x="990" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">feedback MD -&gt; execute</text>
+<text x="990" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">fixing material</text>
+<path d="M215 112 H255" stroke="#7aa2ff" stroke-width="2" marker-end="url(#uho)"></path>
+<path d="M425 112 H465" stroke="#7aa2ff" stroke-width="2" marker-end="url(#uho)"></path>
+<path d="M625 112 H665" stroke="#7aa2ff" stroke-width="2" marker-end="url(#uho)"></path>
+<path d="M835 112 H875" stroke="#7aa2ff" stroke-width="2" marker-end="url(#uho)"></path>
+</svg></div>
+<details class="mini-note">
+  <summary>Legend</summary>
+  <ul>
+    <li><code class="inline">3.4</code> spune ce iese din run.</li>
+    <li><code class="inline">5</code> states how output evidence is validated.</li>
+    <li>The UI adapter teaches the cool stuff: claim, anchors, local verdict, blocker and lesson.</li>
+<li><code class="inline">execute-and-understand-run.html</code> decide fixarea canonica.</li>
+    <li><code class="inline">orchestrate-iterative-runs.html</code> decides legality.</li>
+    <li><code class="inline">reporting.html</code> publishes the final page.</li>
+  </ul>
+</details>
+</details>
+</details>
+<details><summary><span class="summary-title">3. The freedom model</span><span class="sumhint">heuristics, not corsets</span></summary>
+<table>
+  <thead><tr><th>Release the agent on</th><th>Keep strictly on</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><ul><li>UI scan order</li><li>lessor strategy</li><li>auxiliary notes</li><li>local repair</li><li>branch tried first</li></ul></td>
+      <td><ul><li>new business</li><li>visible anchors</li><li>local verdict</li><li>owner boundary</li><li>meaning of UI proof</li></ul></td>
+    </tr>
+  </tbody>
+</table>
+<div class="rule">We do not impose rigid micro-steps. But tactical freedom does not reduce the target, proof or owner boundary.</div>
+</details>
+<details><summary><span class="summary-title">4. Fast reject gate <span class="badge">BORDER</span></span><span class="sumhint">stops the procedure before the winner</span></summary>
+<table>
+  <thead>
+    <tr>
+      <th>Reject cold if</th>
+      <th>Why</th>
+      <th>What do you ask for in return?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>helper-only</td>
+      <td>support increases, not business understanding</td>
+      <td>actor + intention + visible result</td>
+    </tr>
+    <tr>
+      <td>shell-only</td>
+      <td>the page exists, but the business object is missing</td>
+      <td>row, id, status, receipt, message or other verifiable entity</td>
+    </tr>
+    <tr>
+      <td>same absence replay</td>
+      <td>reconfirm the same lack without the new delta</td>
+      <td>a new angle: actor, state, persistence, recovery or downstream effect</td>
+    </tr>
+    <tr>
+      <td>no countable business delta</td>
+      <td>does not change the verdict of the package</td>
+      <td>countable claim with business object or severely documented blocker</td>
+    </tr>
+  </tbody>
+</table>
+<div class="mini">
+  <ul>
+    <li>This gate applies after freedom of exploration and before implementation.</li>
+    <li>If he falls here, he does not save the run as a frontier winner.</li>
+  </ul>
+</div>
+</details>
+<details><summary><span class="summary-title">5. Choosing the business UI border</span><span class="sumhint">the seed is not the business model</span></summary>
+<div class="note">
+  <ul>
+    <li>Generic map: <code class="inline">baseline -&gt; frontier -&gt; owned / partial / blocked / fresh-round-only</code>.</li>
+    <li>Owner: <code class="inline">orchestrate-iterative-runs.html</code>.</li>
+    <li>Here only the specific reading of the UI adapter remains.</li>
+  </ul>
+</div>
+
+<table><thead><tr><th>UI question</th><th>Desired answer</th><th>Teaching UI</th></tr></thead><tbody>
+<tr><td>What real flow does the seed expose?</td><td>a business flow, not a recorder replay</td><td>why the seed helps or misleads</td></tr>
+<tr><td>Which actor and UI intent deserves to be attacked?</td><td>a visible journey, not just a component or a locator</td><td>the reason why the frontier beats local</td></tr>
+<tr><td>What visible step changes the business truth?</td><td>route, form submission, toggle, compare tray, protected status or other visible change</td><td>visible anchors and their business meaning</td></tr>
+<tr><td>What can become owned / countable?</td><td>only the branch with a visibly stable result and explainable UI proof</td><td>local verdict: owned / partial / blocked</td></tr>
+<tr>
+  <td>What remains blocked or fresh-round-only?</td>
+  <td>published cold, without inventing closure</td>
+  <td><code class="inline">ui-blocker-note.md</code> or next-run truth from the owner documents</td>
+</tr>
+</tbody></table>
+
+<div class="rule">Business object first, selector second. It teaches actor, intention, visible step, result and decisive local lesson.</div>
+<div class="note">
+  <ul>
+    <li>The shape of the final graph belongs to the report.</li>
+    <li>The rubric is <code class="inline">business-flow-graph-rubric.html</code>.</li>
+    <li>Only the cool stuff of the UI run is taught here.</li>
+  </ul>
+</div>
+</details>
+<details><summary><span class="summary-title">6. The significance of the UI proof <span class="badge">PROOF</span></span><span class="sumhint">what the adapter explains, not what it fixes</span></summary>
+<div class="rule">
+  <ul>
+    <li><code class="inline">3.4</code> preda sensul UI al dovezii.</li>
+<li><code class="inline">execute-and-understand-run.html</code> gestioneaza fixarea canonica.</li>
+  </ul>
+</div>
+<table>
+  <thead><tr><th>UI question</th><th>Mandatory answer</th></tr></thead>
+  <tbody>
+    <tr><td>What is seen?</td><td>visible step, status, message, row, card, form or local result</td></tr>
+    <tr><td>Why does it matter?</td><td>what business truth does it change or block</td></tr>
+    <tr><td>Who is the target?</td><td>actor and UI object exactly, without ambiguity</td></tr>
+    <tr><td>What remains partial?</td><td>the visible limit, the blocker or the missing object</td></tr>
+  </tbody>
+</table>
+<div class="warn">For UI, the proof without the visible anchors explanation remains incomplete.</div>
+</details>
+<details><summary><span class="summary-title">7. UI feedback for the next agent <span class="badge">HANDOFF</span></span><span class="sumhint">lessons, not file inventory</span></summary>
+<table><thead><tr><th>Category</th><th>When it appears</th><th>What the next agent needs to learn</th></tr></thead><tbody>
+<tr><td>border map</td><td>when there are several routes/links/branches</td><td>covered / blocked / duplicate / deferred / still-open</td></tr>
+<tr><td>proof meaning</td><td>for a proof-bearing UI run</td><td>anchors, forms, overlays and visible states</td></tr>
+<tr><td>target identity</td><td>when there are repeated lists/cards/rows</td><td>how to distinguish the exact target</td></tr>
+<tr><td>blocker</td><td>when the proof cannot be closed</td><td>missing input, popup, auth, seeded data or external border</td></tr>
+<tr><td>mechanism learning</td><td>when a reusable interaction was discovered</td><td>locator/wait/interaction pattern, without selling this as a new business</td></tr>
+</tbody></table>
+</details>
+<details><summary><span class="summary-title">8. Handoff to execute-and-understand-run <span class="badge">HANDOFF</span></span><span class="sumhint">what the UI wrapper returns</span></summary>
+<pre><code>adaptorul UI intoarce
+  business claim
+  actor + intentie + pas vizibil + rezultat local
+  frontier quality: expected business delta / UI proof meaning / helper risk
+  clasificarea owned / partial / blocked
+  visible anchors and screenshot meaning
+  blocker or UI limit, if present
+  lectiile UI decisive
+  kept/countable recommendation for execute-and-understand-run
+</code></pre>
+<div class="note">
+  <ul>
+<li><code class="inline">execute-and-understand-run.html</code> fixeaza memoria the packageui.</li>
+    <li><code class="inline">orchestrate-iterative-runs.html</code> decides the legality of the next run.</li>
+    <li>Public reporting of the final map.</li>
+  </ul>
+</div>
+</details>
+<details><summary><span class="summary-title">9. Common supporting references <span class="badge">RUNTIME</span></span><span class="sumhint">runtime, architecture, benchmarks</span></summary>
+<table><thead><tr><th>Source</th><th>Cold role</th><th>What not to do</th></tr></thead><tbody>
+<tr><td><code class="inline">agent-runtime.properties</code></td><td>common thresholds, paths and bindings</td><td>do not ad hoc redefine values ​​or roots in run</td></tr>
+<tr><td><code class="inline">Living_Architecture_UI_API_doc_v1_0.html</code></td><td>framework reference for UI, configured targets, layers and technical rules of execution</td><td>do not transform the API part into the object of this document and do not use it as an owner of iterative legality</td></tr>
+    <tr><td>the benchmarks selected in pretraining</td><td>style, graph, history and audit benchmarks already chosen in the audited intake</td><td>you don't inherit their scores, standing or business</td></tr>
+</tbody></table>
+<div class="note">
+  <ul>
+    <li>The sources are reopened for calibration and severity.</li>
+    <li>The UI adapter uses their context.</li>
+    <li>Further it teaches only the cold matter of the current run.</li>
+  </ul>
+</div>
+</details>
+</div>
+
+<script>function toggleAll(openState){document.querySelectorAll('details').forEach(function(el){el.open=openState;});}</script>
+</body>
+</html>

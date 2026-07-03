@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="ATF Extent Failure Fixture Visual Sweep" verbose="1">
+    <test name="extent-failure-fixture-visual-contract">
+        <parameter name="atf.failure.fixtures.enabled" value="true"/>
+        <classes>
+            <class name="com.endava.ai.atf.core.reporting.failurefixtures.BeforeMethodFailureFixture"/>
+            <class name="com.endava.ai.atf.core.reporting.failurefixtures.TestBodyFailureFixture"/>
+            <class name="com.endava.ai.atf.core.reporting.failurefixtures.AfterMethodFailureFixture"/>
+        </classes>
+    </test>
+</suite>

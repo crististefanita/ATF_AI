@@ -1,0 +1,42 @@
+schemaVersion: 1
+contracts:
+  - id: mcp.score-truth.package-state-final-score
+    profile: package-closeout
+    severity: BLOCKER
+    truthSource: review/package-state.json
+    synchronizedArtifacts: README.md,analysis/langgraph-business-understanding.html,validation/mcp/mcp-gate-result.md,validation/mcp/mcp-score-cap-rationale.md
+    requiredEvidence: finalScore,scoreCap,capReason,latestRunTimestamp,closeoutProfile
+    validator: com.endava.ai.skills.mcp.rules.packageaudit.closeout.FullMcpGateRule
+    repairTarget: review/package-state.json
+    capImpact: score mismatch between package-state and final report blocks 95+
+    publishabilityImpact: final score must be computed from frozen package evidence, not rewritten in prose
+  - id: mcp.score-truth.latest-mcp-links
+    profile: package-closeout
+    severity: BLOCKER
+    truthSource: validation/mcp/extent-origin.json
+    synchronizedArtifacts: README.md,analysis/langgraph-business-understanding.html,validation/mcp/mcp-gate-result.md
+    requiredEvidence: command,timestamp,sha256,artifactPath
+    validator: com.endava.ai.skills.mcp.rules.report.ProofMappingReportRule
+    repairTarget: analysis/langgraph-business-understanding.html
+    capImpact: stale or non-latest MCP links cap below publishable candidate
+    publishabilityImpact: reviewer must reopen exactly the Extent/XML/ledger used for final close-out
+  - id: mcp.score-truth.kpi-matrix-cap-rationale
+    profile: package-closeout
+    severity: MAJOR
+    truthSource: validation/mcp/mcp-kpi-matrix.md
+    synchronizedArtifacts: validation/mcp/mcp-kpi-repair-board.md,validation/mcp/mcp-score-cap-rationale.md,analysis/langgraph-business-understanding.html
+    requiredEvidence: kpiId,status,severity,capImpact,agentAction
+    validator: com.endava.ai.skills.mcp.rules.source.kpi.SourceEvolutionKpiConsistencyRule
+    repairTarget: validation/mcp/mcp-score-cap-rationale.md
+    capImpact: KPI blocker/major rows must be reflected in score cap rationale
+    publishabilityImpact: package score must explain source-evolution quality, not only final test pass/fail
+  - id: mcp.score-truth.closeout-profile-command
+    profile: package-closeout
+    severity: BLOCKER
+    truthSource: validation/mcp/extent-origin.json
+    synchronizedArtifacts: validation/mcp/mcp-gate-result.md,validation/mcp/full-mcp-method-ledger.md,README.md
+    requiredEvidence: testng-mcp-package-closeout.xml,exitCode,passed,failed,skipped
+    validator: com.endava.ai.skills.mcp.rules.packageaudit.closeout.freshness.McpGateEvidenceFreshnessRule
+    repairTarget: validation/mcp/extent-origin.json
+    capImpact: full sweep or ad-hoc command cannot be presented as final package close-out
+    publishabilityImpact: final agentic AI close-out must name the exact official MCP profile

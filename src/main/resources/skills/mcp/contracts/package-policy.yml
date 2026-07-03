@@ -1,0 +1,102 @@
+schemaVersion: 1
+contracts:
+  - id: package-policy.runtime-key.expected-delta-quality
+    kind: runtime-required-key
+    token: RUN_EXPECTED_DELTA_QUALITY
+    message: agent-runtime.properties must publish the expected delta quality score/cap.
+  - id: package-policy.runtime-key.round-target-test-count
+    kind: runtime-required-key
+    token: ROUND_TARGET_TEST_COUNT
+    message: agent-runtime.properties must publish the round target test count.
+  - id: package-policy.runtime-key.meta-iteration-count
+    kind: runtime-required-key
+    token: META_ITERATION_COUNT
+    message: agent-runtime.properties must publish the meta iteration count.
+  - id: package-policy.runtime-decimal.expected-delta-quality
+    kind: runtime-decimal-key
+    token: RUN_EXPECTED_DELTA_QUALITY
+    message: RUN_EXPECTED_DELTA_QUALITY must be numeric.
+  - id: package-policy.framework-audit.screenshots-enabled
+    kind: framework-audit-key
+    token: ui.screenshots.enabled
+    message: framework.properties snapshot must preserve the screenshot enabled flag.
+  - id: package-policy.framework-audit.failure-only
+    kind: framework-audit-key
+    token: ui.screenshots.on.failure.only
+    message: framework.properties snapshot must preserve the failure-only screenshot flag.
+  - id: package-policy.framework-audit.final-state
+    kind: framework-audit-key
+    token: ui.screenshots.capture.final.state
+    message: framework.properties snapshot must preserve final-state screenshot policy.
+  - id: package-policy.framework-audit.reporting-engine
+    kind: framework-audit-key
+    token: reporting.engine
+    message: framework.properties snapshot must preserve reporting engine.
+  - id: package-policy.framework-audit.reports-dir
+    kind: framework-audit-key
+    token: reports.dir
+    message: framework.properties snapshot must preserve reports directory.
+  - id: package-policy.template-noise.system-collections
+    kind: published-noise-token
+    token: System.Collections
+    message: Published artifacts must not contain PowerShell object noise.
+  - id: package-policy.template-noise.subexpression
+    kind: published-noise-token
+    token: '$('
+    message: Published artifacts must not contain unresolved PowerShell subexpressions.
+  - id: package-policy.template-noise.braced-variable
+    kind: published-noise-token
+    token: '${'
+    message: Published artifacts must not contain unresolved braced variables.
+  - id: package-policy.template-noise.double-open
+    kind: published-noise-token
+    token: '{{'
+    message: Published artifacts must not contain unresolved template braces.
+  - id: package-policy.template-noise.double-close
+    kind: published-noise-token
+    token: '}}'
+    message: Published artifacts must not contain unresolved template braces.
+  - id: package-policy.template-noise.backtick-n
+    kind: published-noise-token
+    token: '`n'
+    message: Published artifacts must not contain escaped PowerShell newline noise.
+  - id: package-policy.template-noise.todo
+    kind: published-noise-token
+    token: TODO
+    message: Published artifacts must not contain TODO placeholders.
+  - id: package-policy.template-noise.fixme
+    kind: published-noise-token
+    token: FIXME
+    message: Published artifacts must not contain FIXME placeholders.
+  - id: package-policy.template-noise.lorem
+    kind: published-noise-token
+    token: lorem ipsum
+    message: Published artifacts must not contain lorem ipsum filler.
+  - id: package-policy.template-noise.undefined
+    kind: published-noise-token
+    token: undefined
+    message: Published artifacts must not contain undefined placeholder values.
+  - id: package-policy.kpi-artifact.matrix-md
+    kind: kpi-closeout-artifact
+    token: validation/mcp/mcp-kpi-matrix.md
+    message: MCP close-out must publish the KPI matrix Markdown artifact.
+  - id: package-policy.kpi-artifact.matrix-html
+    kind: kpi-closeout-artifact
+    token: validation/mcp/mcp-kpi-matrix.html
+    message: MCP close-out must publish the KPI matrix HTML artifact.
+  - id: package-policy.kpi-artifact.formula-trace
+    kind: kpi-closeout-artifact
+    token: validation/mcp/mcp-kpi-formula-trace.md
+    message: MCP close-out must publish the KPI formula trace.
+  - id: package-policy.kpi-artifact.repair-board-md
+    kind: kpi-closeout-artifact
+    token: validation/mcp/mcp-kpi-repair-board.md
+    message: MCP close-out must publish the KPI repair board Markdown artifact.
+  - id: package-policy.kpi-artifact.repair-board-html
+    kind: kpi-closeout-artifact
+    token: validation/mcp/mcp-kpi-repair-board.html
+    message: MCP close-out must publish the KPI repair board HTML artifact.
+  - id: package-policy.kpi-artifact.score-cap-rationale
+    kind: kpi-closeout-artifact
+    token: validation/mcp/mcp-score-cap-rationale.md
+    message: MCP close-out must publish score cap rationale.

@@ -1,0 +1,11 @@
+﻿{
+    "command":  "mvn -q \"-Dtest=com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentAuditTrailTest\" \"-DforkCount=0\" \"-Dreports.dir=C:\\work\\ex\\java\\demo\\atf3\\test-framework\\docs\\out\\2026-07-02_22.10.19\\runs\\run_02\\validation\\reports\" \"-Dreports.file.name=ExtentReport.html\" \"-Dreports.timestamp.enabled=false\" test",
+    "exit_code":  0,
+    "started_at":  "2026-07-02T22:42:58.6865681+03:00",
+    "finished_at":  "2026-07-02T22:46:00.1308132+03:00",
+    "size":  681638,
+    "sha256":  "fe9692c613fb425dd5a58de25d90b4b8d2a7934fd594f298a3f126b51ee245ae",
+    "generated_by":  "maven-surefire-test-run",
+    "report":  "ExtentReport.html",
+    "timestamp":  "2026-07-02T22:42:58.6865681+03:00"
+}

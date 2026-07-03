@@ -1,0 +1,113 @@
+schemaVersion: 1
+contracts:
+  - id: mcp-sanity
+    suiteXml: src/test/resources/skills/mcp/testng-mcp-sanity.xml
+    role: isolated MCP validator sanity for profile, YAML, routing, package-shape and reusable html-ex reference health contracts
+    finalArtifact: false
+    allowedSkipped: 0
+    expectedClasses: com.endava.ai.skills.mcp.tests.core.profiles.McpTestNgProfileContractTest,com.endava.ai.skills.mcp.tests.core.shape.McpPackageShapeContractTest,com.endava.ai.skills.mcp.tests.core.McpProjectLocatorContractTest,com.endava.ai.skills.mcp.tests.core.McpHtmlExReferenceHealthContractTest,com.endava.ai.skills.mcp.tests.contracts.McpBusinessUnderstandingConsumerContractTest,com.endava.ai.skills.mcp.tests.contracts.McpRuleRoutingCatalogContractTest,com.endava.ai.skills.mcp.tests.contracts.McpYamlContractSchemaTest,com.endava.ai.skills.mcp.tests.contracts.prompt.McpPromptContractOwnershipTest,com.endava.ai.skills.mcp.tests.contracts.McpYamlContractSyncTest
+    forbiddenClassFragments: com.endava.ai.atf.,com.endava.ai.skills.atlas.,.tests.latest.,.tests.negative.
+    resourcesOnly: true
+  - id: mcp-run
+    suiteXml: src/test/resources/skills/mcp/testng-mcp-run.xml
+    role: run evidence and Extent evidence only
+    finalArtifact: false
+    allowedSkipped: 0
+    expectedClasses: com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest,com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest
+    resourcesOnly: true
+  - id: mcp-run-preflight
+    suiteXml: src/test/resources/skills/mcp/testng-mcp-run-preflight.xml
+    role: run evidence plus runtime/package accounting
+    finalArtifact: false
+    allowedSkipped: 0
+    expectedClasses: com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest,com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest,com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest
+    resourcesOnly: true
+  - id: mcp-candidate
+    suiteXml: src/test/resources/skills/mcp/testng-mcp-candidate.xml
+    role: isolated html-ex promotion score gate after package close-out and final report close-out already passed
+    finalArtifact: false
+    allowedSkipped: 0
+    expectedClasses: com.endava.ai.skills.mcp.tests.candidate.McpCandidateContractTest
+    expectedMethods: latestPackageIsTeacherGradeHtmlExampleCandidate
+    requiredClasses: com.endava.ai.skills.mcp.tests.candidate.McpCandidateContractTest
+    forbiddenClasses: com.endava.ai.skills.mcp.tests.core.McpConfiguredPackageAuditTest,com.endava.ai.skills.mcp.tests.smoke.McpPostSyncSmokeContractTest,com.endava.ai.skills.mcp.tests.core.McpExtentScreenshotBrowserVisibilityContractTest
+    forbiddenClassFragments: .tests.negative.,.tests.latest.
+    resourcesOnly: true
+  - id: mcp-html-ex-corpus
+    suiteXml: src/test/resources/skills/mcp/testng-mcp-html-ex-corpus.xml
+    role: historical html-ex corpus classifier
+    finalArtifact: false
+    allowedSkipped: 0
+    expectedClasses: com.endava.ai.skills.mcp.tests.candidate.McpHtmlExampleCorpusContractTest
+    resourcesOnly: true
+  - id: mcp-self
+    suiteXml: src/test/resources/skills/mcp/testng-mcp-self.xml
+    role: validator self health, not latest package audit or browser-render final report close-out
+    finalArtifact: false
+    allowedSkipped: 0
+    requiredClasses: com.endava.ai.skills.mcp.tests.core.McpReportProfileClassloadingContractTest,com.endava.ai.skills.mcp.tests.contracts.McpRuleRoutingCatalogContractTest,com.endava.ai.skills.mcp.tests.contracts.McpYamlCheckRefContractTest
+    forbiddenClasses: com.endava.ai.skills.mcp.tests.core.McpConfiguredPackageAuditTest,com.endava.ai.skills.mcp.tests.candidate.McpCandidateContractTest,com.endava.ai.skills.mcp.tests.core.McpExtentScreenshotBrowserVisibilityContractTest
+    forbiddenClassFragments: .tests.latest.
+    resourcesOnly: true
+  - id: mcp-package-audit
+    suiteXml: src/test/resources/skills/mcp/testng-mcp-package-audit.xml
+    role: pre-closeout publishability package audit
+    finalArtifact: false
+    allowedSkipped: 0
+    requiredClasses: com.endava.ai.skills.mcp.tests.core.McpPackageAuditPreflightTest,com.endava.ai.skills.mcp.tests.core.McpConfiguredPackageAuditTest
+    requiredClassFragments: .tests.latest.
+    forbiddenClasses: com.endava.ai.skills.mcp.tests.candidate.McpCandidateContractTest,com.endava.ai.skills.mcp.tests.core.McpExtentScreenshotBrowserVisibilityContractTest
+    forbiddenClassFragments: .tests.negative.
+    resourcesOnly: true
+  - id: mcp-post-sync-smoke
+    suiteXml: src/test/resources/skills/mcp/testng-mcp-post-sync-smoke.xml
+    role: fast file-level verification after validation/mcp Extent/XML/gate/origin artifacts are synchronized
+    finalArtifact: false
+    allowedSkipped: 0
+    expectedClasses: com.endava.ai.skills.mcp.tests.smoke.McpPostSyncSmokeContractTest
+    expectedMethods: requiredFrozenMcpArtifactsArePresent,finalReportLinksFrozenMcpAndKpiEvidence,finalReportShowsSanitizedMavenCloseoutCommandAndOriginLink,extentOriginMatchesFrozenExtentReportHashSizeAndExit,frozenTestNgXmlIsGreenAndCounted,gateResultAndFinalReportAgreeWithGreenCloseoutCounts
+    forbiddenClasses: com.endava.ai.skills.mcp.tests.core.McpConfiguredPackageAuditTest,com.endava.ai.skills.mcp.tests.candidate.McpCandidateContractTest
+    forbiddenClassFragments: .tests.negative.
+    resourcesOnly: true
+  - id: mcp-final-report-closeout
+    suiteXml: src/test/resources/skills/mcp/testng-mcp-final-report-closeout.xml
+    role: final report surface, links, count sync and browser-render evidence after package close-out artifacts are frozen; semantic LangGraph report validation follows in mcp-langgraph-final-report
+    finalArtifact: false
+    allowedSkipped: 0
+    expectedClasses: com.endava.ai.skills.mcp.tests.smoke.McpPostSyncSmokeContractTest,com.endava.ai.skills.mcp.tests.latest.McpLatestPackageLinkContractTest,com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest,com.endava.ai.skills.mcp.tests.core.McpExtentScreenshotBrowserVisibilityContractTest
+    expectedMethods: requiredFrozenMcpArtifactsArePresent,finalReportLinksFrozenMcpAndKpiEvidence,finalReportShowsSanitizedMavenCloseoutCommandAndOriginLink,extentOriginMatchesFrozenExtentReportHashSizeAndExit,frozenTestNgXmlIsGreenAndCounted,gateResultAndFinalReportAgreeWithGreenCloseoutCounts,everyLocalHrefInFinalReportResolves,savedLinkAuditReportsNoMissingLinks,finalReportUsesSharedCssAndDocumentChrome,finalReportUsesHtmlExampleVisualShell,finalReportMainSectionsAreCollapsibleWithOnlyGraphOpen
+    requiredClasses: com.endava.ai.skills.mcp.tests.smoke.McpPostSyncSmokeContractTest,com.endava.ai.skills.mcp.tests.core.McpExtentScreenshotBrowserVisibilityContractTest
+    requiredClassFragments: .tests.latest.
+    forbiddenClasses: com.endava.ai.skills.mcp.tests.core.McpConfiguredPackageAuditTest,com.endava.ai.skills.mcp.tests.candidate.McpCandidateContractTest
+    forbiddenClassFragments: .tests.negative.
+    resourcesOnly: true
+  - id: mcp-langgraph-final-report
+    suiteXml: src/test/resources/skills/mcp/testng-mcp-langgraph-final-report.xml
+    role: dedicated final validation collection for analysis/langgraph-business-understanding.html business structure, graph, score, links and artifact proof after final-report close-out
+    finalArtifact: false
+    allowedSkipped: 0
+    expectedClasses: com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest,com.endava.ai.skills.mcp.tests.latest.McpLatestPackageLinkContractTest,com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest,com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest,com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest
+    expectedMethods: finalReportHasRequiredBusinessStructure,finalReportContainsCanonicalBusinessSections,finalReportLinksPackageGovernanceArtifacts,finalReportPublishesAiTaskAdvisorSection,finalReportDoesNotLeakExternalCalibrationSources,everyLocalHrefInFinalReportResolves,savedLinkAuditReportsNoMissingLinks,finalReportUsesSharedCssAndDocumentChrome,finalReportUsesHtmlExampleVisualShell,finalReportFollowsPrimaryHtmlExampleTemplateProfile,finalReportMainSectionsAreCollapsibleWithOnlyGraphOpen,finalReportDoesNotExposeRunSliceIndexBeforeExecutiveContext,finalReportProofMappingLinksAllMandatoryArtifactFamilies,finalReportProofMappingUsesBalancedTableColumns,finalReportRunAuditUsesStructuredEvidenceRows,finalReportArtifactIndexUsesGroupedEvidenceFamilies,finalReportArtifactIndexSeparatesDecisiveIndexFromPerRunAuditDump,finalReportArtifactIndexUsesComparableTableStructure,finalReportLinksFrozenMcpContractEvidence,finalReportScoreOverviewUsesCanonicalBusinessAxes,finalReportScoreNarrativeDoesNotGradeRuntimeAccountingAsBusinessDepth,finalReportOpeningScoreCardsUseReadableStructure,finalReportOpeningScoreWallHasNoLooseScoreElements,finalReportScoreCardsFollowPrimaryHtmlExampleReferenceOrder,overallTruthIsSynchronizedAcrossCanonicalArtifacts,scoreCapIsConsistentWithWeakestAxis,publishedOverallDoesNotExceedPackageStateCap,runtimeCountersAreNotDisplayedBetweenScoreCardsAndExecutiveContext,openingDoesNotExposeVerdictOrRuntimeBeforeScoreCards,executiveContextCarriesVerdictAndRuntimeAsCollapsedSubsections,executiveContextIsCollapsedByDefault,finalReportOpeningMatchesCanonicalHtmlExampleShape,businessFlowGraphIsRenderedAsDiagram,businessFlowGraphUsesBalancedCanvasDensity,businessFlowGraphUsesVisibleOwnedAndFrontierSemantics,businessFlowGraphUsesCalmNodeTypography,businessFlowGraphLegendIsCollapsible,businessFlowGraphDoesNotRenderInlineSvgLegendBand,businessFlowGraphLegendContentIsRelevant,businessFlowGraphLegendNamesEvidencePlacementAndRelationshipMeaning,businessFlowGraphUsesHtmlExampleScaleForMultiNodeApplicationMap,businessFlowGraphEdgesDoNotCrossNodeText,businessFlowGraphLabelsAreCenteredInsideNodes,businessFlowGraphStylesVisibleSvgShapes,businessFlowGraphUsesDeclaredEdgeVariants,businessFlowGraphUsesFrontierEdgeCue,businessFlowGraphDoesNotExposeRunIdsAsBusinessNodes,businessFlowGraphAvoidsCompactPackageOverlayNodeList
+    requiredClassFragments: .tests.latest.report.,.tests.latest.McpLatestPackageLinkContractTest
+    forbiddenClasses: com.endava.ai.skills.mcp.tests.core.McpConfiguredPackageAuditTest,com.endava.ai.skills.mcp.tests.candidate.McpCandidateContractTest,com.endava.ai.skills.mcp.tests.core.McpExtentScreenshotBrowserVisibilityContractTest,com.endava.ai.skills.mcp.tests.smoke.McpPostSyncSmokeContractTest
+    forbiddenClassFragments: .tests.negative.
+    resourcesOnly: true
+  - id: mcp-package-closeout
+    suiteXml: src/test/resources/skills/mcp/testng-mcp-package-closeout.xml
+    role: final package close-out evidence
+    finalArtifact: true
+    allowedSkipped: 0
+    mirrorOf: mcp-package-audit
+    requiredClasses: com.endava.ai.skills.mcp.tests.core.McpPackageAuditPreflightTest,com.endava.ai.skills.mcp.tests.core.McpConfiguredPackageAuditTest
+    requiredClassFragments: .tests.latest.
+    forbiddenClasses: com.endava.ai.skills.mcp.tests.candidate.McpCandidateContractTest,com.endava.ai.skills.mcp.tests.core.McpExtentScreenshotBrowserVisibilityContractTest
+    forbiddenClassFragments: .tests.negative.,McpRunCalibrationContractTest,McpTestNgProfileContractTest,McpReportProfileClassloadingContractTest
+    resourcesOnly: true
+  - id: mcp-full
+    suiteXml: src/test/resources/skills/mcp/testng-mcp-full.xml
+    role: broad diagnostic sweep, not final close-out evidence and not final browser-render report gate
+    finalArtifact: false
+    allowedSkipped: -1
+    expectedPackages: com.endava.ai.skills.mcp.tests.*
+    excludedGroups: mcp-final-report-closeout
+    resourcesOnly: true

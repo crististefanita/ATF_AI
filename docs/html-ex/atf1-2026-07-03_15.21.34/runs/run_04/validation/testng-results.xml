@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-07-02T18:21:56 EEST" name="ATF1 refund support customer messages lifecycle" finished-at="2026-07-02T18:22:50 EEST" duration-ms="54010">
+    <groups>
+      <group name="ui.refund-support">
+        <method signature="RefundSupportCustomerMessagesLifecycleTest.refundSupportCustomerAccountExposesMessagesRoute()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest@70881123]" name="refundSupportCustomerAccountExposesMessagesRoute" class="com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest"/>
+        <method signature="RefundSupportCustomerMessagesLifecycleTest.refundSupportCustomerMessagesShowCreatedRequest()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest@70881123]" name="refundSupportCustomerMessagesShowCreatedRequest" class="com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest"/>
+        <method signature="RefundSupportCustomerMessagesLifecycleTest.refundSupportCustomerVisibleLifecycleConnectsInvoiceSubjectAndStatus()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest@70881123]" name="refundSupportCustomerVisibleLifecycleConnectsInvoiceSubjectAndStatus" class="com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest"/>
+        <method signature="RefundSupportCustomerMessagesLifecycleTest.refundSupportMessageApiCreatesDurableCaseIdentity()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest@70881123]" name="refundSupportMessageApiCreatesDurableCaseIdentity" class="com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest"/>
+        <method signature="RefundSupportCustomerMessagesLifecycleTest.refundSupportMessageApiCreatesNewCaseState()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest@70881123]" name="refundSupportMessageApiCreatesNewCaseState" class="com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest"/>
+      </group> <!-- ui.refund-support -->
+      <group name="ui.customer-messages">
+        <method signature="RefundSupportCustomerMessagesLifecycleTest.refundSupportCustomerAccountExposesMessagesRoute()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest@70881123]" name="refundSupportCustomerAccountExposesMessagesRoute" class="com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest"/>
+        <method signature="RefundSupportCustomerMessagesLifecycleTest.refundSupportCustomerMessagesShowCreatedRequest()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest@70881123]" name="refundSupportCustomerMessagesShowCreatedRequest" class="com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest"/>
+        <method signature="RefundSupportCustomerMessagesLifecycleTest.refundSupportCustomerVisibleLifecycleConnectsInvoiceSubjectAndStatus()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest@70881123]" name="refundSupportCustomerVisibleLifecycleConnectsInvoiceSubjectAndStatus" class="com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest"/>
+        <method signature="RefundSupportCustomerMessagesLifecycleTest.refundSupportMessageApiCreatesDurableCaseIdentity()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest@70881123]" name="refundSupportMessageApiCreatesDurableCaseIdentity" class="com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest"/>
+        <method signature="RefundSupportCustomerMessagesLifecycleTest.refundSupportMessageApiCreatesNewCaseState()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest@70881123]" name="refundSupportMessageApiCreatesNewCaseState" class="com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest"/>
+      </group> <!-- ui.customer-messages -->
+      <group name="ui.business">
+        <method signature="RefundSupportCustomerMessagesLifecycleTest.refundSupportCustomerAccountExposesMessagesRoute()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest@70881123]" name="refundSupportCustomerAccountExposesMessagesRoute" class="com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest"/>
+        <method signature="RefundSupportCustomerMessagesLifecycleTest.refundSupportCustomerMessagesShowCreatedRequest()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest@70881123]" name="refundSupportCustomerMessagesShowCreatedRequest" class="com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest"/>
+        <method signature="RefundSupportCustomerMessagesLifecycleTest.refundSupportCustomerVisibleLifecycleConnectsInvoiceSubjectAndStatus()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest@70881123]" name="refundSupportCustomerVisibleLifecycleConnectsInvoiceSubjectAndStatus" class="com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest"/>
+        <method signature="RefundSupportCustomerMessagesLifecycleTest.refundSupportMessageApiCreatesDurableCaseIdentity()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest@70881123]" name="refundSupportMessageApiCreatesDurableCaseIdentity" class="com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest"/>
+        <method signature="RefundSupportCustomerMessagesLifecycleTest.refundSupportMessageApiCreatesNewCaseState()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest@70881123]" name="refundSupportMessageApiCreatesNewCaseState" class="com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest"/>
+      </group> <!-- ui.business -->
+    </groups>
+    <test started-at="2026-07-02T18:21:56 EEST" name="refund support customer messages lifecycle" finished-at="2026-07-02T18:22:50 EEST" duration-ms="54010">
+      <class name="com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest@70881123]" started-at="2026-07-02T18:21:56 EEST" name="setUp" finished-at="2026-07-02T18:22:25 EEST" duration-ms="29527" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="refundSupportCustomerAccountExposesMessagesRoute()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest@70881123]" started-at="2026-07-02T18:22:25 EEST" name="refundSupportCustomerAccountExposesMessagesRoute" description="Customer account exposes the support messages route after request creation." finished-at="2026-07-02T18:22:42 EEST" duration-ms="16815" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- refundSupportCustomerAccountExposesMessagesRoute -->
+        <test-method signature="refundSupportCustomerMessagesShowCreatedRequest()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest@70881123]" started-at="2026-07-02T18:22:43 EEST" name="refundSupportCustomerMessagesShowCreatedRequest" description="Customer messages page shows the created refund support request." finished-at="2026-07-02T18:22:46 EEST" duration-ms="3144" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- refundSupportCustomerMessagesShowCreatedRequest -->
+        <test-method signature="refundSupportCustomerVisibleLifecycleConnectsInvoiceSubjectAndStatus()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest@70881123]" started-at="2026-07-02T18:22:46 EEST" name="refundSupportCustomerVisibleLifecycleConnectsInvoiceSubjectAndStatus" description="Customer-visible support request keeps invoice, subject and status in one proof chain." finished-at="2026-07-02T18:22:46 EEST" duration-ms="30" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- refundSupportCustomerVisibleLifecycleConnectsInvoiceSubjectAndStatus -->
+        <test-method signature="refundSupportMessageApiCreatesDurableCaseIdentity()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest@70881123]" started-at="2026-07-02T18:22:47 EEST" name="refundSupportMessageApiCreatesDurableCaseIdentity" description="Refund support message API returns durable case identity." finished-at="2026-07-02T18:22:47 EEST" duration-ms="7" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- refundSupportMessageApiCreatesDurableCaseIdentity -->
+        <test-method signature="refundSupportMessageApiCreatesNewCaseState()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest@70881123]" started-at="2026-07-02T18:22:47 EEST" name="refundSupportMessageApiCreatesNewCaseState" description="Refund support message starts from explicit NEW case state." finished-at="2026-07-02T18:22:47 EEST" duration-ms="9" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- refundSupportMessageApiCreatesNewCaseState -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest@70881123]" started-at="2026-07-02T18:22:48 EEST" name="tearDown" finished-at="2026-07-02T18:22:50 EEST" duration-ms="2010" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.endava.ai.ui.tests.refunds.support.RefundSupportCustomerMessagesLifecycleTest -->
+    </test> <!-- refund support customer messages lifecycle -->
+  </suite> <!-- ATF1 refund support customer messages lifecycle -->
+</testng-results>

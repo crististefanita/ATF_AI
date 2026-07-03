@@ -1,0 +1,18 @@
+﻿{
+    "run":  "run_03",
+    "status":  "PASS",
+    "verdict":  "countable",
+    "tests_produced":  5,
+    "tests_passed":  5,
+    "tests_failed":  0,
+    "tests_skipped":  0,
+    "business_object":  "pre-invoice cart removal record",
+    "owned_business_object":  "pre-invoice cart removal record",
+    "business_claim":  "cart line removal is exercised as a pre-invoice lifecycle transition and kept out of invoice claims",
+    "progression_from_previous_run":  "fresh cart lifecycle angle for pre-invoice cart removal record",
+    "actual_delta_quality":  95,
+    "run_expected_delta_quality":  95,
+    "round_target_test_count":  5,
+    "proof_class":  "Playwright UI Extent report + TestNG XML + command-result + run diff + source support",
+    "primary_next_business_object":  "post-removal cart persistence after reload"
+}

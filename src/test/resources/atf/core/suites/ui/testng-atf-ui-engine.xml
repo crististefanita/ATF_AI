@@ -1,0 +1,23 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="ATF UI Engine Contract Sweep" verbose="1">
+    <test name="ui-engine-contracts">
+        <groups>
+            <run>
+                <exclude name="controlled-failure-fixture"/>
+                <exclude name="allure-only"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.endava.ai.atf.ui.component.config.FrameworkRuntimeUiDefaultsContractTest"/>
+            <class name="com.endava.ai.atf.ui.component.UiCoreConfigOverrideDisciplineTest"/>
+            <class name="com.endava.ai.atf.ui.component.UiEngineActionParityContractTest"/>
+            <class name="com.endava.ai.atf.ui.component.UiEngineCapabilityContractTest"/>
+            <class name="com.endava.ai.atf.ui.component.engine.UiEngineBoundaryContractTest"/>
+            <class name="com.endava.ai.atf.ui.component.engine.SeleniumEngineInternalContractTest"/>
+            <class name="com.endava.ai.atf.ui.component.UiEngineDelegationContractTest"/>
+            <class name="com.endava.ai.atf.ui.component.UiEngineRuntimeOptionsContractTest"/>
+            <class name="com.endava.ai.atf.ui.component.WaitUtilsContractTest"/>
+            <class name="com.endava.ai.atf.ui.component.RegistrationValidationContractTest"/>
+        </classes>
+    </test>
+</suite>

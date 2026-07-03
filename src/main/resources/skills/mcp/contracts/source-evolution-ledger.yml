@@ -1,0 +1,57 @@
+schemaVersion: 1
+contracts:
+  - id: source-evolution.ledger.section.baseline-before-run-0
+    kind: required-section
+    token: baseline_before_run_0
+    reason: The ledger must show the source baseline before the agentic iteration starts.
+    repairTarget: review/source-evolution-ledger.md
+  - id: source-evolution.ledger.section.final-before-closeout
+    kind: required-section
+    token: final_before_closeout
+    reason: The ledger must show the exact final source state before MCP close-out artifacts are frozen.
+    repairTarget: review/source-evolution-ledger.md
+  - id: source-evolution.ledger.section.score-delta
+    kind: required-section
+    token: score_delta
+    reason: The ledger must explain how source evolution changed the score and cap.
+    repairTarget: review/source-evolution-ledger.md
+  - id: source-evolution.ledger.kpi.business-novelty-ratio
+    kind: required-kpi-label
+    token: business novelty ratio
+    reason: The ledger must separate new business proof from repeated technical movement.
+    repairTarget: review/source-evolution-ledger.md
+  - id: source-evolution.ledger.kpi.diff-efficiency
+    kind: required-kpi-label
+    token: diff efficiency
+    reason: The ledger must explain business proof per source file touched.
+    repairTarget: review/source-evolution-ledger.md
+  - id: source-evolution.ledger.kpi.test-value-density
+    kind: required-kpi-label
+    token: test value density
+    reason: The ledger must explain claim value per generated test.
+    repairTarget: review/source-evolution-ledger.md
+  - id: source-evolution.ledger.kpi.support-reuse-ratio
+    kind: required-kpi-label
+    token: support reuse ratio
+    reason: The ledger must show whether support code reduced repetition instead of creating noise.
+    repairTarget: review/source-evolution-ledger.md
+  - id: source-evolution.ledger.kpi.duplication-burn-down
+    kind: required-kpi-label
+    token: duplication burn-down
+    reason: The ledger must show whether repeated action/assertion lines were reduced or honestly capped.
+    repairTarget: review/source-evolution-ledger.md
+  - id: source-evolution.ledger.kpi.protected-root-purity
+    kind: required-kpi-label
+    token: protected-root purity
+    reason: The ledger must show protected ATF/MCP/Atlas roots are untouched or explicitly block publishability.
+    repairTarget: review/source-evolution-ledger.md
+  - id: source-evolution.ledger.kpi.artifact-truth-score
+    kind: required-kpi-label
+    token: artifact truth score
+    reason: The ledger must connect source changes to frozen artifact truth.
+    repairTarget: review/source-evolution-ledger.md
+  - id: source-evolution.ledger.kpi.run-learning-yield
+    kind: required-kpi-label
+    token: run learning yield
+    reason: The ledger must explain what each run learned, not only that it executed.
+    repairTarget: review/source-evolution-ledger.md

@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="ATF UI Engine Selenium Extent Smoke" verbose="1">
+    <test name="selenium-extent-smoke">
+        <groups>
+            <run>
+                <exclude name="allure-only"/>
+                <exclude name="controlled-failure-fixture"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.endava.ai.atf.core.reporting.screenshot.UiEngineBrowserWindowContractSmokeTest"/>
+            <class name="com.endava.ai.atf.core.reporting.screenshot.UiEngineScreenshotSmokeTest"/>
+            <class name="com.endava.ai.atf.core.reporting.screenshot.ExtentScreenshotArtifactSmokeTest"/>
+        </classes>
+    </test>
+</suite>

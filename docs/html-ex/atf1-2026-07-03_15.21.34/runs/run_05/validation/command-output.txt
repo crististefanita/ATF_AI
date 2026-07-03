@@ -1,0 +1,313 @@
+mvn.cmd : SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+At line:18 char:3
++   & mvn -q "-Dsurefire.suiteXmlFiles=$($item.Suite)" "-Dreports.dir=$ ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (SLF4J: Failed t...cLoggerBinder".:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+  ? Playwright pages after init: 1
+? Clear browser session
+  ? PASS: Session cleared
+? Navigate to URL: https://practicesoftwaretesting.com/auth/register
+  ? base.url=https://practicesoftwaretesting.com
+  ? relativePath=/auth/register
+  ? Playwright pages after open: 1
+  ? Wait for URL contains: /auth/register
+  ? PASS: Navigated
+? Type into element: First name
+  ? locator=input[data-test='first-name']
+  ? value=John
+  ? PASS: Typed
+? Type into element: Last name
+  ? locator=input[data-test='last-name']
+  ? value=Doe
+  ? PASS: Typed
+? Type into element: Date of Birth
+  ? locator=input[data-test='dob']
+  ? value=1990-01-01
+  ? PASS: Typed
+? Type into element: Phone
+  ? locator=input[data-test='phone']
+  ? value=0712345678
+  ? PASS: Typed
+? Type into element: Email address
+  ? locator=input[data-test='email']
+  ? value=user_aj7h7u7a4k@example.com
+  ? PASS: Typed
+? Type into element: Password
+  ? locator=input[data-test='password']
+  ? value=Aa1!7316d7c0
+  ? PASS: Typed
+? Select option: Country
+  ? locator=select[data-test='country']
+  ? value=RO
+  ? PASS: Selected
+? Type into element: Postal code
+  ? locator=input[data-test='postal_code']
+  ? value=10001
+  ? PASS: Typed
+? Type into element: House number
+  ? locator=input[data-test='house_number']
+  ? value=5
+  ? PASS: Typed
+? Type into element: Street
+  ? locator=input[data-test='street']
+  ? value=Main Street 1
+  ? PASS: Typed
+? Type into element: City
+  ? locator=input[data-test='city']
+  ? value=Bucharest
+  ? PASS: Typed
+? Type into element: State
+  ? locator=input[data-test='state']
+  ? value=B
+  ? PASS: Typed
+? Type into element: Street
+  ? locator=input[data-test='street']
+  ? value=Main Street 1
+  ? PASS: Typed
+? Type into element: City
+  ? locator=input[data-test='city']
+  ? value=Bucharest
+  ? PASS: Typed
+? Type into element: State
+  ? locator=input[data-test='state']
+  ? value=B
+  ? PASS: Typed
+? Click on: Register
+  ? locator=button[data-test='register-submit']
+  ? PASS: Clicked
+? Open URL: https://practicesoftwaretesting.com/auth/login
+  ? base.url=https://practicesoftwaretesting.com
+  ? relativePath=/auth/login
+  ? Playwright pages after open: 1
+  ? PASS: Opened
+? Type into element: Login email
+  ? locator=input[data-test='email']
+  ? value=user_aj7h7u7a4k@example.com
+  ? PASS: Typed
+? Type into element: Login password
+  ? locator=input[data-test='password']
+  ? value=Aa1!7316d7c0
+  ? PASS: Typed
+? Click on: Login
+  ? locator=input[data-test='login-submit']
+  ? PASS: Clicked
+? Navigate to URL: https://practicesoftwaretesting.com/
+  ? base.url=https://practicesoftwaretesting.com
+  ? relativePath=/
+  ? Playwright pages after open: 1
+  ? Wait for URL contains: /
+  ? PASS: Navigated
+? Get texts from: Catalog product cards
+  ? locator=a[data-test^='product-']
+  ? texts=[Combination Pliers
+A
+B
+C
+D
+E
+$14.15, Pliers
+A
+B
+C
+D
+E
+$12.01, Bolt Cutters
+A
+B
+C
+D
+E
+$48.41, Long Nose Pliers
+A
+B
+C
+D
+E
+Out of stock
+$14.24, Slip Joint Pliers
+A
+B
+C
+D
+E
+$9.17, Claw Hammer with Shock Reduction Grip
+A
+B
+C
+D
+E
+$13.41, Hammer
+A
+B
+C
+D
+E
+$12.58, Claw Hammer
+A
+B
+C
+D
+E
+$11.48, Thor Hammer
+A
+B
+C
+D
+E
+$11.14]
+  ? PASS: Texts captured
+? Click visible match on: Available catalog product
+  ? locator=a[data-test^='product-']
+  ? visibleIndex=2
+  ? PASS: Clicked visible match
+? Get text from: Product detail name
+  ? locator=[data-test='product-name']
+  ? text=Pliers
+  ? PASS: Text captured
+? Click on: Add product to cart
+  ? locator=[data-test='add-to-cart']
+  ? PASS: Clicked
+? Click on: Cart checkout link
+  ? locator=[data-test='nav-cart']
+  ? PASS: Clicked
+? Click on: Proceed from cart
+  ? locator=[data-test='proceed-1']
+  ? PASS: Clicked
+? Click on: Proceed from authenticated sign-in
+  ? locator=[data-test='proceed-2']
+  ? PASS: Clicked
+? Select option: Billing country
+  ? locator=[data-test='country']
+  ? value=US
+  ? PASS: Selected
+? Type into element: Billing postal code
+  ? locator=[data-test='postal_code']
+  ? value=33101
+  ? PASS: Typed
+? Type into element: Billing house number
+  ? locator=[data-test='house_number']
+  ? value=12
+  ? PASS: Typed
+? Type into element: Billing street
+  ? locator=[data-test='street']
+  ? value=Art Point
+  ? PASS: Typed
+? Type into element: Billing city
+  ? locator=[data-test='city']
+  ? value=Fionaville
+  ? PASS: Typed
+? Type into element: Billing state
+  ? locator=[data-test='state']
+  ? value=West Virginia
+  ? PASS: Typed
+? Click on: Proceed from billing address
+  ? locator=[data-test='proceed-3']
+  ? PASS: Clicked
+? Select option: Payment method
+  ? locator=select[data-test='payment-method']:visible
+  ? value=Cash on Delivery
+  ? PASS: Selected
+? Wait for network response: payment method validation
+  ? urlContains=/payment/check
+  ? method=POST
+? Click on: Confirm payment method
+  ? locator=[data-test='finish']:visible
+  ? PASS: Clicked
+  ? responseUrl=https://api.practicesoftwaretesting.com/payment/check
+  ? responseMethod=POST
+  ? status=200
+  ? requestPreviewLength=58
+  ? requestPreview={"payment_method":"cash-on-delivery","payment_details":{}}
+  ? bodyPreviewLength=36
+  ? bodyPreview={"message":"Payment was successful"}
+  ? PASS: Network response captured
+? Wait for network response: invoice creation
+  ? urlContains=/invoices
+  ? method=POST
+? Click on: Confirm payment
+  ? locator=[data-test='finish']:visible
+  ? PASS: Clicked
+  ? responseUrl=https://api.practicesoftwaretesting.com/invoices
+  ? responseMethod=POST
+  ? status=201
+  ? requestPreviewLength=239
+  ? requestPreview={"billing_street":"Art Point","billing_city":"Fionaville","billing_state":"West Virginia","billing_country":"US","billing_postal_code":"33101","payment_method":"cash-on-delivery","payment_details":{},"cart_id":"01kwhbznanwqbhgt5jzk6h54bc"}
+  ? bodyPreviewLength=490
+  ? bodyPreview={"billing_street":"Art Point","billing_city":"Fionaville","billing_state":"West Virginia","billing_country":"US","billing_postal_code":"33101","user_id":"01kwhbzhrmcgcn7yx3wgjaxm17","invoice_date":"2026-07-02T12:13:48.025734Z","invoice_number":"INV-2026000027","id":"01kwhbzr3y8xq5z87z07n7c06z","created_at":"2026-07-02T12:13:48.000000Z","subtotal":12.01,"total":12.01,"additional_discount_percentage":null,"additional_discount_amount":0,"eco_discount_percentage":0,"eco_discount_amount":0}
+  ? PASS: Network response captured
+? Navigate to URL: https://practicesoftwaretesting.com/account/invoices
+  ? base.url=https://practicesoftwaretesting.com
+  ? relativePath=/account/invoices
+  ? Playwright pages after open: 1
+  ? Wait for URL contains: /account/invoices
+  ? PASS: Navigated
+? Navigate to URL: https://practicesoftwaretesting.com/contact
+  ? base.url=https://practicesoftwaretesting.com
+  ? relativePath=/contact
+  ? Playwright pages after open: 1
+  ? Wait for URL contains: /contact
+  ? PASS: Navigated
+? Type into element: Refund support first name
+  ? locator=[data-test='first-name']
+  ? value=John
+  ? PASS: Typed
+? Type into element: Refund support last name
+  ? locator=[data-test='last-name']
+  ? value=Doe
+  ? PASS: Typed
+? Type into element: Refund support email
+  ? locator=[data-test='email']
+  ? value=user_aj7h7u7a4k@example.com
+  ? PASS: Typed
+? Select option: Refund support subject
+  ? locator=[data-test='subject']
+  ? value=Return
+  ? PASS: Selected
+? Type into element: Refund support message
+  ? locator=[data-test='message']
+  ? value=Refund request for invoice INV-2026000027 amount $12.01 because the purchased product Pliers arrived damaged. Customer email user_aj7h7u7a4k@example.com.
+  ? PASS: Typed
+? Wait for network response: refund support request is accepted by messages API
+  ? urlContains=/messages
+  ? method=POST
+? Click on: Submit refund support request
+  ? locator=[data-test='contact-submit']
+  ? PASS: Clicked
+  ? responseUrl=https://api.practicesoftwaretesting.com/messages
+  ? responseMethod=POST
+  ? status=200
+  ? requestPreviewLength=242
+  ? requestPreview={"name":"John Doe","subject":"return","message":"Refund request for invoice INV-2026000027 amount $12.01 because the purchased product Pliers arrived damaged. Customer email user_aj7h7u7a4k@example.com.","email":"user_aj7h7u7a4k@example.com"}
+  ? bodyPreviewLength=365
+  ? bodyPreview={"name":"John Doe","subject":"return","message":"Refund request for invoice INV-2026000027 amount $12.01 because the purchased product Pliers arrived damaged. Customer email user_aj7h7u7a4k@example.com.","email":"user_aj7h7u7a4k@example.com","user_id":"01kwhbzhrmcgcn7yx3wgjaxm17","status":"NEW","id":"01kwhbzv5jh36dhmn65mehzf9d","created_at":"2026-07-02 12:13:51"}
+  ? PASS: Network response captured
+? Navigate to URL: https://practicesoftwaretesting.com/account/messages
+  ? base.url=https://practicesoftwaretesting.com
+  ? relativePath=/account/messages
+  ? Playwright pages after open: 1
+  ? Wait for URL contains: /account/messages
+  ? PASS: Navigated
+? Navigate to URL: https://practicesoftwaretesting.com/contact
+  ? base.url=https://practicesoftwaretesting.com
+  ? relativePath=/contact
+  ? Playwright pages after open: 1
+  ? Wait for URL contains: /contact
+  ? PASS: Navigated
+? Validate reopened refund support subject
+  ? PASS: Validate reopened refund support subject passed
+? Validate reopened refund support invoice
+  ? PASS: Validate reopened refund support invoice passed
+? Validate reopened support surface still exposes Return subject
+  ? PASS: Validate reopened support surface still exposes Return subject passed
+? Validate reopened refund support subject
+  ? PASS: Validate reopened refund support subject passed
+? Validate reopened refund support invoice
+  ? PASS: Validate reopened refund support invoice passed
+? Validate reopened support surface still exposes Return subject
+  ? PASS: Validate reopened support surface still exposes Return subject passed
+? Validate reopened support route
+  ? PASS: Validate reopened support route passed

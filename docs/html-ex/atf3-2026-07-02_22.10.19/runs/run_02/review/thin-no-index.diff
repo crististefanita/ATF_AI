@@ -1,0 +1,205 @@
+﻿diff --git a/src/main/java/com/endava/ai/ui/support/model/invoice/AccountInvoiceSnapshot.java b/src/main/java/com/endava/ai/ui/support/model/invoice/AccountInvoiceSnapshot.java
+new file mode 100644
+index 00000000..8e244c40
+--- /dev/null
++++ b/src/main/java/com/endava/ai/ui/support/model/invoice/AccountInvoiceSnapshot.java
+@@ -0,0 +1,57 @@
++package com.endava.ai.ui.support.model.invoice;
++
++import com.endava.ai.ui.support.model.CustomerData;
++
++public final class AccountInvoiceSnapshot {
++    private final CustomerData customer;
++    private final String productName;
++    private final String productUnitPrice;
++    private final int quantity;
++    private final String cartTotal;
++    private final String paymentMethod;
++    private final String invoiceNumber;
++
++    public AccountInvoiceSnapshot(CustomerData customer,
++                                  String productName,
++                                  String productUnitPrice,
++                                  int quantity,
++                                  String cartTotal,
++                                  String paymentMethod,
++                                  String invoiceNumber) {
++        this.customer = customer;
++        this.productName = productName;
++        this.productUnitPrice = productUnitPrice;
++        this.quantity = quantity;
++        this.cartTotal = cartTotal;
++        this.paymentMethod = paymentMethod;
++        this.invoiceNumber = invoiceNumber;
++    }
++
++    public CustomerData getCustomer() {
++        return customer;
++    }
++
++    public String getProductName() {
++        return productName;
++    }
++
++    public String getProductUnitPrice() {
++        return productUnitPrice;
++    }
++
++    public int getQuantity() {
++        return quantity;
++    }
++
++    public String getCartTotal() {
++        return cartTotal;
++    }
++
++    public String getPaymentMethod() {
++        return paymentMethod;
++    }
++
++    public String getInvoiceNumber() {
++        return invoiceNumber;
++    }
++}
+diff --git a/src/main/java/com/endava/ai/ui/support/validation/invoice/AccountInvoiceRowValidation.java b/src/main/java/com/endava/ai/ui/support/validation/invoice/AccountInvoiceRowValidation.java
+new file mode 100644
+index 00000000..78fccb10
+--- /dev/null
++++ b/src/main/java/com/endava/ai/ui/support/validation/invoice/AccountInvoiceRowValidation.java
+@@ -0,0 +1,91 @@
++package com.endava.ai.ui.support.validation.invoice;
++
++import com.endava.ai.core.reporting.StepLogger;
++import com.endava.ai.ui.support.model.invoice.AccountInvoiceSnapshot;
++import org.testng.Assert;
++
++import java.util.regex.Pattern;
++
++final class AccountInvoiceRowValidation {
++    private static final Pattern INVOICE_NUMBER = Pattern.compile("INV-\\d+");
++    private static final Pattern MONEY = Pattern.compile("\\d+(?:\\.\\d{2})?");
++
++    private final AccountInvoiceValidationSupport support = new AccountInvoiceValidationSupport();
++
++    void assertInvoiceNumberFormat(AccountInvoiceSnapshot snapshot) {
++        support.start(AccountInvoiceEvidence.IDENTITY_FORMAT);
++        StepLogger.logDetail("invoiceNumber=" + snapshot.getInvoiceNumber());
++        Assert.assertTrue(INVOICE_NUMBER.matcher(snapshot.getInvoiceNumber()).matches(),
++                "Expected invoice number format INV-nnn, but was: " + snapshot.getInvoiceNumber());
++        support.pass(AccountInvoiceEvidence.IDENTITY_FORMAT);
++    }
++
++    void assertInvoiceRowContainsCreatedInvoice(AccountInvoiceSnapshot snapshot) {
++        support.start(AccountInvoiceEvidence.CREATED_ROW_VISIBLE);
++        String body = support.invoicesBody();
++        StepLogger.logDetail("invoiceNumber=" + snapshot.getInvoiceNumber());
++        StepLogger.logDetail("invoicesBody=" + body);
++        support.assertContains(body, snapshot.getInvoiceNumber(),
++                "Expected account invoices page to list created invoice: " + snapshot.getInvoiceNumber());
++        support.pass(AccountInvoiceEvidence.CREATED_ROW_VISIBLE);
++    }
++
++    void assertInvoiceRowKeepsCheckoutTotal(AccountInvoiceSnapshot snapshot) {
++        support.start(AccountInvoiceEvidence.CHECKOUT_TOTAL_VISIBLE);
++        String body = support.invoicesBody();
++        StepLogger.logDetail("cartTotal=" + snapshot.getCartTotal());
++        StepLogger.logDetail("invoicesBody=" + body);
++        support.assertContains(body, snapshot.getCartTotal(),
++                "Expected account invoice row to contain checkout total: " + snapshot.getCartTotal());
++        support.pass(AccountInvoiceEvidence.CHECKOUT_TOTAL_VISIBLE);
++    }
++
++    void assertInvoiceTableShape(AccountInvoiceSnapshot snapshot) {
++        support.start(AccountInvoiceEvidence.TABLE_CONTRACT);
++        String body = support.invoicesBody();
++        StepLogger.logDetail("invoiceNumber=" + snapshot.getInvoiceNumber());
++        support.assertContainsAll(body, "Expected account invoices table shape.",
++                "Invoices", "Invoice Number", "Invoice Date", "Total", "Details");
++        support.pass(AccountInvoiceEvidence.TABLE_CONTRACT);
++    }
++
++    void assertInvoiceBelongsToRegisteredCustomer(AccountInvoiceSnapshot snapshot) {
++        support.start(AccountInvoiceEvidence.REGISTERED_OWNERSHIP);
++        String body = support.invoicesBody();
++        StepLogger.logDetail("customerEmail=" + snapshot.getCustomer().getEmail());
++        StepLogger.logDetail("invoiceNumber=" + snapshot.getInvoiceNumber());
++        support.assertContains(body, snapshot.getInvoiceNumber(), "Expected logged account to expose its invoice number.");
++        Assert.assertFalse(body.toLowerCase().contains("no invoices"),
++                "Expected invoice collection not to be empty for the created invoice.");
++        support.pass(AccountInvoiceEvidence.REGISTERED_OWNERSHIP);
++    }
++
++    void assertInvoiceSnapshotKeepsProductIdentity(AccountInvoiceSnapshot snapshot) {
++        support.start(AccountInvoiceEvidence.PRODUCT_IDENTITY);
++        StepLogger.logDetail("productName=" + snapshot.getProductName());
++        Assert.assertFalse(snapshot.getProductName().isBlank(), "Expected selected product name to be captured.");
++        support.pass(AccountInvoiceEvidence.PRODUCT_IDENTITY);
++    }
++
++    void assertInvoiceSnapshotKeepsUnitPrice(AccountInvoiceSnapshot snapshot) {
++        support.start(AccountInvoiceEvidence.UNIT_PRICE);
++        StepLogger.logDetail("unitPrice=" + snapshot.getProductUnitPrice());
++        Assert.assertTrue(MONEY.matcher(snapshot.getProductUnitPrice()).matches(),
++                "Expected product unit price captured from UI, but was: " + snapshot.getProductUnitPrice());
++        support.pass(AccountInvoiceEvidence.UNIT_PRICE);
++    }
++
++    void assertInvoiceSnapshotKeepsQuantity(AccountInvoiceSnapshot snapshot) {
++        support.start(AccountInvoiceEvidence.CHECKOUT_QUANTITY);
++        StepLogger.logDetail("quantity=" + snapshot.getQuantity());
++        Assert.assertEquals(snapshot.getQuantity(), 1, "Expected single product checkout quantity.");
++        support.pass(AccountInvoiceEvidence.CHECKOUT_QUANTITY);
++    }
++
++    void assertInvoiceSnapshotKeepsPaymentMethod(AccountInvoiceSnapshot snapshot) {
++        support.start(AccountInvoiceEvidence.PAYMENT_METHOD);
++        StepLogger.logDetail("paymentMethod=" + snapshot.getPaymentMethod());
++        Assert.assertEquals(snapshot.getPaymentMethod(), "Cash on Delivery", "Expected cash on delivery payment.");
++        support.pass(AccountInvoiceEvidence.PAYMENT_METHOD);
++    }
++}
+diff --git a/src/test/java/com/endava/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentAuditTrailTest.java b/src/test/java/com/endava/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentAuditTrailTest.java
+new file mode 100644
+index 00000000..c3b4c22e
+--- /dev/null
++++ b/src/test/java/com/endava/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentAuditTrailTest.java
+@@ -0,0 +1,39 @@
++package com.endava.ai.ui.tests.invoice.account.document;
++
++import com.endava.ai.ui.core.runtime.BaseTestUI;
++import com.endava.ai.ui.support.flows.invoice.RegisteredInvoiceFlow;
++import com.endava.ai.ui.support.validation.invoice.AccountInvoiceValidation;
++import com.endava.ai.ui.tests.fixture.invoice.RegisteredInvoiceFixture;
++import org.testng.annotations.Test;
++
++public final class RegisteredInvoiceDocumentAuditTrailTest extends BaseTestUI {
++    private final RegisteredInvoiceFlow uiFlow = new RegisteredInvoiceFlow();
++    private final RegisteredInvoiceFixture documentFixture = new RegisteredInvoiceFixture();
++    private final AccountInvoiceValidation documentValidation = new AccountInvoiceValidation();
++
++    @Test
++    public void invoice_list_contains_row_before_document_download() {
++        documentValidation.assertInvoiceDocumentListCarriesInvoiceBeforeDownload(documentFixture.createdInvoiceDocument());
++    }
++
++    @Test
++    public void invoice_document_details_keep_product_identity() {
++        documentValidation.assertInvoiceDocumentDetailsKeepProduct(documentFixture.createdInvoiceDocument());
++    }
++
++    @Test
++    public void invoice_document_details_keep_checkout_total() {
++        documentValidation.assertInvoiceDocumentDetailsKeepTotal(documentFixture.createdInvoiceDocument());
++    }
++
++    @Test
++    public void invoice_document_details_keep_payment_method() {
++        documentValidation.assertInvoiceDocumentDetailsKeepPaymentMethod(documentFixture.createdInvoiceDocument());
++    }
++
++    @Test
++    public void invoice_document_response_names_invoice() {
++        documentValidation.assertInvoiceDocumentResponseNamesInvoice(documentFixture.createdInvoiceDocument());
++        documentValidation.assertInvoicePdfArtifactHasBinaryBoundaries(documentFixture.createdInvoiceDocument());
++    }
++}

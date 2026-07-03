@@ -1,0 +1,629 @@
+schemaVersion: 1
+contracts:
+  - id: root_diff_files_count
+    profile: package-closeout
+    category: source
+    severity: BLOCKER
+    sourceArtifact: review/root-source-thin-no-index.diff
+    formula: count distinct src/** paths in review/root-source-thin-no-index.diff
+    repair:
+      observedArtifact: review/root-source-thin-no-index.diff
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-formula-trace.md
+      route: source-evolution-closeout
+    why: Proves the final package has a real source delta, not only regenerated artifacts.
+    qualityMeaning: Zero or mismatched values mean the final story is not reopenable from diff evidence.
+    agentAction: rerun package close-out after regenerating the root diff and ledger
+    repairHint: Recalculate from diff evidence and update source-evolution-ledger.md plus final report summary.
+    repairCommand: mvn -q -Dsurefire.suiteXmlFiles=src/test/resources/skills/mcp/testng-mcp-package-closeout.xml test
+    capImpact: 95+ blocked until this KPI matches source evidence
+    publishabilityImpact: package close-out cannot be trusted when declared KPI differs from diff evidence
+    validator: com.endava.ai.skills.mcp.rules.source.kpi.SourceEvolutionKpiConsistencyRule
+  - id: src_main_files
+    profile: package-closeout
+    category: source
+    severity: BLOCKER
+    sourceArtifact: review/root-source-thin-no-index.diff
+    formula: count distinct src/main/** paths in review/root-source-thin-no-index.diff
+    repair:
+      observedArtifact: review/root-source-thin-no-index.diff
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-formula-trace.md
+      route: source-evolution-closeout
+    why: Shows whether production/support code changed versus tests only.
+    qualityMeaning: A high value needs architectural justification; a hidden mismatch means source accounting is false.
+    agentAction: recalculate source split and explain support/main changes
+    repairHint: Recalculate from diff evidence and update source-evolution-ledger.md plus final report summary.
+    repairCommand: regenerate root-source-thin-no-index.diff and source-evolution-ledger.md
+    capImpact: 95+ blocked until this KPI matches source evidence
+    publishabilityImpact: package close-out cannot be trusted when declared KPI differs from diff evidence
+    validator: com.endava.ai.skills.mcp.rules.source.kpi.SourceEvolutionKpiConsistencyRule
+  - id: src_test_files
+    profile: package-closeout
+    category: test-design
+    severity: BLOCKER
+    sourceArtifact: review/root-source-thin-no-index.diff
+    formula: count distinct src/test/** paths in review/root-source-thin-no-index.diff
+    repair:
+      observedArtifact: review/root-source-thin-no-index.diff
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-formula-trace.md
+      route: source-evolution-closeout
+    why: Shows the test surface added by the agent.
+    qualityMeaning: A mismatch makes test growth claims untrustworthy.
+    agentAction: recalculate test split and map test files to business claims
+    repairHint: Recalculate from diff evidence and update source-evolution-ledger.md plus final report summary.
+    repairCommand: regenerate root-source-thin-no-index.diff and source-evolution-ledger.md
+    capImpact: 95+ blocked until this KPI matches source evidence
+    publishabilityImpact: package close-out cannot be trusted when declared KPI differs from diff evidence
+    validator: com.endava.ai.skills.mcp.rules.source.kpi.SourceEvolutionKpiConsistencyRule
+  - id: files_added
+    profile: package-closeout
+    category: source
+    severity: BLOCKER
+    sourceArtifact: review/root-source-thin-no-index.diff
+    formula: count diff blocks with new file mode or --- /dev/null
+    repair:
+      observedArtifact: review/root-source-thin-no-index.diff
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-formula-trace.md
+      route: source-evolution-closeout
+    why: Separates new architecture from edits to existing code.
+    qualityMeaning: Inflated added counts can hide churn; low added counts with many edits can hide risky patching.
+    agentAction: recompute add/modify/delete counters from git diff headers
+    repairHint: Recalculate from diff evidence and update source-evolution-ledger.md plus final report summary.
+    repairCommand: recalculate file status counters from root diff
+    capImpact: 95+ blocked until this KPI matches source evidence
+    publishabilityImpact: package close-out cannot be trusted when declared KPI differs from diff evidence
+    validator: com.endava.ai.skills.mcp.rules.source.kpi.SourceEvolutionKpiConsistencyRule
+  - id: files_modified
+    profile: package-closeout
+    category: source
+    severity: BLOCKER
+    sourceArtifact: review/root-source-thin-no-index.diff
+    formula: count diff blocks that are neither added nor deleted
+    repair:
+      observedArtifact: review/root-source-thin-no-index.diff
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-formula-trace.md
+      route: source-evolution-closeout
+    why: Shows how much existing code was changed.
+    qualityMeaning: Large modified counts need a stronger reason than artifact cleanup.
+    agentAction: recompute modified count and lower score if churn is broad
+    repairHint: Recalculate from diff evidence and update source-evolution-ledger.md plus final report summary.
+    repairCommand: recalculate file status counters from root diff
+    capImpact: 95+ blocked until this KPI matches source evidence
+    publishabilityImpact: package close-out cannot be trusted when declared KPI differs from diff evidence
+    validator: com.endava.ai.skills.mcp.rules.source.kpi.SourceEvolutionKpiConsistencyRule
+  - id: files_deleted
+    profile: package-closeout
+    category: source
+    severity: BLOCKER
+    sourceArtifact: review/root-source-thin-no-index.diff
+    formula: count diff blocks with deleted file mode or +++ /dev/null
+    repair:
+      observedArtifact: review/root-source-thin-no-index.diff
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-formula-trace.md
+      route: source-evolution-closeout
+    why: Makes destructive source movement visible.
+    qualityMeaning: Deletes require explicit provenance; undeclared deletes are close-out blockers.
+    agentAction: recompute deleted count and explain removed source
+    repairHint: Recalculate from diff evidence and update source-evolution-ledger.md plus final report summary.
+    repairCommand: recalculate file status counters from root diff
+    capImpact: 95+ blocked until this KPI matches source evidence
+    publishabilityImpact: package close-out cannot be trusted when declared KPI differs from diff evidence
+    validator: com.endava.ai.skills.mcp.rules.source.kpi.SourceEvolutionKpiConsistencyRule
+  - id: test_methods_added
+    profile: package-closeout
+    category: test-design
+    severity: BLOCKER
+    sourceArtifact: review/root-source-thin-no-index.diff
+    formula: count added lines matching + @Test in review/root-source-thin-no-index.diff
+    repair:
+      observedArtifact: review/root-source-thin-no-index.diff
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-formula-trace.md
+      route: source-evolution-closeout
+    why: Connects source delta to test value, not just file count.
+    qualityMeaning: Many tests with weak business mapping should cap the score even if they pass.
+    agentAction: recalculate @Test delta and map each test group to owned claims
+    repairHint: Recalculate from diff evidence and update source-evolution-ledger.md plus final report summary.
+    repairCommand: recalculate @Test deltas from root diff
+    capImpact: 95+ blocked until this KPI matches source evidence
+    publishabilityImpact: package close-out cannot be trusted when declared KPI differs from diff evidence
+    validator: com.endava.ai.skills.mcp.rules.source.kpi.SourceEvolutionKpiConsistencyRule
+  - id: protected_root_dirty_count
+    profile: package-closeout
+    category: protected-boundary
+    severity: BLOCKER
+    sourceArtifact: review/root-source-thin-no-index.diff
+    formula: count root-diff paths under ATF core, UI/API core, MCP, Atlas, prompt or shared CSS surfaces
+    repair:
+      observedArtifact: review/root-source-thin-no-index.diff
+      primaryArtifact: undo protected source changes before publishing
+      supportingArtifact: validation/mcp/mcp-kpi-formula-trace.md
+      route: source-evolution-closeout
+    why: Enforces that generated package work does not rewrite the framework or validator.
+    qualityMeaning: Any protected drift blocks 95+ and usually means undo, not explanation.
+    agentAction: undo protected source changes or move them to an explicit framework task
+    repairHint: Recalculate from diff evidence and update source-evolution-ledger.md plus final report summary.
+    repairCommand: git status --short -- protected roots; undo framework/MCP/Atlas changes
+    capImpact: 95+ blocked until this KPI matches source evidence
+    publishabilityImpact: package close-out cannot be trusted when declared KPI differs from diff evidence
+    validator: com.endava.ai.skills.mcp.rules.source.kpi.SourceEvolutionKpiConsistencyRule
+  - id: test_classes_added
+    profile: diagnostic
+    category: test-design
+    severity: INFO
+    sourceArtifact: review/root-source-thin-no-index.diff
+    formula: count distinct src/test/**/*.java files in root diff
+    repair:
+      observedArtifact: review/root-source-thin-no-index.diff
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-matrix.md
+      route: source-evolution-diagnostic
+    why: Shows whether tests are organized into reviewable classes.
+    qualityMeaning: Too many tiny classes or one overloaded class both need refactoring.
+    agentAction: split or merge test classes around coherent business scenarios
+    repairHint: Use this diagnostic KPI to calibrate quality and score caps; do not force artifact surgery.
+    repairCommand: rerun MCP close-out to regenerate validation/mcp/mcp-kpi-matrix.*
+    capImpact: diagnostic only until calibrated across representative ATF_name packages
+    publishabilityImpact: does not block publishability alone, but should influence score/cap honesty
+    metadataOnly: true
+  - id: support_classes_added
+    profile: diagnostic
+    category: support-quality
+    severity: INFO
+    sourceArtifact: review/root-source-thin-no-index.diff
+    formula: count distinct Java files under /support/ in root diff
+    repair:
+      observedArtifact: review/root-source-thin-no-index.diff
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-matrix.md
+      route: source-evolution-diagnostic
+    why: Shows whether reusable flow/support code exists.
+    qualityMeaning: Support should reduce repetition, not become a parallel test suite.
+    agentAction: move repeated steps into narrow support classes
+    repairHint: Use this diagnostic KPI to calibrate quality and score caps; do not force artifact surgery.
+    repairCommand: rerun MCP close-out to regenerate validation/mcp/mcp-kpi-matrix.*
+    capImpact: diagnostic only until calibrated across representative ATF_name packages
+    publishabilityImpact: does not block publishability alone, but should influence score/cap honesty
+    metadataOnly: true
+  - id: support_cohesion_score
+    profile: diagnostic
+    category: support-quality
+    severity: INFO
+    sourceArtifact: review/root-source-thin-no-index.diff
+    formula: round(test methods using support * 100 / max(1, support classes touched)) capped at 100
+    repair:
+      observedArtifact: review/root-source-thin-no-index.diff
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-matrix.md
+      route: source-evolution-diagnostic
+    why: Measures whether support code is actually used by tests.
+    qualityMeaning: Low cohesion means helpers were added cosmetically or are too fragmented.
+    agentAction: delete dead helpers or consolidate them behind business-facing flows
+    repairHint: Use this diagnostic KPI to calibrate quality and score caps; do not force artifact surgery.
+    repairCommand: rerun MCP close-out to regenerate validation/mcp/mcp-kpi-matrix.*
+    capImpact: diagnostic only until calibrated across representative ATF_name packages
+    publishabilityImpact: does not block publishability alone, but should influence score/cap honesty
+    metadataOnly: true
+  - id: test_duplication_signal
+    profile: diagnostic
+    category: test-design
+    severity: INFO
+    sourceArtifact: review/root-source-thin-no-index.diff
+    formula: legacy alias for duplicate_action_line_ratio
+    repair:
+      observedArtifact: review/root-source-thin-no-index.diff
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-matrix.md
+      route: source-evolution-diagnostic
+    why: Keeps older ledgers readable while the normalized duplicate ratios take over.
+    qualityMeaning: Use duplicate_action_line_ratio and duplicate_assertion_line_ratio for decisions.
+    agentAction: extract repeated steps into support or validation helpers
+    repairHint: Use this diagnostic KPI to calibrate quality and score caps; do not force artifact surgery.
+    repairCommand: rerun MCP close-out to regenerate validation/mcp/mcp-kpi-matrix.*
+    capImpact: diagnostic only until calibrated across representative ATF_name packages
+    publishabilityImpact: does not block publishability alone, but should influence score/cap honesty
+    metadataOnly: true
+  - id: duplicate_action_line_ratio
+    profile: diagnostic
+    category: test-design
+    severity: INFO
+    sourceArtifact: review/root-source-thin-no-index.diff
+    formula: round(repeated added action lines * 100 / added action lines)
+    repair:
+      observedArtifact: review/root-source-thin-no-index.diff
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-matrix.md
+      route: source-evolution-diagnostic
+    why: Normalizes copy/paste signal so large diffs do not look worse only because they are large.
+    qualityMeaning: High ratio means repeated test steps should move into support flows before scoring high.
+    agentAction: extract repeated action lines into reusable support/page/service helpers
+    repairHint: Use this diagnostic KPI to calibrate quality and score caps; do not force artifact surgery.
+    repairCommand: rerun MCP close-out to regenerate validation/mcp/mcp-kpi-matrix.*
+    capImpact: diagnostic only until calibrated across representative ATF_name packages
+    publishabilityImpact: does not block publishability alone, but should influence score/cap honesty
+    metadataOnly: true
+  - id: duplicate_assertion_line_ratio
+    profile: diagnostic
+    category: test-design
+    severity: INFO
+    sourceArtifact: review/root-source-thin-no-index.diff
+    formula: round(repeated added assertion lines * 100 / added assertion lines)
+    repair:
+      observedArtifact: review/root-source-thin-no-index.diff
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-matrix.md
+      route: source-evolution-diagnostic
+    why: Separates repeated verification debt from general action duplication.
+    qualityMeaning: High ratio means validations are scattered and should be consolidated.
+    agentAction: move repeated assertions into validation/support helpers
+    repairHint: Use this diagnostic KPI to calibrate quality and score caps; do not force artifact surgery.
+    repairCommand: rerun MCP close-out to regenerate validation/mcp/mcp-kpi-matrix.*
+    capImpact: diagnostic only until calibrated across representative ATF_name packages
+    publishabilityImpact: does not block publishability alone, but should influence score/cap honesty
+    metadataOnly: true
+  - id: page_component_classes_touched
+    profile: diagnostic
+    category: support-quality
+    severity: INFO
+    sourceArtifact: review/root-source-thin-no-index.diff
+    formula: count Java files whose path indicates page/component layer
+    repair:
+      observedArtifact: review/root-source-thin-no-index.diff
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-matrix.md
+      route: source-evolution-diagnostic
+    why: Identifies whether UI structure is layered instead of test-only scripts.
+    qualityMeaning: Useful when paired with low direct engine leakage.
+    agentAction: keep page/component abstractions thin and business-neutral
+    repairHint: Use this diagnostic KPI to calibrate quality and score caps; do not force artifact surgery.
+    repairCommand: rerun MCP close-out to regenerate validation/mcp/mcp-kpi-matrix.*
+    capImpact: diagnostic only until calibrated across representative ATF_name packages
+    publishabilityImpact: does not block publishability alone, but should influence score/cap honesty
+    metadataOnly: true
+  - id: direct_ui_engine_leakage_count
+    profile: diagnostic
+    category: protected-boundary
+    severity: INFO
+    sourceArtifact: review/root-source-thin-no-index.diff
+    formula: count added lines mentioning Playwright, WebDriver or Selenium
+    repair:
+      observedArtifact: review/root-source-thin-no-index.diff
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-matrix.md
+      route: source-evolution-diagnostic
+    why: Detects tests bypassing framework/support abstractions.
+    qualityMeaning: High leakage means tests are coupled to engine details.
+    agentAction: move engine calls behind UI support/page/component layers
+    repairHint: Use this diagnostic KPI to calibrate quality and score caps; do not force artifact surgery.
+    repairCommand: rerun MCP close-out to regenerate validation/mcp/mcp-kpi-matrix.*
+    capImpact: diagnostic only until calibrated across representative ATF_name packages
+    publishabilityImpact: does not block publishability alone, but should influence score/cap honesty
+    metadataOnly: true
+  - id: layering_violation_count
+    profile: diagnostic
+    category: protected-boundary
+    severity: INFO
+    sourceArtifact: review/root-source-thin-no-index.diff
+    formula: count added test lines that call low-level UI/API engines directly
+    repair:
+      observedArtifact: review/root-source-thin-no-index.diff
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-matrix.md
+      route: source-evolution-diagnostic
+    why: Separates acceptable support implementation from test-layer leakage.
+    qualityMeaning: Non-zero in tests means the agent should reorganize classes before close-out.
+    agentAction: move direct engine usage out of test classes
+    repairHint: Use this diagnostic KPI to calibrate quality and score caps; do not force artifact surgery.
+    repairCommand: rerun MCP close-out to regenerate validation/mcp/mcp-kpi-matrix.*
+    capImpact: diagnostic only until calibrated across representative ATF_name packages
+    publishabilityImpact: does not block publishability alone, but should influence score/cap honesty
+    metadataOnly: true
+  - id: assertion_locality_score
+    profile: diagnostic
+    category: test-design
+    severity: INFO
+    sourceArtifact: review/root-source-thin-no-index.diff
+    formula: 100 when added assertions stay outside test classes or are absent; otherwise decreases by scattered assertions
+    repair:
+      observedArtifact: review/root-source-thin-no-index.diff
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-matrix.md
+      route: source-evolution-diagnostic
+    why: Encourages validations to live in support/validation APIs, not scattered scripts.
+    qualityMeaning: Low score means tests are harder to read and maintain.
+    agentAction: move repeated assertions into validation/support helpers
+    repairHint: Use this diagnostic KPI to calibrate quality and score caps; do not force artifact surgery.
+    repairCommand: rerun MCP close-out to regenerate validation/mcp/mcp-kpi-matrix.*
+    capImpact: diagnostic only until calibrated across representative ATF_name packages
+    publishabilityImpact: does not block publishability alone, but should influence score/cap honesty
+    metadataOnly: true
+  - id: business_claims_owned
+    profile: diagnostic
+    category: report-proof
+    severity: INFO
+    sourceArtifact: analysis/langgraph-business-understanding.html
+    formula: count final-report rows that mention owned business claims
+    repair:
+      observedArtifact: analysis/langgraph-business-understanding.html
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-matrix.md
+      route: source-evolution-diagnostic
+    why: Measures whether tests defend named business claims.
+    qualityMeaning: Low value means the package may be technically green but weak as evidence.
+    agentAction: rewrite proof mapping around real business objects and claims
+    repairHint: Use this diagnostic KPI to calibrate quality and score caps; do not force artifact surgery.
+    repairCommand: rerun MCP close-out to regenerate validation/mcp/mcp-kpi-matrix.*
+    capImpact: diagnostic only until calibrated across representative ATF_name packages
+    publishabilityImpact: does not block publishability alone, but should influence score/cap honesty
+    metadataOnly: true
+  - id: business_object_ownership_count
+    profile: diagnostic
+    category: report-proof
+    severity: INFO
+    sourceArtifact: analysis/langgraph-business-understanding.html
+    formula: count final-report rows mentioning owned business objects/claims
+    repair:
+      observedArtifact: analysis/langgraph-business-understanding.html
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-matrix.md
+      route: source-evolution-diagnostic
+    why: Checks that ownership is about domain objects, not generic screens.
+    qualityMeaning: Low value means the report may describe UI motion instead of business value.
+    agentAction: name the protected business object in proof mapping
+    repairHint: Use this diagnostic KPI to calibrate quality and score caps; do not force artifact surgery.
+    repairCommand: rerun MCP close-out to regenerate validation/mcp/mcp-kpi-matrix.*
+    capImpact: diagnostic only until calibrated across representative ATF_name packages
+    publishabilityImpact: does not block publishability alone, but should influence score/cap honesty
+    metadataOnly: true
+  - id: diff_efficiency
+    profile: diagnostic
+    category: score-honesty
+    severity: INFO
+    sourceArtifact: review/source-evolution-ledger.md
+    formula: round(business_claims_owned * 100 / root_diff_files_count)
+    repair:
+      observedArtifact: review/source-evolution-ledger.md
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-matrix.md
+      route: source-evolution-diagnostic
+    why: Shows business proof per file touched.
+    qualityMeaning: Low efficiency suggests broad churn for little business evidence.
+    agentAction: reduce source churn or lower score/cap
+    repairHint: Use this diagnostic KPI to calibrate quality and score caps; do not force artifact surgery.
+    repairCommand: rerun MCP close-out to regenerate validation/mcp/mcp-kpi-matrix.*
+    capImpact: diagnostic only until calibrated across representative ATF_name packages
+    publishabilityImpact: does not block publishability alone, but should influence score/cap honesty
+    metadataOnly: true
+  - id: test_value_density
+    profile: diagnostic
+    category: score-honesty
+    severity: INFO
+    sourceArtifact: review/source-evolution-ledger.md
+    formula: round(business_claims_owned * 100 / test_methods_added)
+    repair:
+      observedArtifact: review/source-evolution-ledger.md
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-matrix.md
+      route: source-evolution-diagnostic
+    why: Shows claim value per test method.
+    qualityMeaning: Low density means many tests may be variants, not new coverage.
+    agentAction: merge cosmetic variants and keep distinct business assertions
+    repairHint: Use this diagnostic KPI to calibrate quality and score caps; do not force artifact surgery.
+    repairCommand: rerun MCP close-out to regenerate validation/mcp/mcp-kpi-matrix.*
+    capImpact: diagnostic only until calibrated across representative ATF_name packages
+    publishabilityImpact: does not block publishability alone, but should influence score/cap honesty
+    metadataOnly: true
+  - id: support_reuse_ratio
+    profile: diagnostic
+    category: support-quality
+    severity: INFO
+    sourceArtifact: review/root-source-thin-no-index.diff
+    formula: round(test_methods_using_support * 100 / test_methods_added)
+    repair:
+      observedArtifact: review/root-source-thin-no-index.diff
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-matrix.md
+      route: source-evolution-diagnostic
+    why: Shows whether tests reuse generated support instead of duplicating flows.
+    qualityMeaning: Low reuse means support architecture is not carrying the suite.
+    agentAction: refactor tests to use support flows consistently
+    repairHint: Use this diagnostic KPI to calibrate quality and score caps; do not force artifact surgery.
+    repairCommand: rerun MCP close-out to regenerate validation/mcp/mcp-kpi-matrix.*
+    capImpact: diagnostic only until calibrated across representative ATF_name packages
+    publishabilityImpact: does not block publishability alone, but should influence score/cap honesty
+    metadataOnly: true
+  - id: refactor_burn_down
+    profile: diagnostic
+    category: support-quality
+    severity: INFO
+    sourceArtifact: review/root-source-thin-no-index.diff
+    formula: round(support classes * 100 / max(1, support classes + test classes))
+    repair:
+      observedArtifact: review/root-source-thin-no-index.diff
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-matrix.md
+      route: source-evolution-diagnostic
+    why: Approximates whether repeated behavior moved toward support.
+    qualityMeaning: Very low values suggest test-only growth; very high values need dead-helper audit.
+    agentAction: balance support extraction with test readability
+    repairHint: Use this diagnostic KPI to calibrate quality and score caps; do not force artifact surgery.
+    repairCommand: rerun MCP close-out to regenerate validation/mcp/mcp-kpi-matrix.*
+    capImpact: diagnostic only until calibrated across representative ATF_name packages
+    publishabilityImpact: does not block publishability alone, but should influence score/cap honesty
+    metadataOnly: true
+  - id: protected_root_purity
+    profile: diagnostic
+    category: protected-boundary
+    severity: INFO
+    sourceArtifact: review/root-source-thin-no-index.diff
+    formula: 100 when protected_root_dirty_count is zero, otherwise 0
+    repair:
+      observedArtifact: review/root-source-thin-no-index.diff
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-matrix.md
+      route: source-evolution-diagnostic
+    why: Gives an easy score signal for framework-boundary purity.
+    qualityMeaning: Anything below 100 means the agent touched protected framework territory.
+    agentAction: undo protected changes before asking for 95+
+    repairHint: Use this diagnostic KPI to calibrate quality and score caps; do not force artifact surgery.
+    repairCommand: rerun MCP close-out to regenerate validation/mcp/mcp-kpi-matrix.*
+    capImpact: diagnostic only until calibrated across representative ATF_name packages
+    publishabilityImpact: does not block publishability alone, but should influence score/cap honesty
+    metadataOnly: true
+  - id: run_delta_uniqueness
+    profile: diagnostic
+    category: source
+    severity: INFO
+    sourceArtifact: review/source-evolution-ledger.md
+    formula: round(distinct non-empty run source deltas * 100 / run diffs)
+    repair:
+      observedArtifact: review/source-evolution-ledger.md
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-matrix.md
+      route: source-evolution-diagnostic
+    why: Shows whether runs learned new things or repeated the same delta.
+    qualityMeaning: Low uniqueness means reruns were used as noise, not progress.
+    agentAction: collapse duplicate runs or explain why repeated deltas were retained
+    repairHint: Use this diagnostic KPI to calibrate quality and score caps; do not force artifact surgery.
+    repairCommand: rerun MCP close-out to regenerate validation/mcp/mcp-kpi-matrix.*
+    capImpact: diagnostic only until calibrated across representative ATF_name packages
+    publishabilityImpact: does not block publishability alone, but should influence score/cap honesty
+    metadataOnly: true
+  - id: run_learning_yield
+    profile: diagnostic
+    category: source
+    severity: INFO
+    sourceArtifact: review/source-evolution-ledger.md
+    formula: round(distinct non-empty run source deltas * 100 / run diffs)
+    repair:
+      observedArtifact: review/source-evolution-ledger.md
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-matrix.md
+      route: source-evolution-diagnostic
+    why: Legacy alias for run_delta_uniqueness kept for current prompt compatibility.
+    qualityMeaning: Low value should lower confidence in iterative learning.
+    agentAction: summarize what changed between runs or discard duplicate run evidence
+    repairHint: Use this diagnostic KPI to calibrate quality and score caps; do not force artifact surgery.
+    repairCommand: rerun MCP close-out to regenerate validation/mcp/mcp-kpi-matrix.*
+    capImpact: diagnostic only until calibrated across representative ATF_name packages
+    publishabilityImpact: does not block publishability alone, but should influence score/cap honesty
+    metadataOnly: true
+  - id: artifact_reopenability_score
+    profile: diagnostic
+    category: report-proof
+    severity: INFO
+    sourceArtifact: analysis/langgraph-business-understanding.html
+    formula: percentage of final report links to diff, ledger, state, MCP gate, Extent, XML, KPI matrix and formula trace
+    repair:
+      observedArtifact: analysis/langgraph-business-understanding.html
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-matrix.md
+      route: source-evolution-diagnostic
+    why: Measures whether a reviewer can reopen the package without memory.
+    qualityMeaning: Low score means the report is not a navigable close-out artifact.
+    agentAction: add missing final-report hyperlinks to evidence artifacts
+    repairHint: Use this diagnostic KPI to calibrate quality and score caps; do not force artifact surgery.
+    repairCommand: rerun MCP close-out to regenerate validation/mcp/mcp-kpi-matrix.*
+    capImpact: diagnostic only until calibrated across representative ATF_name packages
+    publishabilityImpact: does not block publishability alone, but should influence score/cap honesty
+    metadataOnly: true
+  - id: score_delta_justification_score
+    profile: diagnostic
+    category: score-honesty
+    severity: INFO
+    sourceArtifact: analysis/langgraph-business-understanding.html
+    formula: 100 when final report and ledger both explain score_delta, cap and blocker/repair reason
+    repair:
+      observedArtifact: analysis/langgraph-business-understanding.html
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-matrix.md
+      route: source-evolution-diagnostic
+    why: Checks that score movement is explained by evidence.
+    qualityMeaning: Low score means grading is prose-first instead of evidence-first.
+    agentAction: add score_delta and cap rationale tied to artifacts
+    repairHint: Use this diagnostic KPI to calibrate quality and score caps; do not force artifact surgery.
+    repairCommand: rerun MCP close-out to regenerate validation/mcp/mcp-kpi-matrix.*
+    capImpact: diagnostic only until calibrated across representative ATF_name packages
+    publishabilityImpact: does not block publishability alone, but should influence score/cap honesty
+    metadataOnly: true
+  - id: final_report_mcp_link_completeness
+    profile: diagnostic
+    category: report-proof
+    severity: INFO
+    sourceArtifact: analysis/langgraph-business-understanding.html
+    formula: percentage of required MCP close-out links present in the final report
+    repair:
+      observedArtifact: analysis/langgraph-business-understanding.html
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-matrix.md
+      route: source-evolution-diagnostic
+    why: Ensures MCP close-out evidence is visible from the public final report.
+    qualityMeaning: Anything below 100 means close-out is not fully navigable.
+    agentAction: link Extent, XML, gate, ledger, KPI matrix and formula trace
+    repairHint: Use this diagnostic KPI to calibrate quality and score caps; do not force artifact surgery.
+    repairCommand: rerun MCP close-out to regenerate validation/mcp/mcp-kpi-matrix.*
+    capImpact: diagnostic only until calibrated across representative ATF_name packages
+    publishabilityImpact: does not block publishability alone, but should influence score/cap honesty
+    metadataOnly: true
+  - id: closeout_profile_purity
+    profile: diagnostic
+    category: report-proof
+    severity: INFO
+    sourceArtifact: validation/mcp/extent-origin.json
+    formula: 100 when extent-origin/gate command names package-closeout or package-audit; 0 for full sweep masquerading as close-out
+    repair:
+      observedArtifact: validation/mcp/extent-origin.json
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-matrix.md
+      route: source-evolution-diagnostic
+    why: Prevents a diagnostic full sweep from being presented as final package evidence.
+    qualityMeaning: Zero means rerun the official close-out profile.
+    agentAction: rerun testng-mcp-package-closeout.xml or package-audit profile
+    repairHint: Use this diagnostic KPI to calibrate quality and score caps; do not force artifact surgery.
+    repairCommand: rerun MCP close-out to regenerate validation/mcp/mcp-kpi-matrix.*
+    capImpact: diagnostic only until calibrated across representative ATF_name packages
+    publishabilityImpact: does not block publishability alone, but should influence score/cap honesty
+    metadataOnly: true
+  - id: mcp_extent_freshness
+    profile: diagnostic
+    category: report-proof
+    severity: INFO
+    sourceArtifact: validation/mcp/ExtentReport.html
+    formula: 100 when MCP Extent, sha256 and origin artifacts exist together
+    repair:
+      observedArtifact: validation/mcp/ExtentReport.html
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-matrix.md
+      route: source-evolution-diagnostic
+    why: Checks the provenance spine for the final MCP Extent report.
+    qualityMeaning: Zero means the report may be stale, patched or unproven.
+    agentAction: regenerate MCP Extent plus sha256 and extent-origin.json
+    repairHint: Use this diagnostic KPI to calibrate quality and score caps; do not force artifact surgery.
+    repairCommand: rerun MCP close-out to regenerate validation/mcp/mcp-kpi-matrix.*
+    capImpact: diagnostic only until calibrated across representative ATF_name packages
+    publishabilityImpact: does not block publishability alone, but should influence score/cap honesty
+    metadataOnly: true
+  - id: skipped_closeout_count
+    profile: diagnostic
+    category: score-honesty
+    severity: INFO
+    sourceArtifact: validation/mcp/full-mcp-method-ledger.md
+    formula: read numeric Skipped count from validation/mcp/full-mcp-method-ledger.md
+    repair:
+      observedArtifact: validation/mcp/full-mcp-method-ledger.md
+      primaryArtifact: review/source-evolution-ledger.md
+      supportingArtifact: validation/mcp/mcp-kpi-matrix.md
+      route: source-evolution-diagnostic
+    why: Confirms the final package close-out skipped count from execution evidence.
+    qualityMeaning: Zero skipped supports 95 without a skip-disclosure cap; non-zero needs explicit disclosure and score calibration.
+    agentAction: rerun close-out or explain accepted skipped tests with a clear score cap
+    repairHint: Use this diagnostic KPI to calibrate quality and score caps; do not force artifact surgery.
+    repairCommand: rerun MCP close-out to regenerate validation/mcp/mcp-kpi-matrix.*
+    capImpact: diagnostic only until calibrated across representative ATF_name packages
+    publishabilityImpact: does not block publishability alone, but should influence score/cap honesty
+    metadataOnly: true

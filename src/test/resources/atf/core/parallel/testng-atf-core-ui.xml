@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="ATF Core Parallel UI Slice" verbose="1">
+    <listeners>
+        <listener class-name="com.endava.ai.atf.core.reporting.aggregate.AtfCoreAggregateReportListener"/>
+    </listeners>
+    <test name="com.endava.ai.atf.ui">
+        <groups>
+            <run>
+                <exclude name="allure-only"/>
+                <exclude name="controlled-failure-fixture"/>
+                <exclude name="aggregate-published-artifact-audit"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="com.endava.ai.atf.ui.*"/>
+        </packages>
+    </test>
+</suite>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<title>Tipare comune pentru carduri de scor</title>
+<link href="../../assets/shared-report-reference.css" rel="stylesheet">
+<style>
+.grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.score-wall-demo{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:14px}
+.diag{margin-top:10px;border:1px solid var(--border);border-radius:14px;background:#08101a;padding:12px;overflow:auto}
+.pillline{display:flex;flex-direction:column;gap:8px;align-items:flex-start;margin-top:10px}
+.pillrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.pilllabel{color:var(--muted);font-size:12px;font-weight:700;margin-right:2px}
+.toolbar{display:flex;justify-content:flex-start;gap:8px;margin:10px 0 14px}
+.toolbar button{border:1px solid var(--border);background:#111826;color:var(--text);border-radius:999px;padding:7px 12px;font-size:12px;font-weight:700;cursor:pointer}
+.toolbar button:hover{border-color:#7aa2ff;color:#dbe7ff}
+@media(max-width:900px){.score-wall-demo{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.score-wall-demo{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Tipare comune pentru carduri de scor <span class="badge">SCORE</span> <span class="badge">CAP</span> <span class="badge">EVIDENCE</span></h1>
+  <div class="sub">
+    <ul>
+      <li>Defineste forma comuna a cardurilor de scor, nu formula MCP sau formula Atlas.</li>
+      <li>Orice scor trebuie sa fie scurt in opening si redeschisibil in tabelele de motivatie.</li>
+      <li>Scorurile fara cap rationale, fara dovada sau fara intrebare de calitate sunt decorative si trebuie respinse.</li>
+    </ul>
+  </div>
+</header>
+
+<div class="toolbar" aria-label="Controale sectiuni">
+  <button type="button" onclick="toggleAll(true)">Deschide sectiunile</button>
+  <button type="button" onclick="toggleAll(false)">Inchide sectiunile</button>
+</div>
+
+<section class="card">
+  <h2>Overview</h2>
+  <table>
+    <thead><tr><th>Badge</th><th>Ce protejeaza</th></tr></thead>
+    <tbody>
+      <tr><td><span class="badge">SCORE</span></td><td>scor vizibil, compact si legat de o axa clara</td></tr>
+      <tr><td><span class="badge">CAP</span></td><td>motivul pentru care scorul nu urca mai sus</td></tr>
+      <tr><td><span class="badge">EVIDENCE</span></td><td>artefact sau trace care poate fi redeschis rece</td></tr>
+      <tr><td><span class="badge">INVALID</span></td><td>numar frumos fara formula, intrebare, dovada si limita</td></tr>
+    </tbody>
+  </table>
+  <div class="score-wall-demo">
+    <div class="score-card"><h2>Business</h2><div class="score">94</div><p class="note">owned flow, cap explicit</p></div>
+    <div class="score-card"><h2>Evidence</h2><div class="score">92</div><p class="note">links reopenable</p></div>
+    <div class="score-card"><h2>Reporting</h2><div class="score">90</div><p class="note">shell consistent</p></div>
+    <div class="score-card"><h2>Limits</h2><div class="score">88</div><p class="note">partial scope declared</p></div>
+  </div>
+</section>
+
+<div class="grid">
+  <section class="card">
+    <details open>
+      <summary><span class="summary-title">Contract minim</span><span class="sumhint">scor auditabil</span></summary>
+      <table>
+        <thead><tr><th>Camp</th><th>Obligatoriu</th><th>De ce</th></tr></thead>
+        <tbody>
+          <tr><td>Axa</td><td>nume scurt, stabil</td><td>cititorul stie ce masoara cardul</td></tr>
+          <tr><td>Scor</td><td>numar 1-100, fara ambiguitate</td><td>comparabilitate intre rapoarte</td></tr>
+          <tr><td>Intrebare</td><td>ce intrebare rece raspunde axa</td><td>previne scor decorativ</td></tr>
+          <tr><td>Dovada</td><td>link sau trace catre artefact/source</td><td>scor redeschisibil</td></tr>
+          <tr><td>Cap rationale</td><td>de ce nu e mai mare</td><td>scor onest, nu optimism</td></tr>
+        </tbody>
+      </table>
+    </details>
+  </section>
+  <section class="card">
+    <details open>
+      <summary><span class="summary-title">Formula comuna</span><span class="sumhint">skill-specific calculation</span></summary>
+      <table>
+        <thead><tr><th>Parte comuna</th><th>MCP adauga</th><th>Atlas adauga</th></tr></thead>
+        <tbody>
+          <tr><td>score card shape</td><td>publishability, close-out, artifact truth</td><td>business comprehension, trace, maturity</td></tr>
+          <tr><td>cap rationale</td><td>blocker, missing MCP evidence, skipped policy</td><td>partial flow, surface-only object, missing trace</td></tr>
+          <tr><td>evidence row</td><td>Extent/XML/gate/ledger/report link</td><td>source method/layer/proof strip/atlas audit</td></tr>
+          <tr><td>overall wall</td><td>MCP score cap</td><td>Atlas understanding score</td></tr>
+        </tbody>
+      </table>
+    </details>
+  </section>
+</div>
+
+<details>
+  <summary><span class="summary-title">1. Anti-patterns</span><span class="sumhint">ce trebuie penalizat</span></summary>
+  <div class="content">
+    <table>
+      <thead><tr><th>Anti-pattern</th><th>Semnal</th><th>Reparare</th></tr></thead>
+      <tbody>
+        <tr><td>Scor plat</td><td>toate axele au aceeasi nota</td><td>adauga rationale de uniformitate sau diferentiaza axele</td></tr>
+        <tr><td>Scor fara dovada</td><td>cardul nu trimite spre nicio tabela/link</td><td>adauga evidence row redeschisibil</td></tr>
+        <tr><td>Scor vandut gresit</td><td>Atlas Overall devine package readiness sau MCP score devine business completeness</td><td>separa clar sensul skill-ului</td></tr>
+        <tr><td>95+ fara limita</td><td>raportul declara limite, dar scorul ramane excelent</td><td>adauga cap rationale sau coboara scorul</td></tr>
+      </tbody>
+    </table>
+  </div>
+</details>
+
+<details>
+  <summary><span class="summary-title">2. Lantul scorului</span><span class="sumhint">de la intrebare la cap</span></summary>
+  <div class="content">
+    <div class="diag">
+      <svg viewBox="0 0 1160 230" role="img" aria-label="Shared score evidence chain">
+        <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7aa2ff"/></marker></defs>
+        <rect x="55" y="80" width="165" height="62" rx="14" fill="#111826" stroke="#35507a"/>
+        <text x="138" y="107" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Axa</text>
+        <text x="138" y="127" text-anchor="middle" fill="#a8b3cf" font-size="12">ce masori</text>
+        <rect x="275" y="80" width="190" height="62" rx="14" fill="#111826" stroke="#35507a"/>
+        <text x="370" y="107" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Intrebare</text>
+        <text x="370" y="127" text-anchor="middle" fill="#a8b3cf" font-size="12">ce trebuie dovedit</text>
+        <rect x="520" y="80" width="190" height="62" rx="14" fill="#111826" stroke="#35507a"/>
+        <text x="615" y="107" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Dovada</text>
+        <text x="615" y="127" text-anchor="middle" fill="#a8b3cf" font-size="12">link / trace / artifact</text>
+        <rect x="765" y="80" width="150" height="62" rx="14" fill="#111826" stroke="#35507a"/>
+        <text x="840" y="107" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Scor</text>
+        <text x="840" y="127" text-anchor="middle" fill="#a8b3cf" font-size="12">1-100</text>
+        <rect x="970" y="80" width="145" height="62" rx="14" fill="#111826" stroke="#fbbf24"/>
+        <text x="1043" y="107" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Cap</text>
+        <text x="1043" y="127" text-anchor="middle" fill="#a8b3cf" font-size="12">de ce nu mai sus</text>
+        <line x1="220" y1="111" x2="275" y2="111" stroke="#7aa2ff" stroke-width="2" marker-end="url(#arrow)"/>
+        <line x1="465" y1="111" x2="520" y2="111" stroke="#7aa2ff" stroke-width="2" marker-end="url(#arrow)"/>
+        <line x1="710" y1="111" x2="765" y2="111" stroke="#7aa2ff" stroke-width="2" marker-end="url(#arrow)"/>
+        <line x1="915" y1="111" x2="970" y2="111" stroke="#7aa2ff" stroke-width="2" marker-end="url(#arrow)"/>
+      </svg>
+    </div>
+  </div>
+</details>
+
+</div>
+<script>function toggleAll(openState){document.querySelectorAll('details').forEach(function(el){el.open=openState;});}</script>
+</body>
+</html>

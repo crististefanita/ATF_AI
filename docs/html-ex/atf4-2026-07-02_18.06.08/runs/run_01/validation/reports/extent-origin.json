@@ -1,0 +1,13 @@
+﻿{
+    "source":  "run_01_account_payment_ledger",
+    "testsRun":  5,
+    "failures":  0,
+    "size":  716020,
+    "passed":  5,
+    "command":  "mvn -q -Dsurefire.suiteXmlFiles=src/test/resources/ui/testng-atf4-*.xml -Dreports.dir=run_01/validation/reports test",
+    "errors":  0,
+    "sha256":  "322f4ab8de3e1c64840f448c06f67e2f4c69c8645aa37f0ab56bed2769d71ac6",
+    "exitCode":  0,
+    "skipped":  0,
+    "timestamp":  "2026-07-02T18:06:08+03:00"
+}

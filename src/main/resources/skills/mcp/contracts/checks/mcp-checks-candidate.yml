@@ -1,0 +1,18 @@
+﻿schemaVersion: 1
+contracts:
+  - id: 'candidate.semantic-proof-row.negative'
+    expected: 'Candidate-grade packages must prove business words through concrete proof rows, not repeated vocabulary.'
+    artifacts: 'analysis/langgraph-business-understanding.html,runs/run_##/review/run-state.json,runs/run_##/review/thin-no-index.diff'
+    failureMeaning: 'The package can look semantically aligned while lacking a structural proof chain.'
+    repairHint: 'Add proof mapping rows that connect claim, source/diff, execution evidence, state, and verdict.'
+  - id: 'candidate.teacher-grade'
+    expected: 'Candidate packages meet runtime teacher threshold, score cap and semantic evidence trace.'
+    artifacts: 'review/package-state.json,analysis/langgraph-business-understanding.html'
+    failureMeaning: 'The package can be auditable and still not be good enough for html-ex.'
+    repairHint: 'Fix candidate blockers or keep the package as diagnostic/non-teacher evidence.'
+  - id: 'mcp.html-ex-corpus.classification-matrix'
+    expected: 'Every html-ex package is classified as corpus evidence, not blindly treated as latest publishable package.'
+    artifacts: '-Dmcp.html.ex.root,target/mcp-html-ex-corpus-matrix.md'
+    failureMeaning: 'Historical examples can accidentally redefine the latest MCP publishability contract.'
+    repairHint: 'Classify examples and preserve the matrix; do not silently replace or overfit to one archive.'
+

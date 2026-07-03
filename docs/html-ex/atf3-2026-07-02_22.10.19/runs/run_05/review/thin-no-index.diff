@@ -1,0 +1,244 @@
+﻿diff --git a/src/main/java/com/endava/ai/ui/support/flows/invoice/RegisteredInvoiceCheckoutActions.java b/src/main/java/com/endava/ai/ui/support/flows/invoice/RegisteredInvoiceCheckoutActions.java
+new file mode 100644
+index 00000000..2007b714
+--- /dev/null
++++ b/src/main/java/com/endava/ai/ui/support/flows/invoice/RegisteredInvoiceCheckoutActions.java
+@@ -0,0 +1,108 @@
++package com.endava.ai.ui.support.flows.invoice;
++
++import com.endava.ai.ui.support.model.CustomerData;
++import com.endava.ai.ui.support.pages.CheckoutPage;
++import com.endava.ai.ui.support.pages.LoginPage;
++import com.endava.ai.ui.support.pages.ProductPage;
++import com.endava.ai.ui.support.actions.UIActions;
++import com.endava.ai.ui.support.wait.WaitUtils;
++
++import java.time.Duration;
++
++final class RegisteredInvoiceCheckoutActions {
++    private final RegisteredInvoicePageState pageState = new RegisteredInvoicePageState();
++    private final RegisteredInvoiceBillingStep billingStep = new RegisteredInvoiceBillingStep();
++    private final RegisteredInvoicePaymentConfirmationStep paymentConfirmationStep =
++            new RegisteredInvoicePaymentConfirmationStep();
++
++    String paymentMethod() {
++        return paymentConfirmationStep.paymentMethod();
++    }
++
++    ProductSelection addFirstAvailableProduct() {
++        UIActions.navigateToRelative("/");
++        WaitUtils.waitForVisible(ProductPage.PRODUCT_CARD);
++        int count = UIActions.getTexts(ProductPage.PRODUCT_CARD, "Catalog product links").size();
++        for (int index = 1; index <= count; index++) {
++            String cardText = UIActions.getTexts(ProductPage.PRODUCT_CARD, "Catalog product links").get(index - 1);
++            if (cardText.toLowerCase().contains("out of stock")) {
++                continue;
++            }
++            UIActions.clickVisible(ProductPage.PRODUCT_CARD, "Available catalog product", index);
++            WaitUtils.waitForVisible(ProductPage.PRODUCT_NAME);
++            String productName = UIActions.getText(ProductPage.PRODUCT_NAME, "Product detail name");
++            String unitPrice = UIActions.getText(ProductPage.UNIT_PRICE, "Product unit price");
++            UIActions.click(ProductPage.ADD_TO_CART, "Add product to cart");
++            waitForCartReadyAfterAdd();
++            return new ProductSelection(productName, unitPrice, 1);
++        }
++        throw new AssertionError("No in-stock catalog product was available for invoice checkout.");
++    }
++
++    private void waitForCartReadyAfterAdd() {
++        Boolean cartUpdated = waitForCartBadge();
++        if (!Boolean.TRUE.equals(cartUpdated)) {
++            UIActions.click(ProductPage.ADD_TO_CART, "Retry add product to cart");
++            cartUpdated = waitForCartBadge();
++        }
++        if (Boolean.TRUE.equals(cartUpdated)) {
++            return;
++        }
++        UIActions.navigateToRelative("/checkout");
++        WaitUtils.waitForVisible(CheckoutPage.PROCEED_FROM_CART);
++    }
++
++    private Boolean waitForCartBadge() {
++        return WaitUtils.waitUntil(
++                () -> pageState.textContains(ProductPage.CART_QUANTITY, "1"),
++                Boolean.TRUE::equals,
++                Duration.ofSeconds(10),
++                Duration.ofMillis(500)
++        );
++    }
++
++    String proceedFromCartToSignInStep() {
++        UIActions.navigateToRelative("/checkout");
++        WaitUtils.waitForVisible(CheckoutPage.PROCEED_FROM_CART);
++        String cartBody = pageState.body();
++        UIActions.click(CheckoutPage.PROCEED_FROM_CART, "Proceed from cart to sign-in step");
++        return pageState.lastMoneyValue(cartBody);
++    }
++
++    void proceedFromAuthenticatedSignInStep(CustomerData customer) {
++        WaitUtils.waitForCondition(
++                "authenticated checkout sign-in step is ready",
++                () -> pageState.body().contains("already logged in") || pageState.isVisible(LoginPage.EMAIL),
++                "Expected checkout sign-in step before billing."
++        );
++        if (pageState.isVisible(LoginPage.EMAIL)) {
++            UIActions.type(LoginPage.EMAIL, "Checkout login email", customer.getEmail());
++            UIActions.type(LoginPage.PASSWORD, "Checkout login password", customer.getPassword());
++            UIActions.click(LoginPage.LOGIN_BUTTON, "Checkout login");
++        }
++        WaitUtils.waitForVisible(CheckoutPage.PROCEED_FROM_ACCOUNT);
++        UIActions.click(CheckoutPage.PROCEED_FROM_ACCOUNT, "Proceed from authenticated sign-in");
++    }
++
++    void fillBilling(CustomerData customer) {
++        billingStep.fill(customer);
++    }
++
++    String confirmPaymentToInvoice(CustomerData customer, RegisteredInvoiceAccountActions accountActions) {
++        return paymentConfirmationStep.confirm(customer, accountActions);
++    }
++
++    static final class ProductSelection {
++        final String name;
++        final String unitPrice;
++        final int quantity;
++
++        private ProductSelection(String name, String unitPrice, int quantity) {
++            this.name = name;
++            this.unitPrice = unitPrice;
++            this.quantity = quantity;
++        }
++    }
++
++}
++
+diff --git a/src/main/java/com/endava/ai/ui/support/flows/invoice/RegisteredInvoicePaymentConfirmationStep.java b/src/main/java/com/endava/ai/ui/support/flows/invoice/RegisteredInvoicePaymentConfirmationStep.java
+new file mode 100644
+index 00000000..ef971164
+--- /dev/null
++++ b/src/main/java/com/endava/ai/ui/support/flows/invoice/RegisteredInvoicePaymentConfirmationStep.java
+@@ -0,0 +1,79 @@
++package com.endava.ai.ui.support.flows.invoice;
++
++import com.endava.ai.ui.core.engine.UiNetworkResponse;
++import com.endava.ai.ui.support.actions.UIActions;
++import com.endava.ai.ui.support.model.CustomerData;
++import com.endava.ai.ui.support.pages.CheckoutPage;
++import com.endava.ai.ui.support.wait.WaitUtils;
++
++import java.time.Duration;
++import java.util.regex.Pattern;
++
++final class RegisteredInvoicePaymentConfirmationStep {
++    private static final Pattern INVOICE_PATTERN = Pattern.compile("INV-\\d+");
++    private static final String PAYMENT_METHOD = "Cash on Delivery";
++    private static final String PAYMENT_METHOD_VALUE = "cash-on-delivery";
++    private static final Duration INVOICE_CONFIRMATION_WAIT = Duration.ofSeconds(30);
++    private static final Duration INVOICE_CONFIRMATION_RETRY_WAIT = Duration.ofSeconds(15);
++
++    private final RegisteredInvoicePageState pageState = new RegisteredInvoicePageState();
++
++    String paymentMethod() {
++        return PAYMENT_METHOD;
++    }
++
++    String confirm(CustomerData customer, RegisteredInvoiceAccountActions accountActions) {
++        UIActions.select(CheckoutPage.PAYMENT_METHOD, "Payment method", PAYMENT_METHOD_VALUE);
++        WaitUtils.pause(Duration.ofMillis(300));
++        UIActions.click(CheckoutPage.FINISH, "Confirm payment method");
++        WaitUtils.waitForCondition(
++                "payment success message appears before final invoice confirmation",
++                () -> pageState.body().contains("Payment was successful"),
++                "Expected payment success message before final invoice confirmation. Current body: " + pageState.body()
++        );
++        UIActions.getText(CheckoutPage.BODY, "Checkout body after payment success");
++        if (pageState.isVisible(CheckoutPage.FINISH)) {
++            confirmInvoiceCreation();
++        }
++        Boolean invoiceVisible = waitForInvoiceNumber(INVOICE_CONFIRMATION_WAIT);
++        if (!Boolean.TRUE.equals(invoiceVisible) && pageState.isVisible(CheckoutPage.FINISH)) {
++            UIActions.click(CheckoutPage.FINISH, "Retry invoice confirmation");
++            invoiceVisible = waitForInvoiceNumber(INVOICE_CONFIRMATION_RETRY_WAIT);
++        }
++        if (!Boolean.TRUE.equals(invoiceVisible) && pageState.isVisible(CheckoutPage.FINISH)) {
++            UIActions.pressKey(CheckoutPage.FINISH, "Submit invoice confirmation with keyboard", "Enter");
++            invoiceVisible = waitForInvoiceNumber(INVOICE_CONFIRMATION_RETRY_WAIT);
++        }
++        if (!Boolean.TRUE.equals(invoiceVisible)) {
++            UIActions.getText(CheckoutPage.BODY, "Checkout body before account invoice fallback");
++            accountActions.openInvoicesFor(customer);
++            return accountActions.readInvoiceNumberFromAccountInvoices();
++        }
++        return accountActions.readInvoiceNumberFromCurrentPage("checkout confirmation");
++    }
++
++    private void confirmInvoiceCreation() {
++        WaitUtils.pause(Duration.ofSeconds(1));
++        UiNetworkResponse invoiceResponse = UIActions.waitForResponse(
++                "invoice creation after payment success",
++                "/invoices",
++                "POST",
++                () -> UIActions.click(CheckoutPage.FINISH, "Confirm payment into invoice")
++        );
++        if (!invoiceResponse.isSuccess()) {
++            throw new AssertionError("Expected invoice creation response to be successful, but status was "
++                    + invoiceResponse.getStatus() + " for " + invoiceResponse.getUrl()
++                    + ". Response body preview: " + invoiceResponse.getBodyPreview());
++        }
++        UIActions.getText(CheckoutPage.BODY, "Checkout body after final invoice confirmation");
++    }
++
++    private Boolean waitForInvoiceNumber(Duration timeout) {
++        return WaitUtils.waitUntil(
++                () -> INVOICE_PATTERN.matcher(pageState.body()).find(),
++                Boolean.TRUE::equals,
++                timeout,
++                Duration.ofMillis(500)
++        );
++    }
++}
+diff --git a/src/test/java/com/endava/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentReopenTest.java b/src/test/java/com/endava/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentReopenTest.java
+new file mode 100644
+index 00000000..b0511e58
+--- /dev/null
++++ b/src/test/java/com/endava/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentReopenTest.java
+@@ -0,0 +1,39 @@
++package com.endava.ai.ui.tests.invoice.account.document;
++
++import com.endava.ai.ui.core.runtime.BaseTestUI;
++import com.endava.ai.ui.support.flows.invoice.RegisteredInvoiceFlow;
++import com.endava.ai.ui.support.validation.invoice.AccountInvoiceValidation;
++import com.endava.ai.ui.tests.fixture.invoice.RegisteredInvoiceFixture;
++import org.testng.annotations.Test;
++
++public final class RegisteredInvoiceDocumentReopenTest extends BaseTestUI {
++    private final RegisteredInvoiceFlow uiFlow = new RegisteredInvoiceFlow();
++    private final RegisteredInvoiceFixture documentFixture = new RegisteredInvoiceFixture();
++    private final AccountInvoiceValidation documentValidation = new AccountInvoiceValidation();
++
++    @Test
++    public void reopened_invoice_document_stays_details_scoped() {
++        documentValidation.assertInvoiceDetailsScopeDocument(documentFixture.reopenedInvoiceDocument());
++    }
++
++    @Test
++    public void reopened_document_download_response_is_successful() {
++        documentValidation.assertInvoiceDocumentResponseIsSuccessful(documentFixture.reopenedInvoiceDocument());
++        documentValidation.assertInvoicePdfArtifactHasBinaryBoundaries(documentFixture.reopenedInvoiceDocument());
++    }
++
++    @Test
++    public void reopened_document_download_url_is_invoice_scoped() {
++        documentValidation.assertInvoiceDocumentUrlIsInvoiceScoped(documentFixture.reopenedInvoiceDocument());
++    }
++
++    @Test
++    public void reopened_document_download_status_is_reported() {
++        documentValidation.assertInvoiceDocumentStatusBodyReportsState(documentFixture.reopenedInvoiceDocument());
++    }
++
++    @Test
++    public void reopened_invoice_document_details_keep_product() {
++        documentValidation.assertInvoiceDocumentDetailsKeepProduct(documentFixture.reopenedInvoiceDocument());
++    }
++}

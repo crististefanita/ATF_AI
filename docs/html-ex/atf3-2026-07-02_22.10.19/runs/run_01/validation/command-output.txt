@@ -1,0 +1,478 @@
+﻿SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+  � Playwright pages after init: 1
+? Clear browser session
+  ? PASS: Session cleared
+? Navigate to URL: https://practicesoftwaretesting.com/auth/register
+  � base.url=https://practicesoftwaretesting.com
+  � relativePath=/auth/register
+  � Playwright pages after open: 1
+  � Wait for URL contains: /auth/register
+  ? PASS: Navigated
+? Type into element: First name
+  � locator=input[data-test='first-name']
+  � value=John
+  ? PASS: Typed
+? Type into element: Last name
+  � locator=input[data-test='last-name']
+  � value=Doe
+  ? PASS: Typed
+? Type into element: Date of Birth
+  � locator=input[data-test='dob']
+  � value=1990-01-01
+  ? PASS: Typed
+? Type into element: Phone
+  � locator=input[data-test='phone']
+  � value=0712345678
+  ? PASS: Typed
+? Type into element: Email address
+  � locator=input[data-test='email']
+  � value=user_r2oiqaezmi@example.com
+  ? PASS: Typed
+? Type into element: Password
+  � locator=input[data-test='password']
+  � value=Aa1@N0HYdace
+  ? PASS: Typed
+? Select option: Country
+  � locator=select[data-test='country']
+  � value=RO
+  ? PASS: Selected
+? Type into element: Postal code
+  � locator=input[data-test='postal_code']
+  � value=10001
+  ? PASS: Typed
+? Type into element: House number
+  � locator=input[data-test='house_number']
+  � value=5
+  ? PASS: Typed
+? Type into element: Street
+  � locator=input[data-test='street']
+  � value=Main Street 1
+  ? PASS: Typed
+? Type into element: City
+  � locator=input[data-test='city']
+  � value=Bucharest
+  ? PASS: Typed
+? Type into element: State
+  � locator=input[data-test='state']
+  � value=B
+  ? PASS: Typed
+? Type into element: Street
+  � locator=input[data-test='street']
+  � value=Main Street 1
+  ? PASS: Typed
+? Type into element: City
+  � locator=input[data-test='city']
+  � value=Bucharest
+  ? PASS: Typed
+? Type into element: State
+  � locator=input[data-test='state']
+  � value=B
+  ? PASS: Typed
+? Click on: Register
+  � locator=button[data-test='register-submit']
+  ? PASS: Clicked
+? Open URL: https://practicesoftwaretesting.com/auth/login
+  � base.url=https://practicesoftwaretesting.com
+  � relativePath=/auth/login
+  � Playwright pages after open: 1
+  ? PASS: Opened
+? Type into element: Registered customer email
+  � locator=input[data-test='email']
+  � value=user_r2oiqaezmi@example.com
+  ? PASS: Typed
+? Type into element: Registered customer password
+  � locator=input[data-test='password']
+  � value=Aa1@N0HYdace
+  ? PASS: Typed
+? Click on: Login registered customer
+  � locator=input[data-test='login-submit']
+  ? PASS: Clicked
+? Navigate to URL: https://practicesoftwaretesting.com/
+  � base.url=https://practicesoftwaretesting.com
+  � relativePath=/
+  � Playwright pages after open: 1
+  � Wait for URL contains: /
+  ? PASS: Navigated
+? Get texts from: Catalog product links
+  � locator=a[data-test^='product-']
+  � texts=[Combination Pliers
+A
+B
+C
+D
+E
+$14.15, Pliers
+A
+B
+C
+D
+E
+$12.01, Bolt Cutters
+A
+B
+C
+D
+E
+$48.41, Long Nose Pliers
+A
+B
+C
+D
+E
+Out of stock
+$14.24, Slip Joint Pliers
+A
+B
+C
+D
+E
+$9.17, Claw Hammer with Shock Reduction Grip
+A
+B
+C
+D
+E
+$13.41, Hammer
+A
+B
+C
+D
+E
+$12.58, Claw Hammer
+A
+B
+C
+D
+E
+$11.48, Thor Hammer
+A
+B
+C
+D
+E
+$11.14]
+  ? PASS: Texts captured
+? Get texts from: Catalog product links
+  � locator=a[data-test^='product-']
+  � texts=[Combination Pliers
+A
+B
+C
+D
+E
+$14.15, Pliers
+A
+B
+C
+D
+E
+$12.01, Bolt Cutters
+A
+B
+C
+D
+E
+$48.41, Long Nose Pliers
+A
+B
+C
+D
+E
+Out of stock
+$14.24, Slip Joint Pliers
+A
+B
+C
+D
+E
+$9.17, Claw Hammer with Shock Reduction Grip
+A
+B
+C
+D
+E
+$13.41, Hammer
+A
+B
+C
+D
+E
+$12.58, Claw Hammer
+A
+B
+C
+D
+E
+$11.48, Thor Hammer
+A
+B
+C
+D
+E
+$11.14]
+  ? PASS: Texts captured
+? Click visible match on: Available catalog product
+  � locator=a[data-test^='product-']
+  � visibleIndex=1
+  ? PASS: Clicked visible match
+? Get text from: Product detail name
+  � locator=[data-test='product-name']
+  � text=Combination Pliers
+  ? PASS: Text captured
+? Get text from: Product unit price
+  � locator=[data-test='product-price']
+  � text=
+  ? PASS: Text captured
+? Click on: Add product to cart
+  � locator=[data-test='add-to-cart']
+  ? PASS: Clicked
+? Navigate to URL: https://practicesoftwaretesting.com/checkout
+  � base.url=https://practicesoftwaretesting.com
+  � relativePath=/checkout
+  � Playwright pages after open: 1
+  � Wait for URL contains: /checkout
+  ? PASS: Navigated
+? Click on: Proceed from cart to sign-in step
+  � locator=[data-test='proceed-1']
+  ? PASS: Clicked
+? Click on: Proceed from authenticated sign-in
+  � locator=[data-test='proceed-2']
+  ? PASS: Clicked
+? Select option: Billing country
+  � locator=[data-test='country']
+  � value=RO
+  ? PASS: Selected
+? Press key on element: Billing postal code select all
+  � locator=[data-test='postal_code']
+  � key=Control+A
+  ? PASS: Key pressed
+? Press key on element: Billing postal code clear
+  � locator=[data-test='postal_code']
+  � key=Backspace
+  ? PASS: Key pressed
+? Type into element: Billing postal code
+  � locator=[data-test='postal_code']
+  � value=10001
+  ? PASS: Typed
+? Press key on element: Billing house number select all
+  � locator=[data-test='house_number']
+  � key=Control+A
+  ? PASS: Key pressed
+? Press key on element: Billing house number clear
+  � locator=[data-test='house_number']
+  � key=Backspace
+  ? PASS: Key pressed
+? Type into element: Billing house number
+  � locator=[data-test='house_number']
+  � value=5
+  ? PASS: Typed
+? Press key on element: Billing street select all
+  � locator=[data-test='street']
+  � key=Control+A
+  ? PASS: Key pressed
+? Press key on element: Billing street clear
+  � locator=[data-test='street']
+  � key=Backspace
+  ? PASS: Key pressed
+? Type into element: Billing street
+  � locator=[data-test='street']
+  � value=Main Street 1
+  ? PASS: Typed
+? Click on: Proceed from billing to payment
+  � locator=[data-test='proceed-3']
+  ? PASS: Clicked
+? Select option: Payment method
+  � locator=select[data-test='payment-method']:visible
+  � value=cash-on-delivery
+  ? PASS: Selected
+? Click on: Confirm payment method
+  � locator=[data-test='finish']:visible
+  ? PASS: Clicked
+? Get text from: Checkout body after payment success
+  � locator=body
+  � text=View the Documentation for this application.
+Practice Black Box Testing & Bug Hunting
+Testing Guide
+? Bug Hunting
+Home
+Categories 
+Contact
+John Doe 
+1
+ EN 
+CART
+1
+SIGN IN
+2
+BILLING ADDRESS
+3
+PAYMENT
+4
+Payment
+Payment Method
+Choose your payment method
+Bank Transfer
+Cash on Delivery
+Credit Card
+Buy Now Pay Later
+Gift Card
+Payment was successful
+Confirm
+
+This is a DEMO application (GitHub repo), used for software testing training purpose. | Privacy Policy | Banner photo by Barn Images on Unsplash.
+  ? PASS: Text captured
+? Wait for network response: invoice creation after payment success
+  � urlContains=/invoices
+  � method=POST
+? Click on: Confirm payment into invoice
+  � locator=[data-test='finish']:visible
+  ? PASS: Clicked
+  � responseUrl=https://api.practicesoftwaretesting.com/invoices
+  � responseMethod=POST
+  � status=201
+  � requestPreviewLength=248
+  � requestPreview={"billing_street":"Schaefer Passage","billing_city":"Jeffereymouth","billing_state":"South Dakota","billing_country":"RO","billing_postal_code":"10001","payment_method":"cash-on-delivery","payment_details":{},"cart_id":"01kwj5m962qcs3yexrpm98szpa"}
+  � bodyPreviewLength=499
+  � bodyPreview={"billing_street":"Schaefer Passage","billing_city":"Jeffereymouth","billing_state":"South Dakota","billing_country":"RO","billing_postal_code":"10001","user_id":"01kwj5m5n128scexcqenjkmjmm","invoice_date":"2026-07-02T19:41:59.923982Z","invoice_number":"INV-2026000041","id":"01kwj5mdqr4b1dxw4j06037msp","created_at":"2026-07-02T19:41:59.000000Z","subtotal":14.15,"total":14.15,"additional_discount_percentage":null,"additional_discount_amount":0,"eco_discount_percentage":0,"eco_discount_amount":0}
+  ? PASS: Network response captured
+? Get text from: Checkout body after final invoice confirmation
+  � locator=body
+  � text=View the Documentation for this application.
+Practice Black Box Testing & Bug Hunting
+Testing Guide
+? Bug Hunting
+Home
+Categories 
+Contact
+John Doe 
+1
+ EN 
+CART
+1
+SIGN IN
+2
+BILLING ADDRESS
+3
+PAYMENT
+4
+Thanks for your order! Your invoice number is INV-2026000041.
+
+This is a DEMO application (GitHub repo), used for software testing training purpose. | Privacy Policy | Banner photo by Barn Images on Unsplash.
+  ? PASS: Text captured
+? Navigate to URL: https://practicesoftwaretesting.com/account/invoices
+  � base.url=https://practicesoftwaretesting.com
+  � relativePath=/account/invoices
+  � Playwright pages after open: 1
+  � Wait for URL contains: /account/invoices
+  ? PASS: Navigated
+? Navigate to URL: https://practicesoftwaretesting.com/account/invoices
+  � base.url=https://practicesoftwaretesting.com
+  � relativePath=/account/invoices
+  � Playwright pages after open: 1
+  � Wait for URL contains: /account/invoices
+  ? PASS: Navigated
+? Get attribute from: Invoice details href
+  � locator=tbody tr:has-text('INV-2026000041') a:has-text('Details'), tbody tr:has-text('INV-2026000041') button:has-text('Details')
+  � attribute=href
+  � attributeValue=/account/invoices/01kwj5mdqr4b1dxw4j06037msp
+  ? PASS: Attribute captured
+? Click on: Invoice details for INV-2026000041
+  � locator=tbody tr:has-text('INV-2026000041') a:has-text('Details'), tbody tr:has-text('INV-2026000041') button:has-text('Details')
+  ? PASS: Clicked
+? Wait for network response: invoice PDF status response for INV-2026000041 via button:has-text('Download PDF') attempt 1
+  � urlContains=download-pdf-status
+  � method=GET
+? Click on: Download invoice document for INV-2026000041
+  � locator=button:has-text('Download PDF')
+  ? PASS: Clicked
+  � responseUrl=https://api.practicesoftwaretesting.com/invoices/INV-2026000041/download-pdf-status
+  � responseMethod=GET
+  � status=400
+  � requestPreviewLength=0
+  � bodyPreviewLength=26
+  � bodyPreview={"status":"NOT_INITIATED"}
+  ? PASS: Network response captured
+? Validate invoice document details name the invoice
+  � invoiceNumber=INV-2026000041
+  � detailsBody=View the Documentation for this application.
+Practice Black Box Testing & Bug Hunting
+Testing Guide
+? Bug Hunting
+Home
+Categories 
+Contact
+John Doe 
+1
+ EN 
+Download PDF
+General Information
+Invoice Number
+Invoice Date
+Total
+Billing Address
+Street
+Postal code
+City
+State
+Country
+Payment Information
+Payment Method
+Products
+Quantity	Product	Price	Total
+1	Combination Pliers�
+	$14.15	$14.15
+
+This is a DEMO application (GitHub repo), used for software testing training purpose. | Privacy Policy | Banner photo by Barn Images on Unsplash.
+  � documentUrl=https://api.practicesoftwaretesting.com/invoices/INV-2026000041/download-pdf-status
+  ? PASS: Invoice document details name the invoice.
+? Validate invoice PDF generation status is observable
+  � documentPreviewLength=22
+  � documentPreview={"status":"INITIATED"}
+  ? PASS: Invoice PDF generation lifecycle state is observable.
+? Validate invoice PDF generation boundary
+  � documentStatusUrl=https://api.practicesoftwaretesting.com/invoices/INV-2026000041/download-pdf-status
+  � documentStatus=200
+  � documentStatusBody={"status":"INITIATED"}
+  ? PASS: Invoice PDF generation boundary exposes invoice-scoped status.
+? Validate invoice document status boundary is reachable
+  � documentUrl=https://api.practicesoftwaretesting.com/invoices/INV-2026000041/download-pdf-status
+  � documentStatus=200
+  ? PASS: Invoice document status boundary is reachable.
+? Validate invoice document starts from invoice details
+  � detailsUrl=https://practicesoftwaretesting.com/account/invoices/01kwj5mdqr4b1dxw4j06037msp
+  � invoiceNumber=INV-2026000041
+  � detailsBody=View the Documentation for this application.
+Practice Black Box Testing & Bug Hunting
+Testing Guide
+? Bug Hunting
+Home
+Categories 
+Contact
+John Doe 
+1
+ EN 
+Download PDF
+General Information
+Invoice Number
+Invoice Date
+Total
+Billing Address
+Street
+Postal code
+City
+State
+Country
+Payment Information
+Payment Method
+Products
+Quantity	Product	Price	Total
+1	Combination Pliers�
+	$14.15	$14.15
+
+This is a DEMO application (GitHub repo), used for software testing training purpose. | Privacy Policy | Banner photo by Barn Images on Unsplash.
+  ? PASS: Invoice details scope owns document trigger.
+? Validate invoice document URL remains invoice scoped
+  � documentUrl=https://api.practicesoftwaretesting.com/invoices/INV-2026000041/download-pdf-status
+  ? PASS: Invoice document URL remains invoice scoped.

@@ -1,0 +1,76 @@
+schemaVersion: 1
+contracts:
+  - id: business-understanding.model.business-object
+    kind: semantic-model
+    model: BusinessObject
+    sourcePattern: durable domain outcome or observable business record
+    requiredFields: name,observableResult
+    expected: Business objects name domain outcomes, not run slots, UI widgets or technical containers.
+    repair: Replace technical graph nodes with durable product objects and visible business results.
+
+  - id: business-understanding.model.business-claim
+    kind: semantic-model
+    model: BusinessClaim
+    sourcePattern: business object -> claim text
+    requiredFields: businessObject,claim
+    expected: A business claim states what behavior is proven for a named business object.
+    repair: Tie every high-value claim to a named object before linking proof or score rationale.
+
+  - id: business-understanding.model.flow-story
+    kind: semantic-model
+    model: BusinessFlowStory
+    sourcePattern: actor -> intent -> visible action -> business object -> observable result
+    requiredFields: actor,intent,visibleAction,businessObject,observableResult
+    expected: A class or report row can be reduced to a readable product story before scoring.
+    repair: Extract the user or system actor, intent, visible action, business object and observable result before writing graph nodes.
+
+  - id: business-understanding.model.business-graph-construction
+    kind: semantic-model
+    model: BusinessGraphConstruction
+    sourcePattern: business anchor -> actor intent -> primary owned object -> labeled relationships -> frontier -> proof boundary
+    requiredFields: businessAnchor,actorIntent,primaryOwnedObject,relationshipLabels,frontierObject,proofBoundary
+    expected: A business graph is constructed from application objects first, with proof artifacts kept outside the graph nodes.
+    constructionSteps: start-from-business-object,choose-primary-owned-object,map-supporting-domain-objects,label-business-relationships,separate-frontier-as-dashed-or-capped,move-proof-artifacts-outside-graph
+    forbiddenNodeTokens: run_,TestNG,XML,Extent,MCP,diff,suite,class
+    visualRequirements: at-least-two-levels,primary-owned-node-highlighted,frontier-visible-and-limited,relationship-labels-present,legend-explains-business-semantics
+    repair: Redraw flat or proof-first graphs around a durable business anchor, highlight the primary owned object, label relationship arrows with business verbs, separate the dashed/capped frontier, and move run/XML/Extent/diff/state evidence to Proof Mapping, Run Audit or a collapsed proof strip.
+
+  - id: business-understanding.model.maturity
+    kind: semantic-model
+    model: BusinessMaturity
+    sourcePattern: owned | partial | diagnostic | surface-only | blocked
+    requiredFields: label,meaning,strongOwnership
+    expected: Business evidence depth is classified separately from test pass/fail and package readiness.
+    repair: Mark each object or flow as owned, partial, diagnostic, surface-only or blocked before assigning high scores.
+
+  - id: business-understanding.model.proof-strip-row
+    kind: semantic-model
+    model: BusinessProofStripRow
+    sourcePattern: node/flow -> test/method -> layer path -> business evidence -> limit
+    requiredFields: flowOrNode,testMethod,layerPath,businessEvidence,understandingLimit
+    expected: Each graph node or subflow can be reopened locally from method, layer path, business evidence and limit.
+    repair: Add local proof-strip rows under the graph instead of relying only on distant summary tables.
+
+  - id: business-understanding.model.proof-chain
+    kind: semantic-model
+    model: BusinessProofChain
+    sourcePattern: claim -> support layers -> evidence references -> understanding limit
+    requiredFields: claim,supportLayers,evidenceReferences,understandingLimit
+    expected: A business claim is backed by reopenable source/report/runtime evidence and an explicit limit.
+    repair: Link each important claim to support layers, evidence artifacts and a limit before scoring it.
+
+  - id: business-understanding.model.source-trace-row
+    kind: semantic-model
+    model: BusinessSourceTraceRow
+    sourcePattern: source reference -> business object -> evidence layer path -> maturity -> comprehension limit
+    requiredFields: sourceReference,businessObject,evidenceLayerPath,maturity,comprehensionLimit
+    expected: Source-to-business trace rows connect real classes or methods to business objects and limits.
+    repair: Replace generic trace prose with class/method references, layer path, maturity and explicit limits.
+
+  - id: business-understanding.model.score-rationale
+    kind: semantic-model
+    model: BusinessScoreRationale
+    sourcePattern: business goal -> flow question -> source/layer evidence -> atlas score -> cap rationale
+    requiredFields: axis,score,businessGoal,flowQuestion,sourceLayerEvidence,capRationale
+    expected: Scores are audit rows, not decorative numbers.
+    repair: For each score axis, publish the goal, question, evidence, numeric score and cap rationale.

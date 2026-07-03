@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="ATF Allure Evidence Sweep" verbose="1">
+    <test name="allure-evidence-contracts">
+        <groups>
+            <run>
+                <include name="allure-only"/>
+                <exclude name="controlled-failure-fixture"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="com.endava.ai.atf.*"/>
+        </packages>
+    </test>
+</suite>

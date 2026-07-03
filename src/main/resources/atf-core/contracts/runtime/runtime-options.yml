@@ -1,0 +1,58 @@
+schemaVersion: 1
+contracts:
+  - id: core.runtime-options.ui-engine
+    kind: canonical-key
+    key: ui.engine
+    constant: UI_ENGINE_KEY
+    owner: UiRuntimeOptions
+    defaultValue: default
+    validator: com.endava.ai.atf.ui.component.UiEngineRuntimeOptionsContractTest
+    repair: Keep engine selection centralized in UiRuntimeOptions and UiEngineType.
+  - id: core.runtime-options.ui-headless
+    kind: canonical-key
+    key: ui.headless
+    constant: UI_HEADLESS_KEY
+    owner: UiRuntimeOptions
+    defaultValue: true
+    validator: com.endava.ai.atf.ui.component.UiEngineRuntimeOptionsContractTest
+    repair: Keep headless behavior centralized and restore overrides after tests.
+  - id: core.runtime-options.ui-wait-timeout
+    kind: canonical-key
+    key: ui.wait.timeout.seconds
+    constant: UI_WAIT_TIMEOUT_SECONDS_KEY
+    owner: UiRuntimeOptions
+    defaultValue: 10
+    validator: com.endava.ai.atf.ui.component.UiEngineRuntimeOptionsContractTest
+    repair: Keep wait timeout parsing in UiRuntimeOptions before browser startup.
+  - id: core.runtime-options.legacy-wait-timeout
+    kind: fallback-key
+    key: explicit.wait.seconds
+    constant: LEGACY_WAIT_TIMEOUT_SECONDS_KEY
+    owner: UiRuntimeOptions
+    defaultValue: 10
+    validator: com.endava.ai.atf.ui.component.UiEngineRuntimeOptionsContractTest
+    repair: Preserve the legacy fallback only when the canonical wait key is absent.
+  - id: core.runtime-options.console-details
+    kind: canonical-key
+    key: console.details.enabled
+    constant: CONSOLE_DETAILS_ENABLED_KEY
+    owner: UiRuntimeOptions
+    defaultValue: false
+    validator: com.endava.ai.atf.core.reporting.regression.ConsoleSignatureContractTest
+    repair: Keep console detail gating in one runtime option read by StepLogger.
+  - id: core.runtime-options.runtime-metadata-reporting
+    kind: canonical-key
+    key: ui.runtime.metadata.reporting.enabled
+    constant: UI_RUNTIME_METADATA_REPORTING_KEY
+    owner: UiRuntimeOptions
+    defaultValue: false
+    validator: com.endava.ai.atf.ui.component.UiEngineRuntimeOptionsContractTest
+    repair: Keep runtime metadata reporting opt-in and centralized.
+  - id: core.runtime-options.page-zoom
+    kind: canonical-key
+    key: ui.page.zoom.percent
+    constant: UI_PAGE_ZOOM_PERCENT_KEY
+    owner: UiRuntimeOptions
+    defaultValue: 100
+    validator: com.endava.ai.atf.core.reporting.window.UIZoomRuntimeReportingContractTest
+    repair: Keep zoom config in UiRuntimeOptions and reporting/window support.

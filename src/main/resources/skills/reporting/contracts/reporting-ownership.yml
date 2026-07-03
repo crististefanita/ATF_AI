@@ -1,0 +1,152 @@
+﻿schemaVersion: 1
+contracts:
+  - id: core.reporting.aggregate.writer-main
+    kind: expected-main
+    path: src/main/java/com/endava/ai/core/reporting/aggregate/AggregateExtentReportWriter.java
+    owner: ATF core aggregate runtime ownership
+    repair: Keep reusable aggregate writers in main, not in contract tests.
+  - id: core.reporting.aggregate.inventory-lines-main
+    kind: expected-main
+    path: src/main/java/com/endava/ai/core/reporting/aggregate/artifact/AggregateInventoryLines.java
+    owner: ATF core aggregate runtime ownership
+    repair: Keep reusable aggregate artifact utilities in main.
+  - id: core.reporting.aggregate.manifest-inspector-main
+    kind: expected-main
+    path: src/main/java/com/endava/ai/core/reporting/aggregate/artifact/AggregateManifestInspector.java
+    owner: ATF core aggregate runtime ownership
+    repair: Keep reusable manifest inspection in main.
+  - id: core.reporting.aggregate.manifest-writer-main
+    kind: expected-main
+    path: src/main/java/com/endava/ai/core/reporting/aggregate/artifact/AggregateManifestWriter.java
+    owner: ATF core aggregate runtime ownership
+    repair: Keep reusable manifest writing in main.
+  - id: core.reporting.aggregate.report-files-main
+    kind: expected-main
+    path: src/main/java/com/endava/ai/core/reporting/aggregate/artifact/AggregateReportFiles.java
+    owner: ATF core aggregate runtime ownership
+    repair: Keep reusable report-file path policy in main.
+  - id: core.reporting.aggregate.runtime-coverage-writer-main
+    kind: expected-main
+    path: src/main/java/com/endava/ai/core/reporting/aggregate/artifact/RuntimeCoverageAuditWriter.java
+    owner: ATF core aggregate runtime ownership
+    repair: Keep reusable runtime coverage writing in main.
+  - id: core.reporting.aggregate.runtime-mapper-main
+    kind: expected-main
+    path: src/main/java/com/endava/ai/core/reporting/aggregate/internal/AggregateRuntimeAuditMapper.java
+    owner: ATF core aggregate runtime ownership
+    repair: Keep reusable runtime audit mapping in main.
+  - id: core.reporting.aggregate.final-audit-html-main
+    kind: expected-main
+    path: src/main/java/com/endava/ai/core/reporting/aggregate/internal/ExtentFinalAuditHtml.java
+    owner: ATF core aggregate runtime ownership
+    repair: Keep final audit HTML helpers in main.
+  - id: core.reporting.aggregate.html-audit-appender-main
+    kind: expected-main
+    path: src/main/java/com/endava/ai/core/reporting/aggregate/internal/ExtentHtmlAuditAppender.java
+    owner: ATF core aggregate runtime ownership
+    repair: Keep reusable HTML appending in main.
+  - id: core.reporting.aggregate.summary-model-main
+    kind: expected-main
+    path: src/main/java/com/endava/ai/core/reporting/aggregate/model/AggregateSummary.java
+    owner: ATF core aggregate runtime ownership
+    repair: Keep reusable aggregate value objects in main.
+  - id: core.reporting.aggregate.snapshot-model-main
+    kind: expected-main
+    path: src/main/java/com/endava/ai/core/reporting/aggregate/model/AggregateRuntimeAuditSnapshot.java
+    owner: ATF core aggregate runtime ownership
+    repair: Keep reusable aggregate value objects in main.
+  - id: core.reporting.aggregate.case-model-main
+    kind: expected-main
+    path: src/main/java/com/endava/ai/core/reporting/aggregate/model/AggregateRuntimeCase.java
+    owner: ATF core aggregate runtime ownership
+    repair: Keep reusable aggregate value objects in main.
+  - id: core.reporting.aggregate.runtime-summary-model-main
+    kind: expected-main
+    path: src/main/java/com/endava/ai/core/reporting/aggregate/model/AggregateRuntimeSummary.java
+    owner: ATF core aggregate runtime ownership
+    repair: Keep reusable aggregate value objects in main.
+  - id: core.reporting.aggregate.legacy-writer-test
+    kind: forbidden-test
+    path: src/test/java/com/endava/ai/atf/core/reporting/AtfCoreAggregateExtentReportWriter.java
+    owner: ATF core aggregate runtime ownership
+    repair: Remove reusable writer code from contract-test source.
+  - id: core.reporting.aggregate.legacy-mapper-test
+    kind: forbidden-test
+    path: src/test/java/com/endava/ai/atf/core/reporting/AtfCoreAggregateRuntimeAuditMapper.java
+    owner: ATF core aggregate runtime ownership
+    repair: Remove reusable mapper code from contract-test source.
+  - id: core.reporting.aggregate.legacy-manifest-writer-test
+    kind: forbidden-test
+    path: src/test/java/com/endava/ai/atf/core/reporting/AtfCoreAggregateManifestWriter.java
+    owner: ATF core aggregate runtime ownership
+    repair: Remove reusable manifest writer code from contract-test source.
+  - id: core.reporting.aggregate.legacy-runtime-coverage-test
+    kind: forbidden-test
+    path: src/test/java/com/endava/ai/atf/core/reporting/AtfCoreRuntimeCoverageAuditWriter.java
+    owner: ATF core aggregate runtime ownership
+    repair: Remove reusable runtime coverage writer code from contract-test source.
+  - id: core.reporting.aggregate.legacy-inventory-lines-test
+    kind: forbidden-test
+    path: src/test/java/com/endava/ai/atf/core/reporting/AtfCoreAggregateInventoryLines.java
+    owner: ATF core aggregate runtime ownership
+    repair: Remove reusable inventory line code from contract-test source.
+  - id: core.reporting.aggregate.legacy-report-files-test
+    kind: forbidden-test
+    path: src/test/java/com/endava/ai/atf/core/reporting/artifact/AtfCoreAggregateReportFiles.java
+    owner: ATF core aggregate runtime ownership
+    repair: Remove reusable report-file policy from contract-test source.
+  - id: core.reporting.aggregate.legacy-final-audit-html-test
+    kind: forbidden-test
+    path: src/test/java/com/endava/ai/atf/core/reporting/artifact/AtfCoreExtentFinalAuditHtml.java
+    owner: ATF core aggregate runtime ownership
+    repair: Remove reusable final audit HTML helper from contract-test source.
+  - id: core.reporting.aggregate.legacy-html-audit-appender-test
+    kind: forbidden-test
+    path: src/test/java/com/endava/ai/atf/core/reporting/artifact/AtfCoreExtentHtmlAuditAppender.java
+    owner: ATF core aggregate runtime ownership
+    repair: Remove reusable HTML appender from contract-test source.
+  - id: core.reporting.aggregate.legacy-summary-model-test
+    kind: forbidden-test
+    path: src/test/java/com/endava/ai/atf/core/reporting/model/AggregateSummary.java
+    owner: ATF core aggregate runtime ownership
+    repair: Remove reusable aggregate model from contract-test source.
+  - id: core.reporting.aggregate.legacy-snapshot-model-test
+    kind: forbidden-test
+    path: src/test/java/com/endava/ai/atf/core/reporting/model/AggregateRuntimeAuditSnapshot.java
+    owner: ATF core aggregate runtime ownership
+    repair: Remove reusable aggregate model from contract-test source.
+  - id: core.reporting.aggregate.legacy-case-model-test
+    kind: forbidden-test
+    path: src/test/java/com/endava/ai/atf/core/reporting/model/AggregateRuntimeCase.java
+    owner: ATF core aggregate runtime ownership
+    repair: Remove reusable aggregate model from contract-test source.
+  - id: core.reporting.aggregate.legacy-runtime-summary-model-test
+    kind: forbidden-test
+    path: src/test/java/com/endava/ai/atf/core/reporting/model/AggregateRuntimeSummary.java
+    owner: ATF core aggregate runtime ownership
+    repair: Remove reusable aggregate model from contract-test source.
+  - id: core.reporting.aggregate.legacy-atf-summary-model-test
+    kind: forbidden-test
+    path: src/test/java/com/endava/ai/atf/core/reporting/model/AtfCoreAggregateSummary.java
+    owner: ATF core aggregate runtime ownership
+    repair: Remove reusable aggregate model from contract-test source.
+  - id: core.reporting.aggregate.legacy-atf-snapshot-model-test
+    kind: forbidden-test
+    path: src/test/java/com/endava/ai/atf/core/reporting/model/AtfCoreRuntimeAuditSnapshot.java
+    owner: ATF core aggregate runtime ownership
+    repair: Remove reusable aggregate model from contract-test source.
+  - id: core.reporting.aggregate.legacy-atf-case-model-test
+    kind: forbidden-test
+    path: src/test/java/com/endava/ai/atf/core/reporting/model/AtfCoreRuntimeCase.java
+    owner: ATF core aggregate runtime ownership
+    repair: Remove reusable aggregate model from contract-test source.
+  - id: core.reporting.aggregate.legacy-atf-runtime-summary-model-test
+    kind: forbidden-test
+    path: src/test/java/com/endava/ai/atf/core/reporting/model/AtfCoreRuntimeSummary.java
+    owner: ATF core aggregate runtime ownership
+    repair: Remove reusable aggregate model from contract-test source.
+  - id: core.reporting.aggregate.contract-extraction-model-test
+    kind: test-side-exception
+    path: src/test/java/com/endava/ai/atf/core/reporting/model/AtfCoreAggregateCase.java
+    owner: ATF core aggregate runtime ownership
+    repair: This model stays test-side because it depends on TestNG and @AtfContract extraction.

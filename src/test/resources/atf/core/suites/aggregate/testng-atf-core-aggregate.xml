@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="ATF Core Aggregate Artifact Audit" verbose="1">
+    <test name="published-aggregate-manifest-sync">
+        <groups>
+            <run>
+                <include name="aggregate-published-artifact-audit"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.endava.ai.atf.core.reporting.aggregate.AtfCoreAggregateExtentContractTest"/>
+            <class name="com.endava.ai.atf.core.reporting.aggregate.parallel.AggregateParallelCollectionContractTest"/>
+            <class name="com.endava.ai.atf.core.reporting.aggregate.parallel.AggregateParallelExtentPublisherContractTest"/>
+            <class name="com.endava.ai.atf.core.reporting.aggregate.publish.AtfCoreAggregatePublishedManifestContractTest"/>
+        </classes>
+    </test>
+</suite>

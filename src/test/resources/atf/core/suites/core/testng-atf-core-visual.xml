@@ -1,0 +1,24 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="ATF Core Visual Reporting Contracts" verbose="1">
+    <test name="extent-allure-visual-component-contracts">
+        <groups>
+            <run>
+                <include name="extent-only"/>
+                <include name="allure-only"/>
+                <exclude name="aggregate-published-artifact-audit"/>
+                <exclude name="controlled-failure-fixture"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.endava.ai.atf.core.reporting.adapters.css.ExtentSparkCollapsePolicyComponentTest"/>
+            <class name="com.endava.ai.atf.core.reporting.adapters.css.ExtentSparkFailureTriageCssComponentTest"/>
+            <class name="com.endava.ai.atf.core.reporting.adapters.css.ExtentSparkRuntimeAuditCssComponentTest"/>
+            <class name="com.endava.ai.atf.core.reporting.adapters.css.ExtentSparkThemeCompositionContractTest"/>
+            <class name="com.endava.ai.atf.core.reporting.adapters.css.ExtentSparkVisualTokensComponentTest"/>
+            <class name="com.endava.ai.atf.core.reporting.adapters.spark.ExtentSparkStatusDropdownContractTest"/>
+            <class name="com.endava.ai.atf.core.reporting.adapters.allure.AllurePresentationContractTest"/>
+            <class name="com.endava.ai.atf.core.reporting.screenshot.AllureScreenshotArtifactSmokeTest"/>
+            <class name="com.endava.ai.atf.core.reporting.screenshot.FinalUiScreenshotContractTest"/>
+        </classes>
+    </test>
+</suite>

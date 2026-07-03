@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<title>Linkuire comuna a artefactelor</title>
+<link href="../../assets/shared-report-reference.css" rel="stylesheet">
+<style>
+.grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.diag{margin-top:10px;border:1px solid var(--border);border-radius:14px;background:#08101a;padding:12px;overflow:auto}
+.diag svg{display:block;width:100%;height:auto}
+.pillline{display:flex;flex-direction:column;gap:8px;align-items:flex-start;margin-top:10px}
+.pillrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.pilllabel{color:var(--muted);font-size:12px;font-weight:700;margin-right:2px}
+.toolbar{display:flex;justify-content:flex-start;gap:8px;margin:10px 0 14px}
+.toolbar button{border:1px solid var(--border);background:#111826;color:var(--text);border-radius:999px;padding:7px 12px;font-size:12px;font-weight:700;cursor:pointer}
+.toolbar button:hover{border-color:#7aa2ff;color:#dbe7ff}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Linkuire comuna a artefactelor <span class="badge">LINKS</span> <span class="badge">PROOF</span> <span class="badge">PORTABLE</span></h1>
+  <div class="sub">
+    <ul>
+      <li>Defineste cum se leaga orice claim publicat de un artefact redeschisibil.</li>
+      <li>Shared stabileste forma linkului, proximitatea si auditabilitatea; MCP si Atlas stabilesc ce artefacte sunt obligatorii.</li>
+      <li>Nu accepta linkuri decorative, absolute fragile sau dovezi fara comanda/origin cand raportul pretinde reproducibilitate.</li>
+    </ul>
+  </div>
+</header>
+
+<div class="toolbar" aria-label="Controale sectiuni">
+  <button type="button" onclick="toggleAll(true)">Deschide sectiunile</button>
+  <button type="button" onclick="toggleAll(false)">Inchide sectiunile</button>
+</div>
+
+<div class="grid">
+  <section class="card">
+    <h2>Overview</h2>
+    <table>
+      <thead><tr><th>Badge</th><th>Citesti aici</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge">LINKS</span></td><td>forma comuna pentru linkuri locale, relative si redeschisibile</td></tr>
+        <tr><td><span class="badge">PROOF</span></td><td>claim -> artefact -> origin/comanda -> rezultat verificabil</td></tr>
+        <tr><td><span class="badge">PORTABLE</span></td><td>raportul poate fi mutat cu folderul lui fara sa rupa dovezile interne</td></tr>
+        <tr><td><span class="badge">INVALID</span></td><td>link catre fisier vechi, scope gresit, path absolut inutil sau ancora care nu poate fi redeschisa</td></tr>
+      </tbody>
+    </table>
+  </section>
+  <section class="card">
+    <details open>
+      <summary><span class="summary-title">Contract minim</span><span class="sumhint">claim-uri redeschisibile</span></summary>
+      <table>
+        <thead><tr><th>Regula</th><th>Obligatoriu</th><th>Respinge</th></tr></thead>
+        <tbody>
+          <tr><td>Proximitate</td><td>linkul sta langa claim-ul pe care il dovedeste</td><td>Artifact Index la final ca unica dovada</td></tr>
+          <tr><td>Relativitate</td><td>path relativ fata de raport sau folderul publicat</td><td>path absolut local in raport publicabil</td></tr>
+          <tr><td>Tip artefact</td><td>nume clar: Extent, XML, gate, ledger, source trace, matrix, command</td><td>link generic "report" fara rol</td></tr>
+          <tr><td>Freshness</td><td>artefactul linkuit apartine aceluiasi scope/run/audit</td><td>reutilizare de raport din alta runda</td></tr>
+          <tr><td>Fallback</td><td>daca dovada lipseste, se publica limita si cap</td><td>claim pozitiv fara dovada</td></tr>
+        </tbody>
+      </table>
+    </details>
+  </section>
+</div>
+
+<details open>
+  <summary><span class="summary-title">1. Ce are nevoie fiecare skill</span><span class="sumhint">shared shape, artefacte specifice</span></summary>
+  <div class="content">
+    <table>
+      <thead><tr><th>Consumer</th><th>Artefacte tipice</th><th>Shared verifica</th><th>Consumer verifica</th></tr></thead>
+      <tbody>
+        <tr><td>MCP</td><td>Extent, XML, gate result, origin, sha256, method ledger, source evolution ledger</td><td>link local, text clar, proximitate, fara link rupt</td><td>close-out complet, count parity, skipped policy, provenance</td></tr>
+        <tr><td>Atlas</td><td>Atlas HTML, source trace, rule matrix, Atlas Extent, UI inventory evidence, command manifest</td><td>link local, rol clar, scope declarat, interpretare langa link</td><td>business trace, graph proof strips, score truth, Atlas Test Audit</td></tr>
+        <tr><td>Core Reporting</td><td>diagnostic report, Extent shell proof, contract report</td><td>link redeschisibil si denumire neutra</td><td>raportul nu contine reguli MCP/Atlas</td></tr>
+      </tbody>
+    </table>
+  </div>
+</details>
+
+<details>
+  <summary><span class="summary-title">2. Diagrama de dovada</span><span class="sumhint">de la claim la artefact</span></summary>
+  <div class="content">
+    <div class="diag">
+      <svg viewBox="0 0 1160 250" role="img" aria-label="Artifact linking proof chain">
+        <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7aa2ff"/></marker></defs>
+        <rect x="55" y="85" width="210" height="70" rx="14" fill="#111826" stroke="#35507a"/>
+        <text x="160" y="115" text-anchor="middle" fill="#e6edf3" font-size="15" font-weight="700">Claim publicat</text>
+        <text x="160" y="136" text-anchor="middle" fill="#a8b3cf" font-size="12">business / audit / score</text>
+        <rect x="345" y="85" width="210" height="70" rx="14" fill="#111826" stroke="#35507a"/>
+        <text x="450" y="115" text-anchor="middle" fill="#e6edf3" font-size="15" font-weight="700">Link local</text>
+        <text x="450" y="136" text-anchor="middle" fill="#a8b3cf" font-size="12">relative + labeled</text>
+        <rect x="635" y="85" width="210" height="70" rx="14" fill="#111826" stroke="#35507a"/>
+        <text x="740" y="115" text-anchor="middle" fill="#e6edf3" font-size="15" font-weight="700">Artefact</text>
+        <text x="740" y="136" text-anchor="middle" fill="#a8b3cf" font-size="12">Extent / XML / trace</text>
+        <rect x="925" y="85" width="185" height="70" rx="14" fill="#111826" stroke="#35507a"/>
+        <text x="1018" y="115" text-anchor="middle" fill="#e6edf3" font-size="15" font-weight="700">Interpretare</text>
+        <text x="1018" y="136" text-anchor="middle" fill="#a8b3cf" font-size="12">pass/fail/cap/limit</text>
+        <line x1="265" y1="120" x2="345" y2="120" stroke="#7aa2ff" stroke-width="2" marker-end="url(#arrow)"/>
+        <line x1="555" y1="120" x2="635" y2="120" stroke="#7aa2ff" stroke-width="2" marker-end="url(#arrow)"/>
+        <line x1="845" y1="120" x2="925" y2="120" stroke="#7aa2ff" stroke-width="2" marker-end="url(#arrow)"/>
+      </svg>
+    </div>
+  </div>
+</details>
+
+<details>
+  <summary><span class="summary-title">3. Reguli de reparare</span><span class="sumhint">cand un link nu e acceptabil</span></summary>
+  <div class="content">
+    <table>
+      <thead><tr><th>Simptom</th><th>Reparare corecta</th><th>Nu face</th></tr></thead>
+      <tbody>
+        <tr><td>Link rupt</td><td>regenereaza sau relocheaza artefactul si actualizeaza linkul relativ</td><td>sterge linkul si pastreaza claim-ul</td></tr>
+        <tr><td>Scope gresit</td><td>publica un artifact nou pentru scope-ul curent</td><td>declara ca raportul vechi este "echivalent"</td></tr>
+        <tr><td>Nu exista comanda</td><td>adauga manifest/README cu comanda reala si rezultatul</td><td>scrie doar "rulat cu Maven"</td></tr>
+        <tr><td>Claim prea tare</td><td>coboara scorul sau adauga limita explicita</td><td>cosmetizeaza textul linkului</td></tr>
+      </tbody>
+    </table>
+  </div>
+</details>
+
+</div>
+<script>function toggleAll(openState){document.querySelectorAll('details').forEach(function(el){el.open=openState;});}</script>
+</body>
+</html>

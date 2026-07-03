@@ -1,0 +1,72 @@
+schemaVersion: 1
+contracts:
+  - id: core.reporting.public-api
+    owner: ATF core reporting public API
+    sourceRoot: src/main/java/com/endava/ai/core/reporting
+    publicApi: ReportingManager, ReportingSession, ReportLogger, StepLogger, TestStatus
+    internalBoundary: adapters, aggregate/internal, listener/internal and diagnostic sinks stay behind public facades
+    auditSurface: core/reporting/README.md plus reporting package shape contracts
+    contractTest: com.endava.ai.atf.core.reporting.architecture.AtfReportingPackageShapeContractTest
+    suiteXml: src/test/resources/atf/core/suites/core/testng-atf-core-fast.xml
+    repairTarget: src/main/java/com/endava/ai/core/reporting
+    responsibility: Keep reusable reporting extension points thin, typed and generic.
+  - id: core.reporting.listener-lifecycle
+    owner: TestListener lifecycle boundary
+    sourceRoot: src/main/java/com/endava/ai/core/reporting/listener
+    publicApi: TestListener, NoFrameworkReporting
+    internalBoundary: lifecycle handlers, invocation controller, group controller and runtime audit collectors
+    auditSurface: TestListenerArchitectureContractTest and ReportingManagerSessionContractTest
+    contractTest: com.endava.ai.atf.core.reporting.architecture.TestListenerArchitectureContractTest
+    suiteXml: src/test/resources/atf/core/suites/core/testng-atf-core-fast.xml
+    repairTarget: src/main/java/com/endava/ai/core/reporting/listener/internal/lifecycle
+    responsibility: Keep TestNG orchestration separate from report rendering and Extent patching.
+  - id: core.reporting.extent-adapter
+    owner: Extent adapter and Spark finalizer boundary
+    sourceRoot: src/main/java/com/endava/ai/core/reporting/adapters/extent
+    publicApi: ExtentReporter and ExtentReportSession
+    internalBoundary: patch planners are pure; applier/finalizer own IO and mutation
+    auditSurface: ExtentHtmlPatchPipelineContractTest and ExtentPublishedOverviewInspectorContractTest
+    contractTest: com.endava.ai.atf.core.reporting.adapters.ExtentHtmlPatchPipelineContractTest
+    suiteXml: src/test/resources/atf/core/suites/reporting/testng-atf-extent.xml
+    repairTarget: src/main/java/com/endava/ai/core/reporting/adapters/extent
+    responsibility: Normalize Extent/Spark output through one auditable pipeline.
+  - id: core.reporting.spark-sections
+    owner: Extent Spark visual sections
+    sourceRoot: src/main/java/com/endava/ai/core/reporting/adapters/extent/spark
+    publicApi: ExtentSparkTheme, ExtentSparkCollapsePolicy, semantic tokens
+    internalBoundary: sections own CSS/JS fragments; root composers stay small
+    auditSurface: ExtentSparkShellStyleContractTest and ExtentSparkRuntimeAuditContractTest
+    contractTest: com.endava.ai.atf.core.reporting.adapters.spark.ExtentSparkShellStyleContractTest
+    suiteXml: src/test/resources/atf/core/suites/reporting/testng-atf-extent.xml
+    repairTarget: src/main/java/com/endava/ai/core/reporting/adapters/extent/spark/sections
+    responsibility: Keep one Extent visual standard across ATF, MCP and Atlas without embedding business rules.
+  - id: core.reporting.runtime-audit
+    owner: Runtime audit model and renderers
+    sourceRoot: src/main/java/com/endava/ai/core/reporting/listener/internal/runtime
+    publicApi: ExtentRuntimeAuditPublisher and runtime section models
+    internalBoundary: renderers transform typed models only; IO/config/time stay outside renderers
+    auditSurface: ExtentRuntimeAuditArchitectureContractTest and CoreArchitectureGuardContractTest
+    contractTest: com.endava.ai.atf.core.reporting.architecture.ExtentRuntimeAuditArchitectureContractTest
+    suiteXml: src/test/resources/atf/core/suites/core/testng-atf-core-fast.xml
+    repairTarget: src/main/java/com/endava/ai/core/reporting/listener/internal/runtime
+    responsibility: Publish runtime dashboard, tags, timeline and failure groups from typed invocation records.
+  - id: core.reporting.aggregate
+    owner: Aggregate report runtime
+    sourceRoot: src/main/java/com/endava/ai/core/reporting/aggregate
+    publicApi: AggregateExtentReportWriter and AggregateExtentPublicationPipeline
+    internalBoundary: aggregate/internal owns final audit and runtime snapshot mapping
+    auditSurface: AtfCoreAggregateExtentContractTest and reporting-ownership.yml
+    contractTest: com.endava.ai.atf.core.reporting.aggregate.AtfCoreAggregateExtentContractTest
+    suiteXml: src/test/resources/atf/core/suites/aggregate/testng-atf-core-aggregate.xml
+    repairTarget: src/main/java/com/endava/ai/core/reporting/aggregate
+    responsibility: Keep reusable aggregate artifact writers in main and contract fixtures in test.
+  - id: core.reporting.diagnostics-console
+    owner: Console and non-blocking diagnostics
+    sourceRoot: src/main/java/com/endava/ai/core/reporting
+    publicApi: ConsoleLogger, NonBlockingDiagnostic, StepLogger
+    internalBoundary: diagnostics publish through sinks and ConsoleLogger, never direct System.out/System.err
+    auditSurface: ConsoleSignatureContractTest and NonBlockingDiagnosticContractTest
+    contractTest: com.endava.ai.atf.core.reporting.regression.NonBlockingDiagnosticContractTest
+    suiteXml: src/test/resources/atf/core/suites/core/testng-atf-core-fast.xml
+    repairTarget: src/main/java/com/endava/ai/core/reporting/diagnostic
+    responsibility: Keep dynamic console guidance visible and testable without polluting report engines.

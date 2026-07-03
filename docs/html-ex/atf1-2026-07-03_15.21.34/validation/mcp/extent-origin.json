@@ -1,0 +1,14 @@
+{
+    "profile":  "testng-mcp-package-closeout.xml",
+    "suite":  "src/test/resources/skills/mcp/testng-mcp-package-closeout.xml",
+    "command":  "mvn -q \"-Dsurefire.suiteXmlFiles=src/test/resources/skills/mcp/testng-mcp-package-closeout.xml\" \"-Dmcp.package.root=C:\\work\\ex\\java\\demo\\atf1\\test-framework\\docs\\out\\2026-07-03_15.21.34\" \"-Dmcp.project.root=C:\\work\\ex\\java\\demo\\atf1\\test-framework-closeout-snapshot-2026-07-03_15.21.34\" \"-Dreporting.engine=extent\" \"-Dreports.dir=C:\\work\\ex\\java\\demo\\atf1\\test-framework\\docs\\out\\2026-07-03_15.21.34\\validation\\mcp\" \"-Dreports.file.name=ExtentReport.html\" \"-Dreports.timestamp.enabled=false\" \"-DforkCount=0\" test",
+    "exitCode":  0,
+    "timestamp":  "2026-07-03T15:34:37.6452463+03:00",
+    "sha256":  "0ecfd9d36c2364bf1abe7145f16c38542c3e0b391055788809129a8824e37537",
+    "size":  1916547,
+    "testsRun":  107,
+    "passed":  107,
+    "failures":  0,
+    "errors":  0,
+    "skipped":  0
+}

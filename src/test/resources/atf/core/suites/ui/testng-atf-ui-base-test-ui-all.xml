@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="ATF BaseTestUI All Concrete UI Tests" verbose="1">
+    <test name="base-test-ui-all-concrete-tests">
+        <classes>
+            <class name="com.endava.ai.atf.ui.RegistrationTests"/>
+            <class name="com.endava.ai.ui.tests.AccountAuthenticatedAreaTests"/>
+            <class name="com.endava.ai.ui.tests.ProfileContactAddressMemoryTests"/>
+        </classes>
+    </test>
+</suite>

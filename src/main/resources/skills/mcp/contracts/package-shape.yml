@@ -1,0 +1,117 @@
+schemaVersion: 1
+contracts:
+  - id: mcp.package-shape.budget-source
+    kind: budget-source
+    path: src/main/resources/skills/mcp/contracts/size-budgets.yml
+    reason: MCP package/class/YAML byte caps stay in one numeric source of truth.
+
+  - id: mcp.package-shape.required-package-defaults
+    kind: required-budget-type
+    budgetType: package-default
+    reason: MCP main and test packages need default class-count caps before overrides are allowed.
+
+  - id: mcp.package-shape.required-package-overrides
+    kind: required-budget-type
+    budgetType: package-override
+    reason: Transitional broad MCP packages must declare explicit caps and reasons.
+
+  - id: mcp.package-shape.required-recursive-caps
+    kind: required-budget-type
+    budgetType: recursive-package-cap
+    reason: Broad MCP surfaces need recursive caps so growth cannot hide across many small packages.
+
+  - id: mcp.package-shape.required-line-caps
+    kind: required-budget-type
+    budgetType: line-cap
+    reason: Known large MCP classes must not grow while ownership is being split.
+
+  - id: mcp.package-shape.required-yaml-byte-caps
+    kind: required-budget-type
+    budgetType: resource-max-bytes
+    reason: YAML contracts must not become an unbounded parallel rules engine.
+
+  - id: mcp.package-shape.rules-readme
+    kind: required-readme
+    path: src/main/java/com/endava/ai/skills/mcp/rules/README.md
+    reason: Rule ownership and repair routes must be discoverable before adding validators.
+
+  - id: mcp.package-shape.contracts-readme
+    kind: required-readme
+    path: src/main/java/com/endava/ai/skills/mcp/contracts/README.md
+    reason: YAML-backed contract metadata ownership must be visible before changing policies.
+
+  - id: mcp.package-shape.validation-readme
+    kind: required-readme
+    path: src/main/java/com/endava/ai/skills/mcp/validation/README.md
+    reason: Validation/assertion ownership must be visible before adding package audit helpers.
+
+  - id: mcp.package-shape.skill-readme
+    kind: required-readme
+    path: src/main/java/com/endava/ai/skills/mcp/skill/README.md
+    reason: MCP capability facade ownership must be visible before agents enter broad rule or validation packages.
+
+  - id: mcp.package-shape.prompt-readme
+    kind: required-readme
+    path: docs/prompts/mcp/README.md
+    sourceRoot: docs/prompts/html_ro/mcp
+    mirrorRoot: docs/prompts/html_EN/mcp
+    reason: MCP skill prompt ownership must stay visible outside Java source.
+
+  - id: mcp.skill-surface.contracts
+    kind: skill-surface
+    root: src/main/java/com/endava/ai/skills/mcp/contracts
+    readme: src/main/java/com/endava/ai/skills/mcp/contracts/README.md
+    sanitySuite: src/test/resources/skills/mcp/testng-mcp-sanity.xml
+    role: typed YAML metadata and agent-facing contract catalogs
+    reason: Agents need a single contracts surface before editing YAML schemas, profiles or check metadata.
+
+  - id: mcp.skill-surface.rules
+    kind: skill-surface
+    root: src/main/java/com/endava/ai/skills/mcp/rules
+    readme: src/main/java/com/endava/ai/skills/mcp/rules/README.md
+    sanitySuite: src/test/resources/skills/mcp/testng-mcp-sanity.xml
+    role: executable MCP package validators and rule routing
+    reason: Executable validators must stay separate from YAML metadata and package assertion helpers.
+
+  - id: mcp.skill-surface.validation
+    kind: skill-surface
+    root: src/main/java/com/endava/ai/skills/mcp/validation
+    readme: src/main/java/com/endava/ai/skills/mcp/validation/README.md
+    sanitySuite: src/test/resources/skills/mcp/testng-mcp-sanity.xml
+    role: reusable package audit assertions, models and report/run inspectors
+    reason: Shared assertions should be discoverable without becoming new executable rule ownership.
+
+  - id: mcp.skill-surface.facades
+    kind: skill-surface
+    root: src/main/java/com/endava/ai/skills/mcp/skill
+    readme: src/main/java/com/endava/ai/skills/mcp/skill/README.md
+    sanitySuite: src/test/resources/skills/mcp/testng-mcp-sanity.xml
+    role: small capability facade entry points mapped to capability-packs.yml
+    reason: Agents need typed entry doors before scanning MCP rules or validation internals.
+
+  - id: mcp.skill-surface.prompts
+    kind: skill-surface
+    root: docs/prompts/mcp
+    sourceRoot: docs/prompts/html_ro/mcp
+    mirrorRoot: docs/prompts/html_EN/mcp
+    readme: docs/prompts/mcp/README.md
+    sanitySuite: src/test/resources/skills/mcp/testng-mcp-sanity.xml
+    role: MCP prompt ownership index for Romanian source, English mirror and close-out guidance
+    reason: Prompt contracts are part of the MCP skill, but must stay outside Java rules and validation code.
+
+  - id: mcp.package-shape.main-no-atlas-imports
+    kind: forbidden-import
+    root: src/main/java/com/endava/ai/skills/mcp
+    forbiddenPackage: com.endava.ai.skills.atlas
+    reason: MCP is the package governance skill; Atlas calibration must remain YAML/artifact/link based.
+
+  - id: mcp.package-shape.tests-no-atlas-imports
+    kind: forbidden-import
+    root: src/test/java/com/endava/ai/skills/mcp
+    forbiddenPackage: com.endava.ai.skills.atlas
+    reason: MCP tests must not hide Atlas coupling behind test helpers.
+
+  - id: mcp.package-shape.main-console-gateway
+    kind: console-gateway
+    root: src/main/java/com/endava/ai/skills/mcp
+    reason: MCP main must use ConsoleLogger/framework gateways instead of direct console output.

@@ -1,0 +1,18 @@
+﻿{
+    "run":  "run_04",
+    "status":  "PASS",
+    "verdict":  "countable",
+    "tests_produced":  5,
+    "tests_passed":  5,
+    "tests_failed":  0,
+    "tests_skipped":  0,
+    "business_object":  "reopened cart line record",
+    "owned_business_object":  "reopened cart line record",
+    "business_claim":  "cart line survives catalog reopen and remains visible at checkout identity boundary",
+    "progression_from_previous_run":  "fresh cart lifecycle angle for reopened cart line record",
+    "actual_delta_quality":  95,
+    "run_expected_delta_quality":  95,
+    "round_target_test_count":  5,
+    "proof_class":  "Playwright UI Extent report + TestNG XML + command-result + run diff + source support",
+    "primary_next_business_object":  "account-bound cart restore after authentication"
+}

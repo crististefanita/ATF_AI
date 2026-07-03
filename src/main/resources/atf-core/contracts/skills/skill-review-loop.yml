@@ -1,0 +1,38 @@
+schemaVersion: 1
+contracts:
+  - id: skill.review-loop.signal
+    kind: skill-review-stage
+    order: 10
+    stage: Signal
+    role: Capture an executable risk before proposing architecture changes.
+    requiredEvidence: failing-sanity, ratchet-breach, boundary-drift, stale-suite-reference
+    sourceOfTruth: sanity suite or contract test output
+    antiPattern: narrative-only feedback without a reproducible signal
+
+  - id: skill.review-loop.explore
+    kind: skill-review-stage
+    order: 20
+    stage: Explore
+    role: Inspect skill manifests, package counts, import boundaries and ownership YAML before editing.
+    requiredEvidence: skill-architecture.yml, package-shape.yml, size-budgets.yml, import-boundary-scan
+    sourceOfTruth: repository source and YAML contracts
+    antiPattern: fixing from memory or from calibration notes alone
+
+  - id: skill.review-loop.govern
+    kind: skill-review-stage
+    order: 30
+    stage: Govern
+    role: Preserve executable guardrails and reduce local complexity instead of relaxing caps.
+    requiredEvidence: do-not-raise-caps, ratchet-policy, focused-helper-extraction, ownership-preserved
+    sourceOfTruth: size budgets, package-shape contracts and skill boundaries
+    antiPattern: raising a cap to make a failing contract pass
+
+  - id: skill.review-loop.validate
+    kind: skill-review-stage
+    order: 40
+    stage: Validate
+    role: Run the smallest relevant sanity chain sequentially and publish the exact command outcome.
+    requiredEvidence: test-compile, clean-sanity-when-target-is-suspect, core-sanity, reporting-sanity, business-understanding-sanity, mcp-sanity, atlas-sanity
+    sourceOfTruth: Maven/TestNG execution result
+    cleanSanityContract: atf-core/contracts/skills/skill-clean-sanity.yml
+    antiPattern: parallel write-heavy Maven runs against the same target directory

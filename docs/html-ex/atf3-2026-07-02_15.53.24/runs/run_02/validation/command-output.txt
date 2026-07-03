@@ -1,0 +1,806 @@
+﻿mvn.cmd : SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+At line:20 char:11
++   $text = & mvn @args 2>&1
++           ~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (SLF4J: Failed t...cLoggerBinder".:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+  � Playwright pages after init: 1
+? Clear browser session
+  ? PASS: Session cleared
+? Navigate to URL: https://practicesoftwaretesting.com/
+  � base.url=https://practicesoftwaretesting.com
+  � relativePath=/
+  � Playwright pages after open: 1
+  � Wait for URL contains: /
+  ? PASS: Navigated
+? Get texts from: Catalog product cards
+  � locator=a[data-test^='product-']
+  � texts=[Combination Pliers
+A
+B
+C
+D
+E
+$14.15, Pliers
+A
+B
+C
+D
+E
+$12.01, Bolt Cutters
+A
+B
+C
+D
+E
+$48.41, Long Nose Pliers
+A
+B
+C
+D
+E
+Out of stock
+$14.24, Slip Joint Pliers
+A
+B
+C
+D
+E
+$9.17, Claw Hammer with Shock Reduction Grip
+A
+B
+C
+D
+E
+$13.41, Hammer
+A
+B
+C
+D
+E
+$12.58, Claw Hammer
+A
+B
+C
+D
+E
+$11.48, Thor Hammer
+A
+B
+C
+D
+E
+$11.14]
+  ? PASS: Texts captured
+? Get texts from: Catalog product cards
+  � locator=a[data-test^='product-']
+  � texts=[Combination Pliers
+A
+B
+C
+D
+E
+$14.15, Pliers
+A
+B
+C
+D
+E
+$12.01, Bolt Cutters
+A
+B
+C
+D
+E
+$48.41, Long Nose Pliers
+A
+B
+C
+D
+E
+Out of stock
+$14.24, Slip Joint Pliers
+A
+B
+C
+D
+E
+$9.17, Claw Hammer with Shock Reduction Grip
+A
+B
+C
+D
+E
+$13.41, Hammer
+A
+B
+C
+D
+E
+$12.58, Claw Hammer
+A
+B
+C
+D
+E
+$11.48, Thor Hammer
+A
+B
+C
+D
+E
+$11.14]
+  ? PASS: Texts captured
+? Click visible match on: Available catalog product
+  � locator=a[data-test^='product-']
+  � visibleIndex=1
+  ? PASS: Clicked visible match
+? Get text from: Product detail name
+  � locator=[data-test='product-name']
+  � text=Combination Pliers
+  ? PASS: Text captured
+? Click on: Add product to pre-checkout cart
+  � locator=[data-test='add-to-cart']
+  ? PASS: Clicked
+? Click on: Open pre-checkout cart
+  � locator=[data-test='nav-cart']
+  ? PASS: Clicked
+? Click on: Proceed from cart line to checkout identity
+  � locator=[data-test='proceed-1']
+  ? PASS: Clicked
+? Check cart line keeps countable quantity
+  � actual=1
+  � needle=1
+  � actual=CART
+1
+SIGN IN
+2
+BILLING ADDRESS
+3
+PAYMENT
+4
+Item	Quantity	Price	Total	
+Combination Pliers�
+	
+Quantity for Combination Pliers
+	$14.15	$14.15	
+		Total	$14.15	
+Continue Shopping
+Proceed to checkout
+  ? PASS: Cart line keeps countable quantity
+? Clear browser session
+  ? PASS: Session cleared
+? Navigate to URL: https://practicesoftwaretesting.com/
+  � base.url=https://practicesoftwaretesting.com
+  � relativePath=/
+  � Playwright pages after open: 1
+  � Wait for URL contains: /
+  ? PASS: Navigated
+? Get texts from: Catalog product cards
+  � locator=a[data-test^='product-']
+  � texts=[Combination Pliers
+A
+B
+C
+D
+E
+$14.15, Pliers
+A
+B
+C
+D
+E
+$12.01, Bolt Cutters
+A
+B
+C
+D
+E
+$48.41, Long Nose Pliers
+A
+B
+C
+D
+E
+Out of stock
+$14.24, Slip Joint Pliers
+A
+B
+C
+D
+E
+$9.17, Claw Hammer with Shock Reduction Grip
+A
+B
+C
+D
+E
+$13.41, Hammer
+A
+B
+C
+D
+E
+$12.58, Claw Hammer
+A
+B
+C
+D
+E
+$11.48, Thor Hammer
+A
+B
+C
+D
+E
+$11.14]
+  ? PASS: Texts captured
+? Get texts from: Catalog product cards
+  � locator=a[data-test^='product-']
+  � texts=[Combination Pliers
+A
+B
+C
+D
+E
+$14.15, Pliers
+A
+B
+C
+D
+E
+$12.01, Bolt Cutters
+A
+B
+C
+D
+E
+$48.41, Long Nose Pliers
+A
+B
+C
+D
+E
+Out of stock
+$14.24, Slip Joint Pliers
+A
+B
+C
+D
+E
+$9.17, Claw Hammer with Shock Reduction Grip
+A
+B
+C
+D
+E
+$13.41, Hammer
+A
+B
+C
+D
+E
+$12.58, Claw Hammer
+A
+B
+C
+D
+E
+$11.48, Thor Hammer
+A
+B
+C
+D
+E
+$11.14]
+  ? PASS: Texts captured
+? Click visible match on: Available catalog product
+  � locator=a[data-test^='product-']
+  � visibleIndex=1
+  ? PASS: Clicked visible match
+? Get text from: Product detail name
+  � locator=[data-test='product-name']
+  � text=Combination Pliers
+  ? PASS: Text captured
+? Click on: Add product to pre-checkout cart
+  � locator=[data-test='add-to-cart']
+  ? PASS: Clicked
+? Click on: Open pre-checkout cart
+  � locator=[data-test='nav-cart']
+  ? PASS: Clicked
+? Click on: Proceed from cart line to checkout identity
+  � locator=[data-test='proceed-1']
+  ? PASS: Clicked
+? Check cart quantity has selected product owner
+  � needle=Combination Pliers
+  � actual=CART
+1
+SIGN IN
+2
+BILLING ADDRESS
+3
+PAYMENT
+4
+Item	Quantity	Price	Total	
+Combination Pliers�
+	
+Quantity for Combination Pliers
+	$14.15	$14.15	
+		Total	$14.15	
+Continue Shopping
+Proceed to checkout
+  � needle=1
+  � actual=CART
+1
+SIGN IN
+2
+BILLING ADDRESS
+3
+PAYMENT
+4
+Item	Quantity	Price	Total	
+Combination Pliers�
+	
+Quantity for Combination Pliers
+	$14.15	$14.15	
+		Total	$14.15	
+Continue Shopping
+Proceed to checkout
+  ? PASS: Cart quantity has selected product owner
+? Clear browser session
+  ? PASS: Session cleared
+? Navigate to URL: https://practicesoftwaretesting.com/
+  � base.url=https://practicesoftwaretesting.com
+  � relativePath=/
+  � Playwright pages after open: 1
+  � Wait for URL contains: /
+  ? PASS: Navigated
+? Get texts from: Catalog product cards
+  � locator=a[data-test^='product-']
+  � texts=[Combination Pliers
+A
+B
+C
+D
+E
+$14.15, Pliers
+A
+B
+C
+D
+E
+$12.01, Bolt Cutters
+A
+B
+C
+D
+E
+$48.41, Long Nose Pliers
+A
+B
+C
+D
+E
+Out of stock
+$14.24, Slip Joint Pliers
+A
+B
+C
+D
+E
+$9.17, Claw Hammer with Shock Reduction Grip
+A
+B
+C
+D
+E
+$13.41, Hammer
+A
+B
+C
+D
+E
+$12.58, Claw Hammer
+A
+B
+C
+D
+E
+$11.48, Thor Hammer
+A
+B
+C
+D
+E
+$11.14]
+  ? PASS: Texts captured
+? Get texts from: Catalog product cards
+  � locator=a[data-test^='product-']
+  � texts=[Combination Pliers
+A
+B
+C
+D
+E
+$14.15, Pliers
+A
+B
+C
+D
+E
+$12.01, Bolt Cutters
+A
+B
+C
+D
+E
+$48.41, Long Nose Pliers
+A
+B
+C
+D
+E
+Out of stock
+$14.24, Slip Joint Pliers
+A
+B
+C
+D
+E
+$9.17, Claw Hammer with Shock Reduction Grip
+A
+B
+C
+D
+E
+$13.41, Hammer
+A
+B
+C
+D
+E
+$12.58, Claw Hammer
+A
+B
+C
+D
+E
+$11.48, Thor Hammer
+A
+B
+C
+D
+E
+$11.14]
+  ? PASS: Texts captured
+? Click visible match on: Available catalog product
+  � locator=a[data-test^='product-']
+  � visibleIndex=1
+  ? PASS: Clicked visible match
+? Get text from: Product detail name
+  � locator=[data-test='product-name']
+  � text=Combination Pliers
+  ? PASS: Text captured
+? Click on: Add product to pre-checkout cart
+  � locator=[data-test='add-to-cart']
+  ? PASS: Clicked
+? Click on: Open pre-checkout cart
+  � locator=[data-test='nav-cart']
+  ? PASS: Clicked
+? Click on: Proceed from cart line to checkout identity
+  � locator=[data-test='proceed-1']
+  ? PASS: Clicked
+? Check cart quantity is positive
+  � actual=1
+  ? PASS: Cart quantity is positive
+? Clear browser session
+  ? PASS: Session cleared
+? Navigate to URL: https://practicesoftwaretesting.com/
+  � base.url=https://practicesoftwaretesting.com
+  � relativePath=/
+  � Playwright pages after open: 1
+  � Wait for URL contains: /
+  ? PASS: Navigated
+? Get texts from: Catalog product cards
+  � locator=a[data-test^='product-']
+  � texts=[Combination Pliers
+A
+B
+C
+D
+E
+$14.15, Pliers
+A
+B
+C
+D
+E
+$12.01, Bolt Cutters
+A
+B
+C
+D
+E
+$48.41, Long Nose Pliers
+A
+B
+C
+D
+E
+Out of stock
+$14.24, Slip Joint Pliers
+A
+B
+C
+D
+E
+$9.17, Claw Hammer with Shock Reduction Grip
+A
+B
+C
+D
+E
+$13.41, Hammer
+A
+B
+C
+D
+E
+$12.58, Claw Hammer
+A
+B
+C
+D
+E
+$11.48, Thor Hammer
+A
+B
+C
+D
+E
+$11.14]
+  ? PASS: Texts captured
+? Get texts from: Catalog product cards
+  � locator=a[data-test^='product-']
+  � texts=[Combination Pliers
+A
+B
+C
+D
+E
+$14.15, Pliers
+A
+B
+C
+D
+E
+$12.01, Bolt Cutters
+A
+B
+C
+D
+E
+$48.41, Long Nose Pliers
+A
+B
+C
+D
+E
+Out of stock
+$14.24, Slip Joint Pliers
+A
+B
+C
+D
+E
+$9.17, Claw Hammer with Shock Reduction Grip
+A
+B
+C
+D
+E
+$13.41, Hammer
+A
+B
+C
+D
+E
+$12.58, Claw Hammer
+A
+B
+C
+D
+E
+$11.48, Thor Hammer
+A
+B
+C
+D
+E
+$11.14]
+  ? PASS: Texts captured
+? Click visible match on: Available catalog product
+  � locator=a[data-test^='product-']
+  � visibleIndex=1
+  ? PASS: Clicked visible match
+? Get text from: Product detail name
+  � locator=[data-test='product-name']
+  � text=Combination Pliers
+  ? PASS: Text captured
+? Click on: Add product to pre-checkout cart
+  � locator=[data-test='add-to-cart']
+  ? PASS: Clicked
+? Click on: Open pre-checkout cart
+  � locator=[data-test='nav-cart']
+  ? PASS: Clicked
+? Click on: Proceed from cart line to checkout identity
+  � locator=[data-test='proceed-1']
+  ? PASS: Clicked
+? Check cart quantity matches review body
+  � needle=1
+  � actual=CART
+1
+SIGN IN
+2
+BILLING ADDRESS
+3
+PAYMENT
+4
+Item	Quantity	Price	Total	
+Combination Pliers�
+	
+Quantity for Combination Pliers
+	$14.15	$14.15	
+		Total	$14.15	
+Continue Shopping
+Proceed to checkout
+  ? PASS: Cart quantity matches review body
+? Clear browser session
+  ? PASS: Session cleared
+? Navigate to URL: https://practicesoftwaretesting.com/
+  � base.url=https://practicesoftwaretesting.com
+  � relativePath=/
+  � Playwright pages after open: 1
+  � Wait for URL contains: /
+  ? PASS: Navigated
+? Get texts from: Catalog product cards
+  � locator=a[data-test^='product-']
+  � texts=[Combination Pliers
+A
+B
+C
+D
+E
+$14.15, Pliers
+A
+B
+C
+D
+E
+$12.01, Bolt Cutters
+A
+B
+C
+D
+E
+$48.41, Long Nose Pliers
+A
+B
+C
+D
+E
+Out of stock
+$14.24, Slip Joint Pliers
+A
+B
+C
+D
+E
+$9.17, Claw Hammer with Shock Reduction Grip
+A
+B
+C
+D
+E
+$13.41, Hammer
+A
+B
+C
+D
+E
+$12.58, Claw Hammer
+A
+B
+C
+D
+E
+$11.48, Thor Hammer
+A
+B
+C
+D
+E
+$11.14]
+  ? PASS: Texts captured
+? Get texts from: Catalog product cards
+  � locator=a[data-test^='product-']
+  � texts=[Combination Pliers
+A
+B
+C
+D
+E
+$14.15, Pliers
+A
+B
+C
+D
+E
+$12.01, Bolt Cutters
+A
+B
+C
+D
+E
+$48.41, Long Nose Pliers
+A
+B
+C
+D
+E
+Out of stock
+$14.24, Slip Joint Pliers
+A
+B
+C
+D
+E
+$9.17, Claw Hammer with Shock Reduction Grip
+A
+B
+C
+D
+E
+$13.41, Hammer
+A
+B
+C
+D
+E
+$12.58, Claw Hammer
+A
+B
+C
+D
+E
+$11.48, Thor Hammer
+A
+B
+C
+D
+E
+$11.14]
+  ? PASS: Texts captured
+? Click visible match on: Available catalog product
+  � locator=a[data-test^='product-']
+  � visibleIndex=1
+  ? PASS: Clicked visible match
+? Get text from: Product detail name
+  � locator=[data-test='product-name']
+  � text=Combination Pliers
+  ? PASS: Text captured
+? Click on: Add product to pre-checkout cart
+  � locator=[data-test='add-to-cart']
+  ? PASS: Clicked
+? Click on: Open pre-checkout cart
+  � locator=[data-test='nav-cart']
+  ? PASS: Clicked
+? Click on: Proceed from cart line to checkout identity
+  � locator=[data-test='proceed-1']
+  ? PASS: Clicked
+? Check cart quantity remains pre-invoice
+  � actual=1
+  ? PASS: Cart quantity remains pre-invoice

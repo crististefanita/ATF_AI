@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../../assets/shared-report-reference.css">
+  <title>Shared Report Shell</title>
+</head>
+<body>
+  <h1>Shared Report Shell</h1>
+  <p>This shared primitive defines the reusable report frame used by Reporting, MCP and Atlas references: stable navigation, collapsible sections, score opening, artifact index, and evidence links.</p>
+  <ul>
+    <li>Use the Reporting skill for generic rendering mechanics, HTML shell, Extent/Spark, runtime audit and shared primitives.</li>
+    <li>Use MCP for package close-out evidence and final report gates.</li>
+    <li>Use Atlas for business-understanding quality and trace judgment.</li>
+  </ul>
+  <h2>Executable Contract</h2>
+  <p>The shared rule is implemented in <code>com.endava.ai.core.reporting.htmlcontract</code>. It validates shared chrome, score wall, graph visual primitives and the declared profile through <code>HtmlReportContract</code>. It must not impose MCP vocabulary on Atlas.</p>
+  <table>
+    <thead><tr><th>Profile</th><th>Required sections</th><th>Specific owner responsibility</th></tr></thead>
+    <tbody>
+      <tr><td><code>SHARED_FINAL_REPORT</code></td><td>shared shell only</td><td>document chrome, shared CSS, hero, score wall, one primary section open by default</td></tr>
+      <tr><td><code>MCP_FINAL_REPORT</code></td><td>Executive Context, Business Flow Graph, Score Overview, Proof Mapping, Run Audit, MCP Gate References, Artifact Index, Close-Out</td><td>MCP gate, package close-out, Extent/XML/ledger, source evolution</td></tr>
+      <tr><td><code>ATLAS_FINAL_REPORT</code></td><td>Executive Context, Business Flow Graph, Business Flow Understanding, Business Evidence Tables, Source-to-Business Trace, Atlas Test Audit</td><td>business comprehension, source trace, graph maturity, Atlas validation evidence</td></tr>
+    </tbody>
+  </table>
+</body>
+</html>

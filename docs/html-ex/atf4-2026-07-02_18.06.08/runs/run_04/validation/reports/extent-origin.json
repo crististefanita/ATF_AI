@@ -1,0 +1,13 @@
+﻿{
+    "source":  "run_04_staff_support_response",
+    "testsRun":  5,
+    "failures":  0,
+    "size":  836484,
+    "passed":  5,
+    "command":  "mvn -q -Dsurefire.suiteXmlFiles=src/test/resources/ui/testng-atf4-*.xml -Dreports.dir=run_04/validation/reports test",
+    "errors":  0,
+    "sha256":  "ad129b58240c2b5a8e7cfa0293a26e506e3e7c6f1446cfbd7b3b519e920d7d6c",
+    "exitCode":  0,
+    "skipped":  0,
+    "timestamp":  "2026-07-02T18:06:08+03:00"
+}

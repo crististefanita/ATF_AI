@@ -1,0 +1,58 @@
+schemaVersion: 1
+contracts:
+  - id: claim-action.relogin-without-session-boundary
+    verbs:
+      - relogin
+    requiredEvidence:
+      - both:logout|signout|sign out|session reset|new session
+      - both:login|signin|sign in|relogin
+    meaning: relogin claim requires session boundary plus assertion after the new login
+    repair: add logout/session reset + fresh login + post-login assertion, or lower the claim to reopen/support
+  - id: claim-action.persist-without-post-boundary-assertion
+    verbs:
+      - persist
+    requiredEvidence:
+      - action:save|submit|update|set|fill|change
+      - both:refresh|reopen|relogin|reload|new session
+      - both:assert|verify|should|expect|visible|contains|equals|present|not visible
+    meaning: persist claim requires write action plus a post-boundary assertion
+    repair: verify the value after refresh/reopen/relogin, not only immediately after save
+  - id: claim-action.edit-without-save-and-assertion
+    verbs:
+      - edit
+      - update
+    requiredEvidence:
+      - action:fill|change|edit|update|save|submit
+      - both:assert|verify|should|expect|visible|contains|equals|present|not visible
+    meaning: edit/update claim requires field mutation, save/submit, and assertion of the new value
+    repair: move mutation/assertion into UI action + validation layer, or mark the claim partial
+  - id: claim-action.delete-without-absence-assertion
+    verbs:
+      - delete
+    requiredEvidence:
+      - action:delete|remove
+      - both:absent|not visible|missing|removed|empty
+    meaning: delete claim requires delete/remove action plus absence assertion after reload/reopen
+    repair: assert the item is absent after delete and reload/reopen, or lower the claim
+  - id: claim-action.history-without-row-or-identity-proof
+    verbs:
+      - history
+      - record
+      - row
+      - document
+      - identity
+      - status
+      - transition
+    requiredEvidence:
+      - both:row|record|detail|details|id|identifier|number|status|history|document|identity|transition|changed|visible
+    meaning: record/history/status claim requires row/detail/id/status/transition proof
+    repair: verify a concrete row, record, id, detail route, status, identity, or transition in source and proof
+  - id: claim-action.submit-without-acknowledgement-proof
+    verbs:
+      - submit
+      - send
+    requiredEvidence:
+      - action:submit|send|click
+      - both:confirmation|ack|id|identifier|created|success|row|record
+    meaning: submit/send claim requires submit action plus acknowledgement/id/record proof
+    repair: assert confirmation, id, created row/record, or acknowledgement after submission

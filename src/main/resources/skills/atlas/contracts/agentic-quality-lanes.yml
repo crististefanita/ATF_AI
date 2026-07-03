@@ -1,0 +1,47 @@
+schemaVersion: 1
+contracts:
+  - id: atlas.quality.business-map
+    lane: Business Flow Graph and flow stories
+    owner: Atlas business comprehension
+    category: BUSINESS_COMPREHENSION
+    artifact: docs/atlas/business-test-atlas.html
+    reportSurface: Business Flow Graph, Business Flow Understanding and object maturity sections
+    mcpBoundary: MCP checks package close-out links and artifact truth; Atlas checks whether the graph is business-real.
+    scoreImpact: Weak business object ownership caps candidate grade even when MCP artifacts are green.
+    repairTarget: business-anchor centered graphs with actor intent, primary owned object, labeled relationship edges, visible frontier and observable business results
+  - id: atlas.quality.source-trace
+    lane: Source-to-business trace
+    owner: Atlas source trace
+    category: PROOF_TRACE
+    artifact: src/test/java analyzed package
+    reportSurface: Source-to-Business Trace, layer trace and local proof strips
+    mcpBoundary: MCP validates artifact paths and source diff evidence; Atlas validates that trace claims are backed by source.
+    scoreImpact: Invented source trace blocks 95+ regardless of Extent pass status.
+    repairTarget: method-level source names, class paths and concrete layer evidence
+  - id: atlas.quality.score-truth
+    lane: Recalculable scores and caps
+    owner: Atlas scoring
+    category: SCORING
+    artifact: atlas score cards and formula trace
+    reportSurface: opening score cards, score rationale, GQM and cap explanation
+    mcpBoundary: MCP checks final report score synchronization; Atlas checks score formula meaning and business cap rationale.
+    scoreImpact: Non-recalculable or flat scores cap candidate quality below teacher-grade.
+    repairTarget: score cards, formula rows, weakest-axis cap and evidence-backed rationale
+  - id: atlas.quality.graph-proof
+    lane: Graph proof and reusable graph style
+    owner: Atlas graph rules
+    category: GRAPH_PROOF
+    artifact: docs/atlas/business-test-atlas.html
+    reportSurface: primary graph, supporting business subgraphs, legends and proof strips
+    mcpBoundary: MCP rejects run IDs as business nodes in final reports; Atlas explains what each business graph proves.
+    scoreImpact: Unbacked or technical inventory graphs block promotion.
+    repairTarget: full-width business graphs with highlighted owned object, dashed/capped frontier, labeled relationship edges, collapsed legends and source-backed proof strips
+  - id: atlas.quality.validation-audit
+    lane: Atlas validation audit
+    owner: Atlas audit
+    category: AUDIT
+    artifact: docs/atlas/validation
+    reportSurface: Atlas rule matrix, Extent/XML links, exact command and synchronized totals
+    mcpBoundary: MCP final close-out remains the package gate; Atlas audit proves the Atlas validator was run and linked.
+    scoreImpact: Stale Atlas validation evidence blocks publication even when business content looks strong.
+    repairTarget: atlas-rule-matrix, validation Extent/XML artifacts and exact Maven command evidence

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-07-02T16:12:59 EEST" name="Surefire suite" finished-at="2026-07-02T16:13:41 EEST" duration-ms="42420">
+    <groups>
+    </groups>
+    <test started-at="2026-07-02T16:12:59 EEST" name="Surefire test" finished-at="2026-07-02T16:13:41 EEST" duration-ms="42420">
+      <class name="com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest@24134cbc]" started-at="2026-07-02T16:12:59 EEST" name="setUp" finished-at="2026-07-02T16:13:19 EEST" duration-ms="20700" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="cart_line_exposes_review_vocabulary_before_identity()[pri:0, instance:com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest@24134cbc]" started-at="2026-07-02T16:13:20 EEST" name="cart_line_exposes_review_vocabulary_before_identity" finished-at="2026-07-02T16:13:26 EEST" duration-ms="6780" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cart_line_exposes_review_vocabulary_before_identity -->
+        <test-method signature="cart_line_has_named_product_before_invoice()[pri:0, instance:com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest@24134cbc]" started-at="2026-07-02T16:13:27 EEST" name="cart_line_has_named_product_before_invoice" finished-at="2026-07-02T16:13:30 EEST" duration-ms="3146" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cart_line_has_named_product_before_invoice -->
+        <test-method signature="cart_line_names_selected_catalog_product_before_checkout()[pri:0, instance:com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest@24134cbc]" started-at="2026-07-02T16:13:30 EEST" name="cart_line_names_selected_catalog_product_before_checkout" finished-at="2026-07-02T16:13:33 EEST" duration-ms="2907" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cart_line_names_selected_catalog_product_before_checkout -->
+        <test-method signature="cart_line_preserves_catalog_price_token()[pri:0, instance:com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest@24134cbc]" started-at="2026-07-02T16:13:34 EEST" name="cart_line_preserves_catalog_price_token" finished-at="2026-07-02T16:13:37 EEST" duration-ms="3073" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cart_line_preserves_catalog_price_token -->
+        <test-method signature="cart_line_stays_on_checkout_boundary()[pri:0, instance:com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest@24134cbc]" started-at="2026-07-02T16:13:37 EEST" name="cart_line_stays_on_checkout_boundary" finished-at="2026-07-02T16:13:40 EEST" duration-ms="2990" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cart_line_stays_on_checkout_boundary -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest@24134cbc]" started-at="2026-07-02T16:13:40 EEST" name="tearDown" finished-at="2026-07-02T16:13:41 EEST" duration-ms="884" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest -->
+    </test> <!-- Surefire test -->
+  </suite> <!-- Surefire suite -->
+</testng-results>

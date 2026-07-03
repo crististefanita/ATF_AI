@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testsuite name="run_04" tests="5" failures="0" errors="0" skipped="0" time="25.485" package="com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest">
+  <testcase classname="com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest" name="cart_line_survives_catalog_reopen_before_checkout" time="6.956" />
+  <testcase classname="com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest" name="reopened_cart_keeps_catalog_price" time="5.015" />
+  <testcase classname="com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest" name="reopened_cart_keeps_line_quantity" time="4.836" />
+  <testcase classname="com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest" name="reopened_cart_keeps_product_name" time="4.131" />
+  <testcase classname="com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest" name="reopened_cart_returns_to_checkout_boundary" time="4.547" />
+</testsuite>

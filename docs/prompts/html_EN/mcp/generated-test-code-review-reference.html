@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generated Test Code Review - skill requirements</title>
+  <link rel="stylesheet" href="../../assets/shared-report-reference.css">
+  <style>
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+    .diag{background:#0d1624;border:1px solid #27415f;border-radius:18px;padding:18px;margin:14px 0;overflow:auto}
+    .diag svg{width:100%;height:auto;display:block}
+    .toolbar{display:flex;justify-content:flex-start;gap:8px;margin:10px 0 14px}
+    .toolbar button{border:1px solid var(--border);background:#111826;color:var(--text);border-radius:999px;padding:7px 12px;font-size:12px;font-weight:700;cursor:pointer}
+    .toolbar button:hover{border-color:#7aa2ff;color:#dbe7ff}
+    .pillline{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:start;margin:8px 0}
+    .pilllabel{font-weight:800;color:#9ecbff}
+    .pillrow{display:flex;flex-wrap:wrap;gap:8px}
+    .subsection{margin:18px 0 10px}
+    .subsection>summary{font-weight:800;color:#e6edf3;margin:0 0 8px}
+    .mini{font-size:.92rem;color:#b9c7da}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Skill / HTML requirements document</div>
+    <h1>Generated Test Code Review for classes created by agents</h1>
+    <p>
+      Skill analysis-only for code quality review on generated tests. Receive a folder of tests,
+      reads the source code and the layers used, then produces an HTML report that explains whether the tests are
+      coherent, business-grouped, architecturally clean and easy to reorganize.
+    </p>
+    <div class="badgebar">
+      <span class="badge">CODE REVIEW</span>
+      <span class="badge">GENERATED TESTS</span>
+      <span class="badge">REFACTOR PLAN</span>
+      <span class="badge">READ ONLY</span>
+      <span class="badge">UI/API ARCHITECTURE</span>
+    </div>
+  </header>
+
+  <div class="toolbar" aria-label="Control sections">
+    <button type="button" onclick="toggleAll(true)">Open the sections</button>
+    <button type="button" onclick="toggleAll(false)">Close sections</button>
+  </div>
+
+  <details open>
+    <summary>Overview</summary>
+    <div class="content">
+      <div class="callout">
+        Cold contract:
+        <ul>
+          <li>The skill reviews the code of the generated tests, it does not validate the MCP package.</li>
+          <li>The tests are evaluated as design and maintenance, not as final business proof.</li>
+          <li>Existing atlases can guide business grouping, but they are no substitute for reading the code.</li>
+          <li>The output is an HTML review report, not an automatic patch.</li>
+        </ul>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="pillline"><div class="pilllabel">Input:</div><div class="pillrow"><span class="pill">tests folder</span><span class="pill">Java package</span><span class="pill">touched layers</span></div></div>
+          <div class="pillline"><div class="pilllabel">Output:</div><div class="pillrow"><span class="pill">generated-test-code-review.html</span><span class="pill">score cards</span><span class="pill">plan refactor</span></div></div>
+          <div class="pillline"><div class="pilllabel">Focus:</div><div class="pillrow"><span class="pill">class cohesion</span><span class="pill">DUB</span><span class="pill">layering</span><span class="pill">naming</span></div></div>
+        </div>
+        <div class="card">
+          <div class="pillline"><div class="pilllabel">Do not:</div><div class="pillrow"><span class="pill bad">do not modify tests</span><span class="pill bad">does not generate tests</span><span class="pill bad">not decide html-ex</span></div></div>
+          <div class="pillline"><div class="pilllabel">Do not confuse:</div><div class="pillrow"><span class="pill bad">run count</span><span class="pill bad">MCP pass</span><span class="pill bad">business atlas</span><span class="pill bad">code quality</span></div></div>
+          <div class="pillline"><div class="pilllabel">It can be used:</div><div class="pillrow"><span class="pill">before the refactor</span><span class="pill">after an MCP run</span><span class="pill">before promoting html-ex</span></div></div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details open>
+    <summary>1. Contract</summary>
+    <div class="content">
+      <details class="subsection" open>
+        <summary>1.1 Contract in 10 seconds</summary>
+        <table>
+          <thead><tr><th>Question</th><th>Mandatory answer</th><th>Anti-drift</th></tr></thead>
+          <tbody>
+            <tr><td>What does it receive?</td><td><code>INPUT_TEST_SOURCE_ROOT</code>, the generated tests folder.</td><td>it does not start from the final report or XML</td></tr>
+            <tr><td>What are you reading?</td><td>test classes and invoked Java layers: action, component, page, service, validation, model, constants.</td><td>it doesn't stop at file names</td></tr>
+            <tr><td>What do you judge?</td><td>test code quality: cohesion, accountability, duplication, naming, layering, refactor safety.</td><td>do not judge the product as a complete business</td></tr>
+            <tr><td>What does it produce?</td><td><code>generated-test-code-review.html</code> with reorganization recommendations.</td><td>does not produce automatic patch</td></tr>
+          </tbody>
+        </table>
+        <div class="diag">
+          <svg viewbox="0 0 1160 220" role="img" aria-label="Generated test code review pipeline">
+            <defs><marker id="arrow1" markerwidth="10" markerheight="10" refx="8" refy="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7aa2ff"></path></marker></defs>
+            <rect x="40" y="76" width="200" height="72" rx="14" fill="#111826" stroke="#35507a"></rect>
+            <text x="140" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Generated tests</text>
+            <text x="140" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">input source root</text>
+            <rect x="315" y="76" width="200" height="72" rx="14" fill="#111826" stroke="#35507a"></rect>
+            <text x="415" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Trace Architecture</text>
+            <text x="415" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">test -&gt; layers</text>
+            <rect x="590" y="76" width="200" height="72" rx="14" fill="#111826" stroke="#35507a"></rect>
+            <text x="690" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Quality review</text>
+            <text x="690" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">cohesion / duplication</text>
+            <rect x="865" y="76" width="230" height="72" rx="14" fill="#111826" stroke="#35507a"></rect>
+            <text x="980" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Map refactor</text>
+            <text x="980" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">safe / risky / blocked</text>
+            <path d="M240 112 H315" stroke="#7aa2ff" stroke-width="2" marker-end="url(#arrow1)"></path>
+            <path d="M515 112 H590" stroke="#7aa2ff" stroke-width="2" marker-end="url(#arrow1)"></path>
+            <path d="M790 112 H865" stroke="#7aa2ff" stroke-width="2" marker-end="url(#arrow1)"></path>
+          </svg>
+        </div>
+      </details>
+
+      <details class="subsection">
+        <summary>1.2 Canonical parameters</summary>
+        <table>
+          <thead><tr><th>Parameter</th><th>Example</th><th>Role</th></tr></thead>
+          <tbody>
+            <tr><td><code>INPUT_TEST_SOURCE_ROOT</code></td><td><code>src/test/java/com/endava/ai/ui/tests</code> or <code>src/test/java/com/endava/ai/api/tests</code></td><td>the root of the analyzed tests</td></tr>
+            <tr><td><code>INPUT_TEST_PACKAGE</code></td><td><code>com.endava.ai.ui.tests</code> / <code>com.endava.ai.api.tests</code></td><td>namespace for mapping</td></tr>
+            <tr><td><code>INPUT_MAIN_SUPPORT_ROOTS</code></td><td><code>src/main/java/com/endava/ai/ui/support</code> / <code>src/main/java/com/endava/ai/api/support</code></td><td>support allowed for generated tests</td></tr>
+            <tr><td><code>PROTECTED_FRAMEWORK_ROOTS</code></td><td><code>core</code>, <code>mcp</code>, <code>atlas</code>, <code>ui/core</code>, <code>ui/engine</code>, <code>api/core</code></td><td>surfaces that do not change in the generated package</td></tr>
+            <tr><td><code>LIVING_ARCHITECTURE_REFERENCE</code></td><td><code>docs/Living_Architecture_UI_API_doc_v1_0.html</code></td><td>the UI/API layering law</td></tr>
+            <tr><td><code>OPTIONAL_BUSINESS_ATLAS</code></td><td><code>docs/atlas/&lt;ATF_NAME&gt;_business-test-atlas.html</code></td><td>the business map is used as a guide, not as a single source</td></tr>
+            <tr><td><code>OUTPUT_CODE_REVIEW_HTML</code></td><td><code>generated-test-code-review.html</code></td><td>the ratio produced by the skill</td></tr>
+            <tr><td><code>MUST_NOT_MODIFY_ANALYZED_FILES</code></td><td><code>true</code></td><td>the analysis is read-only</td></tr>
+          </tbody>
+        </table>
+      </details>
+
+      <details class="subsection">
+        <summary>1.3 Boundaries</summary>
+        <table>
+          <thead><tr><th>He is allowed</th><th>He is not allowed</th></tr></thead>
+          <tbody>
+            <tr><td>to propose reorganization of packages and classes</td><td>to move files automatically</td></tr>
+            <tr><td>to indicate duplications and missing helpers</td><td>to rewrite the tests without approval</td></tr>
+            <tr><td>to use Atlas as a business map</td><td>to copy conclusions without reading the source</td></tr>
+            <tr><td>to mark risks of refactoring</td><td>to declare MCP pass/fail</td></tr>
+          </tbody>
+        </table>
+      </details>
+    </div>
+  </details>
+
+  <details>
+    <summary>2. Analysis model</summary>
+    <div class="content">
+      <details class="subsection" open>
+        <summary>2.1 Axes of review</summary>
+        <table>
+          <thead><tr><th>Axis</th><th>Cold question</th><th>What catches</th></tr></thead>
+          <tbody>
+            <tr><td>Class cohesion</td><td>Does the class test a single coherent flow/object?</td><td>"massive" classes</td></tr>
+            <tr><td>Business grouping</td><td>Are the tests grouped by business object, not by artificial run?</td><td>run classes difficult to reuse</td></tr>
+            <tr><td>Layer disciplines</td><td>Does the test orchestrate, and are the business assertions in validation?</td><td>assert direct, engine direct, selectors direct</td></tr>
+            <tr><td>Duplication</td><td>Are there steps copied between classes that require helper/action?</td><td>drift between runs</td></tr>
+            <tr><td>Naming</td><td>Does the name say actor, intention, object, result?</td><td>procedural or generic names</td></tr>
+            <tr><td>Safety refactor</td><td>Does the reorganization keep the proof of business?</td><td>dangerous refactor without a trace</td></tr>
+          </tbody>
+        </table>
+      </details>
+
+      <details class="subsection">
+        <summary>2.2 The reading chain</summary>
+        <div class="diag">
+          <svg viewbox="0 0 1160 230" role="img" aria-label="Source to quality review trace">
+            <defs><marker id="arrow2" markerwidth="10" markerheight="10" refx="8" refy="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7aa2ff"></path></marker></defs>
+            <rect x="35" y="80" width="175" height="70" rx="14" fill="#111826" stroke="#35507a"></rect>
+            <text x="122" y="106" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Test method</text>
+            <text x="122" y="128" text-anchor="middle" fill="#a8b3cf" font-size="11">entrypoint</text>
+            <rect x="265" y="80" width="175" height="70" rx="14" fill="#111826" stroke="#35507a"></rect>
+            <text x="352" y="106" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Action / service</text>
+            <text x="352" y="128" text-anchor="middle" fill="#a8b3cf" font-size="11">business action</text>
+            <rect x="495" y="80" width="175" height="70" rx="14" fill="#111826" stroke="#35507a"></rect>
+            <text x="582" y="106" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Page / component</text>
+            <text x="582" y="128" text-anchor="middle" fill="#a8b3cf" font-size="11">surface access</text>
+            <rect x="725" y="80" width="175" height="70" rx="14" fill="#111826" stroke="#35507a"></rect>
+            <text x="812" y="106" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Validation</text>
+            <text x="812" y="128" text-anchor="middle" fill="#a8b3cf" font-size="11">business assertion</text>
+            <rect x="955" y="80" width="170" height="70" rx="14" fill="#111826" stroke="#35507a"></rect>
+            <text x="1040" y="106" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Review</text>
+            <text x="1040" y="128" text-anchor="middle" fill="#a8b3cf" font-size="11">quality + refactor</text>
+            <path d="M210 115 H265" stroke="#7aa2ff" stroke-width="2" marker-end="url(#arrow2)"></path>
+            <path d="M440 115 H495" stroke="#7aa2ff" stroke-width="2" marker-end="url(#arrow2)"></path>
+            <path d="M670 115 H725" stroke="#7aa2ff" stroke-width="2" marker-end="url(#arrow2)"></path>
+            <path d="M900 115 H955" stroke="#7aa2ff" stroke-width="2" marker-end="url(#arrow2)"></path>
+          </svg>
+        </div>
+      </details>
+
+      <details class="subsection">
+        <summary>2.3 Recommended Scores</summary>
+        <table>
+          <thead><tr><th>Card</th><th>Measure</th><th>Ceiling signal</th></tr></thead>
+          <tbody>
+            <tr><td>Class Cohesion</td><td>classes with a single purpose and coherent flow</td><td>classes with mixed objects</td></tr>
+            <tr><td>Layer Disciplines</td><td>test -&gt; action/service -&gt; page/component -&gt; validation</td><td>engine/selectors/assert directly in the test</td></tr>
+            <tr><td>Duplication Control</td><td>common steps extracted in correct helpers</td><td>copying between run classes</td></tr>
+            <tr><td>Business Grouping</td><td>organization by object/real flow</td><td>organization according to "run_01/run_02" without sense of domain</td></tr>
+            <tr><td>Refactor Safety</td><td>recommendations with risk and evidence</td><td>proposed moves without mapping to tests/methods</td></tr>
+            <tr><td>Overall</td><td>the quality of the review as a reorganization tool</td><td>high score without concrete candidate classes</td></tr>
+          </tbody>
+        </table>
+      </details>
+    </div>
+  </details>
+
+  <details>
+    <summary>3. Expected HTML output</summary>
+    <div class="content">
+      <details class="subsection" open>
+        <summary>3.1 Structure of the report</summary>
+        <table>
+          <thead><tr><th>Section</th><th>Default</th><th>Mandatory content</th></tr></thead>
+          <tbody>
+            <tr><td>Score Cards</td><td>open</td><td>Class Cohesion, Layer Discipline, Duplication Control, Business Grouping, Refactor Safety, Overall</td></tr>
+            <tr><td>Executive Context</td><td>closed</td><td>scope, input, cold verdict, what doesn't change</td></tr>
+            <tr><td>Architecture Review Graph</td><td>open</td><td>map test package -&gt; layer usage -&gt; review findings</td></tr>
+            <tr><td>Class Cohesion Matrix</td><td>closed</td><td>good classes, too mixed classes, break/unit classes</td></tr>
+            <tr><td>Duplication Map</td><td>closed</td><td>repeated steps, recommended helpers, risk of drift</td></tr>
+            <tr><td>Audit Discipline Layer</td><td>closed</td><td>direct engine, direct selectors, direct assertions, missing validation</td></tr>
+            <tr><td>Refactor Plan</td><td>closed</td><td>safe, medium-risk, do-not-touch-yet</td></tr>
+            <tr><td>Suggested Package Shape</td><td>closed</td><td>proposed packages/classes, no automatic patch</td></tr>
+          </tbody>
+        </table>
+      </details>
+
+      <details class="subsection">
+        <summary>3.2 Mandatory diagrams</summary>
+        <table>
+          <thead><tr><th>Chart</th><th>What does he explain?</th><th>Anti-pattern caught</th></tr></thead>
+          <tbody>
+            <tr><td>Architecture Review Graph</td><td>how the tests touch the layers</td><td>the tests bypass the framework</td></tr>
+            <tr><td>Class Responsibility Map</td><td>the responsibility of each class</td><td>bucket classes</td></tr>
+            <tr><td>Duplication Heatmap</td><td>where the steps are repeated</td><td>copied runs</td></tr>
+            <tr><td>Safety Ladder Refactor</td><td>what can be moved safely</td><td>blind refactor</td></tr>
+          </tbody>
+        </table>
+      </details>
+
+      <details class="subsection">
+        <summary>3.3 Visual style</summary>
+        <ul>
+          <li>The report must reuse <code>docs/shared-report-reference.css</code>.</li>
+          <li>He is not allowed to invent a completely inline visual system.</li>
+          <li>Diagrams must be minimalistic: simple nodes, few colors, collapsible legend.</li>
+          <li>Score cards must be short; long descriptions move to collapsed sections.</li>
+        </ul>
+      </details>
+    </div>
+  </details>
+
+  <details>
+    <summary>4. Contract rules for future tests</summary>
+    <div class="content">
+      <details class="subsection" open>
+        <summary>4.1 Proposed contract tests</summary>
+        <table>
+          <thead><tr><th>Rule id</th><th>Severity</th><th>What validates</th></tr></thead>
+          <tbody>
+            <tr><td><code>code-review.output.exists</code></td><td>BLOCKER</td><td>the HTML review report exists</td></tr>
+            <tr><td><code>code-review.read-only.contract</code></td><td>BLOCKER</td><td>the review declares that it does not modify the analyzed files</td></tr>
+            <tr><td><code>code-review.score-cards.present</code></td><td>MAJOR</td><td>canonical score cards appear above</td></tr>
+            <tr><td><code>code-review.class-cohesion.matrix</code></td><td>MAJOR</td><td>classes are classified by cohesion</td></tr>
+            <tr><td><code>code-review.layer-discipline.audit</code></td><td>BLOCKER</td><td>the report directly checks the engine/selectors/assertions in the test layer</td></tr>
+            <tr><td><code>code-review.duplication.map</code></td><td>MAJOR</td><td>rehearsals and helper opportunities are visible</td></tr>
+            <tr><td><code>code-review.refactor-plan.risk-ranked</code></td><td>MAJOR</td><td>refactor the plan has safe / medium-risk / blocked</td></tr>
+            <tr><td><code>code-review.no-business-hardcode</code></td><td>MAJOR</td><td>the tests do not depend on business objects specific to a single application</td></tr>
+            <tr><td><code>code-review.architecture-reference.linked</code></td><td>MAJOR</td><td>the report links the review to Living Architecture</td></tr>
+          </tbody>
+        </table>
+      </details>
+
+      <details class="subsection">
+        <summary>4.2 Standardized diagnosis</summary>
+        <table>
+          <thead><tr><th>Block</th><th>What should he say?</th></tr></thead>
+          <tbody>
+            <tr><td>Expected contract review</td><td>what quality rule is checked</td></tr>
+            <tr><td>Observed source result</td><td>concrete classes/methods/files observed</td></tr>
+            <tr><td>Cold verdict</td><td>PASS / WARN / FAIL without cosmetic courtesy</td></tr>
+            <tr><td>Repair hint</td><td>move, split, helper or check step recommended</td></tr>
+          </tbody>
+        </table>
+      </details>
+    </div>
+  </details>
+
+  <details>
+    <summary>5. Recommended reorganization for generated tests</summary>
+    <div class="content">
+      <details class="subsection" open>
+        <summary>5.1 Target shape</summary>
+        <pre><code>src/test/java/com/endava/ai/ui/tests
+  account | checkout | support | admin | catalog | common
+    &lt;BusinessObject&gt;&lt;LifecycleOrBoundary&gt;Tests
+
+src/test/java/com/endava/ai/api/tests
+  users | posts | comments | auth | common
+    &lt;Resource&gt;&lt;ContractOrLifecycle&gt;Tests
+
+src/main/java/com/endava/ai/ui/support
+  flows        // reusable UI workflow services, no assertions hidden in core
+  pages        // UI page/screen surface
+  validation   // business-visible UI assertions
+  model        // UI data/state records
+  factory      // UI test data builders/factories
+  utils        // low-level UI helpers only when reusable
+
+src/main/java/com/endava/ai/api/support
+  client       // HTTP mechanics outside api.core
+  service      // API resource service
+  steps        // reusable API flow steps
+  validation   // response/schema/business assertions
+  model        // request/response records
+  factory      // payload builders/factories
+  utils        // serialization/wait/data utilities
+
+src/main/java/com/endava/ai/ui/core
+src/main/java/com/endava/ai/api/core
+  protected framework contracts; generated packages must not modify these roots</code></pre>
+        <div class="callout">
+          Names are examples of form, not necessarily business. The rule is: packages are organized according to flows
+          and real objects, not by run IDs or by MCP generation history. The tests are in <code>src/test</code>;
+          reusable support stays in <code>src/main</code>; framework core does not become a home for package helpers.
+        </div>
+      </details>
+
+      <details class="subsection" open>
+        <summary>5.1.1 Protected surfaces vs. permitted support</summary>
+        <table>
+          <thead><tr><th>Area</th><th>Rule</th><th>Review verdict</th></tr></thead>
+          <tbody>
+            <tr><td><code>com.endava.ai.core</code></td><td>ATF core protected</td><td>FAIL if the generated package modifies it without a separately reported blocker framework</td></tr>
+            <tr><td><code>com.endava.ai.skills.mcp</code></td><td>MCP protected validator</td><td>FAIL if the agent adjusts the validator to pass its own packet</td></tr>
+            <tr><td><code>com.endava.ai.skills.atlas</code></td><td>Atlas protected</td><td>FAIL if it is changed for a single business context</td></tr>
+            <tr><td><code>com.endava.ai.ui.core</code> / <code>ui.engine</code></td><td>Protected runtime UI</td><td>FAIL if test workarounds appear in the engine/core</td></tr>
+            <tr><td><code>com.endava.ai.api.core</code></td><td>Protected runtime API</td><td>FAIL if local business rules appear in API core</td></tr>
+            <tr><td><code>ui/pages|service|validation|model|factory</code></td><td>UI support allowed</td><td>PASS/WARN after cohesion, naming and reuse</td></tr>
+            <tr><td><code>api/client|service|steps|validation|model|factory</code></td><td>API support allowed</td><td>PASS/WARN according to contract, payload and clarity scheme</td></tr>
+          </tbody>
+        </table>
+      </details>
+
+      <details class="subsection">
+        <summary>5.1.2 Surgical examples of split</summary>
+        <table>
+          <thead><tr><th>Bad package split</th><th>Good package split</th><th>The refactor rule</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><code>ui.tests.Run03SupportAndProfileTests</code><br>support ticket, profile edit, notification toggle in the same class</td>
+              <td><code>ui.tests.support.SupportTicketLifecycleTests</code><br><code>ui.tests.profile.ProfilePreferencesTests</code></td>
+              <td>break by business object; common setup goes in <code>ui.service</code> or <code>ui.factory</code>, validations in <code>ui.validation</code></td>
+            </tr>
+            <tr>
+              <td><code>ui.tests.AgenticMcpUIGeneratedTests</code><br>5 methods with different flows and the same copied clicks</td>
+              <td><code>ui.tests.checkout.CheckoutBoundaryTests</code><br><code>ui.tests.catalog.CatalogSearchStateTests</code></td>
+              <td>test class = coherent family; repeated steps become a workflow service, not a helper <code>ui.core</code> or <code>ui.engine</code></td>
+            </tr>
+            <tr>
+              <td><code>api.tests.MixedResourceContractTests</code><br>auth, users, posts and comments in one file</td>
+              <td><code>api.tests.auth.AuthSessionContractTests</code><br><code>api.tests.users.UserProfileContractTests</code><br><code>api.tests.comments.CommentModerationContractTests</code></td>
+              <td>group by resource/contract; payload builders in <code>api.factory</code>, schema/assertions in <code>api.validation</code>, without local rules in <code>api.core</code></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="callout">
+          If the split requires a change in <code>core</code>, <code>mcp</code>, <code>atlas</code>, <code>ui.core</code>,
+          <code>api.core</code> or <code>ui.engine</code>, the review does not propose a local patch. Mark a framework blocker
+          separately and keep the reorganization in the generated zones: <code>src/test</code> plus allowed support from <code>src/main</code>.
+        </div>
+      </details>
+
+      <details class="subsection">
+        <summary>5.2 Safety ladder refactor</summary>
+        <table>
+          <thead><tr><th>Level</th><th>Allowed without high risk</th><th>Demands attention</th></tr></thead>
+          <tbody>
+            <tr><td>safe</td><td>rename classes/methods, extract constants, helper for data builders</td><td>keep TestNG method count and reporting</td></tr>
+            <tr><td>Medium</td><td>move classes between packages, split large classes</td><td>updates XML, imports, package names and report mapping</td></tr>
+            <tr><td>High</td><td>change flow, move assertions, change service/actions</td><td>rerun UI proof and MCP after the change</td></tr>
+            <tr><td>Framework blocker</td><td>any real need for <code>core</code>, <code>MCP</code>, <code>atlas</code>, <code>ui.core</code>, <code>api.core</code>, <code>ui.engine</code></td><td>does not change locally; it is reported separately as feedback framework</td></tr>
+            <tr><td>Blocked</td><td>deletion of evidence without replacement</td><td>it cannot be done without a new run/proof</td></tr>
+          </tbody>
+        </table>
+      </details>
+    </div>
+  </details>
+
+  <details>
+    <summary>6. Good and bad examples</summary>
+    <div class="content">
+      <details class="subsection">
+        <summary>6.1 Good</summary>
+        <ul>
+          <li>A class has only one central business object.</li>
+          <li>The test describes actor, intention, object and result.</li>
+          <li>UI actions are delegated to actions/services.</li>
+          <li>Business validations are in the validation layer.</li>
+          <li>Repetitions are extracted in clear fixtures/helpers.</li>
+          <li>New UI/API support resides in the appropriate main/support packages, not in protected core.</li>
+        </ul>
+      </details>
+      <details class="subsection">
+        <summary>6.2 Bad</summary>
+        <ul>
+          <li>The class combines invoice, support, profile and admin only because they were generated in the same run.</li>
+          <li>The test directly uses engine/selectors for business assertions.</li>
+          <li>The methods are called <code>run03Test2</code> or <code>validatesScenario</code>.</li>
+          <li>Each run copies the same 40 setup lines.</li>
+          <li>Agent modifies MCP, ATF core, atlas, <code>ui.core</code>, <code>api.core</code> or <code>ui.engine</code> to make the package pass.</li>
+          <li>The refactor plan says "clean up tests" without concrete classes/methods.</li>
+        </ul>
+      </details>
+    </div>
+  </details>
+</div>
+
+<script>
+function toggleAll(open) {
+  document.querySelectorAll('details').forEach(details => {
+    details.open = open;
+  });
+}
+</script>
+</body>
+</html>

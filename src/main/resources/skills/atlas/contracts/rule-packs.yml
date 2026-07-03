@@ -1,0 +1,49 @@
+schemaVersion: 1
+contracts:
+  - id: atlas.rule-pack.business-semantics
+    kind: atlas-rule-pack
+    owner: skill.atlas
+    packageRoots: src/main/java/com/endava/ai/skills/atlas/rules/business,src/main/java/com/endava/ai/skills/atlas/rules/business/trace
+    contracts: agentic-quality-lanes.yml,rule-policies.yml
+    primarySuite: src/test/resources/skills/atlas/testng-atlas-sanity.xml
+    role: Owns source-backed business meaning, comprehension vocabulary and source-to-business trace.
+    whenToUse: Use when business object, actor, intent, source trace or comprehension vocabulary changes.
+    publishedEvidence: source-to-business trace, business comprehension rows, semantic rule matrix
+    stopCondition: business meaning is source-backed and does not claim MCP package readiness
+    repair: Use Business Understanding semantics, but keep Atlas artifact ownership in Atlas.
+
+  - id: atlas.rule-pack.graph-proof
+    kind: atlas-rule-pack
+    owner: skill.atlas
+    packageRoots: src/main/java/com/endava/ai/skills/atlas/rules/graph,src/main/java/com/endava/ai/skills/atlas/report
+    contracts: graph-reporting.yml,report-sections.yml
+    primarySuite: src/test/resources/skills/atlas/testng-atlas.xml
+    role: Owns graph structure, legends, proof strips and local graph proof readability.
+    whenToUse: Use when graph nodes, proof strips, legends or graph report sections change.
+    publishedEvidence: business graph, local proof strips, graph readability verdict
+    stopCondition: graph proof is local, readable and separated from Reporting shell ownership
+    repair: Fix graph/proof layout in Atlas output; do not move visual shell ownership out of Reporting.
+
+  - id: atlas.rule-pack.score-truth
+    kind: atlas-rule-pack
+    owner: skill.atlas
+    packageRoots: src/main/java/com/endava/ai/skills/atlas/rules/scoring
+    contracts: agentic-quality-lanes.yml,rule-policies.yml
+    primarySuite: src/test/resources/skills/atlas/testng-atlas.xml
+    role: Owns source-backed score truth, cap rationale and business understanding limits.
+    whenToUse: Use when business scores, cap rationale or understanding limits change.
+    publishedEvidence: score rationale rows, cap reasons, source-backed score truth
+    stopCondition: scores are recalculable from source/graph/proof evidence
+    repair: Recalculate score rationale from source/graph/proof evidence, not package publishability.
+
+  - id: atlas.rule-pack.audit-publication
+    kind: atlas-rule-pack
+    owner: skill.atlas
+    packageRoots: src/main/java/com/endava/ai/skills/atlas/rules/audit,src/main/java/com/endava/ai/skills/atlas/validation
+    contracts: suites.yml,package-shape.yml,rule-policies.yml
+    primarySuite: src/test/resources/skills/atlas/testng-atlas-sanity.xml
+    role: Owns Atlas test audit, rule catalog synchronization and generated Atlas output publication.
+    whenToUse: Use when Atlas rule catalog, generated artifacts or audit publication changes.
+    publishedEvidence: Atlas test audit, rule catalog synchronization, generated output publication verdict
+    stopCondition: Atlas audit evidence is current without becoming MCP close-out governance
+    repair: Keep Atlas audit evidence current without turning Atlas into generated-package close-out governance.

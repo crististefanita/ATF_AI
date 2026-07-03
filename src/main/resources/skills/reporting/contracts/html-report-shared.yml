@@ -1,0 +1,27 @@
+schemaVersion: 1
+contracts:
+  - id: html-report.shared-final
+    profile: SHARED_FINAL_REPORT
+    owner: core-reporting
+    scope: shared final report shell
+    expectedLanguage: any
+    requiredSections: []
+    requiredShellClasses:
+      - wrap
+      - hero
+      - score-wall
+      - score-card
+    requiredGraphClasses:
+      - graph-panel
+      - diag
+      - edge
+      - node
+      - nt
+      - ns
+    visibleNodeShapeTags:
+      - rect
+      - circle
+      - polygon
+    forbiddenGraphWrapperTags:
+      - g.node
+    repair: Keep only reusable report chrome, score-wall and graph primitive rules here; MCP and Atlas section vocabulary belongs in their own YAML profiles.

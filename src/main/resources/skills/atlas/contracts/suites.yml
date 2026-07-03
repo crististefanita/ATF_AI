@@ -1,0 +1,50 @@
+schemaVersion: 1
+contracts:
+  - id: atlas.suite.generated-output
+    profile: BASE
+    htmlOwner: docs/prompts/html_ro/atlas/business-test-atlas-reference.html
+    artifact: docs/atlas/business-test-atlas.html
+    sourceRoot: src/test/java/com/endava/ai/ui/tests
+    purpose: Base atlas output contract; file exists, is read-only, navigable, shared-CSS based, and business-flow shaped.
+  - id: atlas.suite.candidate-structure
+    profile: CANDIDATE
+    htmlOwner: docs/prompts/html_ro/atlas/business-test-atlas-reference.html
+    artifact: docs/atlas/business-test-atlas.html
+    sourceRoot: src/test/java/com/endava/ai/ui/tests
+    purpose: Candidate atlas structure contract; navigable, collapsed, numbered and free of hidden keyword scaffolding.
+  - id: atlas.suite.candidate-skill-readiness
+    profile: CANDIDATE
+    htmlOwner: docs/prompts/html_ro/atlas/business-test-atlas-reference.html
+    artifact: docs/atlas/business-test-atlas.html
+    sourceRoot: src/test/java/com/endava/ai/ui/tests
+    purpose: Candidate atlas skill-readiness contract; parameters, rule matrix and validation proof are reusable for a future Codex skill.
+  - id: atlas.suite.candidate-score
+    profile: CANDIDATE
+    htmlOwner: docs/prompts/html_ro/atlas/business-test-atlas-reference.html
+    artifact: docs/atlas/business-test-atlas.html
+    sourceRoot: src/test/java/com/endava/ai/ui/tests
+    purpose: Candidate atlas score contract; score cards, formula, caps and GQM trace are auditable.
+  - id: atlas.suite.candidate-graph
+    profile: CANDIDATE
+    htmlOwner: docs/prompts/html_ro/atlas/business-test-atlas-reference.html
+    artifact: docs/atlas/business-test-atlas.html
+    sourceRoot: src/test/java/com/endava/ai/ui/tests
+    purpose: Candidate atlas graph contract; business diagrams are calm, full-width, source-backed and visually reusable.
+  - id: atlas.suite.candidate-business-comprehension
+    profile: CANDIDATE
+    htmlOwner: docs/prompts/html_ro/atlas/business-test-atlas-reference.html
+    artifact: docs/atlas/business-test-atlas.html
+    sourceRoot: src/test/java/com/endava/ai/ui/tests
+    purpose: Candidate atlas business comprehension contract; flows are product stories, not class inventories.
+  - id: atlas.suite.yaml-suite-catalog
+    profile: BASE
+    htmlOwner: docs/prompts/html_ro/atlas/business-test-atlas-reference.html
+    artifact: docs/atlas/business-test-atlas.html
+    sourceRoot: src/test/java/com/endava/ai/ui/tests
+    purpose: Atlas suite catalog contract; Atlas tests declare reusable YAML-backed suite references instead of inline suite metadata.
+  - id: atlas.suite.testng-profile-taxonomy
+    profile: BASE
+    htmlOwner: docs/prompts/html_ro/atlas/business-test-atlas-reference.html
+    artifact: docs/atlas/business-test-atlas.html
+    sourceRoot: src/test/java/com/endava/ai/ui/tests
+    purpose: Atlas TestNG profile taxonomy contract; Atlas smoke and full profiles stay isolated from ATF core and MCP profiles.

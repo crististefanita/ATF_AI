@@ -1,0 +1,332 @@
+schemaVersion: 1
+contracts:
+  - id: mcp.yaml-contract.kpi-schema.required-fields
+    expected: Every YAML KPI has required identity, source, repair, score and publishability fields.
+    artifacts: src/main/resources/skills/mcp/contracts/kpi/source-evolution.yml
+    failureMeaning: Agent-facing metadata can drift from executable MCP rules or become too vague to repair.
+    repairHint: Fill the YAML field, but keep Java as the executable validator.
+  - id: mcp.yaml-contract.kpi-schema.identity
+    expected: KPI ids are unique, severities are canonical, and close-out blocker KPIs stay explicit.
+    artifacts: src/main/resources/skills/mcp/contracts/kpi/source-evolution.yml
+    failureMeaning: Duplicate or weakly typed YAML ids make generated matrices ambiguous.
+    repairHint: Use stable ids and only BLOCKER, MAJOR or INFO severities.
+  - id: mcp.yaml-contract.kpi-schema.negative-metadata
+    expected: Duplicate ids, invalid profile or severity and missing required fields are rejected clearly.
+    artifacts: src/main/resources/skills/mcp/contracts/kpi/source-evolution.yml
+    failureMeaning: Bad YAML metadata can make the agent-facing matrix lie while Java validation still runs.
+    repairHint: Reject bad declarative metadata before using it to guide close-out.
+  - id: mcp.yaml-contract.kpi-sync.executable-validator
+    expected: Every non-metadata KPI names a loadable Java validator.
+    artifacts: src/main/resources/skills/mcp/contracts/kpi/source-evolution.yml,SourceEvolutionKpiConsistencyRule.java
+    failureMeaning: A YAML contract could imply enforcement that no Java rule actually performs.
+    repairHint: Add validator metadata or explicitly mark the KPI metadataOnly.
+  - id: mcp.yaml-contract.kpi-sync.catalog-facade
+    expected: The Java SourceEvolutionKpiCatalog facade exposes the same YAML root and diagnostic KPI ids.
+    artifacts: SourceEvolutionKpiCatalog.java,src/main/resources/skills/mcp/contracts/kpi/source-evolution.yml
+    failureMeaning: Rules and matrices could silently use stale hard-coded KPI metadata.
+    repairHint: Keep SourceEvolutionKpiCatalog as a thin facade over ContractCatalog.
+  - id: mcp.yaml-contract.kpi-matrix.metadata-columns
+    expected: Generated KPI matrix exposes profile, category, repair route, cap impact and publishability impact.
+    artifacts: validation/mcp/mcp-kpi-matrix.md,validation/mcp/mcp-kpi-matrix.html
+    failureMeaning: Agents cannot repair close-out evidence if the matrix hides where and why to fix it.
+    repairHint: Render matrix rows from SourceEvolutionKpiCatalog specs, not ad hoc strings.
+  - id: mcp.yaml-contract.schema-version
+    expected: Every YAML contract resource declares the supported schemaVersion before Java consumes it.
+    artifacts: src/main/resources/**/*contracts/**/*.yml
+    failureMeaning: Contract catalogs can silently drift when parser expectations change without a version boundary.
+    repairHint: 'Add schemaVersion: 1 to the YAML catalog and rerun the MCP YAML contract suite.'
+  - id: mcp.yaml-contract.duplicate-key-detection
+    expected: The YAML loader rejects duplicate keys explicitly instead of keeping the last value silently.
+    artifacts: SimpleYamlContractLoader.java,snakeyaml-engine
+    failureMeaning: Duplicate metadata keys can hide wrong repair hints, score caps or artifact links.
+    repairHint: Remove duplicate keys; the parser must fail fast before the contract catalog is used.
+  - id: mcp.yaml-contract.scalar-parser-guardrail
+    expected: YAML contract specs parse booleans and integers through YamlScalars instead of raw Java parse helpers.
+    artifacts: src/main/java/com/endava/ai/**/*yaml*,src/main/java/com/endava/ai/skills/mcp/contracts
+    failureMeaning: Raw Boolean.parseBoolean can silently convert invalid values to false, and raw integer parsing loses contract context.
+    repairHint: Use YamlScalars.requiredInt, optionalInt, requiredBoolean or optionalBoolean for flattened YAML scalar fields.
+  - id: mcp.yaml-contract.check-ref.schema
+    expected: YAML-backed McpCheckRef metadata has unique ids and complete narrative fields.
+    artifacts: src/main/resources/skills/mcp/contracts/checks/mcp-checks-*.yml
+    failureMeaning: Test methods can point to incomplete contract text or ambiguous repair guidance.
+    repairHint: Complete the YAML check entry and keep Java methods on @McpCheckRef only; legacy inline @McpCheck must not return.
+  - id: mcp.yaml-contract.check-ref.resource-registry
+    expected: Every physical mcp-checks-*.yml resource is listed in McpContractResources.MCP_CHECKS and loaded by ContractCatalog.mcpChecks().
+    artifacts: src/main/resources/skills/mcp/contracts/checks/mcp-checks-*.yml,McpContractResources.java,ContractCatalog.java
+    failureMeaning: A YAML check file can exist on disk while remaining invisible to CheckRef sync, governance maps and final-report evidence.
+    repairHint: Add the new mcp-checks-*.yml resource constant to McpContractResources.MCP_CHECKS, or remove the orphan file.
+  - id: mcp.yaml-contract.check-ref.source-scan
+    expected: Every @McpCheckRef used by MCP tests resolves to an entry in the YAML check catalog.
+    artifacts: src/test/java/com/endava/ai/skills/mcp,src/main/resources/skills/mcp/contracts/checks/mcp-checks-*.yml
+    failureMeaning: A concise Java annotation could reference contract text that does not exist.
+    repairHint: Add the missing YAML check entry or correct the @McpCheckRef id.
+  - id: mcp.yaml-contract.check-ref.no-inline-mcp-check
+    expected: MCP tests use @McpCheckRef for check narratives and do not add new inline @McpCheck blocks.
+    artifacts: src/test/java/com/endava/ai/skills/mcp,src/main/resources/skills/mcp/contracts/checks/mcp-checks-*.yml
+    failureMeaning: Inline check narratives make MCP tests noisy and split the contract catalog across Java and YAML.
+    repairHint: Move expected, artifacts, failureMeaning and repairHint into mcp-checks-*.yml, then reference the id with @McpCheckRef.
+  - id: mcp.yaml-contract.check-ref.evidence-rendering
+    expected: Every @McpCheckRef appears in the MCP CheckRef matrix and in a final-report-ready evidence section.
+    artifacts: target/mcp-check-ref-matrix.md,target/mcp-check-ref-matrix.html,target/mcp-check-ref-final-report-section.html
+    failureMeaning: YAML-backed check text could resolve in Java but disappear from the agent-facing report artifacts.
+    repairHint: Render CheckRef evidence from ContractCatalog.mcpChecks and include the stable mcp-check-ref-evidence section.
+  - id: mcp.yaml-contract.suite-ref.schema
+    expected: YAML-backed MCP suite metadata has unique ids and complete class/profile/category/title/htmlReq/purpose fields.
+    artifacts: src/main/resources/skills/mcp/contracts/suites/mcp-suites.yml
+    failureMeaning: Suite-level profile and purpose metadata can drift or become invisible to agents.
+    repairHint: Complete the YAML suite entry and keep suite classes on @McpSuiteRef only; legacy inline @McpSuite must not return.
+  - id: mcp.yaml-contract.suite-ref.source-scan
+    expected: Every @McpSuiteRef used by MCP tests resolves to an entry in the YAML suite catalog.
+    artifacts: src/test/java/com/endava/ai/skills/mcp,src/main/resources/skills/mcp/contracts/suites/mcp-suites.yml
+    failureMeaning: A concise suite annotation could reference suite metadata that does not exist.
+    repairHint: Add the missing YAML suite entry or correct the @McpSuiteRef id.
+  - id: mcp.yaml-contract.suite-ref.no-inline-mcp-suite
+    expected: MCP tests use @McpSuiteRef for suite narratives and do not add new inline @McpSuite blocks.
+    artifacts: src/test/java/com/endava/ai/skills/mcp,src/main/resources/skills/mcp/contracts/suites/mcp-suites.yml
+    failureMeaning: Inline suite narratives make MCP test classes noisy and split suite profile metadata across Java and YAML.
+    repairHint: Move profile, category, title, htmlReq and purpose into mcp-suites.yml, then reference the id with @McpSuiteRef.
+  - id: mcp.yaml-contract.suite-ref.testng-profile-coverage
+    expected: Every class named by MCP TestNG profiles is backed by mcp-suites.yml and every suite YAML class points back to the same @McpSuiteRef.
+    artifacts: src/test/resources/skills/mcp/testng-mcp-*.xml,src/main/resources/skills/mcp/contracts/suites/mcp-suites.yml,src/test/java/com/endava/ai/skills/mcp
+    failureMeaning: Final close-out or self-health profiles can contain classes whose agent-facing profile, purpose and repair context are invisible or stale.
+    repairHint: Add or correct the mcp-suites.yml entry, then make the Java class use the matching @McpSuiteRef id.
+  - id: mcp.rule-routing.profiles.visible
+    expected: The executable MCP routing catalog publishes every agent-facing profile, including full package close-out and candidate promotion.
+    artifacts: McpRuleRoutingCatalog.java,McpProfile.java
+    failureMeaning: Agents can lose the visible route between a profile, its executable rules and its repair surface.
+    repairHint: Keep McpRuleRoutingCatalog routed profiles synchronized with the profile model and profile-specific rule sets.
+  - id: mcp.rule-routing.matrix.unique
+    expected: The MCP rule matrix exposes unique profile/rule pairs plus typed rule family, existing artifact family, execution cost and repair route metadata.
+    artifacts: McpRuleRoutingCatalog.java,McpRuleExecutionDescriptor.java,McpArtifactFamily.java,McpContractMatrix.java
+    failureMeaning: A generated matrix can duplicate rules, hide close-out routing, blur html-ex candidate validation with package publishability, or leave agents guessing which existing artifact family to repair.
+    repairHint: Deduplicate routed profile/rule pairs, keep descriptor family/artifact-family/cost/repair route complete, and regenerate the all-profile rule matrix from the routing catalog.
+  - id: mcp.testng.self-profile.contract-health
+    expected: The MCP self-health TestNG profile includes every class under com.endava.ai.skills.mcp.tests.contracts.
+    artifacts: src/test/resources/skills/mcp/testng-mcp-self.xml,src/test/java/com/endava/ai/skills/mcp/tests/contracts
+    failureMeaning: YAML, CheckRef, routing or matrix contract drift can be missed by the validator self-suite.
+    repairHint: Add the missing tests.contracts class to testng-mcp-self.xml and keep profiles.yml self requiredClasses aligned.
+  - id: mcp.yaml-contract.profile-schema
+    expected: MCP TestNG profile YAML declares self, full, package-audit, package-closeout, candidate and html-ex roles.
+    artifacts: src/main/resources/skills/mcp/contracts/profiles.yml,src/test/resources/skills/mcp/testng-mcp-*.xml
+    failureMeaning: Agents can confuse health sweep, package audit, close-out and candidate promotion.
+    repairHint: Keep profile semantics in YAML and verify each XML profile against it.
+  - id: 'mcp.yaml-contract.agentic-execution-flow'
+    expected: 'agentic-execution-flow.yml declares the ordered self-health, calibration, close-out, final-report and candidate stages that agents must follow.'
+    artifacts: 'src/main/resources/skills/mcp/contracts/agentic-execution-flow.yml,src/main/resources/skills/mcp/contracts/profiles.yml,src/test/resources/skills/mcp/testng-mcp-*.xml'
+    failureMeaning: 'Agents can publish full-sweep health evidence as final package evidence, or run final browser/report checks before package artifacts are frozen.'
+    repairHint: 'Keep the ordered flow in YAML synchronized with profiles.yml and TestNG XML; package-closeout freezes artifacts, final-report-closeout validates only the final report surface.'
+  - id: 'mcp.yaml-contract.atlas-quality-bridge'
+    expected: 'atlas-quality-bridge.yml maps MCP final-report closeout surfaces to every Atlas quality lane as non-blocking calibration guidance.'
+    artifacts: 'src/main/resources/skills/mcp/contracts/atlas-quality-bridge.yml,src/main/resources/skills/atlas/contracts/agentic-quality-lanes.yml,target/mcp-governance-map.md,target/mcp-governance-map.html'
+    failureMeaning: 'Agents can treat MCP green as business-quality proof, or incorrectly turn Atlas judgment into a package gate.'
+    repairHint: 'Keep bridge entries non-blocking, scoped to mcp-langgraph-final-report, and synchronized with skills/atlas/contracts/agentic-quality-lanes.yml.'
+  - id: 'mcp.package-shape.tests.no-atlas-imports'
+    expected: 'MCP test code does not import Atlas product code; MCP remains the agentic governance skill and Atlas remains the business-understanding skill.'
+    artifacts: 'src/test/java/com/endava/ai/skills/mcp,src/main/java/com/endava/ai/skills/atlas,src/test/java/com/endava/ai/skills/atlas'
+    failureMeaning: 'MCP tests can accidentally turn Atlas business-quality judgment into a Java dependency or hidden package gate.'
+    repairHint: 'Move Atlas-specific assertions to Atlas suites, or keep MCP/Atlas coordination through YAML bridge metadata and published artifacts.'
+  - id: mcp.yaml-contract.closeout-artifact-schema
+    expected: Close-out artifact YAML declares required files, final report links and artifact-index links.
+    artifacts: src/main/resources/skills/mcp/contracts/package-closeout-artifacts.yml
+    failureMeaning: The final package may pass with a partial MCP spine or stale hyperlinks.
+    repairHint: Keep close-out artifact lists declarative and synchronized with report/gate rules.
+  - id: mcp.yaml-contract.policy-catalog-schema
+    expected: MCP policy YAML files declare score caps, report hyperlinks, protected roots and html-ex corpus semantics.
+    artifacts: src/main/resources/skills/mcp/contracts/report-hyperlinks.yml,src/main/resources/skills/mcp/contracts/score-caps.yml,src/main/resources/skills/mcp/contracts/protected-roots.yml,src/main/resources/skills/mcp/contracts/candidate/html-ex-corpus.yml
+    failureMeaning: Important close-out policies remain hidden as Java strings and are hard for agents to follow.
+    repairHint: Keep policy YAML compact, declarative and backed by Java validators.
+  - id: mcp.yaml-contract.claim-action-schema
+    expected: Claim-action YAML declares calibratable business verb contracts, evidence scopes, meanings and repair hints.
+    artifacts: src/main/resources/skills/mcp/contracts/claim-action-contracts.yml
+    failureMeaning: Business action blockers can drift back into Java switch statements and become hard to tune for agentic runs.
+    repairHint: Keep verb aliases, required evidence groups, failure meaning and repair guidance in claim-action-contracts.yml.
+  - id: mcp.yaml-contract.catalog-facade.no-public-map
+    expected: ContractCatalog exposes typed YAML specs and never leaks public Map-based contract entries.
+    artifacts: ContractCatalog.java,src/main/resources/skills/mcp/contracts/**/*.yml
+    failureMeaning: Agent-facing metadata can regress into anonymous dictionaries that are hard to read, refactor and validate.
+    repairHint: Add a dedicated spec class for the YAML resource and expose that typed spec through ContractCatalog.
+  - id: mcp.yaml-contract.profile-sync.testng
+    expected: MCP TestNG XML profiles match the declarative profile catalog.
+    artifacts: src/main/resources/skills/mcp/contracts/profiles.yml,src/test/resources/skills/mcp/testng-mcp-*.xml
+    failureMeaning: Agentic AI may run the wrong subset and publish health evidence as close-out evidence.
+    repairHint: Update profiles.yml and TestNG XML together; package-closeout must mirror package-audit.
+  - id: mcp.yaml-contract.protected-roots-sync
+    expected: protected-roots.yml matches the executable ProtectedSourceSurface list.
+    artifacts: src/main/resources/skills/mcp/contracts/protected-roots.yml,ProtectedSourceSurface.java
+    failureMeaning: Agents may receive weaker protected-root guidance than the actual validator enforces.
+    repairHint: Update protected-roots.yml and ProtectedSourceSurface together.
+  - id: mcp.yaml-contract.policy-sync.validators
+    expected: Every declarative MCP policy that names a validator references a loadable Java class.
+    artifacts: src/main/resources/skills/mcp/contracts/*.yml,src/main/resources/skills/mcp/contracts/candidate/html-ex-corpus.yml
+    failureMeaning: YAML could imply a rule exists while no executable validator backs it.
+    repairHint: Name the Java validator class, or keep the policy metadata-only and non-blocking.
+  - id: mcp.yaml-contract.score-cap-sync
+    expected: Score-cap YAML names the core MCP close-out blockers discussed in calibration.
+    artifacts: src/main/resources/skills/mcp/contracts/score-caps.yml
+    failureMeaning: Known blockers can remain hidden in Java strings instead of agent-facing contract metadata.
+    repairHint: Declare new score caps in score-caps.yml before relying on them in package scoring.
+  - id: mcp.yaml-contract.report-template-schema
+    expected: report-template.yml declares canonical opening, score wall, artifact index, run audit, visual and score overview token families.
+    artifacts: src/main/resources/skills/mcp/contracts/report-template.yml
+    failureMeaning: Report requirements can drift back into Java hardcoding and become opaque to agentic AI.
+    repairHint: Add report template tokens to YAML first, then keep Java report profiles as thin consumers.
+  - id: mcp.yaml-contract.report-template-artifact-spine
+    expected: report-template.yml package-artifact tokens match the executable McpArtifactPaths constants.
+    artifacts: src/main/resources/skills/mcp/contracts/report-template.yml,McpArtifactPaths.java,McpArtifactSpineProfile.java
+    failureMeaning: Package spine requirements can drift between report template YAML, path constants and artifact profile validation.
+    repairHint: Update report-template.yml and McpArtifactPaths together; keep McpArtifactSpineProfile as a thin catalog consumer.
+  - id: mcp.yaml-contract.report-template-sync
+    expected: Java report profile facades read score cards, runtime tokens, calibration blockers and score-overview expectations from report-template.yml.
+    artifacts: McpReportOpeningProfile.java,McpScoreOverviewProfile.java,src/main/resources/skills/mcp/contracts/report-template.yml
+    failureMeaning: Java can silently enforce a different report template than the agent-facing YAML contract.
+    repairHint: Route report profile vocabulary through ContractCatalog.reportTemplateContracts/reportTemplateTokens.
+  - id: mcp.yaml-contract.extent-provenance-schema
+    expected: extent-provenance.yml declares native Spark shell, framework runtime audit, manual proof injection and extent-origin token families.
+    artifacts: src/main/resources/skills/mcp/contracts/extent-provenance.yml,McpNativeSparkShellVerifier.java,McpExtentOriginVerifier.java
+    failureMeaning: Extent provenance rules can drift back into opaque Java string lists and push agents toward artifact surgery.
+    repairHint: Add provenance tokens or thresholds to extent-provenance.yml first, then keep Java provenance validators as thin catalog consumers.
+  - id: mcp.yaml-contract.extent-provenance-sync
+    expected: Known anti-surgery markers and Maven Extent origin fields remain declared in extent-provenance.yml.
+    artifacts: src/main/resources/skills/mcp/contracts/extent-provenance.yml,McpExtentManualProofDetector.java,McpExtentOriginEditMarkers.java
+    failureMeaning: Manual proof injection, post-run edits or non-Maven origin commands may stop being visible to the agent-facing contract.
+    repairHint: Keep native Spark markers, manual proof blockers, allowed runtime audit markers and origin fields synchronized in YAML.
+  - id: 'configured-package.no-blockers'
+    expected: 'The configured or latest generated package has no MCP blockers.'
+    artifacts: 'docs/out/<timestamp>'
+    failureMeaning: 'The current package is not publishable as MCP-green.'
+    repairHint: 'Open the blocker matrix, repair artifacts/state/report/code, then rerun the MCP package close-out profile.'
+  - id: 'mcp-suite.check-metadata.coverage'
+    expected: 'Every major latest/candidate/core/negative MCP suite exposes at least one representative @McpCheckRef.'
+    artifacts: 'src/test/java/com/endava/ai/skills/mcp/tests'
+    failureMeaning: 'A public MCP suite can pass but remain hard for agents to understand in Extent.'
+    repairHint: 'Add @McpCheckRef and store expected contract, artifacts, failure meaning and repair hint in mcp-checks-*.yml.'
+  - id: 'mcp.negative-support.testng-classloader.loadable'
+    expected: 'Shared MCP negative fixtures are public support classes loadable through the TestNG context classloader.'
+    artifacts: 'src/test/java/com/endava/ai/skills/mcp/tests/support/McpRunNegativeSupport.java'
+    failureMeaning: 'Subset Maven/TestNG runs can fail before validating Extent provenance because helper classes are package-local.'
+    repairHint: 'Keep shared negative helpers public under com.endava.ai.skills.mcp.tests.support.'
+  - id: 'mcp.html-ex-reference.template-consensus'
+    expected: 'The active html-ex library exposes a reusable structural consensus for score cards, visual shell, collapse policy, Proof Mapping, Run Audit and Artifact Index.'
+    artifacts: 'docs/html-ex/README.md,docs/html-ex/*/analysis/langgraph-business-understanding.html'
+    failureMeaning: 'MCP report validators can drift back to hand-built expected strings or learn from a broken html-ex corpus.'
+    repairHint: 'Keep the active html-ex examples structurally aligned; derive report expectations from McpReportTemplateConsensus, never from copied business prose or scores.'
+  - id: 'mcp.testng.candidate-profile.scope'
+    expected: 'mcp/testng-mcp-candidate.xml is the isolated html-ex promotion score gate and runs after package-closeout and final-report-closeout already passed.'
+    artifacts: 'src/test/resources/skills/mcp/testng-mcp-candidate.xml'
+    failureMeaning: 'Candidate promotion becomes ambiguous when it also reruns post-sync, browser-render or final-report close-out checks.'
+    repairHint: 'Keep candidate promotion scoped to McpCandidateContractTest; run mcp-final-report-closeout and mcp-langgraph-final-report before candidate promotion, and keep html-ex corpus classification separate.'
+  - id: 'mcp.testng.full-profile.package-scope'
+    expected: 'mcp/testng-mcp-full.xml runs the broad com.endava.ai.skills.mcp.tests.* diagnostic sweep, but excludes the final-only mcp-final-report-closeout browser/render group.'
+    artifacts: 'src/test/resources/skills/mcp/testng-mcp-full.xml,src/main/resources/skills/mcp/contracts/profiles.yml'
+    failureMeaning: 'The diagnostic full sweep can either become too narrow or drag final browser/render validation into calibration runs.'
+    repairHint: 'Keep the full profile package-scoped to com.endava.ai.skills.mcp.tests.* and keep <exclude name="mcp-final-report-closeout"/> aligned with profiles.yml.'
+  - id: 'mcp.testng.html-ex-corpus-profile.scope'
+    expected: 'mcp/testng-mcp-html-ex-corpus.xml runs only the historical html-ex corpus classifier.'
+    artifacts: 'src/test/resources/skills/mcp/testng-mcp-html-ex-corpus.xml,-Dmcp.html.ex.root'
+    failureMeaning: 'Historical examples can be mixed into latest package audit or self-health gates.'
+    repairHint: 'Keep corpus classification isolated from strict package-audit and MCP self profiles.'
+  - id: 'mcp.html-ex-reference.sanity-library-health'
+    expected: 'MCP sanity verifies that docs/html-ex has a coherent active library, an auto-selected reusable structural reference, and reusable final-report/package-closeout artifacts.'
+    artifacts: 'docs/html-ex/README.md,docs/html-ex/<example>/analysis/langgraph-business-understanding.html,docs/html-ex/<example>/validation/mcp/*,src/main/resources/skills/mcp/contracts/candidate/html-ex-corpus.yml'
+    failureMeaning: 'MCP sanity and final-report close-out may be calibrated against stale or incomplete reference examples.'
+    repairHint: 'If ATF core or MCP legitimately changes the report/artifact standard, update docs/html-ex through a controlled replacement and keep html-ex-corpus.yml primaryStructuralReference=auto; do not weaken the sanity check.'
+  - id: 'mcp.testng.package-audit-profile.scope'
+    expected: 'mcp/testng-mcp-package-audit.xml contains one preflight plus publishability checks only; html-ex candidate promotion stays isolated.'
+    artifacts: 'src/test/resources/skills/mcp/testng-mcp-package-audit.xml'
+    failureMeaning: 'Package quality can be confused with MCP validator self-health.'
+    repairHint: 'Keep configured/latest publishability checks in package-audit and run testng-mcp-candidate.xml separately for html-ex promotion.'
+  - id: 'mcp.testng.post-sync-smoke-profile.scope'
+    expected: 'mcp/testng-mcp-post-sync-smoke.xml runs only the dedicated fast file-level post-sync checks after validation/mcp files are copied or regenerated.'
+    artifacts: 'src/test/resources/skills/mcp/testng-mcp-post-sync-smoke.xml,src/main/resources/skills/mcp/contracts/profiles.yml'
+    failureMeaning: 'Agents can waste minutes rerunning full close-out after artifact copy, or miss stale links/counts if no focused smoke profile exists.'
+    repairHint: 'Keep post-sync-smoke scoped to McpPostSyncSmokeContractTest; full validator-backed latest package checks belong in package-audit/package-closeout.'
+  - id: 'mcp.testng.final-report-closeout-profile.scope'
+    expected: 'mcp/testng-mcp-final-report-closeout.xml runs only after package-closeout artifacts are frozen, and validates final report surface, frozen artifact links, counts and browser-render evidence.'
+    artifacts: 'src/test/resources/skills/mcp/testng-mcp-final-report-closeout.xml,analysis/langgraph-business-understanding.html,validation/mcp/*'
+    failureMeaning: 'Browser/render and final-report surface checks can slow every MCP calibration run, or agents can close without a final report surface gate.'
+    repairHint: 'Keep browser visibility and final report surface checks out of self/full calibration profiles; run testng-mcp-final-report-closeout.xml after package-closeout and before the dedicated LangGraph final report validation.'
+  - id: 'mcp.testng.langgraph-final-report-profile.scope'
+    expected: 'mcp/testng-mcp-langgraph-final-report.xml is the dedicated last MCP validation collection for analysis/langgraph-business-understanding.html business structure, graph, score, links and proof mapping.'
+    artifacts: 'src/test/resources/skills/mcp/testng-mcp-langgraph-final-report.xml,analysis/langgraph-business-understanding.html,target/skill-boundary-matrix.md'
+    failureMeaning: 'Agents can report MCP green after surface/link checks while the final LangGraph business report still has semantic or proof-mapping drift.'
+    repairHint: 'Run testng-mcp-langgraph-final-report.xml only after package-closeout, post-sync-smoke and final-report-closeout are green; repair only analysis/langgraph-business-understanding.html links/semantics unless a prior artifact gate is explicitly stale.'
+  - id: 'mcp.package-readme.live-run-layout'
+    expected: 'For live generated runs, canonical package score truth can live in docs/out/README.md next to the timestamped package folder.'
+    artifacts: 'docs/out/README.md,docs/out/<timestamp>/review/package-state.json'
+    failureMeaning: 'Latest-run score sync can read the wrong README and miss the actual public package verdict.'
+    repairHint: 'Resolve README via McpPackageReadme.canonicalFor(packageRoot), falling back to packageRoot sibling README when no README exists inside the package.'
+  - id: 'mcp.package-readme.html-ex-layout'
+    expected: 'For copied html-ex examples, canonical package score truth lives in the example folder README.md, not the shared html-ex library README.'
+    artifacts: 'MCP/html-ex/<example>/README.md,MCP/html-ex/README.md'
+    failureMeaning: 'HTML-ex readiness can produce false score drift by reading the shared library README instead of the copied example README.'
+    repairHint: 'Prefer packageRoot/README.md when it exists; use packageRoot sibling README only for live docs/out timestamp packages.'
+  - id: 'mcp.post-sync-smoke.required-frozen-artifacts'
+    expected: 'The package keeps the frozen MCP close-out spine: ExtentReport.html, sha256, origin, Surefire XML, TestNG XML, method ledger and gate result.'
+    artifacts: 'validation/mcp/ExtentReport.html,validation/mcp/ExtentReport.sha256,validation/mcp/extent-origin.json,validation/mcp/TEST-TestSuite.xml,validation/mcp/testng-results.xml,validation/mcp/full-mcp-method-ledger.md,validation/mcp/mcp-gate-result.md'
+    failureMeaning: 'Post-sync artifact copying or regeneration dropped part of the evidence spine.'
+    repairHint: 'Copy or regenerate the missing validation/mcp artifact from the final package-closeout run, then rerun testng-mcp-post-sync-smoke.xml.'
+  - id: 'mcp.post-sync-smoke.final-report-links'
+    expected: 'langgraph-business-understanding.html links frozen MCP evidence and KPI close-out artifacts under validation/mcp.'
+    artifacts: 'analysis/langgraph-business-understanding.html,validation/mcp/*'
+    failureMeaning: 'The final report can look green while hiding the actual MCP Extent/XML/gate/KPI evidence.'
+    repairHint: 'Update the final Artifact Index / MCP Gate References links to point at validation/mcp/ExtentReport.html, XML, ledger, gate, origin, hash and KPI artifacts.'
+  - id: 'mcp.post-sync-smoke.sanitized-command-and-origin-link'
+    expected: 'The final report visibly publishes a sanitized Maven close-out command and links extent-origin.json for the exact absolute command.'
+    artifacts: 'analysis/langgraph-business-understanding.html,validation/mcp/extent-origin.json'
+    failureMeaning: 'Agents cannot audit how the MCP Extent report was generated, or the report leaks local absolute paths instead of using origin metadata.'
+    repairHint: 'Show mvn + testng-mcp-package-closeout.xml + -Dmcp.package.root=<package-root> + -Dmcp.project.root=<project-root> in the report, and link extent-origin.json for exact command/exit/hash.'
+  - id: 'mcp.post-sync-smoke.origin-hash-size-exit'
+    expected: 'extent-origin.json command, exit code, sha256 and byte size match the frozen MCP ExtentReport.html and ExtentReport.sha256.'
+    artifacts: 'validation/mcp/ExtentReport.html,validation/mcp/ExtentReport.sha256,validation/mcp/extent-origin.json'
+    failureMeaning: 'The MCP Extent evidence may have been copied from the wrong run, edited after generation, or generated by a non-closeout command.'
+    repairHint: 'Regenerate/copy ExtentReport.html, ExtentReport.sha256 and extent-origin.json together from the same green package-closeout Maven command.'
+  - id: 'mcp.post-sync-smoke.testng-xml-green-counts'
+    expected: 'Frozen TEST-TestSuite.xml has real tests and zero failures, errors or skipped methods, and origin count metadata agrees.'
+    artifacts: 'validation/mcp/TEST-TestSuite.xml,validation/mcp/extent-origin.json'
+    failureMeaning: 'The final MCP close-out evidence is not a clean green executed subset, or count metadata drifted during artifact sync.'
+    repairHint: 'Use the final package-closeout XML from the same Maven run as the Extent/origin artifacts; do not mix XML from older runs.'
+  - id: 'mcp.post-sync-smoke.gate-report-count-sync'
+    expected: 'mcp-gate-result.md, TEST-TestSuite.xml and the final report all publish the same green package-closeout count.'
+    artifacts: 'validation/mcp/mcp-gate-result.md,validation/mcp/TEST-TestSuite.xml,analysis/langgraph-business-understanding.html'
+    failureMeaning: 'The final report can claim MCP PASS while the frozen gate/XML evidence says something different.'
+    repairHint: 'Update mcp-gate-result.md and langgraph-business-understanding.html from the same green package-closeout run and keep the passed/total count identical.'
+  - id: 'mcp.testng.package-closeout-profile.scope'
+    expected: 'mcp/testng-mcp-package-closeout.xml mirrors the publishability package-audit class list and excludes html-ex candidate promotion.'
+    artifacts: 'src/test/resources/skills/mcp/testng-mcp-package-closeout.xml,src/test/resources/skills/mcp/testng-mcp-package-audit.xml'
+    failureMeaning: 'Final close-out can confuse publishability with teacher-grade/html-ex readiness.'
+    repairHint: 'Keep package-closeout class-for-class aligned with package-audit publishability checks; run candidate promotion separately only when requested.'
+  - id: 'mcp.testng.closeout-evidence.facade'
+    expected: 'MCP exposes one typed close-out evidence facade with the canonical package-closeout, post-sync, final-report surface and LangGraph final-report validation sequence plus artifact families and repair targets.'
+    artifacts: 'McpCloseoutEvidence.java,McpCloseoutEvidenceStep.java,McpExecutionProfile.java,McpArtifactFamily.java,src/main/resources/skills/mcp/contracts/package-closeout-artifacts.yml'
+    failureMeaning: 'Agents can drift back to partial Maven commands, untyped artifact lists or ambiguous close-out/profile sequencing.'
+    repairHint: 'Route close-out guidance through McpCloseoutEvidence.closeoutPlan() and keep profile ids, suite XML paths, repair targets and artifact families synchronized with YAML.'
+  - id: 'mcp.testng.profiles.resources-only'
+    expected: 'MCP TestNG profiles are canonical only under src/test/resources/skills/mcp.'
+    artifacts: 'src/test/resources/skills/mcp/testng-mcp-*.xml'
+    failureMeaning: 'Root-level TestNG profile copies can drift from the protected MCP resource profiles.'
+    repairHint: 'Delete root-level testng-mcp-*.xml files and run MCP through src/test/resources/skills/mcp/*.xml.'
+  - id: 'mcp.testng.profiles.yaml-schema'
+    expected: 'Every MCP TestNG profile is declared in YAML with role, suiteXml and executable scope.'
+    artifacts: 'src/main/resources/skills/mcp/contracts/profiles.yml'
+    failureMeaning: 'Profile ownership drifts back into hardcoded Java tests.'
+    repairHint: 'Update profiles.yml first, then let this Java test parse and compare the XML.'
+  - id: 'mcp.testng.sanity-profile.scope'
+    expected: 'mcp/testng-mcp-sanity.xml runs only MCP validator health checks: profiles, package shape, project locator, routing and YAML contracts.'
+    artifacts: 'src/test/resources/skills/mcp/testng-mcp-sanity.xml,src/main/resources/skills/mcp/contracts/profiles.yml'
+    failureMeaning: 'MCP sanity can become noisy or cross-owned if latest package audit, ATF core, Atlas, negative, or browser-render tests enter the profile.'
+    repairHint: 'Keep MCP sanity isolated from ATF core, Atlas, latest package audit and negative-contract suites; use package-closeout/full profiles separately.'
+  - id: 'mcp.testng.run-preflight-profile.scope'
+    expected: 'mcp/testng-mcp-run-preflight.xml adds runtime/package accounting to the run evidence gate.'
+    artifacts: 'src/test/resources/skills/mcp/testng-mcp-run-preflight.xml'
+    failureMeaning: 'Preflight feedback can miss runtime/package-state regressions after artifact regeneration.'
+    repairHint: 'Keep run-preflight as run quality + Extent evidence + runtime/package contracts.'
+  - id: 'mcp.testng.run-profile.scope'
+    expected: 'mcp/testng-mcp-run.xml contains only run evidence and Extent evidence contracts.'
+    artifacts: 'src/test/resources/skills/mcp/testng-mcp-run.xml'
+    failureMeaning: 'Run-only feedback becomes slow or noisy after package artifact edits.'
+    repairHint: 'Keep the run profile scoped to run quality plus Extent evidence contracts.'
+  - id: 'mcp.testng.self-profile.no-package-audit'
+    expected: 'mcp/testng-mcp-self.xml contains validator self-contracts and excludes latest/candidate package-audit tests.'
+    artifacts: 'src/test/resources/skills/mcp/testng-mcp-self.xml'
+    failureMeaning: 'MCP validator health can be marked red by a stale local docs/out package.'
+    repairHint: 'Keep package-audit classes only in testng-mcp-package-audit.xml.'

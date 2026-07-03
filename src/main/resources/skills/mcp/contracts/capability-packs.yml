@@ -1,0 +1,62 @@
+schemaVersion: 1
+contracts:
+  - id: mcp.capability-pack.orchestration
+    kind: mcp-capability-pack
+    owner: skill.mcp
+    packageRoots: src/main/java/com/endava/ai/skills/mcp/contract,src/main/java/com/endava/ai/skills/mcp/contracts
+    contracts: agentic-execution-flow.yml,profiles.yml,suites/mcp-suites.yml
+    primarySuite: src/test/resources/skills/mcp/testng-mcp-sanity.xml
+    role: Maps agentic stages, profiles and suite order before package evidence is trusted.
+    whenToUse: Start here before an AI run or when profile/suite routing is unclear.
+    publishedEvidence: profile map, suite order, agentic execution flow
+    stopCondition: sanity profile passes and the next stage has an explicit MCP profile
+    repair: Update profile/suite YAML and typed execution profiles together.
+
+  - id: mcp.capability-pack.package-governance
+    kind: mcp-capability-pack
+    owner: skill.mcp
+    packageRoots: src/main/java/com/endava/ai/skills/mcp/rules/packageaudit,src/main/java/com/endava/ai/skills/mcp/rules/source
+    contracts: package-policy.yml,package-closeout-artifacts.yml,protected-roots.yml,source-evolution-ledger.yml,kpi/source-evolution.yml
+    primarySuite: src/test/resources/skills/mcp/testng-mcp-package-closeout.xml
+    role: Owns generated-package legality, protected roots, source evolution and close-out artifacts.
+    whenToUse: Use after generated package artifacts exist and before final report wording/link repair starts.
+    publishedEvidence: validation/mcp artifacts, source evolution ledger, protected-root status, package close-out gate
+    stopCondition: package close-out is frozen; source code must not change after this point
+    repair: Fix package artifacts and source evidence in MCP; do not move package gates into Atlas or Reporting.
+
+  - id: mcp.capability-pack.report-closeout
+    kind: mcp-capability-pack
+    owner: skill.mcp
+    packageRoots: src/main/java/com/endava/ai/skills/mcp/rules/report,src/main/java/com/endava/ai/skills/mcp/validation/report
+    contracts: report-sections.yml,report-hyperlinks.yml,report-template.yml,score-truth-sync.yml
+    primarySuite: src/test/resources/skills/mcp/testng-mcp-final-report-closeout.xml
+    followUpSuite: src/test/resources/skills/mcp/testng-mcp-langgraph-final-report.xml
+    role: Validates final report surface, links and LangGraph business report meaning after package artifacts are frozen.
+    whenToUse: Use only after package close-out evidence is frozen and only report/link/meaning repair remains.
+    publishedEvidence: analysis/langgraph-business-understanding.html links, final report surface checks, LangGraph semantic validation
+    stopCondition: final-report-closeout passes before langgraph-final-report, and no source changes are made in this lane
+    repair: Repair links/report semantics after package close-out; do not change source code after close-out.
+
+  - id: mcp.capability-pack.extent-provenance
+    kind: mcp-capability-pack
+    owner: skill.mcp
+    packageRoots: src/main/java/com/endava/ai/skills/mcp/provenance,src/main/java/com/endava/ai/skills/mcp/validation/run/extent
+    contracts: extent-provenance.yml,package-closeout-artifacts.yml
+    primarySuite: src/test/resources/skills/mcp/testng-mcp-package-closeout.xml
+    role: Audits Maven command, origin, hash, Extent evidence freshness and proof class.
+    whenToUse: Use whenever Extent/XML evidence is regenerated or copied into package validation artifacts.
+    publishedEvidence: extent-origin.json, ExtentReport.sha256, Maven command, proof freshness
+    stopCondition: origin, hash and report file all agree with the Maven-generated evidence
+    repair: Regenerate MCP evidence through Maven and keep origin/hash synchronized.
+
+  - id: mcp.capability-pack.candidate-promotion
+    kind: mcp-capability-pack
+    owner: skill.mcp
+    packageRoots: src/main/java/com/endava/ai/skills/mcp/rules/candidate,src/main/java/com/endava/ai/skills/mcp/validation/candidate
+    contracts: candidate/html-ex-corpus.yml,checks/mcp-checks-candidate.yml
+    primarySuite: src/test/resources/skills/mcp/testng-mcp-candidate.xml
+    role: Separates html-ex promotion from generated-package close-out.
+    whenToUse: Use only after package close-out and final report validation are already green.
+    publishedEvidence: curated html-ex candidate verdict, corpus comparison, promotion decision
+    stopCondition: candidate promotion is explicit and does not rewrite generated run evidence silently
+    repair: Promote only curated examples after package and final-report closeout pass.

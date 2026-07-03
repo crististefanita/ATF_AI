@@ -1,0 +1,16 @@
+﻿{
+    "artifact":  "validation/mcp/ExtentReport.html",
+    "sha256":  "847a6ccbde84983d78412e28f2498aff0e2b238030997d749a37a7775b05b535",
+    "command":  "mvn -q \"-Dsurefire.suiteXmlFiles=src/test/resources/skills/mcp/testng-mcp-package-closeout.xml\" \"-Dmcp.package.root=C:\\work\\ex\\java\\demo\\atf3\\test-framework\\docs\\out\\2026-07-02_22.10.19\" \"-Dmcp.project.root=C:\\work\\ex\\java\\demo\\atf3\\test-framework\" \"-Dreports.dir=C:\\work\\ex\\java\\demo\\atf3\\test-framework\\docs\\out\\2026-07-02_22.10.19\\validation\\mcp\" \"-Dreports.file.name=ExtentReport.html\" \"-Dreports.timestamp.enabled=false\" test",
+    "profile":  "package-closeout",
+    "suite":  "src/test/resources/skills/mcp/testng-mcp-package-closeout.xml",
+    "package_root":  "C:\\work\\ex\\java\\demo\\atf3\\test-framework\\docs\\out\\2026-07-02_22.10.19",
+    "exit_code":  0,
+    "exit":  0,
+    "testsRun":  100,
+    "passed":  100,
+    "failures":  0,
+    "errors":  0,
+    "skipped":  0,
+    "timestamp":  "2026-07-02T23:18:05"
+}

@@ -1,0 +1,81 @@
+schemaVersion: 1
+contracts:
+  - id: test.product.api
+    kind: product-test-lane
+    owner: Product API tests
+    sourceRoot: src/test/java/com/endava/ai/api/tests
+    productionRoot: src/main/java/com/endava/ai/api
+    purpose: Product API behavior and application-facing API workflows
+    linkedSkill: none
+    suitePolicy: Product API tests may run through Maven -Dtest or product suite XML; they are not Core, MCP, Atlas or Reporting sanity tests.
+    forbidden: browser logic, UI screenshots, MCP assertions, Atlas assertions, reporting adapter calls
+
+  - id: test.product.ui
+    kind: product-test-lane
+    owner: Product UI tests
+    sourceRoot: src/test/java/com/endava/ai/ui/tests
+    productionRoot: src/main/java/com/endava/ai/ui
+    purpose: Product UI behavior and user-visible business workflows
+    linkedSkill: none
+    suitePolicy: Product UI tests may use API shortcuts for setup and polling, but final user-visible proof stays UI-owned.
+    forbidden: raw framework contract assertions, MCP package gates, Atlas rule assertions, direct reporting adapter calls
+
+  - id: test.framework.core
+    kind: framework-test-lane
+    owner: ATF Core tests
+    sourceRoot: src/test/java/com/endava/ai/atf
+    productionRoot: src/main/java/com/endava/ai/core
+    purpose: Reusable ATF core, runtime, support and reporting-library contract tests
+    linkedSkill: skill.core
+    suitePolicy: Core sanity starts from src/test/resources/atf/core/suites/core/testng-atf-core-sanity.xml.
+    forbidden: product business claims, generated package close-out claims, Atlas business-score decisions
+
+  - id: test.skill.reporting
+    kind: skill-test-lane
+    owner: Reporting skill tests
+    sourceRoot: src/test/java/com/endava/ai/atf/core/reporting
+    productionRoot: src/main/java/com/endava/ai/skills/reporting
+    purpose: Shared report shell, Extent/Spark behavior, score cards, artifact links and visual/report contracts
+    linkedSkill: skill.reporting
+    suitePolicy: Reporting sanity is routed through Core sanity and deep Extent profiles.
+    forbidden: MCP publishability decisions, Atlas business meaning, product-specific story claims
+
+  - id: test.skill.reporting-facade
+    kind: skill-test-lane
+    owner: Reporting facade smoke tests
+    sourceRoot: src/test/java/com/endava/ai/skills/reporting
+    productionRoot: src/main/java/com/endava/ai/skills/reporting
+    purpose: Small public-skill smoke tests proving the Reporting facade stays visible, small and Core-backed
+    linkedSkill: skill.reporting
+    suitePolicy: Included in testng-reporting-sanity.xml before heavier core.reporting contracts.
+    forbidden: Extent implementation ownership, MCP package gates, Atlas business scoring
+
+  - id: test.skill.business-understanding
+    kind: skill-test-lane
+    owner: Business Understanding skill tests
+    sourceRoot: src/test/java/com/endava/ai/skills/business/tests
+    productionRoot: src/main/java/com/endava/ai/skills/business
+    purpose: Shared input-agnostic business semantics consumed by MCP and Atlas
+    linkedSkill: skill.business-understanding
+    suitePolicy: Business Understanding sanity starts from src/test/resources/skills/business/testng-business-understanding-sanity.xml.
+    forbidden: MCP gate decisions, Atlas artifact ownership, Reporting shell rules
+
+  - id: test.skill.mcp
+    kind: skill-test-lane
+    owner: MCP skill tests
+    sourceRoot: src/test/java/com/endava/ai/skills/mcp
+    productionRoot: src/main/java/com/endava/ai/skills/mcp
+    purpose: Agentic package governance, artifact truth, package close-out and candidate promotion contracts
+    linkedSkill: skill.mcp
+    suitePolicy: MCP sanity starts from src/test/resources/skills/mcp/testng-mcp-sanity.xml and close-out uses the typed MCP profiles.
+    forbidden: Atlas implementation imports, product-only assertions, Reporting implementation ownership
+
+  - id: test.skill.atlas
+    kind: skill-test-lane
+    owner: Atlas skill tests
+    sourceRoot: src/test/java/com/endava/ai/skills/atlas
+    productionRoot: src/main/java/com/endava/ai/skills/atlas
+    purpose: Business graph, source trace, score truth and Atlas output quality contracts
+    linkedSkill: skill.atlas
+    suitePolicy: Atlas sanity starts from src/test/resources/skills/atlas/testng-atlas-sanity.xml.
+    forbidden: MCP package publishability, generated package close-out ownership, Reporting implementation ownership

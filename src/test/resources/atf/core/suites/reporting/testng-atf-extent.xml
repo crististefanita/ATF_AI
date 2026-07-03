@@ -1,0 +1,29 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="ATF Extent Runtime Sweep" verbose="1">
+    <test name="extent-runtime-safe-contracts">
+        <classes>
+            <class name="com.endava.ai.atf.core.support.contract.core.AtfCoreContractNarrativeCoverageTest"/>
+            <class name="com.endava.ai.atf.core.support.contract.failure.AtfExpectedFailureContractTest"/>
+            <class name="com.endava.ai.atf.core.support.base.BaseTestAPIContractTest"/>
+            <class name="com.endava.ai.atf.core.support.base.BaseTestUIContractTest"/>
+            <class name="com.endava.ai.atf.core.reporting.regression.StepLoggerContractTest"/>
+            <class name="com.endava.ai.atf.core.reporting.window.UIWindowSizeResolverContractTest"/>
+            <class name="com.endava.ai.atf.core.reporting.screenshot.UiEngineBrowserWindowContractSmokeTest"/>
+            <class name="com.endava.ai.atf.core.reporting.screenshot.UiEngineScreenshotSmokeTest"/>
+            <class name="com.endava.ai.atf.ui.component.config.FrameworkRuntimeUiDefaultsContractTest"/>
+            <class name="com.endava.ai.atf.ui.component.RegistrationValidationContractTest"/>
+            <class name="com.endava.ai.atf.ui.component.UiCoreConfigOverrideDisciplineTest"/>
+            <class name="com.endava.ai.atf.ui.component.UiEngineActionParityContractTest"/>
+            <class name="com.endava.ai.atf.ui.component.WaitUtilsContractTest"/>
+            <class name="com.endava.ai.atf.api.lifecycle.BeforeClass_BeforeMethod_Test"/>
+            <class name="com.endava.ai.atf.api.lifecycle.BeforeClassMethod_After"/>
+            <class name="com.endava.ai.atf.api.lifecycle.BeforeTest_BeforeMethod_Test"/>
+            <class name="com.endava.ai.atf.api.lifecycle.BeforeTest_TestOne_AfterTest"/>
+            <class name="com.endava.ai.atf.api.lifecycle.BeforeTestOne_TestOne"/>
+            <class name="com.endava.ai.atf.api.lifecycle.BeforeTestOne_TestTwo"/>
+            <class name="com.endava.ai.atf.api.tests.EndToEndUserLifecycleTests"/>
+            <class name="com.endava.ai.atf.api.tests.NegativeUserTests"/>
+            <class name="com.endava.ai.atf.ui.RegistrationTests"/>
+        </classes>
+    </test>
+</suite>

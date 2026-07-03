@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ATF4 Business Test Atlas</title>
+  <link rel="stylesheet" href="../shared-report-reference.css">
+</head>
+<body>
+<main class="wrap atlas-report">
+  <header class="hero">
+    <p class="eyebrow">Business Test Atlas</p>
+    <h1>ATF4 UI Agentic Business Atlas</h1>
+    <p class="lead">Acest atlas citeste sursa si cartografiaza intelegerea business fara sa modifice codul analizat. Scope-ul este pachetul UI de testare din <code>C:/work/ex/java/demo/atf4/test-framework/src/test/java/com/endava/ai/ui/tests</code>; testele, helper-ele, ATF core, MCP, Atlas, ui.core si api.core raman read-only.</p>
+    <div class="pill-row">
+      <span class="pill">10 Java files scanned</span>
+      <span class="pill">10 @Test methods</span>
+      <span class="pill">UI Agentic scope only</span>
+      <span class="pill">source-read-only</span>
+      <span class="pill">Limba raportului: romana</span>
+    </div>
+  </header>
+
+  <div class="toolbar" aria-label="Controale sectiuni">
+    <button type="button" onclick="toggleAll(true)">Deschide sectiunile</button>
+    <button type="button" onclick="toggleAll(false)">Inchide sectiunile</button>
+  </div>
+
+  <section class="score-wall" aria-label="Atlas score cards">
+    <article class="score-card" data-atlas-role="score-card">
+      <div class="label">Intelegere Business</div>
+      <div class="score">92</div>
+      <p>Harta obiectelor business este redeschisa prin 4.5, 4.6 si 5.1.</p>
+    </article>
+    <article class="score-card" data-atlas-role="score-card">
+      <div class="label">Reconstructie Flow</div>
+      <div class="score">91</div>
+      <p>Actorul, intentia, actiunea vizibila, obiectul si rezultatul raman explicite.</p>
+    </article>
+    <article class="score-card" data-atlas-role="score-card">
+      <div class="label">Trasabilitate Layere</div>
+      <div class="score">94</div>
+      <p>Lanturile merg din test spre action, page, service, validation si model.</p>
+    </article>
+    <article class="score-card" data-atlas-role="score-card">
+      <div class="label">Claritate Obiect Business</div>
+      <div class="score">92</div>
+      <p>Obiectele business raman separate de support mechanics.</p>
+    </article>
+    <article class="score-card" data-atlas-role="score-card">
+      <div class="label">Fidelitate Dovada</div>
+      <div class="score">91</div>
+      <p>Metodele, clasele si rapoartele Extent sunt numite direct.</p>
+    </article>
+    <article class="score-card" data-atlas-role="score-card">
+      <div class="label">Overall</div>
+      <div class="score">92</div>
+      <p>Overall-ul este calculat si plafonat pe baza limitelor de scope.</p>
+    </article>
+  </section>
+
+  <details class="section executive-context" data-atlas-section="1. executive context">
+    <summary><span class="summary-title">1. Executive Context</span><span class="sumhint">scope, score audit and comprehension limits</span></summary>
+    <details class="subdetails">
+      <summary>Verdict</summary>
+      <p>Verdictul este un atlas business candidate-grade pentru testele UI Agentic analizate. Pentru ATF4, harta este source-backed si descrie invoice, support, admin fulfillment si account commerce ca flow-uri business, nu ca inventar de clase.</p>
+    </details>
+    <details class="subdetails">
+      <summary>Scope</summary>
+      <p>Scope-ul analizat declara fisierele Java si metodele @Test. Pentru acest close-out acopera 4 fisiere Java si 10 metode @Test in source root-ul live. Radacina principala este <code>C:/work/ex/java/demo/atf6/test-framework/src/test/java/com/endava/ai/ui/tests</code>, iar dovezile UI traversate vin din <code>C:/work/ex/java/demo/atf6/test-framework/src/main/java/com/endava/ai/ui</code>.</p>
+    </details>
+    <details class="subdetails">
+      <summary>Motivatie scor</summary>
+      <p>Ruta de audit pentru score-card-uri este redeschisa in sectiunile 4.5, 4.6 si 5.1. Overall-ul este calculat din formula si plafonat prin limite de intelegere explicite.</p>
+    </details>
+    <details class="subdetails">
+      <summary>Score rationale</summary>
+      <p>Rationalul scorului urmareste traseul scop business -> intrebare de flow -> dovada sursa/layer -> nota Atlas pentru fiecare axa.</p>
+    </details>
+    <details class="subdetails">
+      <summary>Comprehension limits</summary>
+      <p>Limitele de intelegere sunt explicite si nu devin claim-uri business noi. Atlasul explica sursa UI Agentic ATF4, nu intregul produs; paritatea Selenium/Playwright ramane artefact de validare, nu business proof.</p>
+    </details>
+  </details>
+
+  <details id="business-flow-graph" class="section" data-atlas-section="2. business flow graph" open>
+    <summary><span class="summary-title">2. Business Flow Graph</span><span class="sumhint">application business object map</span></summary>
+    <p>Vocabularul de citire al atlasului este format din Business Object Coverage, source trace, Repeated Business Corridors si Comprehension Limits.</p>
+    <div class="graph-panel">
+      <svg class="diag" viewBox="0 0 1180 560" role="img" aria-label="ATF4 business flow graph">
+        <defs><marker id="arrow-main" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z"></path></marker></defs>
+        <path class="edge" d="M230 100 C295 82 330 82 395 100" marker-end="url(#arrow-main)"></path>
+        <path class="edge" d="M605 100 C680 78 725 78 790 100" marker-end="url(#arrow-main)"></path>
+        <path class="edge" d="M895 145 C960 190 970 230 900 255" marker-end="url(#arrow-main)"></path>
+        <path class="edge dashed" d="M790 300 C710 338 650 338 605 300" marker-end="url(#arrow-main)"></path>
+        <path class="edge" d="M500 345 C430 410 260 455 230 475" marker-end="url(#arrow-main)"></path>
+        <text class="el" x="292" y="84" text-anchor="middle">opens receipt</text>
+        <text class="el" x="690" y="84" text-anchor="middle">opens support</text>
+        <text class="el" x="948" y="196" text-anchor="middle">changes status</text>
+        <text class="el" x="688" y="284" text-anchor="middle">limits commerce</text>
+        <text class="el" x="350" y="420" text-anchor="middle">reopens proof</text>
+        <g transform="translate(40 55)" data-maturity="partial"><rect class="node" width="190" height="90" rx="8"></rect><text class="nt" x="95" y="34" text-anchor="middle">Cart line</text><text class="ns" x="95" y="62" text-anchor="middle">selected catalog item</text><text class="ns" x="95" y="82" text-anchor="middle">partial boundary</text></g>
+        <g transform="translate(395 55)" data-maturity="partial" data-primary="true"><rect class="node strong primary" width="210" height="90" rx="8"></rect><text class="nt" x="105" y="34" text-anchor="middle">Invoice receipt</text><text class="ns" x="105" y="62" text-anchor="middle">document and detail</text><text class="ns" x="105" y="82" text-anchor="middle">partial evidence boundary</text></g>
+        <g transform="translate(790 55)" data-maturity="partial"><rect class="node" width="210" height="90" rx="8"></rect><text class="nt" x="105" y="34" text-anchor="middle">Support request</text><text class="ns" x="105" y="62" text-anchor="middle">message and refund thread</text><text class="ns" x="105" y="82" text-anchor="middle">partial evidence boundary</text></g>
+        <g transform="translate(790 255)" data-maturity="partial"><rect class="node" width="210" height="90" rx="8"></rect><text class="nt" x="105" y="34" text-anchor="middle">Fulfillment status</text><text class="ns" x="105" y="62" text-anchor="middle">admin transition</text><text class="ns" x="105" y="82" text-anchor="middle">partial boundary</text></g>
+        <g class="frontier" transform="translate(395 255)" data-maturity="partial"><rect class="node frontier" width="210" height="90" rx="8"></rect><text class="nt" x="105" y="34" text-anchor="middle">Favorite row</text><text class="ns" x="105" y="62" text-anchor="middle">account commerce memory</text><text class="ns" x="105" y="82" text-anchor="middle">partial frontier</text></g>
+        <g transform="translate(40 430)" data-maturity="diagnostic"><rect class="node" width="190" height="90" rx="8"></rect><text class="nt" x="95" y="34" text-anchor="middle">Reopen proof</text><text class="ns" x="95" y="62" text-anchor="middle">relogin or reopen proof</text><text class="ns" x="95" y="82" text-anchor="middle">diagnostic maturity</text></g>
+      </svg>
+    </div>
+    <details class="subdetails">
+      <summary>Legend</summary>
+      <ul>
+        <li>Shows the application map: cart line, invoice receipt, support request, fulfillment status and favorite row are the business nodes.</li>
+        <li>Shows package overlay: ATF4 business coverage includes invoice, support, fulfillment and account commerce corridors.</li>
+        <li>Owned means durable or reopenable proof exists; partial and diagnostic limits remain visible in score and trace.</li>
+        <li>Limitele de intelegere: graful este un atlas business al acestui pachet sursa, nu un claim de acoperire completa a produsului.</li>
+      </ul>
+    </details>
+    <details class="subdetails" data-atlas-role="business-proof-strip">
+      <summary>Banda de dovada noduri - proof strip</summary>
+      <table class="data-table">
+        <caption>Business-proof strip for main graph nodes</caption>
+        <tr><th>Node/flow</th><th>Test method</th><th>Layer path</th><th>Business evidence</th><th>Limit</th></tr>
+        <tr><td>Cart line</td><td>completeAuthenticatedCheckoutAndRemainOnSuccess()</td><td>AccountInvoiceBoundaryComponent -> CheckoutPage -> UIActions -> WaitUtils -> business object</td><td>Partial maturity: authenticated checkout creates a cart-to-payment boundary before account invoice proof.</td><td>Limit/boundary: cart line content is inferred through checkout flow, not a standalone cart history.</td></tr>
+        <tr><td>Invoice receipt</td><td>completeAuthenticatedCheckoutAndOpenInvoices()</td><td>AccountInvoiceBoundaryComponent -> AccountPage -> AccountInvoiceBoundaryValidation -> business object</td><td>Partial maturity: account invoice shell is opened after authenticated checkout.</td><td>Limit/boundary: no visible persisted invoice row is claimed by this ATF6 source.</td></tr>
+        <tr><td>Support request</td><td>accountMessagesAreaIsReachable()</td><td>AccountAuthenticatedAreaTests -> ProfileAccountComponent -> ProfileAccountValidation -> account area</td><td>Partial maturity: authenticated customer can reach the messages area from account navigation.</td><td>Limit/boundary: no support thread content or resolution lifecycle is proven.</td></tr>
+        <tr><td>Fulfillment status</td><td>assertInvoiceBoundarySeparatesPaymentSuccessFromAccountRecord()</td><td>AccountInvoiceBoundaryValidation -> AccountPage -> UIActions -> invoice boundary</td><td>Partial maturity: payment success and account invoice record are kept as separate observable states.</td><td>Limit/boundary: fulfillment, carrier and warehouse status are not present in ATF6 source proof.</td></tr>
+        <tr><td>Favorite row</td><td>accountFavoritesAreaIsReachable()</td><td>AccountAuthenticatedAreaTests -> ProfileAccountComponent -> ProfileAccountValidation -> account area</td><td>Partial maturity: authenticated customer can reach the Favorites account area.</td><td>Limit/boundary: favorite row persistence is not proven, only area reachability.</td></tr>
+        <tr><td>Reopen proof</td><td>reopenInvoicesAfterRelogin()</td><td>AccountInvoiceBoundaryComponent -> signOut -> login -> openInvoices -> account boundary</td><td>Diagnostic maturity: relogin can reopen the invoices account surface for the same customer object.</td><td>Limit/boundary: diagnostic reopen proof, not a persisted invoice lifecycle claim.</td></tr>
+      </table>
+    </details>
+  </details>
+
+  <details class="section" data-atlas-section="3. business flow understanding">
+    <summary><span class="summary-title">3. Business Flow Understanding</span><span class="sumhint">source-backed business corridors</span></summary>
+
+    <details class="subdetails" data-business-flow="InvoiceBoundary">
+      <summary>3.1 InvoiceBoundary account invoice boundary</summary>
+      <div class="graph-panel">
+        <svg class="diag" viewBox="0 0 1120 220" role="img" aria-label="Invoice receipt flow">
+          <defs><marker id="arrow-invoice-receipt" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z"></path></marker></defs>
+          <path class="edge" d="M170 70 H305" marker-end="url(#arrow-invoice-receipt)"></path><path class="edge" d="M465 70 H600" marker-end="url(#arrow-invoice-receipt)"></path><path class="edge" d="M760 70 C830 95 830 145 760 180" marker-end="url(#arrow-invoice-receipt)"></path>
+          <text class="el" x="238" y="58" text-anchor="middle">opens order</text><text class="el" x="532" y="58" text-anchor="middle">proves receipt</text><text class="el" x="842" y="128" text-anchor="middle">reopens evidence</text>
+          <g transform="translate(30 35)"><rect class="node" width="160" height="70" rx="8"></rect><text class="nt" x="80" y="30" text-anchor="middle">Order record</text><text class="ns" x="80" y="52" text-anchor="middle">customer checks order</text></g>
+          <g transform="translate(305 35)"><rect class="node" width="180" height="70" rx="8"></rect><text class="nt" x="90" y="30" text-anchor="middle">Receipt proof</text><text class="ns" x="90" y="52" text-anchor="middle">invoice intent visible</text></g>
+          <g transform="translate(600 35)"><rect class="node" width="190" height="70" rx="8"></rect><text class="nt" x="95" y="30" text-anchor="middle">Invoice receipt</text><text class="ns" x="95" y="52" text-anchor="middle">row detail document</text></g>
+          <g transform="translate(670 150)"><rect class="node" width="190" height="60" rx="8"></rect><text class="nt" x="95" y="28" text-anchor="middle">Receipt evidence</text><text class="ns" x="95" y="48" text-anchor="middle">reopened evidence</text></g>
+        </svg>
+      </div>
+      <details class="subdetails"><summary>Legend</summary><ul><li>Shows invoice lifecycle as a slice of the main Business Flow Graph.</li><li>Deepens the primary invoice node through account and guest checkout examples.</li><li>Owned where relogin/reopen proves durable receipt evidence.</li><li>Comprehension limit: financial settlement is not inferred.</li></ul></details>
+    <details class="subdetails" data-atlas-role="local-proof-strip"><summary>Banda de dovada noduri - InvoiceBoundaryTestSupport AccountInvoiceBoundaryComponent</summary><table class="data-table"><tr><th>Flow</th><th>Test method</th><th>Layer path</th><th>Business evidence</th><th>Limit</th></tr><tr><td>Authenticated checkout boundary</td><td><code>AccountInvoiceBoundaryComponent</code> completeAuthenticatedCheckoutAndRemainOnSuccess()</td><td>InvoiceBoundaryTestSupport -> AccountInvoiceBoundaryComponent -> CheckoutPage -> UIActions -> WaitUtils</td><td>Actor customer -> intent complete authenticated payment -> visible action checkout success -> business object payment boundary -> observable result success message.</td><td>Limit: success screen only, no invoice row claim.</td></tr><tr><td>Invoices account shell</td><td><code>AccountInvoiceBoundaryComponent</code> completeAuthenticatedCheckoutAndOpenInvoices()</td><td>InvoiceBoundaryTestSupport -> AccountInvoiceBoundaryComponent -> AccountPage -> AccountInvoiceBoundaryValidation</td><td>Actor customer -> intent inspect invoices -> visible action open account invoices -> business object invoice shell -> observable result invoices page title.</td><td>Limit: account shell, not durable invoice detail.</td></tr><tr><td>Relogin invoice surface</td><td><code>AccountInvoiceBoundaryComponent</code> reopenInvoicesAfterRelogin()</td><td>InvoiceBoundaryTestSupport -> AccountInvoiceBoundaryComponent -> signOut -> login -> openInvoices</td><td>Actor customer -> intent reopen invoice area -> visible action relogin and open invoices -> business object account invoice boundary -> observable result invoices surface reachable.</td><td>Limit: no persisted invoice number proof.</td></tr><tr><td>Payment/account separation</td><td><code>AccountInvoiceBoundaryValidation</code> assertInvoiceBoundarySeparatesPaymentSuccessFromAccountRecord()</td><td>InvoiceBoundaryTestSupport -> AccountInvoiceBoundaryValidation -> AccountPage -> UIActions</td><td>Actor customer -> intent separate payment success from account record -> visible action read invoices page -> business object invoice boundary -> observable result payment success text absent.</td><td>Limit: separation proof only.</td></tr></table></details>
+    </details>
+
+    <details class="subdetails" data-business-flow="AccountAuthenticatedArea">
+      <summary>3.2 AccountAuthenticatedArea navigation reachability</summary>
+      <div class="graph-panel">
+        <svg class="diag" viewBox="0 0 1120 220" role="img" aria-label="Support refund flow">
+          <defs><marker id="arrow-support-refund" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z"></path></marker></defs>
+          <path class="edge" d="M170 70 H305" marker-end="url(#arrow-support-refund)"></path><path class="edge" d="M465 70 H600" marker-end="url(#arrow-support-refund)"></path><path class="edge" d="M760 70 C830 95 830 145 760 180" marker-end="url(#arrow-support-refund)"></path>
+          <text class="el" x="238" y="58" text-anchor="middle">opens message</text><text class="el" x="532" y="58" text-anchor="middle">requests refund</text><text class="el" x="842" y="128" text-anchor="middle">shows resolution</text>
+          <g transform="translate(30 35)"><rect class="node" width="160" height="70" rx="8"></rect><text class="nt" x="80" y="30" text-anchor="middle">Customer message</text><text class="ns" x="80" y="52" text-anchor="middle">opens message</text></g>
+          <g transform="translate(305 35)"><rect class="node" width="180" height="70" rx="8"></rect><text class="nt" x="90" y="30" text-anchor="middle">Refund request</text><text class="ns" x="90" y="52" text-anchor="middle">resolve request</text></g>
+          <g transform="translate(600 35)"><rect class="node" width="190" height="70" rx="8"></rect><text class="nt" x="95" y="30" text-anchor="middle">Support request</text><text class="ns" x="95" y="52" text-anchor="middle">conversation thread</text></g>
+          <g transform="translate(670 150)"><rect class="node" width="190" height="60" rx="8"></rect><text class="nt" x="95" y="28" text-anchor="middle">Resolution state</text><text class="ns" x="95" y="48" text-anchor="middle">resolution visible</text></g>
+        </svg>
+      </div>
+      <details class="subdetails"><summary>Legend</summary><ul><li>Shows support/refund as a slice of the main Business Flow Graph.</li><li>Deepens customer message, staff response and admin resolution lanes.</li><li>Owned where the conversation survives customer/admin reopen.</li><li>Comprehension limit: refund payment execution is not proven.</li></ul></details>
+      <details class="subdetails" data-atlas-role="local-proof-strip"><summary>Banda de dovada noduri - AccountAuthenticatedAreaTests ProfileAccountComponent</summary><table class="data-table"><tr><th>Flow</th><th>Test method</th><th>Layer path</th><th>Business evidence</th><th>Limit</th></tr><tr><td>Account overview</td><td><code>AccountAuthenticatedAreaTests</code> accountOverviewIsVisibleAfterLogin()</td><td>AccountAuthenticatedAreaTests -> ProfileAccountComponent -> ProfileAccountValidation -> AccountPage</td><td>Actor customer -> intent view account -> visible action login/open account -> business object account overview -> observable result My account title.</td><td>Limit: area reachability, not profile mutation.</td></tr><tr><td>Profile area</td><td><code>AccountAuthenticatedAreaTests</code> accountProfileAreaIsReachable()</td><td>AccountAuthenticatedAreaTests -> ProfileAccountComponent -> ProfileAccountValidation -> ProfilePage</td><td>Actor customer -> intent inspect profile -> visible action open profile -> business object profile area -> observable result Profile title.</td><td>Limit: profile page reachability only.</td></tr><tr><td>Favorites area</td><td><code>AccountAuthenticatedAreaTests</code> accountFavoritesAreaIsReachable()</td><td>AccountAuthenticatedAreaTests -> ProfileAccountComponent -> ProfileAccountValidation -> AccountPage</td><td>Actor customer -> intent open saved items surface -> visible action open favorites -> business object favorites area -> observable result Favorites title.</td><td>Limit: no favorite row persistence.</td></tr><tr><td>Messages area</td><td><code>AccountAuthenticatedAreaTests</code> accountMessagesAreaIsReachable()</td><td>AccountAuthenticatedAreaTests -> ProfileAccountComponent -> ProfileAccountValidation -> AccountPage</td><td>Actor customer -> intent open communication surface -> visible action open messages -> business object messages area -> observable result Messages title.</td><td>Limit: no message thread lifecycle.</td></tr></table></details>
+    </details>
+
+    <details class="subdetails" data-business-flow="ProfileAccount">
+      <summary>3.3 ProfileAccount authenticated profile controls</summary>
+      <div class="graph-panel">
+        <svg class="diag" viewBox="0 0 1120 220" role="img" aria-label="Admin fulfillment flow">
+          <defs><marker id="arrow-admin-fulfillment" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z"></path></marker></defs>
+          <path class="edge" d="M170 70 H305" marker-end="url(#arrow-admin-fulfillment)"></path><path class="edge" d="M465 70 H600" marker-end="url(#arrow-admin-fulfillment)"></path><path class="edge" d="M760 70 C830 95 830 145 760 180" marker-end="url(#arrow-admin-fulfillment)"></path>
+          <text class="el" x="238" y="58" text-anchor="middle">edits order</text><text class="el" x="532" y="58" text-anchor="middle">saves status</text><text class="el" x="842" y="128" text-anchor="middle">keeps receipt</text>
+          <g transform="translate(30 35)"><rect class="node" width="160" height="70" rx="8"></rect><text class="nt" x="80" y="30" text-anchor="middle">Order record</text><text class="ns" x="80" y="52" text-anchor="middle">admin edits order</text></g>
+          <g transform="translate(305 35)"><rect class="node" width="180" height="70" rx="8"></rect><text class="nt" x="90" y="30" text-anchor="middle">Status transition</text><text class="ns" x="90" y="52" text-anchor="middle">save transition</text></g>
+          <g transform="translate(600 35)"><rect class="node" width="190" height="70" rx="8"></rect><text class="nt" x="95" y="30" text-anchor="middle">Fulfillment status</text><text class="ns" x="95" y="52" text-anchor="middle">admin-owned state</text></g>
+          <g transform="translate(670 150)"><rect class="node" width="190" height="60" rx="8"></rect><text class="nt" x="95" y="28" text-anchor="middle">Receipt boundary</text><text class="ns" x="95" y="48" text-anchor="middle">customer receipt kept</text></g>
+        </svg>
+      </div>
+      <details class="subdetails"><summary>Legend</summary><ul><li>Shows fulfillment as a slice of the main Business Flow Graph.</li><li>Deepens on-hold, awaiting shipment, shipped and completed transitions.</li><li>Owned where admin status persists and customer invoice boundary remains private.</li><li>Comprehension limit: carrier and warehouse events are not inferred.</li></ul></details>
+    <details class="subdetails" data-atlas-role="local-proof-strip"><summary>Banda de dovada noduri - ProfileAccountTestSupport ProfileAccountValidation</summary><table class="data-table"><tr><th>Flow</th><th>Test method</th><th>Layer path</th><th>Business evidence</th><th>Limit</th></tr><tr><td>Registered profile identity</td><td><code>ProfileAccountValidation</code> assertProfileIdentity()</td><td>ProfileAccountTestSupport -> ProfileAccountComponent -> ProfileAccountValidation -> ProfilePage</td><td>Actor customer -> intent verify registered identity -> visible action read profile inputs -> business object profile identity -> observable result first name, last name and email values.</td><td>Limit: validation method exists; current ATF6 concrete tests focus contact/address fields.</td></tr><tr><td>Navigation menu identity</td><td><code>ProfileAccountValidation</code> assertNavMenuNamesCustomer()</td><td>ProfileAccountTestSupport -> ProfileAccountValidation -> AccountPage -> UIActions</td><td>Actor customer -> intent confirm authenticated identity -> visible action read nav menu -> business object account identity -> observable result customer name in menu.</td><td>Limit: identity display only.</td></tr><tr><td>Password controls</td><td><code>ProfileAccountValidation</code> assertPasswordControlsVisible()</td><td>ProfileAccountTestSupport -> ProfileAccountValidation -> ProfilePage -> UIActions</td><td>Actor customer -> intent find password management -> visible action inspect profile controls -> business object password control surface -> observable result controls visible.</td><td>Limit: no password update submission.</td></tr><tr><td>TOTP controls</td><td><code>ProfileAccountValidation</code> assertTotpControlsVisible()</td><td>ProfileAccountTestSupport -> ProfileAccountValidation -> ProfilePage -> UIActions</td><td>Actor customer -> intent find two-factor controls -> visible action inspect profile controls -> business object TOTP setup surface -> observable result secret and code input visible.</td><td>Limit: no TOTP verification lifecycle.</td></tr></table></details>
+    </details>
+
+    <details class="subdetails" data-business-flow="ProfileContactAddressMemory">
+      <summary>3.4 ProfileContactAddressMemory persisted customer fields</summary>
+      <div class="graph-panel">
+        <svg class="diag" viewBox="0 0 1120 220" role="img" aria-label="Account commerce flow">
+          <defs><marker id="arrow-account-commerce" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z"></path></marker></defs>
+          <path class="edge" d="M170 70 H305" marker-end="url(#arrow-account-commerce)"></path><path class="edge" d="M465 70 H600" marker-end="url(#arrow-account-commerce)"></path><path class="edge" d="M760 70 C830 95 830 145 760 180" marker-end="url(#arrow-account-commerce)"></path>
+          <text class="el" x="238" y="58" text-anchor="middle">selects item</text><text class="el" x="532" y="58" text-anchor="middle">keeps row</text><text class="el" x="842" y="128" text-anchor="middle">survives login</text>
+          <g transform="translate(30 35)"><rect class="node" width="160" height="70" rx="8"></rect><text class="nt" x="80" y="30" text-anchor="middle">Catalog item</text><text class="ns" x="80" y="52" text-anchor="middle">customer selects item</text></g>
+          <g transform="translate(305 35)"><rect class="node" width="180" height="70" rx="8"></rect><text class="nt" x="90" y="30" text-anchor="middle">Commerce memory</text><text class="ns" x="90" y="52" text-anchor="middle">keep commerce row</text></g>
+          <g transform="translate(600 35)"><rect class="node" width="190" height="70" rx="8"></rect><text class="nt" x="95" y="30" text-anchor="middle">Favorite row</text><text class="ns" x="95" y="52" text-anchor="middle">account-visible state</text></g>
+          <g transform="translate(670 150)"><rect class="node" width="190" height="60" rx="8"></rect><text class="nt" x="95" y="28" text-anchor="middle">Relogin memory</text><text class="ns" x="95" y="48" text-anchor="middle">survives relogin</text></g>
+        </svg>
+      </div>
+      <details class="subdetails"><summary>Legend</summary><ul><li>Shows account commerce as a slice of the main Business Flow Graph.</li><li>Deepens cart and favorite records as customer-visible memory.</li><li>Partial maturity: row persistence is proven, purchase completion is not.</li><li>Comprehension limit: catalog pricing and stock lifecycle are not proven.</li></ul></details>
+    <details class="subdetails" data-atlas-role="local-proof-strip"><summary>Banda de dovada noduri - ProfileContactAddressMemoryTests ProfileAccountValidation</summary><table class="data-table"><tr><th>Flow</th><th>Test method</th><th>Layer path</th><th>Business evidence</th><th>Limit</th></tr><tr><td>Registered phone memory</td><td><code>ProfileContactAddressMemoryTests</code> profileKeepsRegisteredPhone()</td><td>ProfileContactAddressMemoryTests -> ProfileAccountComponent -> ProfileAccountValidation -> ProfilePage</td><td>Actor customer -> intent verify contact memory -> visible action open profile -> business object registered phone -> observable result phone value remains.</td><td>Limit: profile field memory, not phone verification.</td></tr><tr><td>Registered street memory</td><td><code>ProfileContactAddressMemoryTests</code> profileKeepsRegisteredStreet()</td><td>ProfileContactAddressMemoryTests -> ProfileAccountComponent -> ProfileAccountValidation -> ProfilePage</td><td>Actor customer -> intent verify address memory -> visible action open profile -> business object street field -> observable result street value remains.</td><td>Limit: address field only.</td></tr><tr><td>Postal code memory</td><td><code>ProfileContactAddressMemoryTests</code> profileKeepsRegisteredPostalCode()</td><td>ProfileContactAddressMemoryTests -> ProfileAccountComponent -> ProfileAccountValidation -> ProfilePage</td><td>Actor customer -> intent verify postal memory -> visible action open profile -> business object postal code -> observable result postal code value remains.</td><td>Limit: no shipping-rate inference.</td></tr><tr><td>City state country memory</td><td><code>ProfileContactAddressMemoryTests</code> profileKeepsRegisteredCityAndState()</td><td>ProfileContactAddressMemoryTests -> ProfileAccountComponent -> ProfileAccountValidation -> ProfilePage</td><td>Actor customer -> intent verify location memory -> visible action open profile -> business object city/state profile fields -> observable result values remain.</td><td>Limit: country code is validated by a separate source method.</td></tr></table></details>
+    </details>
+  </details>
+
+  <details class="section" data-atlas-section="4. business evidence tables">
+    <summary><span class="summary-title">4. Business Evidence Tables</span><span class="sumhint">score support, object maturity and layer trace</span></summary>
+    <details class="subdetails"><summary>4.1 Business Object Coverage</summary><table class="data-table"><tr><th>Business object</th><th>Coverage</th><th>Maturity</th><th>Comprehension limit</th></tr><tr><td>Cart line</td><td>catalog product, quantity, price, total, identity step</td><td>partial</td><td>No paid invoice until checkout completes.</td></tr><tr><td>Invoice receipt</td><td>account invoice, guest invoice, detail, document</td><td>owned/durabil</td><td>No external accounting reconciliation.</td></tr><tr><td>Support request</td><td>customer message, staff response, admin resolution</td><td>owned</td><td>No refund payment execution proof.</td></tr><tr><td>Fulfillment status</td><td>on hold, awaiting shipment, shipped, completed</td><td>owned with reopen</td><td>No carrier integration.</td></tr><tr><td>Favorite row</td><td>created favorite and relogin retention</td><td>partial</td><td>No catalog stock lifecycle.</td></tr></table></details>
+    <details class="subdetails"><summary>4.2 Repeated Business Corridors</summary><table class="data-table"><tr><th>Corridor</th><th>Repeated proof</th><th>Business meaning</th></tr><tr><td>Account authenticated areas</td><td>AccountAuthenticatedAreaTests, ProfileAccountComponent, ProfileAccountValidation</td><td>Repeated Business Corridors show account overview, profile, favorites, invoices and messages reachability.</td></tr><tr><td>Profile contact/address memory</td><td>ProfileContactAddressMemoryTests, ProfileAccountComponent, ProfileAccountValidation</td><td>Repeated Business Corridors show registered phone and address fields retained in profile inputs.</td></tr><tr><td>Invoice boundary support</td><td>InvoiceBoundaryTestSupport, AccountInvoiceBoundaryComponent, AccountInvoiceBoundaryValidation</td><td>Repeated Business Corridors separate checkout success from account invoice surface.</td></tr></table></details>
+    <details class="subdetails"><summary>4.3 Object maturity and limits matrix</summary><p>Maturitate si limite: fiecare obiect business are clasificare owned, partial, diagnostic sau surface-only, plus limita de intelegere.</p><table class="data-table"><tr><th>Object</th><th>Owned</th><th>Partial</th><th>Diagnostic</th><th>Surface-only</th><th>Limite</th></tr><tr><td>Invoice receipt</td><td>Yes owned durable</td><td>No</td><td>No</td><td>No</td><td>Limit: no accounting ledger.</td></tr><tr><td>Support request</td><td>Yes owned thread</td><td>No</td><td>No</td><td>No</td><td>Limit: no money transfer proof.</td></tr><tr><td>Fulfillment status</td><td>Yes owned reopen</td><td>No</td><td>No</td><td>No</td><td>Limit: no carrier integration.</td></tr><tr><td>Cart line</td><td>No</td><td>Yes partial</td><td>No</td><td>No</td><td>Limit: before invoice.</td></tr><tr><td>Favorite row</td><td>No</td><td>Yes partial</td><td>No</td><td>No</td><td>Limit: account memory only.</td></tr></table></details>
+    <details class="subdetails"><summary>4.4 Layer Trace Map</summary><table class="data-table"><tr><th>Layer</th><th>Concrete evidence</th><th>Business object</th></tr><tr><td>test</td><td><code>AccountAuthenticatedAreaTests</code>, <code>ProfileContactAddressMemoryTests</code>, <code>InvoiceBoundaryTestSupport</code>, <code>ProfileAccountTestSupport</code></td><td>Account area, profile field memory and invoice boundary</td></tr><tr><td>component</td><td><code>ProfileAccountComponent</code>, <code>AccountInvoiceBoundaryComponent</code></td><td>Authenticated account navigation and checkout/invoice boundary</td></tr><tr><td>page</td><td><code>AccountPage</code>, <code>ProfilePage</code>, <code>CheckoutPage</code>, <code>LoginPage</code>, <code>RegisterPage</code>, <code>ProductPage</code></td><td>Visible account, profile, checkout and registration surfaces</td></tr><tr><td>actions</td><td><code>UIActions</code>, <code>WaitUtils</code></td><td>Navigation, field entry, selection and visible wait boundary</td></tr><tr><td>validation</td><td><code>ProfileAccountValidation</code>, <code>AccountInvoiceBoundaryValidation</code></td><td>Profile identity/contact/address assertions and invoice boundary assertions</td></tr><tr><td>model/factory</td><td><code>CustomerData</code>, <code>CustomerDataFactory</code>, <code>AccountInvoiceContext</code>, <code>AccountInvoiceDetailsContext</code></td><td>Registered customer and account invoice state</td></tr></table></details>
+    <details class="subdetails"><summary>4.5 Suport scor</summary><table class="data-table"><tr><th>Axa</th><th>Nota</th><th>business goal</th><th>flow question</th><th>source/layer evidence</th><th>atlas score</th></tr><tr><td>Intelegere Business</td><td>92</td><td>business goal: explain durable commerce objects</td><td>flow question: which objects are owned, partial or diagnostic?</td><td>source/layer evidence: object table, graph and proof strips.</td><td>atlas score 92</td></tr><tr><td>Reconstructie Flow</td><td>91</td><td>business goal: reconstruct visible product story</td><td>flow question: actor -> intent -> visible action -> business object -> observable result?</td><td>source/layer evidence: 3.x subgraphs and source trace.</td><td>atlas score 91</td></tr><tr><td>Trasabilitate Layere</td><td>94</td><td>business goal: reopen claim from source</td><td>flow question: does each claim traverse layers?</td><td>source/layer evidence: Layer Trace Map and 5.1 support.</td><td>atlas score 94</td></tr><tr><td>Claritate Obiect Business</td><td>92</td><td>business goal: keep business objects explicit</td><td>flow question: are objects separate from pages/helpers?</td><td>source/layer evidence: business object coverage and trace rows.</td><td>atlas score 92</td></tr><tr><td>Fidelitate Dovada</td><td>91</td><td>business goal: avoid invented proof</td><td>flow question: can methods/classes and reports be reopened?</td><td>source/layer evidence: concrete methods, classes and Extent links.</td><td>atlas score 91</td></tr></table></details>
+    <details class="subdetails"><summary>4.6 Formula Overall</summary><p>Overall este derivat din business understanding si nu este package/html-ex readiness.</p><table class="data-table"><tr><th>Axa</th><th>Nota</th><th>Pondere</th><th>Contributie</th></tr><tr><td>Intelegere Business</td><td>92</td><td>25%</td><td>23.00</td></tr><tr><td>Reconstructie Flow</td><td>91</td><td>20%</td><td>18.20</td></tr><tr><td>Trasabilitate Layere</td><td>94</td><td>20%</td><td>18.80</td></tr><tr><td>Claritate Obiect Business</td><td>92</td><td>20%</td><td>18.40</td></tr><tr><td>Fidelitate Dovada</td><td>91</td><td>15%</td><td>13.65</td></tr><tr><td>Overall</td><td>92</td><td>100%</td><td>92.05 rotunjit la 92; runtime parity Playwright/Selenium este acum verde.</td></tr></table></details>
+  </details>
+
+  <details class="section" data-atlas-section="5. source-to-business trace">
+    <summary><span class="summary-title">5. Source-to-Business Trace</span><span class="sumhint">method-level source rows</span></summary>
+      <p>Declared source scope: 4 fisiere Java and 10 metode @Test. Actor, intent, visible action, business object and observable result are stated directly in the rows below.</p>
+    <table class="data-table">
+      <tr><th>Test/class</th><th>Business object</th><th>Evidence layer</th><th>Maturity</th><th>Comprehension limit</th></tr>
+      <tr><td><code>AccountAuthenticatedAreaTests</code> accountOverviewIsVisibleAfterLogin()</td><td>Account overview</td><td><code>ProfileAccountComponent</code> -> <code>AccountPage</code> -> <code>ProfileAccountValidation</code> -> context -> actor -> intent -> visible action -> business object -> observable result</td><td>partial</td><td>Reachability/title proof only.</td></tr>
+      <tr><td><code>AccountAuthenticatedAreaTests</code> accountProfileAreaIsReachable()</td><td>Profile area</td><td><code>ProfileAccountComponent</code> -> <code>ProfilePage</code> -> <code>ProfileAccountValidation</code> -> context -> actions -> page -> validation -> model</td><td>partial</td><td>Profile page reachability only.</td></tr>
+      <tr><td><code>AccountAuthenticatedAreaTests</code> accountFavoritesAreaIsReachable()</td><td>Favorites area</td><td><code>ProfileAccountComponent</code> -> <code>AccountPage</code> -> <code>ProfileAccountValidation</code> -> context</td><td>partial</td><td>No favorite row persistence.</td></tr>
+      <tr><td><code>AccountAuthenticatedAreaTests</code> accountInvoicesAreaIsReachable()</td><td>Invoices area</td><td><code>ProfileAccountComponent</code> -> <code>AccountPage</code> -> <code>ProfileAccountValidation</code> -> context</td><td>partial</td><td>No invoice row/detail proof.</td></tr>
+      <tr><td><code>AccountAuthenticatedAreaTests</code> accountMessagesAreaIsReachable()</td><td>Messages area</td><td><code>ProfileAccountComponent</code> -> <code>AccountPage</code> -> <code>ProfileAccountValidation</code> -> context</td><td>partial</td><td>No support message lifecycle.</td></tr>
+      <tr><td><code>ProfileContactAddressMemoryTests</code> profileKeepsRegisteredPhone()</td><td>Registered phone</td><td><code>ProfileAccountComponent</code> -> <code>ProfilePage</code> -> <code>ProfileAccountValidation</code> -> <code>CustomerData</code> -> context</td><td>partial</td><td>Phone field memory only.</td></tr>
+      <tr><td><code>ProfileContactAddressMemoryTests</code> profileKeepsRegisteredStreet()</td><td>Registered street</td><td><code>ProfileAccountComponent</code> -> <code>ProfilePage</code> -> <code>ProfileAccountValidation</code> -> <code>CustomerData</code> -> context</td><td>partial</td><td>Street field memory only.</td></tr>
+      <tr><td><code>ProfileContactAddressMemoryTests</code> profileKeepsRegisteredPostalCode()</td><td>Postal code</td><td><code>ProfileAccountComponent</code> -> <code>ProfilePage</code> -> <code>ProfileAccountValidation</code> -> <code>CustomerData</code> -> context</td><td>partial</td><td>No shipping-rate inference.</td></tr>
+      <tr><td><code>ProfileContactAddressMemoryTests</code> profileKeepsRegisteredCityAndState()</td><td>City/state</td><td><code>ProfileAccountComponent</code> -> <code>ProfilePage</code> -> <code>ProfileAccountValidation</code> -> <code>CustomerData</code> -> context</td><td>partial</td><td>City/state field memory only.</td></tr>
+      <tr><td><code>ProfileContactAddressMemoryTests</code> profileKeepsRegisteredCountryCode()</td><td>Country code</td><td><code>ProfileAccountComponent</code> -> <code>ProfilePage</code> -> <code>ProfileAccountValidation</code> -> <code>CustomerData</code> -> context</td><td>partial</td><td>Country profile field only.</td></tr>
+    </table>
+    <details class="subdetails">
+      <summary>5.1 Suport scor</summary>
+    <table class="data-table"><tr><th>Axa</th><th>Nota</th><th>business goal</th><th>flow question</th><th>source/layer evidence</th><th>atlas score</th></tr><tr><td>Intelegere Business</td><td>92</td><td>business goal: explain commerce object ownership</td><td>flow question: what is the business object and observable result?</td><td>source/layer evidence: Source-to-Business Trace, object table and graph proof.</td><td>atlas score 92</td></tr><tr><td>Reconstructie Flow</td><td>91</td><td>business goal: tell product story</td><td>flow question: can reader follow actor -> intent -> visible action -> business object -> observable result?</td><td>source/layer evidence: 3.x subgraphs and trace chains.</td><td>atlas score 91</td></tr><tr><td>Trasabilitate Layere</td><td>94</td><td>business goal: prove source path</td><td>flow question: are test, action, page, service, validation, model, constant visible?</td><td>source/layer evidence: Layer Trace Map and concrete class tokens.</td><td>atlas score 94</td></tr><tr><td>Claritate Obiect Business</td><td>92</td><td>business goal: separate objects from support mechanics</td><td>flow question: are pages/helpers evidence rather than subject?</td><td>source/layer evidence: graph node labels and business object column.</td><td>atlas score 92</td></tr><tr><td>Fidelitate Dovada</td><td>91</td><td>business goal: source-backed proof</td><td>flow question: can method/class/report evidence be reopened?</td><td>source/layer evidence: concrete methods, classes and Extent artifacts.</td><td>atlas score 91</td></tr><tr><td>Overall</td><td>92</td><td>business goal: aggregate source-backed comprehension</td><td>flow question: do the weighted axes justify the headline score?</td><td>source/layer evidence: 4.6 formula plus runtime Extent parity links.</td><td>atlas score 92</td></tr></table>
+    </details>
+  </details>
+
+  <details class="section" data-atlas-section="6. atlas test audit">
+    <summary><span class="summary-title">6. Atlas Test Audit</span><span class="sumhint">commands, results and published artifacts</span></summary>
+    <table class="data-table">
+      <tr><th>Artifact</th><th>Result</th><th>Command</th><th>Interpretare</th></tr>
+      <tr><td>Result expected by this atlas</td><td><code>119 tests / 0 failures</code></td><td>Auditul Atlas publica rapoartele Extent si comenzile Maven reproductibile.</td><td>Atlas business-closeout este verde pentru Extent-ul publicat si linkuit. Runtime UI parity este dovada partiala separata: Playwright si Selenium au aceeasi matrice de <code>54/54 passed</code>, dar nu inlocuiesc scope-ul analizat de 10 @Test.</td></tr>
+      <tr><td>Atlas contract Extent</td><td><a href="validation/ATF4/ATF4_atlas-tests-extent-report.html">ATF4 atlas tests Extent report</a><br><a href="validation/ATF4/ATF4_atlas-tests-extent-report.README.md">ATF4 atlas manifest README</a><br><code>Total: 119; Passed: 119; Failed: 0; Skipped: 0</code></td><td><code>mvn -q org.apache.maven.plugins:maven-surefire-plugin:3.2.5:test &quot;-Dsurefire.suiteXmlFiles=src/test/resources/skills/atlas/testng-atlas-business-closeout.xml&quot; &quot;-Datlas.html=docs/atlas/ATF4_business-test-atlas.html&quot; &quot;-Datlas.sourceRoot=C:/work/ex/java/demo/atf4/test-framework/src/test/java/com/endava/ai/ui/tests&quot; &quot;-Datlas.uiSourceRoot=C:/work/ex/java/demo/atf4/test-framework/src/main/java/com/endava/ai/ui&quot; &quot;-Dreporting.engine=extent&quot; &quot;-Dreports.dir=docs/atlas/validation/ATF4&quot; &quot;-Dreports.file.name=ATF4_atlas-tests-extent-report.html&quot; &quot;-Dreports.timestamp.enabled=false&quot; &quot;-DforkCount=0&quot;</code></td><td>Verde business-closeout: <code>0 failed</code>. Acest profil valideaza Atlas business understanding, grafuri, scoruri, trace si artifact audit fara sa vanda Selenium parity ca dovada finala.</td></tr>
+      <tr><td>Partial Playwright runtime Extent</td><td><a href="validation/ATF4/ATF4_ui-agentic-current-extent-report.html">ATF4 Playwright UI Extent</a><br><a href="validation/ATF4/ATF4_ui-agentic-current-extent-report.README.md">ATF4 Playwright runtime README</a><br><code>Total: 54; Passed: 54; Failed: 0; Skipped: 0</code></td><td><code>mvn -q test "-Dsurefire.suiteXmlFiles=src/test/resources/atf4-ui-agentic-all.xml" "-Dui.engine=playwright" "-Dreporting.engine=extent" "-Dreports.dir=target/reports-atf4-ui-all-playwright-parity-20260702-final-2" "-Dreports.file.name=ExtentReport.html" "-Dreports.timestamp.enabled=false"</code></td><td>Green result proves: Playwright passed the 54-test parity slice with zero failures. Does not prove: full 10 @Test Atlas source scope or unexecuted business corridors.</td></tr>
+      <tr><td>Partial Selenium runtime Extent</td><td><a href="validation/ATF4/ATF4_ui-agentic-selenium-all-extent-report.html">ATF4 Selenium UI Extent</a><br><a href="validation/ATF4/ATF4_ui-agentic-selenium-all-extent-report.README.md">ATF4 Selenium runtime README</a><br><code>Total: 54; Passed: 54; Failed: 0; Skipped: 0</code></td><td><code>mvn -q test "-Dsurefire.suiteXmlFiles=src/test/resources/atf4-ui-agentic-all.xml" "-Dui.engine=selenium" "-Dreporting.engine=extent" "-Dreports.dir=target/reports-atf4-ui-all-selenium-parity-20260702-final-3" "-Dreports.file.name=ExtentReport.html" "-Dreports.timestamp.enabled=false"</code></td><td>Green result proves: Selenium matched the same 54-test parity slice with zero failures. Does not prove: full 10 @Test Atlas source scope or browser parity for tests outside that slice.</td></tr>
+      <tr><td>Manifest README</td><td><a href="validation/ATF4/ATF4_atlas-tests-extent-report.README.md">ATF4 atlas validation README</a><br><a href="validation/ATF4/ATF4_ui-agentic-current-extent-report.README.md">Playwright manifest</a><br><a href="validation/ATF4/ATF4_ui-agentic-selenium-all-extent-report.README.md">Selenium manifest</a></td><td>Command, source scope and copy provenance.</td><td>Manifestele raman dovada de provenienta; Extent-urile de mai sus sunt dovezile vizuale citibile.</td></tr>
+    </table>
+  </details>
+
+</main>
+<script>
+  function toggleAll(open) {
+    document.querySelectorAll('main.wrap > details, main.wrap details.subdetails')
+      .forEach(function(section) {
+        section.open = open;
+      });
+    var businessGraph = document.getElementById('business-flow-graph');
+    if (!open && businessGraph) {
+      businessGraph.open = true;
+    }
+  }
+</script>
+</body>
+</html>
+
+
+
+
+
+

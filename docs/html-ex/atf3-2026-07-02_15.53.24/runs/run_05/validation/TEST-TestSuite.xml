@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testsuite name="run_05" tests="5" failures="0" errors="0" skipped="0" time="20.623" package="com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest">
+  <testcase classname="com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest" name="cart_line_removal_clears_pre_invoice_record" time="6.111" />
+  <testcase classname="com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest" name="cart_line_removal_does_not_create_payment" time="3.802" />
+  <testcase classname="com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest" name="cart_line_removal_preserves_original_evidence" time="4.157" />
+  <testcase classname="com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest" name="product_quantity_selection_materializes_cart_line_before_invoice" time="3.428" />
+  <testcase classname="com.endava.ai.ui.tests.cart.lifecycle.CartLineLifecycleContractTest" name="selected_quantity_keeps_product_identity" time="3.125" />
+</testsuite>

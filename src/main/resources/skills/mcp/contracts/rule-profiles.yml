@@ -1,0 +1,84 @@
+schemaVersion: 1
+contracts:
+  - id: UNIVERSAL
+    role: reusable package truth, source discipline, learning evidence and final MCP gate semantics
+    ruleIds:
+      - runtime.active-values.published
+      - package.artifact-spine.required
+      - package.accounting.runtime-window
+      - package.readme.state-sync
+      - source.root-diff.files-exist
+      - source.evolution.ledger
+      - source.evolution.kpi-consistency
+      - source.protected-framework.not-mutated
+      - source.protected-framework.git-clean
+      - business.novelty.against-baseline
+      - business.object.durable-owned
+      - business.evidence.trace
+      - claim-action.source-proof-alignment
+      - business.next-frontier.single-object
+      - score.cap.evidence
+      - run.learning.progression
+      - report.state.vocabulary-sync
+      - pretraining.intake.quality
+      - run.learning.trace-quality
+      - mcp.gate.evidence-freshness
+      - mcp.gate.package-closeout
+      - mcp.gate.kpi-closeout-artifacts
+      - package.artifacts.no-template-noise
+      - run.countability.xml-to-java-test
+      - report.local-links.resolve
+  - id: UI_PACKAGE
+    role: generated UI package architecture and run evidence
+    ruleIds:
+      - ui.claimed-absence.requires-assertion
+      - ui.wrapper.handoff.quality
+      - run.window.count
+      - run.window.artifact-spine
+      - run.window.state-completeness
+      - run.window.extent-proof
+      - run.extent.maven-provenance
+      - run.window.independence
+      - run.diff.progression
+      - ui.test-architecture.base-test
+      - ui-api-generated.structure.modern-layout
+      - ui.test-architecture.framework-reporting-enabled
+      - ui.test-architecture.no-direct-infra
+      - ui.test-architecture.validation-layer-reporting
+      - ui.test-architecture.real-ui-interaction
+  - id: HTML_REPORT
+    role: final business-understanding report shape and proof surface
+    ruleIds:
+      - report.chrome.shared-css
+      - report.business-graph.canonical
+      - report.score-overview.canonical
+      - report.proof-mapping.claim-evidence
+      - report.close-out.state-decision
+  - id: HTML_EXAMPLE_CANDIDATE
+    role: teacher-grade html-ex promotion plus final report and artifact readiness
+    ruleIds:
+      - candidate.score.teacher-threshold
+      - candidate.business-closure.not-weakest
+      - candidate.business-object.depth
+      - candidate.positive-ownership
+      - candidate.reopenability.proof
+      - candidate.proof-token.completeness
+      - candidate.run-progression
+      - candidate.diff.pedagogy
+      - candidate.single-family.cap
+      - candidate.business-graph.object-specificity
+      - candidate.score.justification
+      - candidate.html-example.promotion-bundle
+      - candidate.business-lifecycle.depth
+      - candidate.business-evidence.trace
+  - id: FULL_PACKAGE
+    role: complete generated-package validator profile
+    includeProfiles:
+      - UNIVERSAL
+      - UI_PACKAGE
+      - HTML_REPORT
+  - id: SUITE_ATLAS
+    role: suite-level atlas/report validation without generated UI package rules
+    includeProfiles:
+      - UNIVERSAL
+      - HTML_REPORT

@@ -1,0 +1,101 @@
+﻿schemaVersion: 1
+contracts:
+  - id: atlas.policy.base-output
+    profile: ANY
+    category: BASE_OUTPUT
+    severity: BLOCKER
+    owner: atlas-html
+    artifact: docs/atlas/business-test-atlas.html
+    repairTarget: declared atlas HTML
+    matrix: publish output existence, naming and shared CSS status in the Atlas rule matrix
+    capImpact: missing base output blocks publication
+  - id: atlas.policy.structure
+    profile: ANY
+    category: STRUCTURE
+    severity: BLOCKER
+    owner: atlas-html
+    artifact: docs/atlas/business-test-atlas.html
+    repairTarget: top-level details sections and semantic data-atlas markers
+    matrix: expose section order, collapsibility and semantic marker status
+    capImpact: weak structure caps atlas quality below candidate grade
+  - id: atlas.policy.graph-style
+    profile: ANY
+    category: GRAPH_STYLE
+    severity: MAJOR
+    owner: atlas-html
+    artifact: docs/shared-report-reference.css
+    repairTarget: SVG graph markup and shared CSS usage
+    matrix: expose visual scale, minimal style, legend and readability rules
+    capImpact: unreadable graphs block 95+
+  - id: atlas.policy.graph-proof
+    profile: ANY
+    category: GRAPH_PROOF
+    severity: BLOCKER
+    owner: atlas-html
+    artifact: docs/atlas/business-test-atlas.html
+    repairTarget: Business Flow Graph and 3.x local proof strips
+    matrix: connect graph nodes to local proof strips and source-backed methods
+    capImpact: unbacked graph proof blocks candidate publication
+  - id: atlas.policy.proof-trace
+    profile: ANY
+    category: PROOF_TRACE
+    severity: BLOCKER
+    owner: source-trace
+    artifact: src/test/java analyzed package
+    repairTarget: Source-to-Business Trace and Layer Trace Map
+    matrix: expose method-level source trace and concrete layer evidence
+    capImpact: invented trace blocks 95+
+  - id: atlas.policy.scoring
+    profile: ANY
+    category: SCORING
+    severity: BLOCKER
+    owner: score-model
+    artifact: atlas score cards and formula trace
+    repairTarget: score cards, rationale table and formula rows
+    matrix: expose declared score, recalculated score and cap rationale
+    capImpact: non-recalculable scores cap quality below 95
+  - id: atlas.policy.business-comprehension
+    profile: ANY
+    category: BUSINESS_COMPREHENSION
+    severity: BLOCKER
+    owner: business-map
+    artifact: Business Flow Graph and Business Flow Understanding sections
+    repairTarget: business object centered graphs and flow stories
+    matrix: expose actor, intent, visible action, business object and observable result
+    capImpact: technical inventory without business understanding blocks promotion
+  - id: atlas.policy.subgraph-semantic-density
+    profile: CANDIDATE
+    category: GRAPH_PROOF
+    severity: BLOCKER
+    owner: atlas-graph
+    artifact: Business Flow Understanding 3.x subgraphs
+    repairTarget: source/domain-specific SVG node labels and subgraph signatures
+    matrix: expose generic-node pressure versus domain-bearing labels
+    capImpact: template-like subgraphs block candidate-grade business understanding
+  - id: atlas.policy.skill-readiness
+    profile: ANY
+    category: SKILL_READINESS
+    severity: BLOCKER
+    owner: atlas-skill
+    artifact: docs/atlas/validation/atlas-tests-extent-report.html
+    repairTarget: Atlas Test Audit and linked validation artifacts
+    matrix: expose Extent/XML links, exact command and synchronized test totals
+    capImpact: stale validation evidence blocks publication
+  - id: atlas.policy.ui-runtime-scope-parity
+    profile: CANDIDATE
+    category: AUDIT
+    severity: MAJOR
+    owner: audit
+    artifact: Atlas Test Audit Playwright/Selenium Extent rows
+    repairTarget: section 6 runtime Extent rows and linked validation artifacts
+    matrix: expose Playwright and Selenium totals against the analyzed @Test count
+    capImpact: mismatched runtime scope blocks adapter-parity claims, but business closeout may proceed when Selenium is explicitly deferred
+  - id: atlas.policy.audit
+    profile: ANY
+    category: AUDIT
+    severity: BLOCKER
+    owner: audit
+    artifact: generated Atlas rule matrix
+    repairTarget: rule matrix, catalog sync and repair routing
+    matrix: expose catalog sync and executable validator status
+    capImpact: unsynchronized audit metadata blocks maintainability grade

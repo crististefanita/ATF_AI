@@ -1,0 +1,9 @@
+{
+    "profile":  "ui-run",
+    "suite":  "src/test/resources/ui/testng-atf1-refund-support-customer-messages-run.xml",
+    "command":  "mvn -q \"-Dsurefire.suiteXmlFiles=src/test/resources/ui/testng-atf1-refund-support-customer-messages-run.xml\" \"-Dreporting.engine=extent\" \"-Dreports.dir=C:\\work\\ex\\java\\demo\\atf1\\test-framework\\docs\\out\\2026-07-02_18.00.17\\runs\\run_04\\validation\\reports\" \"-Dreports.file.name=ExtentReport.html\" \"-Dreports.timestamp.enabled=false\" \"-DforkCount=0\" test",
+    "exitCode":  0,
+    "timestamp":  "2026-07-02T18:22:53.6832983+03:00",
+    "sha256":  "b15992f6385954715453948984e86bb00474097b30ba2f24893194f115080860",
+    "size":  622403
+}

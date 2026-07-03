@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Generated Test Code Review - skill requirements</title>
+  <link rel="stylesheet" href="../../assets/shared-report-reference.css" />
+  <style>
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+    .diag{background:#0d1624;border:1px solid #27415f;border-radius:18px;padding:18px;margin:14px 0;overflow:auto}
+    .diag svg{width:100%;height:auto;display:block}
+    .toolbar{display:flex;justify-content:flex-start;gap:8px;margin:10px 0 14px}
+    .toolbar button{border:1px solid var(--border);background:#111826;color:var(--text);border-radius:999px;padding:7px 12px;font-size:12px;font-weight:700;cursor:pointer}
+    .toolbar button:hover{border-color:#7aa2ff;color:#dbe7ff}
+    .pillline{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:start;margin:8px 0}
+    .pilllabel{font-weight:800;color:#9ecbff}
+    .pillrow{display:flex;flex-wrap:wrap;gap:8px}
+    .subsection{margin:18px 0 10px}
+    .subsection>summary{font-weight:800;color:#e6edf3;margin:0 0 8px}
+    .mini{font-size:.92rem;color:#b9c7da}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Skill / HTML requirements document</div>
+    <h1>Generated Test Code Review pentru clase create de agenti</h1>
+    <p>
+      Skill analysis-only pentru review de calitate cod pe testele generate. Primeste un folder de teste,
+      citeste codul sursa si layerele folosite, apoi produce un raport HTML care explica daca testele sunt
+      coerente, business-grouped, arhitectural curate si usor de reorganizat.
+    </p>
+    <div class="badgebar">
+      <span class="badge">CODE REVIEW</span>
+      <span class="badge">GENERATED TESTS</span>
+      <span class="badge">REFACTOR PLAN</span>
+      <span class="badge">READ ONLY</span>
+      <span class="badge">UI/API ARCHITECTURE</span>
+    </div>
+  </header>
+
+  <div class="toolbar" aria-label="Controale sectiuni">
+    <button type="button" onclick="toggleAll(true)">Deschide sectiunile</button>
+    <button type="button" onclick="toggleAll(false)">Inchide sectiunile</button>
+  </div>
+
+  <details open>
+    <summary>Overview</summary>
+    <div class="content">
+      <div class="callout">
+        Contract rece:
+        <ul>
+          <li>Skill-ul revizuieste codul testelor generate, nu valideaza pachetul MCP.</li>
+          <li>Testele sunt evaluate ca design si mentenanta, nu ca business proof final.</li>
+          <li>Atlasurile existente pot ghida gruparea business, dar nu inlocuiesc citirea codului.</li>
+          <li>Output-ul este un raport HTML de review, nu patch automat.</li>
+        </ul>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="pillline"><div class="pilllabel">Input:</div><div class="pillrow"><span class="pill">folder teste</span><span class="pill">pachet Java</span><span class="pill">layere atinse</span></div></div>
+          <div class="pillline"><div class="pilllabel">Output:</div><div class="pillrow"><span class="pill">generated-test-code-review.html</span><span class="pill">score cards</span><span class="pill">refactor plan</span></div></div>
+          <div class="pillline"><div class="pilllabel">Focus:</div><div class="pillrow"><span class="pill">coeziune clase</span><span class="pill">duplicare</span><span class="pill">layering</span><span class="pill">naming</span></div></div>
+        </div>
+        <div class="card">
+          <div class="pillline"><div class="pilllabel">Nu face:</div><div class="pillrow"><span class="pill bad">nu modifica teste</span><span class="pill bad">nu genereaza teste</span><span class="pill bad">nu decide html-ex</span></div></div>
+          <div class="pillline"><div class="pilllabel">Nu confunda:</div><div class="pillrow"><span class="pill bad">run count</span><span class="pill bad">MCP pass</span><span class="pill bad">business atlas</span><span class="pill bad">code quality</span></div></div>
+          <div class="pillline"><div class="pilllabel">Se poate folosi:</div><div class="pillrow"><span class="pill">inainte de refactor</span><span class="pill">dupa un run MCP</span><span class="pill">inainte de promote html-ex</span></div></div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details open>
+    <summary>1. Contract</summary>
+    <div class="content">
+      <details class="subsection" open>
+        <summary>1.1 Contract in 10 secunde</summary>
+        <table>
+          <thead><tr><th>Intrebare</th><th>Raspuns obligatoriu</th><th>Anti-drift</th></tr></thead>
+          <tbody>
+            <tr><td>Ce primeste?</td><td><code>INPUT_TEST_SOURCE_ROOT</code>, folderul de teste generate.</td><td>nu porneste din raport final sau XML</td></tr>
+            <tr><td>Ce citeste?</td><td>test classes si layerele Java invocate: action, component, page, service, validation, model, constants.</td><td>nu se opreste la nume de fisiere</td></tr>
+            <tr><td>Ce judeca?</td><td>calitatea codului de test: coeziune, responsabilitate, duplicare, naming, layering, refactor safety.</td><td>nu judeca produsul ca business complet</td></tr>
+            <tr><td>Ce produce?</td><td><code>generated-test-code-review.html</code> cu recomandari de reorganizare.</td><td>nu produce patch automat</td></tr>
+          </tbody>
+        </table>
+        <div class="diag">
+          <svg viewBox="0 0 1160 220" role="img" aria-label="Generated test code review pipeline">
+            <defs><marker id="arrow1" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7aa2ff"/></marker></defs>
+            <rect x="40" y="76" width="200" height="72" rx="14" fill="#111826" stroke="#35507a"/>
+            <text x="140" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Generated tests</text>
+            <text x="140" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">input source root</text>
+            <rect x="315" y="76" width="200" height="72" rx="14" fill="#111826" stroke="#35507a"/>
+            <text x="415" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Architecture trace</text>
+            <text x="415" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">test -> layers</text>
+            <rect x="590" y="76" width="200" height="72" rx="14" fill="#111826" stroke="#35507a"/>
+            <text x="690" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Quality review</text>
+            <text x="690" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">cohesion / duplication</text>
+            <rect x="865" y="76" width="230" height="72" rx="14" fill="#111826" stroke="#35507a"/>
+            <text x="980" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Refactor map</text>
+            <text x="980" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">safe / risky / blocked</text>
+            <path d="M240 112 H315" stroke="#7aa2ff" stroke-width="2" marker-end="url(#arrow1)"/>
+            <path d="M515 112 H590" stroke="#7aa2ff" stroke-width="2" marker-end="url(#arrow1)"/>
+            <path d="M790 112 H865" stroke="#7aa2ff" stroke-width="2" marker-end="url(#arrow1)"/>
+          </svg>
+        </div>
+      </details>
+
+      <details class="subsection">
+        <summary>1.2 Parametri canonici</summary>
+        <table>
+          <thead><tr><th>Parametru</th><th>Exemplu</th><th>Rol</th></tr></thead>
+          <tbody>
+            <tr><td><code>INPUT_TEST_SOURCE_ROOT</code></td><td><code>src/test/java/com/endava/ai/ui/tests</code> sau <code>src/test/java/com/endava/ai/api/tests</code></td><td>radacina testelor analizate</td></tr>
+            <tr><td><code>INPUT_TEST_PACKAGE</code></td><td><code>com.endava.ai.ui.tests</code> / <code>com.endava.ai.api.tests</code></td><td>namespace pentru mapping</td></tr>
+            <tr><td><code>INPUT_MAIN_SUPPORT_ROOTS</code></td><td><code>src/main/java/com/endava/ai/ui/support</code> / <code>src/main/java/com/endava/ai/api/support</code></td><td>suport permis pentru testele generate</td></tr>
+            <tr><td><code>PROTECTED_FRAMEWORK_ROOTS</code></td><td><code>core</code>, <code>mcp</code>, <code>atlas</code>, <code>ui/core</code>, <code>ui/engine</code>, <code>api/core</code></td><td>suprafete care nu se modifica in pachetul generat</td></tr>
+            <tr><td><code>LIVING_ARCHITECTURE_REFERENCE</code></td><td><code>docs/Living_Architecture_UI_API_doc_v1_0.html</code></td><td>legea de layering UI/API</td></tr>
+            <tr><td><code>OPTIONAL_BUSINESS_ATLAS</code></td><td><code>docs/atlas/&lt;ATF_NAME&gt;_business-test-atlas.html</code></td><td>harta business folosita ca ghid, nu ca sursa unica</td></tr>
+            <tr><td><code>OUTPUT_CODE_REVIEW_HTML</code></td><td><code>generated-test-code-review.html</code></td><td>raportul produs de skill</td></tr>
+            <tr><td><code>MUST_NOT_MODIFY_ANALYZED_FILES</code></td><td><code>true</code></td><td>analiza este read-only</td></tr>
+          </tbody>
+        </table>
+      </details>
+
+      <details class="subsection">
+        <summary>1.3 Boundary</summary>
+        <table>
+          <thead><tr><th>Are voie</th><th>Nu are voie</th></tr></thead>
+          <tbody>
+            <tr><td>sa propuna reorganizare de pachete si clase</td><td>sa mute fisiere automat</td></tr>
+            <tr><td>sa indice duplicari si helpers lipsa</td><td>sa rescrie testele fara aprobare</td></tr>
+            <tr><td>sa foloseasca Atlas ca harta business</td><td>sa copieze concluzii fara sa citeasca sursa</td></tr>
+            <tr><td>sa marcheze riscuri de refactor</td><td>sa declare MCP pass/fail</td></tr>
+          </tbody>
+        </table>
+      </details>
+    </div>
+  </details>
+
+  <details>
+    <summary>2. Model de analiza</summary>
+    <div class="content">
+      <details class="subsection" open>
+        <summary>2.1 Axe de review</summary>
+        <table>
+          <thead><tr><th>Axa</th><th>Intrebare rece</th><th>Ce prinde</th></tr></thead>
+          <tbody>
+            <tr><td>Class cohesion</td><td>Clasa testeaza un singur flow/obiect coerent?</td><td>clase “la gramada”</td></tr>
+            <tr><td>Business grouping</td><td>Testele sunt grupate dupa business object, nu dupa run artificial?</td><td>run classes greu de reutilizat</td></tr>
+            <tr><td>Layer discipline</td><td>Testul orchestreaza, iar asserturile business stau in validation?</td><td>assert direct, engine direct, selectors direct</td></tr>
+            <tr><td>Duplication</td><td>Exista pasi copiate intre clase care cer helper/action?</td><td>drift intre run-uri</td></tr>
+            <tr><td>Naming</td><td>Numele spune actor, intentie, obiect, rezultat?</td><td>nume procedurale sau generice</td></tr>
+            <tr><td>Refactor safety</td><td>Reorganizarea pastreaza dovada business?</td><td>refactor periculos fara trace</td></tr>
+          </tbody>
+        </table>
+      </details>
+
+      <details class="subsection">
+        <summary>2.2 Lantul de citire</summary>
+        <div class="diag">
+          <svg viewBox="0 0 1160 230" role="img" aria-label="Source to quality review trace">
+            <defs><marker id="arrow2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7aa2ff"/></marker></defs>
+            <rect x="35" y="80" width="175" height="70" rx="14" fill="#111826" stroke="#35507a"/>
+            <text x="122" y="106" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Test method</text>
+            <text x="122" y="128" text-anchor="middle" fill="#a8b3cf" font-size="11">entrypoint</text>
+            <rect x="265" y="80" width="175" height="70" rx="14" fill="#111826" stroke="#35507a"/>
+            <text x="352" y="106" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Action / service</text>
+            <text x="352" y="128" text-anchor="middle" fill="#a8b3cf" font-size="11">business action</text>
+            <rect x="495" y="80" width="175" height="70" rx="14" fill="#111826" stroke="#35507a"/>
+            <text x="582" y="106" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Page / component</text>
+            <text x="582" y="128" text-anchor="middle" fill="#a8b3cf" font-size="11">surface access</text>
+            <rect x="725" y="80" width="175" height="70" rx="14" fill="#111826" stroke="#35507a"/>
+            <text x="812" y="106" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Validation</text>
+            <text x="812" y="128" text-anchor="middle" fill="#a8b3cf" font-size="11">business assertion</text>
+            <rect x="955" y="80" width="170" height="70" rx="14" fill="#111826" stroke="#35507a"/>
+            <text x="1040" y="106" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Review</text>
+            <text x="1040" y="128" text-anchor="middle" fill="#a8b3cf" font-size="11">quality + refactor</text>
+            <path d="M210 115 H265" stroke="#7aa2ff" stroke-width="2" marker-end="url(#arrow2)"/>
+            <path d="M440 115 H495" stroke="#7aa2ff" stroke-width="2" marker-end="url(#arrow2)"/>
+            <path d="M670 115 H725" stroke="#7aa2ff" stroke-width="2" marker-end="url(#arrow2)"/>
+            <path d="M900 115 H955" stroke="#7aa2ff" stroke-width="2" marker-end="url(#arrow2)"/>
+          </svg>
+        </div>
+      </details>
+
+      <details class="subsection">
+        <summary>2.3 Scoruri recomandate</summary>
+        <table>
+          <thead><tr><th>Card</th><th>Masura</th><th>Semnal de plafon</th></tr></thead>
+          <tbody>
+            <tr><td>Class Cohesion</td><td>clase cu scop unic si flow coerent</td><td>clase cu obiecte amestecate</td></tr>
+            <tr><td>Layer Discipline</td><td>test -> action/service -> page/component -> validation</td><td>engine/selectors/assert direct in test</td></tr>
+            <tr><td>Duplication Control</td><td>pasi comuni extrasi in helpers corecte</td><td>copiere intre run classes</td></tr>
+            <tr><td>Business Grouping</td><td>organizare dupa obiect/flow real</td><td>organizare dupa “run_01/run_02” fara sens de domeniu</td></tr>
+            <tr><td>Refactor Safety</td><td>recomandari cu risc si dovada</td><td>mutari propuse fara mapping la teste/metode</td></tr>
+            <tr><td>Overall</td><td>calitatea review-ului ca instrument de reorganizare</td><td>scor mare fara clase candidate concrete</td></tr>
+          </tbody>
+        </table>
+      </details>
+    </div>
+  </details>
+
+  <details>
+    <summary>3. Output HTML asteptat</summary>
+    <div class="content">
+      <details class="subsection" open>
+        <summary>3.1 Structura raportului</summary>
+        <table>
+          <thead><tr><th>Sectiune</th><th>Default</th><th>Continut obligatoriu</th></tr></thead>
+          <tbody>
+            <tr><td>Score Cards</td><td>open</td><td>Class Cohesion, Layer Discipline, Duplication Control, Business Grouping, Refactor Safety, Overall</td></tr>
+            <tr><td>Executive Context</td><td>closed</td><td>scope, input, verdict rece, ce nu modifica</td></tr>
+            <tr><td>Architecture Review Graph</td><td>open</td><td>harta test package -> layer usage -> review findings</td></tr>
+            <tr><td>Class Cohesion Matrix</td><td>closed</td><td>clase bune, clase prea mixte, clase de spart/unit</td></tr>
+            <tr><td>Duplication Map</td><td>closed</td><td>pasi repetati, helpers recomandate, risc de drift</td></tr>
+            <tr><td>Layer Discipline Audit</td><td>closed</td><td>direct engine, direct selectors, direct assertions, missing validation</td></tr>
+            <tr><td>Refactor Plan</td><td>closed</td><td>safe, medium-risk, do-not-touch-yet</td></tr>
+            <tr><td>Suggested Package Shape</td><td>closed</td><td>pachete/clase propuse, fara patch automat</td></tr>
+          </tbody>
+        </table>
+      </details>
+
+      <details class="subsection">
+        <summary>3.2 Diagrame obligatorii</summary>
+        <table>
+          <thead><tr><th>Diagrama</th><th>Ce explica</th><th>Anti-pattern prins</th></tr></thead>
+          <tbody>
+            <tr><td>Architecture Review Graph</td><td>cum testele ating layerele</td><td>testele ocolesc framework-ul</td></tr>
+            <tr><td>Class Responsibility Map</td><td>responsabilitatea fiecarei clase</td><td>clase “bucket”</td></tr>
+            <tr><td>Duplication Heatmap</td><td>unde se repeta pasii</td><td>run-uri copiate</td></tr>
+            <tr><td>Refactor Safety Ladder</td><td>ce se poate muta sigur</td><td>refactor orb</td></tr>
+          </tbody>
+        </table>
+      </details>
+
+      <details class="subsection">
+        <summary>3.3 Stil vizual</summary>
+        <ul>
+          <li>Raportul trebuie sa reutilizeze <code>docs/shared-report-reference.css</code>.</li>
+          <li>Nu are voie sa inventeze un sistem vizual complet inline.</li>
+          <li>Diagramele trebuie sa fie minimaliste: noduri simple, culori putine, legenda colapsabila.</li>
+          <li>Score cards trebuie sa fie scurte; descrierile lungi se muta in sectiuni colapsate.</li>
+        </ul>
+      </details>
+    </div>
+  </details>
+
+  <details>
+    <summary>4. Reguli de contract pentru viitoare teste</summary>
+    <div class="content">
+      <details class="subsection" open>
+        <summary>4.1 Contract tests propuse</summary>
+        <table>
+          <thead><tr><th>Rule id</th><th>Severitate</th><th>Ce valideaza</th></tr></thead>
+          <tbody>
+            <tr><td><code>code-review.output.exists</code></td><td>BLOCKER</td><td>raportul HTML de review exista</td></tr>
+            <tr><td><code>code-review.read-only.contract</code></td><td>BLOCKER</td><td>review-ul declara ca nu modifica fisierele analizate</td></tr>
+            <tr><td><code>code-review.score-cards.present</code></td><td>MAJOR</td><td>score cards canonice apar sus</td></tr>
+            <tr><td><code>code-review.class-cohesion.matrix</code></td><td>MAJOR</td><td>clasele sunt clasificate pe coeziune</td></tr>
+            <tr><td><code>code-review.layer-discipline.audit</code></td><td>BLOCKER</td><td>raportul verifica direct engine/selectors/assertions in test layer</td></tr>
+            <tr><td><code>code-review.duplication.map</code></td><td>MAJOR</td><td>repetitiile si helper opportunities sunt vizibile</td></tr>
+            <tr><td><code>code-review.refactor-plan.risk-ranked</code></td><td>MAJOR</td><td>refactor plan-ul are safe / medium-risk / blocked</td></tr>
+            <tr><td><code>code-review.no-business-hardcode</code></td><td>MAJOR</td><td>testele nu depind de obiecte business specifice unei singure aplicatii</td></tr>
+            <tr><td><code>code-review.architecture-reference.linked</code></td><td>MAJOR</td><td>raportul leaga review-ul de Living Architecture</td></tr>
+          </tbody>
+        </table>
+      </details>
+
+      <details class="subsection">
+        <summary>4.2 Diagnostic standardizat</summary>
+        <table>
+          <thead><tr><th>Bloc</th><th>Ce trebuie sa spuna</th></tr></thead>
+          <tbody>
+            <tr><td>Expected review contract</td><td>ce regula de calitate se verifica</td></tr>
+            <tr><td>Observed source result</td><td>clase/metode/fisiere concrete observate</td></tr>
+            <tr><td>Cold verdict</td><td>PASS / WARN / FAIL fara politete cosmetica</td></tr>
+            <tr><td>Repair hint</td><td>mutare, split, helper sau pas de verificare recomandat</td></tr>
+          </tbody>
+        </table>
+      </details>
+    </div>
+  </details>
+
+  <details>
+    <summary>5. Reorganizare recomandata pentru teste generate</summary>
+    <div class="content">
+      <details class="subsection" open>
+        <summary>5.1 Forma tinta</summary>
+        <pre><code>src/test/java/com/endava/ai/ui/tests
+  account | checkout | support | admin | catalog | common
+    &lt;BusinessObject&gt;&lt;LifecycleOrBoundary&gt;Tests
+
+src/test/java/com/endava/ai/api/tests
+  users | posts | comments | auth | common
+    &lt;Resource&gt;&lt;ContractOrLifecycle&gt;Tests
+
+src/main/java/com/endava/ai/ui/support
+  flows        // reusable UI workflow services, no assertions hidden in core
+  pages        // UI page/screen surface
+  validation   // business-visible UI assertions
+  model        // UI data/state records
+  factory      // UI test data builders/factories
+  utils        // low-level UI helpers only when reusable
+
+src/main/java/com/endava/ai/api/support
+  client       // HTTP mechanics outside api.core
+  service      // API resource service
+  steps        // reusable API flow steps
+  validation   // response/schema/business assertions
+  model        // request/response records
+  factory      // payload builders/factories
+  utils        // serialization/wait/data utilities
+
+src/main/java/com/endava/ai/ui/core
+src/main/java/com/endava/ai/api/core
+  protected framework contracts; generated packages must not modify these roots</code></pre>
+        <div class="callout">
+          Numele sunt exemple de forma, nu business obligatoriu. Regula este: pachetele se organizeaza dupa flow-uri
+          si obiecte reale, nu dupa run id-uri sau dupa istoria generatiei MCP. Testele stau in <code>src/test</code>;
+          suportul reutilizabil sta in <code>src/main</code>; core-ul framework-ului nu devine loc pentru helper-e de pachet.
+        </div>
+      </details>
+
+      <details class="subsection" open>
+        <summary>5.1.1 Suprafete protejate vs suport permis</summary>
+        <table>
+          <thead><tr><th>Zona</th><th>Regula</th><th>Review verdict</th></tr></thead>
+          <tbody>
+            <tr><td><code>com.endava.ai.core</code></td><td>ATF core protejat</td><td>FAIL daca pachetul generat il modifica fara blocker framework raportat separat</td></tr>
+            <tr><td><code>com.endava.ai.skills.mcp</code></td><td>MCP validator protejat</td><td>FAIL daca agentul ajusteaza validatorul ca sa-si treaca propriul pachet</td></tr>
+            <tr><td><code>com.endava.ai.skills.atlas</code></td><td>Atlas protejat</td><td>FAIL daca este schimbat pentru un singur business context</td></tr>
+            <tr><td><code>com.endava.ai.ui.core</code> / <code>ui.engine</code></td><td>UI runtime protejat</td><td>FAIL daca apar workaround-uri de test in engine/core</td></tr>
+            <tr><td><code>com.endava.ai.api.core</code></td><td>API runtime protejat</td><td>FAIL daca apar reguli de business locale in API core</td></tr>
+            <tr><td><code>ui/pages|service|validation|model|factory</code></td><td>suport UI permis</td><td>PASS/WARN dupa coeziune, naming si reutilizare</td></tr>
+            <tr><td><code>api/client|service|steps|validation|model|factory</code></td><td>suport API permis</td><td>PASS/WARN dupa contract, payload si schema clarity</td></tr>
+          </tbody>
+        </table>
+      </details>
+
+      <details class="subsection">
+        <summary>5.1.2 Exemple chirurgicale de split</summary>
+        <table>
+          <thead><tr><th>Bad package split</th><th>Good package split</th><th>Regula de refactor</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><code>ui.tests.Run03SupportAndProfileTests</code><br>support ticket, profile edit, notification toggle in aceeasi clasa</td>
+              <td><code>ui.tests.support.SupportTicketLifecycleTests</code><br><code>ui.tests.profile.ProfilePreferencesTests</code></td>
+              <td>sparge dupa obiect business; setup comun merge in <code>ui.service</code> sau <code>ui.factory</code>, validarile in <code>ui.validation</code></td>
+            </tr>
+            <tr>
+              <td><code>ui.tests.AgenticMcpUiGeneratedTests</code><br>5 metode cu flow-uri diferite si aceleasi click-uri copiate</td>
+              <td><code>ui.tests.checkout.CheckoutBoundaryTests</code><br><code>ui.tests.catalog.CatalogSearchStateTests</code></td>
+              <td>test class = familie coerenta; pasi repetati devin workflow service, nu helper in <code>ui.core</code> sau <code>ui.engine</code></td>
+            </tr>
+            <tr>
+              <td><code>api.tests.MixedResourceContractTests</code><br>auth, users, posts si comments intr-un singur fisier</td>
+              <td><code>api.tests.auth.AuthSessionContractTests</code><br><code>api.tests.users.UserProfileContractTests</code><br><code>api.tests.comments.CommentModerationContractTests</code></td>
+              <td>grupeaza dupa resource/contract; payload builders in <code>api.factory</code>, schema/assertions in <code>api.validation</code>, fara reguli locale in <code>api.core</code></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="callout">
+          Daca split-ul cere schimbare in <code>core</code>, <code>mcp</code>, <code>atlas</code>, <code>ui.core</code>,
+          <code>api.core</code> sau <code>ui.engine</code>, review-ul nu propune patch local. Marcheaza blocker framework
+          separat si pastreaza reorganizarea in zonele generate: <code>src/test</code> plus suportul permis din <code>src/main</code>.
+        </div>
+      </details>
+
+      <details class="subsection">
+        <summary>5.2 Refactor safety ladder</summary>
+        <table>
+          <thead><tr><th>Nivel</th><th>Permis fara risc mare</th><th>Cere atentie</th></tr></thead>
+          <tbody>
+            <tr><td>Safe</td><td>rename clase/metode, extragere constante, helper pentru data builders</td><td>pastreaza TestNG method count si raportarea</td></tr>
+            <tr><td>Medium</td><td>mutare clase intre pachete, split clase mari</td><td>actualizeaza XML, imports, package names si report mapping</td></tr>
+            <tr><td>High</td><td>schimbare flow, mutare asserturi, schimbare service/actions</td><td>reruleaza UI proof si MCP dupa schimbare</td></tr>
+            <tr><td>Framework blocker</td><td>orice nevoie reala de <code>core</code>, <code>MCP</code>, <code>atlas</code>, <code>ui.core</code>, <code>api.core</code>, <code>ui.engine</code></td><td>nu se modifica local; se raporteaza separat ca feedback framework</td></tr>
+            <tr><td>Blocked</td><td>stergere dovezi fara inlocuire</td><td>nu se face fara nou run/proof</td></tr>
+          </tbody>
+        </table>
+      </details>
+    </div>
+  </details>
+
+  <details>
+    <summary>6. Exemple bune si rele</summary>
+    <div class="content">
+      <details class="subsection">
+        <summary>6.1 Bun</summary>
+        <ul>
+          <li>O clasa are un singur obiect business central.</li>
+          <li>Testul descrie actor, intentie, obiect si rezultat.</li>
+          <li>Actiunile UI sunt delegate catre actions/services.</li>
+          <li>Validarile business sunt in layer de validation.</li>
+          <li>Repetitiile sunt extrase in fixtures/helpers clare.</li>
+          <li>Suportul UI/API nou sta in pachetele main/support potrivite, nu in core protejat.</li>
+        </ul>
+      </details>
+      <details class="subsection">
+        <summary>6.2 Rau</summary>
+        <ul>
+          <li>Clasa combina invoice, support, profile si admin doar pentru ca au fost generate in acelasi run.</li>
+          <li>Testul foloseste direct engine/selectors pentru business assertions.</li>
+          <li>Metodele sunt numite <code>run03Test2</code> sau <code>validatesScenario</code>.</li>
+          <li>Fiecare run copiaza aceleasi 40 de linii de setup.</li>
+          <li>Agentul modifica MCP, ATF core, atlas, <code>ui.core</code>, <code>api.core</code> sau <code>ui.engine</code> ca sa treaca pachetul.</li>
+          <li>Refactor plan-ul spune “clean up tests” fara clase/metode concrete.</li>
+        </ul>
+      </details>
+    </div>
+  </details>
+</div>
+
+<script>
+function toggleAll(open) {
+  document.querySelectorAll('details').forEach(details => {
+    details.open = open;
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+schemaVersion: 1
+contracts:
+  - id: core.profile.taxonomy
+    profile: CORE_CONTRACT
+    area: REPORTING_LIFECYCLE
+    severity: BLOCKER
+    owner: ATF contract profile model
+    expected: Framework tests are separated into pure core, reporting, Extent, Allure, API, UI support, and live-boundary profiles.
+    suiteXml: src/test/resources/atf/core/suites/core/testng-atf-core-fast.xml
+    primaryEvidence: target/reports/ExtentReport.html
+    reportExpectation: "Extent audit contract: timestamped HTML, readable collapsed tree, runtime ledger, tags, failure triage, and contract narrative."
+    repairHint: Update AtfContractProfile and profile contract tests when a new execution family is introduced.
+  - id: core.contract.inventory
+    profile: CORE_CONTRACT
+    area: REPORTING_LIFECYCLE
+    severity: BLOCKER
+    owner: ATF contract inventory
+    expected: Every important ATF-core capability test is report-auditable through TestListener or an explicit self-auditing Extent contract.
+    suiteXml: src/test/resources/atf/core/suites/core/testng-atf-core-fast.xml
+    primaryEvidence: target/reports/ExtentReport.html
+    reportExpectation: "Extent audit contract: timestamped HTML, readable collapsed tree, runtime ledger, tags, failure triage, and contract narrative."
+    repairHint: Add @AtfContractSuite, @AtfContract, and report audit wiring before treating a framework test as core contract.
+  - id: reporting.extent.aggregate
+    profile: EXTENT_CONTRACT
+    area: REPORTING_ADAPTER
+    severity: BLOCKER
+    owner: ATF core aggregate Extent report
+    expected: Extent-only sweeps can be collected into one readable aggregate artifact with class/package filtering and nested test evidence.
+    suiteXml: src/test/resources/atf/core/suites/reporting/testng-atf-extent.xml
+    primaryEvidence: target/atf-core-aggregate-report-extent/ExtentReport.html
+    reportExpectation: "Extent audit contract: timestamped HTML, readable collapsed tree, runtime ledger, tags, failure triage, and contract narrative."
+    repairHint: Check the aggregate collector, Spark renderer, and Extent-only grouping if the aggregate report fragments or loses nodes.
+  - id: reporting.extent.spark.presentation
+    profile: EXTENT_CONTRACT
+    area: REPORTING_ADAPTER
+    severity: BLOCKER
+    owner: Extent Spark presentation
+    expected: Spark HTML keeps tests collapsed by default, preserves nested evidence on manual expand, and exposes useful tag/package filters.
+    suiteXml: src/test/resources/atf/core/suites/reporting/testng-atf-extent.xml
+    primaryEvidence: target/atf-core-aggregate-report-extent/ExtentReport.html
+    reportExpectation: "Extent audit contract: timestamped HTML, readable collapsed tree, runtime ledger, tags, failure triage, and contract narrative."
+    repairHint: Inspect ExtentSparkReporterFactory and presentation post-processing when browser behavior drifts.
+  - id: reporting.extent.failure-placement
+    profile: EXTENT_CONTRACT
+    area: REPORTING_LIFECYCLE
+    severity: BLOCKER
+    owner: Extent lifecycle failure placement
+    expected: Failures from setup, test body, and teardown are placed under the correct report node without duplicate or orphan evidence.
+    suiteXml: src/test/resources/atf/core/suites/reporting/testng-atf-extent.xml
+    primaryEvidence: target/atf-core-aggregate-report-extent/ExtentReport.html
+    reportExpectation: "Extent audit contract: timestamped HTML, readable collapsed tree, runtime ledger, tags, failure triage, and contract narrative."
+    repairHint: Check TestListener lifecycle handling and StepLogger node ownership when failures appear under the wrong section.
+  - id: reporting.allure.aggregate
+    profile: ALLURE_CONTRACT
+    area: REPORTING_ADAPTER
+    severity: MAJOR
+    owner: ATF Allure report boundary
+    expected: Allure remains a separate evidence profile with clean results, steps, attachments, and generated report artifacts.
+    suiteXml: src/test/resources/atf/core/suites/reporting/testng-atf-allure.xml
+    primaryEvidence: target/atf-core-aggregate-report-allure
+    reportExpectation: "Allure evidence contract: clean results, steps, attachments, and generated report artifacts; no Extent visual-layout parity required."
+    repairHint: Run Allure contracts separately from Extent contracts; do not require Extent visual-layout parity from Allure.
+  - id: reporting.lifecycle.listener
+    profile: REPORTING_CONTRACT
+    area: REPORTING_LIFECYCLE
+    severity: BLOCKER
+    owner: ATF TestListener lifecycle
+    expected: Listener-backed tests publish setup, test body, teardown, failure, and final-result evidence consistently.
+    suiteXml: src/test/resources/atf/core/suites/core/testng-atf-core-fast.xml
+    primaryEvidence: target/reports/ExtentReport.html
+    reportExpectation: "Extent audit contract: timestamped HTML, readable collapsed tree, runtime ledger, tags, failure triage, and contract narrative."
+    repairHint: Review TestListener and StepLogger integration when lifecycle sections are missing or duplicated.
+  - id: reporting.screenshot.evidence
+    profile: REPORTING_CONTRACT
+    area: SCREENSHOT
+    severity: MAJOR
+    owner: UI screenshot evidence
+    expected: Final/failure screenshot policy attaches real evidence when runtime configuration requires it and avoids duplicate attachments.
+    suiteXml: src/test/resources/atf/core/suites/core/testng-atf-core-fast.xml
+    primaryEvidence: target/reports/ExtentReport.html
+    reportExpectation: "Extent audit contract: timestamped HTML, readable collapsed tree, runtime ledger, tags, failure triage, and contract narrative."
+    repairHint: Check screenshot policy, engine capture support, and attachment registries if evidence is blank or repeated.
+  - id: runtime.window.zoom
+    profile: UI_SUPPORT_CONTRACT
+    area: WINDOW_CONFIG
+    severity: MAJOR
+    owner: UI window and zoom runtime
+    expected: UI runtime configuration applies window/headless/zoom settings and reports observable metadata.
+    suiteXml: src/test/resources/atf/core/suites/ui/testng-atf-ui-engine.xml
+    primaryEvidence: target/reports/ExtentReport.html
+    reportExpectation: "Extent audit contract: timestamped HTML, readable collapsed tree, runtime ledger, tags, failure triage, and contract narrative."
+    repairHint: Check framework.properties, runtime options, and browser adapter application when zoom/window evidence drifts.
+  - id: ui.engine.parity
+    profile: UI_SUPPORT_CONTRACT
+    area: UI_ENGINE
+    severity: MAJOR
+    owner: UI engine action parity
+    expected: Selenium and Playwright adapters expose the common action surface required by UIActions and framework support layers.
+    suiteXml: src/test/resources/atf/core/suites/ui/testng-atf-ui-engine.xml
+    primaryEvidence: target/reports/ExtentReport.html
+    reportExpectation: "Extent audit contract: timestamped HTML, readable collapsed tree, runtime ledger, tags, failure triage, and contract narrative."
+    repairHint: Update engine adapters and parity contract tests together when adding or changing UI actions.
+  - id: ui.wait.policy
+    profile: UI_SUPPORT_CONTRACT
+    area: WAIT_UTILS
+    severity: MAJOR
+    owner: UI wait and sleep policy
+    expected: UI fixed sleeps are centralized behind UiSleeper, preserve interrupted status, and keep Selenium/Playwright adapters off raw Thread.sleep.
+    suiteXml: src/test/resources/atf/core/suites/ui/testng-atf-ui-engine.xml
+    primaryEvidence: target/reports/ExtentReport.html
+    reportExpectation: "Extent audit contract: timestamped HTML, readable collapsed tree, runtime ledger, tags, failure triage, and contract narrative."
+    repairHint: Use com.endava.ai.ui.core.wait.UiSleeper for fixed UI pauses and keep conditional waits in engine-specific wait abstractions.
+  - id: api.base.lifecycle
+    profile: API_BASE_CONTRACT
+    area: API_LIFECYCLE
+    severity: MAJOR
+    owner: BaseTestAPI lifecycle
+    expected: API base tests initialize clients, validate auth boundaries, and fail controlled negative cases without UI engine startup.
+    suiteXml: src/test/resources/atf/core/suites/core/testng-atf-core.xml
+    primaryEvidence: target/reports/ExtentReport.html
+    reportExpectation: "Extent audit contract: timestamped HTML, readable collapsed tree, runtime ledger, tags, failure triage, and contract narrative."
+    repairHint: Check BaseTestAPI initialization and API runtime config when API contracts start touching UI/reporting lifecycle unexpectedly.
+  - id: api.live.boundary
+    profile: LIVE_API_SMOKE_CONTRACT
+    area: API_LIFECYCLE
+    severity: MAJOR
+    owner: Live API smoke boundary
+    expected: Live API examples are audited as boundary smoke tests, not as the sole proof of framework core health.
+    suiteXml: src/test/resources/atf/core/suites/core/testng-atf-core.xml
+    primaryEvidence: target/reports/ExtentReport.html
+    reportExpectation: "Extent boundary evidence: the flow stays visible as smoke evidence without defining pure ATF-core health."
+    repairHint: Keep live API tests tagged and reported separately when external service behavior or credentials affect execution.
+  - id: ui.product.smoke.boundary
+    profile: UI_PRODUCT_SMOKE_CONTRACT
+    area: UI_PRODUCT_SMOKE
+    severity: MAJOR
+    owner: UI product smoke boundary
+    expected: Product-like UI smoke tests remain visible as boundary examples without being confused with generated application tests.
+    suiteXml: src/test/resources/atf/core/suites/core/testng-atf-core-visual.xml
+    primaryEvidence: target/reports/ExtentReport.html
+    reportExpectation: "Extent boundary evidence: the flow stays visible as smoke evidence without defining pure ATF-core health."
+    repairHint: Keep product smoke flows annotated and separate from MCP-generated application coverage.
+  - id: framework.atlas.output
+    profile: FRAMEWORK_ATLAS_CONTRACT
+    area: FRAMEWORK_ATLAS
+    severity: MAJOR
+    owner: Framework atlas output
+    expected: Framework atlas artifacts explain ATF capabilities as product-like runtime flows backed by contract evidence.
+    suiteXml: src/test/resources/skills/atlas/testng-atlas.xml
+    primaryEvidence: docs/atlas/framework-under-test_business-test-atlas.html
+    reportExpectation: Framework atlas artifact explains reusable ATF capability families with contract-backed evidence.
+    repairHint: Update atlas contracts and generated framework atlas together when capability families are added or renamed.

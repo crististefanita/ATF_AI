@@ -1,0 +1,52 @@
+schemaVersion: 1
+contracts:
+  - id: advisor.prompt.scope.too-broad
+    severity: INFO
+    signal: prompt asks for many unrelated modules or outcomes at once
+    recommendation: split the next run into one bounded package, artifact family or rule family
+    modelTier: use a cheaper/light model for scan-and-map; reserve high reasoning for cross-cutting design changes
+    acceptanceCriteria: one explicit module/surface, one expected artifact or test profile, one pass/fail check
+    stopCondition: stop after the focused test profile passes or one concrete blocker remains
+    valueRationale: reduces context load and makes each credit spend produce an auditable change
+    reportAnchor: mcp-ai-task-advisor
+    blocking: false
+  - id: advisor.model-tier.too-high
+    severity: INFO
+    signal: task is mostly mechanical scan, grep, link update or README calibration
+    recommendation: use a lighter model next time unless behavior, architecture or failing contracts require deeper reasoning
+    modelTier: light/medium first, high only after a failing contract or ambiguous design tradeoff appears
+    acceptanceCriteria: name the exact files, profile and expected diff shape before starting
+    stopCondition: stop after compile plus the narrow contract test passes
+    valueRationale: keeps expensive reasoning for ambiguity instead of routine artifact maintenance
+    reportAnchor: mcp-ai-task-advisor
+    blocking: false
+  - id: advisor.acceptance-criteria.missing
+    severity: WARN
+    signal: task lacks explicit done criteria or expected artifact links
+    recommendation: publish the next acceptance criteria beside the final report and MCP close-out evidence
+    modelTier: medium if criteria are missing; high only when the criteria conflict with existing contracts
+    acceptanceCriteria: required checks, expected report links, score policy and protected-root boundary are named
+    stopCondition: stop when criteria are either satisfied or converted into a single blocker
+    valueRationale: avoids long exploratory loops and makes final status easier to audit
+    reportAnchor: mcp-ai-task-advisor
+    blocking: false
+  - id: advisor.stop-condition.missing
+    severity: WARN
+    signal: agent continues recalibrating after final package close-out should be frozen
+    recommendation: define a final-only close-out step and stop after it passes unless a blocker is explicit
+    modelTier: medium for reruns; high only for contract ambiguity or contradictory evidence
+    acceptanceCriteria: package-closeout, post-sync smoke and final-report-closeout roles are separated
+    stopCondition: stop after final-report-closeout and publish the frozen command/origin links
+    valueRationale: prevents artifact churn after the package is already publishable
+    reportAnchor: mcp-ai-task-advisor
+    blocking: false
+  - id: advisor.value-rationale.missing
+    severity: WARN
+    signal: report explains what changed but not why the change matters
+    recommendation: 'add a short value rationale: productivity, quality, delivery speed, risk reduction or decision support'
+    modelTier: light for wording once evidence exists; medium/high only if evidence is missing
+    acceptanceCriteria: each recommendation names a concrete value dimension and supporting artifact
+    stopCondition: stop when value rationale is linked to the governance map or final report section
+    valueRationale: makes feedback useful for prioritization instead of just compliance
+    reportAnchor: mcp-ai-task-advisor
+    blocking: false

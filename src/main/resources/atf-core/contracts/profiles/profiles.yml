@@ -1,0 +1,464 @@
+schemaVersion: 1
+contracts:
+  - id: atf-core-sanity
+    suiteXml: src/test/resources/atf/core/suites/core/testng-atf-core-sanity.xml
+    role: core sanity
+    stability: stable
+    browser: false
+    areas:
+      - core-profile
+      - reporting-shell
+      - extent-overview
+      - runtime-audit
+    closeoutRole: core preflight only
+    finalArtifact: false
+    allowedSkipped: 0
+    expectedClasses:
+      - com.endava.ai.atf.core.support.contract.capability.AtfCapabilityCatalogContractTest
+      - com.endava.ai.atf.core.support.architecture.CoreSupportKernelArchitectureContractTest
+      - com.endava.ai.atf.core.support.contracts.annotations.AtfContractNarrativeIdsShapeContractTest
+      - com.endava.ai.atf.core.skills.architecture.AtfSkillArchitectureContractTest
+      - com.endava.ai.atf.core.skills.architecture.model.AtfSkillAggregateContractTest
+      - com.endava.ai.atf.core.skills.architecture.AtfSkillCleanSanityRunnerContractTest
+      - com.endava.ai.atf.core.skills.architecture.AtfSkillExecutionReceiptValidatorContractTest
+      - com.endava.ai.atf.core.skills.architecture.AtfSkillFlowArchitectureContractTest
+      - com.endava.ai.atf.core.skills.architecture.AtfSkillPackageGovernanceContractTest
+      - com.endava.ai.atf.core.skills.architecture.AtfSkillPromptRoutingContractTest
+      - com.endava.ai.atf.core.skills.architecture.AtfTestArchitectureContractTest
+      - com.endava.ai.atf.core.skills.architecture.AtfSkillYamlPackArchitectureContractTest
+      - com.endava.ai.atf.core.support.profiles.AtfCoreTestNgProfileContractTest
+      - com.endava.ai.atf.core.reporting.architecture.AtfReportingPackageShapeContractTest
+      - com.endava.ai.atf.core.reporting.aggregate.design.AggregateExtentWriterDesignContractTest
+      - com.endava.ai.atf.core.reporting.adapters.spark.ExtentSparkReportModeContractTest
+      - com.endava.ai.atf.core.reporting.regression.overview.ExtentPublishedOverviewInspectorContractTest
+      - com.endava.ai.atf.core.reporting.regression.overview.ExtentOverviewTopCardsTimingContractTest
+      - com.endava.ai.atf.core.reporting.regression.RuntimeAuditPublisherCoordinatorContractTest
+    forbiddenClassFragments:
+      - com.endava.ai.skills.mcp.
+      - com.endava.ai.skills.atlas.
+      - .agentic.
+  - id: atf-code-quality-sanity
+    suiteXml: src/test/resources/skills/codequality/testng-code-quality-sanity.xml
+    role: code quality gates
+    stability: stable
+    browser: false
+    areas:
+      - code-quality
+      - package-shape
+      - maintainability
+    closeoutRole: quality guard
+    finalArtifact: false
+    allowedSkipped: 0
+    expectedClasses:
+      - com.endava.ai.skills.codequality.tests.AtfCodeQualityPackageClassLimitContractTest
+      - com.endava.ai.skills.codequality.tests.AtfCodeQualityClassSizeContractTest
+      - com.endava.ai.skills.codequality.tests.AtfCodeQualityMethodSizeContractTest
+      - com.endava.ai.skills.codequality.tests.AtfCodeQualityAssertionDensityContractTest
+      - com.endava.ai.skills.codequality.tests.AtfCodeQualityGovernanceResourceContractTest
+      - com.endava.ai.skills.codequality.tests.AtfCodeQualityDependencyBoundaryContractTest
+      - com.endava.ai.skills.codequality.tests.AtfCodeQualityJavaCompatibilityContractTest
+    forbiddenClassFragments:
+      - com.endava.ai.skills.mcp.
+      - com.endava.ai.skills.atlas.
+      - .agentic.
+  - id: atf-business-understanding-sanity
+    suiteXml: src/test/resources/skills/business/testng-business-understanding-sanity.xml
+    role: isolated Business Understanding skill sanity
+    stability: stable
+    browser: false
+    areas:
+      - business-understanding
+      - semantic-graph
+      - evidence-parsing
+    closeoutRole: semantic guardrail before MCP or Atlas business reports are trusted
+    finalArtifact: false
+    allowedSkipped: 0
+    expectedClasses:
+      - com.endava.ai.skills.business.tests.BusinessUnderstandingKernelContractTest
+      - com.endava.ai.skills.business.tests.BusinessUnderstandingPackageShapeContractTest
+      - com.endava.ai.skills.business.tests.BusinessUnderstandingConsumerBridgeContractTest
+      - com.endava.ai.skills.business.tests.BusinessUnderstandingArtifactParserContractTest
+      - com.endava.ai.skills.business.tests.BusinessUnderstandingExtentNarrativeContractTest
+    forbiddenClassFragments:
+      - com.endava.ai.skills.mcp.
+      - com.endava.ai.skills.atlas.
+      - .agentic.
+  - id: atf-core-reporting-matrix
+    suiteXml: src/test/resources/atf/core/suites/reporting/testng-atf-core-reporting-matrix.xml
+    role: compact reporting matrix for runtime Extent and aggregate Overview behavior
+    stability: stable
+    browser: false
+    areas:
+      - reporting-shell
+      - extent-overview
+      - runtime-audit
+      - aggregate-report
+    closeoutRole: focused reporting gate before broader ATF core, MCP or Atlas sanity profiles
+    finalArtifact: false
+    allowedSkipped: 0
+    expectedClasses:
+      - com.endava.ai.atf.core.reporting.integration.skills.CoreReportingMatrixContractTest
+    forbiddenClassFragments:
+      - .agentic.
+  - id: atf-core-full
+    suiteXml: src/test/resources/atf/core/suites/core/testng-atf-core.xml
+    role: full ATF core contract sweep
+    stability: stable
+    browser: false
+    areas:
+      - architecture
+      - reporting
+      - lifecycle
+      - console
+      - ui-api-boundaries
+    closeoutRole: full framework health evidence, not package-agent closeout evidence
+    finalArtifact: false
+    allowedSkipped: 0
+    expectedPackages:
+      - com.endava.ai.atf.*
+    excludedGroups:
+      - allure-only
+      - controlled-failure-fixture
+      - aggregate-published-artifact-audit
+    forbiddenClassFragments:
+      - com.endava.ai.skills.mcp.
+      - com.endava.ai.skills.atlas.
+      - .agentic.
+  - id: atf-core-smoke
+    suiteXml: src/test/resources/atf/core/suites/core/testng-atf-core-smoke.xml
+    role: smallest Core skill boundary and profile-routing smoke
+    stability: smoke
+    browser: false
+    areas:
+      - architecture
+      - profile-routing
+      - skill-boundary
+      - yaml-manifest
+    closeoutRole: first smoke gate before broader Core fast or sanity profiles
+    finalArtifact: false
+    allowedSkipped: 0
+    expectedClasses:
+      - com.endava.ai.atf.core.support.profiles.AtfCoreSmokeProfileContractTest
+    forbiddenClassFragments:
+      - com.endava.ai.skills.mcp.
+      - com.endava.ai.skills.atlas.
+      - .agentic.
+  - id: atf-core-fast
+    suiteXml: src/test/resources/atf/core/suites/core/testng-atf-core-fast.xml
+    role: fast architecture and regression confidence
+    stability: stable
+    browser: false
+    areas:
+      - architecture
+      - metadata
+      - console
+      - diagnostics
+    closeoutRole: pre-change sanity gate for core refactors
+    finalArtifact: false
+    allowedSkipped: 0
+    expectedClasses:
+      - com.endava.ai.atf.core.support.contract.capability.AtfCapabilityCatalogContractTest
+      - com.endava.ai.atf.core.support.architecture.CoreSupportKernelArchitectureContractTest
+      - com.endava.ai.atf.core.skills.architecture.AtfSkillArchitectureContractTest
+      - com.endava.ai.atf.core.skills.architecture.AtfSkillPromptRoutingContractTest
+      - com.endava.ai.atf.core.support.profiles.AtfContractProfileContractTest
+      - com.endava.ai.atf.core.support.profiles.AtfCoreTestNgProfileContractTest
+      - com.endava.ai.atf.core.support.contract.core.AtfCoreContractNarrativeCoverageTest
+      - com.endava.ai.atf.core.support.contract.core.yaml.AtfCoreYamlContractNarrativeManifestTest
+      - com.endava.ai.atf.core.support.contract.core.yaml.AtfCoreYamlGovernanceManifestTest
+      - com.endava.ai.atf.core.support.architecture.CoreMcpBoundaryContractTest
+      - com.endava.ai.atf.core.support.base.BaseTestAPIContractTest
+      - com.endava.ai.atf.core.support.base.BaseTestUIContractTest
+      - com.endava.ai.atf.core.support.html.HtmlTableContractTest
+      - com.endava.ai.atf.core.reporting.adapters.ExtentHtmlPatchPipelineContractTest
+      - com.endava.ai.atf.core.reporting.architecture.AtfReportingPackageShapeContractTest
+      - com.endava.ai.atf.core.reporting.architecture.ConsoleAndThreadLocalArchitectureContractTest
+      - com.endava.ai.atf.core.reporting.architecture.ExtentInspectionBoundaryContractTest
+      - com.endava.ai.atf.core.reporting.architecture.ExtentRuntimeAuditArchitectureContractTest
+      - com.endava.ai.atf.core.reporting.architecture.TestListenerArchitectureContractTest
+      - com.endava.ai.atf.core.reporting.regression.ConsoleSignatureContractTest
+      - com.endava.ai.atf.core.reporting.regression.ExtentHtmlPatchPlanContractTest
+      - com.endava.ai.atf.core.reporting.regression.ExtentRuntimeReportLocatorContractTest
+      - com.endava.ai.atf.core.reporting.regression.NonBlockingDiagnosticContractTest
+      - com.endava.ai.atf.core.reporting.regression.ReportingManagerSessionContractTest
+      - com.endava.ai.atf.core.reporting.regression.StepLoggerContractTest
+    forbiddenClassFragments:
+      - com.endava.ai.skills.mcp.
+      - com.endava.ai.skills.atlas.
+      - .agentic.
+  - id: atf-core-visual
+    suiteXml: src/test/resources/atf/core/suites/core/testng-atf-core-visual.xml
+    role: visual reporting and screenshot contract sweep
+    stability: stable
+    browser: partial
+    areas:
+      - extent-shell
+      - allure-presentation
+      - screenshots
+      - window
+    closeoutRole: visual evidence gate before publishing reporting changes
+    finalArtifact: false
+    allowedSkipped: 0
+    expectedClasses:
+      - com.endava.ai.atf.core.reporting.adapters.css.ExtentSparkCollapsePolicyComponentTest
+      - com.endava.ai.atf.core.reporting.adapters.css.ExtentSparkFailureTriageCssComponentTest
+      - com.endava.ai.atf.core.reporting.adapters.css.ExtentSparkRuntimeAuditCssComponentTest
+      - com.endava.ai.atf.core.reporting.adapters.css.ExtentSparkThemeCompositionContractTest
+      - com.endava.ai.atf.core.reporting.adapters.css.ExtentSparkVisualTokensComponentTest
+      - com.endava.ai.atf.core.reporting.adapters.spark.ExtentSparkStatusDropdownContractTest
+      - com.endava.ai.atf.core.reporting.adapters.allure.AllurePresentationContractTest
+      - com.endava.ai.atf.core.reporting.screenshot.AllureScreenshotArtifactSmokeTest
+      - com.endava.ai.atf.core.reporting.screenshot.FinalUiScreenshotContractTest
+    includedGroups:
+      - extent-only
+      - allure-only
+    excludedGroups:
+      - aggregate-published-artifact-audit
+      - controlled-failure-fixture
+    forbiddenClassFragments:
+      - com.endava.ai.skills.mcp.
+      - com.endava.ai.skills.atlas.
+      - .agentic.
+  - id: atf-core-aggregate
+    suiteXml: src/test/resources/atf/core/suites/aggregate/testng-atf-core-aggregate.xml
+    role: aggregate report publication profile
+    stability: stable
+    browser: false
+    areas:
+      - aggregate-report
+      - extent-manifest
+      - testng-invocations
+    closeoutRole: public aggregate artifact evidence
+    finalArtifact: true
+    allowedSkipped: 0
+    expectedClasses:
+      - com.endava.ai.atf.core.reporting.aggregate.AtfCoreAggregateExtentContractTest
+      - com.endava.ai.atf.core.reporting.aggregate.parallel.AggregateParallelCollectionContractTest
+      - com.endava.ai.atf.core.reporting.aggregate.parallel.AggregateParallelExtentPublisherContractTest
+      - com.endava.ai.atf.core.reporting.aggregate.publish.AtfCoreAggregatePublishedManifestContractTest
+    includedGroups:
+      - aggregate-published-artifact-audit
+    forbiddenClassFragments:
+      - com.endava.ai.skills.mcp.
+      - com.endava.ai.skills.atlas.
+      - .agentic.
+  - id: atf-core-aggregate-parallel-full
+    suiteXml: src/test/resources/atf/core/suites/aggregate/testng-atf-core-aggregate-parallel-full.xml
+    role: full ATF core aggregate sweep executed as isolated API/Core/UI Maven collections
+    stability: diagnostic
+    browser: partial
+    areas:
+      - aggregate-report
+      - parallel-execution
+      - isolated-maven-output
+      - testng-method-evidence
+    closeoutRole: benchmark and full aggregate Extent evidence after fast aggregate contracts pass
+    finalArtifact: true
+    allowedSkipped: 0
+    expectedClasses:
+      - com.endava.ai.atf.core.reporting.aggregate.parallel.AggregateParallelFullSweepContractTest
+    forbiddenClassFragments:
+      - com.endava.ai.skills.mcp.
+      - com.endava.ai.skills.atlas.
+      - .agentic.
+  - id: atf-extent
+    suiteXml: src/test/resources/atf/core/suites/reporting/testng-atf-extent.xml
+    role: Extent reporter contract sweep
+    stability: stable
+    browser: false
+    areas:
+      - extent-adapter
+      - extent-shell
+      - runtime-audit
+    closeoutRole: Extent-specific proof for reporting changes
+    finalArtifact: false
+    allowedSkipped: 0
+    expectedClasses:
+      - com.endava.ai.atf.core.support.contract.core.AtfCoreContractNarrativeCoverageTest
+      - com.endava.ai.atf.core.support.contract.failure.AtfExpectedFailureContractTest
+      - com.endava.ai.atf.core.support.base.BaseTestAPIContractTest
+      - com.endava.ai.atf.core.support.base.BaseTestUIContractTest
+      - com.endava.ai.atf.core.reporting.regression.StepLoggerContractTest
+      - com.endava.ai.atf.core.reporting.window.UIWindowSizeResolverContractTest
+      - com.endava.ai.atf.core.reporting.screenshot.UiEngineBrowserWindowContractSmokeTest
+      - com.endava.ai.atf.core.reporting.screenshot.UiEngineScreenshotSmokeTest
+      - com.endava.ai.atf.ui.component.config.FrameworkRuntimeUiDefaultsContractTest
+      - com.endava.ai.atf.ui.component.RegistrationValidationContractTest
+      - com.endava.ai.atf.ui.component.UiCoreConfigOverrideDisciplineTest
+      - com.endava.ai.atf.ui.component.UiEngineActionParityContractTest
+      - com.endava.ai.atf.ui.component.WaitUtilsContractTest
+      - com.endava.ai.atf.api.lifecycle.BeforeClass_BeforeMethod_Test
+      - com.endava.ai.atf.api.lifecycle.BeforeClassMethod_After
+      - com.endava.ai.atf.api.lifecycle.BeforeTest_BeforeMethod_Test
+      - com.endava.ai.atf.api.lifecycle.BeforeTest_TestOne_AfterTest
+      - com.endava.ai.atf.api.lifecycle.BeforeTestOne_TestOne
+      - com.endava.ai.atf.api.lifecycle.BeforeTestOne_TestTwo
+      - com.endava.ai.atf.api.tests.EndToEndUserLifecycleTests
+      - com.endava.ai.atf.api.tests.NegativeUserTests
+      - com.endava.ai.atf.ui.RegistrationTests
+    forbiddenClassFragments:
+      - com.endava.ai.skills.mcp.
+      - com.endava.ai.skills.atlas.
+      - .agentic.
+  - id: atf-allure
+    suiteXml: src/test/resources/atf/core/suites/reporting/testng-atf-allure.xml
+    role: Allure evidence contract sweep
+    stability: stable
+    browser: false
+    areas:
+      - allure-adapter
+      - attachments
+      - presentation
+    closeoutRole: Allure-specific proof, separate from Extent layout proof
+    finalArtifact: false
+    allowedSkipped: 0
+    expectedPackages:
+      - com.endava.ai.atf.*
+    includedGroups:
+      - allure-only
+    excludedGroups:
+      - controlled-failure-fixture
+    forbiddenClassFragments:
+      - com.endava.ai.skills.mcp.
+      - com.endava.ai.skills.atlas.
+      - .agentic.
+  - id: atf-extent-failure-fixtures
+    suiteXml: src/test/resources/atf/core/suites/reporting/testng-atf-extent-failure-fixtures.xml
+    role: controlled Extent failure fixture profile
+    stability: diagnostic
+    browser: false
+    areas:
+      - failure-fixtures
+      - negative-reporting
+      - boundary-diagnostics
+    closeoutRole: diagnostic fixture evidence only
+    finalArtifact: false
+    allowedSkipped: 0
+    expectedClasses:
+      - com.endava.ai.atf.core.reporting.failurefixtures.BeforeMethodFailureFixture
+      - com.endava.ai.atf.core.reporting.failurefixtures.TestBodyFailureFixture
+      - com.endava.ai.atf.core.reporting.failurefixtures.AfterMethodFailureFixture
+    forbiddenClassFragments:
+      - com.endava.ai.skills.mcp.
+      - com.endava.ai.skills.atlas.
+      - .agentic.
+  - id: atf-extent-repeated-failure-signature
+    suiteXml: src/test/resources/atf/core/suites/reporting/testng-atf-extent-repeated-failure-signature.xml
+    role: repeated failure signature guard
+    stability: diagnostic
+    browser: false
+    areas:
+      - failure-signature
+      - deduplication
+      - lifecycle
+    closeoutRole: diagnostic proof for repeated failure behavior
+    finalArtifact: false
+    allowedSkipped: 0
+    expectedClasses:
+      - com.endava.ai.atf.core.reporting.failurefixtures.RepeatedHttpStatusFailureSignatureFixture
+    forbiddenClassFragments:
+      - com.endava.ai.skills.mcp.
+      - com.endava.ai.skills.atlas.
+      - .agentic.
+  - id: atf-ui-engine
+    suiteXml: src/test/resources/atf/core/suites/ui/testng-atf-ui-engine.xml
+    role: UI engine support contract sweep
+    stability: stable
+    browser: partial
+    areas:
+      - ui-engine
+      - window
+      - screenshot
+      - zoom
+    closeoutRole: UI engine support proof before browser smoke
+    finalArtifact: false
+    allowedSkipped: 0
+    expectedClasses:
+      - com.endava.ai.atf.ui.component.config.FrameworkRuntimeUiDefaultsContractTest
+      - com.endava.ai.atf.ui.component.UiCoreConfigOverrideDisciplineTest
+      - com.endava.ai.atf.ui.component.UiEngineActionParityContractTest
+      - com.endava.ai.atf.ui.component.UiEngineCapabilityContractTest
+      - com.endava.ai.atf.ui.component.engine.UiEngineBoundaryContractTest
+      - com.endava.ai.atf.ui.component.engine.SeleniumEngineInternalContractTest
+      - com.endava.ai.atf.ui.component.UiEngineDelegationContractTest
+      - com.endava.ai.atf.ui.component.UiEngineRuntimeOptionsContractTest
+      - com.endava.ai.atf.ui.component.WaitUtilsContractTest
+      - com.endava.ai.atf.ui.component.RegistrationValidationContractTest
+    excludedGroups:
+      - controlled-failure-fixture
+      - allure-only
+    forbiddenClassFragments:
+      - com.endava.ai.skills.mcp.
+      - com.endava.ai.skills.atlas.
+      - .agentic.
+  - id: atf-ui-base-test-ui-all
+    suiteXml: src/test/resources/atf/core/suites/ui/testng-atf-ui-base-test-ui-all.xml
+    role: concrete BaseTestUI UI runtime sweep for current application-facing UI tests
+    stability: smoke
+    browser: true
+    areas:
+      - ui-engine
+      - base-test-ui
+      - application-ui-tests
+      - extent-runtime
+    closeoutRole: real UI runtime proof after stable UI engine and reporting profiles pass
+    finalArtifact: false
+    allowedSkipped: 0
+    expectedClasses:
+      - com.endava.ai.atf.ui.RegistrationTests
+      - com.endava.ai.ui.tests.AccountAuthenticatedAreaTests
+      - com.endava.ai.ui.tests.ProfileContactAddressMemoryTests
+    forbiddenClassFragments:
+      - com.endava.ai.skills.mcp.
+      - com.endava.ai.skills.atlas.
+      - .agentic.
+  - id: atf-ui-engine-browser-smoke
+    suiteXml: src/test/resources/atf/core/suites/ui/testng-atf-ui-engine-browser-smoke.xml
+    role: real browser smoke profile
+    stability: smoke
+    browser: true
+    areas:
+      - browser
+      - ui-engine
+      - screenshot
+      - zoom
+    closeoutRole: final smoke only after stable core profiles pass
+    finalArtifact: false
+    allowedSkipped: 0
+    expectedClasses:
+      - com.endava.ai.atf.core.reporting.screenshot.UiEngineBrowserWindowContractSmokeTest
+      - com.endava.ai.atf.core.reporting.screenshot.UiEngineScreenshotSmokeTest
+      - com.endava.ai.atf.core.reporting.screenshot.ExtentScreenshotArtifactSmokeTest
+      - com.endava.ai.atf.core.reporting.screenshot.AllureScreenshotArtifactSmokeTest
+      - com.endava.ai.atf.core.reporting.screenshot.AllureUiZoomArtifactSmokeTest
+      - com.endava.ai.atf.core.reporting.window.UIZoomRuntimeReportingContractTest
+    excludedGroups:
+      - controlled-failure-fixture
+    forbiddenClassFragments:
+      - com.endava.ai.skills.mcp.
+      - com.endava.ai.skills.atlas.
+      - .agentic.
+  - id: atf-ui-engine-selenium-extent-smoke
+    suiteXml: src/test/resources/atf/core/suites/ui/testng-atf-ui-engine-selenium-extent-smoke.xml
+    role: Selenium Extent smoke profile
+    stability: smoke
+    browser: true
+    areas:
+      - selenium
+      - extent
+      - ui-engine
+      - screenshot
+    closeoutRole: Selenium-specific Extent proof after stable UI engine profiles pass
+    finalArtifact: false
+    allowedSkipped: 0
+    expectedClasses:
+      - com.endava.ai.atf.core.reporting.screenshot.UiEngineBrowserWindowContractSmokeTest
+      - com.endava.ai.atf.core.reporting.screenshot.UiEngineScreenshotSmokeTest
+      - com.endava.ai.atf.core.reporting.screenshot.ExtentScreenshotArtifactSmokeTest
+    excludedGroups:
+      - allure-only
+      - controlled-failure-fixture
+    forbiddenClassFragments:
+      - com.endava.ai.skills.mcp.
+      - com.endava.ai.skills.atlas.
+      - .agentic.

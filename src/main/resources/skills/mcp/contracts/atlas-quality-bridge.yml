@@ -1,0 +1,47 @@
+schemaVersion: 1
+contracts:
+  - id: mcp.atlas.bridge.business-map
+    mcpProfile: mcp-langgraph-final-report
+    mcpStage: last-only-report-shape
+    atlasLane: atlas.quality.business-map
+    finalReportSurface: Business Flow Graph, Executive Context and Business Flow Understanding
+    mcpResponsibility: require visible business graph structure, no run IDs as business nodes, relationship labels, frontier cue and score/report link coherence
+    atlasResponsibility: judge whether the graph starts from a durable business anchor, shows actor intent, highlights the primary owned object and leaves a real frontier
+    agentAction: after MCP final-report-closeout is green, inspect the graph as business-object map before claiming teacher-grade business understanding
+    blocking: false
+  - id: mcp.atlas.bridge.source-trace
+    mcpProfile: mcp-langgraph-final-report
+    mcpStage: last-only-report-shape
+    atlasLane: atlas.quality.source-trace
+    finalReportSurface: Proof Mapping, Source Evolution Ledger and source-to-business references
+    mcpResponsibility: require reopenable artifact links, source diff evidence and proof mapping presence
+    atlasResponsibility: judge whether claims are backed by concrete methods, classes and layer paths
+    agentAction: treat green MCP proof mapping as necessary evidence, then use Atlas trace checks for invented or shallow source claims
+    blocking: false
+  - id: mcp.atlas.bridge.score-truth
+    mcpProfile: mcp-langgraph-final-report
+    mcpStage: last-only-report-shape
+    atlasLane: atlas.quality.score-truth
+    finalReportSurface: Score Overview, score cards, cap rationale and weakest-axis explanation
+    mcpResponsibility: require score synchronization across final report, package state and gate artifacts
+    atlasResponsibility: judge whether the score formula is meaningful, recalculable and business-capped honestly
+    agentAction: do not promote a package solely because MCP scores are synchronized; verify Atlas score truth before html-ex replacement
+    blocking: false
+  - id: mcp.atlas.bridge.graph-proof
+    mcpProfile: mcp-langgraph-final-report
+    mcpStage: last-only-report-shape
+    atlasLane: atlas.quality.graph-proof
+    finalReportSurface: Business Flow Graph diagram, legends and proof strips
+    mcpResponsibility: require readable diagram shape, graph CSS, no compact package overlay, no runtime slots as business nodes, labeled edges and a dashed/capped frontier
+    atlasResponsibility: judge whether each graph proves a real application flow and keeps XML/Extent/diff/state evidence outside graph nodes
+    agentAction: use MCP to reject broken graph mechanics, then use Atlas to reject decorative, flat-chain or technical-inventory graphs
+    blocking: false
+  - id: mcp.atlas.bridge.validation-audit
+    mcpProfile: mcp-langgraph-final-report
+    mcpStage: last-only-report-shape
+    atlasLane: atlas.quality.validation-audit
+    finalReportSurface: Artifact Index, Close-Out, MCP governance map and validation links
+    mcpResponsibility: require frozen MCP Extent/XML/ledger/origin/KPI links and command provenance
+    atlasResponsibility: judge whether Atlas validation evidence, exact command and totals are synchronized when Atlas is published
+    agentAction: keep MCP package close-out as the gate, but link Atlas validation audit before claiming business-atlas readiness
+    blocking: false

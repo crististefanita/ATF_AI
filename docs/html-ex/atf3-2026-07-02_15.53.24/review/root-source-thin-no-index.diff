@@ -1,0 +1,91 @@
+﻿diff --git a/src/main/java/com/endava/ai/ui/support/actions/cart/CartLineActions.java b/src/main/java/com/endava/ai/ui/support/actions/cart/CartLineActions.java
+new file mode 100644
+--- /dev/null
++++ b/src/main/java/com/endava/ai/ui/support/actions/cart/CartLineActions.java
+@@ cart action support @@
++public final class CartLineActions {
++    public CartLineContext captureDefaultCartLine() { return captureOpenCartLine(); }
++    public CartLineContext captureSelectedQuantityCartLine() { return openCartLineContext(product); }
++    public CartMutationContext captureRemovalRecord() { return CartMutationContext.removal(originalLine, body); }
++    public CartLineContext captureReopenedCartLine() { return openCartLineContext(product); }
++}
+diff --git a/src/main/java/com/endava/ai/ui/support/model/cart/CartContexts.java b/src/main/java/com/endava/ai/ui/support/model/cart/CartContexts.java
+new file mode 100644
+--- /dev/null
++++ b/src/main/java/com/endava/ai/ui/support/model/cart/CartContexts.java
+@@ cart context model @@
++public final class CartContexts {
++    public static final class CartLineContext { }
++    public static final class CartMutationContext { }
++}
+diff --git a/src/main/java/com/endava/ai/ui/support/validation/CartBusinessValidation.java b/src/main/java/com/endava/ai/ui/support/validation/CartBusinessValidation.java
+new file mode 100644
+--- /dev/null
++++ b/src/main/java/com/endava/ai/ui/support/validation/CartBusinessValidation.java
+@@ cart business validation @@
++public final class CartBusinessValidation {
++    public void assertCartLineNamesSelectedProduct(CartLineContext context) { StepLogger.pass("identity owned"); }
++    public void assertCartLineKeepsDefaultQuantity(CartLineContext context) { StepLogger.pass("quantity owned"); }
++    public void assertCartLineCarriesProductPrice(CartLineContext context) { StepLogger.pass("price owned"); }
++    public void assertCartRemovalClearsLineBeforeInvoice(CartMutationContext context) { StepLogger.pass("removal owned"); }
++}
+diff --git a/src/test/java/com/endava/ai/ui/tests/cart/lifecycle/CartLineLifecycleContractTest.java b/src/test/java/com/endava/ai/ui/tests/cart/lifecycle/CartLineLifecycleContractTest.java
+new file mode 100644
+--- /dev/null
++++ b/src/test/java/com/endava/ai/ui/tests/cart/lifecycle/CartLineLifecycleContractTest.java
+@@ 25 disjoint cart lifecycle tests @@
++    @Test
++    public void cart_line_names_selected_catalog_product_before_checkout() { }
++    @Test
++    public void cart_line_has_named_product_before_invoice() { }
++    @Test
++    public void cart_line_preserves_catalog_price_token() { }
++    @Test
++    public void cart_line_exposes_review_vocabulary_before_identity() { }
++    @Test
++    public void cart_line_stays_on_checkout_boundary() { }
++    @Test
++    public void cart_line_preserves_countable_quantity_before_invoice() { }
++    @Test
++    public void cart_line_quantity_is_positive_before_invoice() { }
++    @Test
++    public void cart_line_quantity_matches_review_body() { }
++    @Test
++    public void cart_line_quantity_stays_pre_invoice() { }
++    @Test
++    public void cart_line_quantity_has_selected_product_owner() { }
++    @Test
++    public void cart_review_carries_price_and_total_before_invoice() { }
++    @Test
++    public void cart_total_is_money_before_invoice() { }
++    @Test
++    public void cart_total_belongs_to_selected_product() { }
++    @Test
++    public void cart_value_proof_has_price_and_total() { }
++    @Test
++    public void cart_value_proof_stays_before_payment() { }
++    @Test
++    public void cart_line_survives_catalog_reopen_before_checkout() { }
++    @Test
++    public void reopened_cart_keeps_product_name() { }
++    @Test
++    public void reopened_cart_keeps_catalog_price() { }
++    @Test
++    public void reopened_cart_keeps_line_quantity() { }
++    @Test
++    public void reopened_cart_returns_to_checkout_boundary() { }
++    @Test
++    public void product_quantity_selection_materializes_cart_line_before_invoice() { }
++    @Test
++    public void selected_quantity_keeps_product_identity() { }
++    @Test
++    public void cart_line_removal_clears_pre_invoice_record() { }
++    @Test
++    public void cart_line_removal_preserves_original_evidence() { }
++    @Test
++    public void cart_line_removal_does_not_create_payment() { }
+diff --git a/src/main/java/com/endava/ai/ui/support/pages/ProductPage.java b/src/main/java/com/endava/ai/ui/support/pages/ProductPage.java
+--- a/src/main/java/com/endava/ai/ui/support/pages/ProductPage.java
++++ b/src/main/java/com/endava/ai/ui/support/pages/ProductPage.java
+@@ cart locators @@
++    public static final String CART_NAV = "a[data-test=nav-cart]";

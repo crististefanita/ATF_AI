@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Business Test Atlas - skill requirements</title>
+  <link rel="stylesheet" href="../../assets/shared-report-reference.css">
+  <style>
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+    .diag{background:#0d1624;border:1px solid #27415f;border-radius:18px;padding:18px;margin:14px 0}
+    .diag svg{width:100%;height:auto;display:block}
+    .pillline{display:grid;grid-template-columns:130px 1fr;gap:10px;align-items:start;margin:8px 0}
+    .pilllabel{font-weight:800;color:#9ecbff}
+    .pillrow{display:flex;flex-wrap:wrap;gap:8px}
+    .toolbar{display:flex;justify-content:flex-start;gap:8px;margin:10px 0 14px}
+    .toolbar button{border:1px solid var(--border);background:#111826;color:var(--text);border-radius:999px;padding:7px 12px;font-size:12px;font-weight:700;cursor:pointer}
+    .toolbar button:hover{border-color:#7aa2ff;color:#dbe7ff}
+    .mini{font-size:.92rem;color:#b9c7da}
+    .subsection{margin:18px 0 10px}
+    .subsection h3{margin:0 0 8px}
+    .subsection>summary{font-weight:800;color:#e6edf3;margin:0 0 8px}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Skill / HTML requirements document</div>
+    <h1>Business Test Atlas for a test folder</h1>
+    <p>
+      Skill analysis-only: receives the source code of a test package, rebuilds the business already covered and produces
+      <code>business-test-atlas.html</code> as a visual understanding atlas, not as an execution plan.
+    </p>
+    <div class="badgebar">
+      <span class="badge">INPUT FOLDER</span>
+      <span class="badge">BUSINESS FLOW ATLAS</span>
+      <span class="badge">FLOW DIAGRAMS</span>
+      <span class="badge">ANALYSIS ONLY</span>
+      <span class="badge">CSS SUCCESSFUL</span>
+    </div>
+  </header>
+
+  <div class="toolbar" aria-label="Control sections">
+    <button type="button" onclick="toggleAll(true)">Open the sections</button>
+    <button type="button" onclick="toggleAll(false)">Close sections</button>
+  </div>
+
+  <details open>
+    <summary>Overview</summary>
+    <div class="content">
+      <div class="callout">
+        Minimal prompt:
+        <br><code>Run the ATF6 Atlas skill.</code>
+        <br><code>Input: &lt;test package root&gt;</code>
+        <br><code>Output folder: &lt;atlas output folder&gt;</code>
+        <br>The agent resolves detailed requirements from this document and the Atlas contracts.
+      </div>
+      <div class="callout">
+        Cold contract:
+        <br>The atlas explains the business already proven by existing tests.
+        <br>Tests are the entrance.
+        <br>The real objects and flows of the application are the subject.
+        <br>Technical layers are traceable evidence.
+        <br>Technical layers are not main nodes.
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="pillline"><div class="pilllabel">Owner:</div><div class="pillrow"><span class="pill">business understanding</span><span class="pill">business flows</span><span class="pill">visual atlas</span></div></div>
+          <div class="pillline"><div class="pilllabel">Produce:</div><div class="pillrow"><span class="pill">business-test-atlas.html</span><span class="pill">business flow graphs</span><span class="pill">layer trace map</span><span class="pill">comprehension limits</span></div></div>
+          <div class="pillline"><div class="pilllabel">Use:</div><div class="pillrow"><span class="pill">test package</span><span class="pill">UI layers</span><span class="pill">Living Architecture</span><span class="pill">shared CSS</span></div></div>
+        </div>
+        <div class="card">
+          <div class="pillline"><div class="pilllabel">Does not produce:</div><div class="pillrow"><span class="pill bad">new tests</span><span class="pill bad">patch</span><span class="pill bad">mandatory run plan</span><span class="pill bad">final run report</span></div></div>
+          <div class="pillline"><div class="pilllabel">Do not convert:</div><div class="pillrow"><span class="pill bad">classes in flow</span><span class="pill bad">the layers in business</span><span class="pill bad">selectors in objects</span></div></div>
+          <div class="pillline"><div class="pilllabel">Style:</div><div class="pillrow"><span class="pill">shared-report-reference.css</span><span class="pill">collapse</span><span class="pill">Minimalist SVG</span></div></div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>1. Contract</summary>
+    <div class="content">
+      <details class="subsection">
+        <summary>1.1 Contract in 10 seconds</summary>
+        <table>
+          <thead><tr><th>Cold question</th><th>Mandatory answer</th><th>Anti-drift</th></tr></thead>
+          <tbody>
+            <tr><td>What does it receive?</td><td><code>INPUT_TEST_PACKAGE_ROOT</code>, meaning the analyzed test package folder.</td><td>it does not start from run artifacts or html-ex</td></tr>
+            <tr><td>What are you reading?</td><td>the tests as an entry point and the Java layers touched by them.</td><td>it doesn't stop at class names</td></tr>
+            <tr><td>What does it rebuild?</td><td>real flows of the application: actor -&gt; intent -&gt; visible action -&gt; business object -&gt; observable result.</td><td>it does not make a graph of technical layers</td></tr>
+            <tr><td>What does it publish?</td><td><code>business-test-atlas.html</code> with the business map, subflows, trace, and understanding limits.</td><td>do not publish final run report</td></tr>
+          </tbody>
+        </table>
+        <div class="grid">
+          <div class="card">
+            <div class="pillline"><div class="pilllabel">Input:</div><div class="pillrow"><span class="pill">folder / test package</span><span class="pill">read-only source code</span></div></div>
+            <div class="pillline"><div class="pilllabel">Cross:</div><div class="pillrow"><span class="pill">test</span><span class="pill">act</span><span class="pill">component/page</span><span class="pill">serving</span><span class="pill">validation</span><span class="pill">model/constant</span></div></div>
+            <div class="pillline"><div class="pilllabel">Output:</div><div class="pillrow"><span class="pill">business-test-atlas.html</span><span class="pill">business flows</span><span class="pill">layer trace</span><span class="pill">comprehension limits</span></div></div>
+          </div>
+          <div class="card">
+            <div class="pillline"><div class="pilllabel">Accept:</div><div class="pillrow"><span class="pill">product flows</span><span class="pill">visible objects</span><span class="pill">observable results</span></div></div>
+            <div class="pillline"><div class="pilllabel">Reject:</div><div class="pillrow"><span class="pill bad">class inventory</span><span class="pill bad">graph of technical layers</span><span class="pill bad">selector/page flow</span><span class="pill bad">run plan</span></div></div>
+            <div class="pillline"><div class="pilllabel">Do not decide:</div><div class="pillrow"><span class="pill bad">package legality</span><span class="pill bad">html-ex readiness</span><span class="pill bad">new tests</span></div></div>
+          </div>
+        </div>
+        <div class="callout">
+          <strong>The cold rule:</strong>
+          <ul>
+            <li><strong>The tests:</strong> entry point, not the subject of the atlas.</li>
+            <li><strong>The layers:</strong> traceable evidence, not master nodes.</li>
+            <li><strong>Nodes:</strong> objects or business actions visible to the user.</li>
+            <li><strong>Subgraphs:</strong> source-specific flows chosen from the real dominant families in the analyzed package.</li>
+            <li><strong>Semantic density:</strong> subgraphs may use the same visual style, but every 3.x subgraph must expose at least two visible domain labels, not only Actor / Intent / Business object / Observable result.</li>
+            <li><strong>Reject:</strong> any node that can be read as selector, page, helper or technical mechanics.</li>
+          </ul>
+        </div>
+        <div class="diag"><svg viewbox="0 0 1160 220" role="img" aria-label="Skill input to atlas output">
+<defs><marker id="c1" markerwidth="10" markerheight="10" refx="8" refy="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7aa2ff"></path></marker></defs>
+<rect x="45" y="78" width="210" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+<text x="150" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Test package</text>
+<text x="150" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">entrypoint, not subject</text>
+<rect x="335" y="78" width="210" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+<text x="440" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Traversal layer</text>
+<text x="440" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">actions / pages / validation</text>
+<rect x="625" y="78" width="210" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+<text x="730" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Business story</text>
+<text x="730" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">actor / intent / object</text>
+<rect x="915" y="78" width="200" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+<text x="1015" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">HTML Atlas</text>
+<text x="1015" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">business flow map</text>
+<path d="M255 112 H335" stroke="#7aa2ff" stroke-width="2" marker-end="url(#c1)"></path>
+<path d="M545 112 H625" stroke="#7aa2ff" stroke-width="2" marker-end="url(#c1)"></path>
+<path d="M835 112 H915" stroke="#7aa2ff" stroke-width="2" marker-end="url(#c1)"></path>
+</svg></div>
+      </details>
+      <details class="subsection">
+        <summary>1.2 Cold boundary</summary>
+        <table>
+          <thead><tr><th>He is allowed</th><th>He is not allowed</th></tr></thead>
+          <tbody>
+            <tr><td>to read tests, Java layers and support classes</td><td>to modify tests or helpers</td></tr>
+            <tr><td>to publish diagrams and understanding matrices</td><td>to declare the package final-ready</td></tr>
+            <tr><td>to write down comprehension limits in the report</td><td>to decide the legality of the run or the next mandatory run</td></tr>
+          </tbody>
+        </table>
+      </details>
+      <details class="subsection">
+        <summary>1.3 Canonical parameters</summary>
+        <table>
+          <thead><tr><th>Parameter</th><th>Default ATF</th><th>Role</th></tr></thead>
+          <tbody>
+            <tr><td><code>INPUT_TEST_PACKAGE_ROOT</code></td><td><code>&lt;folder / package primit explicit&gt;</code></td><td>analysis root: the source code of the tests and the Java classes touched by them</td></tr>
+            <tr><td><code>SHARED_REPORT_REFERENCE_CSS</code></td><td><code>docs/shared-report-reference.css</code></td><td>canonical style</td></tr>
+            <tr><td><code>LIVING_ARCHITECTURE_REFERENCE</code></td><td><code>docs/Living_Architecture_UI_API_doc_v1_0.html</code></td><td>layer contract</td></tr>
+            <tr><td><code>OUTPUT_ATLAS_HTML</code></td><td><code>business-test-atlas.html</code> or <code>&lt;ATF_NAME&gt;_business-test-atlas.html</code></td><td>product report; the generic name is mental template, the scoped name is real artifact per analysis</td></tr>
+            <tr><td><code>DECLARED_ATLAS_OUTPUT</code></td><td><code>docs/atlas/&lt;name&gt;_business-test-atlas.html</code></td><td>the explicit atlas artifact of the current analysis</td></tr>
+            <tr><td><code>ATLAS_TEST_EXTENT</code></td><td><code>docs/atlas/validation/atlas-tests-extent-report.html</code></td><td>auditable artifact for atlas tests</td></tr>
+            <tr><td><code>MUST_PRODUCE</code></td><td><code>business-test-atlas.html</code></td><td>mandatory output of the skill</td></tr>
+            <tr><td><code>MUST_NOT_MODIFY_ANALYZED_FILES</code></td><td><code>true</code></td><td>the analyzed files remain read-only</td></tr>
+          </tbody>
+        </table>
+        <div class="callout">
+          <strong>Mechanical contract:</strong>
+          <ul>
+            <li><code>INPUT_TEST_PACKAGE_ROOT</code> -&gt; read-only investigation of the test source code.</li>
+            <li>The required output is a declared HTML atlas.</li>
+            <li><code>business-test-atlas.html</code> is the generic name / mental template.</li>
+            <li><code>&lt;ATF_NAME&gt;_business-test-atlas.html</code> is the accepted form for real versioned artifacts per analysis.</li>
+            <li>If the output is missing, the skill contract is violated.</li>
+            <li>If the analyzed files are modified, the skill contract is violated.</li>
+            <li>The atlas is validated from the source code read and from the HTML produced, not from run artifacts.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </details>
+
+  <details>
+    <summary>2. Business Flow Extraction</summary>
+    <div class="content">
+      <details class="subsection">
+        <summary>2.1 Main pipeline</summary>
+        <div class="diag"><svg viewbox="0 0 1160 220" role="img" aria-label="Business Atlas analysis pipeline">
+<defs><marker id="a1" markerwidth="10" markerheight="10" refx="8" refy="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7aa2ff"></path></marker></defs>
+<rect x="35" y="78" width="180" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+<text x="125" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Scan</text>
+<text x="125" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">tests + layers</text>
+<rect x="265" y="78" width="180" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+<text x="355" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Extract</text>
+<text x="355" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">actor + intent</text>
+<rect x="495" y="78" width="180" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+<text x="585" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Map</text>
+<text x="585" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">business object</text>
+<rect x="725" y="78" width="180" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+<text x="815" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">slag</text>
+<text x="815" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">owned / limit</text>
+<rect x="955" y="78" width="170" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+<text x="1040" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Publish</text>
+<text x="1040" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">atlas + prompt</text>
+<path d="M215 112 H265" stroke="#7aa2ff" stroke-width="2" marker-end="url(#a1)"></path>
+<path d="M445 112 H495" stroke="#7aa2ff" stroke-width="2" marker-end="url(#a1)"></path>
+<path d="M675 112 H725" stroke="#7aa2ff" stroke-width="2" marker-end="url(#a1)"></path>
+<path d="M905 112 H955" stroke="#7aa2ff" stroke-width="2" marker-end="url(#a1)"></path>
+</svg></div>
+      </details>
+      <details class="subsection">
+        <summary>2.2 Business object extraction</summary>
+        <div class="diag"><svg viewbox="0 0 1160 210" role="img" aria-label="Business object extraction">
+<defs><marker id="a2" markerwidth="10" markerheight="10" refx="8" refy="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7aa2ff"></path></marker></defs>
+<rect x="60" y="72" width="190" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+<text x="155" y="98" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Step test</text>
+<text x="155" y="120" text-anchor="middle" fill="#a8b3cf" font-size="11">visible action</text>
+<rect x="330" y="72" width="190" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+<text x="425" y="98" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">intent</text>
+<text x="425" y="120" text-anchor="middle" fill="#a8b3cf" font-size="11">business reason</text>
+<rect x="600" y="72" width="190" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+<text x="695" y="98" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Object</text>
+<text x="695" y="120" text-anchor="middle" fill="#a8b3cf" font-size="11">row / state / document</text>
+<rect x="870" y="72" width="210" height="68" rx="14" fill="#111826" stroke="#35507a"></rect>
+<text x="975" y="98" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">stage fright</text>
+<text x="975" y="120" text-anchor="middle" fill="#a8b3cf" font-size="11">test / page / validation</text>
+<path d="M250 106 H330" stroke="#7aa2ff" stroke-width="2" marker-end="url(#a2)"></path>
+<path d="M520 106 H600" stroke="#7aa2ff" stroke-width="2" marker-end="url(#a2)"></path>
+<path d="M790 106 H870" stroke="#7aa2ff" stroke-width="2" marker-end="url(#a2)"></path>
+</svg></div>
+      </details>
+      <div class="callout">
+        <strong>Canonical formula:</strong>
+        <ul>
+          <li><code>test method</code> -&gt; punctul de intrare.</li>
+          <li><code>layer path</code> -&gt; evidence tehnica traversata.</li>
+          <li><code>actor / intentie</code> -&gt; sensul business al actiunii.</li>
+          <li><code>actiune vizibila / obiect business / rezultat</code> -&gt; flow-ul aplicatiei.</li>
+          <li><code>atlas HTML</code> -&gt; harta business-first produsa.</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>3. HTML Atlas</summary>
+    <div class="content">
+      <details class="subsection">
+        <summary>3.1 Anatomy of HTML output</summary>
+        <div class="diag"><svg viewbox="0 0 1160 230" role="img" aria-label="Atlas output anatomy">
+<defs><marker id="o1" markerwidth="10" markerheight="10" refx="8" refy="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7aa2ff"></path></marker></defs>
+<rect x="35" y="82" width="175" height="66" rx="14" fill="#111826" stroke="#35507a"></rect>
+<text x="122" y="107" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Score cards</text>
+<text x="122" y="128" text-anchor="middle" fill="#a8b3cf" font-size="11">overall last</text>
+<rect x="255" y="82" width="175" height="66" rx="14" fill="#111826" stroke="#35507a"></rect>
+<text x="342" y="107" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Context</text>
+<text x="342" y="128" text-anchor="middle" fill="#a8b3cf" font-size="11">collapsed</text>
+<rect x="475" y="82" width="175" height="66" rx="14" fill="#111826" stroke="#35507a"></rect>
+<text x="562" y="107" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Main graph</text>
+<text x="562" y="128" text-anchor="middle" fill="#a8b3cf" font-size="11">business-first</text>
+<rect x="695" y="82" width="175" height="66" rx="14" fill="#111826" stroke="#35507a"></rect>
+<text x="782" y="107" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Subflows</text>
+<text x="782" y="128" text-anchor="middle" fill="#a8b3cf" font-size="11">collapsed 3.x</text>
+<rect x="915" y="82" width="210" height="66" rx="14" fill="#111826" stroke="#35507a"></rect>
+<text x="1020" y="107" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Evidence</text>
+<text x="1020" y="128" text-anchor="middle" fill="#a8b3cf" font-size="11">tables + traces</text>
+<path d="M210 115 H255" stroke="#7aa2ff" stroke-width="2" marker-end="url(#o1)"></path>
+<path d="M430 115 H475" stroke="#7aa2ff" stroke-width="2" marker-end="url(#o1)"></path>
+<path d="M650 115 H695" stroke="#7aa2ff" stroke-width="2" marker-end="url(#o1)"></path>
+<path d="M870 115 H915" stroke="#7aa2ff" stroke-width="2" marker-end="url(#o1)"></path>
+</svg></div>
+      </details>
+      <details class="subsection">
+        <summary>3.2 Mandatory areas</summary>
+        <table>
+          <thead><tr><th>Area</th><th>What does it look like?</th><th>Invalid if</th></tr></thead>
+          <tbody>
+            <tr><td>Score cards</td><td>how well the atlas explains the business deduced from the source</td><td>measure package readiness or html-ex readiness</td></tr>
+            <tr><td>Executive Context</td><td>scope, rational score, limits of understanding</td><td>remains open and loads the initial reading</td></tr>
+            <tr><td>Business Flow Graph</td><td>the main map of the product seen through tests</td><td>show classes, selectors or layers as main nodes</td></tr>
+            <tr><td>Business Flow Understanding</td><td>real 3.x subflows of the application, chosen from the dominant families in the source, full-width, collapsed</td><td>contains contract graphs, audit, technical coverage or template flows without root in the source</td></tr>
+            <tr><td>Business proof strips</td><td>collapsible subsection after each graph/subgraph, titled <code>Node Evidence Strip</code>: node/flow -&gt; test/method -&gt; layer path -&gt; proven business understanding -&gt; limit</td><td>the local link between the graph and the code that supports it is missing or the proof is left only in the tables below</td></tr>
+            <tr><td>Graph zone hygiene</td><td>the visual area of each graph contains, in this order: SVG, collapsed <code>Legend</code>, then collapsed <code>Node Evidence Strip</code></td><td>insert narrative paragraphs, inline legend, proof strip before legend or proof stored in another section</td></tr>
+            <tr><td>Business Evidence Tables</td><td>coverage, repeated corridors, layer trace and maturity</td><td>claims that the tables are business flows</td></tr>
+            <tr><td>Source-to-Business Trace</td><td>real methods/classes -&gt; layer path -&gt; business object</td><td>it is not backed by source</td></tr>
+            <tr><td>Atlas Test Audit</td><td>The atlas test Extent, the exact command and the synchronized total before publication; Playwright and Selenium rows must describe the same analyzed UI <code>@Test</code> inventory</td><td>publish stale numbers, reuse another atlas Extent, mix Selenium all-suite evidence with Playwright current-scope evidence, or hide the full Maven reproduction command</td></tr>
+          </tbody>
+        </table>
+      </details>
+      <details class="subsection">
+        <summary>3.3 Minimal HTML structure</summary>
+        <table>
+          <thead><tr><th>Section</th><th>Minimal content</th><th>Default</th></tr></thead>
+          <tbody>
+            <tr><td>Score Cards</td><td>Business Understanding, Flow Reconstruction, Layer Traceability, Business Object Clarity, Evidence Fidelity, Overall</td><td>visible top; Overall last/right</td></tr>
+            <tr><td>Executive Context</td><td>folder, atlas score, comprehension limits</td><td>closed / subdetails</td></tr>
+            <tr><td>Business Flow Graph</td><td>the business map from the perspective of the tests</td><td>the only default-open section</td></tr>
+            <tr><td>Business Flow Understanding</td><td>3.x subgraphs with real and source-specific flows of the application</td><td>closed / full-width / legends closed / proof strips closed</td></tr>
+            <tr><td>Business proof strips</td><td>after each graph and each subgraph 3.x there is a collapsible subsection <code>Node Evidence Strip</code>: node, test/method, layer path, proven business understanding, limit</td><td>sits immediately under <code>Legend</code> inside the same graph section; closed by default; the named methods/classes exist in sourceRoot/UI layers</td></tr>
+            <tr><td>Business Evidence Tables</td><td>coverage, repeated corridors, layer trace, maturity and limits</td><td>closed / supporting evidence</td></tr>
+            <tr><td>Source-to-Business Trace</td><td>class/method -&gt; actor -&gt; object -&gt; proven business understanding</td><td>closed</td></tr>
+            <tr><td>Atlas Test Audit</td><td>link to the atlas test Extent + command + cold result; the declared total must match the linked Extent; Playwright and Selenium expose <code>Passed/Failed/Skipped</code> and have the same total as the input package <code>@Test</code></td><td>closed / audit-only / verified before publication</td></tr>
+          </tbody>
+        </table>
+        <div class="callout">
+          <strong>Canonical style:</strong>
+          <ul>
+            <li>Atlas reuses <code>shared-report-reference.css</code>.</li>
+            <li>Local overrides are noted as deviations.</li>
+            <li>The visual form must remain reusable for other domains.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="subsection">
+        <summary>3.3.1 Canonical score cards</summary>
+        <div class="callout">
+          <strong>Scoring Discipline:</strong>
+          <ul>
+            <li>Canonical formula: <strong>business goal -&gt; flow question -&gt; source/layer evidence -&gt; atlas score</strong>.</li>
+            <li>The score is not decorative.</li>
+            <li>Each note answers a comprehension question.</li>
+            <li>Each note can be reopened through the inspected source and layers.</li>
+          </ul>
+        </div>
+        <table>
+          <thead><tr><th>Field per axis</th><th>What should he answer?</th><th>Invalid if</th></tr></thead>
+          <tbody>
+            <tr><td>business goal</td><td>what business understanding does the atlas want to measure for the axis</td><td>the axis has only name and score</td></tr>
+            <tr><td>flow question</td><td>what a cold question the atlas asks about the flow of the application</td><td>there is no question, only verdict</td></tr>
+            <tr><td>source/layer evidence</td><td>which test/method/layer supports the answer</td><td>the proof is only prose</td></tr>
+            <tr><td>atlas score</td><td>the calculated/capped grade for that axis</td><td>the note cannot be reopened</td></tr>
+          </tbody>
+        </table>
+        <table>
+          <thead><tr><th>Card</th><th>What measure</th><th>The cold rule</th></tr></thead>
+          <tbody>
+            <tr><td>Business understanding</td><td>how deeply it explains the business deduced from the existing tests</td><td>it does not reward readiness or planning</td></tr>
+            <tr><td>Flow reconstruction</td><td>actor -&gt; intention -&gt; visible action -&gt; object -&gt; observable result</td><td>does not accept the list of classes as flow</td></tr>
+            <tr><td>Traceability Layers</td><td>test -&gt; action/component/page/service/validation/model/constants</td><td>without a trace, the claim remains weak</td></tr>
+            <tr><td>Business Object Clarity</td><td>how clearly the real business objects are separated</td><td>page/action/selectors do not become root nodes</td></tr>
+            <tr><td>Fidelity Proof</td><td>how faithful the atlas remains to the test code and layers</td><td>do not invent business unsupported by code</td></tr>
+            <tr><td>Overall</td><td>comprehension score, not package score or html-ex readiness</td><td>the last card, visually on the right</td></tr>
+          </tbody>
+        </table>
+        <div class="callout">
+          <strong>Auditable scorecards:</strong>
+          <ul>
+            <li>Each card appears at the top, visible.</li>
+            <li>Each card reappears in <strong>Score motivation</strong>.</li>
+            <li>The motivation includes the axis, numerical score and short verdict.</li>
+            <li>If the score cannot be explained, the card is decorative and invalid.</li>
+          </ul>
+        </div>
+        <table>
+          <thead><tr><th>Score rule</th><th>Cold contract</th><th>Invalid if</th></tr></thead>
+          <tbody>
+            <tr><td>Canonical axes</td><td>the same 5 axes + Overall in cards and in motivation</td><td>the report uses local synonyms or shorthands</td></tr>
+            <tr><td>Card readability</td><td>the card description remains short, under 88 characters</td><td>the text is cut or crowded in the score-card</td></tr>
+            <tr><td>Audit pointer</td><td>Motivation score explicitly indicates 4.5, 4.6 and 5.1</td><td>the reader does not know where to reopen the score calculation</td></tr>
+            <tr><td>Score support</td><td>each card has a support row with the same note and proof surface</td><td>the card has a number, but it does not have an anchor in the tables/traces</td></tr>
+            <tr><td>Overall formula</td><td>4.6 repeat the axes, notes, weights and contributions</td><td>Overall cannot be recalculated cold</td></tr>
+            <tr><td>Computable overall</td><td>Overall derives from the 5 axes of business understanding</td><td>Overall cannot be recalculated or jumps over all axes</td></tr>
+            <tr><td>Evidence per axis</td><td>each line explains what business/layer/source supports the note</td><td>it only has a number, without a verifiable reason</td></tr>
+            <tr><td>Boundary</td><td>the score measures atlas comprehension</td><td>it is sold as package readiness or html-ex readiness</td></tr>
+            <tr><td>GQM / traceability</td><td>each grade has a business goal, flow question, source/layer evidence and atlas score</td><td>the note remains a decorative number, without question and re-openable proof</td></tr>
+            <tr><td>Even scores</td><td>if all axes have the same grade, the atlas explicitly explains the common ceiling and why there is no differentiation</td><td>all the cards have the same grade without reasons of uniformity</td></tr>
+          </tbody>
+        </table>
+      </details>
+      <details class="subsection">
+        <summary>3.4 Maturity and limits of understanding</summary>
+        <table>
+          <thead><tr><th>Axis</th><th>Cold question</th><th>Decrease the grade if</th></tr></thead>
+          <tbody>
+            <tr><td>Business durability</td><td>does it remain after navigation / refresh / relogin?</td><td>it's just screen status</td></tr>
+            <tr><td>UI visibility</td><td>does the user see the object?</td><td>the proof is only in the service/model</td></tr>
+            <tr><td>Source trace</td><td>can you see the route test -&gt; page/action/validation/service?</td><td>the object is inferred from the name alone</td></tr>
+            <tr><td>Layer disciplines</td><td>does the test delegate to page/actions/validation?</td><td>direct assertions in the test layer</td></tr>
+            <tr><td>Repetition pressure</td><td>where the existing coverage repeats the same corridor?</td><td>the repetition is sold as a new agreement</td></tr>
+            <tr><td>Reportability</td><td>can it become node/proof row?</td><td>cannot be explained business-first</td></tr>
+          </tbody>
+        </table>
+        <div class="callout">
+          <strong>Maturity Atlas:</strong>
+          <ul>
+            <li>It is not a package overall.</li>
+            <li>It does not measure readiness for <code>html-ex</code>.</li>
+            <li>It measures the understanding of business flows from the read suite.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="subsection">
+        <summary>3.5 Mini-template for atlas row</summary>
+        <table>
+          <thead><tr><th>Field</th><th>What does it contain?</th><th>Short example</th></tr></thead>
+          <tbody>
+            <tr><td>Test / Class</td><td>the source class and method</td><td><code>BusinessFlowTest.reopensVisibleObject()</code></td></tr>
+            <tr><td>Business object</td><td>visible or blocked object</td><td>domain business object / observable state</td></tr>
+            <tr><td>Evidence</td><td>the class/method/layer that supports the object</td><td>test method + action/component/page/validation/model</td></tr>
+            <tr><td>Maturity</td><td>owned / partial / repeated / blocked</td><td>owned</td></tr>
+            <tr><td>Comprehension limit</td><td>which cannot be understood yet from the read source</td><td>unproven lifecycle detail</td></tr>
+            <tr><td>Record notes</td><td>the observed limit, without the obligation of the next run</td><td>visible state without deeper persistence proof</td></tr>
+          </tbody>
+        </table>
+      </details>
+    </div>
+  </details>
+
+  <details>
+    <summary>4. Atlas Validation</summary>
+    <div class="content">
+      <details class="subsection">
+        <summary>4.1 What he reads</summary>
+        <table>
+          <thead><tr><th>Source</th><th>What does it extract?</th><th>What does NOT inherit</th></tr></thead>
+          <tbody>
+            <tr><td><code>&lt;input-folder&gt;</code></td><td>the real scope of the analyzed source code</td><td>external artifacts or old runtimes</td></tr>
+            <tr><td><code>src/test/java/com/endava/ai/ui/tests</code></td><td>methods, classes, claims, business family</td><td>score because the tests are green</td></tr>
+            <tr><td><code>src/main/java/com/endava/ai/ui</code></td><td>page/actions/service/validation layering</td><td>business ownership if it's just a helper</td></tr>
+            <tr><td><code>docs/Living_Architecture_UI_API_doc_v1_0.html</code></td><td>UI/API/core/reporting responsibilities and the separation of support vs protected core</td><td>the right to overwrite MCP contracts or modify core/MCP/atlas for a single business context</td></tr>
+          </tbody>
+        </table>
+      </details>
+      <details class="subsection">
+        <summary>4.2 Separation from the rest of the system</summary>
+        <table>
+          <thead><tr><th>Layer</th><th>Role</th><th>What should not be mixed</th></tr></thead>
+          <tbody>
+            <tr><td>MCP</td><td>validate package contracts and artifacts</td><td>not input for the source-based atlas</td></tr>
+            <tr><td>Business Atlas</td><td>understand the business flows from the tests</td><td>does not become final run report</td></tr>
+            <tr><td>Reporting</td><td>publish the current package</td><td>it does not replace the atlas of the suite</td></tr>
+            <tr><td>Atlas tests</td><td>they will validate the HTML produced by the skill</td><td>it does not have to depend on the concrete business of the application</td></tr>
+          </tbody>
+        </table>
+        <div class="callout">
+          <strong>Atlas validation:</strong>
+          <ul>
+            <li>Atlas is its own result type.</li>
+            <li>The output is a business understanding HTML.</li>
+            <li>Atlas validations are separate from MCP.</li>
+            <li>The discipline remains similar: contract, evidence, score, audit.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="subsection">
+        <summary>4.3 Atlas test contract</summary>
+        <div class="callout">
+          <strong>Good read:</strong>
+          <ul>
+            <li>Atlas contracts are grouped by families.</li>
+            <li>Main families: form, business graphs, source trace, score, audit.</li>
+            <li>They are not a list of rules.</li>
+            <li>Each group protects a different part of the business-first atlas.</li>
+          </ul>
+        </div>
+        <h4>Minimal semantic vocabulary</h4>
+        <div class="callout">
+          <strong>Test rule:</strong>
+          <ul>
+            <li>It does not validate exact sentences.</li>
+            <li>It does not validate hardcoded domain objects: invoice, cart, payment, profile, etc.</li>
+            <li>It validates the HTML structure through classes, tables, sections and <code>data-atlas*</code>.</li>
+            <li>It validates the semantics only through the small families below.</li>
+            <li>If a word is not in this vocabulary or in the canonical axes, it does not become the test password.</li>
+          </ul>
+        </div>
+        <table>
+          <thead><tr><th>Family</th><th>Terms accepted</th><th>Role</th></tr></thead>
+          <tbody>
+            <tr><td>Maturity</td><td>owned, held, durable, reopen, relogin, partial, diagnostic, surface, surface-only, surface</td><td>classify the maturity of flows without hardcoded business</td></tr>
+            <tr><td>Limit / boundary</td><td>limit, limit, limits, missing, lacking, incomplete, unexplained, open, boundary</td><td>it marks limits of understanding and unclosed lifecycle</td></tr>
+            <tr><td>Head / threshold</td><td>cap, capped, ceiling, ceiling, below 95, below 95, 95+</td><td>link score limits without fixed phrases</td></tr>
+            <tr><td>Story chain</td><td>actor, intent, visible action, business object, observable result</td><td>makes the flow readable as a product story</td></tr>
+            <tr><td>Evidence surfaces</td><td>table/tabel, trace, source/source, layer, object/object, flow/flux, evidence/evidence, proof</td><td>link the score and the reopenable evidence graph</td></tr>
+            <tr><td>Business understanding</td><td>business understanding, business understanding, business comprehension, comprehension, atlas quality</td><td>separate the quality of the atlas from the completeness of the suite</td></tr>
+          </tbody>
+        </table>
+        <p class="note">This vocabulary is intentionally small. If the agent wants another wording, he must keep the structure, the semantic classes and one of the above families, not an exact phrase.</p>
+        <h4>Structure / readability</h4>
+        <table>
+          <thead><tr><th>Atlas test</th><th>What validates</th><th>Why does it matter?</th></tr></thead>
+          <tbody>
+            <tr><td>atlas.html.uses-shared-css</td><td>HTML reuses <code>shared-report-reference.css</code></td><td>prevents ad hoc styles</td></tr>
+            <tr><td>atlas.sections.collapsible</td><td>the main sections are collapsible</td><td>keep navigation clear</td></tr>
+            <tr><td>atlas.candidate.semantic-contract-markers</td><td>the structural contract uses <code>data-atlas*</code> / <code>data-contract</code>, nu multi markeri hidden</td><td>prevents HTML built for invisible tests</td></tr>
+            <tr><td>atlas.output.exists</td><td>exist <code>business-test-atlas.html</code></td><td>confirm minimum output</td></tr>
+            <tr><td>atlas.source.read-only</td><td>the analyzed files have not been modified</td><td>keep the analysis-only contract</td></tr>
+            <tr><td>atlas.no-code-generation-claims</td><td>does not claim to have generated tests or fixed code</td><td>keep boundary analysis-only</td></tr>
+          </tbody>
+        </table>
+        <h4>Business graph / flow comprehension</h4>
+        <table>
+          <thead><tr><th>Atlas test</th><th>What validates</th><th>Why does it matter?</th></tr></thead>
+          <tbody>
+            <tr><td>atlas.business-flow.present</td><td>there are real business flows, not class inventory</td><td>protect the purpose of the atlas</td></tr>
+            <tr><td>atlas.business-flows.application-only</td><td>flows describe the application, not meta-contracts</td><td>hold the business-first atlas</td></tr>
+            <tr><td>atlas.business-object-centered</td><td>business object nodes and cells are real objects extracted from the source, not page/action/selector/component/helper and not a hardcoded list of domains</td><td>prevents graphs of selectors/pages/layers disguised as business and keeps the applicable rule in any application</td></tr>
+            <tr><td>atlas.flow-story.complete</td><td>the flow has actor, intention, action, object, result</td><td>prevents shallow lanes</td></tr>
+            <tr><td>atlas.graph-node.business-proof-strip</td><td>each major graph has a short lane node/flow -&gt; test/method -&gt; layer path -&gt; proven business understanding -&gt; limit</td><td>makes the graph auditable without turning the nodes into technical classes</td></tr>
+            <tr><td>atlas.subgraph.business-understanding-strips</td><td>each 3.x subgraph has its own local band of proven business understanding</td><td>does not oblige the reader to look for the proof only in the tables below</td></tr>
+            <tr><td>atlas.candidate.subgraph.semantic-density</td><td>each 3.x subgraph keeps the shared visual style, but exposes at least two domain labels and distinct signatures across subgraphs</td><td>prevents graphs that look structurally valid but are only Actor / Intent / Object / Result templates</td></tr>
+            <tr><td>atlas.graph-node.proof-strip.collapsed</td><td>after the main graph there is a collapsible subsection <code>Node Evidence Strip</code></td><td>separate the visual legend from the auditable evidence of the nodes</td></tr>
+            <tr><td>atlas.subgraph.proof-strip.collapsed</td><td>after each subgraph 3.x there is a collapsible subsection <code>Node Evidence Strip</code></td><td>makes each slice reopenable locally, without dependence on global tables</td></tr>
+            <tr><td>atlas.candidate.subgraphs.source-specific-dominance</td><td>the 3.x subgraphs reflect real dominant families from the analyzed package, not reused template flows</td><td>prevents the structurally valid but too generic semantic atlas</td></tr>
+            <tr><td>atlas.candidate.local-proof-strip.source-backed</td><td>the local proof strip names existing methods/classes in sourceRoot or the traversed UI layers</td><td>makes each subgraph re-openable in code, without dependence on wording business fix</td></tr>
+            <tr><td>atlas.subgraphs.business-complexity</td><td>3.x subgraphs have distinct nodes, transitions and business objects/states, without hardcoded business tokens in the test</td><td>it forces real flows, but remains universal for any domain</td></tr>
+            <tr><td>atlas.candidate.object-maturity.matrix</td><td>each major object has maturity, evidence and the limit of understanding</td><td>prevents the atlas that names objects, but does not say if they are owned, partial, diagnostic or surface-only</td></tr>
+            <tr><td>atlas.candidate.end-to-end-closure.ladder</td><td>the important flows show start -&gt; visible action -&gt; durable object -&gt; reopen/relogin -&gt; lifecycle unowned</td><td>makes the difference between deep flow and simple visual lane</td></tr>
+            <tr><td>atlas.candidate.flow-maturity.distribution</td><td>the atlas explains the owned / partial / diagnostic / surface-only distribution for the flows discovered from the source, without hardcoded domain objects</td><td>prevents the atlas that only mentions limits, but does not say the maturity of the flows</td></tr>
+            <tr><td>atlas.candidate.partial-flow-not-sold-as-owned</td><td>a partial, diagnostic or surface-only flow cannot be sold as strong ownership without an explicit head/limit</td><td>prevents contradictions between the business map, tables and score</td></tr>
+          </tbody>
+        </table>
+        <h4>Source trace / layer traversal</h4>
+        <table>
+          <thead><tr><th>Atlas test</th><th>What validates</th><th>Why does it matter?</th></tr></thead>
+          <tbody>
+            <tr><td>atlas.row-template.complete</td><td>the lines have test, object, evidence, maturity, comprehension limit</td><td>makes the atlas verifiable</td></tr>
+            <tr><td>atlas.source-trace.method-level</td><td>Source-to-Business Trace contains representative methods and test -&gt; layer -&gt; object chains</td><td>prevents family/class level atlas</td></tr>
+            <tr><td>atlas.source-trace.backed-by-source</td><td>the methods and classes named in traces exist in the read source</td><td>prevents business wording without an anchor in the code</td></tr>
+            <tr><td>atlas.layer-trace.concrete-evidence</td><td>Layer Trace Map names concrete classes/methods/layers</td><td>prevents generic chains of type test -&gt; page -&gt; validation without re-openable proof</td></tr>
+            <tr><td>atlas.source-trace.application-business-only</td><td>Source-to-Business Trace contains only business flows of the application</td><td>move seed/baseline/agent/MCP/atlas-test to audit or limits, not to the business map</td></tr>
+          </tbody>
+        </table>
+        <h4>Score / business understanding</h4>
+        <table>
+          <thead><tr><th>Atlas test</th><th>What validates</th><th>Why does it matter?</th></tr></thead>
+          <tbody>
+            <tr><td>atlas.candidate.score-rationale.audit</td><td>each score-card has a line of motivation with axis, score and verdict</td><td>make the score auditable, not decorative</td></tr>
+            <tr><td>atlas.candidate.score-cards.readable</td><td>the descriptions in the score cards remain short and visible</td><td>prevents cut or cramped text in the opening area</td></tr>
+            <tr><td>atlas.candidate.score-opening.audit-pointer</td><td>Motivation score refers to 4.5, 4.6 and 5.1</td><td>makes reopening the score fast</td></tr>
+            <tr><td>atlas.candidate.score-support.trace</td><td>each card has support with the same note and proof</td><td>prevents scores without an anchor in business evidence</td></tr>
+            <tr><td>atlas.candidate.score-formula.trace</td><td>the Overall formula contains axes, grades, weights and contributions</td><td>makes Overall recalculable</td></tr>
+            <tr><td>atlas.candidate.score-overall.calculation</td><td>Overall is calculable from the 5 axes and does not mean readiness</td><td>prevents unexplained global scores</td></tr>
+            <tr><td>atlas.candidate.score-cards.documented</td><td>the axes from the atlas are documented in this HTML-req</td><td>prevents cards invented ad hoc by the agent</td></tr>
+            <tr><td>atlas.candidate.score-business-understanding.evidence</td><td>each axis explains the business understanding proven by flow, source and layers</td><td>it prevents generic motivation based on words, not on understood business</td></tr>
+            <tr><td>atlas.candidate.score-gqm-traceability</td><td>the score uses the chain business goal -&gt; flow question -&gt; source/layer evidence -&gt; atlas score</td><td>prevents decorative notes that do not answer a comprehension question</td></tr>
+            <tr><td>atlas.candidate.score-uniformity.chap</td><td>if the axes have the same grade, there is an explanation of common ceiling / uniformity</td><td>it prevents flat scores that appear aesthetically calibrated</td></tr>
+            <tr><td>atlas.candidate.end-to-end-limit.score-cap</td><td>many major end-to-end limits cap the Overall below the excellent area or require explicit head</td><td>prevents Overall 95+ when the atlas declares many partial, diagnostic or incomplete flows</td></tr>
+            <tr><td>atlas.candidate.95-plus.limit-disciplines</td><td>Overall 95+ requires few limits or an explicit explanation of maturity/head</td><td>it prevents decorative growth above 95 when the atlas itself declares many real limits</td></tr>
+            <tr><td>atlas.candidate.suite-completeness.separation</td><td>Atlas Overall is separate from the completeness suite</td><td>clarifies that 95+ means atlas almost inevitably, not the complete end-to-end suite</td></tr>
+          </tbody>
+        </table>
+        <h4>Executable audit</h4>
+        <table>
+          <thead><tr><th>Atlas test</th><th>What validates</th><th>Why does it matter?</th></tr></thead>
+          <tbody>
+            <tr><td>atlas.test-audit.extent-linked</td><td>the atlas publishes the Extent of the atlas tests as a re-openable link</td><td>makes skill validation auditable</td></tr>
+            <tr><td>atlas.candidate.test-audit.total-synchronized</td><td>the total declared in Atlas Test Audit is identical to the total in the linked Extent, and the atlas does not reuse the report for another purpose</td><td>stops the publication of an atlas with stale numbers or with the wrong proof of validation</td></tr>
+            <tr><td>atlas.framework.full-regression-command</td><td>the framework atlas publishes <code>Full Atlas regression command</code> with the Maven command for business atlas + framework atlas</td><td>makes final common validation reproducible, not just local validation of a single HTML</td></tr>
+          </tbody>
+        </table>
+      </details>
+      <details class="subsection">
+        <summary>4.4 Codex skill requirements</summary>
+        <div class="callout">
+          <strong>Purpose of migration:</strong>
+          <ul>
+            <li>This HTML remains the detailed law.</li>
+            <li>The future Codex skill starts from one <code>SKILL.md</code> scurt.</li>
+            <li><code>SKILL.md</code> describes the trigger, workflow, and agent freedoms.</li>
+            <li>The HTML document becomes <code>references/business-test-atlas-reference.html</code>.</li>
+          </ul>
+        </div>
+        <table>
+          <thead><tr><th>Ability</th><th>Must</th><th>Must note</th></tr></thead>
+          <tbody>
+            <tr><td>Reading project</td><td>it scans Java tests and layers starting from the received root</td><td>he does not invent business from the method</td></tr>
+            <tr><td>modeling</td><td>group by business flows, families and visible objects</td><td>it doesn't just produce the list of classes</td></tr>
+            <tr><td>HTML Atlas</td><td>publish business understanding diagrams and matrices</td><td>do not publish final run report</td></tr>
+            <tr><td>Feedback</td><td>write comprehension limits and understanding limits</td><td>does not require fresh run; the atlas analyzes the existing source</td></tr>
+          </tbody>
+        </table>
+        <h4>Proposed skill package</h4>
+        <table>
+          <thead><tr><th>File / folder</th><th>Role</th><th>The cold rule</th></tr></thead>
+          <tbody>
+            <tr><td><code>SKILL.md</code></td><td>front matter with <code>name</code> and <code>description</code>, trigger, and short workflow</td><td>under 500 lines; do not copy the entire HTML-req</td></tr>
+            <tr><td><code>references/business-test-atlas-reference.html</code></td><td>detailed contract, diagrams, rules and examples</td><td>it is read only when the task asks for details</td></tr>
+            <tr><td><code>assets/business-test-atlas-template.html</code></td><td>reusable HTML skeleton for score cards, main graph, subgraphs, trace and audit</td><td>does not contain hardcoded business</td></tr>
+            <tr><td><code>scripts/validate-atlas</code></td><td>runs the atlas contracts and synchronizes the validation report</td><td>does not modify the analyzed sources</td></tr>
+            <tr><td><code>quick_validate.py</code></td><td>standard validation of the skill after creation/migration</td><td>runs after any change in SKILL.md</td></tr>
+          </tbody>
+        </table>
+        <h4>Frontmatter minimum for <code>SKILL.md</code></h4>
+        <table>
+          <thead><tr><th>Field</th><th>Recommended value</th><th>Why does it matter?</th></tr></thead>
+          <tbody>
+            <tr><td><code>name</code></td><td><code>business-test-atlas</code></td><td>short name, hyphen-case, easy to activate</td></tr>
+            <tr><td><code>description</code></td><td>Use when Codex must analyze an existing test package and produce a read-only business-test-atlas.html that reconstructs application business flows through source/layer evidence.</td><td>description is the main trigger of the skill</td></tr>
+          </tbody>
+        </table>
+        <h4>Short workflow for <code>SKILL.md</code></h4>
+        <table>
+          <thead><tr><th>Step</th><th>Action</th><th>Output / check</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Read <code>INPUT_TEST_PACKAGE_ROOT</code> and confirm that the source remains read-only.</td><td>explicit folder, not hardcoded path</td></tr>
+            <tr><td>2</td><td>Scan the test methods and track the layers reached.</td><td>test -&gt; action/component/page/service/validation/model/constants</td></tr>
+            <tr><td>3</td><td>Extract business flows: actor, intent, visible action, object, result.</td><td>business flow map, not class inventory</td></tr>
+            <tr><td>4</td><td>It generates <code>OUTPUT_ATLAS_HTML</code> using <code>assets/business-test-atlas-template.html</code> and <code>SHARED_REPORT_REFERENCE_CSS</code>.</td><td>Collapsible HTML, minimalist graphs, auditable score cards</td></tr>
+            <tr><td>5</td><td>runs <code>scripts/validate-atlas</code> or the equivalent atlas contracts.</td><td>Reopenable Extent report</td></tr>
+            <tr><td>6</td><td>It only fixes the atlas/output, not the analyzed sources.</td><td><code>MUST_NOT_MODIFY_ANALYZED_FILES=true</code></td></tr>
+          </tbody>
+        </table>
+        <h4>Progressive disclosure</h4>
+        <table>
+          <thead><tr><th>Level</th><th>What does the agent charge?</th><th>When</th></tr></thead>
+          <tbody>
+            <tr><td>Metadata</td><td><code>name</code> + <code>description</code></td><td>always, for the trigger</td></tr>
+            <tr><td><code>SKILL.md</code></td><td>short workflow, parameters, output contract</td><td>when the skill is activated</td></tr>
+            <tr><td><code>references/</code></td><td>this detailed HTML-req and the matrix of contracts</td><td>when the agent builds or repairs the atlas</td></tr>
+            <tr><td><code>assets/</code></td><td>HTML templates and visual primitives</td><td>when it produces the output</td></tr>
+            <tr><td><code>scripts/</code></td><td>deterministic validation</td><td>after generation or repair</td></tr>
+          </tbody>
+        </table>
+        <h4>The parameters of the skill</h4>
+        <table>
+          <thead><tr><th>Parameter</th><th>Skill-ready description</th><th>Anti-drift</th></tr></thead>
+          <tbody>
+            <tr><td><code>INPUT_TEST_PACKAGE_ROOT</code></td><td>folder / package explicitly received for analysis</td><td>it is not assumed <code>com.endava.ai.ui.tests</code> decat ca default ATF</td></tr>
+            <tr><td><code>OUTPUT_ATLAS_HTML</code></td><td>the HTML file produced, usually <code>business-test-atlas.html</code></td><td>not to be confused with final run report</td></tr>
+            <tr><td><code>SHARED_REPORT_REFERENCE_CSS</code></td><td>Reused common CSS</td><td>local overrides are reported</td></tr>
+            <tr><td><code>LIVING_ARCHITECTURE_REFERENCE</code></td><td>layers document for interpreting test/action/page/validation/model</td><td>does not become the source of new business</td></tr>
+            <tr><td><code>ATLAS_TEST_EXTENT</code></td><td>the atlas test report after validation</td><td>the numbers in the atlas must be synchronized</td></tr>
+            <tr><td><code>MUST_PRODUCE</code></td><td><code>business-test-atlas.html</code></td><td>mandatory output</td></tr>
+            <tr><td><code>MUST_NOT_MODIFY_ANALYZED_FILES</code></td><td><code>true</code></td><td>the skill is analysis-only</td></tr>
+          </tbody>
+        </table>
+        <h4>Contract tests for skill migration</h4>
+        <table>
+          <thead><tr><th>Atlas test</th><th>What validates</th><th>Why does it matter?</th></tr></thead>
+          <tbody>
+            <tr><td>atlas.candidate.skill-migration.readiness</td><td>The HTML req documents <code>SKILL.md</code>, frontmatter, description, progressive disclosure, <code>references/</code>, <code>assets/</code>, <code>scripts/</code> and validation</td><td>makes the migration to the skill almost mechanical</td></tr>
+            <tr><td>atlas.candidate.skill-parameters.generic</td><td>input/output/CSS/architecture/audit/read-only are explicit parameters, not paths enclosed in a single <code>ATF_NAME</code></td><td>keep the skill applicable on any test package</td></tr>
+          </tbody>
+        </table>
+        <p class="mini">The ideal skill is a cartographer: it shows what business flows exist in the already written tests and what limits of understanding remain.</p>
+      </details>
+    </div>
+  </details>
+</div>
+
+<script>
+function toggleAll(openState){document.querySelectorAll('details').forEach(function(el){el.open=openState;});}
+</script>
+</body>
+</html>

@@ -1,0 +1,331 @@
+schemaVersion: 1
+contracts:
+  - id: 'mcp.suite.mcp-business-evidence-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest'
+    profile: FULL_PACKAGE
+    category: PACKAGE
+    title: 'Business Evidence Contract'
+    htmlReq: 'ui-business-frontier-adapter.html + execute-and-understand-run.html'
+    purpose: 'Proves that business claims are backed by source, layer handoff, pretraining intake, evidence chain and honest language.'
+  - id: 'mcp.suite.mcp-business-negative-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.negative.McpBusinessNegativeContractTest'
+    profile: UNIVERSAL
+    category: PACKAGE
+    title: 'Business Negative Contract'
+    htmlReq: 'orchestrate-iterative-runs.html'
+    purpose: 'Proves that package business claims are rejected when state/frontier language is stronger than evidence.'
+  - id: 'mcp.suite.mcp-candidate-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.candidate.McpCandidateContractTest'
+    profile: HTML_EXAMPLE_CANDIDATE
+    category: HTML_EXAMPLE_CANDIDATE
+    title: 'HTML Example Candidate Contract'
+    htmlReq: 'score-overview-reference.html + business-flow-graph-rubric.html + reporting.html'
+    purpose: 'Separates MCP-valid from teacher-grade html-ex readiness.'
+  - id: 'mcp.suite.mcp-candidate-negative-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.negative.McpCandidateNegativeContractTest'
+    profile: HTML_EXAMPLE_CANDIDATE
+    category: HTML_EXAMPLE_CANDIDATE
+    title: 'Candidate Negative Contract'
+    htmlReq: 'score-overview-reference.html + business-flow-graph-rubric.html'
+    purpose: 'Proves that shallow business objects, absence-as-ownership and inflated candidate scores are rejected.'
+  - id: 'mcp.suite.mcp-configured-package-audit-test'
+    className: 'com.endava.ai.skills.mcp.tests.core.McpConfiguredPackageAuditTest'
+    profile: FULL_PACKAGE
+    category: PACKAGE
+    title: 'Configured Package Audit'
+    htmlReq: 'orchestrate-iterative-runs.html'
+    purpose: 'Smoke-validates the configured/latest generated package against the MCP package close-out blocker set.'
+  - id: 'mcp.suite.mcp-extent-screenshot-browser-visibility-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.core.McpExtentScreenshotBrowserVisibilityContractTest'
+    profile: UI_PACKAGE
+    category: RUN
+    title: 'MCP Extent Screenshot Browser Visibility Contract'
+    htmlReq: 'execute-and-understand-run.html'
+    purpose: 'Calibrates static screenshot evidence detection against what Chromium actually renders.'
+  - id: 'mcp.suite.mcp-generated-package-validator-test'
+    className: 'com.endava.ai.skills.mcp.tests.negative.McpGeneratedPackageValidatorTest'
+    profile: FULL_PACKAGE
+    category: PACKAGE
+    title: 'MCP Rule Metadata Contract'
+    htmlReq: 'orchestrate-iterative-runs.html'
+    purpose: 'Proves that every executable MCP rule exposes unique contract metadata.'
+  - id: 'mcp.suite.mcp-html-example-corpus-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.candidate.McpHtmlExampleCorpusContractTest'
+    profile: HTML_EXAMPLE_CANDIDATE
+    category: HTML_EXAMPLE_CANDIDATE
+    title: 'HTML Example Corpus Contract'
+    htmlReq: 'score-overview-reference.html'
+    purpose: 'Classifies historical html-ex examples without forcing them through the strict latest-package gate.'
+  - id: 'mcp.suite.mcp-html-ex-reference-health-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.core.McpHtmlExReferenceHealthContractTest'
+    profile: UNIVERSAL
+    category: PACKAGE
+    title: 'HTML Example Reference Health Contract'
+    htmlReq: 'score-overview-reference.html + reporting.html'
+    purpose: 'Keeps the local docs/html-ex reference library usable by MCP sanity and final-report close-out template checks.'
+  - id: 'mcp.suite.mcp-package-readme-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.contracts.McpPackageReadmeContractTest'
+    profile: UNIVERSAL
+    category: SOURCE
+    title: 'MCP Package README Locator Contract'
+    htmlReq: 'reporting.html + score-overview-reference.html'
+    purpose: 'Keeps score synchronization stable across live docs/out packages and copied html-ex example archives.'
+  - id: 'mcp.suite.mcp-latest-package-architecture-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.latest.McpLatestPackageArchitectureContractTest'
+    profile: FULL_PACKAGE
+    category: SOURCE
+    title: 'Source Architecture Contract'
+    htmlReq: 'Living_Architecture_UI_API_doc_v1_0.html'
+    purpose: 'Proves that generated package diffs do not mutate protected framework layers and UI tests respect living architecture.'
+  - id: 'mcp.suite.mcp-latest-package-business-graph-presentation-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest'
+    profile: FULL_PACKAGE
+    category: GRAPH
+    title: 'Business Graph Contract'
+    htmlReq: 'business-flow-graph-rubric.html + shared/graph-style-primitives.html'
+    purpose: 'Proves that Business Flow Graph is application-first, readable, calm, proof-linked and not a procedural run inventory.'
+  - id: 'mcp.suite.mcp-latest-package-extent-evidence-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest'
+    profile: FULL_PACKAGE
+    category: RUN
+    title: 'Extent Evidence Contract'
+    htmlReq: 'execute-and-understand-run.html'
+    purpose: 'Proves that per-run Extent/XML/MCP evidence is real, portable, self-contained and synchronized with scoring.'
+  - id: 'mcp.suite.mcp-latest-package-html-report-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest'
+    profile: FULL_PACKAGE
+    category: REPORT
+    title: 'Final Report Contract'
+    htmlReq: 'reporting.html'
+    purpose: 'Proves that the final HTML report publishes the canonical business structure, runtime truth and run evidence links.'
+  - id: 'mcp.suite.mcp-latest-package-link-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.latest.McpLatestPackageLinkContractTest'
+    profile: FULL_PACKAGE
+    category: LINKS
+    title: 'Report Link Contract'
+    htmlReq: 'reporting.html'
+    purpose: 'Proves that final-report local links and saved link audit are reopenable.'
+  - id: 'mcp.suite.mcp-latest-package-report-presentation-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest'
+    profile: FULL_PACKAGE
+    category: REPORT
+    title: 'Report Presentation Contract'
+    htmlReq: 'reporting.html + shared/report-shell.html + shared/artifact-linking.html'
+    purpose: 'Proves that the final report reuses shared CSS, html-ex rhythm, collapsible structure and frozen MCP evidence links.'
+  - id: 'mcp.suite.mcp-latest-package-run-quality-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest'
+    profile: FULL_PACKAGE
+    category: RUN
+    title: 'Run Evidence Contract'
+    htmlReq: 'execute-and-understand-run.html'
+    purpose: 'Proves that every counted run has state, diff, machine result, learning and Java-test countability.'
+  - id: 'mcp.suite.mcp-latest-package-score-and-opening-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest'
+    profile: FULL_PACKAGE
+    category: SCORE
+    title: 'Score And Opening Contract'
+    htmlReq: 'score-overview-reference.html + shared/score-card-patterns.html'
+    purpose: 'Proves that score cards, Overall, cap, Executive Context and opening shape publish cold score truth.'
+  - id: 'mcp.suite.mcp-post-sync-smoke-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.smoke.McpPostSyncSmokeContractTest'
+    profile: FULL_PACKAGE
+    category: PACKAGE
+    title: 'MCP Post-Sync Smoke Contract'
+    htmlReq: 'orchestrate-iterative-runs.html + reporting.html'
+    purpose: 'Fast file-level verification that copied/regenerated validation/mcp artifacts, final-report links, Maven command provenance and green XML/gate counts still agree after artifact synchronization.'
+  - id: 'mcp.suite.mcp-package-audit-preflight-test'
+    className: 'com.endava.ai.skills.mcp.tests.core.McpPackageAuditPreflightTest'
+    profile: FULL_PACKAGE
+    category: PACKAGE
+    title: 'MCP Package Audit Preflight'
+    htmlReq: 'orchestrate-iterative-runs.html'
+    purpose: 'Explains package-audit inputs once before heavy package checks run.'
+  - id: 'mcp.suite.mcp-package-shape-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.core.shape.McpPackageShapeContractTest'
+    profile: FULL_PACKAGE
+    category: PACKAGE
+    title: 'MCP Package Shape Contract'
+    htmlReq: 'orchestrate-iterative-runs.html'
+    purpose: 'Keep MCP packages small enough to stay readable and easy to navigate.'
+  - id: 'mcp.suite.mcp-project-locator-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.core.McpProjectLocatorContractTest'
+    profile: FULL_PACKAGE
+    category: PACKAGE
+    title: 'MCP Project Locator Contract'
+    htmlReq: 'orchestrate-iterative-runs.html'
+    purpose: 'Keeps latest package discovery convenient locally while requiring explicit package roots for gates.'
+  - id: 'mcp.suite.mcp-package-audit-context-cache-contract-test'
+    className: 'com.endava.ai.skills.mcp.validation.McpPackageAuditContextCacheContractTest'
+    profile: FULL_PACKAGE
+    category: PACKAGE
+    title: 'MCP Package Audit Context Cache Contract'
+    htmlReq: 'orchestrate-iterative-runs.html'
+    purpose: 'Proves that package-audit assertions share one validation snapshot per audited package root instead of reparsing the full package for every test method.'
+  - id: 'mcp.suite.mcp-report-negative-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.negative.McpReportNegativeContractTest'
+    profile: HTML_REPORT
+    category: REPORT
+    title: 'Report Negative Contract'
+    htmlReq: 'reporting.html'
+    purpose: 'Proves that report drift, closed graph, CSS drift, broken links and generic close-out are rejected.'
+  - id: 'mcp.suite.mcp-report-profile-classloading-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.core.McpReportProfileClassloadingContractTest'
+    profile: HTML_REPORT
+    category: REPORT
+    title: 'MCP Report Profile Classloading Contract'
+    htmlReq: 'reporting.html'
+    purpose: 'Separates MCP-owned report-profile classloading health from package-owned latest artifact failures.'
+  - id: 'mcp.suite.mcp-rule-routing-catalog-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.contracts.McpRuleRoutingCatalogContractTest'
+    profile: UNIVERSAL
+    category: SOURCE
+    title: 'MCP Rule Routing Catalog Contract'
+    htmlReq: 'docs/prompts/html_ro/mcp/orchestrate-iterative-runs.html'
+    purpose: 'Proves that executable MCP rule routing remains visible, unique and separated by agent-facing profile.'
+  - id: 'mcp.suite.mcp-business-understanding-consumer-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.contracts.McpBusinessUnderstandingConsumerContractTest'
+    profile: UNIVERSAL
+    category: REPORT
+    title: 'MCP BU'
+    htmlReq: 'reporting.html'
+    purpose: 'Consumes BU kernel; no Atlas imports.'
+  - id: 'mcp.suite.mcp-run-calibration-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.core.calibration.McpRunCalibrationContractTest'
+    profile: FULL_PACKAGE
+    category: RUN
+    title: 'MCP Run Calibration Contract'
+    htmlReq: 'execute-and-understand-run.html'
+    purpose: 'Keeps MCP strict on artifact truth while accepting native Extent/TestNG output shapes.'
+  - id: 'mcp.suite.mcp-run-evidence-calibration-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.core.calibration.McpRunEvidenceCalibrationContractTest'
+    profile: FULL_PACKAGE
+    category: RUN
+    title: 'MCP Run Evidence Calibration Contract'
+    htmlReq: 'execute-and-understand-run.html'
+    purpose: 'Keeps run evidence parsing calibrated for native Extent screenshots, TestNG XML countability and runtime audit markers.'
+  - id: 'mcp.suite.mcp-run-countability-rule-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.core.calibration.McpRunCountabilityRuleContractTest'
+    profile: FULL_PACKAGE
+    category: RUN
+    title: 'MCP Run Countability Rule Contract'
+    htmlReq: 'execute-and-understand-run.html'
+    purpose: 'Proves TestNG XML countability is strict on real @Test methods and ignores lifecycle/config methods.'
+  - id: 'mcp.suite.mcp-run-diff-negative-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.negative.run.McpRunDiffNegativeContractTest'
+    profile: UI_PACKAGE
+    category: RUN
+    title: 'Run Diff Negative Contract'
+    htmlReq: 'execute-and-understand-run.html'
+    purpose: 'Proves that repeated per-run diffs are rejected.'
+  - id: 'mcp.suite.mcp-run-extent-negative-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.negative.run.McpRunExtentNegativeContractTest'
+    profile: UI_PACKAGE
+    category: RUN
+    title: 'Run Extent Negative Contract'
+    htmlReq: 'execute-and-understand-run.html'
+    purpose: 'Proves that per-run Extent remains Maven-native execution evidence.'
+  - id: 'mcp.suite.mcp-run-extent-provenance-negative-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.negative.run.McpRunExtentProvenanceNegativeContractTest'
+    profile: UI_PACKAGE
+    category: RUN
+    title: 'Run Extent Provenance Negative Contract'
+    htmlReq: 'execute-and-understand-run.html'
+    purpose: 'Proves that Extent origin metadata is a frozen Maven snapshot, not a loose text receipt.'
+  - id: 'mcp.suite.mcp-run-learning-negative-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.negative.run.McpRunLearningNegativeContractTest'
+    profile: UI_PACKAGE
+    category: RUN
+    title: 'Run Learning Negative Contract'
+    htmlReq: 'execute-and-understand-run.html'
+    purpose: 'Proves that non-progressive run learning is rejected.'
+  - id: 'mcp.suite.mcp-run-state-negative-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.negative.run.McpRunStateNegativeContractTest'
+    profile: UI_PACKAGE
+    category: RUN
+    title: 'Run State Negative Contract'
+    htmlReq: 'execute-and-understand-run.html'
+    purpose: 'Proves that counted runs without state evidence are rejected.'
+  - id: 'mcp.suite.mcp-runtime-and-package-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest'
+    profile: FULL_PACKAGE
+    category: PACKAGE
+    title: 'Runtime And Package Contract'
+    htmlReq: 'orchestrate-iterative-runs.html'
+    purpose: 'Proves that the package identity, runtime counters, state files, README and freshness all describe the same governed package.'
+  - id: 'mcp.suite.mcp-runtime-negative-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.negative.McpRuntimeNegativeContractTest'
+    profile: UNIVERSAL
+    category: RUNTIME
+    title: 'Runtime Negative Contract'
+    htmlReq: 'agent-runtime.properties + orchestrate-iterative-runs.html'
+    purpose: 'Proves that runtime target drift is rejected instead of silently accepted by package artifacts.'
+  - id: 'mcp.suite.mcp-score-negative-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.negative.McpScoreNegativeContractTest'
+    profile: HTML_REPORT
+    category: SCORE
+    title: 'Score Negative Contract'
+    htmlReq: 'score-overview-reference.html'
+    purpose: 'Proves that score drift and score-cap inflation are rejected.'
+  - id: 'mcp.suite.mcp-semantic-package-validator-test'
+    className: 'com.endava.ai.skills.mcp.tests.core.McpSemanticPackageValidatorTest'
+    profile: UNIVERSAL
+    category: PACKAGE
+    title: 'Semantic Evidence Negative Contract'
+    htmlReq: 'business-flow-graph-rubric.html'
+    purpose: 'Proves that business object and frontier words must travel across report, run state, diff and proof families.'
+  - id: 'mcp.suite.mcp-source-negative-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.negative.McpSourceNegativeContractTest'
+    profile: UNIVERSAL
+    category: SOURCE
+    title: 'Source Negative Contract'
+    htmlReq: 'Living_Architecture_UI_API_doc_v1_0.html'
+    purpose: 'Proves that protected framework/MCP/core source mutations in generated package diffs are rejected.'
+  - id: 'mcp.suite.mcp-test-ng-profile-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.core.profiles.McpTestNgProfileContractTest'
+    profile: FULL_PACKAGE
+    category: PACKAGE
+    title: 'MCP TestNG Profile Contract'
+    htmlReq: 'orchestrate-iterative-runs.html'
+    purpose: 'Keeps fast MCP run/preflight/candidate/full TestNG profiles explicit and drift-resistant.'
+  - id: 'mcp.suite.mcp-ui-negative-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.negative.McpUiNegativeContractTest'
+    profile: UI_PACKAGE
+    category: UI_WRAPPER
+    title: 'UI Negative Contract'
+    htmlReq: 'Living_Architecture_UI_API_doc_v1_0.html'
+    purpose: 'Proves that generated MCP UI tests stay visible in framework reporting and cannot opt out of Extent/Allure.'
+  - id: 'mcp.suite.mcp-yaml-check-ref-contract-test'
+    className: 'com.endava.ai.skills.mcp.tests.contracts.McpYamlCheckRefContractTest'
+    profile: UNIVERSAL
+    category: SOURCE
+    title: 'MCP YAML Check References'
+    htmlReq: 'docs/prompts/html_ro/mcp/reporting.html'
+    purpose: 'Allows verbose MCP check narratives to move from Java annotations into YAML without losing auditability.'
+  - id: 'mcp.suite.mcp-yaml-contract-matrix-test'
+    className: 'com.endava.ai.skills.mcp.tests.contracts.McpYamlContractMatrixTest'
+    profile: UNIVERSAL
+    category: SOURCE
+    title: 'MCP YAML Contract Matrix'
+    htmlReq: 'docs/prompts/html_ro/mcp/reporting.html'
+    purpose: 'Keeps agent-facing KPI matrix output backed by YAML metadata plus Java values.'
+  - id: 'mcp.suite.mcp-yaml-contract-schema-test'
+    className: 'com.endava.ai.skills.mcp.tests.contracts.McpYamlContractSchemaTest'
+    profile: UNIVERSAL
+    category: SOURCE
+    title: 'MCP YAML Contract Schema'
+    htmlReq: 'docs/prompts/html_ro/mcp/reporting.html'
+    purpose: 'Keep YAML contract metadata descriptive only, complete, and parseable by Java.'
+  - id: 'mcp.suite.mcp-prompt-contract-ownership-test'
+    className: 'com.endava.ai.skills.mcp.tests.contracts.prompt.McpPromptContractOwnershipTest'
+    profile: UNIVERSAL
+    category: SOURCE
+    title: 'MCP Prompt Ownership'
+    htmlReq: 'docs/prompts/html_ro/mcp/orchestrate-iterative-runs.html'
+    purpose: 'Keeps prompt ownership and shared CSS aligned.'
+  - id: 'mcp.suite.mcp-yaml-contract-sync-test'
+    className: 'com.endava.ai.skills.mcp.tests.contracts.McpYamlContractSyncTest'
+    profile: UNIVERSAL
+    category: SOURCE
+    title: 'MCP YAML Contract Sync'
+    htmlReq: 'docs/prompts/html_ro/mcp/orchestrate-iterative-runs.html'
+    purpose: 'Proves declarative YAML explains executable Java KPI validation without replacing it.'

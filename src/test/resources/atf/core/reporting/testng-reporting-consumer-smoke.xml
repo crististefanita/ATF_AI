@@ -1,0 +1,22 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="ATF Reporting Consumer Smoke" verbose="1">
+    <test name="core-reporting-sample">
+        <classes>
+            <class name="com.endava.ai.atf.core.reporting.integration.skills.CoreReportingMatrixContractTest"/>
+            <class name="com.endava.ai.atf.core.reporting.integration.skills.ReportingBusinessGraphConsumerBridgeContractTest"/>
+            <class name="com.endava.ai.atf.core.reporting.integration.skills.ReportingBusinessGraphMcpCompatibilityContractTest"/>
+        </classes>
+    </test>
+    <test name="atlas-reporting-sample">
+        <classes>
+            <class name="com.endava.ai.skills.atlas.tests.profile.AtlasTestNgProfileContractTest"/>
+            <class name="com.endava.ai.skills.atlas.tests.catalog.AtlasRuleCatalogContractTest"/>
+        </classes>
+    </test>
+    <test name="mcp-reporting-sample">
+        <classes>
+            <class name="com.endava.ai.skills.mcp.tests.core.profiles.McpTestNgProfileContractTest"/>
+            <class name="com.endava.ai.skills.mcp.tests.core.shape.McpPackageShapeContractTest"/>
+        </classes>
+    </test>
+</suite>

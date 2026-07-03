@@ -1,0 +1,26 @@
+schemaVersion: 1
+contracts:
+  - id: final-mcp-evidence
+    label: Final MCP evidence is incomplete or not frozen
+    repair: "rerun testng-mcp-package-closeout.xml with explicit -Dmcp.package.root, then freeze validation/mcp/ExtentReport.html, XML, ledger, gate, sha and origin"
+  - id: report-links
+    label: Final report/README do not hyperlink the required evidence spine
+    repair: "update README.md and analysis/langgraph-business-understanding.html to point at run proof, governance artifacts, validation/mcp Extent, XML, ledger, origin and gate"
+  - id: report-shell
+    label: LangGraph report shell drifts from the required html-ex shape
+    repair: "regenerate the final report from the approved reporting template; keep business sections, score overview, artifact index and MCP close-out row visible"
+  - id: run-spine
+    label: Per-run artifact spine is incomplete
+    repair: "repair each run folder before rescoring: Extent, XML, diff, state, input snapshot, manifest and immutable hash/origin evidence"
+  - id: score-truth
+    label: Score/cap is not aligned with the observed evidence
+    repair: "lower the score or repair the blockers first; 95+ needs clean close-out evidence, not only a diagnostic sweep"
+  - id: provenance
+    label: Hash/origin/provenance evidence is missing or inconsistent
+    repair: "regenerate only from the real Maven execution, then update sha256/origin without editing the frozen HTML by hand"
+  - id: business-proof
+    label: Business claim/proof chain is not structurally traceable
+    repair: "align the claim, source diff, run-state, machine proof and Proof Mapping row before publishing the score"
+  - id: source-architecture
+    label: Source/package architecture evidence is not clean enough for publishability
+    repair: "repair only generated-package code and artifact references; do not patch ATF core, MCP core, ui.core or api.core to make a run pass"

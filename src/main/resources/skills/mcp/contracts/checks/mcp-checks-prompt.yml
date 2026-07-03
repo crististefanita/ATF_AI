@@ -1,0 +1,17 @@
+schemaVersion: 1
+contracts:
+  - id: 'mcp.yaml-contract.html-contract-ownership'
+    expected: 'docs/prompts/html-contract-ownership.yml declares owner, appliesTo, role and usage for every active English/Romanian prompt contract mirrored under docs/prompts/html_EN and docs/prompts/html_ro with the same owner subfolders.'
+    artifacts: 'docs/prompts/html-contract-ownership.yml,docs/prompts/html_EN/**/*.html,docs/prompts/html_EN/**/*.md,docs/prompts/html_EN/**/*.properties,docs/prompts/html_ro/**/*.html,docs/prompts/html_ro/**/*.md,docs/prompts/html_ro/**/*.properties,src/main/resources/skills/mcp/contracts/suites/mcp-suites.yml,src/main/resources/skills/atlas/contracts/suites.yml'
+    failureMeaning: 'Prompt contracts can become a shared dumping ground where MCP, Atlas and shared report requirements drift without ownership.'
+    repairHint: 'Update html-contract-ownership.yml when adding or retiring a prompt contract; use usage=informational only for files not referenced by MCP/Atlas suite metadata.'
+  - id: 'mcp.yaml-contract.prompt-shared-css-asset'
+    expected: 'Prompt HTML documents under html_EN/html_ro link the language-neutral docs/prompts/assets/shared-report-reference.css asset, and that asset stays byte-for-byte aligned with docs/shared-report-reference.css.'
+    artifacts: 'docs/prompts/assets/shared-report-reference.css,docs/shared-report-reference.css,docs/prompts/html_EN/**/*.html,docs/prompts/html_ro/**/*.html'
+    failureMeaning: 'The prompt HTML requirement documents can fork visual styling by language or validator product, making MCP/Atlas/Core report guidance inconsistent.'
+    repairHint: 'Keep prompt-rendering CSS in docs/prompts/assets, link it from every prompt HTML file with ../../assets/shared-report-reference.css, and update it only together with docs/shared-report-reference.css.'
+  - id: 'mcp.yaml-contract.prompt-profile-flow-coverage'
+    expected: 'MCP orchestration, per-run execution and reporting prompt documents in English and Romanian mention every active agentic execution profile, including run-preflight, post-sync smoke and final-report close-out.'
+    artifacts: 'docs/prompts/html_EN/mcp/orchestrate-iterative-runs.html,docs/prompts/html_ro/mcp/orchestrate-iterative-runs.html,docs/prompts/html_EN/mcp/execute-and-understand-run.html,docs/prompts/html_ro/mcp/execute-and-understand-run.html,docs/prompts/html_EN/mcp/reporting.html,docs/prompts/html_ro/mcp/reporting.html,src/main/resources/skills/mcp/contracts/profiles.yml'
+    failureMeaning: 'Agents can follow stale prompt text, skip post-sync/final-report close-out, or publish a full sweep as final MCP evidence.'
+    repairHint: 'Synchronize html_EN/html_ro MCP prompt tables with the profile catalog and regenerate md-en mirrors.'

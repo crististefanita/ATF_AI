@@ -1,0 +1,35 @@
+package com.endava.ai.skills.atlas.registry;
+
+import com.endava.ai.skills.atlas.rules.AtlasValidationRule;
+import com.endava.ai.skills.atlas.rules.business.AtlasObservedGapsSecondaryRule;
+import com.endava.ai.skills.atlas.rules.graph.AtlasBusinessSubgraphsCollapsedRule;
+import com.endava.ai.skills.atlas.rules.structure.AtlasExecutiveContextShapeRule;
+import com.endava.ai.skills.atlas.rules.structure.AtlasReportLanguageRule;
+import com.endava.ai.skills.atlas.rules.structure.AtlasSectionNumberPlacementRule;
+import com.endava.ai.skills.atlas.rules.structure.AtlasSectionNumberingRule;
+import com.endava.ai.skills.atlas.rules.structure.AtlasSectionToolbarRule;
+import com.endava.ai.skills.atlas.rules.structure.AtlasSemanticContractMarkersRule;
+import com.endava.ai.skills.atlas.rules.structure.AtlasSharedReportShellRule;
+import com.endava.ai.skills.atlas.rules.structure.AtlasTopLevelSectionContinuityRule;
+
+import java.util.List;
+
+public final class AtlasStructureRules {
+    private AtlasStructureRules() {
+    }
+
+    public static List<AtlasValidationRule> rules() {
+        return List.of(
+                new AtlasSharedReportShellRule(),
+                new AtlasExecutiveContextShapeRule(),
+                new AtlasSemanticContractMarkersRule(),
+                new AtlasBusinessSubgraphsCollapsedRule(),
+                new AtlasSectionToolbarRule(),
+                new AtlasReportLanguageRule(),
+                new AtlasSectionNumberingRule(),
+                new AtlasSectionNumberPlacementRule(),
+                new AtlasTopLevelSectionContinuityRule(),
+                new AtlasObservedGapsSecondaryRule()
+        );
+    }
+}

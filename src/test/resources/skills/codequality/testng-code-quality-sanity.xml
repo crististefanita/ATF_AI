@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="ATF Code Quality Skill Sanity" verbose="1">
+    <test name="code-quality-sanity">
+        <classes>
+            <class name="com.endava.ai.skills.codequality.tests.AtfCodeQualityPackageClassLimitContractTest"/>
+            <class name="com.endava.ai.skills.codequality.tests.AtfCodeQualityClassSizeContractTest"/>
+            <class name="com.endava.ai.skills.codequality.tests.AtfCodeQualityMethodSizeContractTest"/>
+            <class name="com.endava.ai.skills.codequality.tests.AtfCodeQualityAssertionDensityContractTest"/>
+            <class name="com.endava.ai.skills.codequality.tests.AtfCodeQualityGovernanceResourceContractTest"/>
+            <class name="com.endava.ai.skills.codequality.tests.AtfCodeQualityDependencyBoundaryContractTest"/>
+            <class name="com.endava.ai.skills.codequality.tests.AtfCodeQualityJavaCompatibilityContractTest"/>
+        </classes>
+    </test>
+</suite>

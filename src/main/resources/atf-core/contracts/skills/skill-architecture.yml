@@ -1,0 +1,429 @@
+schemaVersion: 1
+contracts:
+  - id: skill.core
+    kind: skill
+    owner: Core
+    role: Reusable runtime and framework library for config lifecycle listener core.support kernel and shared support
+    sourceRoot: src/main/java/com/endava/ai/core
+    testRoot: src/test/java/com/endava/ai/atf
+    readme: src/main/java/com/endava/ai/core/README.md
+    sanitySuite: src/test/resources/atf/core/suites/core/testng-atf-core-sanity.xml
+    deepSuite: src/test/resources/atf/core/suites/core/testng-atf-core.xml
+    promptRoot: docs/prompts/html_ro/shared
+    readingPath:
+      - src/main/java/com/endava/ai/core/README.md
+      - src/main/resources/atf-core/contracts/skills/skill-architecture.yml
+      - src/test/resources/atf/core/suites/core/testng-atf-core-smoke.xml
+      - src/test/resources/atf/core/suites/core/testng-atf-core-sanity.xml
+    consumes:
+      - none
+    collaboratesThrough: Public Java APIs YAML contracts and published artifacts
+    artifactPolicy: Core may publish reusable target reports, but it must not own docs/out package runs, MCP close-out artifacts, html-ex promotion, or Atlas business outputs.
+    forbiddenMainImports:
+      - com.endava.ai.skills.mcp
+      - com.endava.ai.skills.atlas
+    forbiddenTestImports:
+      - none
+    mustMention:
+      - reusable ATF runtime library
+      - core.support
+      - Do not add MCP
+      - Do not add Atlas
+      - testng-atf-core-sanity.xml
+
+  - id: skill.reporting
+    kind: skill
+    owner: Reporting
+    role: Shared reporting skill facade for Extent Spark HTML shell runtime audit artifact links score primitives business graph layout and console-safe report output
+    sourceRoot: src/main/java/com/endava/ai/skills/reporting
+    implementationRoot: src/main/java/com/endava/ai/core/reporting
+    testRoot: src/test/java/com/endava/ai/atf/core/reporting
+    facadeTestRoot: src/test/java/com/endava/ai/skills/reporting
+    readme: src/main/java/com/endava/ai/skills/reporting/README.md
+    sanitySuite: src/test/resources/atf/core/reporting/testng-reporting-sanity.xml
+    deepSuite: src/test/resources/atf/core/suites/reporting/testng-atf-extent.xml
+    promptRoot: docs/prompts/html_ro/shared
+    readingPath:
+      - src/main/java/com/endava/ai/skills/reporting/README.md
+      - src/main/resources/skills/reporting/contracts/reporting-skill-surface.yml
+      - src/test/resources/atf/core/reporting/testng-reporting-sanity.xml
+    consumes:
+      - skill.core
+      - skill.business-understanding
+    collaboratesThrough: Shared report primitives HTML contracts BusinessGraphConstruction layout input Extent artifacts runtime audit and language-neutral CSS assets
+    artifactPolicy: Reporting may publish reusable target reports and shared shell evidence, but it must not decide MCP package publishability or Atlas business meaning.
+    forbiddenMainImports:
+      - com.endava.ai.skills.mcp
+      - com.endava.ai.skills.atlas
+    forbiddenTestImports:
+      - none
+    mustMention:
+      - Reporting skill
+      - facade over com.endava.ai.core.reporting
+      - com.endava.ai.core.reporting
+      - docs/prompts/html-contract-ownership.yml
+      - Extent output needs one shared visual/reporting standard
+      - BusinessGraphLayoutAdapter renders BusinessGraphConstruction without judging business truth
+      - testng-reporting-sanity.xml
+      - testng-reporting-integration.xml
+
+  - id: skill.business-understanding
+    kind: skill
+    owner: Business Understanding
+    role: Shared semantic skill for input-agnostic business objects claims support layers source trace proof chains score truth and understanding limits
+    sourceRoot: src/main/java/com/endava/ai/skills/business
+    acceptedInputs: git-diff-extent, source-structure, final-report, atlas-output
+    semanticPipeline: normalize input, map support layers, identify business objects, trace claims, map proof chains, score understanding, publish limits
+    sharedConsumers: skill.mcp, skill.atlas
+    testRoot: src/test/java/com/endava/ai/skills/business/tests
+    readme: src/main/java/com/endava/ai/skills/business/README.md
+    sanitySuite: src/test/resources/skills/business/testng-business-understanding-sanity.xml
+    deepSuite: src/test/resources/skills/business/testng-business-understanding-sanity.xml
+    promptRoot: docs/prompts/html_ro/shared
+    readingPath:
+      - src/main/java/com/endava/ai/skills/business/README.md
+      - src/main/resources/skills/business/contracts/semantic-pipeline.yml
+      - src/test/resources/skills/business/testng-business-understanding-sanity.xml
+    consumes:
+      - skill.core
+    collaboratesThrough: Neutral semantic value objects YAML pipeline contracts and skill-owned published artifacts
+    artifactPolicy: Business Understanding defines shared semantics only; it must not decide MCP package publishability, own Atlas generated artifacts, or own Reporting shell behavior.
+    forbiddenMainImports:
+      - com.endava.ai.skills.mcp
+      - com.endava.ai.skills.atlas
+      - com.endava.ai.core.reporting
+    forbiddenTestImports:
+      - com.endava.ai.skills.mcp
+      - com.endava.ai.skills.atlas
+    mustMention:
+      - Business Understanding Kernel
+      - input-agnostic semantic pipeline
+      - semantic path must stay the same
+      - Do not decide MCP package publishability
+      - Do not own Atlas generated artifacts
+      - testng-business-understanding-sanity.xml
+
+  - id: skill.code-quality
+    kind: skill
+    owner: Code Quality
+    role: Sonar-like maintainability guardrails for package class count class-size trend YAML shape dependency direction and readability budgets
+    sourceRoot: src/main/java/com/endava/ai/skills/codequality
+    testRoot: src/test/java/com/endava/ai/skills/codequality/tests
+    readme: src/main/java/com/endava/ai/skills/codequality/README.md
+    sanitySuite: src/test/resources/skills/codequality/testng-code-quality-sanity.xml
+    deepSuite: src/test/resources/skills/codequality/testng-code-quality-sanity.xml
+    promptRoot: docs/prompts/html_ro/shared
+    readingPath:
+      - src/main/java/com/endava/ai/skills/codequality/README.md
+      - src/main/resources/skills/codequality/contracts/code-quality.yml
+      - src/test/resources/skills/codequality/testng-code-quality-sanity.xml
+    consumes:
+      - skill.core
+    collaboratesThrough: YAML maintainability contracts TestNG guardrails and target receipts
+    artifactPolicy: Code Quality may publish target receipts for maintainability signals, but it must not decide MCP package publishability Atlas business meaning or Reporting visual semantics.
+    forbiddenMainImports:
+      - com.endava.ai.skills.mcp
+      - com.endava.ai.skills.atlas
+    forbiddenTestImports:
+      - com.endava.ai.skills.mcp
+      - com.endava.ai.skills.atlas
+    mustMention:
+      - Code Quality skill
+      - Sonar-like maintainability guardrails
+      - at most 8 direct Java classes
+      - code-quality.yml
+      - testng-code-quality-sanity.xml
+
+  - id: skill.mcp
+    kind: skill
+    owner: MCP
+    role: Agentic governance skill for generated package legality run evidence close-out artifact truth and candidate promotion
+    sourceRoot: src/main/java/com/endava/ai/skills/mcp
+    testRoot: src/test/java/com/endava/ai/skills/mcp
+    readme: src/main/java/com/endava/ai/skills/mcp/contracts/README.md
+    sanitySuite: src/test/resources/skills/mcp/testng-mcp-sanity.xml
+    deepSuite: src/test/resources/skills/mcp/testng-mcp-package-closeout.xml
+    promptRoot: docs/prompts/html_ro/mcp
+    readingPath:
+      - src/main/java/com/endava/ai/skills/mcp/contracts/README.md
+      - src/main/resources/skills/mcp/contracts/capability-packs.yml
+      - src/main/resources/skills/mcp/contracts/agentic-execution-flow.yml
+      - src/test/resources/skills/mcp/testng-mcp-sanity.xml
+    consumes:
+      - skill.business-understanding
+      - skill.reporting
+      - skill.core
+    collaboratesThrough: YAML bridge metadata frozen validation artifacts and final report links
+    artifactPolicy: MCP owns generated-package validation artifacts under docs/out and candidate/html-ex promotion gates; archived examples must be promoted deliberately, not by copying stale run folders.
+    forbiddenMainImports:
+      - com.endava.ai.skills.atlas
+    forbiddenTestImports:
+      - com.endava.ai.skills.atlas
+    mustMention:
+      - Typed contract metadata
+      - atlas-quality-bridge.yml
+      - MCP final-report closeout
+      - Do not turn `atlas-quality-bridge.yml` into a blocker
+
+  - id: skill.atlas
+    kind: skill
+    owner: Atlas
+    role: Business understanding skill for graph meaning source trace score truth and generated Atlas output quality
+    sourceRoot: src/main/java/com/endava/ai/skills/atlas
+    testRoot: src/test/java/com/endava/ai/skills/atlas
+    readme: src/main/java/com/endava/ai/skills/atlas/rules/README.md
+    sanitySuite: src/test/resources/skills/atlas/testng-atlas-sanity.xml
+    deepSuite: src/test/resources/skills/atlas/testng-atlas.xml
+    promptRoot: docs/prompts/html_ro/atlas
+    readingPath:
+      - src/main/java/com/endava/ai/skills/atlas/rules/README.md
+      - src/main/resources/skills/atlas/contracts/rule-packs.yml
+      - src/test/resources/skills/atlas/testng-atlas-sanity.xml
+    consumes:
+      - skill.business-understanding
+      - skill.reporting
+      - skill.core
+    collaboratesThrough: Generated atlas artifacts rule matrix and optional MCP bridge evidence
+    artifactPolicy: Atlas owns business-understanding atlas artifacts and rule matrices; it consumes package evidence as links, but it must not decide MCP publishability.
+    forbiddenMainImports:
+      - com.endava.ai.skills.mcp
+    forbiddenTestImports:
+      - com.endava.ai.skills.mcp
+    mustMention:
+      - business/audit model
+      - Do not turn Atlas into package close-out governance
+      - Run Atlas sanity/smoke profiles
+
+  - id: prompt.assets
+    kind: prompt-assets
+    owner: Prompt assets
+    role: Versioned prompt contract assets owned by MCP Atlas or shared Reporting primitives; not an independent skill
+    sourceRoot: docs/prompts
+    testRoot: src/test/java/com/endava/ai/skills/mcp/tests/contracts
+    readme: docs/prompts/shared/README.md
+    sanitySuite: src/test/resources/skills/mcp/testng-mcp-sanity.xml
+    deepSuite: src/test/resources/skills/mcp/testng-mcp-self.xml
+    promptRoot: docs/prompts
+    readingPath:
+      - docs/prompts/shared/README.md
+      - docs/prompts/html-contract-ownership.yml
+      - src/test/resources/skills/mcp/testng-mcp-sanity.xml
+    consumes:
+      - skill.mcp
+      - skill.atlas
+      - skill.business-understanding
+      - skill.reporting
+      - skill.core
+    collaboratesThrough: html_ro html_EN mirrors html-contract-ownership.yml and shared assets
+    artifactPolicy: Prompt contracts are versioned source assets; generated mirrors and translated files must stay synchronized through ownership tests.
+    forbiddenMainImports:
+      - none
+    forbiddenTestImports:
+      - none
+    mustMention:
+      - Shared Prompt Ownership
+      - html-contract-ownership.yml
+      - docs/prompts/assets
+      - not a separate validator product
+
+  - id: flow.core.sanity
+    kind: flow
+    owner: skill.core
+    order: 10
+    suiteXml: src/test/resources/atf/core/suites/core/testng-atf-core-sanity.xml
+    role: Isolated Core health for framework and runtime architecture
+    gate: Must pass before Core changes are trusted
+
+  - id: flow.core.smoke
+    kind: flow
+    owner: skill.core
+    order: 5
+    suiteXml: src/test/resources/atf/core/suites/core/testng-atf-core-smoke.xml
+    role: Smallest Core boundary smoke for profile routing YAML manifest and skill architecture drift
+    gate: Optional preflight before broader Core sanity or fast suites; canonical Core use-cases still start from sanity
+
+  - id: flow.reporting.sanity
+    kind: flow
+    owner: skill.reporting
+    order: 15
+    suiteXml: src/test/resources/atf/core/reporting/testng-reporting-sanity.xml
+    role: Isolated neutral Reporting skill health through shared Core reporting contracts
+    gate: Must pass before shared report shell or Extent/Spark behavior is trusted
+
+  - id: flow.reporting.integration
+    kind: flow
+    owner: skill.reporting
+    order: 16
+    suiteXml: src/test/resources/atf/core/reporting/testng-reporting-integration.xml
+    role: Consumer integration proof for MCP Atlas and Core-style reports using the shared shell
+    gate: Must pass after changing consumer-facing report shell semantics
+
+  - id: flow.reporting.consumer-smoke
+    kind: flow
+    owner: skill.reporting
+    order: 17
+    suiteXml: src/test/resources/atf/core/reporting/testng-reporting-consumer-smoke.xml
+    role: Tiny cross-skill smoke proving MCP and Atlas consumers still load beside Reporting without turning Reporting into their owner
+    gate: Optional consumer smoke after Reporting integration when MCP or Atlas-facing report shell contracts change
+
+  - id: flow.mcp.sanity
+    kind: flow
+    owner: skill.mcp
+    order: 20
+    suiteXml: src/test/resources/skills/mcp/testng-mcp-sanity.xml
+    role: Isolated MCP validator health for profiles YAML routing package shape and prompt ownership
+    gate: Must pass before MCP validates generated packages
+
+  - id: flow.business-understanding.sanity
+    kind: flow
+    owner: skill.business-understanding
+    order: 25
+    suiteXml: src/test/resources/skills/business/testng-business-understanding-sanity.xml
+    role: Isolated shared semantic kernel health for MCP and Atlas business understanding
+    gate: Must pass before shared business-understanding semantics are trusted by MCP or Atlas
+
+  - id: flow.code-quality.sanity
+    kind: flow
+    owner: skill.code-quality
+    order: 27
+    suiteXml: src/test/resources/skills/codequality/testng-code-quality-sanity.xml
+    role: Isolated Code Quality health for package class-count and maintainability ratchets
+    gate: Must pass before package-shape or Sonar-like maintainability changes are trusted
+
+  - id: flow.mcp.package-closeout
+    kind: flow
+    owner: skill.mcp
+    order: 30
+    suiteXml: src/test/resources/skills/mcp/testng-mcp-package-closeout.xml
+    role: Final generated package artifact gate
+    gate: Produces frozen validation/mcp evidence
+
+  - id: flow.mcp.final-report-closeout
+    kind: flow
+    owner: skill.mcp
+    order: 40
+    suiteXml: src/test/resources/skills/mcp/testng-mcp-final-report-closeout.xml
+    role: Final report surface link count browser evidence and frozen artifact synchronization gate after package artifacts are frozen
+    gate: Report surface validation before semantic LangGraph report validation
+
+  - id: flow.mcp.langgraph-final-report-validation
+    kind: flow
+    owner: skill.mcp
+    order: 45
+    suiteXml: src/test/resources/skills/mcp/testng-mcp-langgraph-final-report.xml
+    role: Dedicated validation collection for analysis/langgraph-business-understanding.html after final-report surface close-out
+    gate: Last MCP report meaning validation before candidate/html-ex promotion
+
+  - id: flow.atlas.sanity
+    kind: flow
+    owner: skill.atlas
+    order: 50
+    suiteXml: src/test/resources/skills/atlas/testng-atlas-sanity.xml
+    role: Isolated Atlas skill health
+    gate: Must pass before Atlas business understanding claims are trusted
+
+  - id: flow.atlas.full
+    kind: flow
+    owner: skill.atlas
+    order: 60
+    suiteXml: src/test/resources/skills/atlas/testng-atlas.xml
+    role: Full business understanding and atlas audit validation
+    gate: Validates business graph trace score and generated atlas outputs
+
+  - id: usecase.generated-package-closeout
+    kind: use-case
+    owner: skill.mcp
+    primarySkill: skill.mcp
+    supportSkills:
+      - skill.core
+      - skill.business-understanding
+      - skill.reporting
+      - skill.atlas
+    suites:
+      - src/test/resources/skills/mcp/testng-mcp-sanity.xml
+      - src/test/resources/skills/mcp/testng-mcp-run-preflight.xml
+      - src/test/resources/skills/mcp/testng-mcp-package-audit.xml
+      - src/test/resources/skills/mcp/testng-mcp-package-closeout.xml
+      - src/test/resources/skills/mcp/testng-mcp-post-sync-smoke.xml
+      - src/test/resources/skills/mcp/testng-mcp-final-report-closeout.xml
+      - src/test/resources/skills/mcp/testng-mcp-langgraph-final-report.xml
+    promptDocs:
+      - docs/prompts/html_ro/mcp/orchestrate-iterative-runs.html
+      - docs/prompts/html_ro/mcp/execute-and-understand-run.html
+      - docs/prompts/html_ro/mcp/reporting.html
+    sanityFirst: true
+    artifactHandoff: validation/mcp artifacts extent-origin.json and langgraph-business-understanding.html links
+    artifactPolicy: docs/out package artifacts are working evidence; html-ex receives only curated replacements after package-closeout and final-report-closeout pass.
+    stopCondition: No source changes after package-closeout; only report/link sync before final-report-closeout and only langgraph-business-understanding.html semantic repair before langgraph-final-report validation
+
+  - id: usecase.business-understanding-audit
+    kind: use-case
+    owner: skill.atlas
+    primarySkill: skill.atlas
+    supportSkills:
+      - skill.core
+      - skill.reporting
+      - skill.business-understanding
+    suites:
+      - src/test/resources/skills/atlas/testng-atlas-sanity.xml
+      - src/test/resources/skills/atlas/testng-atlas.xml
+    promptDocs:
+      - docs/prompts/html_ro/atlas/business-test-atlas-reference.html
+    sanityFirst: true
+    artifactHandoff: business-test-atlas.html atlas rule matrix and source-to-business trace
+    artifactPolicy: Atlas outputs explain business meaning and source trace; they are not substitutes for MCP validation/mcp evidence.
+    stopCondition: Atlas explains business meaning without deciding MCP package publishability
+
+  - id: usecase.business-understanding-kernel-change
+    kind: use-case
+    owner: skill.business-understanding
+    primarySkill: skill.business-understanding
+    supportSkills:
+      - skill.core
+    suites:
+      - src/test/resources/skills/business/testng-business-understanding-sanity.xml
+      - src/test/resources/skills/mcp/testng-mcp-langgraph-final-report.xml
+      - src/test/resources/skills/atlas/testng-atlas-sanity.xml
+    promptDocs:
+      - src/main/java/com/endava/ai/skills/business/README.md
+    sanityFirst: true
+    artifactHandoff: business-understanding semantic pipeline contract plus MCP/Atlas consumer verification
+    artifactPolicy: Shared semantics may be consumed by MCP and Atlas, but the owning skills publish their own artifacts and gates.
+    stopCondition: Semantic pipeline remains input-agnostic and does not decide MCP publishability, Atlas artifact ownership or Reporting presentation
+
+  - id: usecase.core-library-change
+    kind: use-case
+    owner: skill.core
+    primarySkill: skill.core
+    supportSkills:
+      - none
+    suites:
+      - src/test/resources/atf/core/suites/core/testng-atf-core-sanity.xml
+      - src/test/resources/atf/core/suites/core/testng-atf-core.xml
+    promptDocs:
+      - docs/prompts/shared/README.md
+    sanityFirst: true
+    artifactHandoff: target/reports core contract report and ownership matrix
+    artifactPolicy: Core reports are reusable framework evidence; they must not scan docs/out, docs/atlas/validation or generated package run folders as sanity inputs.
+    stopCondition: Core stays generic and MCP/Atlas-specific rules remain outside Core
+
+  - id: usecase.reporting-library-change
+    kind: use-case
+    owner: skill.reporting
+    primarySkill: skill.reporting
+    supportSkills:
+      - skill.core
+    suites:
+      - src/test/resources/atf/core/reporting/testng-reporting-sanity.xml
+      - src/test/resources/atf/core/reporting/testng-reporting-integration.xml
+      - src/test/resources/atf/core/reporting/testng-reporting-consumer-smoke.xml
+      - src/test/resources/atf/core/suites/reporting/testng-atf-extent.xml
+    promptDocs:
+      - docs/prompts/html_ro/shared/report-shell.html
+      - docs/prompts/html_ro/shared/score-card-patterns.html
+      - docs/prompts/html_ro/shared/graph-style-primitives.html
+      - docs/prompts/html_ro/shared/artifact-linking.html
+    sanityFirst: true
+    artifactHandoff: target/reports reusable reporting evidence and shared report shell contract outputs
+    artifactPolicy: Reporting artifacts are reusable framework evidence; MCP and Atlas consume the shell but own their domain-specific report meaning.
+    stopCondition: Shared shell stays generic, business graph layout uses BusinessGraphConstruction as input only, and MCP/Atlas vocabulary remains in MCP or Atlas contracts

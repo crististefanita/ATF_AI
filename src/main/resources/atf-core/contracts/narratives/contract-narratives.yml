@@ -1,0 +1,2096 @@
+schemaVersion: 1
+contracts:
+  - id: core.contract-narrative.reporting-inventory-suite
+    kind: suite
+    profile: CORE_CONTRACT
+    area: REPORTING_LIFECYCLE
+    capability: ATF contract narrative coverage
+    purpose: Validate that ATF-core tests remain visible as an auditable contract inventory.
+    reportHint: Add contract metadata and listener wiring to framework capability tests.
+  - id: core.contract-narrative.reporting-inventory-method
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: ATF-core Extent test inventory
+    expected: All ATF test sources are visible in one audit step, with pure framework contracts separated from live UI/API smoke boundaries.
+    observed: The test records totals, capability profile rows, non-contract rows, pure framework rows, and live boundary rows.
+    repairHint: "Use precise profiles: Extent/Allure for report adapters, LIVE_API for API smoke, and UI_PRODUCT for real UI product flows."
+  - id: core.contract-narrative.diagnostic-html-shell-suite
+    kind: suite
+    profile: REPORTING_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: Small diagnostic HTML report shell
+    purpose: Keep Atlas, MCP and ATF diagnostic HTML artifacts on one shared visual shell.
+    reportHint: Use HtmlText.diagnosticDocument for small generated diagnostic reports; Extent Spark reports keep the native Spark shell.
+  - id: core.contract-narrative.diagnostic-html-shell-document
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ATF diagnostic HTML shell
+    expected: Small diagnostic HTML reports share one title, metadata, style wrapper, table palette and status palette.
+    observed: The test renders HtmlText.diagnosticDocument and verifies common typography, table, code and status tokens.
+    repairHint: Update HtmlText.diagnosticCss instead of copying CSS into Atlas, MCP or ATF report renderers.
+  - id: core.contract-narrative.diagnostic-html-shell-families
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ATF small diagnostic report families
+    expected: Atlas, MCP and ATF small generated HTML reports use the same diagnostic shell while Extent keeps native Spark.
+    observed: The test renders representative Atlas, MCP CheckRef, MCP KPI and ATF diagnostic documents and compares shell tokens.
+    repairHint: Render small table, matrix and board reports through HtmlText.diagnosticDocument; keep Extent Spark normalization in Extent post-processing only.
+  - id: core.contract-narrative.diagnostic-html-shell-fragments
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: MCP and ATF core final report section fragments
+    expected: Reusable final-report fragments remain fragments and are embedded into their host report instead of becoming standalone mini documents.
+    observed: The test renders MCP CheckRef and ATF core final-audit sections and verifies stable anchors without document shell tokens.
+    repairHint: Use HtmlText.diagnosticDocument only for standalone small reports; final report inserts must remain section fragments.
+  - id: core.contract-narrative.diagnostic-html-status-palette
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ATF diagnostic status palette
+    expected: Small diagnostic reports use canonical pass, fail, risk and info classes for status cells instead of private status markup.
+    observed: The test renders ATF table rows plus MCP KPI matrix and repair-board rows, then inspects Atlas status rendering source.
+    repairHint: Route status cells through HtmlTable.Cell.classed with pass, fail, risk and info and keep shared CSS in HtmlText.diagnosticCss.
+  - id: core.contract-narrative.diagnostic-html-shell-renderers
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ATF diagnostic HTML shell
+    expected: Main report renderers do not hand-roll full HTML documents or private diagnostic CSS shells.
+    observed: The test scans src/main/java and allows full document assembly only in HtmlText.
+    repairHint: Replace raw doctype wrappers and direct HtmlText.document calls with HtmlText.diagnosticDocument.
+  - id: core.contract-narrative.diagnostic-html-table-model
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ATF small diagnostic table model
+    expected: Standalone Atlas, MCP and ATF diagnostic HTML reports use HtmlTable and HtmlTableColumn instead of hand-written table markup.
+    observed: The test scans known standalone diagnostic renderers and blocks private table assembly outside HtmlTable.
+    repairHint: Move table headings, cells and status rendering into HtmlTable and HtmlTableColumn so the visual shell stays uniform.
+  - id: core.contract-narrative.diagnostic-html-yaml-standards
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ATF reporting shell YAML policy
+    expected: reporting-shell.yml declares the diagnostic document shell, table model, status palette and no-Extent-shell boundary.
+    observed: The test resolves required reporting-shell YAML rows by id so the standard is visible outside Java source.
+    repairHint: Keep reporting-shell.yml synchronized whenever adding a new small diagnostic report family.
+  - id: core.contract-narrative.core-reporting-matrix-suite
+    kind: suite
+    profile: REPORTING_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: Core reporting matrix
+    purpose: Validate small, varied reporting combinations without turning sanity runs into full sweeps.
+    reportHint: Use this profile when Extent Overview, aggregate, Atlas, or MCP reporting shell contracts move.
+  - id: core.contract-narrative.core-reporting-matrix
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ATF core reporting
+    expected: Small TestNG profiles cover pass/fail/skip, aggregate, Atlas, and MCP sanity surfaces.
+    observed: The contract inspects generated Extent HTML plus TestNG XML composition.
+    repairHint: Keep the matrix small; add focused fixtures or profile rows instead of widening full sweeps.
+  - id: core.contract-narrative.extent-canonical-shell-suite
+    kind: suite
+    profile: EXTENT_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: Extent canonical shell across ATF report families
+    purpose: Prevent MCP, Atlas, ATF-core, mixed component and runtime-audited reports from drifting away from the shared Extent shell.
+    reportHint: Run this contract whenever Extent Overview, status filtering, runtime audit, synthetic fixtures or report publication changes.
+  - id: core.contract-narrative.extent-canonical-shell-contract
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ExtentSparkHtmlPostProcessor + ExtentAdapter
+    expected: Every Extent report family keeps the same navigable shell with Overview, ATF score cards, tag tables, status menu, Fail filtering and report-mode markers.
+    observed: The test generates MCP-like, Atlas-like, ATF-core-like, mixed component and runtime-audited reports and validates shared shell invariants.
+    repairHint: Do not special-case MCP, Atlas or core reports into raw Spark HTML; route all Extent output through the shared finalizer and shell patch planners.
+  - id: core.contract-narrative.extent-report-mode-suite
+    kind: suite
+    profile: EXTENT_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: Extent report mode normalization
+    purpose: Classify Extent reports as runtime-audited or component/adapter without requiring browser execution.
+    reportHint: Run this fast post-processor contract before visual Extent browser suites.
+  - id: core.contract-narrative.extent-report-mode-contract
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ExtentSparkHtmlPostProcessor
+    expected: Every normalized Extent report publishes a machine-readable mode marker; non-runtime reports still receive a clean ATF component Overview.
+    observed: The test feeds runtime and component Spark HTML snippets through the post-processor.
+    repairHint: Keep report-mode detection idempotent and keep component/adapter Overview cleanup separate from runtime audit rendering.
+  - id: core.contract-narrative.extent-html-patch-pipeline-suite
+    kind: suite
+    profile: EXTENT_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: Extent HTML patch pipeline
+    purpose: Keep Extent HTML normalization expressed as typed patch results instead of hidden string mutation.
+    reportHint: Repair ExtentHtmlPatchResult/planners before adding new Extent report-mode or Overview branches.
+  - id: core.contract-narrative.extent-html-patch-pipeline-contract
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: Extent HTML patch pipeline
+    expected: Extent normalization reports which patches applied and keeps report-mode and Overview tokens behind semantic owners.
+    observed: The tests inspect patch records and verify normalized output through semantic constants.
+    repairHint: Route new report changes through planners and semantic token owners, not private postprocessor literals.
+  - id: core.contract-narrative.extent-status-dropdown-suite
+    kind: suite
+    profile: EXTENT_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: Extent Spark status dropdown contract
+    purpose: Protect status filtering as test-case navigation, not nested-step filtering.
+    reportHint: Run this suite only in the Extent profile; it validates browser-visible status filter behavior.
+  - id: core.contract-narrative.extent-status-dropdown-contract
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ExtentSparkCollapsePolicy + runtime audit status menu
+    expected: Status filters isolate pass/fail/skipped test cases and clear back to the full hierarchy.
+    observed: The suite opens generated Extent HTML in Chromium and exercises the status dropdown.
+    repairHint: Repair status menu normalization or test-case filtering before changing Extent navigation.
+  - id: core.contract-narrative.extent-failure-triage-suite
+    kind: suite
+    profile: EXTENT_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: Extent Spark failure triage contract
+    purpose: Protect the failed-runtime Category tab as a readable failure grouping and repair surface.
+    reportHint: Run this suite only in the Extent profile; it validates failure grouping, root cause detail, and green empty state.
+  - id: core.contract-narrative.extent-failure-triage-contract
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ExtentRuntimeDashboardRenderer + runtime failure grouping
+    expected: Failed test cases are grouped by class/root cause and green runs show an explicit empty state.
+    observed: The suite generates Extent reports, inspects the Category view, and reconciles failure counts with the runtime ledger.
+    repairHint: Repair runtime failure grouping before changing dashboard or category rendering.
+  - id: core.contract-narrative.annotation-hygiene-suite
+    kind: suite
+    profile: CORE_CONTRACT
+    area: CORE_ARCHITECTURE
+    capability: Contract annotation hygiene
+    purpose: Keep public contract annotations runtime-visible, documented, targeted, YAML-addressable, and explicitly cataloged.
+    reportHint: Add new contract annotations to the best-practice catalog and prefer YAML refs for bulky narrative metadata.
+  - id: core.contract-narrative.annotation-hygiene-catalog
+    kind: contract
+    area: CORE_ARCHITECTURE
+    owner: ATF contract annotation catalog
+    expected: Every public contract annotation has runtime retention, explicit targets, documentation, no deprecated marker drift, and a YAML-ref adoption guardrail.
+    observed: The test scans main/test annotation sources, validates the curated annotation catalog, resolves YAML refs, and checks ATF ref adoption does not regress.
+    repairHint: Either remove obsolete annotations or add new first-class annotations to CONTRACT_ANNOTATIONS with precise targets and YAML narrative rows.
+  - id: core.contract-narrative.yaml-manifest-suite
+    kind: suite
+    profile: CORE_CONTRACT
+    area: CORE_ARCHITECTURE
+    capability: ATF core YAML contract manifest
+    purpose: Keep declarative ATF core YAML contracts indexed, schema-valid, and mapped to real source/test surfaces.
+    reportHint: Add manifest coverage whenever a new ATF core YAML catalog is introduced.
+  - id: core.contract-narrative.yaml-manifest-catalog
+    kind: contract
+    area: CORE_ARCHITECTURE
+    owner: ATF core YAML contract catalog
+    expected: Every ATF core YAML catalog has valid schema, unique ids, typed lookups, and source-backed contract evidence.
+    observed: The test validates profiles, boundaries, size budgets, reporting ownership, UI engine contracts, policies, annotations, and narratives.
+    repairHint: Update the YAML spec class, catalog index, and manifest test together for every new YAML-backed contract family.
+  - id: core.contract-narrative.yaml-narrative-suite
+    kind: suite
+    profile: CORE_CONTRACT
+    area: REPORTING_LIFECYCLE
+    capability: ATF YAML contract narratives
+    purpose: Validate YAML-backed ATF contract narrative rows and @AtfContractRef report resolution.
+    reportHint: Put bulky contract narrative text in YAML and keep Java annotations as thin ids where possible.
+  - id: core.contract-narrative.yaml-narrative-catalog
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: ATF YAML contract narrative catalog
+    expected: Contract narrative YAML rows have valid profile/area references and can feed Extent report narration through ref annotations.
+    observed: The test validates contract/suite narrative rows and exercises AtfContractReportNarrator with YAML-backed refs.
+    repairHint: Update contract-narratives.yml and the ref annotation tests together when moving contract text out of Java annotations.
+  - id: core.contract-narrative.coverage-audit-suite
+    kind: suite
+    profile: CORE_CONTRACT
+    area: REPORTING_LIFECYCLE
+    capability: ATF contract narrative coverage
+    purpose: Validate that ATF-core tests remain visible as an auditable contract inventory.
+    reportHint: Add contract metadata and listener wiring to framework capability tests.
+  - id: core.contract-narrative.coverage-audit-class
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: ATF-core contract report readability
+    expected: Important ATF-core contract suites publish Expected framework contract and Cold framework verdict details through TestListener or an explicit self-auditing Extent contract.
+    observed: The test scans ATF-core test sources for ATF contract annotations, TestListener wiring, and self-auditing Extent exceptions.
+    repairHint: When adding an ATF-core capability test, annotate it with @AtfContractRef or @AtfContract and wire TestListener. Use a self-auditing Extent contract only for report-rendering tests that must disable framework reporting.
+  - id: core.contract-narrative.coverage-audit-method
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: ATF-core Extent readability contract
+    expected: Every ATF contract test class in com.endava.ai.atf is either listener-backed or explicitly self-auditing for Extent rendering.
+    observed: The test walks source files under src/test/java/com/endava/ai/atf and checks report auditability for every executable contract suite.
+    repairHint: Add @Listeners(TestListener.class), or use @NoFrameworkReporting with extent-only only for self-auditing Extent browser/report tests.
+  - id: core.contract-narrative.base-api-runtime-suite
+    kind: suite
+    profile: API_BASE_CONTRACT
+    area: API_LIFECYCLE
+    capability: Base API runtime contract
+    purpose: Validate API base-class readiness, token gating, and listener wiring.
+    reportHint: Repair BaseTestAPI setup, token handling, or API listener wiring.
+  - id: core.contract-narrative.base-api-runtime-class
+    kind: contract
+    area: API_LIFECYCLE
+    owner: BaseTestAPI
+    expected: BaseTestAPI initializes API runtime once and blocks write-oriented API flows when auth.token is absent.
+    observed: The contract inspects listener and lifecycle annotations and exercises token readiness behavior through a test subclass.
+    repairHint: Keep API setup deterministic and keep auth-token absence as a skip, not as a hidden failed write.
+  - id: core.contract-narrative.base-api-listener-setup
+    kind: contract
+    area: API_LIFECYCLE
+    owner: BaseTestAPI listener and setup contract
+    expected: BaseTestAPI wires Allure/TestListener and keeps API runtime setup in @BeforeClass(alwaysRun=true).
+    observed: The test reads @Listeners and verifies baseSetup() lifecycle metadata.
+    repairHint: Restore BaseTestAPI listener wiring and class-level baseSetup lifecycle if API reporting or initialization drifts.
+  - id: core.contract-narrative.base-api-auth-readiness
+    kind: contract
+    area: API_LIFECYCLE
+    owner: BaseTestAPI auth readiness contract
+    expected: Missing auth.token produces a deliberate SkipException for write-oriented API tests; present token allows execution to continue.
+    observed: The test calls requireTokenForWrites() through a subclass with blank and non-blank tokens.
+    repairHint: Keep auth readiness explicit so API contract tests do not perform unauthenticated writes by accident.
+  - id: core.contract-narrative.base-api-no-ui-runtime
+    kind: contract
+    area: API_LIFECYCLE
+    owner: API core source boundary
+    expected: API core and ATF API lifecycle tests must not initialize or reference UI engine runtime.
+    observed: The test scans API main/test sources for UI runtime markers such as UIEngine, DriverManager, BaseTestUI, ui.engine, and ui.headless.
+    repairHint: Move UI runtime concerns to UI support tests; API lifecycle contracts must stay HTTP/API-only.
+  - id: core.contract-narrative.base-api-package-architecture
+    kind: contract
+    area: API_LIFECYCLE
+    owner: API package architecture
+    expected: Main API code is split into api.core for generic API framework pieces and api.support for current domain/test-facing flows.
+    observed: The test verifies core client/validation/utils roots, support roots, and rejects legacy or generic packages under api.support.
+    repairHint: Keep BaseTestAPI, HTTP client, generic validators, waits, JSON and stacktrace helpers under api.core; keep domain steps/services/models/factories under api.support.
+  - id: core.contract-narrative.base-api-console-hygiene
+    kind: contract
+    area: API_LIFECYCLE
+    owner: API core console hygiene
+    expected: API core routes diagnostic output through reporting helpers instead of writing directly to System.out.
+    observed: The test scans api.core sources for direct System.out usage.
+    repairHint: Use StepLogger or ConsoleLogger from framework reporting utilities instead of System.out in API core.
+  - id: core.contract-narrative.base-api-wait-centralization
+    kind: contract
+    area: API_LIFECYCLE
+    owner: API core wait hygiene
+    expected: API core centralizes Thread.sleep and interrupt handling in ApiSleeper.
+    observed: The test scans api.core sources for direct Thread.sleep usage outside ApiSleeper.
+    repairHint: Route API waits through ApiSleeper so interrupt handling stays explicit and consistent.
+  - id: core.contract-narrative.base-api-wait-interrupt-policy
+    kind: contract
+    area: API_LIFECYCLE
+    owner: API core wait interrupt policy
+    expected: ApiSleeper rejects invalid durations and preserves interrupted status when a wait is interrupted.
+    observed: The test exercises the centralized API wait helper directly.
+    repairHint: Keep ApiSleeper as the single place for API wait validation and interrupt propagation.
+  - id: core.contract-narrative.base-api-validation-model-boundary
+    kind: contract
+    area: API_LIFECYCLE
+    owner: API core validation model boundary
+    expected: Generic API validation DTOs must live physically and logically under api.core.validation.model, not api.support.model.
+    observed: The test checks source package declarations, runtime class package names, and ResponseValidator imports.
+    repairHint: Keep generic error/validation response DTOs under api.core.validation.model; keep product/domain DTOs under api.support.model.
+  - id: core.contract-narrative.reporting-package-shape-suite
+    kind: suite
+    profile: REPORTING_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: ATF reporting package shape contract
+    purpose: Keep new reporting packages small and keep legacy Extent/reporting debt under explicit ratchet caps.
+    reportHint: Split reporting packages by adapter or presentation responsibility before adding more contract classes.
+  - id: core.contract-narrative.reporting-package-shape-class
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ATF reporting package architecture
+    expected: New reporting packages contain at most ten direct Java classes; catalogued legacy packages cannot grow.
+    observed: The test scans main reporting code and ATF reporting contract tests by direct package with legacy caps.
+    repairHint: Create a focused subpackage when a reporting family reaches the readability threshold; shrink catalogued caps after each split.
+  - id: core.contract-narrative.reporting-package-shape-class-size
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ATF core reporting class-size guardrails
+    expected: Reporting classes stay within role-based readability thresholds.
+    observed: The test scans listener, adapter, composer and Extent Spark section class sizes.
+    repairHint: Split oversized classes into model, renderer, section or token collaborators before adding behavior.
+  - id: core.contract-narrative.reporting-package-shape-extent-package-map
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: Extent Spark package ownership map
+    expected: Extent Spark shell code is split into composer, tokens and section packages with explicit size caps.
+    observed: The test verifies Spark root/tokens/section packages and prevents any one Spark ownership lane from becoming a dumping ground.
+    repairHint: Move new visual behavior into the matching Spark section package or create a new focused section before raising caps.
+  - id: core.contract-narrative.reporting-package-shape-aggregate-ownership
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ATF core aggregate runtime ownership
+    expected: Reusable aggregate report writers, artifact utilities, runtime audit mappers and value objects live in main, while TestNG contract fixtures stay in test.
+    observed: The test verifies the new aggregate main package and blocks the old test-side writer/artifact locations.
+    repairHint: Move reusable aggregate reporting code under com.endava.ai.core.reporting.aggregate; leave only listener wiring, fixtures and contract tests under com.endava.ai.atf.core.reporting.
+  - id: core.contract-narrative.reporting-package-shape-test-size
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ATF contract-test size guardrails
+    expected: New ATF contract tests stay below the giant-test threshold and legacy large tests cannot grow.
+    observed: The test scans ATF test sources for classes above the size threshold and compares known debt to caps.
+    repairHint: Split large contract tests by capability before adding more assertions.
+  - id: core.contract-narrative.reporting-package-shape-legacy-test-ratchets
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ATF reporting legacy test ratchets
+    expected: Legacy test caps stay close to current file size so old debt cannot silently grow back.
+    observed: The test compares every legacy-test-cap YAML row with the current Java line count.
+    repairHint: After splitting a reporting fixture or contract test, lower the YAML cap in size-budgets.yml.
+  - id: core.contract-narrative.reporting-package-shape-no-ui-dependency
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ATF core package boundary
+    expected: ATF core remains a generic reporting/runtime layer and does not import UI implementation packages.
+    observed: The test scans main core source files for direct com.endava.ai.ui dependencies.
+    repairHint: Expose a core extension point and register UI contributors from ui.core instead of importing UI classes in core.
+  - id: core.contract-narrative.reporting-package-shape-typed-end-status
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: Typed ReportLogger contract
+    expected: ReportLogger.endTest(TestStatus) is the only end-test API; legacy String status closes are removed.
+    observed: The test scans core reporting source and reporting fixtures for legacy String status APIs.
+    repairHint: Implement endTest(TestStatus) everywhere and do not reintroduce String status bridge methods.
+  - id: core.contract-narrative.reporting-package-shape-manager-session
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: ReportingManager session boundary
+    expected: ReportingManager stays a static facade and mutable logger state lives in ReportingSession.
+    observed: The test inspects ReportingManager source for direct static ReportLogger state.
+    repairHint: Keep logger/testLogger fields inside ReportingSession and expose only facade methods from ReportingManager.
+  - id: core.contract-narrative.reporting-package-shape-collapse-composer
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: Extent Spark collapse composer
+    expected: ExtentSparkCollapsePolicy remains a small public composer over sections/collapse.
+    observed: The test checks class size and verifies that JS behavior lives in the collapse section package.
+    repairHint: Add new collapse behavior to focused section classes, not to ExtentSparkCollapsePolicy.
+  - id: core.contract-narrative.reporting-package-shape-no-ignored-catches
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: Core non-blocking diagnostics
+    expected: Core code does not hide non-blocking failures behind catch variables named ignored.
+    observed: The test scans core source for catch clauses that bind ignored failures.
+    repairHint: Route non-blocking failures through NonBlockingDiagnostic.warn(...) instead of swallowing them.
+  - id: core.contract-narrative.reporting-package-shape-diagnostic-sink
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: Core non-blocking diagnostics
+    expected: Non-blocking warnings are routed through a diagnostic sink instead of being hardwired to stderr.
+    observed: The test inspects NonBlockingDiagnostic source for sink-based publication.
+    repairHint: Keep NonBlockingDiagnostic.warn(...) as buffer + sink publication so tests can assert warnings.
+  - id: core.contract-narrative.extent-adapter-suite
+    kind: suite
+    profile: EXTENT_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: Reporting adapter contract
+    purpose: Validate Extent/Allure adapter behavior and artifact hygiene.
+    reportHint: Repair adapter output, cleanup, or attachment serialization.
+  - id: core.contract-narrative.extent-adapter-class
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ExtentAdapter
+    expected: Extent writes one reopenable HTML report, escapes HTML-like step text, and does not require local spark assets.
+    observed: Adapter self-tests generate isolated Extent fixture output and inspect the produced HTML.
+    repairHint: Check ExtentAdapter escaping and ExtentReporter single-file configuration.
+  - id: core.contract-narrative.extent-adapter-component-overview
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ExtentAdapter + ExtentSparkHtmlPostProcessor
+    expected: Every ExtentAdapter flush writes a standardized Spark report with report-mode marker, ATF component tag tables, and no raw Spark Overview cards.
+    observed: The test generates a small component/adapter Extent report through ExtentAdapter.flush and inspects the persisted HTML.
+    repairHint: Keep ExtentReportSession.flushAndStandardize wired to ExtentSparkHtmlPostProcessor; do not let raw Spark Overview HTML escape to target/reports.
+  - id: core.contract-narrative.extent-adapter-default-report-dir
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: framework.properties
+    expected: The default Extent HTML artifact is generated under target/reports, not under the Allure artifact folder.
+    observed: The test reads src/main/resources/framework.properties and checks the canonical reports.dir value.
+    repairHint: Keep reports.dir=target/reports for Extent. Allure results belong under the dedicated Allure result directory.
+  - id: core.contract-narrative.extent-adapter-fixture-sandbox
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: Extent adapter contract fixtures
+    expected: Adapter self-tests use an isolated contract report directory and do not create extra final-run reports.
+    observed: The test checks the active fixture reports.dir sandbox used by ExtentAdapterTest.
+    repairHint: Keep adapter fixture reports in a temporary sandbox, not target/reports or target/contract-reports.
+  - id: core.contract-narrative.extent-adapter-stable-artifact
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ExtentReportSettings
+    expected: When timestamped reports are disabled, Extent resolves a stable ExtentReport.html artifact in the configured reports directory.
+    observed: The test builds ExtentReportSettings from explicit values and inspects the resolved report path.
+    repairHint: Keep timestamp naming inside ExtentReportSettings so report paths stay auditable and testable.
+  - id: core.contract-narrative.extent-adapter-timestamped-artifact
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ExtentReportSettings
+    expected: When timestamped reports are enabled, Extent resolves an ExtentReport_<timestamp>.html artifact using the configured format.
+    observed: The test builds ExtentReportSettings with a deterministic timestamp and checks the generated file name.
+    repairHint: Do not duplicate timestamp file-name logic in ExtentReporter or tests; keep it in ExtentReportSettings.
+  - id: core.contract-narrative.extent-adapter-explicit-file-name
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ExtentReportSettings
+    expected: Maven can declare an explicit Extent HTML file name for published validation artifacts without post-processing the generated report.
+    observed: The test configures reports.file.name and verifies Extent resolves that exact file inside reports.dir.
+    repairHint: Keep published Extent artifact names configurable through ExtentReportSettings, not through copy/rename scripts.
+  - id: core.contract-narrative.extent-adapter-file-names-helper
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ExtentReportFiles
+    expected: Stable and timestamped Extent report names are identified by one reusable contract object.
+    observed: The test verifies the shared filename factory and matcher used by runtime locators and tests.
+    repairHint: Do not duplicate ExtentReport.html / ExtentReport_<timestamp>.html checks in listener or test code.
+  - id: core.contract-narrative.extent-adapter-runtime-settings
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ExtentReportSettings
+    expected: ExtentReporter consumes one runtime settings object instead of recomputing report path, title, and report name inline.
+    observed: The test loads ExtentReportSettings from the sandboxed runtime config used by this Extent contract suite.
+    repairHint: Route Extent report creation through ExtentReportSettings.fromRuntime().
+  - id: core.contract-narrative.extent-adapter-run-scoped-timestamp
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ExtentReportSettings + ExtentAdapter
+    expected: A single TestNG run writes one timestamped Extent artifact even when the Extent adapter is re-created inside the same runtime.
+    observed: The test enables timestamped reports, writes through two adapter lifecycles, and counts generated Extent HTML files.
+    repairHint: Keep timestamped Extent report paths run-scoped; do not recompute a fresh timestamp for every ExtentReporter instance.
+  - id: core.contract-narrative.extent-adapter-spark-reporter-settings
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ExtentSparkReporterSettings
+    expected: Spark reporter configuration is passed as one settings object so factory wiring stays readable and extensible.
+    observed: The test maps ExtentReportSettings into ExtentSparkReporterSettings and verifies path/title/name are preserved.
+    repairHint: Keep Spark reporter factory input object-based; do not reintroduce parallel path/title/name parameters in ExtentReporter.
+  - id: core.contract-narrative.extent-published-overview-inspector-suite
+    kind: suite
+    profile: REPORTING_CONTRACT
+    area: REPORTING_LIFECYCLE
+    capability: Published Extent Overview inspection contract
+    purpose: Keep every copied/published Extent report on the agreed ATF Overview shell instead of leaking native Spark drift.
+    reportHint: Run this contract when changing Extent Overview score-cards, runtime tag tables, publish policy, or Atlas/MCP report copying.
+  - id: core.contract-narrative.extent-published-overview-inspector-class
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: ExtentPublishedOverviewInspector
+    expected: Published Extent validation artifacts use the standard ATF Overview vocabulary, runtime audit tables, and no blank/native Spark score-cards.
+    observed: The test feeds normalized Spark HTML through the inspector under internal-fixture and published-validation policies.
+    repairHint: Fix Extent post-processing or publish policy before copying a generated report into docs/atlas, docs/out, or html-ex.
+  - id: core.contract-narrative.extent-published-overview-inspector-rejects-native-drift
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: ExtentPublishedOverviewInspector
+    expected: Published validation rejects Test classes score-cards, configuration-method vocabulary, blank score-cards, and native mixed Tags cards.
+    observed: The test builds a deliberately unstandardized Overview fragment and expects targeted violations.
+    repairHint: Normalize dashboard labels and replace native Spark tag summary with ATF runtime tag tables.
+  - id: core.contract-narrative.extent-published-overview-inspector-component-policy
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: ExtentReportPublishPolicy
+    expected: Component adapter fixtures can remain internal, but the same shell is rejected when promoted as a published validation artifact.
+    observed: The test compares INTERNAL_COMPONENT_FIXTURE and PUBLISHED_VALIDATION inspection results on the same normalized component HTML.
+    repairHint: Do not copy component-fixture reports as final validation artifacts; regenerate through a runtime-audited suite first.
+  - id: core.contract-narrative.extent-published-overview-inspector-runtime-audit
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: ExtentPublishedOverviewInspector
+    expected: Runtime-audited reports with classes, packages and annotations tag tables satisfy the published validation policy.
+    observed: The test injects the ATF runtime tag audit block into normalized Spark HTML and expects zero publish-policy violations.
+    repairHint: Ensure final Extent reports include ATF_RUNTIME_TAG_AUDIT and all required runtime tag tables before publishing.
+  - id: core.contract-narrative.console-threadlocal-suite
+    kind: suite
+    profile: REPORTING_CONTRACT
+    area: REPORTING_LIFECYCLE
+    capability: ATF console and ThreadLocal architecture contract
+    purpose: Keep console output routed through ConsoleLogger and ThreadLocal ownership explicit.
+    reportHint: Repair console gateway or lifecycle cleanup before changing reporting state holders.
+  - id: core.contract-narrative.console-threadlocal-class
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: ConsoleLogger + ThreadLocal lifecycle
+    expected: Console and ThreadLocal state remain explicit, cleanable and reviewed.
+    observed: The test scans core sources for direct console writes, legacy console gateway references and ThreadLocal owners.
+    repairHint: Use ConsoleLogger, move state behind resettable context objects, and keep TestListener cleanup symmetrical.
+  - id: core.contract-narrative.console-threadlocal-gateway
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: Core diagnostic boundary
+    expected: ATF core writes console output only through the ConsoleLogger gateway.
+    observed: The test scans core source for direct console output APIs outside ConsoleLogger.
+    repairHint: Route step and diagnostic console output through ConsoleLogger, not scattered System.out/System.err calls.
+  - id: core.contract-narrative.console-threadlocal-stacktrace-boundary
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: ConsoleLogger role boundary
+    expected: ConsoleLogger remains a console gateway; stacktrace formatting lives in StacktraceFormatter.
+    observed: The test inspects utility source ownership for console sink and stacktrace responsibilities.
+    repairHint: Keep console publishing in ConsoleLogger and failure formatting in StacktraceFormatter.
+  - id: core.contract-narrative.console-threadlocal-naming
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: ConsoleLogger naming contract
+    expected: ATF code uses the correctly spelled ConsoleLogger gateway and the legacy typo class does not exist.
+    observed: The test scans main and ATF test sources for legacy console gateway references.
+    repairHint: Import ConsoleLogger in new code and do not recreate the legacy typo wrapper.
+  - id: core.contract-narrative.console-threadlocal-cleanup
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: Core ThreadLocal lifecycle discipline
+    expected: Every core class that owns ThreadLocal state exposes an explicit cleanup path.
+    observed: The test scans ThreadLocal-owning classes for clear/reset/remove/endTest/flush lifecycle methods.
+    repairHint: Add a clear/reset lifecycle method or move ThreadLocal ownership behind a resettable session object.
+  - id: core.contract-narrative.console-threadlocal-owner-catalog
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: Core ThreadLocal ownership catalog
+    expected: ThreadLocal ownership is explicit and cannot grow without architecture review.
+    observed: The test scans core sources and compares ThreadLocal owners to the approved catalog.
+    repairHint: Move new state into ReportingSession/lifecycle context, or update this catalog with owner and cleanup rationale.
+  - id: core.contract-narrative.console-threadlocal-invocation-session
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: TestInvocationSession lifecycle cleanup
+    expected: Invocation ThreadLocal session state is cleared both at suite start and suite finish.
+    observed: The test inspects TestListener source for session.clear() inside onStart and onFinish.
+    repairHint: Keep TestInvocationSession cleanup symmetrical so worker threads do not retain suite state.
+  - id: core.contract-narrative.ui-zoom-runtime-suite
+    kind: suite
+    profile: UI_SUPPORT_CONTRACT
+    area: WINDOW_CONFIG
+    capability: UI window and zoom contract
+    purpose: Validate browser window and zoom behavior that affects UI evidence quality.
+    reportHint: Repair window configuration, zoom application, or screenshot evidence capture.
+  - id: core.contract-narrative.ui-zoom-runtime-class
+    kind: contract
+    area: WINDOW_CONFIG
+    owner: UIWindowSizeResolver + SeleniumEngine + PlaywrightEngine + reporting adapters
+    expected: Configured page zoom is normalized, applied in Selenium and Playwright headless mode, and published as auditable report metadata.
+    observed: The contract opens real Selenium and Playwright pages at configured zoom=60, expects resolved zoom=67, then inspects Extent and Allure artifacts.
+    repairHint: Expose configured/resolved zoom, engine, and headless mode through StepLogger so Extent and Allure carry the runtime contract.
+  - id: core.contract-narrative.ui-zoom-runtime-playwright-document
+    kind: contract
+    area: WINDOW_CONFIG
+    owner: SeleniumEngine + PlaywrightEngine
+    expected: Selenium and Playwright headless apply the resolved zoom to the loaded document, not only to screenshots by visual accident.
+    observed: The test reads document.documentElement.style.zoom after UIEngine.open(...).
+    repairHint: Keep the headless fallback after navigation and assert against the resolver output, not the raw configured value.
+  - id: core.contract-narrative.ui-zoom-runtime-navigation-screenshot
+    kind: contract
+    area: WINDOW_CONFIG
+    owner: SeleniumEngine + PlaywrightEngine + final screenshot capture
+    expected: Selenium and Playwright headless reapply resolved zoom after app-driven navigation and before final screenshots are captured.
+    observed: The test opens a zoomed source document, clicks a page-owned link, waits for the target document, then verifies zoom before and after screenshot capture.
+    repairHint: Reapply the headless zoom fallback after page-owned navigation boundaries and immediately before screenshot capture.
+  - id: core.contract-narrative.ui-zoom-runtime-extent-metadata
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ExtentAdapter + UI runtime metadata
+    expected: Extent reports expose configured zoom, resolved zoom, UI engine, and headless mode as searchable runtime evidence.
+    observed: The test generates local Extent reports for zoomed Selenium and Playwright headless flows and searches the produced HTML.
+    repairHint: Publish zoom runtime metadata through StepLogger before or during UIEngine.open(...), then flush Extent.
+  - id: core.contract-narrative.ui-zoom-runtime-allure-metadata
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: AllureAdapter + UI runtime metadata
+    expected: Allure result JSON exposes configured zoom, resolved zoom, UI engine, and headless mode as searchable runtime evidence.
+    observed: The test generates a local Allure result for a zoomed Playwright headless flow and searches the produced JSON payloads.
+    repairHint: Publish zoom runtime metadata as StepLogger details so Allure step parameters carry the runtime contract.
+  - id: core.contract-narrative.allure-presentation-suite
+    kind: suite
+    profile: ALLURE_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: Allure presentation contract
+    purpose: Validate that Allure remains readable when StepLogger publishes rich UI details.
+    reportHint: Repair AllureAdapter detail routing if UI details leak into top-level parameters.
+  - id: core.contract-narrative.allure-presentation-class
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: AllureAdapter
+    expected: Step details are nested under Allure steps, while the test-level parameter panel stays clean.
+    observed: The tests generate local Allure result JSON and inspect top-level parameters, step parameters, and test name.
+    repairHint: Do not publish StepLogger detail lines as test-level Allure parameters; keep them on the active step.
+  - id: core.contract-narrative.allure-presentation-no-root-parameters
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: AllureAdapter
+    expected: UI details such as locator/value/text are not promoted to top-level Allure test parameters.
+    observed: The generated Allure result is parsed and root.parameters is inspected.
+    repairHint: Remove test-level parameter publication from AllureAdapter.logDetail(...).
+  - id: core.contract-narrative.allure-presentation-clean-test-name
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: AllureAdapter
+    expected: The Allure test name remains short and readable; detailed evidence stays in collapsible steps.
+    observed: The generated Allure result is parsed for name and step-level parameters.
+    repairHint: Keep evidence in StepResult.parameters and attachments, not in the test list summary.
+  - id: core.contract-narrative.allure-presentation-contract-steps
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: AllureAdapter
+    expected: Contract diagnostics are visible as Allure steps, not only as TestNG parameters.
+    observed: The generated Allure result is parsed for Expected / Observed / Cold verdict step nodes.
+    repairHint: Route contract diagnostics through StepLogger.startStep/logDetail/pass so Allure users can inspect them in Execution.
+  - id: core.contract-narrative.allure-presentation-buffered-steps
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: AllureAdapter + AllureStepBuffer
+    expected: Steps logged before Allure exposes a current test case are buffered and then published as normal execution steps.
+    observed: The generated Allure result is parsed for a pre-case buffered step and its step-level parameter.
+    repairHint: Keep pre-case StepLogger events inside AllureStepBuffer and flush them when the Allure lifecycle becomes active.
+  - id: core.contract-narrative.atf-capability-catalog-suite
+    kind: suite
+    profile: CORE_CONTRACT
+    area: REPORTING_LIFECYCLE
+    capability: ATF capability catalog
+    purpose: Validate that ATF-core contract families are described by a readable capability catalog.
+    reportHint: Update AtfCapabilityCatalog when adding a new ATF-core execution family or report boundary.
+  - id: core.contract-narrative.atf-capability-catalog-class
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: AtfCapabilityCatalog
+    expected: ATF-core exposes a capability catalog with id, profile, area, severity, owner, expected invariant, and repair hint.
+    observed: The test inspects the catalog model and verifies profile coverage, duplicate protection, and live-boundary classification.
+    repairHint: Add or update AtfCapabilitySpec entries instead of leaving new framework capabilities as undocumented tests.
+  - id: core.contract-narrative.atf-capability-catalog-profile-coverage
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: ATF capability catalog coverage
+    expected: Every ATF execution profile has at least one capability entry, and critical Extent/core capabilities are blocker-level.
+    observed: The test groups AtfCapabilityCatalog entries by profile and validates severity and live-boundary rules.
+    repairHint: Keep catalog entries aligned with AtfContractProfile whenever contract suites are added, moved, or split.
+  - id: core.contract-narrative.atf-capability-catalog-reporting-map
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: ATF core reporting architecture map
+    expected: Reporting/Extent architecture is navigable by ownership zone, capability id, source root, input, output, contract test, suite XML, and responsibility.
+    observed: The test validates the reporting map against AtfCapabilityCatalog, source roots, contract tests, and suite XML files.
+    repairHint: Update atf/core/contracts/reporting-architecture-zones.yml when moving listener, runtime audit, Extent shell, screenshot, or aggregate-report ownership.
+  - id: core.contract-narrative.atf-capability-catalog-ownership-map
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: ATF core ownership matrix
+    expected: ATF core exposes an agent-facing ownership map across profile, catalog, MCP boundary, lifecycle, reporting, API and UI core lanes.
+    observed: The test validates source roots, repair targets, capability ids, contract tests and canonical suite XML for every ownership zone.
+    repairHint: Update atf/core/contracts/ownership-zones.yml when moving core/API/UI/reporting ownership; do not leave new lanes without repair target and contract owner.
+  - id: core.contract-narrative.base-ui-runtime-suite
+    kind: suite
+    profile: UI_SUPPORT_CONTRACT
+    area: UI_SUPPORT
+    capability: Base UI runtime contract
+    purpose: Validate UI base-class lifecycle and reporting boundaries.
+    reportHint: Repair BaseTestUI setup, teardown, or reporting ownership leakage.
+  - id: core.contract-narrative.base-ui-runtime-class
+    kind: contract
+    area: UI_SUPPORT
+    owner: BaseTestUI
+    expected: BaseTestUI owns only UI engine setup/teardown and listener wiring; reporting lifecycle remains delegated to TestListener and reporting adapters.
+    observed: The contract inspects annotations, lifecycle methods, source imports, and DriverManager cleanup state.
+    repairHint: "Keep BaseTestUI thin: initialize DriverManager in @BeforeClass, quit it in @AfterClass, and avoid direct ReportingManager/StepLogger orchestration."
+  - id: core.contract-narrative.base-ui-runtime-listener-boundary
+    kind: contract
+    area: UI_SUPPORT
+    owner: BaseTestUI listener contract
+    expected: BaseTestUI wires AllureTestNg and TestListener without owning their reporting lifecycle responsibilities.
+    observed: The test reads @Listeners and verifies the required listener classes are present.
+    repairHint: Restore @Listeners({AllureTestNg.class, TestListener.class}) on BaseTestUI.
+  - id: core.contract-narrative.base-ui-runtime-lifecycle
+    kind: contract
+    area: UI_SUPPORT
+    owner: BaseTestUI lifecycle contract
+    expected: BaseTestUI exposes exactly the framework lifecycle hooks needed for UI engine init and cleanup.
+    observed: The test verifies setUp() is @BeforeClass(alwaysRun=true) and tearDown() is @AfterClass(alwaysRun=true).
+    repairHint: Keep UI engine lifecycle in class-level setup/teardown so test methods stay business/action oriented.
+  - id: core.contract-narrative.ui-engine-action-parity-suite
+    kind: suite
+    profile: UI_SUPPORT_CONTRACT
+    area: UI_ENGINE
+    capability: UI engine common action surface
+    purpose: Validate that Selenium and Playwright remain adapters behind the same UIEngine contract.
+    reportHint: Update UIEngine and both concrete engines together when adding or changing UI actions.
+  - id: core.contract-narrative.ui-engine-action-parity-class
+    kind: contract
+    area: UI_ENGINE
+    owner: UIEngine + SeleniumEngine + PlaywrightEngine
+    expected: Both UI engines expose the same framework action surface without requiring product UI smoke tests.
+    observed: The tests use reflection to validate the public UIEngine surface and concrete adapter boundary.
+    repairHint: Keep UIEngine as the canonical contract and avoid adding actions to only one concrete engine.
+  - id: core.contract-narrative.ui-engine-action-parity-interface-surface
+    kind: contract
+    area: UI_ENGINE
+    owner: UIEngine interface
+    expected: The canonical UIEngine interface exposes every action family used by page/actions/validation layers.
+    observed: The test lists method names from UIEngine and compares them with the required action surface.
+    repairHint: Add missing action methods to UIEngine first, then implement them in concrete engines.
+  - id: core.contract-narrative.ui-engine-action-parity-adapter-boundary
+    kind: contract
+    area: UI_ENGINE
+    owner: Concrete UI engine adapters
+    expected: SeleniumEngine and PlaywrightEngine both implement UIEngine so tests do not depend on engine-specific APIs.
+    observed: The test validates assignability for both concrete engine classes without launching a browser.
+    repairHint: Keep concrete engines behind UIEngine and do not expose driver/page APIs to test classes.
+  - id: core.contract-narrative.atf-contract-profile-suite
+    kind: suite
+    profile: CORE_CONTRACT
+    area: REPORTING_LIFECYCLE
+    capability: ATF contract profile taxonomy
+    purpose: Validate that ATF-core execution profiles stay mutually exclusive and engine-aware.
+    reportHint: Repair AtfContractProfile metadata before adding or reclassifying contract suites.
+  - id: core.contract-narrative.atf-contract-profile-class
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: AtfContractProfile
+    expected: Each ATF profile declares one recommended reporting engine and cannot be both pure framework and live boundary.
+    observed: The test inspects AtfContractProfile enum metadata and the YAML annotation manifest.
+    repairHint: Keep live smoke profiles separate from pure framework profiles, and keep Allure-only contracts on the Allure engine.
+  - id: core.contract-narrative.atf-contract-profile-boundaries
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: AtfContractProfile metadata
+    expected: Profile metadata supports deterministic Extent, Allure, live API, and UI product-smoke routing.
+    observed: The test checks supported engines, pure/live exclusivity, and canonical Allure/Extent profile mappings.
+    repairHint: Update AtfContractProfile metadata and the inventory audit together when adding a new execution family.
+  - id: core.contract-narrative.atf-contract-profile-yaml-taxonomy
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: ATF contract annotation YAML
+    expected: AtfContractProfile and AtfContractArea enums are mirrored exactly by the YAML annotation manifest.
+    observed: The test compares enum constants with contract-annotations.yml profile and area rows.
+    repairHint: Update atf-core/contracts/narratives/contract-annotations.yml whenever an ATF contract profile or area enum changes.
+  - id: core.contract-narrative.ui-engine-delegation-suite
+    kind: suite
+    profile: UI_SUPPORT_CONTRACT
+    area: UI_ENGINE
+    capability: UI action delegation and network evidence
+    purpose: Validate that UIActions stays browser-adapter agnostic while preserving bounded network proof.
+    reportHint: Route generated tests through UIActions and keep browser-specific objects out of test code.
+  - id: core.contract-narrative.ui-engine-delegation-actions
+    kind: contract
+    area: UI_ENGINE
+    owner: UIActions + DriverManager + UIEngine
+    expected: Framework-level UI actions delegate to the active UIEngine instead of bypassing the browser abstraction.
+    observed: A recording fake engine is installed in DriverManager and UIActions calls are checked against the recorded engine operations.
+    repairHint: Keep test/page/action layers routed through UIActions and DriverManager.getEngine(), not direct Selenium or Playwright APIs.
+  - id: core.contract-narrative.ui-engine-delegation-network-response
+    kind: contract
+    area: UI_ENGINE
+    owner: UiNetworkResponse
+    expected: Network evidence is immutable, bounded, and useful for UI-triggered request assertions without dumping large or sensitive payloads.
+    observed: The test builds a response with a long body and checks method normalization, success classification, URL matching, and body preview bounds.
+    repairHint: Keep UiNetworkResponse as a small value object; do not expose mutable Playwright/Selenium response objects to tests.
+  - id: core.contract-narrative.framework-runtime-ui-defaults-suite
+    kind: suite
+    profile: UI_SUPPORT_CONTRACT
+    area: UI_ENGINE
+    capability: Runtime UI defaults
+    purpose: Validate the canonical UI runtime defaults from framework.properties without launching a browser.
+    reportHint: Repair src/main/resources/framework.properties before changing UI engine tests or generated package expectations.
+  - id: core.contract-narrative.framework-runtime-ui-defaults-class
+    kind: contract
+    area: UI_ENGINE
+    owner: framework.properties
+    expected: The project default UI runtime is Playwright headless, fullscreen, zoom=60, and final-state screenshots enabled.
+    observed: The test reads src/main/resources/framework.properties directly and compares only the canonical UI defaults.
+    repairHint: Keep framework.properties as the runtime source of truth; do not hide default changes inside tests.
+  - id: core.contract-narrative.framework-runtime-ui-defaults-properties
+    kind: contract
+    area: UI_ENGINE
+    owner: framework.properties
+    expected: Canonical UI defaults are declared in framework.properties, not inferred from individual tests.
+    observed: The test loads the file from disk and publishes the exact key/value comparison.
+    repairHint: Update framework.properties or the documented contract together; never patch defaults in a single UI test.
+  - id: core.contract-narrative.ui-core-config-override-suite
+    kind: suite
+    profile: UI_SUPPORT_CONTRACT
+    area: UI_ENGINE
+    capability: UI config override discipline
+    purpose: Validate that UI core tests may override ui.headless only when they restore the runtime value.
+    reportHint: Add @AfterMethod restore logic or a dedicated helper before introducing new ConfigManager.set("ui.headless", ...) calls.
+  - id: core.contract-narrative.ui-core-config-override-class
+    kind: contract
+    area: UI_ENGINE
+    owner: ATF core UI tests
+    expected: Any test that overrides ui.headless must publish restore discipline so framework.properties remains the source of truth.
+    observed: The test scans ATF core test sources for ui.headless overrides and checks for @AfterMethod restore support or AtfRuntimeConfigSandbox usage.
+    repairHint: Keep runtime overrides local, explicit, and restored; do not let one test leak headless mode into another.
+  - id: core.contract-narrative.ui-core-config-override-headless-restore
+    kind: contract
+    area: UI_ENGINE
+    owner: ATF core UI tests
+    expected: ConfigManager ui.headless overrides are allowed only with @AfterMethod restore discipline or AtfRuntimeConfigSandbox.
+    observed: The static contract reports every file that overrides ui.headless without an obvious restore path or sandbox.
+    repairHint: Add @AfterMethod plus restore/restoreConfig logic, or move the override into a controlled contract helper.
+  - id: core.contract-narrative.ui-window-size-resolver-suite
+    kind: suite
+    profile: UI_SUPPORT_CONTRACT
+    area: WINDOW_CONFIG
+    capability: UI window and zoom contract
+    purpose: "Validate the canonical window/zoom cases first: default runtime, explicit custom size, invalid fallback, and controlled zoom override."
+    reportHint: Repair window configuration, zoom application, or screenshot evidence capture.
+  - id: core.contract-narrative.ui-window-size-resolver-class
+    kind: contract
+    area: WINDOW_CONFIG
+    owner: UIWindowSizeResolver
+    expected: Window size, mode, and zoom resolve deterministically; the full matrix supports the four canonical cases rather than replacing them.
+    observed: Each row resolves one UIWindowConfiguration while the report remains readable around default, custom, fallback, and override scenarios.
+    repairHint: Check explicit-size precedence, fullscreen fallback, native zoom normalization, and safe defaults.
+  - id: core.contract-narrative.ui-window-size-resolver-matrix
+    kind: contract
+    area: WINDOW_CONFIG
+    owner: UIWindowSizeResolver
+    expected: Every resolver branch returns a complete semantic window configuration; the pedagogic read is default, custom, invalid fallback, controlled override.
+    observed: The declarative support matrix exercises explicit size, fullscreen, invalid values, missing system size, and zoom normalization.
+    repairHint: Repair the resolver branch named by the failing matrix case; do not special-case tests.
+  - id: core.contract-narrative.allure-results-cleanup-suite
+    kind: suite
+    profile: ALLURE_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: Reporting adapter cleanup contract
+    purpose: Validate Extent/Allure adapter cleanup behavior and artifact hygiene.
+    reportHint: Repair adapter output, cleanup, or attachment serialization.
+  - id: core.contract-narrative.allure-results-cleanup-class
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ReportingEngineCleanup
+    expected: Extent runs remove stale Allure results, while Allure runs preserve their own result directory.
+    observed: Each matrix row sets reporting.engine, runs shutdown cleanup, and inspects the configured Allure results directory.
+    repairHint: Check ReportingEngineCleanup engine branching and ReportingPaths.allureResultsDirectory().
+  - id: core.contract-narrative.allure-results-cleanup-engine-matrix
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: ReportingEngineCleanup
+    expected: Cleanup behavior follows the selected reporting engine, not stale folders left by previous runs.
+    observed: The cleanup matrix verifies the final existence state of the configured Allure results directory.
+    repairHint: If this fails, isolate Extent cleanup from Allure preservation and reset reporting.engine per test.
+  - id: core.contract-narrative.atf-test-inventory-suite
+    kind: suite
+    profile: CORE_CONTRACT
+    area: REPORTING_LIFECYCLE
+    capability: ATF contract narrative coverage
+    purpose: Validate that ATF-core tests remain visible as an auditable contract inventory.
+    reportHint: Add contract metadata and listener wiring to framework capability tests.
+  - id: core.contract-narrative.atf-test-inventory-class
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: ATF-core test inventory report
+    expected: The Extent report exposes com.endava.ai.atf tests grouped by pure framework contracts, Extent/Allure contracts, and live UI/API boundaries.
+    observed: The test scans Java sources under src/test/java/com/endava/ai/atf and publishes a compact audit matrix into Extent.
+    repairHint: Add precise @AtfContractSuite profiles, and keep UI/API live smoke separate from pure ATF-core health.
+  - id: core.contract-narrative.atf-test-inventory-extent-audit
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: ATF-core Extent test inventory
+    expected: All ATF test sources are visible in one audit step, with pure framework contracts separated from live UI/API smoke boundaries.
+    observed: The test records totals, capability profile rows, non-contract rows, pure framework rows, and live boundary rows.
+    repairHint: Use precise profiles for report adapters and live smoke boundaries; do not blur product flows into pure ATF-core health.
+  - id: core.contract-narrative.expected-failure-style-suite
+    kind: suite
+    profile: CORE_CONTRACT
+    area: REPORTING_LIFECYCLE
+    capability: ATF expected-failure narrative
+    purpose: Validate that intentional negative tests are standardized as auditable green contracts.
+    reportHint: Use @AtfExpectedFailureContractRef or @AtfExpectedFailureContract and AtfExpectedFailure.expect(...) for controlled negative tests.
+  - id: core.contract-narrative.expected-failure-style-class
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: ATF expected-failure contract style
+    expected: Every ATF test marked with an expected-failure group declares metadata and uses the shared expected-failure helper.
+    observed: The test scans com.endava.ai.atf sources for expected-failure groups and helper usage.
+    repairHint: Replace raw Assert.expectThrows blocks in expected-failure tests with AtfExpectedFailure.expect(...).
+  - id: core.contract-narrative.expected-failure-style-shared-narrative
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: Expected-failure tests
+    expected: Expected-failure tests publish metadata and use a single helper-driven report narrative.
+    observed: The source scan checks for inline or YAML-backed expected-failure metadata and AtfExpectedFailure.expect in each expected-failure file.
+    repairHint: Add @AtfExpectedFailureContractRef for reusable narratives, or @AtfExpectedFailureContract for local ones, and route the controlled failure through AtfExpectedFailure.expect(...).
+  - id: core.contract-narrative.ui-engine-runtime-options-suite
+    kind: suite
+    profile: UI_SUPPORT_CONTRACT
+    area: UI_ENGINE
+    capability: UI engine runtime options
+    purpose: Validate that Selenium and Playwright share one runtime-options reader for engine, headless, wait timeout and metadata flags.
+    reportHint: Repair UiRuntimeOptions before patching concrete engine constructors.
+  - id: core.contract-narrative.ui-engine-runtime-options-class
+    kind: contract
+    area: UI_ENGINE
+    owner: UiRuntimeOptions
+    expected: UI runtime config is loaded once into a typed options object and then injected into concrete engine adapters.
+    observed: The tests override ConfigManager values in a sandbox and inspect the loaded runtime options without launching browsers.
+    repairHint: Keep ui.engine, ui.headless, ui.wait.timeout.seconds and reporting flags centralized in UiRuntimeOptions.
+  - id: core.contract-narrative.ui-engine-runtime-options-typed-config
+    kind: contract
+    area: UI_ENGINE
+    owner: UiRuntimeOptions
+    expected: Explicit runtime keys are normalized into a typed object used by both Selenium and Playwright.
+    observed: The sandbox sets engine/headless/wait/metadata flags and the loaded object exposes typed values.
+    repairHint: Do not let concrete engines read the same runtime keys independently.
+  - id: core.contract-narrative.ui-engine-runtime-options-factory-dispatch
+    kind: contract
+    area: UI_ENGINE
+    owner: UiEngineType + UIEngineFactory
+    expected: The legacy default engine alias stays supported, while concrete engine selection is typed before factory dispatch.
+    observed: The sandbox sets ui.engine=default and verifies the raw runtime value plus canonical UiEngineType.
+    repairHint: Keep legacy aliases in UiEngineType.fromConfig(...), not inside concrete engine constructors.
+  - id: core.contract-narrative.ui-engine-runtime-options-legacy-wait
+    kind: contract
+    area: UI_ENGINE
+    owner: UiRuntimeOptions
+    expected: The legacy explicit.wait.seconds key remains a fallback only when ui.wait.timeout.seconds is absent.
+    observed: The sandbox clears the new key, sets the legacy key, and loads the resolved wait timeout.
+    repairHint: Preserve legacy fallback while keeping ui.wait.timeout.seconds as the canonical key.
+  - id: core.contract-narrative.ui-engine-runtime-options-invalid-wait
+    kind: contract
+    area: UI_ENGINE
+    owner: UiRuntimeOptions
+    expected: Invalid wait timeout values fail before browser startup with a clear runtime config error.
+    observed: The sandbox sets a non-integer timeout and the loader throws IllegalStateException.
+    repairHint: Validate runtime options before constructing SeleniumDriver or Playwright browser instances.
+  - id: core.contract-narrative.ui-engine-capability-suite
+    kind: suite
+    profile: UI_SUPPORT_CONTRACT
+    area: UI_ENGINE
+    capability: UI engine capability grammar
+    purpose: Validate optional capability metadata and anti-bypass boundaries for Selenium and Playwright adapters.
+    reportHint: Use capability metadata for intentional adapter differences; do not expose raw browser scripting.
+  - id: core.contract-narrative.ui-engine-capability-adapter-differences
+    kind: contract
+    area: UI_ENGINE
+    owner: UiEngineCapabilities
+    expected: Optional UI-engine capabilities are declared explicitly so Selenium and Playwright parity is auditable without pretending every adapter supports every feature.
+    observed: The test reads lightweight capability declarations from the concrete engine constants and verifies the intentional network-wait difference.
+    repairHint: Update UIEngine capabilities when an adapter gains or loses support for an optional browser feature.
+  - id: core.contract-narrative.ui-engine-capability-unsupported-diagnostics
+    kind: contract
+    area: UI_ENGINE
+    owner: UIEngine default unsupported-action diagnostics
+    expected: Optional engine actions fail with clear UnsupportedOperationException messages when an adapter does not implement them.
+    observed: A minimal fake engine exercises UIEngine default methods without browser startup.
+    repairHint: Keep default unsupported-action messages explicit so adapter gaps are diagnosable.
+  - id: core.contract-narrative.ui-engine-capability-no-raw-script
+    kind: contract
+    area: UI_ENGINE
+    owner: UIEngine anti-bypass boundary
+    expected: UIEngine exposes business-observable actions and network proof, but does not expose raw browser script execution to generated tests.
+    observed: The test reflects UIEngine methods and rejects evaluateScript as a public engine capability.
+    repairHint: Add dedicated audited helpers for specific browser/session needs instead of exposing raw script execution.
+  - id: core.contract-narrative.ui-engine-capability-reporting-boundary
+    kind: contract
+    area: UI_ENGINE
+    owner: Concrete UI engine adapters + reporting boundary
+    expected: Concrete browser engines do not publish directly through StepLogger; reporting vocabulary stays behind a runtime publisher.
+    observed: The test scans PlaywrightEngine and SeleniumEngine sources and rejects direct StepLogger references.
+    repairHint: Move runtime/reporting metadata to a dedicated publisher or action/reporting facade instead of logging inside engine adapters.
+  - id: core.contract-narrative.ui-engine-capability-browser-import-boundary
+    kind: contract
+    area: UI_ENGINE
+    owner: UI engine package boundary
+    expected: Selenium and Playwright imports stay inside com.endava.ai.ui.core.engine so generated tests and support layers remain browser-agnostic.
+    observed: The test scans src/main/java and rejects browser-specific imports outside the UI engine package.
+    repairHint: Move direct Selenium/Playwright usage behind UIEngine, UIActions, or an engine-specific adapter.
+  - id: core.contract-narrative.ui-engine-capability-package-architecture
+    kind: contract
+    area: UI_ENGINE
+    owner: UI package architecture
+    expected: Main UI code is split into two readable roots with ui.core for engine/runtime foundation and ui.support for direct UI-test support layers.
+    observed: The test verifies engine/runtime/support package roots and rejects legacy root-level UI packages that blur foundation with test support.
+    repairHint: Keep browser adapters under ui.core.engine, BaseTestUI/DriverManager under ui.core.runtime, and page/action/validation helpers under ui.support.
+  - id: core.expected-failure.api.deleted-resource-not-readable
+    kind: expectedFailure
+    reason: After deletion the resource must no longer validate as a readable 200 response.
+    expectedSignal: Unexpected HTTP status
+  - id: core.expected-failure.api.duplicate-email-fixture-gap
+    kind: expectedFailure
+    reason: The legacy duplicate-email fixture is intentionally absent and must be reported as a local test-data boundary.
+    expectedSignal: NegativeUserTests_duplicate_email.json
+  - id: core.contract-narrative.api-core-execution-architecture-contract-test-class
+    kind: contract
+    area: API_LIFECYCLE
+    owner: 'API core execution'
+    expected: 'API retry policy and runtime options are testable without executing HTTP calls.'
+    observed: 'The tests exercise retry decisions and source-scan ApiActions facade responsibilities.'
+    repairHint: 'Keep retry/header parsing/config reads out of ApiActions.'
+  - id: core.contract-narrative.api-core-execution-architecture-contract-test-suite
+    kind: suite
+    profile: API_BASE_CONTRACT
+    area: API_LIFECYCLE
+    capability: 'API execution architecture'
+    purpose: 'Keep ApiActions as a thin facade and move retry/config/reporting decisions into focused collaborators.'
+    reportHint: 'Repair ApiRuntimeOptions, ApiRateLimitPolicy or ApiExecutionReporter instead of growing ApiActions.'
+  - id: core.contract-narrative.atf-core-contract-catalog-test-class
+    kind: contract
+    area: CORE_ARCHITECTURE
+    owner: 'ATF core contract metadata'
+    expected: 'Core contract metadata is generic and discoverable from annotations.'
+    observed: 'The test reads metadata from CoreMcpBoundaryContractTest through AtfCoreContractCatalog.'
+    repairHint: 'Do not reuse MCP annotations inside ATF core contract tests.'
+  - id: core.contract-narrative.atf-core-contract-catalog-test-suite
+    kind: suite
+    profile: CORE_CONTRACT
+    area: CORE_ARCHITECTURE
+    capability: 'ATF core contract metadata catalog'
+    purpose: 'Keep core architecture contracts traceable without importing MCP metadata.'
+    reportHint: 'Use AtfCoreContract/AtfCoreCheck for generic core architecture contracts.'
+  - id: core.contract-narrative.atf-core-test-ng-profile-contract-test-class
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: 'ATF core TestNG profiles'
+    expected: 'ATF core exposes separate fast, visual, aggregate and full sweep profiles with clear scope.'
+    observed: 'The test parses TestNG XML files and verifies class/group routing for each profile.'
+    repairHint: 'Do not hide slow aggregate or visual contracts inside the only fast feedback path.'
+  - id: core.contract-narrative.atf-core-test-ng-profile-contract-test-suite
+    kind: suite
+    profile: CORE_CONTRACT
+    area: REPORTING_LIFECYCLE
+    capability: 'ATF core TestNG profile taxonomy'
+    purpose: 'Keep fast, visual, aggregate and full ATF core suites explicit and runnable independently.'
+    reportHint: 'Repair src/test/resources/atf/core/suites/core/testng-atf-core-*.xml before changing ATF core profile behavior.'
+  - id: core.contract-narrative.core-mcp-boundary-contract-test-class
+    kind: contract
+    area: CORE_ARCHITECTURE
+    owner: 'ATF core architecture boundary'
+    expected: 'core, ui.core and api.core do not depend on MCP packages or MCP package-audit vocabulary.'
+    observed: 'The test scans main core source trees for MCP imports and package-audit terms.'
+    repairHint: 'Core may expose generic reporting/runtime primitives; MCP must consume core, not the opposite.'
+  - id: core.contract-narrative.core-mcp-boundary-contract-test-suite
+    kind: suite
+    profile: CORE_CONTRACT
+    area: CORE_ARCHITECTURE
+    capability: 'ATF core / MCP boundary'
+    purpose: 'Keep ATF core reusable and independent from MCP package-audit policy.'
+    reportHint: 'Move MCP/package-audit vocabulary back to com.endava.ai.skills.mcp instead of importing it into core.'
+  - id: core.contract-narrative.html-table-contract-test-class
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: 'ATF HTML rendering support'
+    expected: 'HTML tables escape text/code cells and reject rows that do not match the declared heading count.'
+    observed: 'The test renders text/code/classed cells and verifies row-shape validation failures.'
+    repairHint: 'Extend HtmlTable with typed cells rather than bypassing escaping or table-shape checks.'
+  - id: core.contract-narrative.html-table-contract-test-suite
+    kind: suite
+    profile: REPORTING_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: 'HTML table rendering'
+    purpose: 'Keep shared HTML table rendering escaped, shape-stable, and usable by reporting artifacts.'
+    reportHint: 'Use HtmlTable for small contract/report tables instead of hand-built unescaped HTML strings.'
+  - id: core.contract-narrative.registration-tests-class
+    kind: contract
+    area: UI_PRODUCT_SMOKE
+    owner: 'BaseTestUI + RegistrationService + RegistrationValidation'
+    expected: 'Product UI smoke tests must remain separated from ATF-core contracts while still proving that UI reporting works on a real page.'
+    observed: 'Registration tests route through service and validation layers and publish live UI steps/screenshots through TestListener.'
+    repairHint: 'If this fails, inspect product availability and registration flow separately from framework contract health.'
+  - id: core.contract-narrative.registration-tests-suite
+    kind: suite
+    profile: UI_PRODUCT_SMOKE_CONTRACT
+    area: UI_PRODUCT_SMOKE
+    capability: 'UI product smoke boundary'
+    purpose: 'Exercise a real registration page flow through ATF UI layers without treating it as pure ATF-core coverage.'
+    reportHint: 'Use this suite as live UI smoke evidence; keep ATF-core health based on framework contracts.'
+  - id: core.contract-narrative.before-class-method-after-update-user
+    kind: contract
+    area: API_LIFECYCLE
+    owner: 'BeforeTest + BeforeMethod + AfterMethod'
+    expected: 'A user created by setup remains readable before the test, can be updated, then is deleted by cleanup.'
+    observed: 'Readiness, patch, delete, and post-delete checks are executed in one auditable lifecycle path.'
+    repairHint: 'If this fails, inspect hook ordering and whether cleanup is deleting the same live user id.'
+  - id: core.contract-narrative.before-class-method-after-class
+    kind: contract
+    area: API_LIFECYCLE
+    owner: 'BaseTestAPI + TestNG lifecycle + UsersSteps'
+    expected: 'BeforeTest creates data, BeforeMethod verifies readiness, Test mutates it, and AfterMethod deletes it.'
+    observed: 'The test records setup, readiness, mutation, delete, and post-delete status codes.'
+    repairHint: 'Check UsersSteps lifecycle calls, TestNG hook order, and cleanup idempotency.'
+  - id: core.contract-narrative.before-class-method-after-suite
+    kind: suite
+    profile: LIVE_API_SMOKE_CONTRACT
+    area: API_LIFECYCLE
+    capability: 'API lifecycle hooks with method cleanup'
+    purpose: 'Validate that API setup and teardown hooks can create, verify, update, and clean live test data.'
+    reportHint: 'Expected / observed / verdict steps show the lifecycle path and live HTTP status evidence.'
+  - id: core.contract-narrative.before-class-before-method-test-delete-user
+    kind: contract
+    area: API_LIFECYCLE
+    owner: 'BeforeClass-created user'
+    expected: 'The user created at class scope is still available at method scope and can be deleted.'
+    observed: 'The delete response status is captured as lifecycle evidence.'
+    repairHint: 'If delete is not 204, verify class-scope data isolation and API cleanup permissions.'
+  - id: core.contract-narrative.before-class-before-method-test-class
+    kind: contract
+    area: API_LIFECYCLE
+    owner: 'BeforeClass + BeforeMethod + UsersSteps'
+    expected: 'BeforeClass creates one live user and BeforeMethod verifies it before the test deletes it.'
+    observed: 'The test observes live readiness and delete HTTP status codes.'
+    repairHint: 'Check before-class data creation, waitUntilAvailable, and delete cleanup behavior.'
+  - id: core.contract-narrative.before-class-before-method-test-suite
+    kind: suite
+    profile: LIVE_API_SMOKE_CONTRACT
+    area: API_LIFECYCLE
+    capability: 'API before-class and before-method lifecycle'
+    purpose: 'Validate that class setup can create live API data and method setup can prove readiness before the test.'
+    reportHint: 'The Extent node should show expected lifecycle contract, observed status codes, and cold verdict.'
+  - id: core.contract-narrative.before-test-one-test-one-delete-user-4
+    kind: contract
+    area: API_LIFECYCLE
+    owner: 'BeforeTest-created user'
+    expected: 'The user created before the test is available and can be deleted in the same test.'
+    observed: 'Availability and delete responses are captured as lifecycle evidence.'
+    repairHint: 'Keep BeforeTest data setup deterministic and delete through UsersSteps.'
+  - id: core.contract-narrative.before-test-one-test-one-class
+    kind: contract
+    area: API_LIFECYCLE
+    owner: 'BeforeTest + UsersSteps'
+    expected: 'BeforeTest creates one live user and the test proves availability before deleting it.'
+    observed: 'The test records availability and delete status codes.'
+    repairHint: 'Check suite-level API setup and live data cleanup if either status drifts.'
+  - id: core.contract-narrative.before-test-one-test-one-suite
+    kind: suite
+    profile: LIVE_API_SMOKE_CONTRACT
+    area: API_LIFECYCLE
+    capability: 'API before-test single-test lifecycle'
+    purpose: 'Validate that BeforeTest-created API data can be verified and deleted by a single test.'
+    reportHint: 'The lifecycle contract appears as expected / observed / verdict steps in Extent.'
+  - id: core.contract-narrative.before-test-one-test-two-delete-user-5
+    kind: contract
+    area: API_LIFECYCLE
+    owner: 'Dependent delete step'
+    expected: 'The second test deletes the same user only after readiness has passed.'
+    observed: 'The delete response proves dependent cleanup of live setup data.'
+    repairHint: 'If this fails, inspect dependsOnMethods ordering and whether another hook already deleted the user.'
+  - id: core.contract-narrative.before-test-one-test-two-wait-until-user-is-available
+    kind: contract
+    area: API_LIFECYCLE
+    owner: 'BeforeTest-created user readiness'
+    expected: 'The first test in the dependency chain proves that setup data is readable.'
+    observed: 'waitUntilAvailable returns a successful status before cleanup is attempted.'
+    repairHint: 'If readiness fails, inspect API creation latency and waitUntilAvailable polling.'
+  - id: core.contract-narrative.before-test-one-test-two-class
+    kind: contract
+    area: API_LIFECYCLE
+    owner: 'BeforeTest + dependent TestNG API lifecycle'
+    expected: 'One created user is first proven available and then deleted by a dependent test.'
+    observed: 'The readiness test and delete test record separate live HTTP status evidence.'
+    repairHint: 'Check TestNG dependency order and avoid reusing deleted ids between dependent lifecycle tests.'
+  - id: core.contract-narrative.before-test-one-test-two-suite
+    kind: suite
+    profile: LIVE_API_SMOKE_CONTRACT
+    area: API_LIFECYCLE
+    capability: 'API before-test dependent lifecycle'
+    purpose: 'Validate that a BeforeTest-created user can be shared across ordered lifecycle tests.'
+    reportHint: 'The report separates readiness evidence from cleanup evidence.'
+  - id: core.contract-narrative.before-test-before-method-test-delete-user-2
+    kind: contract
+    area: API_LIFECYCLE
+    owner: 'BeforeMethod readiness gate'
+    expected: 'The test deletes only after BeforeMethod has confirmed the user is available.'
+    observed: 'The delete response is recorded as the visible contract result.'
+    repairHint: 'If delete fails, inspect whether BeforeMethod consumed stale setup data.'
+  - id: core.contract-narrative.before-test-before-method-test-class
+    kind: contract
+    area: API_LIFECYCLE
+    owner: 'BeforeTest + BeforeMethod + UsersSteps'
+    expected: 'BeforeTest creates live API data and BeforeMethod proves it is available before deletion.'
+    observed: 'The test captures delete status after method-level readiness has already run.'
+    repairHint: 'Check setup readiness and delete cleanup if status evidence drifts.'
+  - id: core.contract-narrative.before-test-before-method-test-suite
+    kind: suite
+    profile: LIVE_API_SMOKE_CONTRACT
+    area: API_LIFECYCLE
+    capability: 'API before-test and before-method lifecycle'
+    purpose: 'Validate that BeforeTest data is rechecked by BeforeMethod before the test consumes it.'
+    reportHint: 'The report records the hook chain and delete status.'
+  - id: core.contract-narrative.before-test-test-one-after-test-delete-user
+    kind: contract
+    area: API_LIFECYCLE
+    owner: 'BeforeTest-created user readiness with AfterMethod cleanup'
+    expected: 'The test verifies the user exists and leaves deletion to AfterMethod.'
+    observed: 'The readiness status is recorded; AfterMethod enforces delete status.'
+    repairHint: 'If readiness fails, inspect setup creation; if cleanup fails, inspect AfterMethod delete ownership.'
+  - id: core.contract-narrative.before-test-test-one-after-test-class
+    kind: contract
+    area: API_LIFECYCLE
+    owner: 'BeforeTest + Test + AfterMethod'
+    expected: 'BeforeTest creates live data, the test proves availability, and AfterMethod deletes it.'
+    observed: 'The test records readiness evidence while cleanup validates delete status after the test.'
+    repairHint: 'Check separation between observable test proof and destructive cleanup.'
+  - id: core.contract-narrative.before-test-test-one-after-test-suite
+    kind: suite
+    profile: LIVE_API_SMOKE_CONTRACT
+    area: API_LIFECYCLE
+    capability: 'API before-test with after-method cleanup'
+    purpose: 'Validate that a test can prove setup data while AfterMethod owns destructive cleanup.'
+    reportHint: 'The test node records readiness; cleanup remains in the lifecycle hook.'
+  - id: core.contract-narrative.end-to-end-user-lifecycle-tests-user-lifecycle-e2e
+    kind: contract
+    area: API_LIFECYCLE
+    owner: 'UsersSteps + ResponseValidator'
+    expected: 'The live user lifecycle exposes positive API checkpoints and one expected negative validator signal after deletion.'
+    observed: 'The test records create/get/patch/delete status checks, then captures the intentional 200-vs-404 validator failure as PASS evidence.'
+    repairHint: 'If this fails, inspect the live API boundary first; do not hide expected validator failures as raw test failures.'
+  - id: core.contract-narrative.end-to-end-user-lifecycle-tests-class
+    kind: contract
+    area: API_LIFECYCLE
+    owner: 'BaseTestAPI + UsersSteps + ResponseValidator'
+    expected: 'A live API lifecycle test must show the request flow, validation checkpoints, controlled negative assertion, and cleanup boundary.'
+    observed: 'The test creates a user, reads it, updates it, deletes it, then proves the deleted user is no longer readable.'
+    repairHint: 'Keep API smoke tests reportable and convert intentional negative checks into controlled expected-failure contracts.'
+  - id: core.contract-narrative.end-to-end-user-lifecycle-tests-suite
+    kind: suite
+    profile: LIVE_API_SMOKE_CONTRACT
+    area: API_LIFECYCLE
+    capability: 'Live API user lifecycle smoke'
+    purpose: 'Validate that the API layer can explain a live create/read/update/delete/delete-proof flow in the report.'
+    reportHint: 'Check base.url, auth.token, UsersSteps, ApiActions, and ResponseValidator details when this live boundary fails.'
+  - id: core.contract-narrative.negative-user-tests-delete-non-existing-user-returns-404
+    kind: contract
+    area: API_LIFECYCLE
+    owner: 'UsersSteps + ResponseValidator'
+    expected: 'Deleting a non-existing user returns a not-found boundary instead of an unexpected framework failure.'
+    observed: 'The test deletes a high synthetic id and validates HTTP 404.'
+    repairHint: 'If this fails, inspect live API delete semantics and keep the not-found boundary explicit.'
+  - id: core.contract-narrative.negative-user-tests-missing-auth-token-is-rejected
+    kind: contract
+    area: API_LIFECYCLE
+    owner: 'UsersSteps + auth boundary'
+    expected: 'Unauthenticated user creation is rejected and the response status is visible in the report.'
+    observed: 'The test calls the create-without-auth flow and validates HTTP 401.'
+    repairHint: 'If this changes, verify auth-token handling before relaxing the negative contract.'
+  - id: core.contract-narrative.negative-user-tests-duplicate-email-is-rejected
+    kind: contract
+    area: API_LIFECYCLE
+    owner: 'JsonUtils fixture boundary'
+    expected: 'A known missing duplicate-email fixture is captured as a controlled expected failure, not as a red test.'
+    observed: 'The test expects JsonUtils to report the missing fixture path and records the diagnostic in the report.'
+    repairHint: 'Either add the fixture and convert this into a product rejection test, or keep the expected-failure contract explicit.'
+  - id: core.contract-narrative.negative-user-tests-invalid-email-is-rejected
+    kind: contract
+    area: API_LIFECYCLE
+    owner: 'UsersSteps + ResponseValidator'
+    expected: 'Invalid email is rejected by the live API and the report shows the validation status/body check.'
+    observed: 'The test reads the invalid-email fixture, posts it, then validates HTTP 422 and an email error body.'
+    repairHint: 'If this fails, inspect the negative fixture and API validation contract before changing assertions.'
+  - id: core.contract-narrative.negative-user-tests-class
+    kind: contract
+    area: API_LIFECYCLE
+    owner: 'BaseTestAPI + UsersSteps + ResponseValidator'
+    expected: 'Negative API checks must either prove the API rejects invalid requests or document an expected local fixture failure as PASS evidence.'
+    observed: 'The suite covers invalid email, missing duplicate fixture, missing auth, and non-existing delete boundaries.'
+    repairHint: 'Keep negative API behavior explicit: expected product rejection and expected local fixture gaps must not become red pipeline failures.'
+  - id: core.contract-narrative.negative-user-tests-suite
+    kind: suite
+    profile: LIVE_API_SMOKE_CONTRACT
+    area: API_LIFECYCLE
+    capability: 'Live API negative user boundary'
+    purpose: 'Validate that API negative scenarios are reported as controlled contracts, not raw unexpected failures.'
+    reportHint: 'Check fixtures, auth behavior, UsersSteps, and ResponseValidator diagnostics when a negative boundary changes.'
+  - id: core.contract-narrative.contract-index-contract-test-class
+    kind: contract
+    area: CORE_ARCHITECTURE
+    owner: 'ATF YAML contract index'
+    expected: 'Contract indexes expose stable lookups, duplicate diagnostics, and strict id validation.'
+    observed: 'The test exercises duplicate ids, unique-index fail-fast behavior, and missing/blank/null id errors.'
+    repairHint: 'Route YAML catalog lookups through ContractIndex instead of ad hoc maps or nullable lookups.'
+  - id: core.contract-narrative.contract-index-contract-test-suite
+    kind: suite
+    profile: CORE_CONTRACT
+    area: CORE_ARCHITECTURE
+    capability: 'YAML contract indexing'
+    purpose: 'Keep YAML-backed contract catalogs deterministic and explicit about duplicate ids.'
+    reportHint: 'Use ContractIndex for every runtime YAML catalog that must fail fast on duplicate contract ids.'
+  - id: core.contract-narrative.simple-yaml-contract-loader-contract-test-class
+    kind: contract
+    area: CORE_ARCHITECTURE
+    owner: 'ATF YAML loader'
+    expected: 'YAML contract resources flatten scalar lists consistently and reject nested objects inside scalar-list fields.'
+    observed: 'The test parses inline YAML fixtures and verifies flattened values plus explicit parser errors.'
+    repairHint: 'Keep contract YAML list values scalar-only unless the loader schema is intentionally expanded and retested.'
+  - id: core.contract-narrative.simple-yaml-contract-loader-contract-test-suite
+    kind: suite
+    profile: CORE_CONTRACT
+    area: CORE_ARCHITECTURE
+    capability: 'YAML contract loader'
+    purpose: 'Keep the shared YAML contract loader predictable for flattened scalar and scalar-list entries.'
+    reportHint: 'Extend the loader contract before adding richer YAML structures to ATF, MCP, or atlas catalogs.'
+  - id: core.contract-narrative.yaml-enums-contract-test-class
+    kind: contract
+    area: CORE_ARCHITECTURE
+    owner: 'ATF YAML enum parser'
+    expected: 'YAML enum values normalize case and hyphenated names while reporting invalid values with contract context.'
+    observed: 'The test verifies valid normalization and invalid-value diagnostics against a sample enum.'
+    repairHint: 'Add enum parser cases here before relying on new YAML enum conventions in contract catalogs.'
+  - id: core.contract-narrative.yaml-enums-contract-test-suite
+    kind: suite
+    profile: CORE_CONTRACT
+    area: CORE_ARCHITECTURE
+    capability: 'YAML enum parsing'
+    purpose: 'Keep YAML enum parsing readable, case-normalized, and explicit when invalid values appear.'
+    reportHint: 'Use YamlEnums for contract enum fields instead of local string switches.'
+  - id: core.contract-narrative.yaml-scalar-lists-contract-test-class
+    kind: contract
+    area: CORE_ARCHITECTURE
+    owner: 'ATF YAML scalar-list parser'
+    expected: 'YAML scalar-list helpers trim values, preserve alternatives, and reject blank comma or pipe groups.'
+    observed: 'The test covers permissive comma parsing and strict alternative parsing with explicit error messages.'
+    repairHint: 'Do not parse comma/pipe contract fields by hand; extend YamlScalarLists and its tests first.'
+  - id: core.contract-narrative.yaml-scalar-lists-contract-test-suite
+    kind: suite
+    profile: CORE_CONTRACT
+    area: CORE_ARCHITECTURE
+    capability: 'YAML scalar-list parsing'
+    purpose: 'Keep comma and pipe-delimited YAML list conventions strict enough for contract catalogs.'
+    reportHint: 'Use strict scalar-list helpers for artifact/link/alternative fields that must reject blank groups.'
+  - id: core.contract-narrative.yaml-scalars-contract-test-class
+    kind: contract
+    area: CORE_ARCHITECTURE
+    owner: 'ATF YAML scalar parser'
+    expected: 'YAML scalar helpers return stable defaults and fail with contract-aware diagnostics for invalid values.'
+    observed: 'The test verifies optional defaults, required values, contract id fallback, boolean parsing, and integer diagnostics.'
+    repairHint: 'Route YAML scalar parsing through YamlScalars instead of duplicating parser and error-message logic.'
+  - id: core.contract-narrative.yaml-scalars-contract-test-suite
+    kind: suite
+    profile: CORE_CONTRACT
+    area: CORE_ARCHITECTURE
+    capability: 'YAML scalar parsing'
+    purpose: 'Keep shared YAML scalar helpers explicit about defaults, required values, booleans, integers, and contract ids.'
+    reportHint: 'Centralize scalar parsing changes here before they affect ATF core, MCP, or atlas YAML catalogs.'
+  - id: core.contract-narrative.aggregate-extent-test-display-contract-test-class
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: 'AggregateExtentReportWriter'
+    expected: 'Aggregate test cases expose collapsible metadata, contract proof, and status evidence sections.'
+    observed: 'The test writes a synthetic aggregate Extent report and inspects the generated HTML.'
+    repairHint: 'Keep aggregate case details as child nodes instead of flat info logs on the test case node.'
+  - id: core.contract-narrative.aggregate-extent-test-display-contract-test-suite
+    kind: suite
+    profile: EXTENT_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: 'Aggregate Extent test display'
+    purpose: 'Keep aggregate report test details organized like the standard Extent runtime drill-down.'
+    reportHint: 'Run when changing AggregateExtentReportWriter node layout or Extent collapse behavior.'
+  - id: core.contract-narrative.atf-core-aggregate-allure-contract-test-aggregate-allure-result-keeps-failed-cold-verdict-visible
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: 'AtfCoreAggregateReportListener'
+    expected: 'A failed aggregate case keeps the failed status and exposes a failed Cold framework verdict step.'
+    observed: 'The generated Allure TestResult is inspected for status, statusDetails, and verdict step state.'
+    repairHint: 'Keep failures visible in Allure while still publishing repair guidance.'
+  - id: core.contract-narrative.atf-core-aggregate-allure-contract-test-aggregate-allure-result-exposes-contract-diagnostics-as-steps
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: 'AtfCoreAggregateReportListener'
+    expected: 'A passed aggregate case has visible Expected framework contract, Observed framework result, and Cold framework verdict steps.'
+    observed: 'The generated Allure TestResult is inspected before it is written to disk.'
+    repairHint: 'Populate TestResult.steps with readable contract diagnostics.'
+  - id: core.contract-narrative.atf-core-aggregate-allure-contract-test-class
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: 'AtfCoreAggregateReportListener'
+    expected: 'Every aggregate Allure result publishes contract diagnostics as visible Execution steps.'
+    observed: 'The test builds synthetic aggregate cases and inspects the generated Allure TestResult model.'
+    repairHint: 'Do not hide expected/observed/verdict diagnostics only as top-level Allure parameters.'
+  - id: core.contract-narrative.atf-core-aggregate-allure-contract-test-suite
+    kind: suite
+    profile: ALLURE_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: 'ATF core aggregate Allure contract'
+    purpose: 'Validate that the final aggregate Allure report remains readable, not just statistically green.'
+    reportHint: 'Repair AtfCoreAggregateReportListener so aggregate Allure nodes expose Expected, Observed, and Cold verdict steps.'
+  - id: core.contract-narrative.atf-core-aggregate-extent-contract-test-class
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: 'AtfCoreAggregateReportListener'
+    expected: 'Aggregate Extent dashboard counts are reconciled from runtime TestNG inventory and not inflated by nested Spark nodes.'
+    observed: 'The test writes synthetic Spark HTML, invokes the aggregate writer, and verifies dashboard pass/fail counts.'
+    repairHint: 'Repair aggregate Extent reconciliation before trusting the final ATF-core report totals.'
+  - id: core.contract-narrative.atf-core-aggregate-extent-contract-test-suite
+    kind: suite
+    profile: EXTENT_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: 'ATF core aggregate Extent contract'
+    purpose: 'Validate that the final aggregate Extent report uses runtime ledger counts instead of raw Spark node totals.'
+    reportHint: 'Run this as an Extent-only self-auditing contract when changing aggregate report generation.'
+  - id: core.contract-narrative.extent-spark-listener-fixture-contract-test-class
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: 'ExtentSparkReporterFactory + TestListener + runtime audit HTML'
+    expected: 'Extent reports remain readable, navigable, collapsed by default, tag-filterable and backed by runtime audit metadata.'
+    observed: 'The suite generates local Extent reports, opens them in a browser, and inspects DOM, CSS, tags, timeline and nested node behavior.'
+    repairHint: 'Repair Extent Spark customization or runtime audit injection before changing product/API/UI tests.'
+  - id: core.contract-narrative.extent-spark-listener-fixture-contract-test-suite
+    kind: suite
+    profile: EXTENT_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: 'Extent Spark presentation contract'
+    purpose: 'Protect one focused family of generated Extent HTML presentation behavior.'
+    reportHint: 'Run this suite only in the Extent profile; it validates browser-visible Spark HTML behavior.'
+  - id: core.contract-narrative.extent-spark-runtime-audit-contract-test-class
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: 'ExtentSparkReporterFactory + TestListener + runtime audit HTML'
+    expected: 'Extent reports remain readable, navigable, collapsed by default, tag-filterable and backed by runtime audit metadata.'
+    observed: 'The suite generates local Extent reports, opens them in a browser, and inspects DOM, CSS, tags, timeline and nested node behavior.'
+    repairHint: 'Repair Extent Spark customization or runtime audit injection before changing product/API/UI tests.'
+  - id: core.contract-narrative.extent-spark-runtime-audit-contract-test-suite
+    kind: suite
+    profile: EXTENT_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: 'Extent Spark presentation contract'
+    purpose: 'Protect one focused family of generated Extent HTML presentation behavior.'
+    reportHint: 'Run this suite only in the Extent profile; it validates browser-visible Spark HTML behavior.'
+  - id: core.contract-narrative.extent-spark-runtime-timeline-contract-test-class
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: 'ExtentRuntimeDashboardRenderer + ExtentSparkRuntimeTimelineCss'
+    expected: 'Runtime timeline groups invocations by class and exposes readable mouse and keyboard explanations.'
+    observed: 'The suite generates Extent reports, inspects dashboard HTML/CSS, and verifies hover tooltip rendering in Chromium.'
+    repairHint: 'Repair runtime timeline rendering or tooltip CSS before changing runtime audit grouping.'
+  - id: core.contract-narrative.extent-spark-runtime-timeline-contract-test-suite
+    kind: suite
+    profile: EXTENT_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: 'Extent Spark runtime timeline contract'
+    purpose: 'Protect the dashboard timeline as a class-level runtime audit visualization.'
+    reportHint: 'Run this suite only in the Extent profile; it validates timeline HTML, CSS, and browser hover behavior.'
+  - id: core.contract-narrative.extent-spark-shell-style-contract-test-class
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: 'ExtentSparkReporterFactory + TestListener + runtime audit HTML'
+    expected: 'Extent reports remain readable, navigable, collapsed by default, tag-filterable and backed by runtime audit metadata.'
+    observed: 'The suite generates local Extent reports, opens them in a browser, and inspects DOM, CSS, tags, timeline and nested node behavior.'
+    repairHint: 'Repair Extent Spark customization or runtime audit injection before changing product/API/UI tests.'
+  - id: core.contract-narrative.extent-spark-shell-style-contract-test-suite
+    kind: suite
+    profile: EXTENT_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: 'Extent Spark presentation contract'
+    purpose: 'Protect one focused family of generated Extent HTML presentation behavior.'
+    reportHint: 'Run this suite only in the Extent profile; it validates browser-visible Spark HTML behavior.'
+  - id: core.contract-narrative.extent-spark-tag-navigation-contract-test-class
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: 'ExtentSparkReporterFactory + TestListener + runtime audit HTML'
+    expected: 'Extent reports remain readable, navigable, collapsed by default, tag-filterable and backed by runtime audit metadata.'
+    observed: 'The suite generates local Extent reports, opens them in a browser, and inspects DOM, CSS, tags, timeline and nested node behavior.'
+    repairHint: 'Repair Extent Spark customization or runtime audit injection before changing product/API/UI tests.'
+  - id: core.contract-narrative.extent-spark-tag-navigation-contract-test-suite
+    kind: suite
+    profile: EXTENT_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: 'Extent Spark presentation contract'
+    purpose: 'Protect one focused family of generated Extent HTML presentation behavior.'
+    reportHint: 'Run this suite only in the Extent profile; it validates browser-visible Spark HTML behavior.'
+  - id: core.contract-narrative.extent-spark-tree-collapse-contract-test-class
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: 'ExtentSparkReporterFactory + TestListener + runtime audit HTML'
+    expected: 'Extent reports remain readable, navigable, collapsed by default, tag-filterable and backed by runtime audit metadata.'
+    observed: 'The suite generates local Extent reports, opens them in a browser, and inspects DOM, CSS, tags, timeline and nested node behavior.'
+    repairHint: 'Repair Extent Spark customization or runtime audit injection before changing product/API/UI tests.'
+  - id: core.contract-narrative.extent-spark-tree-collapse-contract-test-suite
+    kind: suite
+    profile: EXTENT_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: 'Extent Spark presentation contract'
+    purpose: 'Protect one focused family of generated Extent HTML presentation behavior.'
+    reportHint: 'Run this suite only in the Extent profile; it validates browser-visible Spark HTML behavior.'
+  - id: core.contract-narrative.core-architecture-guard-contract-test-class
+    kind: contract
+    area: CORE_ARCHITECTURE
+    owner: 'ATF core architecture'
+    expected: 'Core code keeps role boundaries explicit and does not leak IO, config or third-party clients into the wrong layer.'
+    observed: 'The test scans source code for dependency direction, renderer purity, policy IO, factory policy and semantic token ownership.'
+    repairHint: 'Move decisions into policies, writes into publishers, construction into registries/factories and report tokens into semantic owners.'
+  - id: core.contract-narrative.core-architecture-guard-contract-test-suite
+    kind: suite
+    profile: CORE_CONTRACT
+    area: CORE_ARCHITECTURE
+    capability: 'ATF core architecture guardrails'
+    purpose: 'Keep core classes aligned with ReqsCore boundaries for OOP roles, ownership and side effects.'
+    reportHint: 'Repair the smallest role boundary first: facade, policy, renderer, publisher, factory or config boundary.'
+  - id: core.contract-narrative.extent-inspection-boundary-contract-test-reporting-assertion-helpers-stay-below-parser-bloat-threshold
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: 'Reporting assertion readability'
+    expected: 'Reporting assertion helpers stay thin wrappers over main inspectors instead of becoming parser-heavy mini-frameworks.'
+    observed: 'The test scans src/test reporting assertion classes and blocks oversized assertion helpers.'
+    repairHint: 'Move parsing/model extraction into main inspection classes, then keep assertion helpers focused on expectations.'
+  - id: core.contract-narrative.extent-inspection-boundary-contract-test-extent-spark-inspection-main-package-stays-pure
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: 'Extent Spark inspection boundary'
+    expected: 'Reusable Extent report inspectors live in main as pure parsers, while assertions and browser harnesses stay in test.'
+    observed: 'The test scans the main inspection package for TestNG, assertion, Playwright, Mockito, and ATF contract-test dependencies.'
+    repairHint: 'Move only parser/model/locator behavior into main; keep Assert, Playwright DOM checks, Mockito fixtures, and reset helpers in src/test.'
+  - id: core.contract-narrative.extent-inspection-boundary-contract-test-suite
+    kind: suite
+    profile: REPORTING_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: 'Extent inspection boundary'
+    purpose: 'Keep reusable Extent parsing and inspection code in main while test assertions remain thin and test-owned.'
+    reportHint: 'Move parser/model helpers into main inspection packages; keep TestNG assertions and browser harnesses in src/test.'
+  - id: core.contract-narrative.extent-runtime-audit-architecture-contract-test-runtime-report-locator-does-not-rewrite-ambiguous-latest-report
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: 'ExtentRuntimeReportLocator'
+    expected: 'Runtime audit locating never falls back to the newest Extent report without a current-run marker.'
+    observed: 'The test inspects locator source for marker-match selection and stale-target diagnostic behavior.'
+    repairHint: 'Do not reintroduce candidates.stream().findFirst() as a fallback; return null and warn when the target is ambiguous.'
+  - id: core.contract-narrative.extent-runtime-audit-architecture-contract-test-class
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: 'Extent runtime audit architecture'
+    expected: 'ExtentRuntimeAuditRegistry remains a collection/orchestration facade and delegates HTML publishing and report locating.'
+    observed: 'The test scans runtime audit sources for forbidden responsibilities and required collaborators.'
+    repairHint: 'Keep registry focused on record/snapshot orchestration; keep report locating and HTML mutation in dedicated collaborators.'
+  - id: core.contract-narrative.extent-runtime-audit-architecture-contract-test-suite
+    kind: suite
+    profile: REPORTING_CONTRACT
+    area: REPORTING_LIFECYCLE
+    capability: 'Extent runtime audit architecture'
+    purpose: 'Keep Extent runtime audit split into collection facade, report locating, rendering, and publishing.'
+    reportHint: 'Move HTML patching and report locating out of ExtentRuntimeAuditRegistry when runtime audit grows.'
+  - id: core.contract-narrative.extent-semantic-token-ownership-contract-test-extent-semantic-tokens-have-typed-descriptors-and-repair-targets
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: 'Extent semantic token catalog'
+    expected: 'Extent HTML ids, data attributes, report-mode values and runtime audit labels are exposed through a typed descriptor catalog.'
+    observed: 'The test verifies ExtentSemanticToken coverage against the runtime owner classes.'
+    repairHint: 'When adding a report token, add it to the owner class and ExtentSemanticToken in the same change.'
+  - id: core.contract-narrative.extent-semantic-token-ownership-contract-test-class
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: 'Extent semantic tokens'
+    expected: 'ExtentSparkHtmlPostProcessor delegates to pipeline/token owners instead of owning behavioral literals.'
+    observed: 'The test scans postprocessor source and required semantic owner classes.'
+    repairHint: 'Do not reintroduce private ATF_EXTENT_* or data-atf-* literals into the postprocessor.'
+  - id: core.contract-narrative.extent-semantic-token-ownership-contract-test-suite
+    kind: suite
+    profile: REPORTING_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: 'Extent semantic token ownership'
+    purpose: 'Keep Extent report markers, DOM ids and data attributes behind semantic owner classes.'
+    reportHint: 'Move report-mode, marker and data-attribute literals into ExtentMarkers/ExtentDataAttributes/ExtentDomIds.'
+  - id: core.contract-narrative.lifecycle-command-ordering-contract-test-class
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: 'TestListener lifecycle'
+    expected: 'Lifecycle callbacks execute named commands in deterministic order.'
+    observed: 'The test verifies LifecycleCommandRunner ordering and TestListener use of named lifecycle commands.'
+    repairHint: 'Do not add raw side-effect chains back into TestListener.onStart/onFinish.'
+  - id: core.contract-narrative.lifecycle-command-ordering-contract-test-suite
+    kind: suite
+    profile: CORE_CONTRACT
+    area: REPORTING_LIFECYCLE
+    capability: 'ATF listener lifecycle command ordering'
+    purpose: 'Keep TestListener lifecycle callbacks command-driven and auditable.'
+    reportHint: 'Represent lifecycle work as named LifecycleCommand entries before adding more callback logic.'
+  - id: core.contract-narrative.test-listener-architecture-contract-test-test-listener-delegates-result-outcome-handling
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: 'TestListener outcome routing'
+    expected: 'TestListener delegates success/failure/skip outcome decisions to TestResultOutcomeHandler.'
+    observed: 'The test scans TestListener and TestResultOutcomeHandler source boundaries.'
+    repairHint: 'Keep TestListener callbacks thin; move close, attachment, status and runtime audit decisions to collaborators.'
+  - id: core.contract-narrative.test-listener-architecture-contract-test-test-listener-delegates-group-flow-handling
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: 'TestListener group-flow routing'
+    expected: 'TestListener delegates group/flow/teardown decisions to TestGroupFlowHandler.'
+    observed: 'The test scans TestListener and TestGroupFlowHandler source boundaries.'
+    repairHint: 'Keep TestListener as TestNG callback router; move group-flow decisions to TestGroupFlowHandler.'
+  - id: core.contract-narrative.test-listener-architecture-contract-test-class
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: 'TestListener architecture'
+    expected: 'TestListener delegates configuration-failure reporting to a lifecycle collaborator instead of owning the detailed flow inline.'
+    observed: 'The test scans TestListener and ConfigurationFailureHandler source boundaries.'
+    repairHint: 'Keep onConfigurationFailure thin and put step/report/audit details in ConfigurationFailureHandler.'
+  - id: core.contract-narrative.test-listener-architecture-contract-test-suite
+    kind: suite
+    profile: REPORTING_CONTRACT
+    area: REPORTING_LIFECYCLE
+    capability: 'TestListener architecture'
+    purpose: 'Keep TestListener as an orchestration shell over focused lifecycle collaborators.'
+    reportHint: 'Move lifecycle details into collaborators when TestListener starts owning detailed reporting policies.'
+  - id: core.contract-narrative.listener-internal-formatting-contract-test-suite
+    kind: suite
+    profile: REPORTING_CONTRACT
+    area: REPORTING_LIFECYCLE
+    capability: 'Listener internal formatting'
+    purpose: 'Keep listener-owned display names and failure summaries compact, deterministic and Extent-auditable.'
+    reportHint: 'Route runtime display-name and failure-summary formatting through focused listener helpers and contract tests.'
+  - id: core.contract-narrative.test-display-name-contract-test-class
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: 'TestDisplayName'
+    expected: 'Runtime test display names keep method names readable and add parameters or class discriminators only when needed.'
+    observed: 'The contract invokes TestDisplayName through reflection from the ATF reporting listener test package.'
+    repairHint: 'Keep display-name rules in TestDisplayName and preserve method, parameter and nested-class coverage.'
+  - id: core.contract-narrative.failure-summary-preview-contract-test-class
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: 'FailureSummaryPreview'
+    expected: 'Long repeated source-reference failure messages are compacted for visible root-cause titles.'
+    observed: 'The contract invokes FailureSummaryPreview through reflection from the ATF reporting listener test package.'
+    repairHint: 'Keep failure-summary title compaction in FailureSummaryPreview and preserve compact budget and readability checks.'
+  - id: core.contract-narrative.failure-attachment-registry-test-class
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: 'FailureAttachmentRegistry'
+    expected: 'Failure attachment handlers are invoked only for real unexpected failures and remain safe across reporting engines.'
+    observed: 'Registry calls, missing handler behavior, engine-specific calls, repeated failures, and expected-exception TestNG flows are inspected.'
+    repairHint: 'Check FailureAttachmentRegistry cleanup, TestListener expected-exception handling, and reporter-specific failure hooks.'
+  - id: core.contract-narrative.failure-attachment-registry-test-suite
+    kind: suite
+    profile: REPORTING_CONTRACT
+    area: REPORTING_LIFECYCLE
+    capability: 'Reporting lifecycle contract'
+    purpose: 'Validate listener, StepLogger, and reporting lifecycle behavior.'
+    reportHint: 'Repair listener lifecycle, StepLogger routing, or report-state cleanup.'
+  - id: core.contract-narrative.final-state-attachment-registry-test-class
+    kind: contract
+    area: SCREENSHOT
+    owner: 'FinalStateAttachmentRegistry'
+    expected: 'Core reporting can publish success-time attachments without depending on UI screenshot classes.'
+    observed: 'The test drives the registry with and without a handler and counts success callbacks.'
+    repairHint: 'Register final-state contributors from UI runtime code, not from TestListener.'
+  - id: core.contract-narrative.final-state-attachment-registry-test-suite
+    kind: suite
+    profile: REPORTING_CONTRACT
+    area: SCREENSHOT
+    capability: 'Final-state attachment registry contract'
+    purpose: 'Validate that successful-test attachments are routed through a generic core registry.'
+    reportHint: 'Keep TestListener independent of UI packages; UI may register a final-state contributor.'
+  - id: core.contract-narrative.before-method-must-not-create-standalone-test-class
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: 'TestListener before-method buffering'
+    expected: 'Steps emitted before a real test body are buffered and flushed into the real test, not into a synthetic fallback test.'
+    observed: 'The tests simulate before-method logging around TestListener.onTestStart/onTestSuccess and inspect report start calls.'
+    repairHint: 'Check StepBufferRegistry, LifecycleFlusher, and TestListener start-group sequencing.'
+  - id: core.contract-narrative.before-method-must-not-create-standalone-test-suite
+    kind: suite
+    profile: REPORTING_CONTRACT
+    area: REPORTING_LIFECYCLE
+    capability: 'Reporting lifecycle contract'
+    purpose: 'Validate listener, StepLogger, and reporting lifecycle behavior.'
+    reportHint: 'Repair listener lifecycle, StepLogger routing, or report-state cleanup.'
+  - id: core.contract-narrative.extent-failure-placement-contract-test-silent-passing-test-body
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: 'Silent contract fixture'
+    expected: 'Silent passing contracts still publish body context.'
+    observed: 'The fixture body intentionally emits no StepLogger calls.'
+    repairHint: 'Publish contract metadata when opening TEST BODY.'
+  - id: core.contract-narrative.extent-failure-placement-contract-test-class
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: 'TestListener + ExtentRuntimeAuditRegistry'
+    expected: 'Extent distinguishes before-method, test-body and after-method failures while preserving TestNG-backed dashboard totals.'
+    observed: 'The test runs controlled failure fixtures through TestNG, reads the generated Extent HTML, and compares visible failure evidence with TestNG results.'
+    repairHint: 'Repair TestListener failure placement or runtime audit reconciliation before trusting failure diagnostics.'
+  - id: core.contract-narrative.extent-failure-placement-contract-test-suite
+    kind: suite
+    profile: EXTENT_CONTRACT
+    area: REPORTING_LIFECYCLE
+    capability: 'Extent failure placement contract'
+    purpose: 'Validate that setup, test-body and teardown failures are visible in the generated Extent report without corrupting dashboard counts.'
+    reportHint: 'Run this as an Extent-only self-auditing contract when changing TestListener failure handling.'
+  - id: core.contract-narrative.test-listener-failure-contract-test-skipped-contract
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: 'TestListener skipped contract fixture'
+    expected: 'Skipped ATF contracts publish exactly one cold verdict.'
+    observed: 'The listener is driven through afterInvocation and onTestSkipped.'
+    repairHint: 'Keep skip verdict publication in afterInvocation before invocation cleanup clears the reporting delegate.'
+  - id: core.contract-narrative.test-listener-failure-contract-test-class
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: 'TestListener'
+    expected: 'Failures are reported once, step details survive, and listener lifecycle does not create misleading report nodes.'
+    observed: 'The tests simulate listener callbacks and inspect a ReportLogger observer.'
+    repairHint: 'Check TestListener failure handling, StepLogger state, and ReportingManager delegation.'
+  - id: core.contract-narrative.test-listener-failure-contract-test-suite
+    kind: suite
+    profile: REPORTING_CONTRACT
+    area: REPORTING_LIFECYCLE
+    capability: 'Reporting lifecycle contract'
+    purpose: 'Validate listener, StepLogger, and reporting lifecycle behavior.'
+    reportHint: 'Repair listener lifecycle, StepLogger routing, or report-state cleanup.'
+  - id: core.contract-narrative.console-signature-contract-test-class
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: 'StepLogger + ConsoleLogger'
+    expected: 'API and UI test console output keeps the business-facing baseline signature and hides framework narration.'
+    observed: 'The tests capture the console sink and verify the API and UI message patterns without live network or browser work.'
+    repairHint: 'Preserve StepLogger prefixes, route output through ConsoleLogger, and mute framework-only narration.'
+  - id: core.contract-narrative.console-signature-contract-test-suite
+    kind: suite
+    profile: REPORTING_CONTRACT
+    area: REPORTING_LIFECYCLE
+    capability: 'ATF console signature contract'
+    purpose: 'Lock the baseline console messages used by simple API and UI tests.'
+    reportHint: 'Use these component contracts before refactoring StepLogger, API logging, or UI engine startup logging.'
+  - id: core.contract-narrative.extent-html-patch-plan-contract-test-class
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: 'Extent HTML patch plan'
+    expected: 'Runtime audit marker rewriting is idempotent, duplicate-safe, and non-breaking for malformed reports.'
+    observed: 'The tests exercise marker removal, category replacement, and publisher behavior on malformed HTML.'
+    repairHint: 'Keep marker parsing inside MarkedHtmlSectionRewriter and leave publisher focused on report I/O.'
+  - id: core.contract-narrative.extent-html-patch-plan-contract-test-suite
+    kind: suite
+    profile: REPORTING_CONTRACT
+    area: REPORTING_LIFECYCLE
+    capability: 'Extent HTML runtime audit patching'
+    purpose: 'Keep Extent audit HTML patching deterministic for missing, duplicate, and malformed sections.'
+    reportHint: 'Repair MarkedHtmlSectionRewriter or ExtentHtmlPatchPlan before changing publisher behavior.'
+  - id: core.contract-narrative.extent-runtime-audit-value-object-contract-test-class
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: 'ExtentRuntimeInvocation'
+    expected: 'Runtime audit invocations are immutable snapshots with null-safe normalized string fields.'
+    observed: 'The tests mutate caller-owned tags and assert the invocation snapshot remains stable.'
+    repairHint: 'Use List.copyOf and normalize nullable string inputs in the invocation constructor.'
+  - id: core.contract-narrative.extent-runtime-audit-value-object-contract-test-suite
+    kind: suite
+    profile: REPORTING_CONTRACT
+    area: REPORTING_LIFECYCLE
+    capability: 'Extent runtime audit value objects'
+    purpose: 'Keep runtime audit invocation snapshots immutable and normalized.'
+    reportHint: 'Normalize ExtentRuntimeInvocation inputs and never retain caller-owned mutable collections.'
+  - id: core.contract-narrative.extent-runtime-report-locator-contract-test-class
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: 'ExtentRuntimeReportLocator'
+    expected: 'Missing reports are ignored and marker-bearing candidates outrank unrelated newer reports.'
+    observed: 'The tests use a sandboxed reports directory and inspect locator behavior directly.'
+    repairHint: 'Prefer current report when present; otherwise select a candidate containing runtime invocation markers.'
+  - id: core.contract-narrative.extent-runtime-report-locator-contract-test-suite
+    kind: suite
+    profile: REPORTING_CONTRACT
+    area: REPORTING_LIFECYCLE
+    capability: 'Extent runtime report locating'
+    purpose: 'Keep runtime audit publishing away from stale or missing Extent reports.'
+    reportHint: 'Repair ExtentRuntimeReportLocator before changing current/latest report fallback behavior.'
+  - id: core.contract-narrative.non-blocking-diagnostic-contract-test-class
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: 'NonBlockingDiagnostic'
+    expected: 'Warnings are buffered and published through a replaceable sink without throwing into the test flow.'
+    observed: 'The tests replace the sink and the active ReportLogger, then inspect warning delivery.'
+    repairHint: 'Keep diagnostic publication sink-based and avoid hard-coded stderr-only warning paths.'
+  - id: core.contract-narrative.non-blocking-diagnostic-contract-test-suite
+    kind: suite
+    profile: REPORTING_CONTRACT
+    area: REPORTING_LIFECYCLE
+    capability: 'Non-blocking diagnostic contract'
+    purpose: 'Validate that non-blocking reporting failures are captured and routed through a testable sink.'
+    reportHint: 'Use this component contract when changing diagnostic handling around report finalization or attachments.'
+  - id: core.contract-narrative.reporting-manager-session-contract-test-class
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: 'ReportingManager + ReportingSession'
+    expected: 'ReportingManager keeps test loggers isolated, resettable, and optionally mirrored to Extent.'
+    observed: 'The tests exercise session caching, reset, null engine behavior and Extent mirror composition.'
+    repairHint: 'Keep mutable reporting state inside ReportingSession and leave ReportingManager as a thin facade.'
+  - id: core.contract-narrative.reporting-manager-session-contract-test-suite
+    kind: suite
+    profile: REPORTING_CONTRACT
+    area: REPORTING_LIFECYCLE
+    capability: 'Reporting manager session contract'
+    purpose: 'Validate that ReportingManager remains a static facade over a resettable session object.'
+    reportHint: 'Use this component contract before listener-heavy reporting suites when changing manager/session state.'
+  - id: core.contract-narrative.runtime-audit-publisher-coordinator-contract-test-coordinator-flushes-active-validation-report-before-runtime-audit-locate
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: 'RuntimeAuditPublisherCoordinator + RuntimeAuditWriteGuard'
+    expected: 'A Maven run that writes a fixed-name validation Extent report is flushed, located as CURRENT_REPORT, and receives the runtime-audited Overview shell.'
+    observed: 'The test creates an active fixed-name validation Extent report without pre-flushing it and verifies the coordinator publishes runtime audit as a current report.'
+    repairHint: 'Flush active Extent output before locating the runtime audit target; never rewrite marker-matched frozen published artifacts.'
+  - id: core.contract-narrative.runtime-audit-publisher-coordinator-contract-test-coordinator-allows-active-published-report-to-receive-runtime-audit-shell
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: 'RuntimeAuditPublisherCoordinator + RuntimeAuditWriteGuard'
+    expected: 'A Maven run that writes its active Extent report to a configured published-artifact directory still receives the runtime-audited Overview shell.'
+    observed: 'The test creates an active ExtentAdapter report under a neutral target fixture and publishes runtime audit through the coordinator.'
+    repairHint: 'Allow CURRENT_REPORT targets to receive final runtime audit; keep marker-matched frozen published rewrites blocked.'
+  - id: core.contract-narrative.runtime-audit-publisher-coordinator-contract-test-class
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: 'Extent runtime audit publisher'
+    expected: 'Publishing without an Extent report candidate returns a typed skipped result and does not arm the publish-once guard.'
+    observed: 'The test runs the coordinator against an empty report directory and verifies the typed skip outcome.'
+    repairHint: 'Keep no-candidate runtime audit paths explicit; do not silently mutate publish guards or fabricate report evidence.'
+  - id: core.contract-narrative.runtime-audit-publisher-coordinator-contract-test-suite
+    kind: suite
+    profile: EXTENT_CONTRACT
+    area: REPORTING_LIFECYCLE
+    capability: 'Runtime audit publisher coordinator'
+    purpose: 'Keep Extent runtime audit publishing typed and non-mutating when no report candidate exists.'
+    reportHint: 'Treat no-candidate publish attempts as explicit skipped outcomes, not hidden failures or guard mutations.'
+  - id: core.contract-narrative.step-logger-contract-test-class
+    kind: contract
+    area: REPORTING_LIFECYCLE
+    owner: 'StepLogger'
+    expected: 'Step logging remains idempotent and safe for simple, nested, and unhandled-exception flows.'
+    observed: 'The tests exercise StepLogger state transitions directly and expect no duplicate/crashing behavior.'
+    repairHint: 'Check StepLogger state reset, nested step handling, and unhandled exception guard paths.'
+  - id: core.contract-narrative.step-logger-contract-test-suite
+    kind: suite
+    profile: REPORTING_CONTRACT
+    area: REPORTING_LIFECYCLE
+    capability: 'Reporting lifecycle contract'
+    purpose: 'Validate listener, StepLogger, and reporting lifecycle behavior.'
+    reportHint: 'Repair listener lifecycle, StepLogger routing, or report-state cleanup.'
+  - id: core.contract-narrative.allure-screenshot-artifact-smoke-test-class
+    kind: contract
+    area: SCREENSHOT
+    owner: 'AllureAdapter + UiScreenshotFailureHandler'
+    expected: 'Allure receives exactly one final screenshot and one failure screenshot for simulated UI flows.'
+    observed: 'The smoke test writes Allure result artifacts and counts screenshot attachments by title and PNG files.'
+    repairHint: 'Ensure simulated UI flows mark UI interaction before listener success/failure callbacks.'
+  - id: core.contract-narrative.allure-screenshot-artifact-smoke-test-suite
+    kind: suite
+    profile: ALLURE_CONTRACT
+    area: SCREENSHOT
+    capability: 'Screenshot evidence contract'
+    purpose: 'Validate Allure screenshot evidence without requiring Extent visual-layout parity.'
+    reportHint: 'Repair screenshot policy, attachment routing, or reporting adapter publication.'
+  - id: core.contract-narrative.allure-ui-zoom-artifact-smoke-test-class
+    kind: contract
+    area: SCREENSHOT
+    owner: 'AllureAdapter + real UI engine'
+    expected: 'Allure screenshot artifacts reflect the configured browser zoom and remain real PNG evidence.'
+    observed: 'The smoke test runs a UI flow twice with different zoom values and compares the persisted PNG artifacts.'
+    repairHint: 'Ensure the UI flow marks interaction, captures final state, and writes PNG attachments to allure.results.directory.'
+  - id: core.contract-narrative.allure-ui-zoom-artifact-smoke-test-suite
+    kind: suite
+    profile: ALLURE_CONTRACT
+    area: SCREENSHOT
+    capability: 'Screenshot evidence contract'
+    purpose: 'Validate Allure screenshot evidence without requiring Extent visual-layout parity.'
+    reportHint: 'Repair screenshot policy, attachment routing, or reporting adapter publication.'
+  - id: core.contract-narrative.extent-screenshot-artifact-smoke-test-class
+    kind: contract
+    area: SCREENSHOT
+    owner: 'Extent screenshot artifact policy'
+    expected: 'The screenshot policy matrix observes one final and one failure screenshot per supported UI engine, while Extent receives only the audit summary.'
+    observed: 'The test runs synthetic successful/failing UI flows for Selenium and Playwright through an observer logger, then proves fake image payloads are absent from Extent.'
+    repairHint: 'Check UiScreenshotFailureHandler, FailureAttachmentRegistry, observer routing, and ExtentAdapter summary publication.'
+  - id: core.contract-narrative.extent-screenshot-artifact-smoke-test-suite
+    kind: suite
+    profile: EXTENT_CONTRACT
+    area: SCREENSHOT
+    capability: 'Screenshot evidence contract'
+    purpose: 'Validate screenshot policy without polluting Extent with synthetic matrix images.'
+    reportHint: 'Repair screenshot policy, attachment routing, or reporting adapter publication.'
+  - id: core.contract-narrative.final-ui-screenshot-contract-test-class
+    kind: contract
+    area: SCREENSHOT
+    owner: 'UiScreenshotFailureHandler + TestListener'
+    expected: 'Final and failure screenshots are emitted only for real UI flows, without duplicates, and remain thread-safe; the matrix supports the canonical scenarios.'
+    observed: 'The tests drive listener/handler callbacks with fake UI engines and inspect reported screenshot attachments across support rows.'
+    repairHint: 'Check screenshot eligibility flags, UiInteractionTracker state, handler deduplication, and thread-local UI engine cleanup.'
+  - id: core.contract-narrative.final-ui-screenshot-contract-test-suite
+    kind: suite
+    profile: REPORTING_CONTRACT
+    area: SCREENSHOT
+    capability: 'Screenshot evidence contract'
+    purpose: 'Validate screenshot evidence through canonical cases first: default runtime, explicit custom, disabled/failure-only fallback, and controlled override.'
+    reportHint: 'Repair screenshot policy, attachment routing, or reporting adapter publication.'
+  - id: core.contract-narrative.ui-engine-browser-window-contract-smoke-test-class
+    kind: contract
+    area: WINDOW_CONFIG
+    owner: 'UI engine browser window and zoom contract'
+    expected: 'Each UI engine keeps a single browser target and applies configured browser zoom/window policy during startup and navigation in headless mode.'
+    observed: 'The test opens real UI engines, reads browser target counts, then verifies Selenium devicePixelRatio or Playwright headless page zoom style.'
+    repairHint: 'Check UIEngineFactory, SeleniumEngine, PlaywrightEngine, and window/zoom configuration application.'
+  - id: core.contract-narrative.ui-engine-browser-window-contract-smoke-test-suite
+    kind: suite
+    profile: REPORTING_CONTRACT
+    area: WINDOW_CONFIG
+    capability: 'Screenshot evidence contract'
+    purpose: 'Validate browser window and zoom evidence at the UI engine boundary.'
+    reportHint: 'Repair screenshot policy, attachment routing, or reporting adapter publication.'
+  - id: core.contract-narrative.ui-engine-screenshot-smoke-test-class
+    kind: contract
+    area: SCREENSHOT
+    owner: 'UI engine screenshot smoke contract'
+    expected: 'Each supported UI engine can open a stable local document and capture a non-empty screenshot under default, window-size, fullscreen, and zoom policies in headless mode.'
+    observed: 'The test exercises Selenium and Playwright against a local data URL in headless mode and verifies screenshot payloads.'
+    repairHint: 'Check UIEngineFactory, engine startup, window sizing, zoom handling, and screenshot capture implementation.'
+  - id: core.contract-narrative.ui-engine-screenshot-smoke-test-suite
+    kind: suite
+    profile: REPORTING_CONTRACT
+    area: SCREENSHOT
+    capability: 'Screenshot evidence contract'
+    purpose: 'Validate real UI engine screenshot evidence under supported runtime policies.'
+    reportHint: 'Repair screenshot policy, attachment routing, or reporting adapter publication.'
+  - id: core.contract-narrative.empty-payload-attachment-contract-test-class
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: 'AllureAdapter + ExtentAdapter'
+    expected: 'Empty code blocks and empty attachments are ignored so reports do not contain fake evidence.'
+    observed: 'The tests inspect Allure result files and Extent model children after empty payload logging.'
+    repairHint: 'Check adapter guards before publishing attachments, code blocks, and step payloads.'
+  - id: core.contract-narrative.empty-payload-attachment-contract-test-suite
+    kind: suite
+    profile: REPORTING_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: 'Reporting adapter contract'
+    purpose: 'Validate Extent/Allure adapter behavior and artifact hygiene.'
+    reportHint: 'Repair adapter output, cleanup, or attachment serialization.'
+  - id: core.contract-narrative.extent-spark-collapse-policy-component-test-class
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: 'ExtentSparkCollapsePolicy'
+    expected: 'The public collapse policy composes bootstrap, menu, selection, card and event sections in stable order.'
+    observed: 'The test inspects the generated JavaScript and checks public behavior hooks.'
+    repairHint: 'Keep ExtentSparkCollapsePolicy as a composer and move behavior into focused collapse script sections.'
+  - id: core.contract-narrative.extent-spark-collapse-policy-component-test-suite
+    kind: suite
+    profile: EXTENT_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: 'Extent Spark collapse policy component composition'
+    purpose: 'Validate the collapse/status/tag JavaScript pipeline without opening a browser.'
+    reportHint: 'Run this fast component contract before browser-heavy Extent tree and tag navigation suites.'
+  - id: core.contract-narrative.extent-spark-failure-triage-css-component-test-class
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: 'ExtentSparkFailureTriageCss'
+    expected: 'Failure triage CSS exposes overview, signatures, drilldown and responsive sections in stable order.'
+    observed: 'The test inspects the public failure triage section CSS and its inclusion in the shared theme.'
+    repairHint: 'Keep failure triage visual policy split by section and composed through ExtentSparkFailureTriageCss.'
+  - id: core.contract-narrative.extent-spark-failure-triage-css-component-test-suite
+    kind: suite
+    profile: EXTENT_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: 'Extent Spark failure triage CSS components'
+    purpose: 'Validate failure triage CSS section composition without a generated browser report.'
+    reportHint: 'Use this as the fast guard before running the heavier failure triage browser contract.'
+  - id: core.contract-narrative.extent-spark-runtime-audit-css-component-test-class
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: 'ExtentSparkRuntimeAuditCss'
+    expected: 'Runtime audit CSS composes timeline, tag audit, failure triage and responsive overrides once in stable order.'
+    observed: 'The test inspects the public shared Spark theme CSS.'
+    repairHint: 'Keep runtime audit CSS section composition deterministic before running browser presentation contracts.'
+  - id: core.contract-narrative.extent-spark-runtime-audit-css-component-test-suite
+    kind: suite
+    profile: EXTENT_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: 'Extent Spark runtime audit CSS components'
+    purpose: 'Validate runtime audit CSS composition without generating a browser report.'
+    reportHint: 'Use this as the fast component guard for timeline, tag audit and failure triage CSS order.'
+  - id: core.contract-narrative.extent-spark-side-nav-selection-css-component-test-class
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: 'ExtentSparkSideNavSelectionCss + ExtentSparkHtmlPostProcessor'
+    expected: 'The logical .side-nav-menu .nav-item.active state has a visible background, structural marker and icon reinforcement.'
+    observed: 'The test inspects shared CSS component strings and prevents selected-tab styling from being reduced to hover or test-list rules.'
+    repairHint: 'Keep selected side-nav styling in the shared Extent theme and separate from test-list row styling.'
+  - id: core.contract-narrative.extent-spark-side-nav-selection-css-component-test-suite
+    kind: suite
+    profile: EXTENT_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: 'Extent Spark side navigation selected state'
+    purpose: 'Protects the visible selected tab marker in the left Extent sidebar.'
+    reportHint: 'Run before browser-heavy Extent shell contracts when changing Spark CSS.'
+  - id: core.contract-narrative.extent-spark-theme-composition-contract-test-class
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: 'ExtentSparkTheme'
+    expected: 'The public Spark theme composes shell, dropdown, tree, typography, surface, dashboard and runtime CSS in stable order.'
+    observed: 'The test inspects the composed CSS string and the public section CSS fragments directly.'
+    repairHint: 'Keep ExtentSparkTheme as a composer and move visual policy into focused section classes.'
+  - id: core.contract-narrative.extent-spark-theme-composition-contract-test-suite
+    kind: suite
+    profile: EXTENT_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: 'Extent Spark theme component composition'
+    purpose: 'Validate the shared Spark theme as a component pipeline without opening a browser.'
+    reportHint: 'Run this fast component contract before browser-heavy Extent presentation suites.'
+  - id: core.contract-narrative.extent-spark-visual-tokens-component-test-class
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: 'ExtentSparkVisualTokens'
+    expected: 'The public visual token facade delegates to semantic palette, typography and border token families.'
+    observed: 'The test compares public facade values with the semantic token family constants.'
+    repairHint: 'Keep renderers dependent on semantic token families instead of repeating raw CSS literals.'
+  - id: core.contract-narrative.extent-spark-visual-tokens-component-test-suite
+    kind: suite
+    profile: EXTENT_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: 'Extent Spark visual token facade'
+    purpose: 'Validate the public visual token facade independently from browser rendering.'
+    reportHint: 'Use this component test when changing palette, typography or border token families.'
+  - id: core.contract-narrative.extent-spark-runtime-tag-tables-contract-test-class
+    kind: contract
+    area: REPORTING_ADAPTER
+    owner: 'Extent runtime tag audit renderer'
+    expected: 'Overview shows exactly three runtime tag tables while Category remains owned by failure triage.'
+    observed: 'The suite inspects generated dashboard HTML and verifies rendered tag-card layout in Chromium.'
+    repairHint: 'Repair runtime tag audit rendering before changing Overview or Category tab composition.'
+  - id: core.contract-narrative.extent-spark-runtime-tag-tables-contract-test-suite
+    kind: suite
+    profile: EXTENT_CONTRACT
+    area: REPORTING_ADAPTER
+    capability: 'Extent Spark runtime tag tables contract'
+    purpose: 'Protect runtime tag tables as Overview cards instead of native Spark category content.'
+    reportHint: 'Run this suite only in the Extent profile; it validates overview tag cards and category-tab ownership.'
+  - id: core.contract-narrative.large-fixture-size-budget-contract-test-class
+    kind: contract
+    area: CORE_ARCHITECTURE
+    owner: 'ATF core test support architecture'
+    expected: 'New support fixtures stay under 300 lines and legacy oversized fixtures do not grow.'
+    observed: 'The test scans ATF reporting support fixtures and applies ReqsCore fixture budgets.'
+    repairHint: 'Extract stable helper roles instead of adding more methods to broad support fixtures.'
+  - id: core.contract-narrative.large-fixture-size-budget-contract-test-suite
+    kind: suite
+    profile: CORE_CONTRACT
+    area: CORE_ARCHITECTURE
+    capability: 'ATF large fixture size budget'
+    purpose: 'Prevent core contract support fixtures from growing while historical large fixtures are split down.'
+    reportHint: 'Split large support classes into fixture builder, DOM query and assertion helpers.'
+  - id: core.contract-narrative.registration-validation-contract-test-class
+    kind: contract
+    area: UI_SUPPORT
+    owner: 'UI validation component contract'
+    expected: 'UI validation components wait for observable page state and surface clear assertion errors without test-layer raw selector logic.'
+    observed: 'The tests use a stub UI engine to verify URL waits, visibility waits, retry behavior, and readable validation failures.'
+    repairHint: 'Check RegistrationValidation, page constants, wait strategy, and validation assertion messages.'
+  - id: core.contract-narrative.registration-validation-contract-test-suite
+    kind: suite
+    profile: UI_SUPPORT_CONTRACT
+    area: UI_SUPPORT
+    capability: 'UI support contract'
+    purpose: 'Validate reusable UI support behavior without relying on product-flow reporting.'
+    reportHint: 'Repair UI support helpers or validation-layer delegation.'
+  - id: core.contract-narrative.ui-engine-registry-contract-test-class
+    kind: contract
+    area: UI_ENGINE
+    owner: 'UIEngineFactory + UiEngineRegistry'
+    expected: 'UIEngineFactory delegates engine creation to a provider registry.'
+    observed: 'The tests inspect factory source and registry supported types without launching browsers.'
+    repairHint: 'Move concrete engine selection into UiEngineRegistry/UiEngineProvider.'
+  - id: core.contract-narrative.ui-engine-registry-contract-test-suite
+    kind: suite
+    profile: UI_SUPPORT_CONTRACT
+    area: UI_ENGINE
+    capability: 'UI engine provider registry'
+    purpose: 'Keep UI engine creation open for extension without growing a factory switch.'
+    reportHint: 'Register a UiEngineProvider instead of adding concrete engine construction branches to UIEngineFactory.'
+  - id: core.contract-narrative.wait-utils-contract-test-class
+    kind: contract
+    area: WAIT_UTILS
+    owner: 'WaitUtils'
+    expected: 'Wait utilities return matching values, expose last observed timeout state, and fail with actionable messages.'
+    observed: 'Supplier retries, input polling, boolean condition waiting, timeout return values, and assertion messages are inspected.'
+    repairHint: 'Check WaitUtils retry loops, timeout handling, UIEngine value polling, and assertion message propagation.'
+  - id: core.contract-narrative.wait-utils-contract-test-suite
+    kind: suite
+    profile: UI_SUPPORT_CONTRACT
+    area: WAIT_UTILS
+    capability: 'UI support contract'
+    purpose: 'Validate reusable UI support behavior without relying on product-flow reporting.'
+    reportHint: 'Repair UI support helpers or validation-layer delegation.'

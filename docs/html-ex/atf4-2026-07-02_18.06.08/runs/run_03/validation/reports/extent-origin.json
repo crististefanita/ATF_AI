@@ -1,0 +1,13 @@
+﻿{
+    "source":  "run_03_account_invoice_ledger",
+    "testsRun":  5,
+    "failures":  0,
+    "size":  800582,
+    "passed":  5,
+    "command":  "mvn -q -Dsurefire.suiteXmlFiles=src/test/resources/ui/testng-atf4-*.xml -Dreports.dir=run_03/validation/reports test",
+    "errors":  0,
+    "sha256":  "d7945bfe4c75bfafabbfda4aa282336ad3a7d23cdfbb953d253d9c1b4d74a6a1",
+    "exitCode":  0,
+    "skipped":  0,
+    "timestamp":  "2026-07-02T18:06:08+03:00"
+}

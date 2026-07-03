@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-07-02T18:19:21 EEST" name="ATF1 refund support run 01 invoice bridge" finished-at="2026-07-02T18:19:55 EEST" duration-ms="33503">
+    <groups>
+      <group name="ui.refund-support">
+        <method signature="RefundSupportInvoiceBridgeTest.refundSupportRequestCarriesInvoiceAmountAndCustomerBridge()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest@24197b13]" name="refundSupportRequestCarriesInvoiceAmountAndCustomerBridge" class="com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest"/>
+        <method signature="RefundSupportInvoiceBridgeTest.refundSupportRequestMessageCarriesChargedAmount()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest@24197b13]" name="refundSupportRequestMessageCarriesChargedAmount" class="com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest"/>
+        <method signature="RefundSupportInvoiceBridgeTest.refundSupportRequestMessageCarriesRegisteredCustomer()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest@24197b13]" name="refundSupportRequestMessageCarriesRegisteredCustomer" class="com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest"/>
+        <method signature="RefundSupportInvoiceBridgeTest.refundSupportRequestMessageNamesPurchasedInvoice()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest@24197b13]" name="refundSupportRequestMessageNamesPurchasedInvoice" class="com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest"/>
+        <method signature="RefundSupportInvoiceBridgeTest.refundSupportRequestUsesReturnBusinessCategory()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest@24197b13]" name="refundSupportRequestUsesReturnBusinessCategory" class="com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest"/>
+      </group> <!-- ui.refund-support -->
+      <group name="ui.invoice-bridge">
+        <method signature="RefundSupportInvoiceBridgeTest.refundSupportRequestCarriesInvoiceAmountAndCustomerBridge()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest@24197b13]" name="refundSupportRequestCarriesInvoiceAmountAndCustomerBridge" class="com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest"/>
+        <method signature="RefundSupportInvoiceBridgeTest.refundSupportRequestMessageCarriesChargedAmount()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest@24197b13]" name="refundSupportRequestMessageCarriesChargedAmount" class="com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest"/>
+        <method signature="RefundSupportInvoiceBridgeTest.refundSupportRequestMessageCarriesRegisteredCustomer()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest@24197b13]" name="refundSupportRequestMessageCarriesRegisteredCustomer" class="com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest"/>
+        <method signature="RefundSupportInvoiceBridgeTest.refundSupportRequestMessageNamesPurchasedInvoice()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest@24197b13]" name="refundSupportRequestMessageNamesPurchasedInvoice" class="com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest"/>
+        <method signature="RefundSupportInvoiceBridgeTest.refundSupportRequestUsesReturnBusinessCategory()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest@24197b13]" name="refundSupportRequestUsesReturnBusinessCategory" class="com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest"/>
+      </group> <!-- ui.invoice-bridge -->
+      <group name="ui.business">
+        <method signature="RefundSupportInvoiceBridgeTest.refundSupportRequestCarriesInvoiceAmountAndCustomerBridge()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest@24197b13]" name="refundSupportRequestCarriesInvoiceAmountAndCustomerBridge" class="com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest"/>
+        <method signature="RefundSupportInvoiceBridgeTest.refundSupportRequestMessageCarriesChargedAmount()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest@24197b13]" name="refundSupportRequestMessageCarriesChargedAmount" class="com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest"/>
+        <method signature="RefundSupportInvoiceBridgeTest.refundSupportRequestMessageCarriesRegisteredCustomer()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest@24197b13]" name="refundSupportRequestMessageCarriesRegisteredCustomer" class="com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest"/>
+        <method signature="RefundSupportInvoiceBridgeTest.refundSupportRequestMessageNamesPurchasedInvoice()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest@24197b13]" name="refundSupportRequestMessageNamesPurchasedInvoice" class="com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest"/>
+        <method signature="RefundSupportInvoiceBridgeTest.refundSupportRequestUsesReturnBusinessCategory()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest@24197b13]" name="refundSupportRequestUsesReturnBusinessCategory" class="com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest"/>
+      </group> <!-- ui.business -->
+    </groups>
+    <test started-at="2026-07-02T18:19:21 EEST" name="refund support invoice bridge" finished-at="2026-07-02T18:19:55 EEST" duration-ms="33503">
+      <class name="com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest@24197b13]" started-at="2026-07-02T18:19:21 EEST" name="setUp" finished-at="2026-07-02T18:19:40 EEST" duration-ms="18688" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="createRefundSupportRequest()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest@24197b13]" started-at="2026-07-02T18:19:40 EEST" name="createRefundSupportRequest" finished-at="2026-07-02T18:19:51 EEST" duration-ms="10993" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createRefundSupportRequest -->
+        <test-method signature="refundSupportRequestCarriesInvoiceAmountAndCustomerBridge()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest@24197b13]" started-at="2026-07-02T18:19:51 EEST" name="refundSupportRequestCarriesInvoiceAmountAndCustomerBridge" description="Refund support request uses real invoice, amount, customer, and Return intent." finished-at="2026-07-02T18:19:52 EEST" duration-ms="459" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- refundSupportRequestCarriesInvoiceAmountAndCustomerBridge -->
+        <test-method signature="refundSupportRequestUsesReturnBusinessCategory()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest@24197b13]" started-at="2026-07-02T18:19:52 EEST" name="refundSupportRequestUsesReturnBusinessCategory" description="Refund support request selects the real Return business category." finished-at="2026-07-02T18:19:52 EEST" duration-ms="8" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- refundSupportRequestUsesReturnBusinessCategory -->
+        <test-method signature="refundSupportRequestMessageNamesPurchasedInvoice()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest@24197b13]" started-at="2026-07-02T18:19:52 EEST" name="refundSupportRequestMessageNamesPurchasedInvoice" description="Refund support request names the purchased invoice in the customer message." finished-at="2026-07-02T18:19:52 EEST" duration-ms="5" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- refundSupportRequestMessageNamesPurchasedInvoice -->
+        <test-method signature="refundSupportRequestMessageCarriesChargedAmount()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest@24197b13]" started-at="2026-07-02T18:19:53 EEST" name="refundSupportRequestMessageCarriesChargedAmount" description="Refund support request carries the charged invoice amount." finished-at="2026-07-02T18:19:53 EEST" duration-ms="6" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- refundSupportRequestMessageCarriesChargedAmount -->
+        <test-method signature="refundSupportRequestMessageCarriesRegisteredCustomer()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest@24197b13]" started-at="2026-07-02T18:19:53 EEST" name="refundSupportRequestMessageCarriesRegisteredCustomer" description="Refund support request ties the case to the registered customer email." finished-at="2026-07-02T18:19:53 EEST" duration-ms="4" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- refundSupportRequestMessageCarriesRegisteredCustomer -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest@24197b13]" started-at="2026-07-02T18:19:53 EEST" name="tearDown" finished-at="2026-07-02T18:19:55 EEST" duration-ms="2026" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.endava.ai.ui.tests.refunds.support.RefundSupportInvoiceBridgeTest -->
+    </test> <!-- refund support invoice bridge -->
+  </suite> <!-- ATF1 refund support run 01 invoice bridge -->
+</testng-results>

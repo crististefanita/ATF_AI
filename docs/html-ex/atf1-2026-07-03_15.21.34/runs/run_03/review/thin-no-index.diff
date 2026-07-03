@@ -1,0 +1,165 @@
+diff --git a/src/main/java/com/endava/ai/ui/support/model/RefundSupportRequestContext.java b/src/main/java/com/endava/ai/ui/support/model/RefundSupportRequestContext.java
+new file mode 100644
+index 00000000..83b1f32c
+--- /dev/null
++++ b/src/main/java/com/endava/ai/ui/support/model/RefundSupportRequestContext.java
+@@ -0,0 +1,96 @@
++package com.endava.ai.ui.support.model;
++
++import com.endava.ai.ui.core.engine.UiNetworkResponse;
++import lombok.Getter;
++
++@Getter
++public final class RefundSupportRequestContext {
++    private final AccountInvoiceContext invoice;
++    private final String subject;
++    private final String message;
++    private final String contactBodyBeforeSubmit;
++    private final String contactBodyAfterSubmit;
++    private final String contactUrl;
++    private final UiNetworkResponse messageResponse;
++    private final String messageId;
++    private final String messageStatus;
++    private final String messageCreatedAt;
++    private final String accountMessagesBody;
++    private final String accountMessagesUrl;
++    private final String adminReplyId;
++    private final String adminReplyMessage;
++    private final String adminReplyCreatedAt;
++    private final String customerMessageStatusAfterAdminReply;
++    private final String customerMessagesApiBodyAfterAdminReply;
++    private final String customerMessagesBodyAfterAdminReply;
++    private final String customerMessagesUrlAfterAdminReply;
++
++    public RefundSupportRequestContext(AccountInvoiceContext invoice,
++                                       String subject,
++                                       String message,
++                                       String contactBodyBeforeSubmit,
++                                       String contactBodyAfterSubmit,
++                                       String contactUrl,
++                                       UiNetworkResponse messageResponse,
++                                       String messageId,
++                                       String messageStatus,
++                                       String messageCreatedAt,
++                                       String accountMessagesBody,
++                                       String accountMessagesUrl) {
++        this(invoice, subject, message, contactBodyBeforeSubmit, contactBodyAfterSubmit, contactUrl, messageResponse,
++                messageId, messageStatus, messageCreatedAt, accountMessagesBody, accountMessagesUrl,
++                "", "", "", "", "", "", "");
++    }
++
++    public RefundSupportRequestContext(AccountInvoiceContext invoice,
++                                       String subject,
++                                       String message,
++                                       String contactBodyBeforeSubmit,
++                                       String contactBodyAfterSubmit,
++                                       String contactUrl,
++                                       UiNetworkResponse messageResponse,
++                                       String messageId,
++                                       String messageStatus,
++                                       String messageCreatedAt,
++                                       String accountMessagesBody,
++                                       String accountMessagesUrl,
++                                       String adminReplyId,
++                                       String adminReplyMessage,
++                                       String adminReplyCreatedAt,
++                                       String customerMessageStatusAfterAdminReply,
++                                       String customerMessagesApiBodyAfterAdminReply,
++                                       String customerMessagesBodyAfterAdminReply,
++                                       String customerMessagesUrlAfterAdminReply) {
++        this.invoice = invoice;
++        this.subject = subject;
++        this.message = message;
++        this.contactBodyBeforeSubmit = contactBodyBeforeSubmit;
++        this.contactBodyAfterSubmit = contactBodyAfterSubmit;
++        this.contactUrl = contactUrl;
++        this.messageResponse = messageResponse;
++        this.messageId = messageId;
++        this.messageStatus = messageStatus;
++        this.messageCreatedAt = messageCreatedAt;
++        this.accountMessagesBody = accountMessagesBody;
++        this.accountMessagesUrl = accountMessagesUrl;
++        this.adminReplyId = adminReplyId;
++        this.adminReplyMessage = adminReplyMessage;
++        this.adminReplyCreatedAt = adminReplyCreatedAt;
++        this.customerMessageStatusAfterAdminReply = customerMessageStatusAfterAdminReply;
++        this.customerMessagesApiBodyAfterAdminReply = customerMessagesApiBodyAfterAdminReply;
++        this.customerMessagesBodyAfterAdminReply = customerMessagesBodyAfterAdminReply;
++        this.customerMessagesUrlAfterAdminReply = customerMessagesUrlAfterAdminReply;
++    }
++
++    public String getInvoiceNumber() {
++        return invoice.getInvoiceNumber();
++    }
++
++    public String getCustomerEmail() {
++        return invoice.getCustomer().getEmail();
++    }
++
++    public String getRequestedAmount() {
++        return invoice.getCartTotal();
++    }
++}
+diff --git a/src/test/java/com/endava/ai/ui/tests/refunds/support/RefundSupportCustomerMessagesLifecycleTest.java b/src/test/java/com/endava/ai/ui/tests/refunds/support/RefundSupportCustomerMessagesLifecycleTest.java
+new file mode 100644
+index 00000000..cadf688f
+--- /dev/null
++++ b/src/test/java/com/endava/ai/ui/tests/refunds/support/RefundSupportCustomerMessagesLifecycleTest.java
+@@ -0,0 +1,57 @@
++package com.endava.ai.ui.tests.refunds.support;
++
++import com.endava.ai.ui.core.runtime.BaseTestUI;
++import com.endava.ai.ui.support.model.RefundSupportRequestContext;
++import com.endava.ai.ui.support.validation.support.RefundSupportRequestValidation;
++import org.testng.annotations.Test;
++
++import static com.endava.ai.ui.tests.refunds.support.RefundSupportRequestTestSupport.adminProgressedRequest;
++import static com.endava.ai.ui.tests.refunds.support.RefundSupportRequestTestSupport.request;
++
++public final class RefundSupportCustomerMessagesLifecycleTest extends BaseTestUI {
++    private final RefundSupportRequestValidation validation = new RefundSupportRequestValidation();
++
++    @Test(description = "Refund support message API returns durable case identity.",
++            groups = {"ui.refund-support", "ui.customer-messages", "ui.business"})
++    public void refundSupportMessageApiCreatesDurableCaseIdentity() {
++        RefundSupportRequestContext context = request();
++
++        validation.assertMessagesApiCreatedDurableMessageIdentity(context);
++    }
++
++    @Test(description = "Refund support message starts from explicit NEW case state.",
++            groups = {"ui.refund-support", "ui.customer-messages", "ui.business"})
++    public void refundSupportMessageApiCreatesNewCaseState() {
++        RefundSupportRequestContext context = request();
++
++        validation.assertMessagesApiCreatedNewSupportCase(context);
++    }
++
++    @Test(description = "Customer account exposes the support messages route after request creation.",
++            groups = {"ui.refund-support", "ui.customer-messages", "ui.business"})
++    public void refundSupportCustomerAccountExposesMessagesRoute() {
++        RefundSupportRequestContext context = request();
++
++        validation.assertCustomerMessagesSurfaceIsAccountScoped(context);
++    }
++
++    @Test(description = "Customer messages page shows the created refund support request.",
++            groups = {"ui.refund-support", "ui.customer-messages", "ui.business"})
++    public void refundSupportCustomerMessagesShowCreatedRequest() {
++        RefundSupportRequestContext context = adminProgressedRequest();
++
++        validation.assertCustomerMessagesSurfaceShowsCreatedRequest(context);
++    }
++
++    @Test(description = "Customer-visible support request keeps invoice, subject and status in one proof chain.",
++            groups = {"ui.refund-support", "ui.customer-messages", "ui.business"})
++    public void refundSupportCustomerVisibleLifecycleConnectsInvoiceSubjectAndStatus() {
++        RefundSupportRequestContext context = adminProgressedRequest();
++
++        validation.assertInvoiceBackedRefundMessage(context);
++        validation.assertMessagesApiCreatedDurableMessageIdentity(context);
++        validation.assertMessagesApiCreatedNewSupportCase(context);
++        validation.assertAdminReplyProgressesSupportCase(context);
++        validation.assertCustomerMessagesSurfaceShowsCreatedRequest(context);
++    }
++}

@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Business Test Atlas - skill requirements</title>
+  <link rel="stylesheet" href="../../assets/shared-report-reference.css" />
+  <style>
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+    .diag{background:#0d1624;border:1px solid #27415f;border-radius:18px;padding:18px;margin:14px 0}
+    .diag svg{width:100%;height:auto;display:block}
+    .pillline{display:grid;grid-template-columns:130px 1fr;gap:10px;align-items:start;margin:8px 0}
+    .pilllabel{font-weight:800;color:#9ecbff}
+    .pillrow{display:flex;flex-wrap:wrap;gap:8px}
+    .toolbar{display:flex;justify-content:flex-start;gap:8px;margin:10px 0 14px}
+    .toolbar button{border:1px solid var(--border);background:#111826;color:var(--text);border-radius:999px;padding:7px 12px;font-size:12px;font-weight:700;cursor:pointer}
+    .toolbar button:hover{border-color:#7aa2ff;color:#dbe7ff}
+    .mini{font-size:.92rem;color:#b9c7da}
+    .subsection{margin:18px 0 10px}
+    .subsection h3{margin:0 0 8px}
+    .subsection>summary{font-weight:800;color:#e6edf3;margin:0 0 8px}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Skill / HTML requirements document</div>
+    <h1>Business Test Atlas pentru un folder de teste</h1>
+    <p>
+      Skill analysis-only: primeste codul sursa al unui pachet de teste, reconstruieste business-ul deja acoperit si produce
+      <code>business-test-atlas.html</code> ca atlas vizual de intelegere, nu ca plan de rulare.
+    </p>
+    <div class="badgebar">
+      <span class="badge">INPUT FOLDER</span>
+      <span class="badge">BUSINESS FLOW ATLAS</span>
+      <span class="badge">FLOW DIAGRAMS</span>
+      <span class="badge">ANALYSIS ONLY</span>
+      <span class="badge">CSS REUSE</span>
+    </div>
+  </header>
+
+  <div class="toolbar" aria-label="Controale sectiuni">
+    <button type="button" onclick="toggleAll(true)">Deschide sectiunile</button>
+    <button type="button" onclick="toggleAll(false)">Inchide sectiunile</button>
+  </div>
+
+  <details open>
+    <summary>Overview</summary>
+    <div class="content">
+      <div class="callout">
+        Prompt minim:
+        <br /><code>Ruleaza ATF6 Atlas skill.</code>
+        <br /><code>Input: &lt;test package root&gt;</code>
+        <br /><code>Output folder: &lt;atlas output folder&gt;</code>
+        <br />Agentul rezolva singur cerintele detaliate din acest document si din contractele Atlas.
+      </div>
+      <div class="callout">
+        Contract rece:
+        <br />Atlasul explica business-ul deja dovedit de testele existente.
+        <br />Testele sunt intrarea.
+        <br />Obiectele si flow-urile reale ale aplicatiei sunt subiectul.
+        <br />Layerele tehnice sunt dovada trasabila.
+        <br />Layerele tehnice nu sunt noduri principale.
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="pillline"><div class="pilllabel">Owner:</div><div class="pillrow"><span class="pill">business comprehension</span><span class="pill">business flow-uri</span><span class="pill">atlas vizual</span></div></div>
+          <div class="pillline"><div class="pilllabel">Produce:</div><div class="pillrow"><span class="pill">business-test-atlas.html</span><span class="pill">business flow graphs</span><span class="pill">layer trace map</span><span class="pill">comprehension limits</span></div></div>
+          <div class="pillline"><div class="pilllabel">Foloseste:</div><div class="pillrow"><span class="pill">test package</span><span class="pill">UI layers</span><span class="pill">Living Architecture</span><span class="pill">shared CSS</span></div></div>
+        </div>
+        <div class="card">
+          <div class="pillline"><div class="pilllabel">Nu produce:</div><div class="pillrow"><span class="pill bad">teste noi</span><span class="pill bad">patch-uri</span><span class="pill bad">run plan obligatoriu</span><span class="pill bad">raport final de run</span></div></div>
+          <div class="pillline"><div class="pilllabel">Nu transforma:</div><div class="pillrow"><span class="pill bad">clasele in flow</span><span class="pill bad">layerele in business</span><span class="pill bad">selectors in obiecte</span></div></div>
+          <div class="pillline"><div class="pilllabel">Stil:</div><div class="pillrow"><span class="pill">shared-report-reference.css</span><span class="pill">colapsabil</span><span class="pill">SVG minimalist</span></div></div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>1. Contract</summary>
+    <div class="content">
+      <details class="subsection">
+        <summary>1.1 Contract in 10 secunde</summary>
+        <table>
+          <thead><tr><th>Intrebare rece</th><th>Raspuns obligatoriu</th><th>Anti-drift</th></tr></thead>
+          <tbody>
+            <tr><td>Ce primeste?</td><td><code>INPUT_TEST_PACKAGE_ROOT</code>, adica folderul/pachetul de teste analizat.</td><td>nu porneste din run artifacts sau html-ex</td></tr>
+            <tr><td>Ce citeste?</td><td>testele ca entrypoint si layerele Java atinse de ele.</td><td>nu se opreste la nume de clase</td></tr>
+            <tr><td>Ce reconstruieste?</td><td>flow-uri reale ale aplicatiei: actor -> intentie -> actiune vizibila -> obiect business -> rezultat observabil.</td><td>nu face graf de layere tehnice</td></tr>
+            <tr><td>Ce publica?</td><td><code>business-test-atlas.html</code> cu harta business, subflow-uri, trace si limite de intelegere.</td><td>nu publica raport final de run</td></tr>
+          </tbody>
+        </table>
+        <div class="grid">
+          <div class="card">
+            <div class="pillline"><div class="pilllabel">Input:</div><div class="pillrow"><span class="pill">folder / package de teste</span><span class="pill">cod sursa read-only</span></div></div>
+            <div class="pillline"><div class="pilllabel">Traverseaza:</div><div class="pillrow"><span class="pill">test</span><span class="pill">action</span><span class="pill">component/page</span><span class="pill">service</span><span class="pill">validation</span><span class="pill">model/constants</span></div></div>
+            <div class="pillline"><div class="pilllabel">Output:</div><div class="pillrow"><span class="pill">business-test-atlas.html</span><span class="pill">business flow-uri</span><span class="pill">layer trace</span><span class="pill">comprehension limits</span></div></div>
+          </div>
+          <div class="card">
+            <div class="pillline"><div class="pilllabel">Accepta:</div><div class="pillrow"><span class="pill">flow-uri ale produsului</span><span class="pill">obiecte vizibile</span><span class="pill">rezultate observabile</span></div></div>
+            <div class="pillline"><div class="pilllabel">Respinge:</div><div class="pillrow"><span class="pill bad">inventar de clase</span><span class="pill bad">graf de layere tehnice</span><span class="pill bad">selector/page flow</span><span class="pill bad">plan de run</span></div></div>
+            <div class="pillline"><div class="pilllabel">Nu decide:</div><div class="pillrow"><span class="pill bad">legalitate pachet</span><span class="pill bad">html-ex readiness</span><span class="pill bad">teste noi</span></div></div>
+          </div>
+        </div>
+        <div class="callout">
+          <strong>Regula rece:</strong>
+          <ul>
+            <li><strong>Testele:</strong> punct de intrare, nu subiectul atlasului.</li>
+            <li><strong>Layer-ele:</strong> dovezi trasabile, nu noduri principale.</li>
+            <li><strong>Nodurile:</strong> obiecte sau actiuni business vizibile pentru utilizator.</li>
+            <li><strong>Subgrafurile:</strong> flow-uri source-specific alese din familiile dominante reale din pachetul analizat.</li>
+            <li><strong>Densitate semantica:</strong> subgrafurile pot folosi acelasi stil vizual, dar fiecare 3.x trebuie sa aiba cel putin doua etichete de domeniu vizibile, nu doar Actor / Intent / Business object / Observable result.</li>
+            <li><strong>Respinge:</strong> orice nod care se citeste ca selector, pagina, helper sau mecanica tehnica.</li>
+          </ul>
+        </div>
+        <div class="diag"><svg viewBox="0 0 1160 220" role="img" aria-label="Skill input to atlas output">
+<defs><marker id="c1" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7aa2ff"/></marker></defs>
+<rect x="45" y="78" width="210" height="68" rx="14" fill="#111826" stroke="#35507a"/>
+<text x="150" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Test package</text>
+<text x="150" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">entrypoint, not subject</text>
+<rect x="335" y="78" width="210" height="68" rx="14" fill="#111826" stroke="#35507a"/>
+<text x="440" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Layer traversal</text>
+<text x="440" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">actions / pages / validation</text>
+<rect x="625" y="78" width="210" height="68" rx="14" fill="#111826" stroke="#35507a"/>
+<text x="730" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Business story</text>
+<text x="730" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">actor / intent / object</text>
+<rect x="915" y="78" width="200" height="68" rx="14" fill="#111826" stroke="#35507a"/>
+<text x="1015" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Atlas HTML</text>
+<text x="1015" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">business flow map</text>
+<path d="M255 112 H335" stroke="#7aa2ff" stroke-width="2" marker-end="url(#c1)"/>
+<path d="M545 112 H625" stroke="#7aa2ff" stroke-width="2" marker-end="url(#c1)"/>
+<path d="M835 112 H915" stroke="#7aa2ff" stroke-width="2" marker-end="url(#c1)"/>
+</svg></div>
+      </details>
+      <details class="subsection">
+        <summary>1.2 Boundary rece</summary>
+        <table>
+          <thead><tr><th>Are voie</th><th>Nu are voie</th></tr></thead>
+          <tbody>
+            <tr><td>sa citeasca teste, layere Java si clase suport</td><td>sa modifice teste sau helper-e</td></tr>
+            <tr><td>sa publice diagrame si matrici de intelegere</td><td>sa declare pachetul final-ready</td></tr>
+            <tr><td>sa noteze comprehension limits jos in raport</td><td>sa decida legalitatea run-ului sau urmatorul run obligatoriu</td></tr>
+          </tbody>
+        </table>
+      </details>
+      <details class="subsection">
+        <summary>1.3 Parametri canonici</summary>
+        <table>
+          <thead><tr><th>Parametru</th><th>Default ATF</th><th>Rol</th></tr></thead>
+          <tbody>
+            <tr><td><code>INPUT_TEST_PACKAGE_ROOT</code></td><td><code>&lt;folder / package primit explicit&gt;</code></td><td>radacina de analiza: codul sursa al testelor si clasele Java atinse de ele</td></tr>
+            <tr><td><code>SHARED_REPORT_REFERENCE_CSS</code></td><td><code>docs/shared-report-reference.css</code></td><td>stilul canonic</td></tr>
+            <tr><td><code>LIVING_ARCHITECTURE_REFERENCE</code></td><td><code>docs/Living_Architecture_UI_API_doc_v1_0.html</code></td><td>contractul de layere</td></tr>
+            <tr><td><code>OUTPUT_ATLAS_HTML</code></td><td><code>business-test-atlas.html</code> sau <code>&lt;ATF_NAME&gt;_business-test-atlas.html</code></td><td>raportul produs; numele generic este template mental, numele scoped este artifact real per analiza</td></tr>
+            <tr><td><code>DECLARED_ATLAS_OUTPUT</code></td><td><code>docs/atlas/&lt;name&gt;_business-test-atlas.html</code></td><td>artifactul atlas explicit al analizei curente</td></tr>
+            <tr><td><code>ATLAS_TEST_EXTENT</code></td><td><code>docs/atlas/validation/atlas-tests-extent-report.html</code></td><td>artifact auditabil pentru testele atlas</td></tr>
+            <tr><td><code>MUST_PRODUCE</code></td><td><code>business-test-atlas.html</code></td><td>output obligatoriu al skill-ului</td></tr>
+            <tr><td><code>MUST_NOT_MODIFY_ANALYZED_FILES</code></td><td><code>true</code></td><td>fisierele analizate raman read-only</td></tr>
+          </tbody>
+        </table>
+        <div class="callout">
+          <strong>Contract mecanic:</strong>
+          <ul>
+            <li><code>INPUT_TEST_PACKAGE_ROOT</code> -> investigare read-only a codului sursa al testelor.</li>
+            <li>Rezultatul obligatoriu este un atlas HTML declarat.</li>
+            <li><code>business-test-atlas.html</code> este numele generic / template mental.</li>
+            <li><code>&lt;ATF_NAME&gt;_business-test-atlas.html</code> este forma acceptata pentru artifacte reale versionate per analiza.</li>
+            <li>Daca outputul lipseste, contractul skill-ului este incalcat.</li>
+            <li>Daca fisierele analizate sunt modificate, contractul skill-ului este incalcat.</li>
+            <li>Atlasul se valideaza din codul sursa citit si din HTML-ul produs, nu din artefacte de run.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </details>
+
+  <details>
+    <summary>2. Business Flow Extraction</summary>
+    <div class="content">
+      <details class="subsection">
+        <summary>2.1 Pipeline principal</summary>
+        <div class="diag"><svg viewBox="0 0 1160 220" role="img" aria-label="Business Atlas analysis pipeline">
+<defs><marker id="a1" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7aa2ff"/></marker></defs>
+<rect x="35" y="78" width="180" height="68" rx="14" fill="#111826" stroke="#35507a"/>
+<text x="125" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Scan</text>
+<text x="125" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">tests + layers</text>
+<rect x="265" y="78" width="180" height="68" rx="14" fill="#111826" stroke="#35507a"/>
+<text x="355" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Extract</text>
+<text x="355" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">actor + intent</text>
+<rect x="495" y="78" width="180" height="68" rx="14" fill="#111826" stroke="#35507a"/>
+<text x="585" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Map</text>
+<text x="585" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">business object</text>
+<rect x="725" y="78" width="180" height="68" rx="14" fill="#111826" stroke="#35507a"/>
+<text x="815" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Score</text>
+<text x="815" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">owned / limit</text>
+<rect x="955" y="78" width="170" height="68" rx="14" fill="#111826" stroke="#35507a"/>
+<text x="1040" y="104" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Publish</text>
+<text x="1040" y="126" text-anchor="middle" fill="#a8b3cf" font-size="11">atlas + prompt</text>
+<path d="M215 112 H265" stroke="#7aa2ff" stroke-width="2" marker-end="url(#a1)"/>
+<path d="M445 112 H495" stroke="#7aa2ff" stroke-width="2" marker-end="url(#a1)"/>
+<path d="M675 112 H725" stroke="#7aa2ff" stroke-width="2" marker-end="url(#a1)"/>
+<path d="M905 112 H955" stroke="#7aa2ff" stroke-width="2" marker-end="url(#a1)"/>
+</svg></div>
+      </details>
+      <details class="subsection">
+        <summary>2.2 Extractie obiect business</summary>
+        <div class="diag"><svg viewBox="0 0 1160 210" role="img" aria-label="Business object extraction">
+<defs><marker id="a2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7aa2ff"/></marker></defs>
+<rect x="60" y="72" width="190" height="68" rx="14" fill="#111826" stroke="#35507a"/>
+<text x="155" y="98" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Test step</text>
+<text x="155" y="120" text-anchor="middle" fill="#a8b3cf" font-size="11">actiune vizibila</text>
+<rect x="330" y="72" width="190" height="68" rx="14" fill="#111826" stroke="#35507a"/>
+<text x="425" y="98" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Intentie</text>
+<text x="425" y="120" text-anchor="middle" fill="#a8b3cf" font-size="11">motiv business</text>
+<rect x="600" y="72" width="190" height="68" rx="14" fill="#111826" stroke="#35507a"/>
+<text x="695" y="98" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Obiect</text>
+<text x="695" y="120" text-anchor="middle" fill="#a8b3cf" font-size="11">row / state / document</text>
+<rect x="870" y="72" width="210" height="68" rx="14" fill="#111826" stroke="#35507a"/>
+<text x="975" y="98" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Trace</text>
+<text x="975" y="120" text-anchor="middle" fill="#a8b3cf" font-size="11">test / page / validation</text>
+<path d="M250 106 H330" stroke="#7aa2ff" stroke-width="2" marker-end="url(#a2)"/>
+<path d="M520 106 H600" stroke="#7aa2ff" stroke-width="2" marker-end="url(#a2)"/>
+<path d="M790 106 H870" stroke="#7aa2ff" stroke-width="2" marker-end="url(#a2)"/>
+</svg></div>
+      </details>
+      <div class="callout">
+        <strong>Formula canonica:</strong>
+        <ul>
+          <li><code>test method</code> -> punctul de intrare.</li>
+          <li><code>layer path</code> -> dovada tehnica traversata.</li>
+          <li><code>actor / intentie</code> -> sensul business al actiunii.</li>
+          <li><code>actiune vizibila / obiect business / rezultat</code> -> flow-ul aplicatiei.</li>
+          <li><code>atlas HTML</code> -> harta business-first produsa.</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>3. Atlas HTML</summary>
+    <div class="content">
+      <details class="subsection">
+        <summary>3.1 Anatomia outputului HTML</summary>
+        <div class="diag"><svg viewBox="0 0 1160 230" role="img" aria-label="Atlas output anatomy">
+<defs><marker id="o1" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#7aa2ff"/></marker></defs>
+<rect x="35" y="82" width="175" height="66" rx="14" fill="#111826" stroke="#35507a"/>
+<text x="122" y="107" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Score cards</text>
+<text x="122" y="128" text-anchor="middle" fill="#a8b3cf" font-size="11">overall last</text>
+<rect x="255" y="82" width="175" height="66" rx="14" fill="#111826" stroke="#35507a"/>
+<text x="342" y="107" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Context</text>
+<text x="342" y="128" text-anchor="middle" fill="#a8b3cf" font-size="11">collapsed</text>
+<rect x="475" y="82" width="175" height="66" rx="14" fill="#111826" stroke="#35507a"/>
+<text x="562" y="107" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Main graph</text>
+<text x="562" y="128" text-anchor="middle" fill="#a8b3cf" font-size="11">business-first</text>
+<rect x="695" y="82" width="175" height="66" rx="14" fill="#111826" stroke="#35507a"/>
+<text x="782" y="107" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Subflows</text>
+<text x="782" y="128" text-anchor="middle" fill="#a8b3cf" font-size="11">collapsed 3.x</text>
+<rect x="915" y="82" width="210" height="66" rx="14" fill="#111826" stroke="#35507a"/>
+<text x="1020" y="107" text-anchor="middle" fill="#e6edf3" font-size="14" font-weight="700">Evidence</text>
+<text x="1020" y="128" text-anchor="middle" fill="#a8b3cf" font-size="11">tables + trace</text>
+<path d="M210 115 H255" stroke="#7aa2ff" stroke-width="2" marker-end="url(#o1)"/>
+<path d="M430 115 H475" stroke="#7aa2ff" stroke-width="2" marker-end="url(#o1)"/>
+<path d="M650 115 H695" stroke="#7aa2ff" stroke-width="2" marker-end="url(#o1)"/>
+<path d="M870 115 H915" stroke="#7aa2ff" stroke-width="2" marker-end="url(#o1)"/>
+</svg></div>
+      </details>
+      <details class="subsection">
+        <summary>3.2 Zone obligatorii</summary>
+        <table>
+          <thead><tr><th>Zona</th><th>Ce arata</th><th>Invalid daca</th></tr></thead>
+          <tbody>
+            <tr><td>Score cards</td><td>cat de bine explica atlasul business-ul dedus din sursa</td><td>masoara package readiness sau html-ex readiness</td></tr>
+            <tr><td>Executive Context</td><td>scope, score rationale, limite de intelegere</td><td>ramane deschis si incarca citirea initiala</td></tr>
+            <tr><td>Business Flow Graph</td><td>harta principala a produsului vazut prin teste</td><td>arata clase, selectors sau layere ca noduri principale</td></tr>
+            <tr><td>Business Flow Understanding</td><td>subflow-uri 3.x reale ale aplicatiei, alese din familiile dominante din sursa, full-width, colapsate</td><td>contine grafuri de contract, audit, coverage tehnic sau flow-uri template fara radacina in sursa</td></tr>
+            <tr><td>Business proof strips</td><td>subsectiune colapsabila dupa fiecare graf/subgraf, intitulata <code>Banda de dovada noduri</code>: nod/flow -> test/metoda -> layer path -> intelegere business dovedita -> limita</td><td>lipseste legatura locala dintre graf si codul care il sustine sau dovada este lasata doar in tabelele de jos</td></tr>
+            <tr><td>Graph zone hygiene</td><td>zona vizuala a fiecarui graf contine, in aceasta ordine: SVG-ul, <code>Legend</code> colapsat, apoi <code>Banda de dovada noduri</code> colapsata</td><td>introduce paragrafe narative, legenda inline, proof strip inainte de legenda sau dovada intr-o alta sectiune</td></tr>
+            <tr><td>Business Evidence Tables</td><td>coverage, repeated corridors, layer trace si maturitate</td><td>pretinde ca tabelele sunt flow-uri business</td></tr>
+            <tr><td>Source-to-Business Trace</td><td>metode/clase reale -> layer path -> obiect business</td><td>nu este backed by source</td></tr>
+            <tr><td>Atlas Test Audit</td><td>Extent-ul testelor atlas, comanda exacta si totalul sincronizat inainte de publicare; randurile Playwright si Selenium trebuie sa descrie acelasi inventar UI <code>@Test</code> analizat</td><td>publica numere stale, reutilizeaza Extent-ul altui atlas, amesteca Selenium all-suite cu Playwright current-scope sau ascunde comanda Maven completa de reproducere</td></tr>
+          </tbody>
+        </table>
+      </details>
+      <details class="subsection">
+        <summary>3.3 Structura HTML minima</summary>
+        <table>
+          <thead><tr><th>Sectiune</th><th>Continut minim</th><th>Default</th></tr></thead>
+          <tbody>
+            <tr><td>Score Cards</td><td>Intelegere Business, Reconstructie Flow, Trasabilitate Layere, Claritate Obiect Business, Fidelitate Dovada, Overall</td><td>visible top; Overall last/right</td></tr>
+            <tr><td>Executive Context</td><td>folder, atlas score, comprehension limits</td><td>closed / subdetails</td></tr>
+            <tr><td>Business Flow Graph</td><td>harta business din perspectiva testelor</td><td>singura sectiune <code>open</code> implicit</td></tr>
+            <tr><td>Business Flow Understanding</td><td>subgrafuri 3.x cu flow-uri reale si source-specific ale aplicatiei</td><td>closed / full-width / legends closed / proof strips closed</td></tr>
+            <tr><td>Business proof strips</td><td>dupa fiecare graf si fiecare subgraf 3.x exista o subsectiune colapsabila <code>Banda de dovada noduri</code>: nod, test/metoda, layer path, intelegere business dovedita, limita</td><td>sta imediat sub <code>Legend</code> in aceeasi sectiune de graf; closed by default; metodele/clasele numite exista in sourceRoot/UI layers</td></tr>
+            <tr><td>Business Evidence Tables</td><td>coverage, repeated corridors, layer trace, maturitate si limite</td><td>closed / supporting evidence</td></tr>
+            <tr><td>Source-to-Business Trace</td><td>clasa/metoda -> actor -> obiect -> intelegere business dovedita</td><td>closed</td></tr>
+            <tr><td>Atlas Test Audit</td><td>link catre Extent-ul testelor atlas + comanda + rezultat rece; totalul declarat trebuie sa fie identic cu Extent-ul linkat; Playwright si Selenium expun <code>Passed/Failed/Skipped</code> si au acelasi total ca input package <code>@Test</code></td><td>closed / audit-only / verificat inainte de publicare</td></tr>
+          </tbody>
+        </table>
+        <div class="callout">
+          <strong>Stil canonic:</strong>
+          <ul>
+            <li>Atlasul reutilizeaza <code>shared-report-reference.css</code>.</li>
+            <li>Override-urile locale se noteaza ca abateri.</li>
+            <li>Forma vizuala trebuie sa ramana reutilizabila pentru alte domenii.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="subsection">
+        <summary>3.3.1 Score cards canonice</summary>
+        <div class="callout">
+          <strong>Disciplina scorului:</strong>
+          <ul>
+            <li>Formula canonica: <strong>business goal -> flow question -> source/layer evidence -> atlas score</strong>.</li>
+            <li>Scorul nu este decorativ.</li>
+            <li>Fiecare nota raspunde unei intrebari de intelegere.</li>
+            <li>Fiecare nota se poate redeschide prin sursa si layerele inspectate.</li>
+          </ul>
+        </div>
+        <table>
+          <thead><tr><th>Camp per axa</th><th>Ce trebuie sa raspunda</th><th>Invalid daca</th></tr></thead>
+          <tbody>
+            <tr><td>business goal</td><td>ce intelegere business vrea atlasul sa masoare pentru axa</td><td>axa are doar nume si scor</td></tr>
+            <tr><td>flow question</td><td>ce intrebare rece pune atlasul despre flow-ul aplicatiei</td><td>nu exista intrebare, doar verdict</td></tr>
+            <tr><td>source/layer evidence</td><td>ce test/metoda/layer sustine raspunsul</td><td>dovada este doar proza</td></tr>
+            <tr><td>atlas score</td><td>nota calculata/plafonata pentru acea axa</td><td>nota nu poate fi redeschisa</td></tr>
+          </tbody>
+        </table>
+        <table>
+          <thead><tr><th>Card</th><th>Ce masoara</th><th>Regula rece</th></tr></thead>
+          <tbody>
+            <tr><td>Intelegere Business</td><td>cat de profund explica business-ul dedus din testele existente</td><td>nu premiaza readiness sau planificare</td></tr>
+            <tr><td>Reconstructie Flow</td><td>actor -> intentie -> actiune vizibila -> obiect -> rezultat observabil</td><td>nu accepta lista de clase ca flow</td></tr>
+            <tr><td>Trasabilitate Layere</td><td>test -> action/component/page/service/validation/model/constants</td><td>fara trace, claim-ul ramane slab</td></tr>
+            <tr><td>Claritate Obiect Business</td><td>cat de clar sunt separate obiectele business reale</td><td>page/action/selectors nu devin noduri principale</td></tr>
+            <tr><td>Fidelitate Dovada</td><td>cat de fidel ramane atlasul fata de codul testelor si layere</td><td>nu inventeaza business nesustinut de cod</td></tr>
+            <tr><td>Overall</td><td>scor de intelegere, nu scor de pachet sau html-ex readiness</td><td>ultimul card, vizual in dreapta</td></tr>
+          </tbody>
+        </table>
+        <div class="callout">
+          <strong>Score-card-uri auditabile:</strong>
+          <ul>
+            <li>Fiecare card apare sus, vizibil.</li>
+            <li>Fiecare card reapare in <strong>Motivatie scor</strong>.</li>
+            <li>Motivatia include axa, scor numeric si verdict scurt.</li>
+            <li>Daca scorul nu poate fi explicat, cardul este decorativ si invalid.</li>
+          </ul>
+        </div>
+        <table>
+          <thead><tr><th>Regula scor</th><th>Contract rece</th><th>Invalid daca</th></tr></thead>
+          <tbody>
+            <tr><td>Axe canonice</td><td>aceleasi 5 axe + Overall in carduri si in motivatie</td><td>raportul foloseste sinonime sau shorthand-uri locale</td></tr>
+            <tr><td>Lizibilitate card</td><td>descrierea din card ramane scurta, sub 88 caractere</td><td>textul se taie sau se inghesuie in score-card</td></tr>
+            <tr><td>Pointer audit</td><td>Motivatie scor indica explicit 4.5, 4.6 si 5.1</td><td>cititorul nu stie unde se redeschide calculul scorului</td></tr>
+            <tr><td>Suport scor</td><td>fiecare card are rand suport cu aceeasi nota si suprafata de dovada</td><td>cardul are numar, dar nu are ancora in tabele/trace</td></tr>
+            <tr><td>Formula Overall</td><td>4.6 repeta axele, notele, ponderile si contributiile</td><td>Overall nu poate fi recalculat rece</td></tr>
+            <tr><td>Overall calculabil</td><td>Overall deriva din cele 5 axe de intelegere business</td><td>Overall nu poate fi recalculat sau sare peste toate axele</td></tr>
+            <tr><td>Dovada per axa</td><td>fiecare rand explica ce business/layer/source sustine nota</td><td>are doar numar, fara motiv verificabil</td></tr>
+            <tr><td>Boundary</td><td>scorul masoara atlas comprehension</td><td>este vandut ca package readiness sau html-ex readiness</td></tr>
+            <tr><td>GQM / traceability</td><td>fiecare nota are business goal, flow question, source/layer evidence si atlas score</td><td>nota ramane numar decorativ, fara intrebare si dovada redeschisibila</td></tr>
+            <tr><td>Scoruri uniforme</td><td>daca toate axele au aceeasi nota, atlasul explica explicit plafonul comun si de ce nu exista diferentiere</td><td>toate cardurile au aceeasi nota fara rationale de uniformitate</td></tr>
+          </tbody>
+        </table>
+      </details>
+      <details class="subsection">
+        <summary>3.4 Maturitate si limite de intelegere</summary>
+        <table>
+          <thead><tr><th>Axa</th><th>Intrebare rece</th><th>Scade nota daca</th></tr></thead>
+          <tbody>
+            <tr><td>Business durability</td><td>ramane dupa navigare / refresh / relogin?</td><td>este doar stare de ecran</td></tr>
+            <tr><td>UI visibility</td><td>utilizatorul vede obiectul?</td><td>dovada sta doar in service/model</td></tr>
+            <tr><td>Source trace</td><td>se vede traseul test -> page/action/validation/service?</td><td>obiectul e dedus doar din nume</td></tr>
+            <tr><td>Layer discipline</td><td>testul delega spre page/actions/validation?</td><td>assert-uri directe in test layer</td></tr>
+            <tr><td>Repetition pressure</td><td>unde coverage-ul existent repeta acelasi coridor?</td><td>repetitia este vanduta ca intelegere noua</td></tr>
+            <tr><td>Reportability</td><td>poate deveni nod/proof row?</td><td>nu poate fi explicat business-first</td></tr>
+          </tbody>
+        </table>
+        <div class="callout">
+          <strong>Atlas maturity:</strong>
+          <ul>
+            <li>Nu este Overall de pachet.</li>
+            <li>Nu masoara readiness pentru <code>html-ex</code>.</li>
+            <li>Masoara intelegerea business flow-urilor din suita citita.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="subsection">
+        <summary>3.5 Mini-template pentru rand de atlas</summary>
+        <table>
+          <thead><tr><th>Camp</th><th>Ce contine</th><th>Exemplu scurt</th></tr></thead>
+          <tbody>
+            <tr><td>Test / Class</td><td>clasa si metoda sursa</td><td><code>BusinessFlowTest.reopensVisibleObject()</code></td></tr>
+            <tr><td>Business object</td><td>obiectul vizibil sau blocat</td><td>domain business object / observable state</td></tr>
+            <tr><td>Evidence</td><td>clasa/metoda/layer care sustine obiectul</td><td>test method + action/component/page/validation/model</td></tr>
+            <tr><td>Maturity</td><td>owned / partial / repeated / blocked</td><td>owned</td></tr>
+            <tr><td>Comprehension limit</td><td>ce nu poate fi inteles inca din sursa citita</td><td>unproven lifecycle detail</td></tr>
+            <tr><td>Evidence note</td><td>limita observata, fara obligatie de run urmator</td><td>visible state without deeper persistence proof</td></tr>
+          </tbody>
+        </table>
+      </details>
+    </div>
+  </details>
+
+  <details>
+    <summary>4. Atlas Validation</summary>
+    <div class="content">
+      <details class="subsection">
+        <summary>4.1 Ce citeste</summary>
+        <table>
+          <thead><tr><th>Sursa</th><th>Ce extrage</th><th>Ce NU mosteneste</th></tr></thead>
+          <tbody>
+            <tr><td><code>&lt;input-folder&gt;</code></td><td>scope-ul real al codului sursa analizat</td><td>artefacte externe sau rulari vechi</td></tr>
+            <tr><td><code>src/test/java/com/endava/ai/ui/tests</code></td><td>metode, clase, claims, business family</td><td>scor fiindca testele sunt verzi</td></tr>
+            <tr><td><code>src/main/java/com/endava/ai/ui</code></td><td>page/actions/service/validation layering</td><td>business ownership daca e doar helper</td></tr>
+            <tr><td><code>docs/Living_Architecture_UI_API_doc_v1_0.html</code></td><td>responsabilitati UI/API/core/reporting si separarea support vs core protejat</td><td>dreptul de a suprascrie contractele MCP sau de a modifica core/MCP/atlas pentru un singur context business</td></tr>
+          </tbody>
+        </table>
+      </details>
+      <details class="subsection">
+        <summary>4.2 Separare fata de restul sistemului</summary>
+        <table>
+          <thead><tr><th>Layer</th><th>Rol</th><th>Ce nu trebuie amestecat</th></tr></thead>
+          <tbody>
+            <tr><td>MCP</td><td>valideaza contracte de pachet si artefacte</td><td>nu este input pentru atlasul bazat pe sursa</td></tr>
+            <tr><td>Business Atlas</td><td>intelege business flow-urile din teste</td><td>nu devine raport final de run</td></tr>
+            <tr><td>Reporting</td><td>publica pachetul curent</td><td>nu inlocuieste atlasul suitei</td></tr>
+            <tr><td>Atlas tests</td><td>vor valida HTML-ul produs de skill</td><td>nu trebuie sa depinda de business-ul concret al aplicatiei</td></tr>
+          </tbody>
+        </table>
+        <div class="callout">
+          <strong>Atlas validation:</strong>
+          <ul>
+            <li>Atlasul este propriul tip de rezultat.</li>
+            <li>Outputul este un HTML de intelegere business.</li>
+            <li>Validarile atlas sunt separate de MCP.</li>
+            <li>Disciplina ramane similara: contract, dovezi, scor, audit.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="subsection">
+        <summary>4.3 Contract tests atlas</summary>
+        <div class="callout">
+          <strong>Citire buna:</strong>
+          <ul>
+            <li>Contractele atlas sunt grupate pe familii.</li>
+            <li>Familii principale: forma, grafuri business, trace sursa, scor, audit.</li>
+            <li>Nu sunt o lista plata de reguli.</li>
+            <li>Fiecare grup protejeaza o parte diferita din atlasul business-first.</li>
+          </ul>
+        </div>
+        <h4>Vocabular semantic minim</h4>
+        <div class="callout">
+          <strong>Regula pentru teste:</strong>
+          <ul>
+            <li>Nu valida propozitii exacte.</li>
+            <li>Nu valida obiecte de domeniu hardcodate: invoice, cart, payment, profile etc.</li>
+            <li>Valideaza structura HTML prin clase, tabele, sectiuni si <code>data-atlas*</code>.</li>
+            <li>Valideaza semantica doar prin familiile mici de mai jos.</li>
+            <li>Daca un cuvant nu este in acest vocabular sau in axele canonice, nu devine parola de test.</li>
+          </ul>
+        </div>
+        <table>
+          <thead><tr><th>Familie</th><th>Termeni acceptati</th><th>Rol</th></tr></thead>
+          <tbody>
+            <tr><td>Maturity</td><td>owned, detinut, durabil, reopen, relogin, partial, diagnostic, surface, surface-only, suprafata</td><td>clasifica maturitatea flow-urilor fara business hardcodat</td></tr>
+            <tr><td>Limit / boundary</td><td>limit, limita, limite, missing, lipseste, incomplet, neexplicat, open, boundary</td><td>marcheaza limite de intelegere si lifecycle neinchis</td></tr>
+            <tr><td>Cap / threshold</td><td>cap, capped, plafon, plafonat, sub 95, below 95, 95+</td><td>leaga limitele de scor fara fraze fixe</td></tr>
+            <tr><td>Story chain</td><td>actor, intent / intentie, visible action / actiune vizibila, business object / obiect business, observable result / rezultat observabil</td><td>face flow-ul citibil ca poveste de produs</td></tr>
+            <tr><td>Evidence surfaces</td><td>table/tabel, trace, source/sursa, layer, object/obiect, flow/flux, evidence/dovada, proof</td><td>leaga scorul si graful de dovezi redeschisibile</td></tr>
+            <tr><td>Business understanding</td><td>intelegere business, business understanding, business comprehension, comprehension, atlas quality</td><td>separa calitatea atlasului de completitudinea suitei</td></tr>
+          </tbody>
+        </table>
+        <p class="note">Acest vocabular este mic intentionat. Daca agentul vrea alta formulare, trebuie sa pastreze structura, clasele semantice si una dintre familiile de mai sus, nu o fraza exacta.</p>
+        <h4>Structure / readability</h4>
+        <table>
+          <thead><tr><th>Test atlas</th><th>Ce valideaza</th><th>De ce conteaza</th></tr></thead>
+          <tbody>
+            <tr><td>atlas.html.uses-shared-css</td><td>HTML-ul reutilizeaza <code>shared-report-reference.css</code></td><td>previne stiluri ad-hoc</td></tr>
+            <tr><td>atlas.sections.collapsible</td><td>sectiunile principale sunt colapsabile</td><td>mentine navigarea clara</td></tr>
+            <tr><td>atlas.candidate.semantic-contract-markers</td><td>contractul structural foloseste <code>data-atlas*</code> / <code>data-contract</code>, nu multi markeri hidden</td><td>previne HTML construit pentru teste invizibile</td></tr>
+            <tr><td>atlas.output.exists</td><td>exista <code>business-test-atlas.html</code></td><td>confirma outputul minim</td></tr>
+            <tr><td>atlas.source.read-only</td><td>fisierele analizate nu au fost modificate</td><td>pastreaza contractul analysis-only</td></tr>
+            <tr><td>atlas.no-code-generation-claims</td><td>nu pretinde ca a generat teste sau a reparat cod</td><td>pastreaza boundary analysis-only</td></tr>
+          </tbody>
+        </table>
+        <h4>Business graph / flow comprehension</h4>
+        <table>
+          <thead><tr><th>Test atlas</th><th>Ce valideaza</th><th>De ce conteaza</th></tr></thead>
+          <tbody>
+            <tr><td>atlas.business-flow.present</td><td>exista business flow-uri reale, nu inventar de clase</td><td>protejeaza scopul atlasului</td></tr>
+            <tr><td>atlas.business-flows.application-only</td><td>flow-urile descriu aplicatia, nu meta-contracte</td><td>tine atlasul business-first</td></tr>
+            <tr><td>atlas.business-object-centered</td><td>nodurile si celulele business object sunt obiecte reale extrase din sursa, nu page/action/selector/component/helper si nu o lista hardcodata de domeniu</td><td>impiedica grafuri de selectors/pages/layers mascate ca business si pastreaza regula aplicabila in orice aplicatie</td></tr>
+            <tr><td>atlas.flow-story.complete</td><td>flow-ul are actor, intentie, actiune, obiect, rezultat</td><td>previne lane-uri superficiale</td></tr>
+            <tr><td>atlas.graph-node.business-proof-strip</td><td>fiecare graf major are banda scurta nod/flow -> test/metoda -> layer path -> intelegere business dovedita -> limita</td><td>face graful auditabil fara sa transforme nodurile in clase tehnice</td></tr>
+            <tr><td>atlas.subgraph.business-understanding-strips</td><td>fiecare subgraf 3.x are propria banda locala de intelegere business dovedita</td><td>nu obliga cititorul sa caute dovada doar in tabelele de jos</td></tr>
+            <tr><td>atlas.candidate.subgraph.semantic-density</td><td>fiecare subgraf 3.x pastreaza stilul comun, dar expune minimum doua etichete de domeniu si semnaturi diferite intre subgrafuri</td><td>impiedica grafuri care arata valid dar sunt doar template-uri Actor / Intent / Object / Result</td></tr>
+            <tr><td>atlas.graph-node.proof-strip.collapsed</td><td>dupa graful principal exista o subsectiune colapsabila <code>Banda de dovada noduri</code></td><td>separa legenda vizuala de dovada auditabila a nodurilor</td></tr>
+            <tr><td>atlas.subgraph.proof-strip.collapsed</td><td>dupa fiecare subgraf 3.x exista o subsectiune colapsabila <code>Banda de dovada noduri</code></td><td>face fiecare slice redeschisibil local, fara dependenta de tabele globale</td></tr>
+            <tr><td>atlas.candidate.subgraphs.source-specific-dominance</td><td>subgrafurile 3.x reflecta familii dominante reale din pachetul analizat, nu flow-uri template reutilizate</td><td>impiedica atlasul valid structural, dar prea generic semantic</td></tr>
+            <tr><td>atlas.candidate.local-proof-strip.source-backed</td><td>proof strip-ul local numeste metode/clase existente in sourceRoot sau layerele UI traversate</td><td>face fiecare subgraf redeschisibil in cod, fara dependenta de wording business fix</td></tr>
+            <tr><td>atlas.subgraphs.business-complexity</td><td>subgrafurile 3.x au noduri, tranzitii si obiecte/stari business distincte, fara tokeni de business hardcodati in test</td><td>forteaza flow-uri reale, dar ramane universal pentru orice domeniu</td></tr>
+            <tr><td>atlas.candidate.object-maturity.matrix</td><td>fiecare obiect major are maturitate, dovada si limita de intelegere</td><td>previne atlasul care numeste obiecte, dar nu spune daca sunt owned, partial, diagnostic sau surface-only</td></tr>
+            <tr><td>atlas.candidate.end-to-end-closure.ladder</td><td>flow-urile importante arata start -> actiune vizibila -> obiect durabil -> reopen/relogin -> lifecycle neowned</td><td>face diferenta dintre flow profund si simpla lane vizuala</td></tr>
+            <tr><td>atlas.candidate.flow-maturity.distribution</td><td>atlasul explica distributia owned / partial / diagnostic / surface-only pentru flow-urile descoperite din sursa, fara obiecte hardcodate de domeniu</td><td>previne atlasul care doar mentioneaza limite, dar nu spune maturitatea flow-urilor</td></tr>
+            <tr><td>atlas.candidate.partial-flow-not-sold-as-owned</td><td>un flow partial, diagnostic sau surface-only nu poate fi vandut ca ownership puternic fara cap/limita explicita</td><td>previne contradictii intre harta business, tabele si scor</td></tr>
+          </tbody>
+        </table>
+        <h4>Source trace / layer traversal</h4>
+        <table>
+          <thead><tr><th>Test atlas</th><th>Ce valideaza</th><th>De ce conteaza</th></tr></thead>
+          <tbody>
+            <tr><td>atlas.row-template.complete</td><td>randurile au test, obiect, evidence, maturity, comprehension limit</td><td>face atlasul verificabil</td></tr>
+            <tr><td>atlas.source-trace.method-level</td><td>Source-to-Business Trace contine metode reprezentative si lanturi test -> layer -> obiect</td><td>previne atlasul la nivel de familie/clasa</td></tr>
+            <tr><td>atlas.source-trace.backed-by-source</td><td>metodele si clasele numite in trace exista in sursa citita</td><td>previne business wording fara ancora in cod</td></tr>
+            <tr><td>atlas.layer-trace.concrete-evidence</td><td>Layer Trace Map numeste clase/metode/layers concrete</td><td>previne lanturi generice de tip test -> page -> validation fara dovada redeschisibila</td></tr>
+            <tr><td>atlas.source-trace.application-business-only</td><td>Source-to-Business Trace contine doar flow-uri business ale aplicatiei</td><td>muta seed/baseline/agent/MCP/atlas-test in audit sau limite, nu in harta business</td></tr>
+          </tbody>
+        </table>
+        <h4>Score / business understanding</h4>
+        <table>
+          <thead><tr><th>Test atlas</th><th>Ce valideaza</th><th>De ce conteaza</th></tr></thead>
+          <tbody>
+            <tr><td>atlas.candidate.score-rationale.audit</td><td>fiecare score-card are rand de motivatie cu axa, scor si verdict</td><td>face scorul auditabil, nu decorativ</td></tr>
+            <tr><td>atlas.candidate.score-cards.readable</td><td>descrierile din score-card-uri raman scurte si vizibile</td><td>previne text taiat sau inghesuit in zona de opening</td></tr>
+            <tr><td>atlas.candidate.score-opening.audit-pointer</td><td>Motivatie scor trimite spre 4.5, 4.6 si 5.1</td><td>face redeschiderea scorului rapida</td></tr>
+            <tr><td>atlas.candidate.score-support.trace</td><td>fiecare card are suport cu aceeasi nota si dovada</td><td>previne scoruri fara ancora in business evidence</td></tr>
+            <tr><td>atlas.candidate.score-formula.trace</td><td>formula Overall contine axe, note, ponderi si contributii</td><td>face Overall recalculabil</td></tr>
+            <tr><td>atlas.candidate.score-overall.calculation</td><td>Overall este calculabil din cele 5 axe si nu inseamna readiness</td><td>previne scoruri globale neexplicate</td></tr>
+            <tr><td>atlas.candidate.score-cards.documented</td><td>axele din atlas sunt documentate in acest HTML-req</td><td>previne carduri inventate ad-hoc de agent</td></tr>
+            <tr><td>atlas.candidate.score-business-understanding.evidence</td><td>fiecare axa explica intelegerea business dovedita prin flow, sursa si layere</td><td>previne motivatie generica bazata pe cuvinte, nu pe business inteles</td></tr>
+            <tr><td>atlas.candidate.score-gqm-traceability</td><td>scorul foloseste lantul business goal -> flow question -> source/layer evidence -> atlas score</td><td>previne note decorative care nu raspund unei intrebari de intelegere</td></tr>
+            <tr><td>atlas.candidate.score-uniformity.cap</td><td>daca axele au aceeasi nota, exista explicatie de plafon comun / uniformitate</td><td>previne scoruri plate care par calibrate estetic</td></tr>
+            <tr><td>atlas.candidate.end-to-end-limit.score-cap</td><td>multe limite end-to-end majore plafoneaza Overall sub zona excelenta sau cer cap explicit</td><td>previne Overall 95+ cand atlasul declara multe flow-uri partiale, diagnostice sau incomplete</td></tr>
+            <tr><td>atlas.candidate.95-plus.limit-discipline</td><td>Overall 95+ cere putine limite sau explicatie explicita de maturitate/cap</td><td>previne cresterea decorativa peste 95 cand atlasul insusi declara multe limite reale</td></tr>
+            <tr><td>atlas.candidate.suite-completeness.separation</td><td>Atlas Overall este separat de suite completeness</td><td>clarifica faptul ca 95+ inseamna atlas aproape inevitabil, nu suita completa end-to-end</td></tr>
+          </tbody>
+        </table>
+        <h4>Executable audit</h4>
+        <table>
+          <thead><tr><th>Test atlas</th><th>Ce valideaza</th><th>De ce conteaza</th></tr></thead>
+          <tbody>
+            <tr><td>atlas.test-audit.extent-linked</td><td>atlasul publica Extent-ul testelor atlas ca link redeschisibil</td><td>face validarea skill-ului auditabila</td></tr>
+            <tr><td>atlas.candidate.test-audit.total-synchronized</td><td>totalul declarat in Atlas Test Audit este identic cu totalul din Extent-ul linkat, iar atlasul nu reutilizeaza raportul altui scope</td><td>opreste publicarea unui atlas cu numere stale sau cu dovada de validare gresita</td></tr>
+            <tr><td>atlas.framework.full-regression-command</td><td>atlasul framework publica <code>Comanda regresie Atlas completa</code> cu Maven command pentru business atlas + framework atlas</td><td>face reproductibila validarea finala comuna, nu doar validarea locala a unui singur HTML</td></tr>
+          </tbody>
+        </table>
+      </details>
+      <details class="subsection">
+        <summary>4.4 Cerinte pentru Codex skill</summary>
+        <div class="callout">
+          <strong>Scopul migrarii:</strong>
+          <ul>
+            <li>Acest HTML ramane legea detaliata.</li>
+            <li>Viitorul skill Codex porneste dintr-un <code>SKILL.md</code> scurt.</li>
+            <li><code>SKILL.md</code> descrie trigger-ul, workflow-ul si libertatile agentului.</li>
+            <li>Documentul HTML devine <code>references/business-test-atlas-reference.html</code>.</li>
+          </ul>
+        </div>
+        <table>
+          <thead><tr><th>Capabilitate</th><th>Must</th><th>Must not</th></tr></thead>
+          <tbody>
+            <tr><td>Citire proiect</td><td>scaneaza testele si layer-ele Java pornind din root-ul primit</td><td>nu inventeaza business din metoda</td></tr>
+            <tr><td>Modelare</td><td>grupeaza pe business flow-uri, familii si obiecte vizibile</td><td>nu produce doar lista de clase</td></tr>
+            <tr><td>Atlas HTML</td><td>publica diagrame si matrici de intelegere business</td><td>nu publica raport final de run</td></tr>
+            <tr><td>Feedback</td><td>scrie comprehension limits si limite de intelegere</td><td>nu cere fresh run; atlasul analizeaza sursa existenta</td></tr>
+          </tbody>
+        </table>
+        <h4>Skill package propus</h4>
+        <table>
+          <thead><tr><th>Fisier / folder</th><th>Rol</th><th>Regula rece</th></tr></thead>
+          <tbody>
+            <tr><td><code>SKILL.md</code></td><td>frontmatter cu <code>name</code> si <code>description</code>, trigger si workflow scurt</td><td>sub 500 linii; nu copia tot HTML-req-ul</td></tr>
+            <tr><td><code>references/business-test-atlas-reference.html</code></td><td>contract detaliat, diagrame, reguli si exemple</td><td>se citeste doar cand task-ul cere detalii</td></tr>
+            <tr><td><code>assets/business-test-atlas-template.html</code></td><td>schelet HTML reutilizabil pentru score cards, graf principal, subgrafuri, trace si audit</td><td>nu contine business hardcodat</td></tr>
+            <tr><td><code>scripts/validate-atlas</code></td><td>ruleaza contractele atlas si sincronizeaza raportul de validare</td><td>nu modifica sursele analizate</td></tr>
+            <tr><td><code>quick_validate.py</code></td><td>validare standard a skill-ului dupa creare/migrare</td><td>ruleaza dupa orice schimbare in SKILL.md</td></tr>
+          </tbody>
+        </table>
+        <h4>Frontmatter minim pentru <code>SKILL.md</code></h4>
+        <table>
+          <thead><tr><th>Camp</th><th>Valoare recomandata</th><th>De ce conteaza</th></tr></thead>
+          <tbody>
+            <tr><td><code>name</code></td><td><code>business-test-atlas</code></td><td>nume scurt, hyphen-case, usor de activat</td></tr>
+            <tr><td><code>description</code></td><td>Use when Codex must analyze an existing test package and produce a read-only business-test-atlas.html that reconstructs application business flows through source/layer evidence.</td><td>description este trigger-ul principal al skill-ului</td></tr>
+          </tbody>
+        </table>
+        <h4>Workflow scurt pentru <code>SKILL.md</code></h4>
+        <table>
+          <thead><tr><th>Pas</th><th>Actiune</th><th>Output / check</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Citeste <code>INPUT_TEST_PACKAGE_ROOT</code> si confirma ca sursa ramane read-only.</td><td>folder explicit, nu path hardcodat</td></tr>
+            <tr><td>2</td><td>Scaneaza metodele de test si urmareste layerele atinse.</td><td>test -> action/component/page/service/validation/model/constants</td></tr>
+            <tr><td>3</td><td>Extrage flow-uri business: actor, intentie, actiune vizibila, obiect, rezultat.</td><td>business flow map, nu inventar de clase</td></tr>
+            <tr><td>4</td><td>Genereaza <code>OUTPUT_ATLAS_HTML</code> folosind <code>assets/business-test-atlas-template.html</code> si <code>SHARED_REPORT_REFERENCE_CSS</code>.</td><td>HTML colapsabil, grafuri minimaliste, score cards auditabile</td></tr>
+            <tr><td>5</td><td>Ruleaza <code>scripts/validate-atlas</code> sau contractele atlas echivalente.</td><td>raport Extent redeschisibil</td></tr>
+            <tr><td>6</td><td>Repara doar atlasul/outputul, nu sursele analizate.</td><td><code>MUST_NOT_MODIFY_ANALYZED_FILES=true</code></td></tr>
+          </tbody>
+        </table>
+        <h4>Progressive disclosure</h4>
+        <table>
+          <thead><tr><th>Nivel</th><th>Ce incarca agentul</th><th>Cand</th></tr></thead>
+          <tbody>
+            <tr><td>Metadata</td><td><code>name</code> + <code>description</code></td><td>mereu, pentru trigger</td></tr>
+            <tr><td><code>SKILL.md</code></td><td>workflow scurt, parametri, output contract</td><td>cand skill-ul se activeaza</td></tr>
+            <tr><td><code>references/</code></td><td>acest HTML-req detaliat si matricea de contracte</td><td>cand agentul construieste sau repara atlasul</td></tr>
+            <tr><td><code>assets/</code></td><td>template HTML si primitive vizuale</td><td>cand produce outputul</td></tr>
+            <tr><td><code>scripts/</code></td><td>validare determinista</td><td>dupa generare sau reparare</td></tr>
+          </tbody>
+        </table>
+        <h4>Parametrii skill-ului</h4>
+        <table>
+          <thead><tr><th>Parametru</th><th>Descriere skill-ready</th><th>Anti-drift</th></tr></thead>
+          <tbody>
+            <tr><td><code>INPUT_TEST_PACKAGE_ROOT</code></td><td>folder / package primit explicit pentru analiza</td><td>nu se presupune <code>com.endava.ai.ui.tests</code> decat ca default ATF</td></tr>
+            <tr><td><code>OUTPUT_ATLAS_HTML</code></td><td>fisierul HTML produs, de obicei <code>business-test-atlas.html</code></td><td>nu se confunda cu raport final de run</td></tr>
+            <tr><td><code>SHARED_REPORT_REFERENCE_CSS</code></td><td>CSS comun reutilizat</td><td>override-urile locale se raporteaza</td></tr>
+            <tr><td><code>LIVING_ARCHITECTURE_REFERENCE</code></td><td>document de layere pentru interpretarea test/action/page/validation/model</td><td>nu devine sursa de business nou</td></tr>
+            <tr><td><code>ATLAS_TEST_EXTENT</code></td><td>raportul testelor atlas dupa validare</td><td>numerele din atlas trebuie sincronizate</td></tr>
+            <tr><td><code>MUST_PRODUCE</code></td><td><code>business-test-atlas.html</code></td><td>output obligatoriu</td></tr>
+            <tr><td><code>MUST_NOT_MODIFY_ANALYZED_FILES</code></td><td><code>true</code></td><td>skill-ul este analysis-only</td></tr>
+          </tbody>
+        </table>
+        <h4>Contract tests pentru migrare skill</h4>
+        <table>
+          <thead><tr><th>Test atlas</th><th>Ce valideaza</th><th>De ce conteaza</th></tr></thead>
+          <tbody>
+            <tr><td>atlas.candidate.skill-migration.readiness</td><td>HTML-req-ul documenteaza <code>SKILL.md</code>, frontmatter, description, progressive disclosure, <code>references/</code>, <code>assets/</code>, <code>scripts/</code> si validare</td><td>face migrarea catre skill aproape mecanica</td></tr>
+            <tr><td>atlas.candidate.skill-parameters.generic</td><td>input/output/CSS/architecture/audit/read-only sunt parametri expliciti, nu path-uri inchise intr-un singur <code>ATF_NAME</code></td><td>pastreaza skill-ul aplicabil pe orice pachet de teste</td></tr>
+          </tbody>
+        </table>
+        <p class="mini">Skill-ul ideal este un cartograf: arata ce business flow-uri exista in testele deja scrise si ce limite de intelegere raman.</p>
+      </details>
+    </div>
+  </details>
+</div>
+
+<script>
+function toggleAll(openState){document.querySelectorAll('details').forEach(function(el){el.open=openState;});}
+</script>
+</body>
+</html>

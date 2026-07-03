@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-07-02T22:51:41 EEST" name="Surefire suite" finished-at="2026-07-02T22:53:46 EEST" duration-ms="124553">
+    <groups>
+    </groups>
+    <test started-at="2026-07-02T22:51:41 EEST" name="Surefire test" finished-at="2026-07-02T22:53:46 EEST" duration-ms="124553">
+      <class name="com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentReopenTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentReopenTest@65da01f4]" started-at="2026-07-02T22:51:41 EEST" name="setUp" finished-at="2026-07-02T22:52:32 EEST" duration-ms="50763" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="reopened_document_download_response_is_successful()[pri:0, instance:com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentReopenTest@65da01f4]" started-at="2026-07-02T22:52:32 EEST" name="reopened_document_download_response_is_successful" finished-at="2026-07-02T22:53:44 EEST" duration-ms="71993" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- reopened_document_download_response_is_successful -->
+        <test-method signature="reopened_document_download_status_is_reported()[pri:0, instance:com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentReopenTest@65da01f4]" started-at="2026-07-02T22:53:44 EEST" name="reopened_document_download_status_is_reported" finished-at="2026-07-02T22:53:44 EEST" duration-ms="8" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- reopened_document_download_status_is_reported -->
+        <test-method signature="reopened_document_download_url_is_invoice_scoped()[pri:0, instance:com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentReopenTest@65da01f4]" started-at="2026-07-02T22:53:45 EEST" name="reopened_document_download_url_is_invoice_scoped" finished-at="2026-07-02T22:53:45 EEST" duration-ms="6" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- reopened_document_download_url_is_invoice_scoped -->
+        <test-method signature="reopened_invoice_document_details_keep_product()[pri:0, instance:com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentReopenTest@65da01f4]" started-at="2026-07-02T22:53:45 EEST" name="reopened_invoice_document_details_keep_product" finished-at="2026-07-02T22:53:45 EEST" duration-ms="5" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- reopened_invoice_document_details_keep_product -->
+        <test-method signature="reopened_invoice_document_stays_details_scoped()[pri:0, instance:com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentReopenTest@65da01f4]" started-at="2026-07-02T22:53:45 EEST" name="reopened_invoice_document_stays_details_scoped" finished-at="2026-07-02T22:53:45 EEST" duration-ms="8" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- reopened_invoice_document_stays_details_scoped -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentReopenTest@65da01f4]" started-at="2026-07-02T22:53:45 EEST" name="tearDown" finished-at="2026-07-02T22:53:46 EEST" duration-ms="195" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentReopenTest -->
+    </test> <!-- Surefire test -->
+  </suite> <!-- Surefire suite -->
+</testng-results>

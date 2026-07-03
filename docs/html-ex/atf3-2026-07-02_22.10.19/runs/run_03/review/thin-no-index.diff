@@ -1,0 +1,259 @@
+﻿diff --git a/src/main/java/com/endava/ai/ui/support/flows/invoice/RegisteredInvoiceDocumentStatusClient.java b/src/main/java/com/endava/ai/ui/support/flows/invoice/RegisteredInvoiceDocumentStatusClient.java
+new file mode 100644
+index 00000000..4372eacb
+--- /dev/null
++++ b/src/main/java/com/endava/ai/ui/support/flows/invoice/RegisteredInvoiceDocumentStatusClient.java
+@@ -0,0 +1,146 @@
++package com.endava.ai.ui.support.flows.invoice;
++
++import com.endava.ai.core.support.config.ConfigManager;
++import com.endava.ai.ui.core.engine.UiNetworkResponse;
++import com.endava.ai.ui.support.model.CustomerData;
++import com.endava.ai.ui.support.model.invoice.AccountInvoicePdfArtifact;
++import com.endava.ai.ui.support.model.invoice.AccountInvoiceSnapshot;
++import com.endava.ai.ui.support.wait.WaitUtils;
++import io.restassured.RestAssured;
++import io.restassured.response.Response;
++
++import java.nio.charset.StandardCharsets;
++import java.net.URI;
++import java.time.Duration;
++import java.util.Arrays;
++import java.util.Map;
++
++final class RegisteredInvoiceDocumentStatusClient {
++    private static final int PDF_DOWNLOAD_ATTEMPTS = 12;
++    private static final Duration PDF_DOWNLOAD_POLL_INTERVAL = Duration.ofSeconds(2);
++
++    UiNetworkResponse waitForCompletedStatus(AccountInvoiceSnapshot snapshot,
++                                             UiNetworkResponse firstResponse,
++                                             int attempts,
++                                             Duration pollInterval) {
++        if (isCompleted(firstResponse)) {
++            return firstResponse;
++        }
++        return pollStatus(snapshot, firstResponse, attempts, pollInterval, true);
++    }
++
++    UiNetworkResponse waitForSuccessfulStatus(AccountInvoiceSnapshot snapshot,
++                                              UiNetworkResponse firstResponse,
++                                              int attempts,
++                                              Duration pollInterval) {
++        if (firstResponse != null && firstResponse.isSuccess()) {
++            return firstResponse;
++        }
++        return pollStatus(snapshot, firstResponse, attempts, pollInterval, false);
++    }
++
++    AccountInvoicePdfArtifact readPdfArtifact(AccountInvoiceSnapshot snapshot, UiNetworkResponse statusResponse) {
++        String token = login(snapshot.getCustomer(), statusResponse.getUrl());
++        String pdfUrl = statusResponse.getUrl().replace("download-pdf-status", "download-pdf");
++        AccountInvoicePdfArtifact lastArtifact = null;
++        for (int attempt = 1; attempt <= PDF_DOWNLOAD_ATTEMPTS; attempt++) {
++            lastArtifact = readPdf(pdfUrl, token);
++            if (lastArtifact.hasPdfBoundaries()) {
++                return lastArtifact;
++            }
++            WaitUtils.pause(PDF_DOWNLOAD_POLL_INTERVAL);
++        }
++        return lastArtifact;
++    }
++
++    UiNetworkResponse readStatusFromDetails(AccountInvoiceSnapshot snapshot, String detailsUrl) {
++        String statusUrl = invoiceApiUrl(detailsUrl) + "/download-pdf-status";
++        String token = login(snapshot.getCustomer(), statusUrl);
++        return readStatus(statusUrl, token);
++    }
++
++    private UiNetworkResponse pollStatus(AccountInvoiceSnapshot snapshot,
++                                         UiNetworkResponse firstResponse,
++                                         int attempts,
++                                         Duration pollInterval,
++                                         boolean requireCompleted) {
++        String token = login(snapshot.getCustomer(), firstResponse.getUrl());
++        UiNetworkResponse lastResponse = firstResponse;
++        for (int attempt = 1; attempt <= attempts; attempt++) {
++            lastResponse = readStatus(firstResponse.getUrl(), token);
++            if (requireCompleted ? isCompleted(lastResponse) : lastResponse.isSuccess()) {
++                return lastResponse;
++            }
++            WaitUtils.pause(pollInterval);
++        }
++        return lastResponse;
++    }
++
++    private static UiNetworkResponse readStatus(String statusUrl, String token) {
++        Response response = RestAssured.given()
++                .accept("application/json")
++                .header("Authorization", "Bearer " + token)
++                .get(statusUrl);
++        return new UiNetworkResponse(
++                statusUrl,
++                "GET",
++                response.statusCode(),
++                response.asString()
++        );
++    }
++
++    private static AccountInvoicePdfArtifact readPdf(String pdfUrl, String token) {
++        Response response = RestAssured.given()
++                .accept("application/pdf")
++                .header("Authorization", "Bearer " + token)
++                .get(pdfUrl);
++        byte[] bytes = response.asByteArray();
++        return new AccountInvoicePdfArtifact(
++                pdfUrl,
++                response.statusCode(),
++                response.getContentType(),
++                bytes.length,
++                textSlice(bytes, 0, Math.min(bytes.length, 16)),
++                textSlice(bytes, Math.max(0, bytes.length - 32), bytes.length)
++        );
++    }
++
++    private static boolean isCompleted(UiNetworkResponse response) {
++        return response != null
++                && response.isSuccess()
++                && response.getBodyPreview().toUpperCase().contains("COMPLETED");
++    }
++
++    private static String login(CustomerData customer, String statusUrl) {
++        URI statusUri = URI.create(statusUrl);
++        String baseUri = statusUri.getScheme() + "://" + statusUri.getAuthority();
++        Response response = RestAssured.given()
++                .baseUri(baseUri)
++                .contentType("application/json")
++                .accept("application/json")
++                .body(Map.of(
++                        "email", customer.getEmail(),
++                        "password", customer.getPassword()
++                ))
++                .post("/users/login");
++        if (response.statusCode() != 200) {
++            throw new AssertionError("Expected API login for invoice document status polling, but status was "
++                    + response.statusCode() + ".");
++        }
++        String token = response.jsonPath().getString("access_token");
++        if (token == null || token.isBlank()) {
++            throw new AssertionError("Expected API login to return access_token for invoice document status polling.");
++        }
++        return token;
++    }
++
++    private static String invoiceApiUrl(String detailsUrl) {
++        String invoiceId = URI.create(detailsUrl).getPath().replaceAll(".*/", "");
++        String apiBaseUrl = ConfigManager.require("base.url").replace("://", "://api.");
++        return apiBaseUrl + "/invoices/" + invoiceId;
++    }
++
++    private static String textSlice(byte[] bytes, int from, int to) {
++        return new String(Arrays.copyOfRange(bytes, from, to), StandardCharsets.ISO_8859_1);
++    }
++}
+diff --git a/src/main/java/com/endava/ai/ui/support/model/invoice/AccountInvoicePdfArtifact.java b/src/main/java/com/endava/ai/ui/support/model/invoice/AccountInvoicePdfArtifact.java
+new file mode 100644
+index 00000000..ab81b26b
+--- /dev/null
++++ b/src/main/java/com/endava/ai/ui/support/model/invoice/AccountInvoicePdfArtifact.java
+@@ -0,0 +1,56 @@
++package com.endava.ai.ui.support.model.invoice;
++
++public final class AccountInvoicePdfArtifact {
++    private final String url;
++    private final int status;
++    private final String contentType;
++    private final int byteLength;
++    private final String header;
++    private final String trailer;
++
++    public AccountInvoicePdfArtifact(String url,
++                                     int status,
++                                     String contentType,
++                                     int byteLength,
++                                     String header,
++                                     String trailer) {
++        this.url = url;
++        this.status = status;
++        this.contentType = contentType;
++        this.byteLength = byteLength;
++        this.header = header;
++        this.trailer = trailer;
++    }
++
++    public String getUrl() {
++        return url;
++    }
++
++    public int getStatus() {
++        return status;
++    }
++
++    public String getContentType() {
++        return contentType;
++    }
++
++    public int getByteLength() {
++        return byteLength;
++    }
++
++    public String getHeader() {
++        return header;
++    }
++
++    public String getTrailer() {
++        return trailer;
++    }
++
++    public boolean isSuccess() {
++        return status >= 200 && status < 300;
++    }
++
++    public boolean hasPdfBoundaries() {
++        return header.startsWith("%PDF-") && trailer.contains("%%EOF");
++    }
++}
+diff --git a/src/test/java/com/endava/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentContractTest.java b/src/test/java/com/endava/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentContractTest.java
+new file mode 100644
+index 00000000..0cb06b58
+--- /dev/null
++++ b/src/test/java/com/endava/ai/ui/tests/invoice/account/document/RegisteredInvoiceDocumentContractTest.java
+@@ -0,0 +1,39 @@
++package com.endava.ai.ui.tests.invoice.account.document;
++
++import com.endava.ai.ui.core.runtime.BaseTestUI;
++import com.endava.ai.ui.support.flows.invoice.RegisteredInvoiceFlow;
++import com.endava.ai.ui.support.validation.invoice.AccountInvoiceValidation;
++import com.endava.ai.ui.tests.fixture.invoice.RegisteredInvoiceFixture;
++import org.testng.annotations.Test;
++
++public final class RegisteredInvoiceDocumentContractTest extends BaseTestUI {
++    private final RegisteredInvoiceFlow uiFlow = new RegisteredInvoiceFlow();
++    private final RegisteredInvoiceFixture documentFixture = new RegisteredInvoiceFixture();
++    private final AccountInvoiceValidation documentValidation = new AccountInvoiceValidation();
++
++    @Test
++    public void invoice_document_response_method_is_get() {
++        documentValidation.assertInvoiceDocumentResponseMethodIsGet(documentFixture.createdInvoiceDocument());
++    }
++
++    @Test
++    public void invoice_document_status_body_is_json() {
++        documentValidation.assertInvoiceDocumentStatusBodyIsJson(documentFixture.createdInvoiceDocument());
++        documentValidation.assertInvoicePdfArtifactHasBinaryBoundaries(documentFixture.createdInvoiceDocument());
++    }
++
++    @Test
++    public void invoice_document_response_is_invoice_scoped_after_reopen() {
++        documentValidation.assertInvoiceDocumentResponseNamesInvoice(documentFixture.reopenedInvoiceDocument());
++    }
++
++    @Test
++    public void invoice_document_status_is_reported_after_relogin() {
++        documentValidation.assertInvoiceDocumentStatusBodyReportsState(documentFixture.reloggedInvoiceDocument());
++    }
++
++    @Test
++    public void invoice_document_details_keep_payment_after_reopen() {
++        documentValidation.assertInvoiceDocumentDetailsKeepPaymentMethod(documentFixture.reopenedInvoiceDocument());
++    }
++}

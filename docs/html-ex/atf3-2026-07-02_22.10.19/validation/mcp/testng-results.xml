@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="100" passed="100" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-07-02T23:16:24 EEST" name="MCP Package Close-Out" finished-at="2026-07-02T23:16:31 EEST" duration-ms="6345">
+    <groups>
+    </groups>
+    <test started-at="2026-07-02T23:16:24 EEST" name="mcp-package-closeout" finished-at="2026-07-02T23:16:31 EEST" duration-ms="6345">
+      <class name="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest">
+        <test-method is-config="true" signature="requirePackageAuditTarget()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest@33ecda92]" started-at="2026-07-02T23:16:29 EEST" name="requirePackageAuditTarget" finished-at="2026-07-02T23:16:29 EEST" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- requirePackageAuditTarget -->
+        <test-method signature="everyRunHasExtentReport()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest@33ecda92]" started-at="2026-07-02T23:16:29 EEST" name="everyRunHasExtentReport" finished-at="2026-07-02T23:16:29 EEST" duration-ms="18" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- everyRunHasExtentReport -->
+        <test-method signature="extentProofClassIsPublishedAndReflectedInScoring()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest@33ecda92]" started-at="2026-07-02T23:16:29 EEST" name="extentProofClassIsPublishedAndReflectedInScoring" finished-at="2026-07-02T23:16:29 EEST" duration-ms="63" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- extentProofClassIsPublishedAndReflectedInScoring -->
+        <test-method signature="extentReportsDoNotUseExternalScreenshotFolderReferences()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest@33ecda92]" started-at="2026-07-02T23:16:29 EEST" name="extentReportsDoNotUseExternalScreenshotFolderReferences" finished-at="2026-07-02T23:16:29 EEST" duration-ms="21" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- extentReportsDoNotUseExternalScreenshotFolderReferences -->
+        <test-method signature="extentReportsEmbedScreenshotsWhenUiProofClaimsScreenshots()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest@33ecda92]" started-at="2026-07-02T23:16:29 EEST" name="extentReportsEmbedScreenshotsWhenUiProofClaimsScreenshots" finished-at="2026-07-02T23:16:29 EEST" duration-ms="110" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- extentReportsEmbedScreenshotsWhenUiProofClaimsScreenshots -->
+        <test-method signature="extentReportsHaveNoManualProofInjection()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest@33ecda92]" started-at="2026-07-02T23:16:29 EEST" name="extentReportsHaveNoManualProofInjection" finished-at="2026-07-02T23:16:29 EEST" duration-ms="62" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- extentReportsHaveNoManualProofInjection -->
+        <test-method signature="frozenMcpExtentReportContainsReadableContractDetails()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest@33ecda92]" started-at="2026-07-02T23:16:29 EEST" name="frozenMcpExtentReportContainsReadableContractDetails" finished-at="2026-07-02T23:16:29 EEST" duration-ms="70" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- frozenMcpExtentReportContainsReadableContractDetails -->
+        <test-method signature="frozenMcpGateResultMatchesCurrentValidatorState()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest@33ecda92]" started-at="2026-07-02T23:16:29 EEST" name="frozenMcpGateResultMatchesCurrentValidatorState" finished-at="2026-07-02T23:16:29 EEST" duration-ms="4" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- frozenMcpGateResultMatchesCurrentValidatorState -->
+        <test-method signature="perRunExtentReportsAreGeneratedAndSubstantive()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest@33ecda92]" started-at="2026-07-02T23:16:29 EEST" name="perRunExtentReportsAreGeneratedAndSubstantive" finished-at="2026-07-02T23:16:30 EEST" duration-ms="368" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- perRunExtentReportsAreGeneratedAndSubstantive -->
+        <test-method signature="perRunExtentReportsAreSingleFileProofsWithoutSparkAssets()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest@33ecda92]" started-at="2026-07-02T23:16:30 EEST" name="perRunExtentReportsAreSingleFileProofsWithoutSparkAssets" finished-at="2026-07-02T23:16:30 EEST" duration-ms="165" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- perRunExtentReportsAreSingleFileProofsWithoutSparkAssets -->
+        <test-method signature="perRunExtentReportsHaveMavenProvenanceAndHashChain()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest@33ecda92]" started-at="2026-07-02T23:16:30 EEST" name="perRunExtentReportsHaveMavenProvenanceAndHashChain" finished-at="2026-07-02T23:16:30 EEST" duration-ms="36" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- perRunExtentReportsHaveMavenProvenanceAndHashChain -->
+        <test-method signature="perRunExtentReportsHaveNativeTestListenerProvenance()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest@33ecda92]" started-at="2026-07-02T23:16:30 EEST" name="perRunExtentReportsHaveNativeTestListenerProvenance" finished-at="2026-07-02T23:16:30 EEST" duration-ms="41" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- perRunExtentReportsHaveNativeTestListenerProvenance -->
+      </class> <!-- com.endava.ai.skills.mcp.tests.latest.McpLatestPackageExtentEvidenceContractTest -->
+      <class name="com.endava.ai.skills.mcp.tests.core.McpConfiguredPackageAuditTest">
+        <test-method signature="latestAndCandidateSuitesExposeRepresentativeMcpChecks()[pri:0, instance:com.endava.ai.skills.mcp.tests.core.McpConfiguredPackageAuditTest@45d84a20]" started-at="2026-07-02T23:16:25 EEST" name="latestAndCandidateSuitesExposeRepresentativeMcpChecks" finished-at="2026-07-02T23:16:25 EEST" duration-ms="52" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- latestAndCandidateSuitesExposeRepresentativeMcpChecks -->
+        <test-method signature="validatesConfiguredOrLatestGeneratedPackage()[pri:0, instance:com.endava.ai.skills.mcp.tests.core.McpConfiguredPackageAuditTest@45d84a20]" started-at="2026-07-02T23:16:25 EEST" name="validatesConfiguredOrLatestGeneratedPackage" finished-at="2026-07-02T23:16:28 EEST" duration-ms="3156" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validatesConfiguredOrLatestGeneratedPackage -->
+      </class> <!-- com.endava.ai.skills.mcp.tests.core.McpConfiguredPackageAuditTest -->
+      <class name="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageLinkContractTest">
+        <test-method is-config="true" signature="requirePackageAuditTarget()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageLinkContractTest@6e2829c7]" started-at="2026-07-02T23:16:30 EEST" name="requirePackageAuditTarget" finished-at="2026-07-02T23:16:30 EEST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- requirePackageAuditTarget -->
+        <test-method signature="everyLocalHrefInFinalReportResolves()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageLinkContractTest@6e2829c7]" started-at="2026-07-02T23:16:30 EEST" name="everyLocalHrefInFinalReportResolves" finished-at="2026-07-02T23:16:30 EEST" duration-ms="14" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- everyLocalHrefInFinalReportResolves -->
+        <test-method signature="finalReportLocalHyperlinksResolve()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageLinkContractTest@6e2829c7]" started-at="2026-07-02T23:16:30 EEST" name="finalReportLocalHyperlinksResolve" finished-at="2026-07-02T23:16:30 EEST" duration-ms="4" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportLocalHyperlinksResolve -->
+        <test-method signature="savedLinkAuditReportsNoMissingLinks()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageLinkContractTest@6e2829c7]" started-at="2026-07-02T23:16:30 EEST" name="savedLinkAuditReportsNoMissingLinks" finished-at="2026-07-02T23:16:30 EEST" duration-ms="5" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- savedLinkAuditReportsNoMissingLinks -->
+      </class> <!-- com.endava.ai.skills.mcp.tests.latest.McpLatestPackageLinkContractTest -->
+      <class name="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest">
+        <test-method is-config="true" signature="requirePackageAuditTarget()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest@14fc5f04]" started-at="2026-07-02T23:16:30 EEST" name="requirePackageAuditTarget" finished-at="2026-07-02T23:16:30 EEST" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- requirePackageAuditTarget -->
+        <test-method signature="finalReportContainsCanonicalBusinessSections()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest@14fc5f04]" started-at="2026-07-02T23:16:30 EEST" name="finalReportContainsCanonicalBusinessSections" finished-at="2026-07-02T23:16:30 EEST" duration-ms="7" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportContainsCanonicalBusinessSections -->
+        <test-method signature="finalReportDoesNotLeakExternalCalibrationSources()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest@14fc5f04]" started-at="2026-07-02T23:16:30 EEST" name="finalReportDoesNotLeakExternalCalibrationSources" finished-at="2026-07-02T23:16:30 EEST" duration-ms="8" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportDoesNotLeakExternalCalibrationSources -->
+        <test-method signature="finalReportHasRequiredBusinessStructure()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest@14fc5f04]" started-at="2026-07-02T23:16:30 EEST" name="finalReportHasRequiredBusinessStructure" finished-at="2026-07-02T23:16:30 EEST" duration-ms="6" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportHasRequiredBusinessStructure -->
+        <test-method signature="finalReportLinksEveryRunEvidenceFamily()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest@14fc5f04]" started-at="2026-07-02T23:16:30 EEST" name="finalReportLinksEveryRunEvidenceFamily" finished-at="2026-07-02T23:16:30 EEST" duration-ms="13" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportLinksEveryRunEvidenceFamily -->
+        <test-method signature="finalReportLinksPackageGovernanceArtifacts()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest@14fc5f04]" started-at="2026-07-02T23:16:30 EEST" name="finalReportLinksPackageGovernanceArtifacts" finished-at="2026-07-02T23:16:30 EEST" duration-ms="6" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportLinksPackageGovernanceArtifacts -->
+        <test-method signature="finalReportPublishesAiTaskAdvisorSection()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest@14fc5f04]" started-at="2026-07-02T23:16:30 EEST" name="finalReportPublishesAiTaskAdvisorSection" finished-at="2026-07-02T23:16:30 EEST" duration-ms="3" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportPublishesAiTaskAdvisorSection -->
+        <test-method signature="finalReportPublishesRuntimeConstantsAndCounters()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest@14fc5f04]" started-at="2026-07-02T23:16:30 EEST" name="finalReportPublishesRuntimeConstantsAndCounters" finished-at="2026-07-02T23:16:30 EEST" duration-ms="9" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportPublishesRuntimeConstantsAndCounters -->
+      </class> <!-- com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageHtmlReportContractTest -->
+      <class name="com.endava.ai.skills.mcp.tests.core.McpPackageAuditPreflightTest">
+        <test-method signature="reportsPackageAuditInputContractOnce(org.testng.ITestContext)[pri:0, instance:com.endava.ai.skills.mcp.tests.core.McpPackageAuditPreflightTest@2a693f59]" started-at="2026-07-02T23:16:24 EEST" name="reportsPackageAuditInputContractOnce" finished-at="2026-07-02T23:16:25 EEST" duration-ms="662" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@1755e85b]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- reportsPackageAuditInputContractOnce -->
+      </class> <!-- com.endava.ai.skills.mcp.tests.core.McpPackageAuditPreflightTest -->
+      <class name="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest">
+        <test-method is-config="true" signature="requirePackageAuditTarget()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest@6a8658ff]" started-at="2026-07-02T23:16:30 EEST" name="requirePackageAuditTarget" finished-at="2026-07-02T23:16:30 EEST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- requirePackageAuditTarget -->
+        <test-method signature="eachRunDiffAndFeedbackAreSubstantiveEnoughToReopen()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest@6a8658ff]" started-at="2026-07-02T23:16:30 EEST" name="eachRunDiffAndFeedbackAreSubstantiveEnoughToReopen" finished-at="2026-07-02T23:16:30 EEST" duration-ms="5" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- eachRunDiffAndFeedbackAreSubstantiveEnoughToReopen -->
+        <test-method signature="eachRunScoreSupportMeetsRuntimeDeltaQualityWhenPublished()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest@6a8658ff]" started-at="2026-07-02T23:16:30 EEST" name="eachRunScoreSupportMeetsRuntimeDeltaQualityWhenPublished" finished-at="2026-07-02T23:16:30 EEST" duration-ms="6" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- eachRunScoreSupportMeetsRuntimeDeltaQualityWhenPublished -->
+        <test-method signature="eachRunStatePublishesTargetTestsAndBusinessStatus()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest@6a8658ff]" started-at="2026-07-02T23:16:30 EEST" name="eachRunStatePublishesTargetTestsAndBusinessStatus" finished-at="2026-07-02T23:16:30 EEST" duration-ms="10" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- eachRunStatePublishesTargetTestsAndBusinessStatus -->
+        <test-method signature="eachRunXmlMatchesRuntimeTargetAndHasNoFailures()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest@6a8658ff]" started-at="2026-07-02T23:16:30 EEST" name="eachRunXmlMatchesRuntimeTargetAndHasNoFailures" finished-at="2026-07-02T23:16:30 EEST" duration-ms="4" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- eachRunXmlMatchesRuntimeTargetAndHasNoFailures -->
+        <test-method signature="runDiffHistoryIsColdDistinct()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest@6a8658ff]" started-at="2026-07-02T23:16:30 EEST" name="runDiffHistoryIsColdDistinct" finished-at="2026-07-02T23:16:30 EEST" duration-ms="4" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runDiffHistoryIsColdDistinct -->
+        <test-method signature="runDiffTimelineCompilesIntoRootDiff()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest@6a8658ff]" started-at="2026-07-02T23:16:30 EEST" name="runDiffTimelineCompilesIntoRootDiff" finished-at="2026-07-02T23:16:30 EEST" duration-ms="7" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runDiffTimelineCompilesIntoRootDiff -->
+        <test-method signature="runIndependenceIsAuditable()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest@6a8658ff]" started-at="2026-07-02T23:16:30 EEST" name="runIndependenceIsAuditable" finished-at="2026-07-02T23:16:30 EEST" duration-ms="5" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runIndependenceIsAuditable -->
+        <test-method signature="runStatesExposeTestsAndBusinessVerdict()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest@6a8658ff]" started-at="2026-07-02T23:16:30 EEST" name="runStatesExposeTestsAndBusinessVerdict" finished-at="2026-07-02T23:16:30 EEST" duration-ms="7" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runStatesExposeTestsAndBusinessVerdict -->
+        <test-method signature="runWindowAndRunArtifactsExist()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest@6a8658ff]" started-at="2026-07-02T23:16:30 EEST" name="runWindowAndRunArtifactsExist" finished-at="2026-07-02T23:16:30 EEST" duration-ms="6" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runWindowAndRunArtifactsExist -->
+        <test-method signature="runXmlMapsToRealJavaTestMethods()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest@6a8658ff]" started-at="2026-07-02T23:16:30 EEST" name="runXmlMapsToRealJavaTestMethods" finished-at="2026-07-02T23:16:30 EEST" duration-ms="13" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runXmlMapsToRealJavaTestMethods -->
+      </class> <!-- com.endava.ai.skills.mcp.tests.latest.McpLatestPackageRunQualityContractTest -->
+      <class name="com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest">
+        <test-method is-config="true" signature="requirePackageAuditTarget()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest@68c9d179]" started-at="2026-07-02T23:16:28 EEST" name="requirePackageAuditTarget" finished-at="2026-07-02T23:16:28 EEST" duration-ms="6" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- requirePackageAuditTarget -->
+        <test-method signature="artifactFreshnessIsCoherent()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest@68c9d179]" started-at="2026-07-02T23:16:28 EEST" name="artifactFreshnessIsCoherent" finished-at="2026-07-02T23:16:28 EEST" duration-ms="8" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- artifactFreshnessIsCoherent -->
+        <test-method signature="decisionTraceIsAuditable()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest@68c9d179]" started-at="2026-07-02T23:16:28 EEST" name="decisionTraceIsAuditable" finished-at="2026-07-02T23:16:28 EEST" duration-ms="11" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- decisionTraceIsAuditable -->
+        <test-method signature="fullMcpGateUsesCompleteSuite()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest@68c9d179]" started-at="2026-07-02T23:16:28 EEST" name="fullMcpGateUsesCompleteSuite" finished-at="2026-07-02T23:16:28 EEST" duration-ms="10" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- fullMcpGateUsesCompleteSuite -->
+        <test-method signature="packageAccountingMatchesRuntimeWindow()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest@68c9d179]" started-at="2026-07-02T23:16:28 EEST" name="packageAccountingMatchesRuntimeWindow" finished-at="2026-07-02T23:16:28 EEST" duration-ms="12" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- packageAccountingMatchesRuntimeWindow -->
+        <test-method signature="packageLevelArtifactsExistAndAreNotEmpty()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest@68c9d179]" started-at="2026-07-02T23:16:28 EEST" name="packageLevelArtifactsExistAndAreNotEmpty" finished-at="2026-07-02T23:16:28 EEST" duration-ms="10" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- packageLevelArtifactsExistAndAreNotEmpty -->
+        <test-method signature="publishedArtifactsHaveNoTemplateNoise()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest@68c9d179]" started-at="2026-07-02T23:16:28 EEST" name="publishedArtifactsHaveNoTemplateNoise" finished-at="2026-07-02T23:16:28 EEST" duration-ms="9" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- publishedArtifactsHaveNoTemplateNoise -->
+        <test-method signature="readmeMatchesPackageStateTruth()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest@68c9d179]" started-at="2026-07-02T23:16:28 EEST" name="readmeMatchesPackageStateTruth" finished-at="2026-07-02T23:16:28 EEST" duration-ms="8" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- readmeMatchesPackageStateTruth -->
+        <test-method signature="reportStateArtifactsTellSameTruth()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest@68c9d179]" started-at="2026-07-02T23:16:29 EEST" name="reportStateArtifactsTellSameTruth" finished-at="2026-07-02T23:16:29 EEST" duration-ms="8" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- reportStateArtifactsTellSameTruth -->
+        <test-method signature="runtimeReferencedPromptDocumentsExist()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest@68c9d179]" started-at="2026-07-02T23:16:29 EEST" name="runtimeReferencedPromptDocumentsExist" finished-at="2026-07-02T23:16:29 EEST" duration-ms="8" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runtimeReferencedPromptDocumentsExist -->
+        <test-method signature="runtimeValuesArePublishedFromAgentRuntime()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest@68c9d179]" started-at="2026-07-02T23:16:29 EEST" name="runtimeValuesArePublishedFromAgentRuntime" finished-at="2026-07-02T23:16:29 EEST" duration-ms="5" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runtimeValuesArePublishedFromAgentRuntime -->
+      </class> <!-- com.endava.ai.skills.mcp.tests.latest.McpRuntimeAndPackageContractTest -->
+      <class name="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest">
+        <test-method is-config="true" signature="requirePackageAuditTarget()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest@15888343]" started-at="2026-07-02T23:16:29 EEST" name="requirePackageAuditTarget" finished-at="2026-07-02T23:16:29 EEST" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- requirePackageAuditTarget -->
+        <test-method signature="businessFlowGraphAvoidsCompactPackageOverlayNodeList()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest@15888343]" started-at="2026-07-02T23:16:29 EEST" name="businessFlowGraphAvoidsCompactPackageOverlayNodeList" finished-at="2026-07-02T23:16:29 EEST" duration-ms="8" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- businessFlowGraphAvoidsCompactPackageOverlayNodeList -->
+        <test-method signature="businessFlowGraphDoesNotExposeRunIdsAsBusinessNodes()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest@15888343]" started-at="2026-07-02T23:16:29 EEST" name="businessFlowGraphDoesNotExposeRunIdsAsBusinessNodes" finished-at="2026-07-02T23:16:29 EEST" duration-ms="26" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- businessFlowGraphDoesNotExposeRunIdsAsBusinessNodes -->
+        <test-method signature="businessFlowGraphDoesNotRenderInlineSvgLegendBand()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest@15888343]" started-at="2026-07-02T23:16:29 EEST" name="businessFlowGraphDoesNotRenderInlineSvgLegendBand" finished-at="2026-07-02T23:16:29 EEST" duration-ms="12" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- businessFlowGraphDoesNotRenderInlineSvgLegendBand -->
+        <test-method signature="businessFlowGraphEdgesDoNotCrossNodeText()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest@15888343]" started-at="2026-07-02T23:16:29 EEST" name="businessFlowGraphEdgesDoNotCrossNodeText" finished-at="2026-07-02T23:16:29 EEST" duration-ms="18" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- businessFlowGraphEdgesDoNotCrossNodeText -->
+        <test-method signature="businessFlowGraphIsRenderedAsDiagram()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest@15888343]" started-at="2026-07-02T23:16:29 EEST" name="businessFlowGraphIsRenderedAsDiagram" finished-at="2026-07-02T23:16:29 EEST" duration-ms="14" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- businessFlowGraphIsRenderedAsDiagram -->
+        <test-method signature="businessFlowGraphLabelsAreCenteredInsideNodes()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest@15888343]" started-at="2026-07-02T23:16:29 EEST" name="businessFlowGraphLabelsAreCenteredInsideNodes" finished-at="2026-07-02T23:16:29 EEST" duration-ms="16" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- businessFlowGraphLabelsAreCenteredInsideNodes -->
+        <test-method signature="businessFlowGraphLegendContentIsRelevant()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest@15888343]" started-at="2026-07-02T23:16:29 EEST" name="businessFlowGraphLegendContentIsRelevant" finished-at="2026-07-02T23:16:29 EEST" duration-ms="11" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- businessFlowGraphLegendContentIsRelevant -->
+        <test-method signature="businessFlowGraphLegendIsCollapsible()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest@15888343]" started-at="2026-07-02T23:16:29 EEST" name="businessFlowGraphLegendIsCollapsible" finished-at="2026-07-02T23:16:29 EEST" duration-ms="9" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- businessFlowGraphLegendIsCollapsible -->
+        <test-method signature="businessFlowGraphLegendNamesEvidencePlacementAndRelationshipMeaning()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest@15888343]" started-at="2026-07-02T23:16:29 EEST" name="businessFlowGraphLegendNamesEvidencePlacementAndRelationshipMeaning" finished-at="2026-07-02T23:16:29 EEST" duration-ms="9" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- businessFlowGraphLegendNamesEvidencePlacementAndRelationshipMeaning -->
+        <test-method signature="businessFlowGraphStylesVisibleSvgShapes()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest@15888343]" started-at="2026-07-02T23:16:29 EEST" name="businessFlowGraphStylesVisibleSvgShapes" finished-at="2026-07-02T23:16:29 EEST" duration-ms="7" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- businessFlowGraphStylesVisibleSvgShapes -->
+        <test-method signature="businessFlowGraphUsesBalancedCanvasDensity()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest@15888343]" started-at="2026-07-02T23:16:29 EEST" name="businessFlowGraphUsesBalancedCanvasDensity" finished-at="2026-07-02T23:16:29 EEST" duration-ms="12" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- businessFlowGraphUsesBalancedCanvasDensity -->
+        <test-method signature="businessFlowGraphUsesCalmNodeTypography()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest@15888343]" started-at="2026-07-02T23:16:29 EEST" name="businessFlowGraphUsesCalmNodeTypography" finished-at="2026-07-02T23:16:29 EEST" duration-ms="16" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- businessFlowGraphUsesCalmNodeTypography -->
+        <test-method signature="businessFlowGraphUsesDeclaredEdgeVariants()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest@15888343]" started-at="2026-07-02T23:16:29 EEST" name="businessFlowGraphUsesDeclaredEdgeVariants" finished-at="2026-07-02T23:16:29 EEST" duration-ms="15" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- businessFlowGraphUsesDeclaredEdgeVariants -->
+        <test-method signature="businessFlowGraphUsesFrontierEdgeCue()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest@15888343]" started-at="2026-07-02T23:16:29 EEST" name="businessFlowGraphUsesFrontierEdgeCue" finished-at="2026-07-02T23:16:29 EEST" duration-ms="11" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- businessFlowGraphUsesFrontierEdgeCue -->
+        <test-method signature="businessFlowGraphUsesHtmlExampleScaleForMultiNodeApplicationMap()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest@15888343]" started-at="2026-07-02T23:16:29 EEST" name="businessFlowGraphUsesHtmlExampleScaleForMultiNodeApplicationMap" finished-at="2026-07-02T23:16:29 EEST" duration-ms="11" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- businessFlowGraphUsesHtmlExampleScaleForMultiNodeApplicationMap -->
+        <test-method signature="businessFlowGraphUsesVisibleOwnedAndFrontierSemantics()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest@15888343]" started-at="2026-07-02T23:16:29 EEST" name="businessFlowGraphUsesVisibleOwnedAndFrontierSemantics" finished-at="2026-07-02T23:16:29 EEST" duration-ms="7" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- businessFlowGraphUsesVisibleOwnedAndFrontierSemantics -->
+      </class> <!-- com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageBusinessGraphPresentationContractTest -->
+      <class name="com.endava.ai.skills.mcp.tests.latest.McpLatestPackageArchitectureContractTest">
+        <test-method is-config="true" signature="requirePackageAuditTarget()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageArchitectureContractTest@2dfaea86]" started-at="2026-07-02T23:16:29 EEST" name="requirePackageAuditTarget" finished-at="2026-07-02T23:16:29 EEST" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- requirePackageAuditTarget -->
+        <test-method signature="diffTouchedUiTestsRespectLivingArchitecture()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageArchitectureContractTest@2dfaea86]" started-at="2026-07-02T23:16:29 EEST" name="diffTouchedUiTestsRespectLivingArchitecture" finished-at="2026-07-02T23:16:29 EEST" duration-ms="9" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- diffTouchedUiTestsRespectLivingArchitecture -->
+        <test-method signature="generatedPackageDoesNotMutateProtectedFrameworkLayers()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpLatestPackageArchitectureContractTest@2dfaea86]" started-at="2026-07-02T23:16:29 EEST" name="generatedPackageDoesNotMutateProtectedFrameworkLayers" finished-at="2026-07-02T23:16:29 EEST" duration-ms="11" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- generatedPackageDoesNotMutateProtectedFrameworkLayers -->
+      </class> <!-- com.endava.ai.skills.mcp.tests.latest.McpLatestPackageArchitectureContractTest -->
+      <class name="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest">
+        <test-method is-config="true" signature="requirePackageAuditTarget()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest@3feb2dda]" started-at="2026-07-02T23:16:30 EEST" name="requirePackageAuditTarget" finished-at="2026-07-02T23:16:30 EEST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- requirePackageAuditTarget -->
+        <test-method signature="analysisSharedCssIsExactCopyOfProjectReference()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest@3feb2dda]" started-at="2026-07-02T23:16:30 EEST" name="analysisSharedCssIsExactCopyOfProjectReference" finished-at="2026-07-02T23:16:30 EEST" duration-ms="7" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- analysisSharedCssIsExactCopyOfProjectReference -->
+        <test-method signature="finalReportArtifactIndexSeparatesDecisiveIndexFromPerRunAuditDump()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest@3feb2dda]" started-at="2026-07-02T23:16:30 EEST" name="finalReportArtifactIndexSeparatesDecisiveIndexFromPerRunAuditDump" finished-at="2026-07-02T23:16:30 EEST" duration-ms="5" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportArtifactIndexSeparatesDecisiveIndexFromPerRunAuditDump -->
+        <test-method signature="finalReportArtifactIndexUsesGroupedEvidenceFamilies()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest@3feb2dda]" started-at="2026-07-02T23:16:30 EEST" name="finalReportArtifactIndexUsesGroupedEvidenceFamilies" finished-at="2026-07-02T23:16:30 EEST" duration-ms="8" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportArtifactIndexUsesGroupedEvidenceFamilies -->
+        <test-method signature="finalReportAvoidsPlainWhiteDefaultTheme()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest@3feb2dda]" started-at="2026-07-02T23:16:30 EEST" name="finalReportAvoidsPlainWhiteDefaultTheme" finished-at="2026-07-02T23:16:30 EEST" duration-ms="8" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportAvoidsPlainWhiteDefaultTheme -->
+        <test-method signature="finalReportDoesNotExposeRootRunTimestampIdentity()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest@3feb2dda]" started-at="2026-07-02T23:16:30 EEST" name="finalReportDoesNotExposeRootRunTimestampIdentity" finished-at="2026-07-02T23:16:30 EEST" duration-ms="7" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportDoesNotExposeRootRunTimestampIdentity -->
+        <test-method signature="finalReportDoesNotExposeRunSliceIndexBeforeExecutiveContext()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest@3feb2dda]" started-at="2026-07-02T23:16:30 EEST" name="finalReportDoesNotExposeRunSliceIndexBeforeExecutiveContext" finished-at="2026-07-02T23:16:30 EEST" duration-ms="5" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportDoesNotExposeRunSliceIndexBeforeExecutiveContext -->
+        <test-method signature="finalReportDoesNotUseInlineStyleOverrides()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest@3feb2dda]" started-at="2026-07-02T23:16:30 EEST" name="finalReportDoesNotUseInlineStyleOverrides" finished-at="2026-07-02T23:16:30 EEST" duration-ms="7" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportDoesNotUseInlineStyleOverrides -->
+        <test-method signature="finalReportFollowsPrimaryHtmlExampleTemplateProfile()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest@3feb2dda]" started-at="2026-07-02T23:16:30 EEST" name="finalReportFollowsPrimaryHtmlExampleTemplateProfile" finished-at="2026-07-02T23:16:30 EEST" duration-ms="54" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportFollowsPrimaryHtmlExampleTemplateProfile -->
+        <test-method signature="finalReportLinksAuditedFrameworkPropertiesSnapshot()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest@3feb2dda]" started-at="2026-07-02T23:16:30 EEST" name="finalReportLinksAuditedFrameworkPropertiesSnapshot" finished-at="2026-07-02T23:16:30 EEST" duration-ms="5" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportLinksAuditedFrameworkPropertiesSnapshot -->
+        <test-method signature="finalReportLinksFrozenMcpContractEvidence()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest@3feb2dda]" started-at="2026-07-02T23:16:30 EEST" name="finalReportLinksFrozenMcpContractEvidence" finished-at="2026-07-02T23:16:30 EEST" duration-ms="14" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportLinksFrozenMcpContractEvidence -->
+        <test-method signature="finalReportMainSectionsAreCollapsibleWithOnlyGraphOpen()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest@3feb2dda]" started-at="2026-07-02T23:16:30 EEST" name="finalReportMainSectionsAreCollapsibleWithOnlyGraphOpen" finished-at="2026-07-02T23:16:30 EEST" duration-ms="6" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportMainSectionsAreCollapsibleWithOnlyGraphOpen -->
+        <test-method signature="finalReportOpeningHasVisiblePillRow()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest@3feb2dda]" started-at="2026-07-02T23:16:30 EEST" name="finalReportOpeningHasVisiblePillRow" finished-at="2026-07-02T23:16:30 EEST" duration-ms="7" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportOpeningHasVisiblePillRow -->
+        <test-method signature="finalReportProofMappingLinksAllMandatoryArtifactFamilies()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest@3feb2dda]" started-at="2026-07-02T23:16:30 EEST" name="finalReportProofMappingLinksAllMandatoryArtifactFamilies" finished-at="2026-07-02T23:16:30 EEST" duration-ms="6" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportProofMappingLinksAllMandatoryArtifactFamilies -->
+        <test-method signature="finalReportRunAuditUsesStructuredEvidenceRows()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest@3feb2dda]" started-at="2026-07-02T23:16:30 EEST" name="finalReportRunAuditUsesStructuredEvidenceRows" finished-at="2026-07-02T23:16:30 EEST" duration-ms="6" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportRunAuditUsesStructuredEvidenceRows -->
+        <test-method signature="finalReportUsesHtmlExampleVisualShell()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest@3feb2dda]" started-at="2026-07-02T23:16:30 EEST" name="finalReportUsesHtmlExampleVisualShell" finished-at="2026-07-02T23:16:30 EEST" duration-ms="17" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportUsesHtmlExampleVisualShell -->
+        <test-method signature="finalReportUsesSharedCssAndDocumentChrome()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest@3feb2dda]" started-at="2026-07-02T23:16:30 EEST" name="finalReportUsesSharedCssAndDocumentChrome" finished-at="2026-07-02T23:16:30 EEST" duration-ms="4" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportUsesSharedCssAndDocumentChrome -->
+        <test-method signature="sharedCssLooksLikeCanonicalReferenceStylesheet()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest@3feb2dda]" started-at="2026-07-02T23:16:30 EEST" name="sharedCssLooksLikeCanonicalReferenceStylesheet" finished-at="2026-07-02T23:16:30 EEST" duration-ms="3" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- sharedCssLooksLikeCanonicalReferenceStylesheet -->
+      </class> <!-- com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageReportPresentationContractTest -->
+      <class name="com.endava.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest">
+        <test-method is-config="true" signature="requirePackageAuditTarget()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest@d554c5f]" started-at="2026-07-02T23:16:29 EEST" name="requirePackageAuditTarget" finished-at="2026-07-02T23:16:29 EEST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- requirePackageAuditTarget -->
+        <test-method signature="claimToEvidenceChainIsComplete()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest@d554c5f]" started-at="2026-07-02T23:16:29 EEST" name="claimToEvidenceChainIsComplete" finished-at="2026-07-02T23:16:29 EEST" duration-ms="7" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- claimToEvidenceChainIsComplete -->
+        <test-method signature="claimedCommercialAbsenceHasUiAssertion()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest@d554c5f]" started-at="2026-07-02T23:16:29 EEST" name="claimedCommercialAbsenceHasUiAssertion" finished-at="2026-07-02T23:16:29 EEST" duration-ms="10" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- claimedCommercialAbsenceHasUiAssertion -->
+        <test-method signature="finalReportAvoidsUnverifiableLanguage()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest@d554c5f]" started-at="2026-07-02T23:16:29 EEST" name="finalReportAvoidsUnverifiableLanguage" finished-at="2026-07-02T23:16:29 EEST" duration-ms="7" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportAvoidsUnverifiableLanguage -->
+        <test-method signature="learningTraceQualityIsAuditable()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest@d554c5f]" started-at="2026-07-02T23:16:29 EEST" name="learningTraceQualityIsAuditable" finished-at="2026-07-02T23:16:29 EEST" duration-ms="9" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- learningTraceQualityIsAuditable -->
+        <test-method signature="pretrainingIntakeQualityIsAuditable()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest@d554c5f]" started-at="2026-07-02T23:16:29 EEST" name="pretrainingIntakeQualityIsAuditable" finished-at="2026-07-02T23:16:29 EEST" duration-ms="6" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- pretrainingIntakeQualityIsAuditable -->
+        <test-method signature="rootDiffReferencesExistingSourceFiles()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest@d554c5f]" started-at="2026-07-02T23:16:29 EEST" name="rootDiffReferencesExistingSourceFiles" finished-at="2026-07-02T23:16:29 EEST" duration-ms="5" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- rootDiffReferencesExistingSourceFiles -->
+        <test-method signature="sourceEvolutionLedgerIsAuditable()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest@d554c5f]" started-at="2026-07-02T23:16:29 EEST" name="sourceEvolutionLedgerIsAuditable" finished-at="2026-07-02T23:16:29 EEST" duration-ms="11" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- sourceEvolutionLedgerIsAuditable -->
+        <test-method signature="uiWrapperHandoffQualityIsAuditable()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest@d554c5f]" started-at="2026-07-02T23:16:29 EEST" name="uiWrapperHandoffQualityIsAuditable" finished-at="2026-07-02T23:16:29 EEST" duration-ms="11" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- uiWrapperHandoffQualityIsAuditable -->
+      </class> <!-- com.endava.ai.skills.mcp.tests.latest.McpBusinessEvidenceContractTest -->
+      <class name="com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest">
+        <test-method is-config="true" signature="requirePackageAuditTarget()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest@1c742ed4]" started-at="2026-07-02T23:16:30 EEST" name="requirePackageAuditTarget" finished-at="2026-07-02T23:16:30 EEST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- requirePackageAuditTarget -->
+        <test-method signature="executiveContextCarriesVerdictAndRuntimeAsCollapsedSubsections()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest@1c742ed4]" started-at="2026-07-02T23:16:30 EEST" name="executiveContextCarriesVerdictAndRuntimeAsCollapsedSubsections" finished-at="2026-07-02T23:16:30 EEST" duration-ms="4" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- executiveContextCarriesVerdictAndRuntimeAsCollapsedSubsections -->
+        <test-method signature="executiveContextIsCollapsedByDefault()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest@1c742ed4]" started-at="2026-07-02T23:16:30 EEST" name="executiveContextIsCollapsedByDefault" finished-at="2026-07-02T23:16:30 EEST" duration-ms="8" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- executiveContextIsCollapsedByDefault -->
+        <test-method signature="finalReportOpeningMatchesCanonicalHtmlExampleShape()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest@1c742ed4]" started-at="2026-07-02T23:16:30 EEST" name="finalReportOpeningMatchesCanonicalHtmlExampleShape" finished-at="2026-07-02T23:16:30 EEST" duration-ms="9" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportOpeningMatchesCanonicalHtmlExampleShape -->
+        <test-method signature="finalReportOpeningScoreCardsUseReadableStructure()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest@1c742ed4]" started-at="2026-07-02T23:16:30 EEST" name="finalReportOpeningScoreCardsUseReadableStructure" finished-at="2026-07-02T23:16:30 EEST" duration-ms="8" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportOpeningScoreCardsUseReadableStructure -->
+        <test-method signature="finalReportOpeningScoreWallHasNoLooseScoreElements()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest@1c742ed4]" started-at="2026-07-02T23:16:31 EEST" name="finalReportOpeningScoreWallHasNoLooseScoreElements" finished-at="2026-07-02T23:16:31 EEST" duration-ms="4" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportOpeningScoreWallHasNoLooseScoreElements -->
+        <test-method signature="finalReportScoreCardsFollowPrimaryHtmlExampleReferenceOrder()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest@1c742ed4]" started-at="2026-07-02T23:16:31 EEST" name="finalReportScoreCardsFollowPrimaryHtmlExampleReferenceOrder" finished-at="2026-07-02T23:16:31 EEST" duration-ms="28" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportScoreCardsFollowPrimaryHtmlExampleReferenceOrder -->
+        <test-method signature="finalReportScoreOverviewUsesCanonicalBusinessAxes()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest@1c742ed4]" started-at="2026-07-02T23:16:31 EEST" name="finalReportScoreOverviewUsesCanonicalBusinessAxes" finished-at="2026-07-02T23:16:31 EEST" duration-ms="13" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- finalReportScoreOverviewUsesCanonicalBusinessAxes -->
+        <test-method signature="modelOnlyPackagesStayCappedBelowUiOwnedPackages()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest@1c742ed4]" started-at="2026-07-02T23:16:31 EEST" name="modelOnlyPackagesStayCappedBelowUiOwnedPackages" finished-at="2026-07-02T23:16:31 EEST" duration-ms="7" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- modelOnlyPackagesStayCappedBelowUiOwnedPackages -->
+        <test-method signature="openingDoesNotExposeVerdictOrRuntimeBeforeScoreCards()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest@1c742ed4]" started-at="2026-07-02T23:16:31 EEST" name="openingDoesNotExposeVerdictOrRuntimeBeforeScoreCards" finished-at="2026-07-02T23:16:31 EEST" duration-ms="7" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openingDoesNotExposeVerdictOrRuntimeBeforeScoreCards -->
+        <test-method signature="overallTruthIsSynchronizedAcrossCanonicalArtifacts()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest@1c742ed4]" started-at="2026-07-02T23:16:31 EEST" name="overallTruthIsSynchronizedAcrossCanonicalArtifacts" finished-at="2026-07-02T23:16:31 EEST" duration-ms="11" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- overallTruthIsSynchronizedAcrossCanonicalArtifacts -->
+        <test-method signature="publishedOverallDoesNotExceedPackageStateCap()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest@1c742ed4]" started-at="2026-07-02T23:16:31 EEST" name="publishedOverallDoesNotExceedPackageStateCap" finished-at="2026-07-02T23:16:31 EEST" duration-ms="12" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- publishedOverallDoesNotExceedPackageStateCap -->
+        <test-method signature="runtimeCountersAreNotDisplayedBetweenScoreCardsAndExecutiveContext()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest@1c742ed4]" started-at="2026-07-02T23:16:31 EEST" name="runtimeCountersAreNotDisplayedBetweenScoreCardsAndExecutiveContext" finished-at="2026-07-02T23:16:31 EEST" duration-ms="6" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runtimeCountersAreNotDisplayedBetweenScoreCardsAndExecutiveContext -->
+        <test-method signature="scoreCapIsConsistentWithWeakestAxis()[pri:0, instance:com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest@1c742ed4]" started-at="2026-07-02T23:16:31 EEST" name="scoreCapIsConsistentWithWeakestAxis" finished-at="2026-07-02T23:16:31 EEST" duration-ms="6" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- scoreCapIsConsistentWithWeakestAxis -->
+      </class> <!-- com.endava.ai.skills.mcp.tests.latest.report.McpLatestPackageScoreAndOpeningContractTest -->
+    </test> <!-- mcp-package-closeout -->
+  </suite> <!-- MCP Package Close-Out -->
+</testng-results>

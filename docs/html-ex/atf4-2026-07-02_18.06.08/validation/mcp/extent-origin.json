@@ -1,0 +1,12 @@
+﻿{
+    "testsRun":  93,
+    "failures":  0,
+    "size":  1617887,
+    "passed":  93,
+    "command":  "mvn -q \"-Dsurefire.suiteXmlFiles=src/test/resources/skills/mcp/testng-mcp-package-closeout.xml\" \"-Dmcp.package.root=C:\\work\\ex\\java\\demo\\atf4\\test-framework\\docs\\out\\2026-07-02_18.06.08\" \"-Dmcp.project.root=C:\\work\\ex\\java\\demo\\atf4\\test-framework\" \"-Dreporting.engine=extent\" \"-Dreports.dir=C:\\work\\ex\\java\\demo\\atf4\\test-framework\\docs\\out\\2026-07-02_18.06.08\\validation\\mcp\" \"-Dreports.file.name=ExtentReport.html\" \"-Dreports.timestamp.enabled=false\" \"-DforkCount=0\" test",
+    "errors":  0,
+    "timestamp":  "2026-07-02T18:06:08+03:00",
+    "sha256":  "ed5c0bcd0c6403c881bfdf0f9c620f2aea0519c8c8414508ee4ef84775fc9f6f",
+    "exitCode":  0,
+    "skipped":  0
+}

@@ -1,0 +1,1 @@
+﻿Initial local link check: generated report links point to package-local artifacts. MCP links are finalized after close-out.

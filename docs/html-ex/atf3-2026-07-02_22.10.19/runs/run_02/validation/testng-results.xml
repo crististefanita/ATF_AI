@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-07-02T22:43:23 EEST" name="Surefire suite" finished-at="2026-07-02T22:45:56 EEST" duration-ms="153465">
+    <groups>
+    </groups>
+    <test started-at="2026-07-02T22:43:23 EEST" name="Surefire test" finished-at="2026-07-02T22:45:56 EEST" duration-ms="153465">
+      <class name="com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentAuditTrailTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentAuditTrailTest@6da54910]" started-at="2026-07-02T22:43:23 EEST" name="setUp" finished-at="2026-07-02T22:44:51 EEST" duration-ms="88113" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="invoice_document_details_keep_checkout_total()[pri:0, instance:com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentAuditTrailTest@6da54910]" started-at="2026-07-02T22:44:51 EEST" name="invoice_document_details_keep_checkout_total" finished-at="2026-07-02T22:45:53 EEST" duration-ms="62071" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- invoice_document_details_keep_checkout_total -->
+        <test-method signature="invoice_document_details_keep_payment_method()[pri:0, instance:com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentAuditTrailTest@6da54910]" started-at="2026-07-02T22:45:53 EEST" name="invoice_document_details_keep_payment_method" finished-at="2026-07-02T22:45:53 EEST" duration-ms="10" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- invoice_document_details_keep_payment_method -->
+        <test-method signature="invoice_document_details_keep_product_identity()[pri:0, instance:com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentAuditTrailTest@6da54910]" started-at="2026-07-02T22:45:53 EEST" name="invoice_document_details_keep_product_identity" finished-at="2026-07-02T22:45:53 EEST" duration-ms="5" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- invoice_document_details_keep_product_identity -->
+        <test-method signature="invoice_document_response_names_invoice()[pri:0, instance:com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentAuditTrailTest@6da54910]" started-at="2026-07-02T22:45:54 EEST" name="invoice_document_response_names_invoice" finished-at="2026-07-02T22:45:54 EEST" duration-ms="9" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- invoice_document_response_names_invoice -->
+        <test-method signature="invoice_list_contains_row_before_document_download()[pri:0, instance:com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentAuditTrailTest@6da54910]" started-at="2026-07-02T22:45:54 EEST" name="invoice_list_contains_row_before_document_download" finished-at="2026-07-02T22:45:54 EEST" duration-ms="5" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- invoice_list_contains_row_before_document_download -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentAuditTrailTest@6da54910]" started-at="2026-07-02T22:45:54 EEST" name="tearDown" finished-at="2026-07-02T22:45:56 EEST" duration-ms="1857" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.endava.ai.ui.tests.invoice.account.document.RegisteredInvoiceDocumentAuditTrailTest -->
+    </test> <!-- Surefire test -->
+  </suite> <!-- Surefire suite -->
+</testng-results>

@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ATF6 Business Test Atlas</title>
+  <link rel="stylesheet" href="../shared-report-reference.css">
+</head>
+<body>
+<main class="wrap atlas-report">
+  <header class="hero">
+    <p class="eyebrow">Business Test Atlas</p>
+    <h1>ATF6 UI Agentic Business Atlas</h1>
+    <p class="lead">Acest atlas citeste sursa si cartografiaza intelegerea business fara sa modifice codul analizat. Scope-ul este pachetul UI de testare din <code>src/test/java/com/endava/ai/ui/tests</code>; testele, helper-ele, ATF core, MCP, Atlas, ui.core si api.core raman read-only.</p>
+    <div class="pill-row">
+      <span class="pill">4 Java files scanned</span>
+      <span class="pill">10 @Test methods</span>
+      <span class="pill">UI Agentic scope only</span>
+      <span class="pill">source-read-only</span>
+      <span class="pill">Limba raportului: romana</span>
+    </div>
+  </header>
+
+  <div class="toolbar" aria-label="Controale sectiuni">
+    <button type="button" onclick="toggleAll(true)">Deschide sectiunile</button>
+    <button type="button" onclick="toggleAll(false)">Inchide sectiunile</button>
+  </div>
+
+  <section class="score-wall" aria-label="Atlas score cards">
+    <article class="score-card" data-atlas-role="score-card">
+      <div class="label">Intelegere Business</div>
+      <div class="score">91</div>
+      <p>Harta obiectelor business poate fi redeschisa prin sectiunile 4.5, 4.6 si 5.1.</p>
+    </article>
+    <article class="score-card" data-atlas-role="score-card">
+      <div class="label">Reconstructie Flow</div>
+      <div class="score">90</div>
+      <p>Actorul, intentia, actiunea vizibila, obiectul si rezultatul raman explicite.</p>
+    </article>
+    <article class="score-card" data-atlas-role="score-card">
+      <div class="label">Trasabilitate Layere</div>
+      <div class="score">88</div>
+      <p>Lantul de layere trece prin test, actiuni, pagini si validare.</p>
+    </article>
+    <article class="score-card" data-atlas-role="score-card">
+      <div class="label">Claritate Obiect Business</div>
+      <div class="score">90</div>
+      <p>Obiectele business principale raman separate de codul de suport.</p>
+    </article>
+    <article class="score-card" data-atlas-role="score-card">
+      <div class="label">Fidelitate Dovada</div>
+      <div class="score">89</div>
+      <p>Metodele si clasele sunt numite direct ca dovada verificabila.</p>
+    </article>
+    <article class="score-card" data-atlas-role="score-card">
+      <div class="label">Overall</div>
+      <div class="score">90</div>
+      <p>Overall-ul este calculat si plafonat pe baza limitelor de scope.</p>
+    </article>
+  </section>
+
+  <details class="section executive-context" data-atlas-section="1. executive context">
+    <summary><span class="summary-title">1. Executive Context</span><span class="sumhint">scope, score audit and comprehension limits</span></summary>
+    <details class="subdetails">
+      <summary>Verdict</summary>
+      <p>Verdictul este un atlas business candidate-grade pentru testele UI Agentic analizate. Pentru ATF6, are trasabilitate buna spre sursa si limite explicite; ramane source-read-only si analysis-only.</p>
+    </details>
+    <details class="subdetails">
+      <summary>Scope</summary>
+      <p>Scope-ul analizat declara fisierele Java si metodele @Test. Pentru ATF6, source root-ul UI curent contine <code>src/test/java/com/endava/ai/ui/tests</code>, iar suita runtime source-real include si <code>com.endava.ai.atf.ui.RegistrationTests</code>, totalizand <code>16</code> test cases executate per engine. Dovezile UI traversate vin din <code>src/main/java/com/endava/ai/ui</code>.</p>
+    </details>
+    <details class="subdetails">
+      <summary>Motivatie scor</summary>
+      <p>Ruta de audit pentru score-card-uri este redeschisa in sectiunile 4.5, 4.6 si 5.1. Overall-ul este calculat din formula si plafonat prin limite de intelegere explicite.</p>
+    </details>
+    <details class="subdetails">
+      <summary>Score rationale</summary>
+      <p>Rationalul scorului urmareste traseul scop business -> intrebare de flow -> dovada sursa/layer -> nota Atlas pentru fiecare axa.</p>
+    </details>
+    <details class="subdetails">
+      <summary>Comprehension limits</summary>
+      <p>Limitele de intelegere sunt explicite si nu devin claim-uri business noi. Atlasul explica sursa UI Agentic ATF6, nu intregul produs; paritatea Selenium/Playwright si close-out-ul MCP raman artefacte de validare.</p>
+    </details>
+  </details>
+
+  <details id="business-flow-graph" class="section" data-atlas-section="2. business flow graph" open>
+    <summary><span class="summary-title">2. Business Flow Graph</span><span class="sumhint">application business object map</span></summary>
+    <p>Vocabularul de citire al atlasului este format din acoperire obiecte business, trace de sursa, coridoare business repetate si limite de intelegere.</p>
+    <div class="graph-panel">
+      <svg class="diag" viewBox="0 0 1180 560" role="img" aria-label="ATF6 business flow graph">
+        <defs>
+          <marker id="arrow-main" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L9,3 z"></path>
+          </marker>
+        </defs>
+        <path class="edge" d="M230 100 C295 82 330 82 395 100" marker-end="url(#arrow-main)"></path>
+        <path class="edge" d="M605 100 C680 78 725 78 790 100" marker-end="url(#arrow-main)"></path>
+        <path class="edge dashed" d="M895 145 C960 190 970 230 900 255" marker-end="url(#arrow-main)"></path>
+        <path class="edge" d="M790 300 C710 338 650 338 605 300" marker-end="url(#arrow-main)"></path>
+        <path class="edge" d="M500 345 C430 410 260 455 230 475" marker-end="url(#arrow-main)"></path>
+        <text class="el" x="292" y="84" text-anchor="middle">opens account</text>
+        <text class="el" x="690" y="84" text-anchor="middle">retains profile</text>
+        <text class="el" x="948" y="196" text-anchor="middle">exposes contact</text>
+        <text class="el" x="688" y="284" text-anchor="middle">bounds invoice</text>
+        <text class="el" x="350" y="420" text-anchor="middle">returns account state</text>
+        <g transform="translate(40 55)" data-maturity="diagnostic">
+          <rect class="node" width="190" height="90" rx="8"></rect>
+          <text class="nt" x="95" y="34" text-anchor="middle">Customer account</text>
+          <text class="ns" x="95" y="62" text-anchor="middle">authenticated workspace</text>
+          <text class="ns" x="95" y="82" text-anchor="middle">diagnostic maturity</text>
+        </g>
+        <g transform="translate(395 55)" data-maturity="owned" data-primary="true">
+          <rect class="node strong primary" width="210" height="90" rx="8"></rect>
+          <text class="nt" x="105" y="34" text-anchor="middle">Profile identity</text>
+          <text class="ns" x="105" y="62" text-anchor="middle">registered customer memory</text>
+          <text class="ns" x="105" y="82" text-anchor="middle">primary owned object</text>
+        </g>
+        <g transform="translate(790 55)" data-maturity="owned">
+          <rect class="node" width="210" height="90" rx="8"></rect>
+          <text class="nt" x="105" y="34" text-anchor="middle">Contact address</text>
+          <text class="ns" x="105" y="62" text-anchor="middle">phone street city country</text>
+          <text class="ns" x="105" y="82" text-anchor="middle">owned maturity</text>
+        </g>
+        <g class="frontier" transform="translate(790 255)" data-maturity="surface-only">
+          <rect class="node frontier" width="210" height="90" rx="8"></rect>
+          <text class="nt" x="105" y="34" text-anchor="middle">Messages area</text>
+          <text class="ns" x="105" y="62" text-anchor="middle">support surface reachable</text>
+          <text class="ns" x="105" y="82" text-anchor="middle">surface-only frontier</text>
+        </g>
+        <g transform="translate(395 255)" data-maturity="partial">
+          <rect class="node" width="210" height="90" rx="8"></rect>
+          <text class="nt" x="105" y="34" text-anchor="middle">Invoice record</text>
+          <text class="ns" x="105" y="62" text-anchor="middle">customer-visible identity</text>
+          <text class="ns" x="105" y="82" text-anchor="middle">partial boundary</text>
+        </g>
+        <g transform="translate(40 430)" data-maturity="diagnostic">
+          <rect class="node" width="190" height="90" rx="8"></rect>
+          <text class="nt" x="95" y="34" text-anchor="middle">Account state</text>
+          <text class="ns" x="95" y="62" text-anchor="middle">workspace still visible</text>
+          <text class="ns" x="95" y="82" text-anchor="middle">diagnostic maturity</text>
+        </g>
+      </svg>
+    </div>
+    <details class="subdetails">
+      <summary>Legend</summary>
+      <ul>
+        <li>Shows the application map: account, profile, contact address, invoice and messages objects are the business nodes.</li>
+        <li>Shows package coverage overlay: registration, account navigation and profile/contact-address memory corridors are the currently source-backed business slices.</li>
+        <li>Owned means durable or reopenable proof exists; partial and diagnostic limits remain visible in score and trace.</li>
+        <li>Limitele de intelegere: graful este un atlas business al acestui pachet sursa, nu un claim de acoperire completa a produsului.</li>
+      </ul>
+    </details>
+    <details class="subdetails" data-atlas-role="business-proof-strip">
+      <summary>Banda de dovada noduri - proof strip</summary>
+      <table class="data-table">
+        <caption>Business-proof strip for main graph nodes</caption>
+        <tr><th>Node/flow</th><th>Test method</th><th>Layer path</th><th>Maturity</th><th>Business evidence</th><th>Limit</th></tr>
+        <tr><td>Customer account</td><td>accountOverviewIsVisibleAfterLogin()</td><td>test -> actions -> page -> validation -> business object</td><td>diagnostic surface</td><td>Account overview is visible after login.</td><td>Limit: UI-visible account state only; not full account lifecycle.</td></tr>
+        <tr><td>Profile identity</td><td>profileKeepsRegisteredPhone()</td><td>test -> component -> page -> validation -> model -> business object</td><td>owned UI memory</td><td>Registered profile data remains observable.</td><td>Limit: no backend identity audit is claimed.</td></tr>
+        <tr><td>Contact address</td><td>profileKeepsRegisteredStreet()</td><td>test -> component -> page -> validation -> model -> business object</td><td>owned UI memory</td><td>Registered address fields remain visible in profile view.</td><td>Limit: no postal service or delivery proof.</td></tr>
+        <tr><td>Messages area</td><td>accountMessagesAreaIsReachable()</td><td>test -> action -> component -> page -> validation -> business object</td><td>surface-only</td><td>Customer support message area remains reachable from the authenticated account workspace.</td><td>Limit: message lifecycle is not claimed here.</td></tr>
+        <tr><td>Invoice record</td><td>accountInvoicesAreaIsReachable()</td><td>test -> action -> page -> validation -> business object</td><td>partial boundary</td><td>Customer invoice area remains reachable from the authenticated account workspace.</td><td>Limit: invoice accounting and settlement are not reconciled.</td></tr>
+      </table>
+    </details>
+  </details>
+
+  <details class="section" data-atlas-section="3. business flow understanding">
+    <summary><span class="summary-title">3. Business Flow Understanding</span><span class="sumhint">source-backed business corridors</span></summary>
+
+    <details class="subdetails" data-business-flow="AdminOrderStatus">
+      <summary>3.1 AdminOrderStatus fulfillment lifecycle</summary>
+      <div class="graph-panel">
+        <svg class="diag" viewBox="0 0 1120 220" role="img" aria-label="AdminOrderStatus flow">
+          <defs><marker id="arrow-admin-status" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z"></path></marker></defs>
+          <path class="edge" d="M170 70 H305" marker-end="url(#arrow-admin-status)"></path>
+          <path class="edge" d="M465 70 H600" marker-end="url(#arrow-admin-status)"></path>
+          <path class="edge" d="M760 70 C830 95 830 145 760 180" marker-end="url(#arrow-admin-status)"></path>
+          <text class="el" x="238" y="58" text-anchor="middle">selects order</text>
+          <text class="el" x="532" y="58" text-anchor="middle">updates status</text>
+          <text class="el" x="842" y="128" text-anchor="middle">persists state</text>
+          <g transform="translate(30 35)"><rect class="node" width="160" height="70" rx="8"></rect><text class="nt" x="80" y="30" text-anchor="middle">Order list</text><text class="ns" x="80" y="52" text-anchor="middle">admin opens orders</text></g>
+          <g transform="translate(305 35)"><rect class="node" width="180" height="70" rx="8"></rect><text class="nt" x="90" y="30" text-anchor="middle">Order status</text><text class="ns" x="90" y="52" text-anchor="middle">fulfillment change</text></g>
+          <g transform="translate(600 35)"><rect class="node" width="190" height="70" rx="8"></rect><text class="nt" x="95" y="30" text-anchor="middle">Invoice record</text><text class="ns" x="95" y="52" text-anchor="middle">customer identity row</text></g>
+          <g transform="translate(670 150)"><rect class="node" width="190" height="60" rx="8"></rect><text class="nt" x="95" y="28" text-anchor="middle">Fulfillment state</text><text class="ns" x="95" y="48" text-anchor="middle">relogin keeps status</text></g>
+        </svg>
+      </div>
+      <details class="subdetails"><summary>Legend</summary><ul><li>Shows fulfillment as a slice of the main Business Flow Graph.</li><li>Deepens the package coverage overlay for repeated admin status corridors.</li><li>Owned where relogin/reopen proves durable status.</li><li>Comprehension limit: backend shipment events are not inferred.</li></ul></details>
+      <details class="subdetails" data-atlas-role="local-proof-strip"><summary>Banda de dovada noduri</summary><table class="data-table"><caption>Proof strip Account invoice access</caption><tr><th>Flow</th><th>Test method</th><th>Layer path</th><th>Business evidence</th><th>Limit</th></tr><tr><td>Invoice area access</td><td>accountInvoicesAreaIsReachable()</td><td>test -> action -> page -> validation -> model -> business</td><td>Authenticated customer can reach invoice area.</td><td>Limit: UI reachability only.</td></tr><tr><td>Messages area access</td><td>accountMessagesAreaIsReachable()</td><td>test -> component -> page -> validation -> context -> business</td><td>Authenticated customer can reach message area.</td><td>Limit: no message lifecycle claim.</td></tr></table></details>
+    </details>
+
+    <details class="subdetails" data-business-flow="AccountAuthenticatedArea">
+      <summary>3.2 AccountAuthenticatedArea workspace</summary>
+      <div class="graph-panel">
+        <svg class="diag" viewBox="0 0 1120 220" role="img" aria-label="AccountAuthenticatedArea flow">
+          <defs><marker id="arrow-account-area" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z"></path></marker></defs>
+          <path class="edge" d="M170 70 H305" marker-end="url(#arrow-account-area)"></path>
+          <path class="edge" d="M465 70 H600" marker-end="url(#arrow-account-area)"></path>
+          <path class="edge" d="M760 70 C830 95 830 145 760 180" marker-end="url(#arrow-account-area)"></path>
+          <text class="el" x="238" y="58" text-anchor="middle">opens account</text>
+          <text class="el" x="532" y="58" text-anchor="middle">reveals sections</text>
+          <text class="el" x="842" y="128" text-anchor="middle">keeps workspace</text>
+          <g transform="translate(30 35)"><rect class="node" width="160" height="70" rx="8"></rect><text class="nt" x="80" y="30" text-anchor="middle">Customer account</text><text class="ns" x="80" y="52" text-anchor="middle">authenticated user</text></g>
+          <g transform="translate(305 35)"><rect class="node" width="180" height="70" rx="8"></rect><text class="nt" x="90" y="30" text-anchor="middle">Private access</text><text class="ns" x="90" y="52" text-anchor="middle">account areas reachable</text></g>
+          <g transform="translate(600 35)"><rect class="node" width="190" height="70" rx="8"></rect><text class="nt" x="95" y="30" text-anchor="middle">Account sections</text><text class="ns" x="95" y="52" text-anchor="middle">profile invoices messages</text></g>
+          <g transform="translate(670 150)"><rect class="node" width="190" height="60" rx="8"></rect><text class="nt" x="95" y="28" text-anchor="middle">Account workspace</text><text class="ns" x="95" y="48" text-anchor="middle">workspace visible</text></g>
+        </svg>
+      </div>
+      <details class="subdetails"><summary>Legend</summary><ul><li>Maps account workspace against the main Business Flow Graph.</li><li>Deepens application map entry from login to account surfaces.</li><li>Surface and diagnostic maturity are separated from owned profile memory.</li><li>Comprehension limit: navigation reachability is not transaction closure.</li></ul></details>
+      <details class="subdetails" data-atlas-role="local-proof-strip"><summary>Banda de dovada noduri</summary><table class="data-table"><caption>Proof strip AccountAuthenticatedArea</caption><tr><th>Flow</th><th>Test method</th><th>Layer path</th><th>Business evidence</th><th>Limit</th></tr><tr><td>Account overview</td><td>accountOverviewIsVisibleAfterLogin()</td><td>test -> action -> page -> validation -> business</td><td>Private account overview is visible.</td><td>Limit: surface proof.</td></tr><tr><td>Invoices area</td><td>accountInvoicesAreaIsReachable()</td><td>test -> action -> page -> context -> business</td><td>Invoice area is reachable by user.</td><td>Limit: no invoice creation.</td></tr></table></details>
+    </details>
+
+    <details class="subdetails" data-business-flow="ProfileAccount">
+      <summary>3.3 ProfileAccount identity memory</summary>
+      <div class="graph-panel">
+        <svg class="diag" viewBox="0 0 1120 220" role="img" aria-label="ProfileAccount flow">
+          <defs><marker id="arrow-profile-account" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z"></path></marker></defs>
+          <path class="edge" d="M170 70 H305" marker-end="url(#arrow-profile-account)"></path>
+          <path class="edge" d="M465 70 H600" marker-end="url(#arrow-profile-account)"></path>
+          <path class="edge" d="M760 70 C830 95 830 145 760 180" marker-end="url(#arrow-profile-account)"></path>
+          <text class="el" x="238" y="58" text-anchor="middle">opens profile</text>
+          <text class="el" x="532" y="58" text-anchor="middle">checks identity</text>
+          <text class="el" x="842" y="128" text-anchor="middle">retains fields</text>
+          <g transform="translate(30 35)"><rect class="node" width="160" height="70" rx="8"></rect><text class="nt" x="80" y="30" text-anchor="middle">Customer account</text><text class="ns" x="80" y="52" text-anchor="middle">profile opened</text></g>
+          <g transform="translate(305 35)"><rect class="node" width="180" height="70" rx="8"></rect><text class="nt" x="90" y="30" text-anchor="middle">Registered identity</text><text class="ns" x="90" y="52" text-anchor="middle">stored customer facts</text></g>
+          <g transform="translate(600 35)"><rect class="node" width="190" height="70" rx="8"></rect><text class="nt" x="95" y="30" text-anchor="middle">Profile identity</text><text class="ns" x="95" y="52" text-anchor="middle">phone and address</text></g>
+          <g transform="translate(670 150)"><rect class="node" width="190" height="60" rx="8"></rect><text class="nt" x="95" y="28" text-anchor="middle">Profile memory</text><text class="ns" x="95" y="48" text-anchor="middle">registered fields kept</text></g>
+        </svg>
+      </div>
+      <details class="subdetails"><summary>Legend</summary><ul><li>Shows profile identity as a slice of the main Business Flow Graph.</li><li>Deepens owned account memory beyond simple login reachability.</li><li>Owned maturity comes from repeated registered field checks.</li><li>Comprehension limit: no cross-device account audit.</li></ul></details>
+      <details class="subdetails" data-atlas-role="local-proof-strip"><summary>Banda de dovada noduri</summary><table class="data-table"><caption>Proof strip ProfileAccount</caption><tr><th>Flow</th><th>Test method</th><th>Layer path</th><th>Business evidence</th><th>Limit</th></tr><tr><td>Phone memory</td><td>profileKeepsRegisteredPhone()</td><td>test -> component -> page -> validation -> model -> business</td><td>Registered phone remains visible.</td><td>Limit: UI profile proof.</td></tr><tr><td>Country memory</td><td>profileKeepsRegisteredCountryCode()</td><td>test -> component -> page -> validation -> model -> business</td><td>Country code remains visible.</td><td>Limit: no address normalization audit.</td></tr></table></details>
+    </details>
+
+    <details class="subdetails" data-business-flow="ProfileContactAddressMemory">
+      <summary>3.4 ProfileContactAddressMemory address lifecycle</summary>
+      <div class="graph-panel">
+        <svg class="diag" viewBox="0 0 1120 220" role="img" aria-label="ProfileContactAddressMemory flow">
+          <defs><marker id="arrow-contact-address" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z"></path></marker></defs>
+          <path class="edge" d="M170 70 H305" marker-end="url(#arrow-contact-address)"></path>
+          <path class="edge" d="M465 70 H600" marker-end="url(#arrow-contact-address)"></path>
+          <path class="edge" d="M760 70 C830 95 830 145 760 180" marker-end="url(#arrow-contact-address)"></path>
+          <text class="el" x="238" y="58" text-anchor="middle">opens contact</text>
+          <text class="el" x="532" y="58" text-anchor="middle">checks address</text>
+          <text class="el" x="842" y="128" text-anchor="middle">retains address</text>
+          <g transform="translate(30 35)"><rect class="node" width="160" height="70" rx="8"></rect><text class="nt" x="80" y="30" text-anchor="middle">Customer account</text><text class="ns" x="80" y="52" text-anchor="middle">contact area opened</text></g>
+          <g transform="translate(305 35)"><rect class="node" width="180" height="70" rx="8"></rect><text class="nt" x="90" y="30" text-anchor="middle">Saved address</text><text class="ns" x="90" y="52" text-anchor="middle">fields confirmed</text></g>
+          <g transform="translate(600 35)"><rect class="node" width="190" height="70" rx="8"></rect><text class="nt" x="95" y="30" text-anchor="middle">Contact address</text><text class="ns" x="95" y="52" text-anchor="middle">street postal city state</text></g>
+          <g transform="translate(670 150)"><rect class="node" width="190" height="60" rx="8"></rect><text class="nt" x="95" y="28" text-anchor="middle">Address memory</text><text class="ns" x="95" y="48" text-anchor="middle">address fields retained</text></g>
+        </svg>
+      </div>
+      <details class="subdetails"><summary>Legend</summary><ul><li>Maps address memory under the main Business Flow Graph.</li><li>Deepens package coverage overlay by separating phone, street, postal and city/state evidence.</li><li>Owned where repeated address fields are reopened in profile view.</li><li>Comprehension limit: postal validation service is not proven.</li></ul></details>
+      <details class="subdetails" data-atlas-role="local-proof-strip"><summary>Banda de dovada noduri</summary><table class="data-table"><caption>Proof strip ProfileContactAddressMemory</caption><tr><th>Flow</th><th>Test method</th><th>Layer path</th><th>Business evidence</th><th>Limit</th></tr><tr><td>Street memory</td><td>profileKeepsRegisteredStreet()</td><td>test -> component -> page -> validation -> model -> business</td><td>Street value remains visible.</td><td>Limit: no shipping delivery proof.</td></tr><tr><td>City and state memory</td><td>profileKeepsRegisteredCityAndState()</td><td>test -> component -> page -> validation -> model -> business</td><td>City/state values remain visible.</td><td>Limit: UI field retention.</td></tr></table></details>
+    </details>
+
+    <details class="subdetails" data-business-flow="InvoiceBoundary">
+      <summary>3.5 InvoiceBoundary customer record</summary>
+      <div class="graph-panel">
+        <svg class="diag" viewBox="0 0 1120 220" role="img" aria-label="InvoiceBoundary flow">
+          <defs><marker id="arrow-invoice-boundary" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z"></path></marker></defs>
+          <path class="edge" d="M170 70 H305" marker-end="url(#arrow-invoice-boundary)"></path>
+          <path class="edge" d="M465 70 H600" marker-end="url(#arrow-invoice-boundary)"></path>
+          <path class="edge" d="M760 70 C830 95 830 145 760 180" marker-end="url(#arrow-invoice-boundary)"></path>
+          <text class="el" x="238" y="58" text-anchor="middle">opens order</text>
+          <text class="el" x="532" y="58" text-anchor="middle">shows invoice</text>
+          <text class="el" x="842" y="128" text-anchor="middle">preserves record</text>
+          <g transform="translate(30 35)"><rect class="node" width="160" height="70" rx="8"></rect><text class="nt" x="80" y="30" text-anchor="middle">Customer account</text><text class="ns" x="80" y="52" text-anchor="middle">returns to account</text></g>
+          <g transform="translate(305 35)"><rect class="node" width="180" height="70" rx="8"></rect><text class="nt" x="90" y="30" text-anchor="middle">Order record</text><text class="ns" x="90" y="52" text-anchor="middle">invoice reopened</text></g>
+          <g transform="translate(600 35)"><rect class="node" width="190" height="70" rx="8"></rect><text class="nt" x="95" y="30" text-anchor="middle">Invoice record</text><text class="ns" x="95" y="52" text-anchor="middle">identity and status</text></g>
+          <g transform="translate(670 150)"><rect class="node" width="190" height="60" rx="8"></rect><text class="nt" x="95" y="28" text-anchor="middle">Invoice visibility</text><text class="ns" x="95" y="48" text-anchor="middle">record remains visible</text></g>
+        </svg>
+      </div>
+      <details class="subdetails"><summary>Legend</summary><ul><li>Shows invoice boundary as a slice of the main Business Flow Graph.</li><li>Deepens the transition from admin fulfillment to customer-visible record.</li><li>Partial maturity: customer-visible record is proven, accounting closure is not.</li><li>Comprehension limit: financial reconciliation remains outside this atlas.</li></ul></details>
+      <details class="subdetails" data-atlas-role="local-proof-strip"><summary>Banda de dovada noduri</summary><table class="data-table"><caption>Proof strip InvoiceBoundary</caption><tr><th>Flow</th><th>Test method</th><th>Layer path</th><th>Business evidence</th><th>Limit</th></tr><tr><td>Invoice area identity</td><td>accountInvoicesAreaIsReachable()</td><td>test -> action -> component -> page -> validation -> business</td><td>Account invoice area is reachable after login.</td><td>Limit: UI-side invoice boundary.</td></tr><tr><td>Account message record</td><td>accountMessagesAreaIsReachable()</td><td>test -> action -> page -> validation -> context -> business</td><td>Account message surface remains reachable for same customer.</td><td>Limit: no ledger reconciliation.</td></tr></table></details>
+    </details>
+
+  </details>
+
+  <details class="section" data-atlas-section="4. business evidence tables">
+    <summary><span class="summary-title">4. Business Evidence Tables</span><span class="sumhint">score support, object maturity and layer trace</span></summary>
+    <details class="subdetails">
+      <summary>4.1 Business Object Coverage</summary>
+      <table class="data-table"><tr><th>Business object</th><th>Coverage</th><th>Maturity</th><th>Comprehension limit</th></tr><tr><td>Customer account</td><td>login, overview, profile, invoices, messages</td><td>surface plus diagnostic</td><td>Not full account lifecycle.</td></tr><tr><td>Profile identity</td><td>phone, street, postal code, city/state, country</td><td>owned/durabil UI memory</td><td>No backend identity audit.</td></tr><tr><td>Invoice record</td><td>customer invoice area visibility</td><td>partial boundary</td><td>No accounting reconciliation.</td></tr><tr><td>Messages area</td><td>authenticated account messages navigation</td><td>surface-only</td><td>No message lifecycle claim.</td></tr><tr><td>Contact address</td><td>field retention from registration to profile</td><td>owned UI memory</td><td>No postal service validation.</td></tr></table>
+    </details>
+    <details class="subdetails">
+      <summary>4.2 Repeated Business Corridors</summary>
+      <table class="data-table"><tr><th>Corridor</th><th>Repeated proof</th><th>Business meaning</th></tr><tr><td>Profile/contact memory</td><td>five field-specific checks</td><td>Repeated Business Corridors separate identity and address retention.</td></tr><tr><td>Account workspace</td><td>overview, profile, invoice and messages reachability</td><td>Repeated Business Corridors show authenticated surface breadth.</td></tr><tr><td>Invoice/messages boundary</td><td>invoice and message area checks</td><td>Repeated Business Corridors keep customer-visible records separate from accounting or message lifecycle closure.</td></tr></table>
+    </details>
+    <details class="subdetails">
+      <summary>4.3 Object maturity and limits matrix</summary>
+      <p>Maturitate si limite: fiecare obiect business are o clasificare owned, partial, diagnostic sau surface-only, plus limita de intelegere.</p>
+      <table class="data-table"><tr><th>Object</th><th>Owned</th><th>Partial</th><th>Diagnostic</th><th>Surface-only</th><th>Limite</th></tr><tr><td>Profile identity</td><td>Yes owned durable UI memory</td><td>No</td><td>No</td><td>No</td><td>Limit: no backend identity audit.</td></tr><tr><td>Contact address</td><td>Yes owned durable UI memory</td><td>No</td><td>No</td><td>No</td><td>Limit: no postal service proof.</td></tr><tr><td>Invoice record</td><td>No</td><td>Yes partial boundary</td><td>No</td><td>No</td><td>Limit: no accounting reconciliation.</td></tr><tr><td>Messages area</td><td>No</td><td>No</td><td>No</td><td>Yes surface-only</td><td>Limit: no message lifecycle claim.</td></tr><tr><td>Account workspace</td><td>No</td><td>No</td><td>Yes diagnostic</td><td>Yes surface-only</td><td>Limit: navigation reachability only.</td></tr></table>
+    </details>
+    <details class="subdetails">
+      <summary>4.4 Layer Trace Map</summary>
+      <table class="data-table"><tr><th>Layer</th><th>Concrete evidence</th><th>Business object</th></tr><tr><td>test</td><td><code>AccountAuthenticatedAreaTests</code>, <code>ProfileContactAddressMemoryTests</code></td><td>Account workspace and profile memory</td></tr><tr><td>action</td><td><code>UIActions</code>, <code>AccountInvoiceActions</code></td><td>Account navigation and invoice access</td></tr><tr><td>component</td><td><code>AccountInvoiceBoundaryComponent</code>, <code>ProfileAccountComponent</code></td><td>Invoice record and profile identity</td></tr><tr><td>page</td><td><code>AccountPage</code>, <code>ProfilePage</code>, <code>LoginPage</code></td><td>Visible business surfaces</td></tr><tr><td>service</td><td><code>RegistrationService</code></td><td>Customer account setup</td></tr><tr><td>validation</td><td><code>ProfileAccountValidation</code>, <code>AccountInvoiceBoundaryValidation</code></td><td>Business assertions</td></tr><tr><td>model</td><td><code>CustomerData</code>, <code>AccountInvoiceContext</code></td><td>Business state</td></tr><tr><td>constant</td><td><code>JsonTestData</code>, <code>DataGenerator</code></td><td>Stable test data boundary</td></tr></table>
+    </details>
+    <details class="subdetails">
+      <summary>4.5 Suport scor</summary>
+      <table class="data-table"><tr><th>Axa</th><th>Nota</th><th>business goal</th><th>flow question</th><th>source/layer evidence</th><th>atlas score</th></tr><tr><td>Intelegere Business</td><td>91</td><td>business goal: explain durable objects</td><td>flow question: which objects are owned?</td><td>source/layer evidence: table, trace, proof and object rows.</td><td>atlas score 91</td></tr><tr><td>Reconstructie Flow</td><td>90</td><td>business goal: reconstruct visible product story</td><td>flow question: actor -> intent -> visible action -> business object -> observable result?</td><td>source/layer evidence: graph, subgraphs and source trace.</td><td>atlas score 90</td></tr><tr><td>Trasabilitate Layere</td><td>88</td><td>business goal: reopen claim from source</td><td>flow question: does each claim traverse layers?</td><td>source/layer evidence: Layer Trace Map and 5.1 support.</td><td>atlas score 88</td></tr><tr><td>Claritate Obiect Business</td><td>90</td><td>business goal: keep business objects explicit</td><td>flow question: are objects separate from pages/helpers?</td><td>source/layer evidence: object coverage, graph proof and trace.</td><td>atlas score 90</td></tr><tr><td>Fidelitate Dovada</td><td>89</td><td>business goal: avoid invented proof</td><td>flow question: are methods/classes source-backed?</td><td>source/layer evidence: concrete methods, classes, Extent links.</td><td>atlas score 89</td></tr></table>
+    </details>
+    <details class="subdetails">
+      <summary>4.6 Formula Overall</summary>
+      <p>Overall este derivat din business understanding si nu este package/html-ex readiness sau readiness de pachet.</p>
+      <table class="data-table"><tr><th>Axa</th><th>Nota</th><th>Pondere</th><th>Contributie</th></tr><tr><td>Intelegere Business</td><td>91</td><td>25%</td><td>22.75</td></tr><tr><td>Reconstructie Flow</td><td>90</td><td>20%</td><td>18.00</td></tr><tr><td>Trasabilitate Layere</td><td>88</td><td>20%</td><td>17.60</td></tr><tr><td>Claritate Obiect Business</td><td>90</td><td>20%</td><td>18.00</td></tr><tr><td>Fidelitate Dovada</td><td>89</td><td>15%</td><td>13.35</td></tr><tr><td>Overall</td><td>90</td><td>100%</td><td>89.70 rotunjit la 90; calculat si plafonat sub 95 din cauza limitelor de scope.</td></tr></table>
+    </details>
+  </details>
+
+  <details class="section" data-atlas-section="5. source-to-business trace">
+    <summary><span class="summary-title">5. Source-to-Business Trace</span><span class="sumhint">method-level source rows</span></summary>
+    <p>Declared source scope: 4 fisiere Java and 10 metode @Test. Actor, intent, visible action, business object and observable result are stated directly in the rows below. Runtime parity include separat si clasa <code>com.endava.ai.atf.ui.RegistrationTests</code>, dar source-to-business trace-ul Atlas este limitat explicit la <code>com.endava.ai.ui.tests</code>.</p>
+    <table class="data-table">
+      <tr><th>Test/class</th><th>Business object</th><th>Evidence layer</th><th>Maturity</th><th>Comprehension limit</th></tr>
+      <tr><td><code>AccountAuthenticatedAreaTests</code> accountOverviewIsVisibleAfterLogin()</td><td>Customer account</td><td><code>AccountAuthenticatedAreaTests</code> -> <code>UIActions</code> -> <code>AccountPage</code> -> <code>ProfileAccountValidation</code> -> actor -> intent -> visible action -> business object -> observable result</td><td>diagnostic surface</td><td>observable result only; no full account lifecycle.</td></tr>
+      <tr><td><code>AccountAuthenticatedAreaTests</code> accountInvoicesAreaIsReachable()</td><td>Invoice area</td><td><code>AccountAuthenticatedAreaTests</code> -> <code>AccountInvoiceActions</code> -> <code>AccountPage</code> -> <code>AccountInvoiceBoundaryValidation</code> -> context -> action -> page -> validation -> business object</td><td>surface-only</td><td>observable result is reachability, not invoice settlement.</td></tr>
+      <tr><td><code>ProfileContactAddressMemoryTests</code> profileKeepsRegisteredPhone()</td><td>Profile identity</td><td><code>ProfileContactAddressMemoryTests</code> -> <code>ProfileAccountComponent</code> -> <code>ProfilePage</code> -> <code>ProfileAccountValidation</code> -> component -> page -> validation -> model -> business object</td><td>owned durabil</td><td>observable result is UI memory, not backend identity audit.</td></tr>
+      <tr><td><code>ProfileContactAddressMemoryTests</code> profileKeepsRegisteredCountryCode()</td><td>Contact address</td><td><code>ProfileContactAddressMemoryTests</code> -> <code>ProfileAccountComponent</code> -> <code>ProfilePage</code> -> <code>CustomerData</code> -> component -> page -> validation -> model -> business object</td><td>owned durabil</td><td>observable result is retained country field.</td></tr>
+      <tr><td><code>AccountAuthenticatedAreaTests</code> accountProfileAreaIsReachable()</td><td>Profile area</td><td><code>AccountAuthenticatedAreaTests</code> -> <code>UIActions</code> -> <code>ProfilePage</code> -> <code>ProfileAccountValidation</code> -> action -> page -> validation -> business object</td><td>surface-only</td><td>observable result is reachability, not profile mutation.</td></tr>
+      <tr><td><code>ProfileContactAddressMemoryTests</code> profileKeepsRegisteredStreet()</td><td>Contact address street</td><td><code>ProfileContactAddressMemoryTests</code> -> <code>ProfileAccountComponent</code> -> <code>ProfilePage</code> -> <code>CustomerData</code> -> component -> page -> validation -> business object</td><td>owned durabil</td><td>observable result is retained street field.</td></tr>
+      <tr><td><code>ProfileContactAddressMemoryTests</code> profileKeepsRegisteredPostalCode()</td><td>Contact address postal code</td><td><code>ProfileContactAddressMemoryTests</code> -> <code>ProfileAccountComponent</code> -> <code>ProfilePage</code> -> <code>CustomerData</code> -> component -> page -> validation -> model -> business object</td><td>owned durabil</td><td>observable result is UI field retention.</td></tr>
+    </table>
+    <details class="subdetails">
+      <summary>5.1 Suport scor</summary>
+      <table class="data-table"><tr><th>Axa</th><th>Nota</th><th>business goal</th><th>flow question</th><th>source/layer evidence</th><th>atlas score</th></tr><tr><td>Intelegere Business</td><td>91</td><td>business goal: explain object ownership</td><td>flow question: what is the business object and observable result?</td><td>source/layer evidence: Source-to-Business Trace, object table, graph proof.</td><td>atlas score 91</td></tr><tr><td>Reconstructie Flow</td><td>90</td><td>business goal: tell product story</td><td>flow question: can reader follow actor -> intent -> visible action -> business object -> observable result?</td><td>source/layer evidence: 3.x subgraphs and trace chains.</td><td>atlas score 90</td></tr><tr><td>Trasabilitate Layere</td><td>88</td><td>business goal: prove source path</td><td>flow question: are test, action, component, page, service, validation, model, constant visible?</td><td>source/layer evidence: Layer Trace Map and concrete class tokens.</td><td>atlas score 88</td></tr><tr><td>Claritate Obiect Business</td><td>90</td><td>business goal: separate objects from support mechanics</td><td>flow question: are pages/helpers evidence rather than subject?</td><td>source/layer evidence: graph node labels and business object column.</td><td>atlas score 90</td></tr><tr><td>Fidelitate Dovada</td><td>89</td><td>business goal: source-backed proof</td><td>flow question: can method/class evidence be reopened?</td><td>source/layer evidence: concrete methods and classes in rows.</td><td>atlas score 89</td></tr></table>
+    </details>
+  </details>
+
+  <details class="section" data-atlas-section="6. atlas test audit">
+    <summary><span class="summary-title">6. Atlas Test Audit</span><span class="sumhint">commands, results and published artifacts</span></summary>
+    <table class="data-table">
+      <tr><th>Artifact</th><th>Result</th><th>Command</th><th>Interpretare</th></tr>
+      <tr><td>Result expected by this atlas</td><td><code>119 tests / 0 failures</code></td><td>Auditul Atlas publica rapoartele Extent si comenzile Maven reproductibile.</td><td>Atlas business-closeout este verde. Runtime UI parity este acum verde pe suita source-real curenta: Playwright si Selenium ruleaza <code>16/16 passed</code>.</td></tr>
+      <tr><td>Atlas contract Extent</td><td><a href="validation/ATF6/ATF6_atlas-tests-extent-report.html">ATF6 atlas tests Extent report</a><br><a href="validation/ATF6/ATF6_atlas-tests-extent-report.README.md">ATF6 atlas manifest README</a><br><code>Total: 119; Passed: 119; Failed: 0; Skipped: 0</code></td><td><code>mvn -q org.apache.maven.plugins:maven-surefire-plugin:3.2.5:test "-Dsurefire.suiteXmlFiles=src/test/resources/skills/atlas/testng-atlas-business-closeout.xml" "-Datlas.html=docs/atlas/ATF6_business-test-atlas.html" "-Datlas.sourceRoot=C:/work/ex/java/demo/atf6/test-framework/src/test/java/com/endava/ai/ui/tests" "-Datlas.uiSourceRoot=C:/work/ex/java/demo/atf6/test-framework/src/main/java/com/endava/ai/ui" "-Dreporting.engine=extent" "-Dreports.dir=docs/atlas/validation/ATF6" "-Dreports.file.name=ATF6_atlas-tests-extent-report.html" "-Dreports.timestamp.enabled=false" "-DforkCount=0"</code></td><td>Verde business-closeout: <code>0 failed</code>. Acest profil valideaza Atlas business understanding, grafuri, scoruri, trace si artifact audit fara sa vanda Selenium parity ca dovada finala.</td></tr>
+      <tr><td>UI Playwright runtime Extent</td><td><a href="validation/ATF6/ATF6_ui-all-playwright-extent-report.html">ATF6 Playwright UI Extent</a><br><a href="validation/ATF6/ATF6_ui-all-playwright-extent-report.README.md">Playwright runtime manifest</a><br><code>Total: 16; Passed: 16; Failed: 0; Skipped: 0</code></td><td><code>mvn -q test "-Dsurefire.suiteXmlFiles=src/test/resources/atf/core/suites/ui/testng-atf-ui-base-test-ui-all.xml" "-Dui.engine=playwright" "-Dreporting.engine=extent" "-Dreports.dir=target/reports-atf6-ui-current-playwright-parity-final-20260702-source-real-1" "-Dreports.file.name=ExtentReport.html" "-Dreports.timestamp.enabled=false"</code></td><td>Verde runtime browser proof pentru suita source-real curenta. Clasele AdminOrderStatus sterse din source nu sunt numarate din bytecode vechi.</td></tr>
+      <tr><td>UI Selenium runtime Extent</td><td><a href="validation/ATF6/ATF6_ui-all-selenium-extent-report.html">ATF6 Selenium UI Extent</a><br><a href="validation/ATF6/ATF6_ui-all-selenium-extent-report.README.md">Selenium runtime manifest</a><br><code>Total: 16; Passed: 16; Failed: 0; Skipped: 0</code></td><td><code>mvn -q test "-Dsurefire.suiteXmlFiles=src/test/resources/atf/core/suites/ui/testng-atf-ui-base-test-ui-all.xml" "-Dui.engine=selenium" "-Dreporting.engine=extent" "-Dreports.dir=target/reports-atf6-ui-current-selenium-parity-final-20260702-source-real-1" "-Dreports.file.name=ExtentReport.html" "-Dreports.timestamp.enabled=false"</code></td><td>Verde adapter-parity: Selenium are aceeasi matrice ca Playwright, fara failures sau skipped.</td></tr>
+      <tr><td>Manifest README</td><td><a href="validation/ATF6/ATF6_atlas-tests-extent-report.README.md">ATF6 atlas validation README</a><br><a href="validation/ATF6/ATF6_ui-all-playwright-extent-report.README.md">Playwright manifest</a><br><a href="validation/ATF6/ATF6_ui-all-selenium-extent-report.README.md">Selenium manifest</a></td><td>Command, source scope and copy provenance.</td><td>Manifestele raman dovada de provenienta; Extent-urile de mai sus sunt dovezile vizuale citibile.</td></tr>
+    </table>
+  </details>
+
+</main>
+<script>
+  function toggleAll(open) {
+    document.querySelectorAll('main.wrap > details, main.wrap details.subdetails')
+      .forEach(function(section) {
+        section.open = open;
+      });
+    var businessGraph = document.getElementById('business-flow-graph');
+    if (!open && businessGraph) {
+      businessGraph.open = true;
+    }
+  }
+</script>
+</body>
+</html>

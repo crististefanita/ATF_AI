@@ -1,0 +1,17 @@
+﻿{
+    "failures":  0,
+    "tests_run":  5,
+    "passed":  5,
+    "skipped":  0,
+    "business_object":  "staff support response",
+    "extent":  "validation/reports/ExtentReport.html",
+    "status":  "PASS",
+    "run_id":  "run_04",
+    "title":  "Staff support response",
+    "claim":  "staff response reopens customer support thread after payment context",
+    "tests_produced":  5,
+    "verdict":  "countable owned business proof",
+    "actor":  "registered customer or authorized staff/admin user",
+    "intent":  "reopen durable post-payment business record from UI",
+    "local_result":  "PASS; visible UI evidence and Extent/XML proof captured"
+}

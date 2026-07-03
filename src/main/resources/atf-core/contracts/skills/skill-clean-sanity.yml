@@ -1,0 +1,17 @@
+schemaVersion: 1
+contracts:
+  - id: skill.clean-sanity.chain
+    kind: skill-clean-sanity-profile
+    role: Clean validation chain for skill architecture reviews when target output may be stale or corrupted.
+    trigger: ClassFormatError, Truncated class file, stale target output, suspicious incremental compile, before 98-plus architecture claim
+    cleanCompileCommand: mvn -q clean "-Dmaven.compiler.useIncrementalCompilation=false" "-DskipTests" test-compile
+    requiredOrder: clean-compile, core-sanity, business-understanding-sanity, reporting-sanity, mcp-sanity, atlas-sanity
+    commands:
+      - mvn -q "-Dsurefire.suiteXmlFiles=src/test/resources/atf/core/suites/core/testng-atf-core-sanity.xml" "-DforkCount=0" test
+      - mvn -q "-Dsurefire.suiteXmlFiles=src/test/resources/skills/business/testng-business-understanding-sanity.xml" "-DforkCount=0" test
+      - mvn -q "-Dsurefire.suiteXmlFiles=src/test/resources/atf/core/reporting/testng-reporting-sanity.xml" "-DforkCount=0" test
+      - mvn -q "-Dsurefire.suiteXmlFiles=src/test/resources/skills/mcp/testng-mcp-sanity.xml" "-DforkCount=0" test
+      - mvn -q "-Dsurefire.suiteXmlFiles=src/test/resources/skills/atlas/testng-atlas-sanity.xml" "-DforkCount=0" test
+    receiptFields: commit, dirtyState, command, status, timestamp, profile, overallStatus, totalDurationMs, stoppedAtCommand, failedOwner, executedCount, passedCount, failedCount, skippedAfterFailureCount
+    antiPattern: parallel Maven runs sharing the same target directory
+    stopCondition: stop after the first failing command and report the exact failing command before changing source

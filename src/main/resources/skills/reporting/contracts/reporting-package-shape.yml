@@ -1,0 +1,84 @@
+schemaVersion: 1
+contracts:
+  - id: core.reporting.package-shape.budget-source
+    kind: budget-source
+    path: src/main/resources/skills/codequality/contracts/size-budgets.yml
+    reason: Core Reporting package/class caps stay in the existing numeric source of truth.
+
+  - id: core.reporting.package-shape.required-package-roots
+    kind: required-budget-kind
+    budgetKind: package-root
+    reason: Core Reporting main and test roots need default class-count caps before local overrides are allowed.
+
+  - id: core.reporting.package-shape.required-package-caps
+    kind: required-budget-kind
+    budgetKind: package-cap
+    reason: Focused reporting subpackages need explicit caps so Spark/reporting ownership stays bounded.
+
+  - id: core.reporting.package-shape.required-legacy-package-caps
+    kind: required-budget-kind
+    budgetKind: legacy-package-cap
+    reason: Legacy broad packages must remain ratcheted until they are split by responsibility.
+
+  - id: core.reporting.package-shape.required-file-caps
+    kind: required-budget-kind
+    budgetKind: file-max-lines
+    reason: Key reporting classes must not grow while responsibilities are being extracted.
+
+  - id: core.reporting.package-shape.required-recursive-file-caps
+    kind: required-budget-kind
+    budgetKind: recursive-file-max-lines
+    reason: Reporting section packages need recursive line caps to prevent hidden bloat.
+
+  - id: core.reporting.package-shape.required-direct-file-caps
+    kind: required-budget-kind
+    budgetKind: direct-file-max-lines
+    reason: Adapter facade packages need direct-file caps so logic moves into focused collaborators.
+
+  - id: core.reporting.package-shape.core-readme
+    kind: required-readme
+    path: src/main/java/com/endava/ai/core/README.md
+    reason: Core library ownership must remain visible before changing reporting infrastructure.
+
+  - id: core.reporting.package-shape.reporting-readme
+    kind: required-readme
+    path: src/main/java/com/endava/ai/core/reporting/README.md
+    reason: Reporting ownership, entry points and verification must remain local to the reporting package.
+
+  - id: core.reporting.package-shape.adapters-readme
+    kind: required-readme
+    path: src/main/java/com/endava/ai/core/reporting/adapters/README.md
+    reason: Reporting adapters are dense enough to need a local backend ownership map.
+
+  - id: core.reporting.package-shape.listener-readme
+    kind: required-readme
+    path: src/main/java/com/endava/ai/core/reporting/listener/README.md
+    reason: Reporting listener lifecycle ownership must stay discoverable without reading every internal class.
+
+  - id: core.reporting.package-shape.aggregate-readme
+    kind: required-readme
+    path: src/main/java/com/endava/ai/core/reporting/aggregate/README.md
+    reason: Aggregate reporting must expose ownership, entry points and validation before agents inspect writer internals.
+
+  - id: core.reporting.package-shape.contract-index-readme
+    kind: required-readme
+    path: src/main/resources/atf-core/contracts/README.md
+    reason: Core YAML contract ownership must stay discoverable for future skill extraction.
+
+  - id: core.reporting.package-shape.no-mcp-imports
+    kind: forbidden-import
+    root: src/main/java/com/endava/ai/core/reporting
+    forbiddenPackage: com.endava.ai.skills.mcp
+    reason: Core Reporting is a reusable library and must not depend on MCP package governance.
+
+  - id: core.reporting.package-shape.no-atlas-imports
+    kind: forbidden-import
+    root: src/main/java/com/endava/ai/core/reporting
+    forbiddenPackage: com.endava.ai.skills.atlas
+    reason: Core Reporting is a reusable library and must not depend on Atlas business understanding.
+
+  - id: core.reporting.package-shape.no-ui-imports
+    kind: forbidden-import
+    root: src/main/java/com/endava/ai/core/reporting
+    forbiddenPackage: com.endava.ai.ui
+    reason: Core Reporting must stay generic and must not couple directly to UI engine packages.
