@@ -2,7 +2,7 @@ package com.endava.ai.core.reporting;
 
 public interface ReportLogger {
     void startTest(String testName, String description);
-    void endTest(String status);            // PASS, FAIL, SKIP
+    void endTest(TestStatus status);
     void startStep(String stepTitle);
     void logDetail(String detail);
     void pass(String message);
@@ -12,6 +12,14 @@ public interface ReportLogger {
     void flush();
 
     default void ensureTestStarted(String testName, String description) {
+        startTest(testName, description);
+    }
+
+    default void ensureTestStarted(String className, String testName, String description) {
+        ensureTestStarted(testName, description);
+    }
+
+    default void startTest(String className, String testName, String description) {
         startTest(testName, description);
     }
 }

@@ -1,51 +1,68 @@
 package com.endava.ai.core.reporting;
 
-import static com.endava.ai.core.config.ConfigManager.require;
-import static com.endava.ai.core.reporting.utils.ConsoleLoger.console;
-import static com.endava.ai.core.reporting.utils.ConsoleLoger.formatStacktrace;
+import com.endava.ai.core.support.config.UiRuntimeOptions;
+import com.endava.ai.core.reporting.step.StepConsolePublisher;
+import com.endava.ai.core.reporting.step.StepExecutionContext;
+import com.endava.ai.core.reporting.step.StepReportDelegate;
+import com.endava.ai.core.reporting.step.StepScope;
+
+import static com.endava.ai.core.support.config.ConfigManager.require;
+import static com.endava.ai.core.reporting.utils.StacktraceFormatter.format;
 
 public final class StepLogger {
 
-    private static final ThreadLocal<Integer> STEP_DEPTH = ThreadLocal.withInitial(() -> 0);
-    private static final ThreadLocal<Boolean> TEST_FAILED = new ThreadLocal<>();
-    private static final ThreadLocal<ReportLogger> DELEGATE = new ThreadLocal<>();
+    private static final StepExecutionContext CONTEXT = new StepExecutionContext();
+    private static final StepConsolePublisher CONSOLE = new StepConsolePublisher(CONTEXT);
+    private static final StepReportDelegate REPORT = new StepReportDelegate();
 
     private StepLogger() {
     }
 
     public static void setDelegate(ReportLogger logger) {
-        DELEGATE.set(logger);
+        REPORT.set(logger);
     }
 
     public static void clearDelegate() {
-        DELEGATE.remove();
+        REPORT.clear();
     }
 
     public static void clear() {
-        STEP_DEPTH.remove();
-        TEST_FAILED.remove();
-        DELEGATE.remove();
+        CONTEXT.clear();
+        REPORT.clear();
     }
 
     public static boolean testHasFailed() {
-        return Boolean.TRUE.equals(TEST_FAILED.get());
+        return CONTEXT.testHasFailed();
+    }
+
+    public static boolean isExpectedFailureLogging() {
+        return CONTEXT.expectedFailureLogging();
+    }
+
+    public static void withExpectedFailureLogging(Runnable action) {
+        CONTEXT.withExpectedFailureLogging(action);
+    }
+
+    public static void withConsoleMuted(Runnable action) {
+        CONTEXT.withConsoleMuted(action);
     }
 
     public static void startStep(String title) {
-        STEP_DEPTH.set(STEP_DEPTH.get() + 1);
-        console("▶ " + title);
+        CONTEXT.openStep();
+        CONSOLE.step(title);
+        REPORT.startStep(title);
+    }
 
-        ReportLogger l = DELEGATE.get();
-        if (l != null) l.startStep(title);
+    public static StepScope step(String title) {
+        return StepScope.open(title);
     }
 
     public static void logDetail(String detail) {
-        requireActiveStep();
-
-        ReportLogger l = DELEGATE.get();
-        if (l != null) l.logDetail(detail);
-
-        if (getBoolean("console.details.enabled")) console("  • " + detail);
+        CONTEXT.requireActiveStep();
+        REPORT.logDetail(detail);
+        if (getBoolean(UiRuntimeOptions.CONSOLE_DETAILS_ENABLED_KEY)) {
+            CONSOLE.detail(detail);
+        }
     }
 
     public static void info(String detail) {
@@ -53,51 +70,51 @@ public final class StepLogger {
     }
 
     public static void logCodeBlock(String content) {
-        requireActiveStep();
-        ReportLogger l = DELEGATE.get();
-        if (l != null) l.logCodeBlock(content);
+        CONTEXT.requireActiveStep();
+        REPORT.logCodeBlock(content);
     }
 
     public static void pass(String message) {
-        requireActiveStep();
-        console("  ✅ PASS: " + message);
-
-        ReportLogger l = DELEGATE.get();
-        if (l != null) l.pass(message);
-
-        STEP_DEPTH.set(STEP_DEPTH.get() - 1);
+        CONTEXT.requireActiveStep();
+        CONSOLE.pass(message);
+        REPORT.pass(message);
+        CONTEXT.closeStep();
     }
 
     public static void fail(String message, Throwable t) {
-        fail(message, formatStacktrace(t));
+        fail(message, format(t));
     }
 
     public static void fail(String message, String stacktraceAsText) {
-        requireActiveStep();
-        TEST_FAILED.set(Boolean.TRUE);
-        console("  ❌ FAIL: " + message);
+        CONTEXT.requireActiveStep();
+        if (CONTEXT.expectedFailureLogging()) {
+            CONSOLE.expectedFailure(message);
+            REPORT.controlledExpectedFailure(message, stacktraceAsText);
+            CONTEXT.closeStep();
+            return;
+        }
 
-        ReportLogger l = DELEGATE.get();
-        if (l != null) l.fail(message, stacktraceAsText);
-
-        STEP_DEPTH.set(STEP_DEPTH.get() - 1);
+        CONTEXT.markFailed();
+        CONSOLE.fail(message);
+        REPORT.fail(message, stacktraceAsText);
+        CONTEXT.closeStep();
     }
 
     public static void failUnhandledOutsideStep(Throwable t) {
         if (testHasFailed()) return;
 
-        TEST_FAILED.set(Boolean.TRUE);
-
-        ReportLogger l = DELEGATE.get();
-        if (l != null) {
-            l.fail("Unhandled exception outside step", formatStacktrace(t));
-            console("  ❌ FAIL: Unhandled exception outside step");
+        if (CONTEXT.expectedFailureLogging()) {
+            REPORT.controlledExpectedFailureOutsideStep(t, format(t));
+            return;
         }
+
+        CONTEXT.markFailed();
+        REPORT.fail("Unhandled exception outside step", format(t));
+        CONSOLE.fail("Unhandled exception outside step");
     }
 
-    private static void requireActiveStep() {
-        if (STEP_DEPTH.get() <= 0)
-            throw new IllegalStateException("No active step.");
+    public static void closeOpenStepForScope() {
+        CONTEXT.closeStep();
     }
 
     @SuppressWarnings("ALL")

@@ -1,8 +1,18 @@
 package com.endava.ai.atf.ui.component;
 
-import com.endava.ai.core.listener.NoFrameworkReporting;
+import com.endava.ai.core.support.contract.ids.AtfContractNarrativeIds;
+import com.endava.ai.core.support.contract.AtfContractSuiteRef;
+import com.endava.ai.core.support.contract.AtfContractRef;
+import com.endava.ai.core.reporting.listener.TestListener;
+import org.testng.annotations.Listeners;
+
+import com.endava.ai.core.support.contract.ids.AtfRuntimeConfigSandbox;
+import com.endava.ai.core.support.config.ConfigManager;
 import com.endava.ai.core.reporting.StepLogger;
-import com.endava.ai.ui.utils.WaitUtils;
+import com.endava.ai.core.support.config.UiRuntimeOptions;
+import com.endava.ai.atf.ui.component.support.StubUiEngine;
+import com.endava.ai.atf.ui.component.support.UiEngineThreadLocalTestSupport;
+import com.endava.ai.ui.support.wait.WaitUtils;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
@@ -12,7 +22,9 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.concurrent.atomic.AtomicInteger;
 
-@NoFrameworkReporting
+@AtfContractSuiteRef(AtfContractNarrativeIds.Suite.WAIT_UTILS_CONTRACT_TEST_SUITE)
+@AtfContractRef(AtfContractNarrativeIds.Contract.WAIT_UTILS_CONTRACT_TEST_CLASS)
+@Listeners(TestListener.class)
 public class WaitUtilsContractTest {
 
     @AfterMethod
@@ -79,17 +91,49 @@ public class WaitUtilsContractTest {
         Assert.assertEquals(attempts.get(), 2);
     }
 
+    @Test
     public void wait_for_condition_throws_assertion_error_with_custom_message_when_condition_never_matches() {
         AssertionError error = Assert.expectThrows(
                 AssertionError.class,
                 () -> WaitUtils.waitForCondition(
                         "condition never matches",
                         () -> false,
-                        "Expected condition to match"
+                        "Expected condition to match",
+                        Duration.ofSeconds(1)
                 )
         );
 
         Assert.assertEquals(error.getMessage(), "Expected condition to match");
+    }
+
+    @Test
+    public void wait_helpers_read_current_runtime_timeout_from_config() {
+        TimeoutRecordingUiEngine engine = new TimeoutRecordingUiEngine();
+        UiEngineThreadLocalTestSupport.setEngineForCurrentThread(engine);
+
+        try (AtfRuntimeConfigSandbox ignored = AtfRuntimeConfigSandbox.open()
+                .clearSystemProperty(UiRuntimeOptions.UI_WAIT_TIMEOUT_SECONDS_KEY)
+                .setConfig(UiRuntimeOptions.UI_WAIT_TIMEOUT_SECONDS_KEY, "1")) {
+
+            WaitUtils.waitForVisible("#ready");
+            Assert.assertEquals(engine.lastVisibleTimeoutSeconds, 1);
+
+            ConfigManager.set(UiRuntimeOptions.UI_WAIT_TIMEOUT_SECONDS_KEY, "2");
+            WaitUtils.waitForUrlContains("/dashboard");
+            Assert.assertEquals(engine.lastUrlTimeoutSeconds, 2);
+        }
+    }
+
+    @Test
+    public void pause_preserves_interrupted_status() {
+        try {
+            Thread.currentThread().interrupt();
+            WaitUtils.pause(Duration.ofMillis(1));
+            Assert.assertTrue(Thread.currentThread().isInterrupted(),
+                    "UI wait pause must preserve interrupted status through the shared sleeper policy.");
+        } finally {
+            Thread.interrupted();
+        }
     }
 
     @Test
@@ -139,5 +183,20 @@ public class WaitUtilsContractTest {
             return lastValue;
         }
 
+    }
+
+    private static final class TimeoutRecordingUiEngine extends StubUiEngine {
+        private int lastVisibleTimeoutSeconds;
+        private int lastUrlTimeoutSeconds;
+
+        @Override
+        public void waitForVisible(String cssSelector, int seconds) {
+            lastVisibleTimeoutSeconds = seconds;
+        }
+
+        @Override
+        public void waitForUrlContains(String fragment, int seconds) {
+            lastUrlTimeoutSeconds = seconds;
+        }
     }
 }

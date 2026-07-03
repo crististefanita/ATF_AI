@@ -1,62 +1,67 @@
-# HTML Example Library
+﻿# HTML Example Library
 
-Local ATF6 calibration library.
+Active shared library for report-shape comparison, MCP artifact calibration, source-evolution KPI discipline, and agentic close-out examples.
 
-This folder intentionally contains one example only:
+Live standards remain in the current ATF6 prompt and contract ownership structure:
 
-`atf4-2026-06-23_15.52.07`
+- `../../demo/atf6/test-framework/docs/prompts/html_ro/mcp/`
+- `../../demo/atf6/test-framework/docs/prompts/html_ro/atlas/`
+- `../../demo/atf6/test-framework/docs/prompts/html_ro/shared/`
+- `../../demo/atf6/test-framework/docs/prompts/html-contract-ownership.yml`
 
-Primary structural reference report: `atf4-2026-06-23_15.52.07`
+Use these examples critically:
 
-Primary structural reference report path: `atf4-2026-06-23_15.52.07/analysis/langgraph-business-understanding.html`
+- inherit report shape, artifact discipline, visual graph hygiene and local-link discipline;
+- inherit source-evolution proof and score caps;
+- inherit final MCP package close-out evidence;
+- never copy business objects, verdicts, or scores mechanically;
+- rank examples by current ATF6 MCP/KPI readiness, not by frozen historical claims.
 
-Use it as a cold reference for report shape, artifact discipline, score capping, and html-ex readiness. It is not owner-law. Live requirements remain in:
+## Active Library - 2026-07-03
 
-`docs/prompts/iterativ/`
+Exactly `5` archives are active after saving the latest ATF1 package:
 
-## Active Example
+- `atf4-2026-07-02_18.06.08`
+- `atf3-2026-07-02_22.10.19`
+- `atf1-2026-07-03_15.21.34`
+- `atf1-2026-07-02_18.00.17`
+- `atf3-2026-07-02_15.53.24`
 
-| Example | Overall | Role | Best lesson | Main cap |
-|---|---:|---|---|---|
-| `atf4-2026-06-23_15.52.07` | 93 | modern invoice-details teacher | registered account invoice details page with purchased line item after checkout, account reopen and relogin; MCP `93 / 93 PASS` | owns invoice details and line item, but not full order history, payment history, status timeline or support/message record |
+Removed from the active library in this refresh:
 
-## What To Inherit
+- `atf1-2026-07-02_08.30.31`, because it was the weakest retained archive: useful older admin-order-status calibration, but lower replacement value than the latest ATF1 customer-visible support-case lifecycle package.
 
-- Calm report opening.
-- Visible score cards and visible opening pills.
-- `Business Flow Graph` as the only default-open main section.
-- Collapsed `Executive Context`, `Score Overview`, `Proof Mapping`, `Run Audit`, `Artifact Index`, and `Close-Out`.
-- Application-first graph: application map first, package overlay second.
-- Score cap discipline: `Overall` must stay below unproven lifecycle ownership.
-- Artifact spine: `package-state.json`, `execution-gate-card.md`, root diff, run diffs, run-state files, Extent/XML proof, render proof, link audit, MCP evidence.
-- Cold chain: `claim -> source -> run diff -> state -> execution proof -> report link -> score cap`.
+## Current Ranking
 
-## What Not To Copy
+| Rank | Example | Score | MCP close-out | Reviewer verdict |
+|---:|---|---:|---|---|
+| 1 | `atf4-2026-07-02_18.06.08` | 95 | 93/93 PASS | Best current payment-ledger exemplar: registered-account payment settlement ledger proof, current-root MCP origin and XML parity. |
+| 2 | `atf3-2026-07-02_22.10.19` | 95 | 100/100 PASS | Best ATF3 exemplar: registered invoice document lifecycle, clean graph shape, current-root MCP close-out and repaired method ledger. |
+| 3 | `atf1-2026-07-03_15.21.34` | 95 | 107/107 PASS | Latest ATF1 exemplar: customer-visible support case history after admin reply; copied from latest out root and ledger regenerated from frozen XML for consistency. |
+| 4 | `atf1-2026-07-02_18.00.17` | 95 | 93/93 PASS | Previous ATF1 support-case reference; still valuable as a stable predecessor and score-calibration anchor. |
+| 5 | `atf3-2026-07-02_15.53.24` | 94 | 93/93 PASS | Safe older ATF3 cart-line lifecycle reference; honest 94 cap, good graph/style calibration, but lower business frontier than the 95 examples. |
 
-- Do not copy the invoice-details business object.
-- Do not copy its score mechanically.
-- Do not treat MCP green as enough for a higher Overall.
-- Do not sell one durable family as full application closure.
-- Do not let a final report mention `html-ex`, `teacher`, `benchmark`, or external calibration language.
+## Latest ATF1 Curation - 2026-07-03
 
-## ATF6 Calibration Use
+`atf1-2026-07-03_15.21.34` was copied from:
 
-ATF6 should read this example before polishing a package, then ask:
+`C:\work\ex\java\demo\atf1\test-framework\docs\out\2026-07-03_15.21.34`
 
-- Is the owned object UI-visible and product-owned?
-- Is the graph about the application, not about tests?
-- Does every major claim link to run diff, run-state, Extent/XML, and a cold verdict?
-- Is `Overall` capped by business substance, not report beauty?
-- Is the next business object explicit and harder than the current lane?
+The saved package reports `score=95`, `cap=95`, MCP close-out `107/107 PASS`, five UI runs at `5/5`, and local-link audit with no missing links. The owned business object is customer-visible support case history after an admin reply. The package does not claim refund approval, settlement, payment reversal or refund decision history; those remain the next frontier.
 
-For ATF6 invoice-details packages, this example is already close to the same lane. Do not repeat that lane unless the run proves a genuinely new lifecycle object such as:
+Curation repair applied after copying:
 
-- registered account order history row;
-- payment-history record;
-- shipment/status timeline;
-- support/message thread persistence;
-- editable order/invoice lifecycle.
+- `validation/mcp/full-mcp-method-ledger.md` was regenerated from `validation/mcp/testng-results.xml` because the copied ledger text was stale while the frozen TestNG XML, JUnit XML and MCP gate were green.
+- No tests were rerun for this corpus refresh.
+- Extent reports, origin JSON, SHA, run folders, final reports, graph HTML, package-state and other evidence remain copied from the saved ATF1 out root.
 
-## Cold Verdict
+## Scoring Notes
 
-This local `html-ex` folder is intentionally small. One strong example is enough here. It should sharpen ATF6 reporting and artifact discipline without encouraging copy-paste business coverage.
+Scores in this README are reviewer-calibrated html-ex scores. They can differ from a package's self-score when provenance, graph quality, artifact consistency or business-frontier ownership does not fully support the claim.
+
+For reuse, prefer the top examples by the dimension needed:
+
+- payment-ledger frontier: `atf4-2026-07-02_18.06.08`;
+- invoice-document frontier: `atf3-2026-07-02_22.10.19`;
+- support-case/customer-message frontier: `atf1-2026-07-03_15.21.34`;
+- older cart-line/business-graph calibration: `atf3-2026-07-02_15.53.24`.

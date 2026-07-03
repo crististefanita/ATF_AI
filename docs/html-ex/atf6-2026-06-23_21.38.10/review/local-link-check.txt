@@ -1,4 +1,0 @@
-﻿Local Link Audit
-Report: docs/out/2026-06-23_21.38.10/analysis/langgraph-business-understanding.html
-Checked: 91
-Missing: 0

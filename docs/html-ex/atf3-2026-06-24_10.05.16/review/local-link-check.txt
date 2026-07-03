@@ -1,4 +1,0 @@
-﻿status=PASS
-all_links_ok=true
-href_count=59
-missing_count=0

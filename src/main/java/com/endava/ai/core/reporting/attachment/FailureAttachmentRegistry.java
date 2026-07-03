@@ -1,28 +1,36 @@
 package com.endava.ai.core.reporting.attachment;
 
+import com.endava.ai.core.reporting.diagnostic.NonBlockingDiagnostic;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public final class FailureAttachmentRegistry {
 
-    private static FailureAttachmentHandler handler;
+    private static final List<FailureAttachmentHandler> HANDLERS = new ArrayList<>();
     private static final ThreadLocal<Throwable> FAILURE = new ThreadLocal<>();
 
     private FailureAttachmentRegistry() {
     }
 
-    public static void register(FailureAttachmentHandler h) {
-        handler = h;
+    public static synchronized void register(FailureAttachmentHandler h) {
+        if (h != null) {
+            HANDLERS.removeIf(existing -> existing == h || existing.getClass().equals(h.getClass()));
+            HANDLERS.add(h);
+        }
     }
 
     public static void onTestStart() {
         FAILURE.remove();
-        if (handler != null) {
-            handler.onTestStart();
+        for (FailureAttachmentHandler handler : snapshot()) {
+            invoke(handler, FailureAttachmentHandler::onTestStart, "failure attachment test-start hook");
         }
     }
 
     public static void onTestFailure(Throwable t) {
         FAILURE.set(t);
-        if (handler != null) {
-            handler.onTestFailure();
+        for (FailureAttachmentHandler handler : snapshot()) {
+            invoke(handler, FailureAttachmentHandler::onTestFailure, "failure attachment capture hook");
         }
     }
 
@@ -30,8 +38,25 @@ public final class FailureAttachmentRegistry {
         return FAILURE.get();
     }
 
-    public static void clearForTests() {
+    public static synchronized void clearForTests() {
         FAILURE.remove();
-        handler = null;
+        HANDLERS.clear();
+    }
+
+    private static synchronized List<FailureAttachmentHandler> snapshot() {
+        return List.copyOf(HANDLERS);
+    }
+
+    private static void invoke(FailureAttachmentHandler handler, HandlerCall call, String operation) {
+        try {
+            call.run(handler);
+        } catch (Throwable failure) {
+            NonBlockingDiagnostic.warn(operation + " [" + handler.getClass().getName() + "]", failure);
+        }
+    }
+
+    @FunctionalInterface
+    private interface HandlerCall {
+        void run(FailureAttachmentHandler handler);
     }
 }

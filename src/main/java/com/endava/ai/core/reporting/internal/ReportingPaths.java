@@ -14,4 +14,11 @@ public final class ReportingPaths {
         String value = System.getProperty(ALLURE_RESULTS_DIRECTORY_PROPERTY);
         return new File(value == null || value.isBlank() ? DEFAULT_ALLURE_RESULTS_DIRECTORY : value.trim());
     }
+
+    public static void ensureAllureResultsDirectory() {
+        File directory = allureResultsDirectory();
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+    }
 }

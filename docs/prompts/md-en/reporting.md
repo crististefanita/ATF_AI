@@ -1,5 +1,5 @@
-﻿<!-- Generated from ../html_EN/reporting.html. Keep source of truth in html_EN. -->
-<!-- Source stylesheet: [shared-report-reference.css](../../shared-report-reference.css) -->
+<!-- Generated from ../html_EN/mcp/reporting.html. Keep source of truth in html_EN. -->
+<!-- Source stylesheet: [shared-report-reference.css](../assets/shared-report-reference.css) -->
 
 # Reporting Standard `OPENING` `GRAPH` `PROOF` `CLOSE-OUT`
 
@@ -34,7 +34,7 @@
 Reporting is read-only publication: it takes the closed truth and makes it navigable.
 
 <details>
-<summary>Mandatory structure — reference closed by default</summary>
+<summary>Mandatory structure � reference closed by default</summary>
 
 | Zone | Stays visible at the top? | Cold rule |
 | --- | --- | --- |
@@ -59,10 +59,10 @@ Reporting is read-only publication: it takes the closed truth and makes it navig
 </details>
 
 <details open>
-<summary>1. Flows and diagrams — form and proof of the final page</summary>
+<summary>1. Flows and diagrams � form and proof of the final page</summary>
 
 <details>
-<summary>1.1 Quick reading map — short orientation</summary>
+<summary>1.1 Quick reading map � short orientation</summary>
 
 | If you ask | Open | You learn cold |
 | --- | --- | --- |
@@ -81,7 +81,7 @@ Reporting is read-only publication: it takes the closed truth and makes it navig
 </details>
 
 <details open>
-<summary>1.2 Opening shape — first-screen shape</summary>
+<summary>1.2 Opening shape � first-screen shape</summary>
 
 <!-- diagram-readable-table -->
 | Opening block | Reader learns | Keep it |
@@ -128,7 +128,7 @@ flowchart LR
 </details>
 
 <details>
-<summary>1.2.1 Minimum reporting state machine — truth frozen -> final page</summary>
+<summary>1.2.1 Minimum reporting state machine � truth frozen -> final page</summary>
 
 ```text
 read_package_state
@@ -161,7 +161,7 @@ read_package_state
 </details>
 
 <details>
-<summary>1.3 Business Flow Graph — application map + package overlay</summary>
+<summary>1.3 Business Flow Graph � application map + package overlay</summary>
 
 - Here reporting validates only shape.
 - The canonical LangGraph lives in `business-flow-graph-rubric.html`.
@@ -180,7 +180,7 @@ read_package_state
 </details>
 
 <details>
-<summary>1.4 Claim -> proof -> artifact — minimum publication chain</summary>
+<summary>1.4 Claim -> proof -> artifact � minimum publication chain</summary>
 
 <!-- diagram-readable-table -->
 | Proof link | Publishes | Must point to |
@@ -224,7 +224,7 @@ flowchart LR
 </details>
 
 <details>
-<summary>1.5 Truths that must not be mixed — countability, runs consumed, same-round, fresh-root</summary>
+<summary>1.5 Truths that must not be mixed � countability, runs consumed, same-round, fresh-root</summary>
 
 <!-- diagram-readable-table -->
 | Truth | Published as | Must not be confused with |
@@ -267,10 +267,10 @@ flowchart LR
 </details>
 
 <details>
-<summary>2. Opening `OPENING` — hero, score wall, Score Overview, accounting compact</summary>
+<summary>2. Opening `OPENING` � hero, score wall, Score Overview, accounting compact</summary>
 
 <details>
-<summary>2.1 Opening Contract Card — what remains visible and what moves down</summary>
+<summary>2.1 Opening Contract Card � what remains visible and what moves down</summary>
 
 | Visible top | Collapsed / lower |
 | --- | --- |
@@ -290,7 +290,7 @@ flowchart LR
 </details>
 
 <details>
-<summary>2.2 Mandatory opening elements — hero + score wall visible; heavy context collapsed</summary>
+<summary>2.2 Mandatory opening elements � hero + score wall visible; heavy context collapsed</summary>
 
 | Area | Required model | Cold rule |
 | --- | --- | --- |
@@ -311,7 +311,7 @@ flowchart LR
 </details>
 
 <details>
-<summary>2.3 Accounting Compact — short form published in the opening</summary>
+<summary>2.3 Accounting Compact � short form published in the opening</summary>
 
 ```text
 Accounting Compact
@@ -332,7 +332,7 @@ Accounting Compact
 </details>
 
 <details>
-<summary>3. Executive verdict `CLOSE-OUT` — winner, under-spend, next move</summary>
+<summary>3. Executive verdict `CLOSE-OUT` � winner, under-spend, next move</summary>
 
 | Block | Minimum content |
 | --- | --- |
@@ -349,7 +349,7 @@ Accounting Compact
 - Without it, diffs remain too low and hard to read pedagogically.
 
 <details>
-<summary>3.1 Cold reading discipline — opening shape, good order, cold benchmark</summary>
+<summary>3.1 Cold reading discipline � opening shape, good order, cold benchmark</summary>
 
 <!-- diagram-readable-table -->
 | Reading order | Contains | Reader should understand |
@@ -410,7 +410,7 @@ If the reader must understand the tests first to understand the business winner,
 </details>
 
 <details>
-<summary>4. Business Flow Graph `GRAPH` — the pedagogical center of the report</summary>
+<summary>4. Business Flow Graph `GRAPH` � the pedagogical center of the report</summary>
 
 - Only the mandatory final-report slot remains here.
 - In this requirements document: collapsed by default.
@@ -432,10 +432,10 @@ If the reader must understand the tests first to understand the business winner,
 </details>
 
 <details>
-<summary>5. Proof and coverage `PROOF` — mapping, diff, Extent, artifact index</summary>
+<summary>5. Proof and coverage `PROOF` � mapping, diff, Extent, artifact index</summary>
 
 <details>
-<summary>5.1 Ownership = truth closed — claim -> run -> proof</summary>
+<summary>5.1 Ownership = truth closed � claim -> run -> proof</summary>
 
 | Column | What must exist |
 | --- | --- |
@@ -465,7 +465,7 @@ carrier = support only if the diff is not enough
 </details>
 
 <details>
-<summary>5.2 Artifact Index = where you reopen proof — what must be hyperlinked</summary>
+<summary>5.2 Artifact Index = where you reopen proof � what must be hyperlinked</summary>
 
 - Formula: `claim major -> run -> run diff -> Extent/XML -> verdict MD -> state file -> status`.
 - One row per major claim published in Verdict, Business Flow Graph, or Proof Mapping.
@@ -506,7 +506,7 @@ Artifact Index is mandatory per major claim; extra value does not replace it.
 </details>
 
 <details>
-<summary>5.3 Allowed extra value — freedom after the mandatory skeleton</summary>
+<summary>5.3 Allowed extra value � freedom after the mandatory skeleton</summary>
 
 | You may add | When it is worth it | Cold condition |
 | --- | --- | --- |
@@ -529,7 +529,7 @@ Artifact Index is mandatory per major claim; extra value does not replace it.
 </details>
 
 <details>
-<summary>6. Run audit band `AUDIT` — one cold band per run</summary>
+<summary>6. Run audit band `AUDIT` � one cold band per run</summary>
 
 | Column | Minimum content |
 | --- | --- |
@@ -559,10 +559,10 @@ Artifact Index is mandatory per major claim; extra value does not replace it.
 </details>
 
 <details>
-<summary>7. Closure truth `CLOSE-OUT` — countability, legality, next move</summary>
+<summary>7. Closure truth `CLOSE-OUT` � countability, legality, next move</summary>
 
 <details>
-<summary>7.1 Separate publication of closure truths — separates countability, runs consumed, and next move</summary>
+<summary>7.1 Separate publication of closure truths � separates countability, runs consumed, and next move</summary>
 
 | Must stay separate | What you publish |
 | --- | --- |
@@ -591,7 +591,7 @@ Artifact Index is mandatory per major claim; extra value does not replace it.
 </details>
 
 <details>
-<summary>8. Render and audit `AUDIT` — style, screenshot, hyperlinks</summary>
+<summary>8. Render and audit `AUDIT` � style, screenshot, hyperlinks</summary>
 
 | Check | Must be published |
 | --- | --- |
@@ -611,7 +611,7 @@ Artifact Index is mandatory per major claim; extra value does not replace it.
 - The publishing blocker must be linked explicitly.
 
 <details>
-<summary>8.1 MCP report contract `MCP` — what the tests verify automatically</summary>
+<summary>8.1 MCP report contract `MCP` � what the tests verify automatically</summary>
 
 | Report area | MCP rule | Invalid if |
 | --- | --- | --- |
@@ -620,9 +620,52 @@ Artifact Index is mandatory per major claim; extra value does not replace it.
 | Proof Mapping | claim -> run diff -> state -> execution proof -> cold verdict | the claim has only nice text, without an evidence row |
 | Score Overview | `Overall` respects the cap and canonical axes | reporting raises the score above substance or state |
 | MCP status | MCP-green means auditable; it does not automatically mean `html-ex`-ready | the report sells MCP green as teacher-grade score |
+| MCP close-out profile | final report is based on `testng-mcp-package-closeout.xml`, publishes total/passed for this subcollection, and has 0 failures, 0 errors, 0 skipped | report mixes publishability with `testng-mcp-candidate.xml`, hides counts, or closes with skipped/failures |
+| MCP close-out evidence | Artifact Index links `validation/mcp/ExtentReport.html`, `ExtentReport.sha256`, `extent-origin.json`, gate result, XML, and `full-mcp-method-ledger.md` | the report says MCP PASS but hides the Extent report or final ledger |
+| MCP skipped disclosure | if a diagnostic MCP sweep has skipped tests, the page publishes separately total/passed/skipped, reason, `accepted=true`, cap, and ledger link | skipped appear only in the ledger/Extent and the reader cannot tell why they are not close-out |
 | External language | the final report does not mention `html-ex`, benchmark, or teacher | external calibration enters the published report |
 
 <!-- /table -->
-</details>
-</details>
 
+| Stage | Profile | Role |
+| --- | --- | --- |
+| MCP self health | `testng-mcp-self.xml` | health of the validator |
+| Run preflight | `testng-mcp-run-preflight.xml` | run evidence plus runtime/package accounting before package audit |
+| Full sweep | `testng-mcp-full.xml` | broad, secondary diagnosis |
+| Package audit | `testng-mcp-package-audit.xml` | pre-closeout |
+| Final close-out | `testng-mcp-package-closeout.xml` | basis of the final report |
+| Post-sync smoke | `testng-mcp-post-sync-smoke.xml` | fast verification after copying/link updates that the final report and validation/mcp still agree |
+| Final report close-out | `testng-mcp-final-report-closeout.xml` | last gate for final report form, hyperlinks, counts and browser-render evidence |
+| Candidate/html-ex | `testng-mcp-candidate.xml` | html-ex promotion: teacher-grade plus post-sync and final-report close-out |
+
+<!-- /table -->
+
+- The package is not closed only because `mcp-gate-result.md` is green.
+- The package closes only after the final profile `testng-mcp-package-closeout.xml` is fully green and after `testng-mcp-final-report-closeout.xml` is green if the final report has been composed; candidate/html-ex runs separately and becomes required before copying into `html-ex`.
+- The final auditable command is `mvn -q "-Dsurefire.suiteXmlFiles=src/test/resources/skills/mcp/testng-mcp-package-closeout.xml" "-Dmcp.package.root=<PACKAGE_ROOT>" "-Dmcp.project.root=<PROJECT_ROOT>" "-DforkCount=0" test`; `validation/mcp/ExtentReport.html`, XML, and `extent-origin.json` must prove exactly this subcollection.
+- After any final artifact/link update, run `testng-mcp-post-sync-smoke.xml`; it must be fully green and cannot replace close-out.
+- After the final report is composed and the agent has no planned changes, run `testng-mcp-final-report-closeout.xml`; this is the only place for browser/render and final publishable page checks.
+- For `html-ex` promotion, then run `testng-mcp-candidate.xml`; it repeats essential final checks so copied packages do not fail after replacement.
+- `testng-mcp-full.xml` may be linked only as a separate health sweep; it is not the final package close-out Extent.
+- The last readable surface is `analysis/langgraph-business-understanding.html`; it must explain MCP close-out and, separately, any accepted skipped tests from diagnostic sweeps.
+- Do not copy the explanation into README as a substitute. README may link, but the final report carries the publishable truth.
+
+```text
+Minimum MCP close-out summary in the final report
+profile = testng-mcp-package-closeout.xml
+command = mvn -q "-Dsurefire.suiteXmlFiles=src/test/resources/skills/mcp/testng-mcp-package-closeout.xml" "-Dmcp.package.root=<PACKAGE_ROOT>" "-Dmcp.project.root=<PROJECT_ROOT>" "-DforkCount=0" test
+result = total N, passed N, failures 0, errors 0, skipped 0
+primary Extent = validation/mcp/ExtentReport.html
+machine XML = validation/mcp/TEST-TestSuite.xml or validation/mcp/testng-results.xml
+provenance = validation/mcp/extent-origin.json + validation/mcp/ExtentReport.sha256
+ledger = validation/mcp/full-mcp-method-ledger.md
+gate = validation/mcp/mcp-gate-result.md
+kpi matrix = validation/mcp/mcp-kpi-matrix.md + validation/mcp/mcp-kpi-matrix.html
+kpi formula trace = validation/mcp/mcp-kpi-formula-trace.md
+kpi repair board = validation/mcp/mcp-kpi-repair-board.md + validation/mcp/mcp-kpi-repair-board.html
+kpi score cap rationale = validation/mcp/mcp-score-cap-rationale.md
+full sweep = diagnostic only / not used as final close-out
+candidate html-ex = separate / n/a
+```
+</details>
+</details>

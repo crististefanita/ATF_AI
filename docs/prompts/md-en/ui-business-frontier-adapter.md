@@ -1,5 +1,5 @@
-﻿<!-- Generated from ../html_EN/ui-business-frontier-adapter.html. Keep source of truth in html_EN. -->
-<!-- Source stylesheet: [shared-report-reference.css](../../shared-report-reference.css) -->
+<!-- Generated from ../html_EN/mcp/ui-business-frontier-adapter.html. Keep source of truth in html_EN. -->
+<!-- Source stylesheet: [shared-report-reference.css](../assets/shared-report-reference.css) -->
 
 # UI Business Frontier Adapter `UI` `FRONTIER` `PROOF` `HANDOFF`
 
@@ -34,7 +34,7 @@
 <!-- /table -->
 
 <details>
-<summary>UI runtime reference `RUNTIME` — UI bindings read live</summary>
+<summary>UI runtime reference `RUNTIME` � UI bindings read live</summary>
 
 | Binding | Role | Anti-drift |
 | --- | --- | --- |
@@ -51,7 +51,7 @@
 </details>
 
 <details>
-<summary>1. Adapter boundary `WRAPPER` — one UI run, not the package</summary>
+<summary>1. Adapter boundary `WRAPPER` � one UI run, not the package</summary>
 
 | Owns here | Forwards | Does not own here |
 | --- | --- | --- |
@@ -75,10 +75,10 @@
 - Strict document for the visible UI frontier.
 </details>
 
-## 2. Flows and diagrams — single UI run band
+## 2. Flows and diagrams � single UI run band
 
 <details>
-<summary>2.1 Quick reading map — short orientation</summary>
+<summary>2.1 Quick reading map � short orientation</summary>
 
 | Reading | Open | You learn |
 | --- | --- | --- |
@@ -90,7 +90,7 @@
 </details>
 
 <details open>
-<summary>2.2 UI lane over execute-and-understand-run `WRAPPER` — UI specialization, canonical fixation</summary>
+<summary>2.2 UI lane over execute-and-understand-run `WRAPPER` � UI specialization, canonical fixation</summary>
 
 <!-- diagram-readable-table -->
 | UI wrapper step | Adapter decision | Handoff |
@@ -146,7 +146,7 @@ flowchart LR
 </details>
 
 <details>
-<summary>2.2.1 Minimum UI adapter state machine — seed -> proof -> execute handoff</summary>
+<summary>2.2.1 Minimum UI adapter state machine � seed -> proof -> execute handoff</summary>
 
 ```text
 read_seed
@@ -179,7 +179,7 @@ read_seed
 </details>
 
 <details>
-<summary>2.3 Frontier UI: owned / partial / blocked — UI-adapter-specific reading</summary>
+<summary>2.3 Frontier UI: owned / partial / blocked � UI-adapter-specific reading</summary>
 
 <!-- diagram-readable-table -->
 | UI verdict | Means | Countability |
@@ -234,7 +234,7 @@ flowchart LR
 </details>
 
 <details>
-<summary>2.4 What the UI adapter hands off `HANDOFF` — handoff to execute-and-understand-run</summary>
+<summary>2.4 What the UI adapter hands off `HANDOFF` � handoff to execute-and-understand-run</summary>
 
 <!-- diagram-readable-table -->
 | Handoff item | Meaning | Execute uses it for |
@@ -281,7 +281,7 @@ flowchart LR
 </details>
 
 <details>
-<summary>3. Freedom model — heuristics, not a corset</summary>
+<summary>3. Freedom model � heuristics, not a corset</summary>
 
 | The agent is free on | Keep strict on |
 | --- | --- |
@@ -293,7 +293,7 @@ We do not impose rigid micro-steps. But tactical freedom does not reduce the tar
 </details>
 
 <details>
-<summary>4. Rapid reject gate `FRONTIER` — stops procedural work before winner selection</summary>
+<summary>4. Rapid reject gate `FRONTIER` � stops procedural work before winner selection</summary>
 
 | Reject cold if | Why | What you ask for instead |
 | --- | --- | --- |
@@ -309,7 +309,7 @@ We do not impose rigid micro-steps. But tactical freedom does not reduce the tar
 </details>
 
 <details>
-<summary>5. Choosing the UI business frontier — the seed is not the business model</summary>
+<summary>5. Choosing the UI business frontier � the seed is not the business model</summary>
 
 - Generic map: `baseline -> frontier -> owned / partial / blocked / fresh-round-only`.
 - Owner: `orchestrate-iterative-runs.html`.
@@ -333,7 +333,7 @@ Business object first, selector second. Hand off actor, intent, visible step, re
 </details>
 
 <details>
-<summary>6. Meaning of UI proof `PROOF` — what the adapter explains, not what it fixes</summary>
+<summary>6. Meaning of UI proof `PROOF` � what the adapter explains, not what it fixes</summary>
 
 - `3.4` hands off the UI meaning of the proof.
 - `execute-and-understand-run.html` manages canonical fixation.
@@ -351,7 +351,7 @@ For UI, proof without the explanation of visible anchors remains incomplete.
 </details>
 
 <details>
-<summary>7. Feedback UI for next agent `HANDOFF` — lessons, not a file inventory</summary>
+<summary>7. Feedback UI for next agent `HANDOFF` � lessons, not a file inventory</summary>
 
 | Category | When it appears | What the next agent must learn |
 | --- | --- | --- |
@@ -365,7 +365,7 @@ For UI, proof without the explanation of visible anchors remains incomplete.
 </details>
 
 <details>
-<summary>8. Handoff to execute-and-understand-run `HANDOFF` — what the UI wrapper returns</summary>
+<summary>8. Handoff to execute-and-understand-run `HANDOFF` � what the UI wrapper returns</summary>
 
 ```text
 the UI adapter returns
@@ -393,7 +393,7 @@ the UI adapter returns
 </details>
 
 <details>
-<summary>9. Common support references `RUNTIME` — runtime, architecture, benchmarks</summary>
+<summary>9. Common support references `RUNTIME` � runtime, architecture, benchmarks</summary>
 
 | Source | Cold role | What must not be done |
 | --- | --- | --- |

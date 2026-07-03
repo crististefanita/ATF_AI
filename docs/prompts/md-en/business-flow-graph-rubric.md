@@ -1,5 +1,5 @@
-﻿<!-- Generated from ../html_EN/business-flow-graph-rubric.html. Keep source of truth in html_EN. -->
-<!-- Source stylesheet: [shared-report-reference.css](../../shared-report-reference.css) -->
+<!-- Generated from ../html_EN/mcp/business-flow-graph-rubric.html. Keep source of truth in html_EN. -->
+<!-- Source stylesheet: [shared-report-reference.css](../assets/shared-report-reference.css) -->
 
 # Business Flow Graph Rubric `APP MAP` `OVERLAY` `NODE` `CLOSURE`
 
@@ -16,6 +16,8 @@
 | `APP MAP` | the real application: lanes, actors, intents, business objects |
 | `OVERLAY` | what the package touched: owned, partial, blocked, fresh-round-only |
 | `NODE` | actor -> intent -> business object -> result |
+| `ANCHOR` | the durable business record or transaction that gives the graph a center |
+| `RELATION` | verb labels on edges: owns, anchors, classifies, captures, submits, confirms, awaits |
 | `LEGEND` | test details, run id, repair, diff, Extent, and procedural jargon |
 | `CLOSURE` | the hard object or real rupture left for the next round |
 | `INVALID` | the graph becomes a package journal, technical suite, or run list |
@@ -33,6 +35,21 @@
 
 The application is the map. The package is the overlay. If the overlay becomes the map, the graph must be redrawn.
 
+<details open>
+<summary>0. Construction sequence `ANCHOR` - what made the calibrated graph work</summary>
+
+| Step | Do this before drawing | Reject when |
+| --- | --- | --- |
+| 1. business anchor | Name the durable record or transaction that gives the graph a center: invoice, support case, order, message, payment ledger. | The center is a run, suite, helper, report, XML, Extent or generic "flow". |
+| 2. actor and intent | Name who wants the outcome and why the product should preserve or expose it. | The first visible node is a technical action or test fixture. |
+| 3. owned object | Highlight the primary owned business object with the strongest visual emphasis. | All nodes look equally important or the graph has no primary object. |
+| 4. relationship labels | Label arrows with business verbs such as owns, anchors, classifies, captures, submits, confirms, reopens, awaits. | Arrows are only chronology or unlabeled plumbing. |
+| 5. frontier | Render the next object as dashed/capped and explicitly not owned. | The graph ends with success even though the business lifecycle is still open. |
+| 6. proof boundary | Send run IDs, XML, Extent, diff, state and method names to Proof Mapping, Run Audit or a collapsed proof strip. | Proof artifacts become business nodes. |
+
+Start from the business object, not from the evidence. Evidence proves the map; it is not the map.
+</details>
+
 <details>
 <summary>Micro-example of a good node</summary>
 
@@ -47,7 +64,7 @@ The application is the map. The package is the overlay. If the overlay becomes t
 </details>
 
 <details>
-<summary>Minimum contract — map, overlay, closure</summary>
+<summary>Minimum contract � map, overlay, closure</summary>
 
 | Block | Rule |
 | --- | --- |
@@ -70,7 +87,7 @@ The application is the map. The package is the overlay. If the overlay becomes t
 </details>
 
 <details open>
-<summary>1. Canonical LangGraph `APP MAP` — macro-map -> overlay -> closure</summary>
+<summary>1. Canonical LangGraph `APP MAP` � macro-map -> overlay -> closure</summary>
 
 <!-- diagram-readable-table -->
 | Graph layer | Answers | Invalid if |
@@ -112,7 +129,7 @@ Short formula:
 application macro-map -> package overlay -> next closure pressure.
 
 <details>
-<summary>1.1 Reusable Mermaid micro-template — aligned with html-ex and shared CSS</summary>
+<summary>1.1 Reusable Mermaid micro-template � aligned with html-ex and shared CSS</summary>
 
 - The template is a starting point, not copied business.
 - The visual style must remain compatible with `shared-report-reference.css`.
@@ -152,12 +169,14 @@ flowchart TD
 </details>
 </details>
 <details>
-<summary>2. Minimum rubric `NODE` — what to verify before publishing</summary>
+<summary>2. Minimum rubric `NODE` � what to verify before publishing</summary>
 
 | Rubric | Must be visible | Invalidates |
 | --- | --- | --- |
 | application map | real product macro-zones | the graph starts directly from runs or technical families |
 | package overlay | what this package changed over the map | the overlay becomes the main map |
+| visual hierarchy | primary owned object is highlighted; frontier is separated and dashed/capped | flat chain, tiny graph in a large panel, no obvious center |
+| relationship labels | arrows explain business dependency | unlabeled arrows or only procedural sequence |
 | node template | actor -> intent -> business object -> result owned/partial/blocked | the node cannot be read as a real business object |
 | business object | actor, intent, object, result | nodes with helper, locator, class name, repair |
 | closure pressure | heavy object or remaining real rupture | the graph stops without next truth |
@@ -180,7 +199,7 @@ flowchart TD
 </details>
 
 <details>
-<summary>2.1 MCP business trace `MCP` — anti-token-spam, pro-structural evidence</summary>
+<summary>2.1 MCP business trace `MCP` � anti-token-spam, pro-structural evidence</summary>
 
 | Must appear | Where | Why |
 | --- | --- | --- |
@@ -196,7 +215,7 @@ flowchart TD
 </details>
 
 <details>
-<summary>3. Good vs bad `NODE` — very short examples</summary>
+<summary>3. Good vs bad `NODE` � very short examples</summary>
 
 | Type | Good | Bad |
 | --- | --- | --- |
@@ -211,11 +230,10 @@ flowchart TD
 </details>
 
 <details>
-<summary>4. Bad smells `INVALID` — when cooling down the graph</summary>
+<summary>4. Bad smells `INVALID` � when cooling down the graph</summary>
 
 - If the reader remembers `run_03`, `repair`, `reentry` before the business lane, the graph is too procedural.
 - If the application macro-map fits in a corner while the overlay occupies everything, the report is package-first.
 - If the nodes already contain proof, diff, and explanation, the graph is trying to do too much.
 - If the legend repeats the whole graph, it is no longer a legend; it is a poorly disguised essay.
 </details>
-

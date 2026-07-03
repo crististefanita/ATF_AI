@@ -1,5 +1,5 @@
-﻿<!-- Generated from ../html_EN/score-overview-reference.html. Keep source of truth in html_EN. -->
-<!-- Source stylesheet: [shared-report-reference.css](../../shared-report-reference.css) -->
+<!-- Generated from ../html_EN/mcp/score-overview-reference.html. Keep source of truth in html_EN. -->
+<!-- Source stylesheet: [shared-report-reference.css](../assets/shared-report-reference.css) -->
 
 # Score Overview Reference `SCORE` `OVERALL` `CAP` `REUSE`
 
@@ -32,7 +32,7 @@
 Overall = canonical calculation from axes; it is not set aesthetically in HTML.
 
 <details>
-<summary>Minimum mechanical model — closed by default</summary>
+<summary>Minimum mechanical model � closed by default</summary>
 
 | Step | Action |
 | --- | --- |
@@ -45,7 +45,7 @@ Overall = canonical calculation from axes; it is not set aesthetically in HTML.
 </details>
 
 <details>
-<summary>Minimum contract — reference closed by default</summary>
+<summary>Minimum contract � reference closed by default</summary>
 
 | Element | Rule |
 | --- | --- |
@@ -61,10 +61,10 @@ Overall = canonical calculation from axes; it is not set aesthetically in HTML.
 <!-- /table -->
 </details>
 
-## 1. Flows and diagrams — how the section is read
+## 1. Flows and diagrams � how the section is read
 
 <details>
-<summary>1.1 Quick reading map — short orientation</summary>
+<summary>1.1 Quick reading map � short orientation</summary>
 
 | If you ask | Open | You learn cold |
 | --- | --- | --- |
@@ -77,7 +77,7 @@ Overall = canonical calculation from axes; it is not set aesthetically in HTML.
 </details>
 
 <details open>
-<summary>1.2 Minimal state machine — cards -> overview -> limit</summary>
+<summary>1.2 Minimal state machine � cards -> overview -> limit</summary>
 
 ```text
 read_cards
@@ -101,7 +101,7 @@ read_cards
 </details>
 
 <details>
-<summary>1.3 Minimum rubric for cards — what deserves to remain visible</summary>
+<summary>1.3 Minimum rubric for cards � what deserves to remain visible</summary>
 
 | Axis | What question it answers | What invalidates it |
 | --- | --- | --- |
@@ -126,7 +126,7 @@ read_cards
 </details>
 
 <details>
-<summary>1.3.1 Canonical table model — taken as form from the good example</summary>
+<summary>1.3.1 Canonical table model � taken as form from the good example</summary>
 
 | Axis | Score | Weight | What it depends on |
 | --- | --- | --- | --- |
@@ -152,7 +152,7 @@ with long prose or self-defense.
 - `Overall` does not disappear from the table.
 </details>
 
-### 1.4 How to write Overall — cold number, not prize
+### 1.4 How to write Overall � cold number, not prize
 
 <!-- diagram-readable-table -->
 | Score block | Function | Guardrail |
@@ -192,7 +192,7 @@ Overall = final package score; it is read cold, not as a prize for form.
 <!-- /table -->
 
 <details>
-<summary>1.4.1 MCP candidate threshold `MCP` — MCP-valid does not mean html-ex-ready</summary>
+<summary>1.4.1 MCP candidate threshold `MCP` � MCP-valid does not mean html-ex-ready</summary>
 
 | Value | Role | Consequence |
 | --- | --- | --- |
@@ -205,12 +205,15 @@ Overall = final package score; it is read cold, not as a prize for form.
 <!-- /table -->
 
 - The same constant has two applications: run-level quality and candidate-level teacher threshold.
-- `fullContract` can pass below the threshold.
-- `htmlExampleCandidateContract` cannot pass below the threshold.
+- `testng-mcp-full.xml` is health/diagnostic and can be green without making the package teacher-ready.
+- `testng-mcp-package-closeout.xml` decides whether the package is MCP-publishable: Extent/XML/ledger/gate/origin complete, with 0 failures, 0 errors, and 0 skipped in the final profile.
+- `testng-mcp-candidate.xml` is separate promotion and must fail when `Overall` or `cap` are below the threshold.
+- Candidate/html-ex is a separate promotion over publishability; it does not repair or replace MCP close-out.
+- This protects honesty: technically valid does not mean library example.
 </details>
 
 <details>
-<summary>1.5 Typical mistakes — what must be avoided</summary>
+<summary>1.5 Typical mistakes � what must be avoided</summary>
 
 | Mistake | Why it is wrong | Good cold form |
 | --- | --- | --- |
@@ -223,7 +226,7 @@ Overall = final package score; it is read cold, not as a prize for form.
 <!-- /table -->
 </details>
 <details>
-<summary>2. Minimum reusable template — what can be copied without drift</summary>
+<summary>2. Minimum reusable template � what can be copied without drift</summary>
 
 ```text
   <details>

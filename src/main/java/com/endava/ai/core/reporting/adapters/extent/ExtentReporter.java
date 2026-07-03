@@ -1,38 +1,49 @@
 package com.endava.ai.core.reporting.adapters.extent;
 
-import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import com.aventstack.extentreports.reporter.configuration.Theme;
+import com.endava.ai.core.reporting.ReportText;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import static com.endava.ai.core.config.ConfigManager.require;
 
 public final class ExtentReporter {
 
-    private final ExtentReports extent;
+    private final ExtentReportSession session;
+    private boolean reportContentCreated;
 
     public ExtentReporter() {
-        this.extent = createExtentReports();
+        this.session = ExtentReportSession.fromRuntime();
     }
 
     ExtentTest createTest(String name, String description) {
-        return extent.createTest(
-                name != null ? name : "Test",
-                description != null ? description : ""
+        reportContentCreated = true;
+        return session.createTest(name, description);
+    }
+
+    ExtentTest createClassNode(String className) {
+        reportContentCreated = true;
+        return session.createTest(
+                ReportText.simpleClassName(className),
+                className != null ? className : ""
         );
     }
 
+    void assignTestMetadata(ExtentTest test, String className) {
+        if (test == null || className == null || className.isBlank()) {
+            return;
+        }
+        test.assignCategory(ReportText.packageName(className));
+        test.assignCategory(ReportText.simpleClassName(className));
+    }
+
     public void attachScreenshot(ExtentTest test, String base64, String title) {
-        test.addScreenCaptureFromBase64String(
-                base64,
-                title != null ? title : "Screenshot"
-        );
+        if (test == null || base64 == null || base64.isBlank()) {
+            return;
+        }
+
+        String label = title != null && !title.isBlank() ? title : "Screenshot";
+        test.info(MediaEntityBuilder.createScreenCaptureFromBase64String(base64, label).build());
     }
 
     public void logCodeBlock(ExtentTest target, String content) {
@@ -54,35 +65,15 @@ public final class ExtentReporter {
     }
 
     public void flush() {
-        extent.flush();
+        session.flushAndStandardize();
     }
 
-    private ExtentReports createExtentReports() {
-        String reportsDir = require("reports.dir");
-        boolean tsEnabled = Boolean.parseBoolean(require("reports.timestamp.enabled"));
-        String tsFormat = require("reports.timestamp.format");
-
-        String fileName = tsEnabled
-                ? "ExtentReport_" + new SimpleDateFormat(tsFormat).format(new Date()) + ".html"
-                : "ExtentReport.html";
-
-        Path reportPath = Paths.get(reportsDir, fileName);
-
-        ExtentSparkReporter spark = new ExtentSparkReporter(reportPath.toString());
-        spark.config().setTheme(Theme.DARK);
-        spark.config().setDocumentTitle("Test Report");
-        spark.config().setReportName("Automation Framework");
-        spark.config().setCss(
-                ".card-title a, .card-title a span, .card-title span, .card-header, .node span {"
-                        + "color: #f2f6fb !important;"
-                        + "}"
-                        + ".fa, .badge i {"
-                        + "color: #f2f6fb !important;"
-                        + "}"
-        );
-
-        ExtentReports reports = new ExtentReports();
-        reports.attachReporter(spark);
-        return reports;
+    public Path reportPath() {
+        return session.reportPath();
     }
+
+    public boolean hasReportContent() {
+        return reportContentCreated;
+    }
+
 }

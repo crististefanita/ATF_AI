@@ -1,20 +1,29 @@
 package com.endava.ai.atf.ui.component;
 
-import com.endava.ai.core.listener.NoFrameworkReporting;
+import com.endava.ai.core.support.contract.ids.AtfContractNarrativeIds;
+import com.endava.ai.core.support.contract.AtfContractSuiteRef;
+import com.endava.ai.core.support.contract.AtfContractRef;
+import com.endava.ai.core.reporting.listener.TestListener;
 import com.endava.ai.core.reporting.StepLogger;
-import com.endava.ai.ui.pages.LoginPage;
-import com.endava.ai.ui.pages.RegisterPage;
-import com.endava.ai.ui.validation.RegistrationValidation;
+import com.endava.ai.atf.ui.component.support.StubUiEngine;
+import com.endava.ai.atf.ui.component.support.UiEngineThreadLocalTestSupport;
+import com.endava.ai.ui.support.pages.LoginPage;
+import com.endava.ai.ui.support.pages.RegisterPage;
+import com.endava.ai.ui.support.validation.RegistrationValidation;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
+import java.time.Duration;
 
-@NoFrameworkReporting
+@AtfContractSuiteRef(AtfContractNarrativeIds.Suite.REGISTRATION_VALIDATION_CONTRACT_TEST_SUITE)
+@AtfContractRef(AtfContractNarrativeIds.Contract.REGISTRATION_VALIDATION_CONTRACT_TEST_CLASS)
+@Listeners(TestListener.class)
 public class RegistrationValidationContractTest {
 
     @AfterMethod
@@ -31,10 +40,14 @@ public class RegistrationValidationContractTest {
 
         new RegistrationValidation().assertRedirectedToLogin();
 
-        Assert.assertEquals(engine.waitedUrlFragment, "/auth/login");
-        Assert.assertEquals(engine.waitedUrlSeconds, 5);
-        Assert.assertEquals(engine.waitedVisibleSelector, LoginPage.LOGIN_BUTTON);
-        Assert.assertEquals(engine.waitedVisibleSeconds, 15);
+        Assert.assertTrue(
+                engine.getVisibleCallCount(LoginPage.LOGIN_BUTTON) >= 1,
+                "Expected validation to inspect the login surface"
+        );
+        Assert.assertTrue(
+                engine.getVisibleCallCount(RegisterPage.FIRST_NAME) >= 1,
+                "Expected validation to distinguish login from register surface"
+        );
     }
 
     @Test
@@ -51,6 +64,7 @@ public class RegistrationValidationContractTest {
         );
     }
 
+    @Test
     public void password_error_validation_waits_for_expected_message_fragment() {
         SequencedTextUiEngine engine = new SequencedTextUiEngine()
                 .withTextSequence(RegisterPage.PASSWORD_ERROR, "", "Password must be longer than 6 characters");
@@ -72,18 +86,23 @@ public class RegistrationValidationContractTest {
 
         AssertionError error = Assert.expectThrows(
                 AssertionError.class,
-                () -> new RegistrationValidation().assertPhoneErrorContains("Phone number is invalid")
+                () -> new RegistrationValidation().assertPhoneErrorContains("Phone number is invalid", Duration.ofSeconds(1))
         );
 
         Assert.assertTrue(
                 error.getMessage().contains("Phone validation message"),
                 "Expected failure message to identify the phone validation contract"
         );
+        Assert.assertTrue(
+                engine.getTextCallCount(RegisterPage.PHONE_ERROR) < 10,
+                "Expected negative validation contract to use a short timeout, not the global UI wait"
+        );
     }
 
     private static final class SequencedTextUiEngine extends StubUiEngine {
         private final Map<String, Deque<String>> textSequences = new HashMap<>();
         private final Map<String, Integer> textCallCounts = new HashMap<>();
+        private final Map<String, Integer> visibleCallCounts = new HashMap<>();
         private String currentUrl = "https://practicesoftwaretesting.com/auth/register";
         private String waitedUrlFragment;
         private int waitedUrlSeconds;
@@ -108,6 +127,10 @@ public class RegistrationValidationContractTest {
             return textCallCounts.getOrDefault(locator, 0);
         }
 
+        private int getVisibleCallCount(String locator) {
+            return visibleCallCounts.getOrDefault(locator, 0);
+        }
+
         @Override
         public String getText(String cssSelector) {
             textCallCounts.merge(cssSelector, 1, Integer::sum);
@@ -123,6 +146,13 @@ public class RegistrationValidationContractTest {
 
         @Override
         public boolean isVisible(String cssSelector) {
+            visibleCallCounts.merge(cssSelector, 1, Integer::sum);
+            if (LoginPage.LOGIN_BUTTON.equals(cssSelector)) {
+                return currentUrl.contains("/auth/login");
+            }
+            if (RegisterPage.FIRST_NAME.equals(cssSelector)) {
+                return currentUrl.contains("/auth/register");
+            }
             return true;
         }
 

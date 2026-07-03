@@ -1,3 +1,0 @@
-links_checked=88
-missing=0
-all_links_ok

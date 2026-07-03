@@ -1,5 +1,5 @@
-﻿<!-- Generated from ../html_EN/execute-and-understand-run.html. Keep source of truth in html_EN. -->
-<!-- Source stylesheet: [shared-report-reference.css](../../shared-report-reference.css) -->
+<!-- Generated from ../html_EN/mcp/execute-and-understand-run.html. Keep source of truth in html_EN. -->
+<!-- Source stylesheet: [shared-report-reference.css](../assets/shared-report-reference.css) -->
 
 # Execute and Understand Run `RUN` `ARTIFACTS` `PROOF` `STATE`
 
@@ -46,7 +46,7 @@
 </details>
 
 <details>
-<summary>Common Runtime Reference — runtime, targets, diffs, state files</summary>
+<summary>Common Runtime Reference � runtime, targets, diffs, state files</summary>
 
 | Topic | What it fixes | Action here | Artifact |
 | --- | --- | --- | --- |
@@ -64,7 +64,7 @@
 </details>
 
 <details>
-<summary>1. Execution boundary — artifact law, not launch law</summary>
+<summary>1. Execution boundary � artifact law, not launch law</summary>
 
 | Owns | Does not own |
 | --- | --- |
@@ -78,10 +78,10 @@
 - The orchestrator verifies next-move legality; execution does not launch itself.
 </details>
 
-## 2. Flows and diagrams — artifact band
+## 2. Flows and diagrams � artifact band
 
 <details>
-<summary>2.1 Quick reading map — short orientation</summary>
+<summary>2.1 Quick reading map � short orientation</summary>
 
 | If you ask | Open | You learn cold |
 | --- | --- | --- |
@@ -99,7 +99,7 @@
 </details>
 
 <details open>
-<summary>2.2 Runtime -> orchestrator -> execution -> reporting split — who fixes, who decides, who publishes</summary>
+<summary>2.2 Runtime -> orchestrator -> execution -> reporting split � who fixes, who decides, who publishes</summary>
 
 <!-- diagram-readable-table -->
 | Owner / stage | Controls | Execution must preserve |
@@ -144,7 +144,7 @@ flowchart LR
 </details>
 
 <details open>
-<summary>2.3 Single run cycle — what each run must do</summary>
+<summary>2.3 Single run cycle � what each run must do</summary>
 
 <!-- diagram-readable-table -->
 | Run step | What happens | Required output |
@@ -190,7 +190,7 @@ flowchart LR
 </details>
 
 <details>
-<summary>2.3.1 Mandatory Artifact Spine `STATE` — minimum verifiable state</summary>
+<summary>2.3.1 Mandatory Artifact Spine `STATE` � minimum verifiable state</summary>
 
 | Artifact | Owner | When it is written | Missing it blocks |
 | --- | --- | --- | --- |
@@ -272,7 +272,7 @@ flowchart LR
 </details>
 
 <details>
-<summary>2.3.2 MCP checks on run `MCP` — what must pass without saving prose</summary>
+<summary>2.3.2 MCP checks on run `MCP` � what must pass without saving prose</summary>
 
 | Gate | Checks | Fails if |
 | --- | --- | --- |
@@ -284,12 +284,31 @@ flowchart LR
 
 <!-- /table -->
 
+| Execution stage | Profile / command | What does the result mean? | Do not confuse with |
+| --- | --- | --- | --- |
+| Business tests of the run | normal Maven/TestNG package command | proves that generated tests pass and produce Extent/XML per run | MCP package close-out |
+| MCP self health | `src/test/resources/skills/mcp/testng-mcp-self.xml` | validator health | generated-package publishability |
+| Run preflight | `src/test/resources/skills/mcp/testng-mcp-run-preflight.xml` | run evidence plus runtime/package accounting while the agent can still calibrate | frozen close-out evidence |
+| Full sweep | `src/test/resources/skills/mcp/testng-mcp-full.xml` | broad, secondary diagnosis | final publishable report |
+| Package audit | `src/test/resources/skills/mcp/testng-mcp-package-audit.xml` | pre-closeout | Candidate/html-ex promotion |
+| Final close-out | `src/test/resources/skills/mcp/testng-mcp-package-closeout.xml` | basis of the final report | full sweep or candidate report |
+| Post-sync smoke | `src/test/resources/skills/mcp/testng-mcp-post-sync-smoke.xml` | fast verification that final report, Extent, origin, hash, XML, gate and KPI links remain synchronized after copy/update | does not produce final close-out |
+| Final report close-out | `src/test/resources/skills/mcp/testng-mcp-final-report-closeout.xml` | last gate for final `langgraph-business-understanding.html` shape, links, counts and browser-render evidence | does not run during calibration or replace package-closeout |
+| Candidate/html-ex | `src/test/resources/skills/mcp/testng-mcp-candidate.xml` | html-ex promotion: teacher-grade plus post-sync and final-report close-out | does not replace package-closeout; run only when copying/promoting |
+
+<!-- /table -->
+
 - MCP does not validate the concrete business of the application.
 - MCP validates that evidence is real, reopenable, and aligned with architecture.
+- At the end, the agent must not close until `testng-mcp-package-closeout.xml` has run on the frozen package with 0 failures, 0 errors, and 0 skipped in the final subcollection.
+- If `validation/mcp` or final-report links are synchronized after close-out, run `testng-mcp-post-sync-smoke.xml`: 0 failures, 0 errors, 0 skipped.
+- When the agent declares there are no more changes planned, run `testng-mcp-final-report-closeout.xml` exactly once; if it fails, repair only the public report/link/sync surface and rerun the same profile.
+- If the package is an `html-ex` candidate, run `testng-mcp-candidate.xml` after that, so promotion does not hide package close-out issues.
+- The MCP test count is profile-specific and version-specific. Counts such as 89, 90, or 102 are only acceptable when the report names the profile, command, and ledger that explain them.
 </details>
 
 <details>
-<summary>2.4 Grouping rule inside the same run — when an area deserves more tests</summary>
+<summary>2.4 Grouping rule inside the same run � when an area deserves more tests</summary>
 
 | If you reached this point | You judge | Good form |
 | --- | --- | --- |
@@ -311,7 +330,7 @@ flowchart LR
 </details>
 
 <details>
-<summary>2.4.1 Execution details — before / during / after the run</summary>
+<summary>2.4.1 Execution details � before / during / after the run</summary>
 
 | Stage | Cold checklist | Do not accept |
 | --- | --- | --- |
@@ -325,7 +344,7 @@ The run closes the active target or publishes a defect / severe blocker with rer
 </details>
 
 <details>
-<summary>2.5 Artifact chain — claim -> diff -> proof -> feedback</summary>
+<summary>2.5 Artifact chain � claim -> diff -> proof -> feedback</summary>
 
 - `2.3.1 Mandatory Artifact Spine` = the contract.
 - `2.5` = reading order.
@@ -357,7 +376,7 @@ The run closes the active target or publishes a defect / severe blocker with rer
 </details>
 
 <details>
-<summary>3. Minimum package skeleton — small, extensible spine</summary>
+<summary>3. Minimum package skeleton � small, extensible spine</summary>
 
 ```text
 <timestamp>/
@@ -438,7 +457,7 @@ The run closes the active target or publishes a defect / severe blocker with rer
 - Without a relevant diff, history is not fully fixed.
 
 <details>
-<summary>3.1 Execution Gate Card `STATE` — binary package summary</summary>
+<summary>3.1 Execution Gate Card `STATE` � binary package summary</summary>
 
 ```text
 execution-gate-card.md
@@ -476,7 +495,7 @@ ready for report handoff = yes / no
 </details>
 
 <details>
-<summary>4. Artifact taxonomy — always / conditional / support</summary>
+<summary>4. Artifact taxonomy � always / conditional / support</summary>
 
 - Mandatory Artifact Spine = the contract.
 - Taxonomy = artifact severity.
@@ -496,7 +515,7 @@ ready for report handoff = yes / no
 </details>
 
 <details>
-<summary>5. Diff-first rule for evolution `PROOF` — git diff explains iterative evolution</summary>
+<summary>5. Diff-first rule for evolution `PROOF` � git diff explains iterative evolution</summary>
 
 | If | You save | Role |
 | --- | --- | --- |
@@ -538,7 +557,7 @@ per package
 </details>
 
 <details>
-<summary>6. Extent as execution report `PROOF` — steps, status, screenshots when they exist</summary>
+<summary>6. Extent as execution report `PROOF` � steps, status, screenshots when they exist</summary>
 
 | Case | What is required | Impact if missing |
 | --- | --- | --- |
@@ -556,7 +575,7 @@ per package
 </details>
 
 <details>
-<summary>7. Feedback constructive per run `HANDOFF` — maximum self-learning</summary>
+<summary>7. Feedback constructive per run `HANDOFF` � maximum self-learning</summary>
 
 | Tip feedback | File recomandat | Continut |
 | --- | --- | --- |
@@ -574,7 +593,7 @@ per package
 </details>
 
 <details>
-<summary>8. Rigid minimum templates `ACCOUNTING` — few, but firm</summary>
+<summary>8. Rigid minimum templates `ACCOUNTING` � few, but firm</summary>
 
 ```text
 artifact-checklist.md
@@ -656,4 +675,3 @@ required proof = ...
 fallback / blocker = ...
 ```
 </details>
-

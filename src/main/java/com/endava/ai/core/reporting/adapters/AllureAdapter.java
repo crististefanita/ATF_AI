@@ -1,13 +1,14 @@
 package com.endava.ai.core.reporting.adapters;
 
 import com.endava.ai.core.reporting.ReportLogger;
-import com.endava.ai.core.reporting.internal.ReportingEngine;
+import com.endava.ai.core.reporting.TestStatus;
+import com.endava.ai.core.reporting.adapters.allure.AllureAttachmentPublisher;
+import com.endava.ai.core.reporting.adapters.allure.AllureParameterFactory;
 import com.endava.ai.core.reporting.adapters.allure.AllureReporter;
+import com.endava.ai.core.reporting.adapters.allure.AllureStepBuffer;
 import com.endava.ai.core.reporting.adapters.allure.AllureStepContext;
-import io.qameta.allure.model.Parameter;
-import io.qameta.allure.model.Status;
-
-import java.util.Base64;
+import com.endava.ai.core.reporting.adapters.allure.AllureStepPublisher;
+import com.endava.ai.core.reporting.internal.ReportingEngine;
 
 public final class AllureAdapter implements ReportLogger {
 
@@ -15,6 +16,9 @@ public final class AllureAdapter implements ReportLogger {
 
     private final AllureReporter reporter = new AllureReporter();
     private final AllureStepContext stepContext = new AllureStepContext(reporter);
+    private final AllureStepBuffer stepBuffer = new AllureStepBuffer();
+    private final AllureStepPublisher stepPublisher = new AllureStepPublisher(reporter, stepContext, stepBuffer);
+    private final AllureAttachmentPublisher attachments = new AllureAttachmentPublisher(reporter);
 
     private AllureAdapter() {}
 
@@ -28,62 +32,48 @@ public final class AllureAdapter implements ReportLogger {
     }
 
     @Override
-    public void endTest(String status) {
+    public void endTest(TestStatus status) {
         if (isInactive()) return;
-        stepContext.clear();
+        stepPublisher.flushBufferedStepsIfPossible();
+        stepPublisher.clear();
     }
 
     @Override
     public void startStep(String title) {
         if (isInactive()) return;
-        stepContext.startStep(title);
+        stepPublisher.startStep(title);
     }
 
     @Override
     public void logDetail(String detail) {
         if (isInactive() || isBlank(detail)) return;
-        stepContext.addParam(param("detail", detail));
+        stepPublisher.addParameter(AllureParameterFactory.fromDetail(detail));
     }
 
     @Override
     public void pass(String message) {
         if (isInactive()) return;
-        stepContext.finishStep(Status.PASSED);
+        stepPublisher.passCurrentStep();
     }
 
     @Override
     public void fail(String message, String stacktrace) {
         if (isInactive()) return;
 
-        if (!isBlank(message)) {
-            stepContext.addParam(param("error", message));
-        }
-
-        stepContext.finishStep(Status.FAILED);
-
-        if (!isBlank(stacktrace)) {
-            reporter.attachText(
-                    "Step failure details",
-                    "text/plain",
-                    ".txt",
-                    stacktrace
-            );
-        }
+        stepPublisher.failCurrentStep(isBlank(message) ? null : AllureParameterFactory.param("error", message));
+        attachments.attachFailureDetails(stacktrace);
     }
 
     @Override
     public void attachScreenshotBase64(String base64, String title) {
         if (isInactive() || isBlank(base64)) return;
-        reporter.attachPng(
-                title != null ? title : "Failure Screenshot",
-                Base64.getDecoder().decode(base64)
-        );
+        attachments.attachScreenshotBase64(base64, title);
     }
 
     @Override
     public void logCodeBlock(String content) {
         if (isInactive() || isBlank(content)) return;
-        reporter.attachText("Payload", "application/json", ".json", content);
+        attachments.attachJsonPayload(content);
     }
 
     @Override
@@ -92,10 +82,6 @@ public final class AllureAdapter implements ReportLogger {
 
     private boolean isInactive() {
         return !ReportingEngine.current().isAllure();
-    }
-
-    private static Parameter param(String name, String value) {
-        return new Parameter().setName(name).setValue(value);
     }
 
     private static boolean isBlank(String s) {

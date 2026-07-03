@@ -166,6 +166,31 @@ h3 {
   margin-top: 10px;
 }
 
+.toolbar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0 14px;
+}
+
+.toolbar button {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(15, 23, 36, .8);
+  color: var(--muted);
+  padding: 4px 10px;
+  font: 700 12px/1.35 var(--sans);
+  cursor: pointer;
+}
+
+.toolbar button:hover,
+.toolbar button:focus-visible {
+  border-color: var(--accent);
+  color: var(--text);
+  outline: none;
+}
+
 .pill,
 .badge {
   display: inline-block;
@@ -766,6 +791,15 @@ a:hover {
   fill: var(--muted);
   font: 12px var(--sans);
   text-anchor: middle;
+  text-shadow: none;
+  filter: none;
+}
+
+.diag .el {
+  fill: #d7e3ff;
+  font: 700 12px var(--sans);
+  text-anchor: middle;
+  letter-spacing: 0;
   text-shadow: none;
   filter: none;
 }

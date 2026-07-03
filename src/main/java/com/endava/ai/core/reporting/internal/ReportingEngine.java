@@ -1,6 +1,7 @@
 package com.endava.ai.core.reporting.internal;
 
-import com.endava.ai.core.config.ConfigManager;
+import com.endava.ai.core.support.config.ConfigManager;
+import com.endava.ai.core.support.config.ReportingConfigKeys;
 import com.endava.ai.core.reporting.ReportLogger;
 import com.endava.ai.core.reporting.adapters.AllureAdapter;
 import com.endava.ai.core.reporting.adapters.ExtentAdapter;
@@ -39,14 +40,14 @@ public enum ReportingEngine {
 
     public static ReportingEngine from(String raw) {
         if (raw == null || raw.isBlank()) {
-            throw new IllegalArgumentException("reporting.engine is not set");
+            throw new IllegalArgumentException(ReportingConfigKeys.REPORTING_ENGINE + " is not set");
         }
         return ReportingEngine.valueOf(raw.toUpperCase(Locale.ROOT));
     }
 
     public static ReportingEngine current() {
         return from(
-                ConfigManager.get("reporting.engine", EXTENT.name())
+                ConfigManager.get(ReportingConfigKeys.REPORTING_ENGINE, EXTENT.name())
         );
     }
 

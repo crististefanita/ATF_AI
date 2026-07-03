@@ -1,40 +1,48 @@
 package com.endava.ai.core.reporting;
 
-import com.endava.ai.core.config.ConfigManager;
-import com.endava.ai.core.reporting.internal.ReportingEngine;
-
-import java.util.function.Supplier;
+import com.endava.ai.core.support.config.ConfigManager;
+import com.endava.ai.core.support.config.ReportingConfigKeys;
 
 public final class ReportingManager {
 
-    private static ReportLogger logger;
+    private static final ReportingSession SESSION = new ReportingSession();
 
     private ReportingManager() {
     }
 
+    public static void beginSuite() {
+        SESSION.beginSuite();
+    }
+
+    public static void endSuite() {
+        SESSION.endSuite();
+    }
+
     public static synchronized ReportLogger getLogger() {
-        return getOrCreate(() -> ConfigManager.require("reporting.engine"));
+        return SESSION.getOrCreate(() -> ConfigManager.require(ReportingConfigKeys.REPORTING_ENGINE));
     }
 
     public static synchronized ReportLogger tryGetLogger() {
-        return getOrCreate(() -> ConfigManager.get("reporting.engine", null));
+        return SESSION.getOrCreate(() -> ConfigManager.get(ReportingConfigKeys.REPORTING_ENGINE, null));
     }
 
     public static void setLoggerForTests(ReportLogger testLogger) {
-        logger = testLogger;
+        SESSION.setLoggerForTests(testLogger);
+    }
+
+    public static ReportLogger testLoggerForTests() {
+        return SESSION.testLoggerForTests();
     }
 
     public static void reset() {
-        logger = null;
+        SESSION.reset();
     }
 
-    private static ReportLogger getOrCreate(Supplier<String> engineSupplier) {
-        if (logger != null) return logger;
+    public static boolean isSuiteActiveForTests() {
+        return SESSION.isSuiteActive();
+    }
 
-        String raw = engineSupplier.get();
-        if (raw == null || raw.isBlank()) return null;
-
-        logger = ReportingEngine.from(raw).createLogger();
-        return logger;
+    public static long suiteGenerationForTests() {
+        return SESSION.generation();
     }
 }

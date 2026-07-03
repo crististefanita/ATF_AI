@@ -1,9 +1,9 @@
 package com.endava.ai.api.tests;
 
 import com.endava.ai.api.core.BaseTestAPI;
-import com.endava.ai.api.model.UserResponse;
-import com.endava.ai.api.steps.UsersSteps;
-import com.endava.ai.api.validation.SchemaValidator;
+import com.endava.ai.api.support.model.UserResponse;
+import com.endava.ai.api.support.steps.UsersSteps;
+import com.endava.ai.api.core.validation.SchemaValidator;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -21,7 +21,7 @@ public class PositiveUserTests extends BaseTestAPI {
             groups = {"api", "api.users", "api.flow"})
     public void create_user_success() {
         Response resp = users.createValidUserResponse();
-        SchemaValidator.validate(resp, "schemas/user.json");
+        SchemaValidator.validate(resp, "tests/schemas/user.json");
 
         UserResponse created = resp.as(UserResponse.class);
         Assert.assertNotNull(created.id);

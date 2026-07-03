@@ -1,5 +1,5 @@
-﻿<!-- Generated from ../html_EN/pretraining-reference.html. Keep source of truth in html_EN. -->
-<!-- Source stylesheet: [shared-report-reference.css](../../shared-report-reference.css) -->
+<!-- Generated from ../html_EN/mcp/pretraining-reference.html. Keep source of truth in html_EN. -->
+<!-- Source stylesheet: [shared-report-reference.css](../assets/shared-report-reference.css) -->
 
 # Pretraining Reference `SOURCE` `INTAKE` `ANTI-COPY` `DECISION`
 
@@ -39,7 +39,7 @@ Good pretraining does not inherit a verdict. It extracts pressure, severity, sha
 </details>
 
 <details>
-<summary>Minimum contract `INTAKE` — sources, extraction, anti-copy</summary>
+<summary>Minimum contract `INTAKE` � sources, extraction, anti-copy</summary>
 
 | Step | Rule |
 | --- | --- |
@@ -55,7 +55,7 @@ The owner decides sources and intake. The orchestrator consumes only the audited
 </details>
 
 <details open>
-<summary>1. Flow pretraining `INTAKE` — sources -> intake -> rerank</summary>
+<summary>1. Flow pretraining `INTAKE` � sources -> intake -> rerank</summary>
 
 <!-- diagram-readable-table -->
 | Source / output | Extract | Do not inherit |
@@ -97,7 +97,7 @@ flowchart TD
 </details>
 
 <details>
-<summary>2. Sources and what you extract — not everything you read becomes law</summary>
+<summary>2. Sources and what you extract � not everything you read becomes law</summary>
 
 - Section 2 = extraction contract.
 - Question: what do you take from each source?
@@ -116,7 +116,7 @@ flowchart TD
 </details>
 
 <details open>
-<summary>3. Cold reread order — order matters</summary>
+<summary>3. Cold reread order � order matters</summary>
 
 - The order must not change the owners.
 - Purpose: prevents warm pretraining.
@@ -167,7 +167,7 @@ flowchart LR
 </details>
 
 <details>
-<summary>4. Pretraining Intake Card `INTAKE` — mandatory template</summary>
+<summary>4. Pretraining Intake Card `INTAKE` � mandatory template</summary>
 
 | Context | When the brief is written | Why |
 | --- | --- | --- |
@@ -208,7 +208,7 @@ cold decision = launch / rerank / stop
 </details>
 
 <details>
-<summary>5. What pretraining does not consume — anti-copy rules</summary>
+<summary>5. What pretraining does not consume � anti-copy rules</summary>
 
 - Do not consume chat verdicts as a truth source.
 - Do not consume an entire benchmark as a business or score template.
@@ -219,7 +219,7 @@ cold decision = launch / rerank / stop
 </details>
 
 <details>
-<summary>6. Final decision card `DECISION` — what pretraining produces for the orchestrator</summary>
+<summary>6. Final decision card `DECISION` � what pretraining produces for the orchestrator</summary>
 
 | Field | Short answer | If missing |
 | --- | --- | --- |

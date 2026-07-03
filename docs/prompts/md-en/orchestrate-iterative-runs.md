@@ -1,5 +1,5 @@
-﻿<!-- Generated from ../html_EN/orchestrate-iterative-runs.html. Keep source of truth in html_EN. -->
-<!-- Source stylesheet: [shared-report-reference.css](../../shared-report-reference.css) -->
+<!-- Generated from ../html_EN/mcp/orchestrate-iterative-runs.html. Keep source of truth in html_EN. -->
+<!-- Source stylesheet: [shared-report-reference.css](../assets/shared-report-reference.css) -->
 
 # Orchestrate Iterative Runs `RUNTIME` `LEGALITY` `RUN WINDOW` `HANDOFF`
 
@@ -18,6 +18,7 @@
 | `RUN WINDOW` | package slots and the separation between produced tests and consumed runs |
 | `HANDOFF` | handoff to the pretraining owner, run wrapper, and reporting |
 | `INVALID` | mixed targets, premature stop, or reporting used as legality |
+| `FINAL MCP` | canonical contract in `1. MCP executable shadow`: final Extent comes from `testng-mcp-package-closeout.xml`, with 0 failures, 0 errors, 0 skipped |
 
 <!-- /table -->
 
@@ -31,7 +32,7 @@
 <!-- /table -->
 
 <details>
-<summary>Minimum contract — 3 lines, closed by default</summary>
+<summary>Minimum contract � 3 lines, closed by default</summary>
 
 | Axis | Cold rule |
 | --- | --- |
@@ -45,7 +46,7 @@
 ## Common Runtime Reference
 
 <details>
-<summary>Active constants — reference closed by default</summary>
+<summary>Active constants � reference closed by default</summary>
 
 | Constant | Measures | Owner | Artifact that fixes it | If missing or below it |
 | --- | --- | --- | --- | --- |
@@ -59,21 +60,91 @@
 ## 1. MCP executable shadow
 
 <details>
-<summary>Validation profiles — auditable does not automatically mean teacher-ready</summary>
+<summary>MCP executable shadow � profiles, close-out, and final artifacts</summary>
 
-| MCP profile | What it checks cold | When it matters |
+<!-- diagram-readable-table -->
+| Stage | Role | Can produce final `validation/mcp`? |
 | --- | --- | --- |
-| `fullContract` | runtime, state files, diffs, artifacts, links, final report | before close-out |
-| `uiContract` | Extent/XML per run, real countability, UI architecture, no fake proof | for proof-bearing UI packages |
-| `htmlReportContract` | shared CSS, collapsible sections, graph default-open, Score Overview, Proof Mapping | after report generation |
-| `htmlExampleCandidateContract` | `Overall`, cap, and business trace above `RUN_EXPECTED_DELTA_QUALITY` | only when the package wants to enter html-ex |
+| MCP self health | validator health | no |
+| Full sweep | broad secondary diagnosis | no |
+| Package audit | pre-closeout | no |
+| Final close-out | final MCP report | yes, only with `0 failures / 0 errors / 0 skipped` |
+| Candidate/html-ex | separate promotion | no |
 
 <!-- /table -->
 
-- **MCP-green** = auditable and reopenable package.
-- **Candidate-green** = teacher-ready example for the library.
-- A package can be technically correct and still too weak for `html-ex`.
-- The MCP report must show the matrix: rule -> HTML req -> artifact -> observed failure code.
+```text
+MCP self health
+  -> Full sweep
+     -> Package audit
+        -> Final close-out
+           -> validation/mcp/ExtentReport.html
+
+Candidate/html-ex is a separate promotion branch, not the final close-out artifact.
+```
+
+<details>
+<summary>1.1 Canonical profile table � closed by default</summary>
+
+| Stage | Profile | Role | Can it be the final artifact? |
+| --- | --- | --- | --- |
+| MCP self health | `testng-mcp-self.xml` | health of the validator | No |
+| Run preflight | `testng-mcp-run-preflight.xml` | run evidence plus runtime/package accounting before close-out | No: calibration gate before package audit |
+| Full sweep | `testng-mcp-full.xml` | broad, secondary diagnosis | No |
+| Package audit | `testng-mcp-package-audit.xml` | pre-closeout | No |
+| Final close-out | `testng-mcp-package-closeout.xml` | the basis of the final report | **Yes: 0 failures, 0 errors, 0 skipped** |
+| Post-sync smoke | `testng-mcp-post-sync-smoke.xml` | fast verification after copying or updating final `validation/mcp` links | No: confirms frozen artifacts, does not produce them |
+| Final report close-out | `testng-mcp-final-report-closeout.xml` | last gate for final report links, counts and browser-render evidence | No: verifies the page after freeze |
+| Candidate/html-ex | `testng-mcp-candidate.xml` | html-ex promotion: teacher-grade plus post-sync and final-report close-out | No, but required before copying into html-ex |
+
+<!-- /table -->
+</details>
+
+<details>
+<summary>1.2 Final command � the only source for final validation/mcp</summary>
+
+```text
+mvn -q "-Dsurefire.suiteXmlFiles=src/test/resources/skills/mcp/testng-mcp-package-closeout.xml" "-Dmcp.package.root=<PACKAGE_ROOT>" "-Dmcp.project.root=<PROJECT_ROOT>" "-DforkCount=0" test
+```
+
+- `validation/mcp/ExtentReport.html`, XML, ledger, gate, SHA, `extent-origin.json`, KPI matrix and formula trace must describe the same close-out execution.
+- `testng-mcp-full.xml` may be published only as a separate labeled secondary diagnostic.
+- After copying/regenerating final artifacts or fixing final report hyperlinks, run `testng-mcp-post-sync-smoke.xml`; if it fails, repair link/hash/XML/gate sync without masking close-out.
+- The last step, after there are no planned changes, is `testng-mcp-final-report-closeout.xml`; it keeps browser/render and final `langgraph-business-understanding.html` checks out of calibration rounds.
+- `testng-mcp-candidate.xml` decides html-ex promotion and must run before copying; it does not repair or replace close-out, but includes post-sync/final-report checks to avoid surprises after copying.
+</details>
+
+<details>
+<summary>1.3 Mandatory artifacts � final MCP spine</summary>
+
+| Artifact | Cold contract |
+| --- | --- |
+| `validation/mcp/ExtentReport.html` | Extent produced by close-out, not full sweep or ad-hoc HTML |
+| `validation/mcp/ExtentReport.sha256` | hash of the exact final HTML |
+| `validation/mcp/extent-origin.json` | canonical command, exit 0, SHA, and size |
+| `validation/mcp/TEST-TestSuite.xml` / `validation/mcp/testng-results.xml` | XML of the same close-out subcollection |
+| `validation/mcp/full-mcp-method-ledger.md` | method ledger with the same counts |
+| `validation/mcp/mcp-gate-result.md` | verdict, profile, command, and counts |
+| `analysis/langgraph-business-understanding.html` | hyperlink to artifacts and final MCP summary |
+
+<!-- /table -->
+</details>
+
+<details>
+<summary>1.4 Anti-confusion � what is not sold as final green</summary>
+
+| Situation | Verdict | Correction |
+| --- | --- | --- |
+| Full sweep with skipped | diagnosis, not close-out | run close-out with 0 skipped |
+| Gate mentions close-out, but XML/origin are full | mixed artifact, blocker | regenerate all of `validation/mcp` from the canonical command |
+| Candidate/html-ex green | separate promotion | do not mix it into publishability |
+| Different counts between profiles | normal only if the profiles are named | publish profile, command, total/passed/failures/errors/skipped, and ledger |
+
+<!-- /table -->
+</details>
+
+<details>
+<summary>1.5 Canonical MCP diagnostic � feedback format</summary>
 
 | Canonical MCP diagnostic | What it must say |
 | --- | --- |
@@ -85,8 +156,10 @@
 <!-- /table -->
 </details>
 
+</details>
+
 <details open>
-<summary>2. Owner Map — who decides what</summary>
+<summary>2. Owner Map � who decides what</summary>
 
 <!-- diagram-readable-table -->
 | Owner / stage | Owns | Hands off |
@@ -122,7 +195,7 @@ flowchart LR
 </details>
 
 <details>
-<summary>2.1 Owner / delegation matrix — roles and handoffs</summary>
+<summary>2.1 Owner / delegation matrix � roles and handoffs</summary>
 
 | Owner | Role | Delegation |
 | --- | --- | --- |
@@ -147,10 +220,10 @@ flowchart LR
 </details>
 
 <details open>
-<summary>3. Flows and diagrams — orchestrator work band</summary>
+<summary>3. Flows and diagrams � orchestrator work band</summary>
 
 <details>
-<summary>3.1 Quick reading map — short orientation</summary>
+<summary>3.1 Quick reading map � short orientation</summary>
 
 | If you ask | Open | Learn cold |
 | --- | --- | --- |
@@ -170,7 +243,7 @@ flowchart LR
 </details>
 
 <details>
-<summary>3.1.1 Canonical legal-move card — context -> legal move -> artifact</summary>
+<summary>3.1.1 Canonical legal-move card � context -> legal move -> artifact</summary>
 
 | Context | Legal move | Required artifact |
 | --- | --- | --- |
@@ -187,7 +260,7 @@ flowchart LR
 </details>
 
 <details>
-<summary>3.2 Minimum package order — short state machine</summary>
+<summary>3.2 Minimum package order � short state machine</summary>
 
 ```text
 read_runtime
@@ -223,7 +296,7 @@ read_runtime
 </details>
 
 <details open>
-<summary>3.3 Package lane — active window, each slot with proof</summary>
+<summary>3.3 Package lane � active window, each slot with proof</summary>
 
 <!-- diagram-readable-table -->
 | Package lane step | Orchestrator asks | Output |
@@ -276,7 +349,7 @@ flowchart LR
 </details>
 
 <details>
-<summary>3.4 Pretraining gate — the orchestrator consumes the audited artifact, not the doctrine</summary>
+<summary>3.4 Pretraining gate � the orchestrator consumes the audited artifact, not the doctrine</summary>
 
 - Complete owner: `pretraining-reference.html`.
 - The orchestrator verifies only that pretraining was executed and saved auditably.
@@ -301,7 +374,7 @@ orchestrator does not own = source doctrine, benchmark interpretation, anti-copy
 </details>
 
 <details>
-<summary>3.5 Business novelty acquisition — what the orchestrator maximizes</summary>
+<summary>3.5 Business novelty acquisition � what the orchestrator maximizes</summary>
 
 <!-- diagram-readable-table -->
 | State | Meaning | Orchestrator decision |
@@ -370,7 +443,7 @@ carrier = support only if the diff is not enough
 </details>
 
 <details>
-<summary>3.6 Same-package vs fresh ROOT_RUN — legality distinctions</summary>
+<summary>3.6 Same-package vs fresh ROOT_RUN � legality distinctions</summary>
 
 <!-- diagram-readable-table -->
 | Decision point | Meaning | Minimum evidence |
@@ -438,7 +511,7 @@ flowchart LR
 </details>
 
 <details>
-<summary>3.7 Minimum handoff to reporting — reporting receives only frozen truth</summary>
+<summary>3.7 Minimum handoff to reporting � reporting receives only frozen truth</summary>
 
 <!-- diagram-readable-table -->
 | Handoff item | Meaning | Reporting uses it for |
@@ -485,7 +558,7 @@ flowchart LR
 </details>
 
 <details>
-<summary>4. Launch legality — before each run</summary>
+<summary>4. Launch legality � before each run</summary>
 
 ```text
 before run_n
@@ -512,7 +585,7 @@ before run_n
 </details>
 
 <details>
-<summary>5. Delegation contract — active adapter, no false future paths</summary>
+<summary>5. Delegation contract � active adapter, no false future paths</summary>
 
 | When | Delegation | What must come back |
 | --- | --- | --- |
@@ -524,7 +597,7 @@ before run_n
 </details>
 
 <details>
-<summary>6. Stop / continue / fresh-root law — separate truths</summary>
+<summary>6. Stop / continue / fresh-root law � separate truths</summary>
 
 | Verdict | Legal when | Do not use for |
 | --- | --- | --- |
@@ -555,7 +628,7 @@ must be published separately
 </details>
 
 <details>
-<summary>7. Handoff required by the orchestrator — what reporting receives</summary>
+<summary>7. Handoff required by the orchestrator � what reporting receives</summary>
 
 ```text
 the orchestrator hands off to reporting
@@ -579,4 +652,3 @@ the orchestrator hands off to reporting
 - If fixation is missing: block final reporting.
 - Or mark it explicitly as partial.
 </details>
-
