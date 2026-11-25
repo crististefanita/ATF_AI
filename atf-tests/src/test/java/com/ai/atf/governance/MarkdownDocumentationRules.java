@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -18,6 +19,10 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import javax.swing.text.MutableAttributeSet;
+import javax.swing.text.html.HTML;
+import javax.swing.text.html.HTMLEditorKit;
+import javax.swing.text.html.parser.ParserDelegator;
 
 /** Narrow, executable documentation contracts, without J0 workspace or style catalogs. */
 final class MarkdownDocumentationRules {
@@ -778,7 +783,10 @@ final class MarkdownDocumentationRules {
     }
 
     static List<String> validateRetainedLivingPrinciples(Path root) throws Exception {
-        return validateRetainedLivingPrinciples(root, Files.readString(root.resolve(LIVING + ".md")));
+        String markdown = Files.readString(root.resolve(LIVING + ".md"));
+        List<String> findings = validateRetainedLivingPrinciples(root, markdown);
+        findings.addAll(validateRetainedLivingProjection(root, markdown, Files.readString(root.resolve(LIVING + ".html"))));
+        return findings;
     }
 
     /** A bounded source/check map; MAINTAINED is not an inferred execution or coverage verdict. */
@@ -865,6 +873,123 @@ final class MarkdownDocumentationRules {
         }
         if (count == 0) findings.add(prefix + (check ? "check route must name an existing Java test source"
                 : "implementation route is not an owned existing Java source"));
+    }
+
+    /** Compare declared table projection only; matching text/hrefs cannot establish application acceptance. */
+    static List<String> validateRetainedLivingProjection(Path root, String markdown, String html) throws Exception {
+        List<String> findings = new ArrayList<>();
+        String prefix = LIVING + ".html:1 DOC-LIVING-PRINCIPLES HTML ";
+        List<String> visible = withoutFences(List.of(markdown.replace("\r\n", "\n").split("\n", -1)),
+                root, root.resolve(LIVING + ".md"), new ArrayList<>(), new HashSet<>());
+        Map<String, String[]> expected = new LinkedHashMap<>();
+        boolean section = false;
+        boolean headingSeen = false;
+        for (String sourceLine : visible) {
+            String line = sourceLine.strip();
+            if (line.equals("<a id=\"retained-principles\"></a>")) { section = true; continue; }
+            if (!section) continue;
+            if (line.matches("^#{1,3}\\s+.*")) { if (headingSeen) break; headingSeen = true; }
+            if (!line.matches("^\\|\\s*LD-[^|]*\\|.*")) continue;
+            String[] cells = line.split("\\|", -1);
+            if (cells.length != 8 || expected.put(cells[1].strip(), cells) != null) {
+                findings.add(prefix + "projection requires a unique six-column Markdown principle map");
+                return findings;
+            }
+        }
+        if (expected.size() != 12) {
+            findings.add(prefix + "projection requires the complete twelve-row Markdown principle map");
+            return findings;
+        }
+        LivingHtmlProjection projection = new LivingHtmlProjection();
+        new ParserDelegator().parse(new StringReader(html), projection, true);
+        if (projection.headings != 1) {
+            findings.add(prefix + "require one retained-principles heading outside literal examples");
+            return findings;
+        }
+        Set<String> seen = new HashSet<>();
+        String[] fields = {"ID", "intent", "implementation", "check", "state", "proof boundary"};
+        for (List<LivingHtmlCell> cells : projection.rows) {
+                String id = cells.get(0).text.toString().strip();
+                if (!expected.containsKey(id)) { findings.add(prefix + "unknown principle " + id); continue; }
+                if (!seen.add(id)) findings.add(prefix + "duplicate " + id);
+                if (cells.size() != 6) { findings.add(prefix + id + " requires six projected columns"); continue; }
+                String[] sourceCells = expected.get(id);
+                for (int column = 0; column < cells.size(); column++) {
+                    String sourceText = normalizeHeading(sourceCells[column + 1]
+                            .replaceAll("\\[([^\\]]+)]\\([^)]+\\)", "$1"));
+                    String actualText = cells.get(column).text.toString().replaceAll("\\s+", " ").strip();
+                    if (!sourceText.equals(actualText)) {
+                        findings.add(prefix + id + " " + fields[column] + " differs from Markdown; expected="
+                                + sourceText + "; observed=" + actualText);
+                    }
+                    if (column == 2 || column == 3) {
+                        List<String> sourceLinks = new ArrayList<>();
+                        Matcher links = LINK.matcher(sourceCells[column + 1]);
+                        while (links.find()) sourceLinks.add(links.group(1).strip());
+                        List<String> actualLinks = cells.get(column).links;
+                        if (!sourceLinks.equals(actualLinks)) findings.add(prefix + id + " " + fields[column]
+                                + " hrefs differ from Markdown; expected=" + sourceLinks + "; observed=" + actualLinks);
+                    }
+                }
+        }
+        for (String id : expected.keySet()) if (!seen.contains(id)) findings.add(prefix + "missing " + id);
+        return findings;
+    }
+
+    private static final class LivingHtmlCell {
+        private final StringBuilder text = new StringBuilder();
+        private final List<String> links = new ArrayList<>();
+    }
+
+    /** Narrow JDK HTML callbacks for the rendered six-column table, not a general HTML5 validator. */
+    private static final class LivingHtmlProjection extends HTMLEditorKit.ParserCallback {
+        private static final Set<String> LITERAL = Set.of("pre", "code", "script", "style", "textarea");
+        private final List<List<LivingHtmlCell>> rows = new ArrayList<>();
+        private List<LivingHtmlCell> row;
+        private LivingHtmlCell cell;
+        private int headings;
+        private int literalDepth;
+        private boolean section;
+
+        @Override
+        public void handleStartTag(HTML.Tag tag, MutableAttributeSet attributes, int position) {
+            String name = tag.toString();
+            if (LITERAL.contains(name) && !(name.equals("code") && cell != null && literalDepth == 0)) {
+                literalDepth++;
+                return;
+            }
+            if (literalDepth > 0) return;
+            if (name.matches("h[1-3]")) {
+                boolean selected = name.equals("h3") && "retained-principles".equals(attributes.getAttribute(HTML.Attribute.ID));
+                if (selected) headings++;
+                section = selected;
+            }
+            if (!section) return;
+            if (name.equals("tr")) { row = new ArrayList<>(); cell = null; }
+            else if (name.equals("td") && row != null) { cell = new LivingHtmlCell(); row.add(cell); }
+            else if (name.equals("a") && cell != null) {
+                Object href = attributes.getAttribute(HTML.Attribute.HREF);
+                if (href != null) cell.links.add(href.toString());
+            }
+        }
+
+        @Override
+        public void handleEndTag(HTML.Tag tag, int position) {
+            String name = tag.toString();
+            if (LITERAL.contains(name) && literalDepth > 0) { literalDepth--; return; }
+            if (literalDepth > 0 || !section) return;
+            if (name.equals("td")) cell = null;
+            else if (name.equals("tr")) {
+                if (row != null && !row.isEmpty()) rows.add(row);
+                row = null;
+                cell = null;
+            }
+        }
+
+        @Override
+        public void handleText(char[] data, int position) {
+            if (section && literalDepth == 0 && cell != null) cell.text.append(data);
+        }
     }
 
     private static String meta(String html, String name) {

@@ -19,6 +19,8 @@ function image(index){const header=Buffer.alloc(13);header.writeUInt32BE(1);head
 function fixture(options={}){
   const classes=[...new Set(retainedUiE2eInventory.map(entry=>entry.className))],expected={};
   for(const entry of retainedUiE2eInventory)(expected[entry.className]||=[]).push(entry.methodName);
+  const setupClasses=['com.ai.ui.tests.AccountAuthenticatedAreaTests','com.ai.ui.tests.ProfileContactAddressMemoryTests'];
+  const firstNative=Object.fromEntries(classes.map(name=>[name,expected[name].slice().sort((left,right)=>left.localeCompare(right))[0]]));
   const engine=options.engine||'playwright',source={
     schemaVersion:1,role:'RETAINED_PRODUCT_E2E_EXECUTION',runId:'component-native-record-'+engine,engine,targetUrl:'https://application.example.test',
     sourceCommit:'a'.repeat(40),harnessSha256:sha('component runner source'),
@@ -42,6 +44,32 @@ function fixture(options={}){
       return {id,html:card(id,label,status,details,terminals,children)};
     };
     if(status!=='SKIP'){
+      const setupOwner=options.lateSetupFor===entry.className?expected[entry.className][0]:firstNative[entry.className];
+      if(setupClasses.includes(entry.className)&&entry.methodName===setupOwner&&options.omitSetupFor!==entry.className){
+        const addSetup=()=>{
+          const setupId=String(next++),beforeId=String(next++),outside=options.setupOutside===entry.className;
+          const phaseDefinitions=[
+            {phase:'registration navigation',label:'Navigate to URL: '+source.targetUrl+'/auth/register',details:['base.url='+source.targetUrl,'relativePath=/auth/register'],terminal:'Navigated'},
+            {phase:'registration email action',label:'Type into element: Email address',details:['locator=input[data-test=email]','value=component-user@example.test'],terminal:'Typed'},
+            {phase:'registration password action',label:'Type into element: Password',details:['locator=input[data-test=password]','value=<redacted>'],terminal:'Typed'},
+            {phase:'registration submission',label:'Click on: Register',details:['locator=button[data-test=register-submit]'],terminal:'Clicked'},
+            {phase:'login email action',label:'Type into element: Email address',details:['locator=input[data-test=email]','value=component-user@example.test'],terminal:'Typed'},
+            {phase:'login password action',label:'Type into element: Password',details:['locator=input[data-test=password]','value=<redacted>'],terminal:'Typed'},
+            {phase:'login submission',label:'Click on: Login',details:['locator=button[data-test=login-submit]'],terminal:'Clicked'},
+            {phase:'profile navigation',label:'Open URL: '+source.targetUrl+'/account/profile',details:['base.url='+source.targetUrl,'relativePath=/account/profile'],terminal:'Opened'}
+          ].filter(phase=>options.missingSetupPhase?.className!==entry.className||options.missingSetupPhase.phase!==phase.phase)
+            .map(phase=>options.omitNavigation?{...phase,details:phase.details.filter(detail=>!detail.startsWith('base.url='))}:phase);
+          if(options.reorderedSetupFor===entry.className)phaseDefinitions.push(phaseDefinitions.shift());
+          const actionHtml=phaseDefinitions.map(phase=>append(phase.label,'PASS',phase.details,[{status:'PASS',text:phase.terminal}],outside?null:beforeId).html).join('');
+          const setupTitle=options.wrongSetupParentFor===entry.className?'TEST BODY':'SETUP';
+          steps.push({id:setupId,parentId:null,title:setupTitle,status:'PASS',details:[],terminalMessages:[]});
+          steps.push({id:beforeId,parentId:setupId,title:'@BeforeClass',status:'PASS',details:[],terminalMessages:[]});
+          chunks.push(card(setupId,setupTitle,'PASS',[],[],card(beforeId,'@BeforeClass','PASS',[],[],outside?'':actionHtml)));
+          if(outside)chunks.push(actionHtml);
+        };
+        addSetup();
+        if(options.duplicateSetupFor===entry.className)addSetup();
+      }
       if(!options.omitNavigation){
         const navigation=append('Navigate to URL: '+(options.navigationTarget||source.targetUrl)+'/auth/register','PASS',['base.url='+(options.navigationTarget||source.targetUrl),'relativePath=/auth/register'],[{status:'PASS',text:'Navigated'}]);chunks.push(navigation.html);
       }
@@ -64,7 +92,7 @@ function fixture(options={}){
     if(options.corruptPng===key){png=Buffer.from(png);png[45]^=1;}
     const screenshots=status==='PASS'&&options.omitScreenshot!==key?[{sha256:sha(png),mimeType:'image/png',bytes:png.length,width:1,height:1,label:'Final Screenshot'}]:[];
     const media=screenshots.length?'<div class="row mb-3"><div class="col-md-3"><a data-featherlight="image" href="data:image/png;base64,'+png.toString('base64')+'"><span>base64 img</span></a><div class="title">'+(options.wrongImageLabel===key?'Decorative icon':'Final Screenshot')+'</div></div></div>':'';
-    htmlByClass.get(entry.className).push(card(nodeId,entry.methodName,status,[],[],chunks.join('')+media));
+    htmlByClass.get(entry.className).push({methodName:entry.methodName,html:card(nodeId,entry.methodName,status,[],[],chunks.join('')+media)});
     captures.push({className:entry.className,methodName:entry.methodName,methodTitle:entry.methodName,nodeId,classNodeId,status,steps,screenshots,
       validationState:status==='SKIP'||early?'NOT_REACHED':'REACHED',...(status==='SKIP'?{notReachedReason:'SKIPPED_BY_TESTNG'}:early?{notReachedReason:'FAILED_BEFORE_VALIDATION'}:{})});
     const marker=status==='FAIL'?'<failure message="Original native failure"><![CDATA[Original native failure <preserved>]]></failure>':status==='SKIP'?'<skipped message="Skipped by native dependency"/>':'';
@@ -78,7 +106,7 @@ function fixture(options={}){
   const totals={total:cases.length,passed:cases.filter(entry=>entry.status==='PASS').length,failed:cases.filter(entry=>entry.status==='FAIL').length,skipped:cases.filter(entry=>entry.status==='SKIP').length};
   const errors=options.configurationFailure?1:0;
   const xml='<?xml version="1.0" encoding="UTF-8"?><testsuite tests="'+totals.total+'" failures="'+(totals.failed-errors)+'" errors="'+errors+'" skipped="'+totals.skipped+'">'+cases.map(entry=>entry.xml).join('')+'</testsuite>';
-  const body=classes.map((name,index)=>'<li class="test-item" test-id="class-'+index+'"><p class="name">'+name.slice(name.lastIndexOf('.')+1)+'</p><div class="test-contents"><div class="detail-head">'+name+'</div>'+htmlByClass.get(name).join('')+'</div></li>').join('');
+  const body=classes.map((name,index)=>'<li class="test-item" test-id="class-'+index+'"><p class="name">'+name.slice(name.lastIndexOf('.')+1)+'</p><div class="test-contents"><div class="detail-head">'+name+'</div>'+htmlByClass.get(name).sort((left,right)=>left.methodName.localeCompare(right.methodName)).map(entry=>entry.html).join('')+'</div></li>').join('');
   const ledger='parentCount:'+totals.total+',passParent:'+totals.passed+',failParent:'+totals.failed+',skipParent:'+totals.skipped+',warningParent:0,childCount:0,passChild:0,failChild:0,warningChild:0,skipChild:0,infoChild:0,grandChildCount:0,passGrandChild:0,failGrandChild:0,warningGrandChild:0,skipGrandChild:0,infoGrandChild:0,eventsCount:0,passEvents:0,failEvents:0,warningEvents:0,skipEvents:0,infoEvents:0';
   const html='<!doctype html><html><body data-atf-report-mode="runtime-audited" data-atf-runtime-audit="true"><h3 data-atf-test-cases-total="true">'+totals.total+'</h3><script>var statusGroup = {'+ledger+'};</script><ul class="test-list">'+body+'</ul></body></html>';
   const sourceManifestText=JSON.stringify(source,null,2)+'\n';
@@ -96,7 +124,11 @@ for(const engine of ['playwright','selenium']){
     assert.equal(result.status,'PASSED');assert.equal(result.executionAttestation,'NOT_PROVIDED');
     assert.deepEqual(result.productTotals,{total:16,passed:16,failed:0,skipped:0});
     assert.equal(result.methods.length,16);assert.equal(result.methods.filter(entry=>entry.screenshots===1).length,16);
-    assert.ok(result.methods.every(entry=>entry.redactedInputs===1&&entry.validationCoverage==='COMPLETE'));
+    assert.ok(result.methods.every(entry=>entry.redactedInputs>=1&&entry.validationCoverage==='COMPLETE'));
+    assert.deepEqual(result.classSetup.map(entry=>entry.state),['COMPLETE','COMPLETE']);
+    assert.equal(result.classSetup[0].setupSubject,'com.ai.ui.tests.AccountAuthenticatedAreaTests#accountFavoritesAreaIsReachable');
+    assert.equal(result.classSetup[1].setupSubject,'com.ai.ui.tests.ProfileContactAddressMemoryTests#profileKeepsRegisteredCityAndState');
+    assert.ok(result.classSetup.every(entry=>entry.orderedActions.length===8));
     assert.equal(JSON.stringify(value),before,'Pure reconciliation must leave every input unchanged.');
   });
 }
@@ -142,7 +174,31 @@ test('captured navigation evidence must identify the declared application instea
   rejected(fixture({navigationTarget:'https://different.example.test'}),'E2E-ID');
   rejected(fixture({omitNavigation:true}),'E2E-ID');
   const statuses=Object.fromEntries(retainedUiE2eInventory.map(entry=>[subject(entry),'SKIP']));
-  assert.equal(verifyUiE2eAudit(fixture({statuses,omitNavigation:true})).navigationEvidence.state,'NOT_OBSERVED');
+  const result=verifyUiE2eAudit(fixture({statuses,omitNavigation:true}));
+  assert.equal(result.navigationEvidence.state,'NOT_OBSERVED');
+  assert.ok(result.classSetup.every(entry=>entry.state==='NOT_REACHED'));
+});
+test('class setup missing from both original HTML and capture cannot be hidden by successful product bodies',()=>{
+  for(const className of ['com.ai.ui.tests.AccountAuthenticatedAreaTests','com.ai.ui.tests.ProfileContactAddressMemoryTests']){
+    rejected(fixture({omitSetupFor:className}),'E2E-SETUP');
+  }
+});
+test('class setup must remain exactly once under the first native serialized method rather than capture inventory order',()=>{
+  const className='com.ai.ui.tests.AccountAuthenticatedAreaTests';
+  rejected(fixture({duplicateSetupFor:className}),'E2E-SETUP');
+  rejected(fixture({lateSetupFor:className}),'E2E-SETUP');
+  rejected(fixture({wrongSetupParentFor:className}),'E2E-SETUP');
+});
+test('registration login and profile precondition observations cannot be borrowed from test-body actions',()=>{
+  const className='com.ai.ui.tests.ProfileContactAddressMemoryTests';
+  rejected(fixture({setupOutside:className}),'E2E-SETUP');
+  rejected(fixture({reorderedSetupFor:className}),'E2E-SETUP');
+});
+test('each meaningful setup phase remains independently required without demanding a fixed action count',()=>{
+  const className='com.ai.ui.tests.AccountAuthenticatedAreaTests';
+  for(const phase of ['registration navigation','registration submission','login password action','login submission','profile navigation']){
+    rejected(fixture({missingSetupPhase:{className,phase}}),'E2E-SETUP');
+  }
 });
 test('duplicate, missing and unrelated native subjects cannot replace the retained inventory',()=>{
   const missing=fixture();missing.capture.methods.pop();rejected(missing,'E2E-SUBJECT');
