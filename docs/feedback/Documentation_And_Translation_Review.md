@@ -41,8 +41,10 @@ and the same 21 README paths; no runtime feature or product journey.
   factual checks, Java 11 examples, paired living source binding and exact
   diagnostic identity. J0-specific catalogs, style budgets, collapsed legends
   and a blanket diagram direction are not copied.
-- State: IN PROGRESS. Close only after the corrected source and both editions
-  pass their owned checks and the final tracked trees are reconciled.
+- State: VERIFIED for the documentation/governance and semantic README review
+  scope below. This does not certify every possible translation or diagram.
+- Delivered quality: 94, from correctness/verification/clarity 94/94/94. The
+  priority and baseline assessment above retain their original scope.
 
 ## Acceptance and proof boundaries
 
@@ -71,3 +73,48 @@ does not relabel them as executions of later documentation changes.
 
 G-014 and F-011 retain their independent TODOs. The LD-11 application-data cleanup
 obligation remains PARTIAL. The review adds no E2E flow improvement to feedback.
+
+## Verified review and execution
+
+The maintained source inventory now contains 48 Markdown documents, including
+this feedback record, and the paired Living HTML. All 21 Romanian READMEs were
+read against their English owners; 113 heading positions, all 20 ordinary code
+blocks, technical inline payloads, links, quantities and Mermaid topology are
+retained. Four Romanian README owners received scoped semantic/clarity repairs;
+the new governance section is translated completely. Other documents retain
+the same English source in both editions.
+
+| Verification | Captured source | Actual result | External record |
+|---|---|---|---|
+| Complete documentation, architecture and source-language governance owners | English `f51cceaefa898f6683775d6cce26b16699e24834` | 250/250 PASS, zero errors/failures/skips | modules-documentation-review-main-governance-01 |
+| Same owners with the explicit English peer | Romanian `76331087fcf4b37bdde3809ea0a889cd66abc14e` | 250/250 PASS, zero errors/failures/skips | modules-documentation-review-ro-governance-01 |
+| All maintained Node component/governance tools | English `f51cceaefa898f6683775d6cce26b16699e24834` | 182/182 PASS, zero cancelled/skipped/TODO cases | node-01 |
+| Focused new counterexamples, real repairs and diagnostic owners | Reviewed governance source, preserved file hashes before the checkpoint | 20 direct component invocations PASS | focused-01 |
+| Native desktop rendering | Preserved EN/RO governance source and updated Living HTML | 6 records, 10 SVG observations, 12 screenshots; no page/console/request/overflow findings | docsDiagram01 |
+
+The Java selection runs the existing DocumentationGovernanceTest,
+FrameworkArchitectureGovernanceTest and JavaSourceScannerTest with the other
+materialized edition explicitly supplied. Its 250 cases are governance results,
+not a rerun of every framework regression or the retained product E2Es. Native
+XML, source manifests, resolved arguments, logs and process exits are under
+`${ATF_WORK_ROOT}/runs`; Node and visual evidence use the review root above.
+
+The existing source guards now protect all maintained Markdown structure and
+known editorial markers. Independent negative cases reject technical-literal
+and numeric-table drift, then an actual correction clears the finding. Literal
+examples, heading returns, prose reflow and equivalent code-span delimiters
+remain valid. Failure messages retain evidence, meaning, repair hint, owner and
+recheck; the new component control resolves and executes an actual emitted Node
+repair command against synthetic inputs.
+
+The visual review used native desktop widths of 1440 and 900, with locally
+captured Mermaid/Markdown assets and unchanged inputs. It covers the changed
+governance diagrams and Living F-011 section. It is not an all-document visual,
+accessibility or universal diagram-collision certificate. Source-based and
+human semantic review retain their distinct proof boundaries.
+
+No production Java, POM, runtime resource, product test method or browser journey
+was changed. Existing generated readers and their failed observations remain
+at their original captured revisions. The closing documentation/edition check
+and final branch identities are preserved separately after this record is
+reconciled; copying or synchronizing source does not execute its tests again.
