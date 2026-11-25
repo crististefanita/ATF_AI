@@ -12,8 +12,6 @@ jurnale și rapoarte în zona externă; copiile selectate și verificate pot fi 
 | ID | Constatare | Responsabil | Prioritate (1-100) | Calitate (1-100) | Stare | Dovada închiderii |
 |---|---|---|---:|---:|---|---|
 | G-014 | Păstrează eșecul de control al schimbărilor J1 separat de consistența Atlas și de rezultatul reușit al catalogului în aria verificată | Responsabilul schimbărilor testelor J1; observație externă | 84 | 68 | TODO | [Sursa exactă și înregistrările de control necesare](Atlas_Depth_And_Assessment.md#g-014) |
-| G-017 | Respinge testele menținute dezactivate în surse și limitează firul existent al consolei | Responsabilii suitelor/consolei existente | 84 | 76 | IN PROGRESS | [Contraexemple și limitele corecției](Code_And_Documentation_Maturity.md#g-017) |
-| D-010 | Păstrează strategia lizibilă și traduce toate documentele menținute cu revizie integrală | Responsabilii documentației și edițiilor | 88 | 68 | IN PROGRESS | [Baza limbii și limitele explicite ale dovezilor](Code_And_Documentation_Maturity.md#d-010) |
 | G-016 | Revizuiește pierderea unei metode de regresie existente dintr-o clasă încă selectată | Responsabilul mentenanței testelor | 75 | 69 | TODO | [Lacuna observată în surse și acceptanța limitată](Code_And_Documentation_Maturity.md#g-016) |
 | F-011 | Păstrează observabilă curățarea urmăririi interacțiunilor când închiderea motorului UI aruncă o excepție | Responsabilul închiderii UI din Core | 82 | 66 | TODO | [Lipsa observată în surse și criteriul de componentă absent](Behavior_And_Negative_Cases.md#f-011) |
 
@@ -88,6 +86,8 @@ normalizarea prezentării nu reprezintă o nouă execuție.
 
 | ID | Comportament livrat | Verificare |
 |---|---|---|
+| G-017 | Testele menținute dezactivate în sursă sunt respinse, iar firul existent al consolei este limitat; calitate livrată 93 (94/92/92) | local-02 final EN/RO 690/690 și 690/690; încercarea eșuată originală rămâne păstrată; [dovezi](Code_And_Documentation_Maturity.md#g-017) |
+| D-010 | Strategia, rețetele de comenzi pliate și toate cele 51 de revizuiri documentare sunt guvernate; calitate livrată 92 (94/90/92) | Controale native între ediții, 182 de cazuri Node capturate per ediție și 32 de înregistrări desktop/56 SVG/98 de capturi; [dovezi și limite](Code_And_Documentation_Maturity.md#d-010) |
 | D-009 | Toate documentele Markdown menținute au controale structurale/editoriale; faptele tehnice și sensul complet în română al README-urilor au verificări și revizuire distincte | 250 de cazuri de guvernanță pe ediție, 182 de cazuri Node, revizuirea semantică a tuturor celor 21 de perechi README și diagramele modificate inspectate; [dovezi](Documentation_And_Translation_Review.md#d-009) |
 | R-001 | Principii Living Documentation, validări semantice expected/actual, mascarea limitată a credențialelor și dovezi native pentru aceleași metode existente | Playwright 16/16 și Selenium 16/16 PASS; selecțiile locale EN/RO și 181 cazuri Node au trecut; încercările eșuate sunt păstrate; [dovezi](Retained_UI_Auditability.md#r-001) |
 | F-002 | Pornirea folosește suite menținute și configurație explicită de execuție | 304 cazuri locale; profilul aggregate a produs artefacte Extent și Allure |

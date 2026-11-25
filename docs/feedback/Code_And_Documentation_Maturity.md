@@ -26,7 +26,9 @@ documentația. Nu adaugă fluxuri de produs, funcționalități runtime sau emul
   șirurile, adnotările fără legătură și tipurile Test locale sunt controale pozitive.
 - Limitează așteptarea și curățarea firului existent, propagă eșecul original
   și păstrează resetarea destinației de test în finally.
-- Stare: IN PROGRESS; închiderea necesită rezultatele locale native de mai jos.
+- Calitate livrată: 93; corectitudine/verificare/claritate 94/92/92.
+- Stare: VERIFIED pentru selecția locală observată și contractul limitat al firului;
+  dovezile native local-02 de mai jos definesc afirmația de execuție.
 
 <a id="d-010"></a>
 <a id="d-010-strategy-first-complete-translation-and-source-grounded-review"></a>
@@ -35,7 +37,7 @@ documentația. Nu adaugă fluxuri de produs, funcționalități runtime sau emul
 - Responsabil: regulile documentației, testele de componentă pentru lizibilitate și politica edițiilor.
 - Prioritate: 88; impact/risc/urgență 90/85/85.
 - Calitatea inițială: 68; corectitudine/verificare/claritate 65/60/80.
-- Defect observat de utilizator: main_RO/docs/Testing.md este în engleză. Politica veche
+- Defect observat de utilizator: main_RO/docs/Testing.md era în engleză la începutul reviziei. Politica veche
   permite deliberat traducerea numai pentru README-uri; rezultatul ei verde de paritate
   certifică astfel o ediție română incompletă a documentației.
 - Semnal inițial executat: noul control local al limbii identifică exact acea cale
@@ -67,8 +69,9 @@ documentația. Nu adaugă fluxuri de produs, funcționalități runtime sau emul
 - Limita parserului: paritatea structurală cere încă etichete de legătură pe un
   singur rând și poziționare canonică în listele reașezate. Două corecții ale
   traducerilor păstrează forma acceptată; nu se pretinde un parser Markdown complet.
-- Stare: IN PROGRESS; închiderea necesită revizie semantică completă, guvernanță
-  nativă explicită între ediții și inspecția diagramelor/proiecțiilor modificate.
+- Calitate livrată: 92; corectitudine/verificare/claritate 94/90/92.
+- Stare: VERIFIED pentru inventarul documentelor menținute, revizuirea completă
+  declarată, controalele native între ediții și domeniul desktop capturat de mai jos.
 
 <a id="g-016"></a>
 <a id="g-016-review-removal-of-an-existing-regression-method"></a>
@@ -99,7 +102,7 @@ Diagnosticele și limitele existente sunt evaluate independent de numărul teste
 |---|---:|---:|---:|---:|
 | Limitele modulelor și responsabilitățile | 25% | 92 | 92 | 94 |
 | Acoperirea guvernanței executabile | 25% | 88 | 90 | 92 |
-| Cazuri negative și rezultate așteptate independente | 20% | 90 | 91 | 94 |
+| Căi negative și criterii independente de verificare | 20% | 90 | 91 | 94 |
 | Așteptări limitate și curățare | 20% | 85 | 87 | 92 |
 | Diagnostice utile pentru corecții | 10% | 94 | 94 | 88 |
 | Evaluarea ponderată a surselor | 100% | 89.4 | 90.5 | 92.5 |
@@ -119,8 +122,38 @@ izolate separate. Publicația curentă ignorată existentă își păstrează ar
 - Baza: baseline-translation-language.log consemnează documentul Testing realmente
   netradus înaintea corecției. Contraexemplele de lizibilitate păstrează proza densă
   a strategiei, comenzile deschise implicit și etichetele false din literali.
-- Execuția finală și revizia completă sunt consemnate aici după validare; un element
-  IN PROGRESS nu se închide printr-o comandă pregătită sau inspecția surselor singură.
+- Selecțiile finale implicite local-02 ale reactorului: engleză 690/690
+  și română 690/690 trecute, cu 0 eșecuri,
+  0 erori și 0 cazuri omise în fiecare ediție. Fiecare include 315 cazuri de guvernanță. Toate cele cinci module s-au executat;
+  selecțiile atf-tests conțin 678 și 678
+  cazuri. XML-urile Surefire originale păstrate, jurnalele Maven finalizate,
+  manifestele sursei și înregistrările ieșirii definesc numărătorile, nu rezumatele copiate ale rapoartelor.
+- Surse executate: engleză 1b939695c7a29355bf5e67f50ccbaa0121314c9e și română
+  bfa1bcc341cd4540b8f5ef70457b8483695f0d6c. Rezumatul nativ local-02 finalizat leagă înregistrările
+  local-02 finalizate și rezultatele reale ale cazurilor. 29 de cazuri
+  API locale existente și cazul firului de consolă limitat au trecut în fiecare ediție;
+  observațiile API locale nu stabilesc acceptanța aplicației GoRest.
+- Controale Node de mentenanță existente: 182/182 trecute în fiecare ediție capturată la
+  a064e9f18f3528c17e109f2119b81808c32ce2e8 și
+  669c2baecd3552a71651283c9eb44021e264e3de. Fiecare manifest păstrat leagă 23 de fișiere:
+  19 instrumente și 4 intrări de contract, neschimbate față de sursele native finale.
+  Aceasta păstrează domeniul Node capturat; nu afirmă o execuție Node nouă la commit-ul final.
+- Revizuire completă a documentelor: translation-review.xml comun leagă 51 de
+  documente revizuite, cuprinzând 50 de căi Markdown menținute și perechea HTML Living.
+  Dovada reală a regăsirii lexicale a politicii păstrează 16 înregistrări obligatorii
+  și 18 selectate. Lectura EN/RO completă, bazată pe surse, acoperă limba, sensul,
+  condițiile, faptele, legăturile, diagramele și plierile; nu se afirmă recuperare semantică.
+- Revizuirea nativă desktop finală a documentelor combină visual02 cu remedierea
+  Architecture delimitată din visual03: 32 de înregistrări, 56 de observații SVG și
+  98 de capturi selectate la lățimi 1440/900. Hash-urile surselor capturate corespund;
+  constatările geometrice, erorile de pagină/consolă, cererile externe și depășirea
+  documentului sunt 0. Figurile Living late folosesc derulare conținută. Randarea
+  dovedește componentele documentului, nu acceptanța aplicației în framework/browser
+  sau accesibilitatea universală.
+- Baza inițială netradusă și prima execuție completă rămân păstrate mai jos.
+  Nu s-au adăugat scenarii E2E, emulatoare sau funcționalități runtime. G-016, G-014
+  și F-011 rămân TODO; sincronizarea se dovedește separat prin identitățile reale ale
+  ramurilor, remote și live după verificarea închiderii exclusiv documentare.
 
 <a id="retained-first-complete-execution"></a>
 ## Prima execuție completă păstrată
@@ -135,4 +168,5 @@ Testul existent localizează acum ID-ul stabil al secțiunii retained-principles
 inserează același exemplu literal și păstrează aceeași aserțiune de proiecție.
 Aserțiunile booleene ale precondițiilor evită afișarea întregului HTML la eșecul
 inserării. Ambele rulări native originale rămân intacte la locațiile local-01.
-O nouă execuție completă local-02 în ambele ediții trebuie să treacă înaintea închiderii.
+Execuțiile local-02 acceptate, consemnate în dovezile de acceptanță, păstrează eșecul
+anterior și stabilesc sursele și rezultatele proprii capturate separat.
