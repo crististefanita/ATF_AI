@@ -1,0 +1,49 @@
+package com.ai.ui.tests;
+
+import com.ai.ui.support.component.ProfileAccountComponent;
+import com.ai.ui.core.runtime.BaseTestUI;
+import com.ai.ui.support.model.CustomerData;
+import com.ai.ui.support.validation.ProfileAccountValidation;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+public class AccountAuthenticatedAreaTests extends BaseTestUI {
+    private final ProfileAccountComponent account = new ProfileAccountComponent();
+    private final ProfileAccountValidation verify = new ProfileAccountValidation();
+    private CustomerData customer;
+
+    @BeforeClass(alwaysRun = true)
+    public void createCustomerProfile() {
+        customer = account.registerLoginAndOpenProfile();
+    }
+
+    @Test
+    public void accountOverviewIsVisibleAfterLogin() {
+        account.openAccount();
+        verify.assertAccountTitle();
+    }
+
+    @Test
+    public void accountProfileAreaIsReachable() {
+        account.openProfile();
+        verify.assertProfileTitle();
+    }
+
+    @Test
+    public void accountFavoritesAreaIsReachable() {
+        account.openFavorites();
+        verify.assertPageTitleContains("Favorites");
+    }
+
+    @Test
+    public void accountInvoicesAreaIsReachable() {
+        account.openInvoices();
+        verify.assertPageTitleContains("Invoices");
+    }
+
+    @Test
+    public void accountMessagesAreaIsReachable() {
+        account.openMessages();
+        verify.assertPageTitleContains("Messages");
+    }
+}

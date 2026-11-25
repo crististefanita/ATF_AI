@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Framework local regressions" verbose="1" parallel="none">
+    <test name="Framework local regressions">
+        <classes>
+            <class name="com.ai.atf.governance.FrameworkArchitectureGovernanceTest"/>
+            <class name="com.ai.atf.governance.DocumentationGovernanceTest"/>
+            <class name="com.ai.atf.governance.JavaSourceScannerTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.ExtentAdapterDirectoryContractTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.ExtentAdapterTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.ExtentHtmlPatchPipelineContractTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.allure.AllurePresentationContractTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.allure.AllureResultsCleanupTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.allure.EmptyPayloadAttachmentContractTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.css.ExtentSparkCollapsePolicyComponentTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.css.ExtentSparkFailureTriageCssComponentTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.css.ExtentSparkRuntimeAuditCssComponentTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.css.ExtentSparkSideNavSelectionCssComponentTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.css.ExtentSparkThemeCompositionContractTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.css.ExtentSparkVisualTokensComponentTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.failure.ExtentSparkFailureTriageContractTest"/>
+            <class name="com.ai.atf.core.reporting.adapters.visual.ExtentSparkStatusDropdownVisualReportTest"/>
+            <class name="com.ai.atf.core.reporting.aggregate.AggregateExtentTestDisplayContractTest"/>
+            <class name="com.ai.atf.core.reporting.aggregate.AtfCoreAggregateExtentContractTest"/>
+            <class name="com.ai.atf.core.reporting.aggregate.allure.AtfCoreAggregateAllureContractTest"/>
+            <class name="com.ai.atf.core.reporting.aggregate.command.AtfCoreAggregateRunCommandContractTest"/>
+            <class name="com.ai.atf.core.reporting.aggregate.design.AggregateExtentWriterDesignContractTest"/>
+            <class name="com.ai.atf.core.reporting.aggregate.parallel.AggregateParallelCollectionContractTest"/>
+            <class name="com.ai.atf.core.reporting.aggregate.parallel.AggregateParallelExtentPublisherContractTest"/>
+            <class name="com.ai.atf.core.reporting.aggregate.publish.AtfCoreAggregatePublishedManifestContractTest"/>
+            <class name="com.ai.atf.core.reporting.aggregate.timing.AggregateExtentSummaryNodeTimingReconcilerContractTest"/>
+            <class name="com.ai.atf.core.reporting.attachment.FailureAttachmentRegistryTest"/>
+            <class name="com.ai.atf.core.reporting.attachment.FinalStateAttachmentRegistryTest"/>
+            <class name="com.ai.atf.core.reporting.html.HtmlClassMatcherContractTest"/>
+            <class name="com.ai.atf.core.reporting.lifecycle.BeforeMethodMustNotCreateStandaloneTest"/>
+            <class name="com.ai.atf.core.reporting.lifecycle.TestListenerFailureContractTest"/>
+            <class name="com.ai.atf.core.reporting.listener.FailureSummaryPreviewContractTest"/>
+            <class name="com.ai.atf.core.reporting.listener.TestDisplayNameContractTest"/>
+            <class name="com.ai.atf.core.reporting.regression.ConsoleSignatureContractTest"/>
+            <class name="com.ai.atf.core.reporting.regression.ExtentHtmlPatchPlanContractTest"/>
+            <class name="com.ai.atf.core.reporting.regression.ExtentRuntimeAuditValueObjectContractTest"/>
+            <class name="com.ai.atf.core.reporting.regression.ExtentRuntimeReportLocatorContractTest"/>
+            <class name="com.ai.atf.core.reporting.regression.NonBlockingDiagnosticContractTest"/>
+            <class name="com.ai.atf.core.reporting.regression.ReportingManagerSessionContractTest"/>
+            <class name="com.ai.atf.core.reporting.regression.RuntimeAuditPublisherCoordinatorContractTest"/>
+            <class name="com.ai.atf.core.reporting.regression.StepLoggerContractTest"/>
+            <class name="com.ai.atf.core.reporting.regression.overview.ExtentOverviewTopCardsTimingContractTest"/>
+            <class name="com.ai.atf.core.reporting.regression.overview.ExtentPublishedOverviewInspectorContractTest"/>
+            <class name="com.ai.atf.core.reporting.screenshot.FinalUiScreenshotContractTest"/>
+            <class name="com.ai.atf.core.reporting.window.UIWindowSizeResolverContractTest"/>
+            <class name="com.ai.atf.core.support.base.ApiCoreExecutionArchitectureContractTest"/>
+            <class name="com.ai.atf.core.support.base.BaseTestAPIContractTest"/>
+            <class name="com.ai.atf.core.support.base.BaseTestUIContractTest"/>
+            <class name="com.ai.atf.core.support.config.ConfigManagerFileContractTest"/>
+            <class name="com.ai.atf.core.support.contract.failure.AtfExpectedFailureContractTest"/>
+            <class name="com.ai.atf.core.support.contracts.yaml.ContractIndexContractTest"/>
+            <class name="com.ai.atf.core.support.contracts.yaml.SimpleYamlContractLoaderContractTest"/>
+            <class name="com.ai.atf.core.support.contracts.yaml.YamlEnumsContractTest"/>
+            <class name="com.ai.atf.core.support.contracts.yaml.YamlScalarListsContractTest"/>
+            <class name="com.ai.atf.core.support.contracts.yaml.YamlScalarsContractTest"/>
+            <class name="com.ai.atf.core.support.html.HtmlTableContractTest"/>
+            <class name="com.ai.atf.ui.component.InvoiceEvidenceContractTest"/>
+            <class name="com.ai.atf.ui.component.RegistrationSubmissionContractTest"/>
+            <class name="com.ai.atf.ui.component.RegistrationValidationContractTest"/>
+            <class name="com.ai.atf.ui.component.UiCoreConfigOverrideDisciplineTest"/>
+            <class name="com.ai.atf.ui.component.UiEngineActionParityContractTest"/>
+            <class name="com.ai.atf.ui.component.UiEngineCapabilityContractTest"/>
+            <class name="com.ai.atf.ui.component.UiEngineDelegationContractTest"/>
+            <class name="com.ai.atf.ui.component.UiEngineRuntimeOptionsContractTest"/>
+            <class name="com.ai.atf.ui.component.WaitUtilsContractTest"/>
+            <class name="com.ai.atf.ui.component.config.FrameworkRuntimeUiDefaultsContractTest"/>
+            <class name="com.ai.atf.ui.component.engine.SeleniumEngineInternalContractTest"/>
+            <class name="com.ai.atf.ui.component.engine.UiEngineBoundaryContractTest"/>
+            <class name="com.ai.atf.ui.component.registry.UiEngineRegistryContractTest"/>
+        </classes>
+    </test>
+</suite>

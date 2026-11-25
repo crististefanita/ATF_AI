@@ -1,0 +1,116 @@
+schemaVersion: 1
+contracts:
+  - id: core.contract-profile.core
+    kind: profile
+    name: CORE_CONTRACT
+    recommendedEngine: extent
+    pureFramework: true
+    liveBoundary: false
+    owner: ATF core contracts
+    purpose: Pure framework invariants that should run without product or browser dependency.
+  - id: core.contract-profile.api-base
+    kind: profile
+    name: API_BASE_CONTRACT
+    recommendedEngine: extent
+    pureFramework: true
+    liveBoundary: false
+    owner: ATF API base contracts
+    purpose: API base-class lifecycle and validation invariants.
+  - id: core.contract-profile.live-api-smoke
+    kind: profile
+    name: LIVE_API_SMOKE_CONTRACT
+    recommendedEngine: extent
+    pureFramework: false
+    liveBoundary: true
+    owner: Live API smoke contracts
+    purpose: Live API boundary checks that must stay separated from pure framework health.
+  - id: core.contract-profile.reporting
+    kind: profile
+    name: REPORTING_CONTRACT
+    recommendedEngine: extent
+    pureFramework: true
+    liveBoundary: false
+    owner: ATF reporting contracts
+    purpose: Reporting lifecycle and listener invariants.
+  - id: core.contract-profile.extent
+    kind: profile
+    name: EXTENT_CONTRACT
+    recommendedEngine: extent
+    pureFramework: true
+    liveBoundary: false
+    owner: Extent reporting contracts
+    purpose: Extent shell, runtime audit, and HTML evidence invariants.
+  - id: core.contract-profile.allure
+    kind: profile
+    name: ALLURE_CONTRACT
+    recommendedEngine: allure
+    pureFramework: true
+    liveBoundary: false
+    owner: Allure reporting contracts
+    purpose: Allure evidence and presentation invariants.
+  - id: core.contract-profile.ui-support
+    kind: profile
+    name: UI_SUPPORT_CONTRACT
+    recommendedEngine: extent
+    pureFramework: true
+    liveBoundary: false
+    owner: UI support contracts
+    purpose: UI engine, wait, screenshot, and configuration support invariants.
+  - id: core.contract-profile.ui-product-smoke
+    kind: profile
+    name: UI_PRODUCT_SMOKE_CONTRACT
+    recommendedEngine: extent
+    pureFramework: false
+    liveBoundary: true
+    owner: UI product smoke contracts
+    purpose: Product-facing UI smoke checks that must stay out of pure ATF core scoring.
+  - id: core.contract-area.core-architecture
+    kind: area
+    name: CORE_ARCHITECTURE
+    owner: ATF core architecture
+    purpose: Package boundaries, dependency direction, and framework structure.
+  - id: core.contract-area.api-lifecycle
+    kind: area
+    name: API_LIFECYCLE
+    owner: ATF API lifecycle
+    purpose: API setup, teardown, token, and lifecycle behavior.
+  - id: core.contract-area.reporting-adapter
+    kind: area
+    name: REPORTING_ADAPTER
+    owner: ATF reporting adapters
+    purpose: Extent and Allure adapter surface behavior.
+  - id: core.contract-area.reporting-lifecycle
+    kind: area
+    name: REPORTING_LIFECYCLE
+    owner: ATF reporting lifecycle
+    purpose: Listener order, runtime audit, console, and report session behavior.
+  - id: core.contract-area.screenshot
+    kind: area
+    name: SCREENSHOT
+    owner: ATF screenshot evidence
+    purpose: Final-state screenshots, attachment payloads, and image evidence.
+  - id: core.contract-area.window-config
+    kind: area
+    name: WINDOW_CONFIG
+    owner: ATF UI window configuration
+    purpose: Browser sizing, zoom, and runtime window settings.
+  - id: core.contract-area.ui-engine
+    kind: area
+    name: UI_ENGINE
+    owner: ATF UI engine
+    purpose: UIEngine actions, delegation, runtime options, and engine defaults.
+  - id: core.contract-area.ui-support
+    kind: area
+    name: UI_SUPPORT
+    owner: ATF UI support
+    purpose: UI validation/support helpers outside product smoke ownership.
+  - id: core.contract-area.ui-product-smoke
+    kind: area
+    name: UI_PRODUCT_SMOKE
+    owner: ATF UI product smoke
+    purpose: Product-facing UI smoke boundary tests.
+  - id: core.contract-area.wait-utils
+    kind: area
+    name: WAIT_UTILS
+    owner: ATF wait utilities
+    purpose: Wait helper behavior, timeout semantics, and retry boundaries.
