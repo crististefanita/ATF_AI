@@ -262,7 +262,7 @@ TODO for the independently owned J1 change-control records.
 
 ## D-011
 
-Status: IN PROGRESS. Owner: Atlas documentation and maintenance-tool owners.
+Status: VERIFIED. Owner: Atlas documentation and maintenance-tool owners.
 Priority 88; baseline quality 58. Priority inputs: impact 90, exposure 85,
 urgency 85. Quality inputs: correctness 65, verification 45, clarity 60.
 These are scoped reader-presentation judgments, not framework-wide scores.
@@ -283,3 +283,33 @@ Closure requires the complete Node selection, paired documentation governance,
 native AI/J1 rendering at declared widths and exact captured-bundle comparison.
 The finite geometry heuristic and Markdown subset do not prove semantic
 completeness or perfect visual design. No new product journey is authorized.
+
+Delivered quality: 93 (correctness 94 / verification 92 / clarity 92).
+The assessment covers the owned reader presentation contract and reviewed AI/J1
+captures; it is not a global framework or semantic-completeness score.
+
+| Verification | Retained result and limit |
+|---|---|
+| Maintenance components | 203/203 per edition after the inline repair; original complete selections remain retained |
+| Existing Java governance | EN 315/315; RO 315/315; four existing owners, with unchanged Java/POM/resource identities |
+| Complete paired documents | 51 source-bound entries, language/meaning/facts/links/diagrams/disclosures and three compilable example owners |
+| Native table review | 12 desktop records, including four original, four refreshed and four negative/repaired controls; 586 refreshed project table observations at 1440/900 CSS px |
+| Diagram review | Four desktop records and 46 diagram observations; label overlap controls, offline resources, navigation and disclosure pass |
+| Capture identity | Only renderVersion changes; original analysis, source, documents, knowledge, claims and native evidence remain exact |
+
+The original AI reader exposed two directed witnesses at 60 CSS px with 45/71 lines, beside an oracle column at 670 CSS px with three lines;
+the original J1 reader also overflowed the page at 900 CSS px. The repaired
+readers pass the finite layout signals. Screenshots of case records, source
+tables, legends and overview were inspected; this is scoped visual review.
+
+The first paired-document attempt failed because this record used REVIEWING,
+which is outside the owned active-status vocabulary. IN PROGRESS repairs that
+record; the original failure remains in documents-01. A deterministic J1
+re-render also exposed mixed emphasis/code handling. Independent literal-marker
+and mixed-format controls repair it while keeping both inspected HTMLs exact.
+
+Compact wording already authored in the retained analysis remains visible, and
+Mermaid source is retained honestly rather than executed as an arbitrary script.
+Future authoring still needs human review of meaning and typography. The
+current-publication refresh preserves the complete prior selection in immutable
+external history and keeps every original execution-report byte unchanged.
