@@ -115,7 +115,7 @@ Do not derive quality from file counts, assertion keywords or a copied report.
 
 ## Declared breadth record
 
-The reader bundle uses renderVersion 3 for a new public capture. Add
+The reader bundle uses renderVersion 4 for a new public capture. Add
 analysis.understanding with schemaVersion 1, scope PROJECT or SELECTED,
 scopeStatement, inventoryClaimIds and units. PROJECT aligns declared review-unit
 and architecture inventories. SELECTED explains omitted owners. Neither scope

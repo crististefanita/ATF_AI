@@ -86,7 +86,7 @@ requests to add product/E2E tests. Analysis time and execution time are separate
 
 ## Declared review units and seven facets
 
-New public captures use renderVersion 3 and analysis.understanding schemaVersion 1.
+New public captures use renderVersion 4 and analysis.understanding schemaVersion 1.
 Declare scope PROJECT or SELECTED, scopeStatement and inventoryClaimIds from
 the actual package/build/entry/ownership declarations. Enumerate units using
 their real source owners. A PROJECT scope keeps its unit inventory and declared
@@ -186,7 +186,7 @@ $analysisRoot = (Resolve-Path -LiteralPath $env:ATLAS_ANALYSIS_ROOT -ErrorAction
 $artifactRoot = (Resolve-Path -LiteralPath $env:ATF_ARTIFACT_ROOT -ErrorAction Stop).Path
 node tools/verify-atlas.mjs --source "$targetRoot" --analysis "$analysisRoot" --artifacts "$artifactRoot"
 node tools/atlas-report.mjs publish --source "$targetRoot" --analysis "$analysisRoot" --artifacts "$artifactRoot"
-node --test tools/verify-atlas.test.mjs tools/atlas-report.test.mjs tools/atlas-knowledge.test.mjs tools/atlas-bundle.test.mjs tools/atlas-execution.test.mjs tools/atlas-understanding.test.mjs tools/atlas-behavior.test.mjs
+node --test tools/verify-atlas.test.mjs tools/atlas-report.test.mjs tools/atlas-presentation.test.mjs tools/atlas-knowledge.test.mjs tools/atlas-bundle.test.mjs tools/atlas-execution.test.mjs tools/atlas-understanding.test.mjs tools/atlas-behavior.test.mjs
 ```
 
 The [checker](../../tools/verify-atlas.mjs) rejects declared source/document drift,

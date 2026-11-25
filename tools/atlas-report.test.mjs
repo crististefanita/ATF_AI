@@ -59,6 +59,27 @@ test('a second HTML anywhere in delivery is rejected with a constructive recheck
   assert.throws(()=>validateAtlasDelivery({...f,projectId:'sample-project',css:css()}),error=>error.code==='ATLAS-HTML'&&error.message.includes('exactly one file')&&error.hint.includes('canonical renderer')&&error.recheck.includes('atlas-report.test.mjs'));
 });
 
+test('renderer 4 provides adjacent legends, semantic source lists and full case records',t=>{
+  const f=fixture(t);f.docs['README.md']='# Reading order\n\n- Read source\n- Inspect the exact oracle\n\n| Owner | Limit |\n|---|---|\n| Request | Fixture only |\n';f.save();publishAtlas(f);
+  const html=read(f),bundle=embedded(f);assert.equal(bundle.renderVersion,4);
+  assert.equal((html.match(/<figcaption class="atlas-legend">/g)||[]).length,2);
+  assert.match(html,/<ul><li>Read source<\/li><li>Inspect the exact oracle<\/li><\/ul>/);
+  assert.match(html,/<article class="atlas-case">/);assert.match(html,/<th scope="col">Owner<\/th>/);
+  const historical={...bundle,renderVersion:3},old=renderAtlasHtml(historical,css());
+  assert.doesNotMatch(old,/<figcaption class="atlas-legend">|<article class="atlas-case">/);
+  assert.equal(validateAtlasHtml({html:old,css:css(),projectId:'sample-project'}).status,'PASSED');
+});
+
+test('an exact LF/CRLF knowledge capture preserves its original raw digest portably',t=>{
+  const f=fixture(t);publishAtlas(f);const bundle=embedded(f);
+  const normalized=bundle.knowledgeSource.text.replaceAll('\r\n','\n');
+  bundle.knowledgeSource.text=normalized.replaceAll('\n','\r\n');
+  bundle.knowledgeSource.sha256=hash(bundle.knowledgeSource.text);bundle.knowledge.sourceSha256=bundle.knowledgeSource.sha256;
+  const html=renderAtlasHtml(bundle,css());assert.equal(validateAtlasHtml({html,css:css(),projectId:'sample-project'}).status,'PASSED');
+  bundle.knowledgeSource.text+=' ';bundle.knowledgeSource.sha256=hash(bundle.knowledgeSource.text);bundle.knowledge.sourceSha256=bundle.knowledgeSource.sha256;
+  assert.throws(()=>renderAtlasHtml(bundle,css()),error=>error.code==='ATLAS-KNOWLEDGE');
+});
+
 test('new publication requires explicit cases and preserves historical v2 meaning separately',t=>{
   const f=fixture(t);delete f.analysis.behaviorFlows[0].caseAnalysis;f.save();
   assert.throws(()=>publishAtlas(f),error=>error.code==='ATLAS-CASES'&&error.observed.includes('version 3 requires'));

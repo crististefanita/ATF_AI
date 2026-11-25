@@ -109,7 +109,7 @@ than an isolated source claim. Any valid behavior node may be the actual entry;
 do not invent an intent node. Finite supported behavior self-loops remain valid
 with an outcome escape and clear rendering; dependency self-loops stay invalid.
 
-Mandatory case and reachability policies extend new renderVersion 3 captures.
+Mandatory case and reachability policies apply to renderVersion 3 and later captures.
 Review actual positive and negative cases with preconditions, triggers, expected
 observations, contiguous node/edge walks and selected existing oracle fragments.
 Every declared outcome has a case witness; all behavior nodes are reachable from
@@ -127,3 +127,9 @@ generic publisher component fixtures. Preserve intended failures and successful
 repairs. Authentic receipts and lexical ranking are separate from project
 understanding. A query without lexical matches still retains mandatory policy;
 its ranking cannot establish source correctness or semantic completeness.
+
+The retrieved KB-STYLE record supplies the archived design context. Apply the
+current [reader presentation contract](Report_Contract.md#reader-presentation-and-render-review)
+and its component/render controls before publication. A retrieved styling excerpt
+does not replace current requirements or establish visual readability. New
+publication uses version 4; retained version 3 case and reachability rules still apply.

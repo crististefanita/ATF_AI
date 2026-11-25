@@ -259,3 +259,27 @@ English ordered-list item. Correcting the paragraph restored the declared
 translation structure; both attempt02 selections passed all 211 cases. Their
 failed reports remain immutable alongside the repaired results. G-014 remains
 TODO for the independently owned J1 change-control records.
+
+## D-011
+
+Status: REVIEWING. Owner: Atlas documentation and maintenance-tool owners.
+Priority 88; baseline quality 58. Priority inputs: impact 90, exposure 85,
+urgency 85. Quality inputs: correctness 65, verification 45, clarity 60.
+These are scoped reader-presentation judgments, not framework-wide scores.
+
+The captured AI/J1 readers used generic column allocation and rendered source
+Markdown lists/tables as separate literal paragraphs. A dense case comparison
+could put long preconditions beside short identifiers without a reading-space
+contract. Existing byte-consistency checks could not establish visual balance.
+
+- Preserve the original reader and every captured source/evidence identity.
+- Govern semantic blocks, adjacent diagram legends and complete vertical cases.
+- Check bounded column allocation and real rendered geometry with negative,
+  repaired and valid controls; retain helpful owned failure diagnostics.
+- Keep native desktop review distinct from product/E2E execution and emulation.
+
+Evidence is retained under `${ATF_WORK_ROOT}/reviews/20261126-atlas-presentation`.
+Closure requires the complete Node selection, paired documentation governance,
+native AI/J1 rendering at declared widths and exact captured-bundle comparison.
+The finite geometry heuristic and Markdown subset do not prove semantic
+completeness or perfect visual design. No new product journey is authorized.

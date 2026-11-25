@@ -9,6 +9,7 @@ the caller-selected local archive following the [report guide](../../artifacts/r
 
 | ID | Finding | Owner | Priority (1-100) | Quality (1-100) | Status | Closure evidence |
 |---|---|---|---:|---:|---|---|
+| D-011 | Govern Atlas reading structure, legends and measured table balance | Atlas documentation and maintenance-tool owners | 88 | 58 | REVIEWING | [Reproduced reader defects and bounded acceptance](Atlas_Depth_And_Assessment.md#d-011) |
 | G-014 | Retain the J1 change-control failure separately from Atlas consistency and scoped catalog success | J1 test-change owner; external observation | 84 | 68 | TODO | [Exact source and required control records](Atlas_Depth_And_Assessment.md#g-014) |
 | G-016 | Review loss of an existing regression method within a still-selected class | Test-maintenance owner | 75 | 69 | TODO | [Source-only gap and bounded acceptance](Code_And_Documentation_Maturity.md#g-016) |
 | F-011 | Keep interaction-tracker cleanup observable when UI engine shutdown throws | Core UI base teardown owner | 82 | 66 | TODO | [Source-only cleanup gap and missing component oracle](Behavior_And_Negative_Cases.md#f-011) |
@@ -50,6 +51,7 @@ Retained baseline component scores:
 
 | ID | Impact / risk / urgency | Correctness / verification / clarity | Evidence scope |
 |---|---|---|---|
+| D-011 | 90 / 85 / 85 | 65 / 45 / 60 | Generic HTML column widths, literal source blocks and no measured readability gate |
 | G-017 | 90 / 80 / 75 | 80 / 65 / 80 | Source-disabled selected tests and one unbounded console worker |
 | D-010 | 90 / 85 / 85 | 65 / 60 / 80 | English non-README documentation remains in the declared Romanian edition |
 | G-016 | 80 / 70 / 70 | 75 / 50 / 80 | A method removal can preserve class selection; source-only observation |

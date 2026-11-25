@@ -79,6 +79,13 @@ the full document offline. Missing tests, Git metadata or dependency edges remai
 explicit, with source scope and limits. Retrieval supplies cited policy to a
 source-grounded reviewer; it does not establish execution or semantic completeness.
 
+Version 4 also governs reading structure and measured table balance. Explanations
+receive space, dense comparisons scroll locally, long case witnesses become full
+vertical records and every declared graph has an adjacent legend. The
+[presentation contract](Report_Contract.md#reader-presentation-and-render-review)
+separates component checks, native desktop measurements and human visual review.
+Historical readers and their captured proof remain immutable.
+
 ## Review breadth and quality axes
 
 New captures declare PROJECT or SELECTED review scope, actual owner units and
@@ -112,7 +119,7 @@ understanding or an automatic quality score.
 
 ## Behavior cases and negative scope
 
-New renderVersion 3 captures explain existing positive and negative cases with
+New renderVersion 4 captures explain existing positive and negative cases with
 preconditions, triggers, expected observations and exact oracle source fragments.
 Each flow declares an entry, stable edge IDs, contiguous case walks and negative
 review scope. Every outcome has a case witness; all behavior nodes are reachable
@@ -152,7 +159,7 @@ mvn -B -ntp -pl atf-tests -am "-Dtest=DocumentationGovernanceTest,FrameworkArchi
 Run the optional Atlas maintenance checks from the reactor root:
 
 ```powershell
-node --test tools/verify-atlas.test.mjs tools/atlas-report.test.mjs tools/atlas-knowledge.test.mjs tools/atlas-bundle.test.mjs tools/atlas-execution.test.mjs tools/atlas-understanding.test.mjs tools/atlas-behavior.test.mjs
+node --test tools/verify-atlas.test.mjs tools/atlas-report.test.mjs tools/atlas-presentation.test.mjs tools/atlas-knowledge.test.mjs tools/atlas-bundle.test.mjs tools/atlas-execution.test.mjs tools/atlas-understanding.test.mjs tools/atlas-behavior.test.mjs
 ```
 
 This selection checks the documentation and declared architecture; it does not

@@ -4,6 +4,66 @@ Canonical retrieval excerpts appear as inline technical literals. Keep their
 exact English text in every documentation edition; translate the surrounding
 explanations while preserving the cited requirement and its proof limits.
 
+## Reader presentation and render review
+
+ATLAS-REPORT-005: new publications use renderVersion 4. Presentation follows the
+same reading principles as maintained documentation. Explain purpose and limits
+before detail; use lists for parallel observations, tables for comparisons and
+diagrams for supported relationships. Do not add decorative diagrams or quotas.
+
+```mermaid
+flowchart TB
+    Source["Reviewed source and original evidence"] --> Structure["Semantic reading structure"]
+    Structure --> Layout["Content-aware tables and adjacent legends"]
+    Layout --> Measure["Native desktop measurement and visual review"]
+    Measure --> Reader["One complete offline HTML"]
+```
+
+Arrows describe publication review, not application behavior. The original source
+and execution identities remain unchanged by a presentation refresh.
+
+| Reader element | Required presentation | Verification boundary |
+|---|---|---|
+| Explanation | Joined logical paragraphs and meaningful heading hierarchy | Supported Markdown blocks; full original text stays embedded |
+| Parallel observations | Semantic lists rather than literal bullet characters in paragraphs | Block component controls and inspection of generated inputs |
+| Comparison | Content-aware columns, top alignment, wrapped identifiers and full text | Native cell geometry at declared desktop widths |
+| Long case witness | A vertical case record with every original field | Independent expected observation, assertion and limits remain visible |
+| Diagram | Adjacent legend for boxes, arrows, evidence scope and omissions | Dependency arrows and behavior transitions retain different meanings |
+| Dense table | Named, keyboard-focusable local scrolling | No document overflow, clipping, ellipsis or reduced type to force a fit |
+
+The [presentation controls](../tools/atlas-presentation.test.mjs) exercise
+negative, repaired and valid cases. Column allocation gives prose at least 300
+CSS px before proportional expansion; metrics and identifiers have bounded
+influence. A long identifier cannot consume the explanation column. These
+heuristics support reading; they do not establish semantic truth or perfect design.
+
+The native layout probe measures visible cell width, line count, font and
+clipping. It signals long prose below 180 CSS px with at least six lines when a
+short adjacent cell receives over 1.8 times its width. It also rejects document
+overflow, hidden cell text, type below 13 CSS px and inaccessible table scrolling.
+Review measured failures with ATLAS-PRESENTATION, the owning contract and its
+repair hint. Preserve all content while repairing widths or choosing case records.
+
+Render at 1440 and 900 CSS px in real desktop Chromium, with no device emulation
+or product URL. Expand reviewed sections; inspect diagrams, legends, tables,
+disclosure, navigation and offline resources. Retain metrics, screenshots,
+stylesheet identity and negative-to-repaired controls. An automated pass is a
+bounded signal; a reviewer still checks reading order, balance and useful meaning.
+
+The Markdown renderer supports headings, joined paragraphs, simple lists,
+comparison tables, fenced code and closed native disclosures. Links and authored
+HTML remain inert text. Mermaid fences retain their complete source with an
+explicit note; the declared analysis graphs supply inline SVG. Nested lists and
+arbitrary Markdown/HTML extensions are not a full parser contract. Check their
+meaning against the complete original inputs before approving publication.
+
+Historical renderVersion 1–3 remains supported with its original rendering and
+embedded stylesheet. Keep original readers immutable. A new version-4 reader
+may refresh presentation of an existing capture only when every bundle field
+except renderVersion is unchanged; it is not a new source review or execution.
+An exact LF/CRLF difference in the knowledge source preserves its original raw
+digest and must match canonical normalized content; other byte drift fails.
+
 ## Purpose and ownership
 
 ATLAS-REPORT-001 applies to ordinary and knowledge-assisted Atlas authoring.
@@ -130,7 +190,7 @@ tests or a language model. The dedicated tests include deliberately corrupted
 source, evidence, knowledge, graph and presentation cases.
 
 ```powershell
-node --test tools/verify-atlas.test.mjs tools/atlas-report.test.mjs tools/atlas-knowledge.test.mjs tools/atlas-bundle.test.mjs tools/atlas-execution.test.mjs tools/atlas-understanding.test.mjs tools/atlas-behavior.test.mjs
+node --test tools/verify-atlas.test.mjs tools/atlas-report.test.mjs tools/atlas-presentation.test.mjs tools/atlas-knowledge.test.mjs tools/atlas-bundle.test.mjs tools/atlas-execution.test.mjs tools/atlas-understanding.test.mjs tools/atlas-behavior.test.mjs
 ```
 
 After the reviewer prepares a source-bound analysis, publish from the reactor
@@ -245,7 +305,7 @@ behavior and NOT_FOUND oracle gaps require no invented run. The subject binding
 proves retained identity and outcome; source-to-assertion semantics still need a
 human review. This is maintenance governance, with no new product/E2E scenario.
 
-For a renderVersion 3 EXECUTED case oracle, sourceRefIndices additionally selects
+For a renderVersion 3 or later EXECUTED case oracle, sourceRefIndices additionally selects
 the exact zero-based entries in that oracle claim's sourceRefs. Each selected
 entry must match its subject's sourcePath, and the retained subjects together
 must cover every case-selected oracleRefIndices entry. Indices are not line
@@ -295,7 +355,7 @@ repair hints and prove the intended rule before a feedback item is closed.
 
 ## Behavior cases and negative observations
 
-ATLAS-REPORT-004: new public captures use renderVersion 3. Each behavior flow
+ATLAS-REPORT-004: new public captures use renderVersion 4. Each behavior flow
 declares caseAnalysis schemaVersion 1. Earlier renderVersion 1/2 captures retain
 their original bytes, pinned renderer and proof scope; they are not certified
 retroactively under this case contract.

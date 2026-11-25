@@ -1,5 +1,5 @@
 const owner='atf-atlas/Report_Contract.md';
-const recheck='node --test tools/verify-atlas.test.mjs tools/atlas-report.test.mjs tools/atlas-knowledge.test.mjs tools/atlas-bundle.test.mjs tools/atlas-execution.test.mjs tools/atlas-understanding.test.mjs tools/atlas-behavior.test.mjs';
+const recheck='node --test tools/verify-atlas.test.mjs tools/atlas-report.test.mjs tools/atlas-presentation.test.mjs tools/atlas-knowledge.test.mjs tools/atlas-bundle.test.mjs tools/atlas-execution.test.mjs tools/atlas-understanding.test.mjs tools/atlas-behavior.test.mjs';
 const rules={
   'ATLAS-PATH':['An input or output escapes its declared owner.','Use project-relative evidence paths, regular files and an owned artifact output directory.'],
   'ATLAS-TARGET':['The analysis targets a different project or revision.','Capture the intended tree again and retain its actual revision and dirty state.'],
@@ -10,6 +10,7 @@ const rules={
   'ATLAS-KNOWLEDGE':['The retrieved contract has invalid identity, provenance or requirements.','Repair the reviewed knowledge record and its archived citation; rerun the provenance and retrieval controls.'],
   'ATLAS-HTML':['The complete HTML differs from its governed renderer.','Regenerate atlas.html with the canonical renderer; keep every section, local anchor and embedded input.'],
   'ATLAS-CSS':['The report visual contract differs from its canonical stylesheet.','Embed the exact atf-atlas/assets/atlas.css bytes and remove external styles or local overrides.'],
+  'ATLAS-PRESENTATION':['Reader structure or measured table readability needs repair.','Preserve all facts, render semantic blocks and adjacent graph legends, allocate space to prose, and recheck desktop geometry. Use named local scrolling for dense tables; never hide text or shrink it to fit.'],
   'ATLAS-BEHAVIOR':['Behavior, oracle or graph trace is missing or inconsistent.','Describe an existing observed contract and its test oracle; bind graph edges to reviewed claims and disclose source-only scope.'],
   'ATLAS-CASES':['A declared behavior case has invalid reachability, path or oracle binding.','Inspect the actual entry and outcomes, correct the directed witness walk, cite independent oracle fragments and retain explicit negative-scope or missing-oracle gaps.'],
   'ATLAS-UNDERSTANDING':['The declared project breadth lacks owned source, a facet or an explicit gap.','Review actual component owners and record all seven facets. Bind flows to their owners; retain PARTIAL/UNKNOWN where source or oracle proof is incomplete.'],

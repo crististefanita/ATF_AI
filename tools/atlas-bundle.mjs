@@ -53,7 +53,7 @@ function exactInventory(actual,expected,code,name){
 
 /** Verifies portable internal consistency; live source and semantic review remain separate gates. */
 export function validateAtlasBundle(bundle){
-  requireAtlas(object(bundle)&&bundle.schemaVersion===1&&[1,2,3].includes(bundle.renderVersion),'ATLAS-SCHEMA','Unsupported complete bundle schema or renderer version');
+  requireAtlas(object(bundle)&&bundle.schemaVersion===1&&[1,2,3,4].includes(bundle.renderVersion),'ATLAS-SCHEMA','Unsupported complete bundle schema or renderer version');
   const analysis=parseJson(bundle.analysisText,'ATLAS-SCHEMA','analysis'),index=parseJson(bundle.sourceIndexText,'ATLAS-SOURCE','source index');
   requireAtlas(isDeepStrictEqual(analysis,bundle.analysis)&&isDeepStrictEqual(index,bundle.sourceIndex),'ATLAS-SCHEMA','Original JSON and embedded parsed objects disagree');
   requireAtlas(object(analysis)&&object(index)&&analysis.schemaVersion===1&&index.schemaVersion===1
