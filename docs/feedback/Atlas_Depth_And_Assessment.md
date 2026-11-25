@@ -273,7 +273,7 @@ TODO pentru înregistrările J1 de control al schimbărilor, cu responsabilitate
 
 ## D-011
 
-Stare: IN PROGRESS. Responsabil: proprietarii documentației Atlas și ai instrumentelor
+Stare: VERIFIED. Responsabil: proprietarii documentației Atlas și ai instrumentelor
 de mentenanță. Prioritate 88; calitate inițială 58. Intrări pentru prioritate:
 impact 90, expunere 85, urgență 85. Intrări pentru calitate: corectitudine 65,
 verificare 45, claritate 60. Sunt evaluări delimitate ale prezentării pentru
@@ -296,3 +296,34 @@ Dovezile se păstrează sub `${ATF_WORK_ROOT}/reviews/20261126-atlas-presentatio
 randarea nativă AI/J1 la lățimile declarate și compararea exactă a pachetului
 capturat. Euristica geometrică finită și subsetul Markdown nu demonstrează
 completitudine semantică sau design vizual perfect. Nu se autorizează un flux nou de produs.
+
+Calitate livrată: 93 (corectitudine 94 / verificare 92 / claritate 92).
+Evaluarea acoperă contractul responsabil de prezentare și capturile AI/J1
+revizuite; nu este o notă globală a framework-ului sau a completitudinii semantice.
+
+| Verificare | Rezultat păstrat și limită |
+|---|---|
+| Componente de mentenanță | 203/203 per ediție după corecția inline; selecțiile complete originale rămân păstrate |
+| Guvernanță Java existentă | EN 315/315; RO 315/315; patru responsabili existenți, cu identități Java/POM/resurse neschimbate |
+| Documente pereche complete | 51 intrări legate de surse, limbă/sens/fapte/legături/diagrame/secțiuni pliabile și trei responsabili de exemple compilabile |
+| Revizie nativă a tabelelor | 12 înregistrări desktop, dintre care patru originale, patru actualizate și patru controale negative/remediate; 586 observații de tabele în proiectele actualizate la 1440/900 CSS px |
+| Revizia diagramelor | Patru înregistrări desktop și 46 observații de diagrame; controalele de suprapunere, resursele offline, navigarea și secțiunile pliabile trec |
+| Identitatea capturii | Se schimbă numai renderVersion; analiza, sursa, documentele, cunoștințele, afirmațiile și dovezile native originale rămân exacte |
+
+Cititorul original AI a afișat două dovezi direcționate la 60 CSS px cu 45/71 linii, lângă o coloană de criterii la 670 CSS px cu trei linii; a reprodus spațiu insuficient pentru
+proză la ambele lățimi; cititorul original J1 depășea și pagina la 900 CSS px.
+Cititorii reparați trec semnalele finite de aranjare. Au fost inspectate capturile
+fișelor de caz, tabelelor sursă, legendelor și prezentării generale; revizia vizuală
+are un domeniu delimitat.
+
+Prima încercare pentru documente a eșuat deoarece această înregistrare folosea
+REVIEWING, în afara vocabularului stărilor active acceptate. IN PROGRESS repară
+înregistrarea; eșecul original rămâne în documents-01. O rerandare deterministă J1
+a descoperit și tratarea combinației de evidențiere și cod. Controalele independente
+pentru marcatori literali și format mixt o repară păstrând exact ambele HTML-uri inspectate.
+
+Formulările compacte deja redactate în analiza păstrată rămân vizibile, iar sursa
+Mermaid este reținută onest, fără execuție ca script arbitrar. Redactările viitoare
+cer în continuare revizie umană a sensului și tipografiei. Actualizarea publicării
+curente păstrează selecția anterioară completă în istoric extern imuabil și fiecare
+octet original al rapoartelor de execuție rămâne neschimbat.
