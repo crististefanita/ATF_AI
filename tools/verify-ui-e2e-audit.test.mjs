@@ -243,7 +243,8 @@ test('typed credential values are redacted and failure diagnostics never print l
 test('native XML supports quoted attributes, preserved CDATA and explicit error counters but not DTDs',()=>{
   const value=fixture({statuses:{[first]:'FAIL'},configurationFailure:true}),parsed=readSurefireUiResults(value.surefireXml);
   assert.ok(parsed.cases[0].explanation.includes('<preserved>'));assert.equal(parsed.nativeCounters.errors,1);
-  assert.throws(()=>readSurefireUiResults(value.surefireXml.replace('<?xml version="1.0" encoding="UTF-8"?>','<!DOCTYPE testsuite [<!ENTITY unsafe SYSTEM "file:///unowned">]>')),/E2E-XML/);
+  const externalEntity='<!DOCTYPE testsuite [<!ENTITY unsafe SYSTEM "'+escape(import.meta.url)+'">]>';
+  assert.throws(()=>readSurefireUiResults(value.surefireXml.replace('<?xml version="1.0" encoding="UTF-8"?>',externalEntity)),/E2E-XML/);
   assert.throws(()=>readSurefireUiResults(value.surefireXml.replace('</testsuite>','</different>')),/E2E-XML/);
 });
 test('malformed native capture shapes fail with constructive owner guidance rather than incidental exceptions',()=>{
