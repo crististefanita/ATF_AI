@@ -13,7 +13,6 @@ jurnale și rapoarte în zona externă; copiile selectate și verificate pot fi 
 |---|---|---|---:|---:|---|---|
 | G-014 | Păstrează eșecul de control al schimbărilor J1 separat de consistența Atlas și de succesul catalogului | Responsabilul schimbărilor J1; observație externă | 84 | 68 | TODO | [Sursa exactă și înregistrările necesare](Atlas_Depth_And_Assessment.md#g-014) |
 | F-011 | Păstrează observabilă curățarea urmăririi interacțiunilor când închiderea motorului UI aruncă o excepție | Responsabilul închiderii UI din Core | 82 | 66 | TODO | [Lipsa observată în surse și criteriul de componentă absent](Behavior_And_Negative_Cases.md#f-011) |
-| D-008 | Limitează publicația curentă și păstrează istoricul complet imuabil în afara copiei live | Guvernanța publicării artefactelor și a mentenanței | 90 | 59 | IN PROGRESS | [Acceptanța inventarului, structurii și arhivei](Artifact_Publication_And_History.md#d-008) |
 
 Registrul este rezervat guvernanței, stabilității și documentației framework-ului.
 Înregistrările despre îmbunătățirea fluxurilor de produs sunt excluse din această listă.
@@ -115,6 +114,7 @@ normalizarea prezentării nu reprezintă o nouă execuție.
 | G-015 | Sunt guvernate traseele accesibile, fragmentele exacte ale oracolelor independente și limitele cazurilor negative | 138 verificări de mentenanță, controale pentru aliasuri/cicluri/coruperi și selecțiile Java ale ambelor ediții trecute; [dovezi](Behavior_And_Negative_Cases.md#g-015) |
 | D-007 | Comportamentele pozitive și negative existente sunt explicate în fiecare document complet | AI: 11 / J1: 10 fluxuri, 53 cazuri, 4 verificări desktop/46 diagrame și 21/23 ghiduri sursă incluse; [dovezi](Behavior_And_Negative_Cases.md#d-007) |
 | A-002 | Parcurgerea grafurilor, componentele de publicare și verificările API păstrează limite distincte | 138 verificări Node și cinci invocări adăugate în clasa existentă de contracte API trecute; XML/TAP originale păstrate; [dovezi](Behavior_And_Negative_Cases.md#a-002) |
+| D-008 | Publicația curentă de artefacte este limitată, iar istoricul complet și imuabil rămâne în afara proiectului live | 26 fișiere generate curente, două documente Atlas neschimbate, 20 verificări de componentă și 211/211 verificări Java de guvernanță; [dovezi](Artifact_Publication_And_History.md#d-008) |
 
 Criteriile de acceptanță pentru browser desktop și dovezile corecțiilor explicit istorice sunt în
 [mentenanța framework-ului](Framework_Maintenance.md). Contractele de închidere și
