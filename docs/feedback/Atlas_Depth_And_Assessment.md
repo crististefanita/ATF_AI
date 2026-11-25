@@ -297,8 +297,9 @@ captures; it is not a global framework or semantic-completeness score.
 | Diagram review | Four desktop records and 46 diagram observations; label overlap controls, offline resources, navigation and disclosure pass |
 | Capture identity | Only renderVersion changes; original analysis, source, documents, knowledge, claims and native evidence remain exact |
 
-The original AI reader exposed two directed witnesses at 60 CSS px with 45/71 lines, beside an oracle column at 670 CSS px with three lines;
-the original J1 reader also overflowed the page at 900 CSS px. The repaired
+At both widths, the original AI reader gave two directed witnesses 60 CSS px,
+producing 45/71 lines. An adjacent 670 CSS px oracle column used three lines.
+The original J1 reader also overflowed the page at 900 CSS px. The repaired
 readers pass the finite layout signals. Screenshots of case records, source
 tables, legends and overview were inspected; this is scoped visual review.
 
