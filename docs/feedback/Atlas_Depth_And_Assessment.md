@@ -273,8 +273,8 @@ TODO pentru înregistrările J1 de control al schimbărilor, cu responsabilitate
 
 ## D-011
 
-Stare: REVIEWING. Responsabil: proprietarii documentației Atlas și ai instrumentelor
- de mentenanță. Prioritate 88; calitate inițială 58. Intrări pentru prioritate:
+Stare: IN PROGRESS. Responsabil: proprietarii documentației Atlas și ai instrumentelor
+de mentenanță. Prioritate 88; calitate inițială 58. Intrări pentru prioritate:
 impact 90, expunere 85, urgență 85. Intrări pentru calitate: corectitudine 65,
 verificare 45, claritate 60. Sunt evaluări delimitate ale prezentării pentru
 cititor, nu note pentru întregul framework.

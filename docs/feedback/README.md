@@ -11,7 +11,7 @@ jurnale și rapoarte în zona externă; copiile selectate și verificate pot fi 
 
 | ID | Constatare | Responsabil | Prioritate (1-100) | Calitate (1-100) | Stare | Dovada închiderii |
 |---|---|---|---:|---:|---|---|
-| D-011 | Guvernează structura lecturii Atlas, legendele și echilibrul măsurat al tabelelor | Proprietarii documentației Atlas și ai instrumentelor de mentenanță | 88 | 58 | REVIEWING | [Defecte reproduse și acceptanță delimitată](Atlas_Depth_And_Assessment.md#d-011) |
+| D-011 | Guvernează structura lecturii Atlas, legendele și echilibrul măsurat al tabelelor | Proprietarii documentației Atlas și ai instrumentelor de mentenanță | 88 | 58 | IN PROGRESS | [Defecte reproduse și acceptanță delimitată](Atlas_Depth_And_Assessment.md#d-011) |
 | G-014 | Păstrează eșecul de control al schimbărilor J1 separat de consistența Atlas și de rezultatul reușit al catalogului în aria verificată | Responsabilul schimbărilor testelor J1; observație externă | 84 | 68 | TODO | [Sursa exactă și înregistrările de control necesare](Atlas_Depth_And_Assessment.md#g-014) |
 | G-016 | Revizuiește pierderea unei metode de regresie existente dintr-o clasă încă selectată | Responsabilul mentenanței testelor | 75 | 69 | TODO | [Lacuna observată în surse și acceptanța limitată](Code_And_Documentation_Maturity.md#g-016) |
 | F-011 | Păstrează observabilă curățarea urmăririi interacțiunilor când închiderea motorului UI aruncă o excepție | Responsabilul închiderii UI din Core | 82 | 66 | TODO | [Lipsa observată în surse și criteriul de componentă absent](Behavior_And_Negative_Cases.md#f-011) |
