@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Framework API regressions" verbose="1" parallel="none">
+    <test name="Framework API regressions">
+        <classes>
+            <class name="com.ai.atf.core.support.base.BaseTestAPIContractTest"/>
+            <class name="com.ai.atf.core.support.base.ApiCoreExecutionArchitectureContractTest"/>
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,248 @@
+﻿schemaVersion: 1
+contracts:
+  - id: core.ui-engine.action.open
+    kind: required-action
+    key: method
+    value: open
+    owner: UIEngine interface
+    repair: Add the missing method to UIEngine first, then implement it in concrete engines.
+  - id: core.ui-engine.action.click
+    kind: required-action
+    key: method
+    value: click
+    owner: UIEngine interface
+    repair: Add the missing method to UIEngine first, then implement it in concrete engines.
+  - id: core.ui-engine.action.click-visible
+    kind: required-action
+    key: method
+    value: clickVisible
+    owner: UIEngine interface
+    repair: Add the missing method to UIEngine first, then implement it in concrete engines.
+  - id: core.ui-engine.action.type
+    kind: required-action
+    key: method
+    value: type
+    owner: UIEngine interface
+    repair: Add the missing method to UIEngine first, then implement it in concrete engines.
+  - id: core.ui-engine.action.press-key
+    kind: required-action
+    key: method
+    value: pressKey
+    owner: UIEngine interface
+    repair: Add the missing method to UIEngine first, then implement it in concrete engines.
+  - id: core.ui-engine.action.select
+    kind: required-action
+    key: method
+    value: select
+    owner: UIEngine interface
+    repair: Add the missing method to UIEngine first, then implement it in concrete engines.
+  - id: core.ui-engine.action.upload-file
+    kind: required-action
+    key: method
+    value: uploadFile
+    owner: UIEngine interface
+    repair: Add the missing method to UIEngine first, then implement it in concrete engines.
+  - id: core.ui-engine.action.get-text
+    kind: required-action
+    key: method
+    value: getText
+    owner: UIEngine interface
+    repair: Add the missing method to UIEngine first, then implement it in concrete engines.
+  - id: core.ui-engine.action.get-texts
+    kind: required-action
+    key: method
+    value: getTexts
+    owner: UIEngine interface
+    repair: Add the missing method to UIEngine first, then implement it in concrete engines.
+  - id: core.ui-engine.action.get-visible-texts
+    kind: required-action
+    key: method
+    value: getVisibleTexts
+    owner: UIEngine interface
+    repair: Add the missing method to UIEngine first, then implement it in concrete engines.
+  - id: core.ui-engine.action.get-value
+    kind: required-action
+    key: method
+    value: getValue
+    owner: UIEngine interface
+    repair: Add the missing method to UIEngine first, then implement it in concrete engines.
+  - id: core.ui-engine.action.get-attribute
+    kind: required-action
+    key: method
+    value: getAttribute
+    owner: UIEngine interface
+    repair: Add the missing method to UIEngine first, then implement it in concrete engines.
+  - id: core.ui-engine.action.wait-for-response
+    kind: required-action
+    key: method
+    value: waitForResponse
+    owner: UIEngine interface
+    repair: Add the missing method to UIEngine first, then implement it in concrete engines.
+  - id: core.ui-engine.action.is-visible
+    kind: required-action
+    key: method
+    value: isVisible
+    owner: UIEngine interface
+    repair: Add the missing method to UIEngine first, then implement it in concrete engines.
+  - id: core.ui-engine.action.is-enabled
+    kind: required-action
+    key: method
+    value: isEnabled
+    owner: UIEngine interface
+    repair: Add the missing method to UIEngine first, then implement it in concrete engines.
+  - id: core.ui-engine.action.wait-for-visible
+    kind: required-action
+    key: method
+    value: waitForVisible
+    owner: UIEngine interface
+    repair: Add the missing method to UIEngine first, then implement it in concrete engines.
+  - id: core.ui-engine.action.wait-for-url
+    kind: required-action
+    key: method
+    value: waitForUrlContains
+    owner: UIEngine interface
+    repair: Add the missing method to UIEngine first, then implement it in concrete engines.
+  - id: core.ui-engine.action.clear-session
+    kind: required-action
+    key: method
+    value: clearSession
+    owner: UIEngine interface
+    repair: Add the missing method to UIEngine first, then implement it in concrete engines.
+  - id: core.ui-engine.action.screenshot-base64
+    kind: required-action
+    key: method
+    value: captureScreenshotAsBase64
+    owner: UIEngine interface
+    repair: Add the missing method to UIEngine first, then implement it in concrete engines.
+  - id: core.ui-engine.action.window-size
+    kind: required-action
+    key: method
+    value: setWindowSize
+    owner: UIEngine interface
+    repair: Add the missing method to UIEngine first, then implement it in concrete engines.
+  - id: core.ui-engine.action.quit
+    kind: required-action
+    key: method
+    value: quit
+    owner: UIEngine interface
+    repair: Add the missing method to UIEngine first, then implement it in concrete engines.
+  - id: core.ui-engine.headless-override.config-manager-literal
+    kind: headless-override-marker
+    key: marker
+    value: 'ConfigManager.set("ui.headless"'
+    owner: ATF core UI tests
+    repair: Use restore discipline or AtfRuntimeConfigSandbox for ui.headless overrides.
+  - id: core.ui-engine.headless-override.config-manager-constant
+    kind: headless-override-marker
+    key: marker
+    value: 'ConfigManager.set(UI_HEADLESS'
+    owner: ATF core UI tests
+    repair: Use restore discipline or AtfRuntimeConfigSandbox for ui.headless overrides.
+  - id: core.ui-engine.headless-override.config-manager-runtime-options
+    kind: headless-override-marker
+    key: marker
+    value: 'ConfigManager.set(UiRuntimeOptions.UI_HEADLESS_KEY'
+    owner: ATF core UI tests
+    repair: Use restore discipline or AtfRuntimeConfigSandbox for ui.headless overrides.
+  - id: core.ui-engine.headless-override.setconfig-literal
+    kind: headless-override-marker
+    key: marker
+    value: '.setConfig("ui.headless"'
+    owner: ATF core UI tests
+    repair: Use restore discipline or AtfRuntimeConfigSandbox for ui.headless overrides.
+  - id: core.ui-engine.headless-override.setconfig-constant
+    kind: headless-override-marker
+    key: marker
+    value: '.setConfig(UI_HEADLESS'
+    owner: ATF core UI tests
+    repair: Use restore discipline or AtfRuntimeConfigSandbox for ui.headless overrides.
+  - id: core.ui-engine.headless-override.setconfig-runtime-options
+    kind: headless-override-marker
+    key: marker
+    value: '.setConfig(UiRuntimeOptions.UI_HEADLESS_KEY'
+    owner: ATF core UI tests
+    repair: Use restore discipline or AtfRuntimeConfigSandbox for ui.headless overrides.
+  - id: core.ui-engine.headless-restore.literal
+    kind: headless-restore-marker
+    key: marker
+    value: 'restore("ui.headless"'
+    owner: ATF core UI tests
+    repair: Restore ui.headless after each overriding test method.
+  - id: core.ui-engine.headless-restore.constant
+    kind: headless-restore-marker
+    key: marker
+    value: 'restore(UI_HEADLESS'
+    owner: ATF core UI tests
+    repair: Restore ui.headless after each overriding test method.
+  - id: core.ui-engine.headless-restore.runtime-options
+    kind: headless-restore-marker
+    key: marker
+    value: 'restore(UiRuntimeOptions.UI_HEADLESS_KEY'
+    owner: ATF core UI tests
+    repair: Restore ui.headless after each overriding test method.
+  - id: core.ui-engine.headless-restore-config.literal
+    kind: headless-restore-marker
+    key: marker
+    value: 'restoreConfig("ui.headless"'
+    owner: ATF core UI tests
+    repair: Restore ui.headless after each overriding test method.
+  - id: core.ui-engine.headless-restore-config.constant
+    kind: headless-restore-marker
+    key: marker
+    value: 'restoreConfig(UI_HEADLESS'
+    owner: ATF core UI tests
+    repair: Restore ui.headless after each overriding test method.
+  - id: core.ui-engine.headless-restore-config.runtime-options
+    kind: headless-restore-marker
+    key: marker
+    value: 'restoreConfig(UiRuntimeOptions.UI_HEADLESS_KEY'
+    owner: ATF core UI tests
+    repair: Restore ui.headless after each overriding test method.
+  - id: core.ui-engine.headless-restore.config-manager-literal
+    kind: headless-restore-marker
+    key: marker
+    value: 'ConfigManager.set("ui.headless", previousUiHeadless'
+    owner: ATF core UI tests
+    repair: Restore ui.headless after each overriding test method.
+  - id: core.ui-engine.headless-restore.config-manager-constant
+    kind: headless-restore-marker
+    key: marker
+    value: 'ConfigManager.set(UI_HEADLESS, previousUiHeadless'
+    owner: ATF core UI tests
+    repair: Restore ui.headless after each overriding test method.
+  - id: core.ui-engine.headless-restore.config-manager-runtime-options
+    kind: headless-restore-marker
+    key: marker
+    value: 'ConfigManager.set(UiRuntimeOptions.UI_HEADLESS_KEY, previousUiHeadless'
+    owner: ATF core UI tests
+    repair: Restore ui.headless after each overriding test method.
+  - id: core.ui-engine.default.engine
+    kind: ui-default
+    key: ui.engine
+    value: playwright
+    owner: framework.properties
+    repair: Keep framework.properties and the UI runtime default contract aligned.
+  - id: core.ui-engine.default.headless
+    kind: ui-default
+    key: ui.headless
+    value: true
+    owner: framework.properties
+    repair: Keep framework.properties and the UI runtime default contract aligned.
+  - id: core.ui-engine.default.window-mode
+    kind: ui-default
+    key: ui.window.mode
+    value: fullscreen
+    owner: framework.properties
+    repair: Keep framework.properties and the UI runtime default contract aligned.
+  - id: core.ui-engine.default.zoom
+    kind: ui-default
+    key: ui.page.zoom.percent
+    value: 60
+    owner: framework.properties
+    repair: Keep framework.properties and the UI runtime default contract aligned.
+  - id: core.ui-engine.default.final-screenshot
+    kind: ui-default
+    key: ui.screenshots.capture.final.state
+    value: true
+    owner: framework.properties
+    repair: Keep framework.properties and the UI runtime default contract aligned.

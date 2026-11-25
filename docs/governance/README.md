@@ -1,0 +1,52 @@
+# Framework governance
+
+## Purpose and scope
+
+This area owns the review policies for code, existing tests and maintained
+documentation. It translates useful historical practices into framework
+contracts without restoring a skill registry, agent runtime or generation stack.
+
+The reactor remains five Maven modules: atf-core, atf-playwright, atf-selenium,
+atf-reporting and atf-tests. The separate [Atlas](../../atf-atlas/README.md) is
+documentation and governance; it is not a sixth Maven module.
+
+## Choose a review owner
+
+| Question | Canonical owner |
+|---|---|
+| How should code, existing tests and documentation be reviewed? | [Code and documentation policy](Code_And_Documentation_Policy.md) |
+| How do I understand a failure and verify its correction? | [Failure diagnostics and exact negative controls](Failure_Diagnostics.md) |
+| How are English and Romanian READMEs kept equivalent? | [README editions](Readme_Editions.md) |
+| Which module owns the changed contract? | [Architecture](../Architecture.md) and its linked module guide |
+| Which existing tests protect it? | [Atlas coverage map](../../atf-atlas/Coverage_Map.md) and [Testing](../Testing.md) |
+| What remains unresolved, and what would close it? | [Feedback](../feedback/README.md) |
+| Where do validation and synchronization happen? | [Development](../Development.md) |
+| Which code and test practices are executable rules? | [Imports, ownership and stable regression policy](Code_And_Documentation_Policy.md) |
+| How are generated reports separated from maintained sources? | [Artifacts](../../artifacts/README.md) and [report archive](../../artifacts/reports/README.md) |
+
+```mermaid
+flowchart TB
+    Source["Source, POM and tests"] --> Owner["Owning contract"]
+    Owner --> Check["Check or review"]
+    Check --> Evidence["Observed evidence"]
+    Evidence --> Update["Owner guide and feedback"]
+    Check -. reproducible gap .-> Source
+```
+
+The flow connects a factual claim to its owner and proof. A failed check returns
+to the responsible source or document; it does not authorize weakening the check.
+Stable rules stay in their owner guide, while feedback records remaining gaps
+and scoped closure evidence.
+
+## Existing executable surface
+
+| Owner | Current guard surface | What its result establishes |
+|---|---|---|
+| Architecture | [Architecture rules](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureRules.java) and [existing fixtures](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureGovernanceTest.java) | Module/provider boundaries, source visibility and supported execution-ownership rules |
+| Documentation | [Markdown rules](../../atf-tests/src/test/java/com/ai/atf/governance/MarkdownDocumentationRules.java) and [existing fixtures](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationGovernanceTest.java) | Links, declared build/default facts, lifecycle, paired architecture and compilable consumer examples |
+| Source inspection | [Java scanner fixtures](../../atf-tests/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java) | Supported lexical regions, English known-marker policy and exact data exceptions |
+| Behavior | Tests linked by the [coverage map](../../atf-atlas/Coverage_Map.md) | Their explicit observed outcomes and fixture scope |
+
+A written policy is not evidence of an automated guard. Keep manual review
+criteria identifiable; record a missing check as a gap rather than claiming
+that a green suite proves the whole policy.

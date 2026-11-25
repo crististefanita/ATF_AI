@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Framework UI regressions" verbose="1" parallel="none">
+    <test name="Framework UI regressions">
+        <classes>
+            <class name="com.ai.atf.core.support.base.BaseTestUIContractTest"/>
+            <class name="com.ai.atf.ui.component.InvoiceEvidenceContractTest"/>
+            <class name="com.ai.atf.ui.component.RegistrationSubmissionContractTest"/>
+            <class name="com.ai.atf.ui.component.RegistrationValidationContractTest"/>
+            <class name="com.ai.atf.ui.component.UiCoreConfigOverrideDisciplineTest"/>
+            <class name="com.ai.atf.ui.component.UiEngineActionParityContractTest"/>
+            <class name="com.ai.atf.ui.component.UiEngineCapabilityContractTest"/>
+            <class name="com.ai.atf.ui.component.UiEngineDelegationContractTest"/>
+            <class name="com.ai.atf.ui.component.UiEngineRuntimeOptionsContractTest"/>
+            <class name="com.ai.atf.ui.component.WaitUtilsContractTest"/>
+            <class name="com.ai.atf.ui.component.config.FrameworkRuntimeUiDefaultsContractTest"/>
+            <class name="com.ai.atf.ui.component.engine.SeleniumEngineInternalContractTest"/>
+            <class name="com.ai.atf.ui.component.engine.UiEngineBoundaryContractTest"/>
+            <class name="com.ai.atf.ui.component.registry.UiEngineRegistryContractTest"/>
+        </classes>
+    </test>
+</suite>

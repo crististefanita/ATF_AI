@@ -1,0 +1,453 @@
+{
+  "schemaVersion": 1,
+  "id": "atf-atlas-contracts",
+  "language": "en",
+  "archiveRevision": "70a7279c2a9560d39e6bd2554cd2f96a88626692",
+  "retrievalPolicy": "MANDATORY_PLUS_DETERMINISTIC_LEXICAL",
+  "records": [
+    {
+      "id": "KB-STYLE",
+      "title": "Dedicated canonical report stylesheet",
+      "topics": [
+        "stylesheet",
+        "css",
+        "visual",
+        "canonical"
+      ],
+      "mandatory": true,
+      "requirement": "Maintain a dedicated Atlas stylesheet derived from the reviewed shared design. Embed the canonical UTF-8 LF representation in the standalone HTML; do not require a separate stylesheet or invent local visual overrides.",
+      "sources": [
+        {
+          "kind": "ARCHIVE",
+          "revision": "70a7279c2a9560d39e6bd2554cd2f96a88626692",
+          "path": "docs/shared-report-reference.css",
+          "sha256": "d9a1ec153b4f9b7231fc25c37494e01ded8089788c775450728f843ae405cb1c",
+          "quote": "Canonical shared stylesheet for langgraph-business-understanding.html reports."
+        },
+        {
+          "kind": "ARCHIVE",
+          "revision": "70a7279c2a9560d39e6bd2554cd2f96a88626692",
+          "path": "src/main/java/com/ai/skills/atlas/contract/catalog/AtlasBaseRuleCatalog.java",
+          "sha256": "b39b60eb88ee1fbc1856d39bac782cec0913a44283e8a940f72d011361840637",
+          "quote": "The atlas must reuse the shared report visual system instead of inventing local styling."
+        }
+      ]
+    },
+    {
+      "id": "KB-COLLAPSE",
+      "title": "Navigable native report sections",
+      "topics": [
+        "navigation",
+        "sections",
+        "collapse",
+        "disclosure",
+        "summary"
+      ],
+      "mandatory": true,
+      "requirement": "Organize complete report information into navigable details/summary sections. Keep a concise overview open and preserve native disclosure without requiring executable scripts.",
+      "sources": [
+        {
+          "kind": "ARCHIVE",
+          "revision": "70a7279c2a9560d39e6bd2554cd2f96a88626692",
+          "path": "src/main/java/com/ai/skills/atlas/contract/catalog/AtlasBaseRuleCatalog.java",
+          "sha256": "b39b60eb88ee1fbc1856d39bac782cec0913a44283e8a940f72d011361840637",
+          "quote": "Atlas readers need navigable sections, not one long wall of HTML."
+        }
+      ]
+    },
+    {
+      "id": "KB-BEHAVIOR",
+      "title": "Behavior understanding before class inventory",
+      "topics": [
+        "behavior",
+        "business",
+        "framework",
+        "flow",
+        "domain",
+        "objects"
+      ],
+      "mandatory": true,
+      "requirement": "Explain existing source-backed behavior using actors, intent, operations, meaningful objects and observed or source-reviewed outcomes. Keep dependency and class inventories separate. When behavior is unknown, expose the limit instead of manufacturing a flow.",
+      "sources": [
+        {
+          "kind": "ARCHIVE",
+          "revision": "70a7279c2a9560d39e6bd2554cd2f96a88626692",
+          "path": "src/main/java/com/ai/skills/atlas/contract/catalog/AtlasBaseRuleCatalog.java",
+          "sha256": "b39b60eb88ee1fbc1856d39bac782cec0913a44283e8a940f72d011361840637",
+          "quote": "A business atlas without business flow diagrams is only a test inventory."
+        }
+      ]
+    },
+    {
+      "id": "KB-TRACE",
+      "title": "Reopen claims from exact source and oracle evidence",
+      "topics": [
+        "trace",
+        "source",
+        "oracle",
+        "assertion",
+        "quote",
+        "path",
+        "line"
+      ],
+      "mandatory": true,
+      "requirement": "Bind claims, behavior transitions and available test oracles to exact source fragments and useful line ranges. State missing or unexecuted oracles explicitly; related governance is not complete coverage of every clause.",
+      "sources": [
+        {
+          "kind": "ARCHIVE",
+          "revision": "70a7279c2a9560d39e6bd2554cd2f96a88626692",
+          "path": "src/main/java/com/ai/skills/atlas/contract/catalog/AtlasBaseRuleCatalog.java",
+          "sha256": "b39b60eb88ee1fbc1856d39bac782cec0913a44283e8a940f72d011361840637",
+          "quote": "Rows must expose a repeatable mapping shape so the atlas is auditable."
+        }
+      ]
+    },
+    {
+      "id": "KB-READONLY",
+      "title": "Preserve analyzed project ownership",
+      "topics": [
+        "readonly",
+        "ownership",
+        "target",
+        "source",
+        "mutation"
+      ],
+      "mandatory": true,
+      "requirement": "Analyze the selected project read only unless the task authorizes a specific edit. Preserve concurrent work and publish generated documents in the caller-selected artifact area.",
+      "sources": [
+        {
+          "kind": "ARCHIVE",
+          "revision": "70a7279c2a9560d39e6bd2554cd2f96a88626692",
+          "path": "src/main/java/com/ai/skills/atlas/contract/catalog/AtlasBaseRuleCatalog.java",
+          "sha256": "b39b60eb88ee1fbc1856d39bac782cec0913a44283e8a940f72d011361840637",
+          "quote": "The atlas skill is analysis-only; changing analyzed sources violates the contract."
+        }
+      ]
+    },
+    {
+      "id": "KB-COMPLETE",
+      "title": "Complete self-contained understanding document",
+      "topics": [
+        "complete",
+        "standalone",
+        "html",
+        "offline",
+        "evidence",
+        "embed"
+      ],
+      "mandatory": true,
+      "requirement": "Deliver all declared understanding, diagrams, source traces, documents, knowledge context, proof boundaries and original declared evidence in the single final HTML. Do not truncate inputs or depend on navigation sidecars. Missing facts remain explicit gaps.",
+      "sources": [
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "Each invocation publishes exactly one complete understanding HTML for exactly one selected project."
+        }
+      ]
+    },
+    {
+      "id": "KB-ONE-TARGET",
+      "title": "Exactly one understanding HTML per invocation",
+      "topics": [
+        "single",
+        "one",
+        "target",
+        "project",
+        "delivery",
+        "html"
+      ],
+      "mandatory": true,
+      "requirement": "For one selected project, publish exactly one complete understanding HTML in its delivery directory. Keep audit sidecars outside delivery and preserve exactly one project/revision identity; never blend another project's facts or execution proof. This applies to ATF and non-ATF projects.",
+      "sources": [
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "Each invocation publishes exactly one complete understanding HTML for exactly one selected project."
+        }
+      ]
+    },
+    {
+      "id": "KB-TARGET-ADAPTATION",
+      "title": "Adapt to the actual selected project",
+      "topics": [
+        "generic",
+        "language",
+        "build",
+        "no",
+        "tests",
+        "git",
+        "single",
+        "component",
+        "unknown"
+      ],
+      "mandatory": true,
+      "requirement": "Detect the actual project language, build system, components and proof scope. Never reuse an ATF module graph for an unrelated project. A source-only project with no tests or Git is valid with explicit unknown identity or missing oracle. A single component and zero declared edges must remain truthful. Use oracleStatus NOT_FOUND and an UNKNOWN oracle claim when no oracle is available; do not invent a test suite.",
+      "sources": [
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "The selected project may use any language or build system, or have no tests or Git metadata."
+        }
+      ]
+    },
+    {
+      "id": "KB-ENGLISH",
+      "title": "Canonical English authored report",
+      "topics": [
+        "english",
+        "language",
+        "comments",
+        "code"
+      ],
+      "mandatory": true,
+      "requirement": "Keep authored report prose, code and comments English. Preserve exact external source excerpts and original retained evidence as attributed data instead of silently translating source facts.",
+      "sources": [
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "The final document is English; code and comments remain English."
+        }
+      ]
+    },
+    {
+      "id": "KB-EVIDENCE",
+      "title": "Execution verdict and captured source identity",
+      "topics": [
+        "execution",
+        "evidence",
+        "verdict",
+        "failed",
+        "passed",
+        "xml",
+        "tap",
+        "snapshot"
+      ],
+      "mandatory": true,
+      "requirement": "Separate source review, real execution, historical reports and unknowns. Preserve actual XML/TAP counters and verdicts plus the original executed source manifest. A passing consistency check cannot relabel a failed run or certify later edits.",
+      "sources": [
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "execution stays FAILED even if consistency verification passes."
+        }
+      ]
+    },
+    {
+      "id": "KB-SCORES",
+      "title": "No invented assessment score",
+      "topics": [
+        "score",
+        "rubric",
+        "assessment",
+        "not",
+        "assessed",
+        "maturity"
+      ],
+      "mandatory": true,
+      "requirement": "Display NOT_ASSESSED when no actual rubric and assessment were supplied. Never infer a maturity or understanding score from passing checks, hash identity, retrieval relevance or the number of source files.",
+      "sources": [
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "No score is inferred from passing checks."
+        }
+      ]
+    },
+    {
+      "id": "KB-SEMANTICS",
+      "title": "Human review owns semantic correspondence",
+      "topics": [
+        "semantics",
+        "review",
+        "truth",
+        "coverage",
+        "limits",
+        "claims"
+      ],
+      "mandatory": true,
+      "requirement": "Treat structural validation and source/evidence identity as bounded consistency checks. A reviewer still verifies meaning, graph correspondence and proof limits; matching keywords do not establish semantic truth or complete coverage.",
+      "sources": [
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "identity and structure; it cannot infer that prose is true from matching words."
+        }
+      ]
+    },
+    {
+      "id": "KB-GRAPH-READABILITY",
+      "title": "Readable supporting graph relationships",
+      "topics": [
+        "graph",
+        "arrowheads",
+        "relationship",
+        "labels",
+        "svg",
+        "readability"
+      ],
+      "mandatory": false,
+      "requirement": "Use visible minimal SVG shapes, understandable relationship labels and arrowheads. Inspect real desktop rendering for overlap, clipped labels and ambiguous direction; valid markup alone is insufficient.",
+      "sources": [
+        {
+          "kind": "ARCHIVE",
+          "revision": "70a7279c2a9560d39e6bd2554cd2f96a88626692",
+          "path": "src/main/resources/skills/atlas/contracts/graph-reporting.yml",
+          "sha256": "ad3d419f2cffe010d53d63ddc07c4c947bd1a1888c8ff5fa55b76b3e3700bf6b",
+          "quote": "supportingGraphEdgesRequireArrowheads: true"
+        },
+        {
+          "kind": "ARCHIVE",
+          "revision": "70a7279c2a9560d39e6bd2554cd2f96a88626692",
+          "path": "src/main/resources/skills/atlas/contracts/graph-reporting.yml",
+          "sha256": "ad3d419f2cffe010d53d63ddc07c4c947bd1a1888c8ff5fa55b76b3e3700bf6b",
+          "quote": "supportingGraphEdgesRequireRelationshipLabels: true"
+        }
+      ]
+    },
+    {
+      "id": "KB-REPAIR-DIAGNOSTICS",
+      "title": "Actionable visual governance failures",
+      "topics": [
+        "failure",
+        "diagnostics",
+        "repair",
+        "hint",
+        "feedback",
+        "graph"
+      ],
+      "mandatory": false,
+      "requirement": "A failure must identify the observed missing graph or evidence property and give an owned repair route and recheck selection. Preserve original evidence and distinguish a repair suggestion from an established root cause.",
+      "sources": [
+        {
+          "kind": "ARCHIVE",
+          "revision": "70a7279c2a9560d39e6bd2554cd2f96a88626692",
+          "path": "src/main/resources/skills/atlas/contracts/graph-reporting.yml",
+          "sha256": "ad3d419f2cffe010d53d63ddc07c4c947bd1a1888c8ff5fa55b76b3e3700bf6b",
+          "quote": "supporting graph edges missing arrowheads"
+        },
+        {
+          "kind": "ARCHIVE",
+          "revision": "70a7279c2a9560d39e6bd2554cd2f96a88626692",
+          "path": "src/main/resources/skills/atlas/contracts/graph-reporting.yml",
+          "sha256": "ad3d419f2cffe010d53d63ddc07c4c947bd1a1888c8ff5fa55b76b3e3700bf6b",
+          "quote": "supporting graph missing relationship labels"
+        }
+      ]
+    },
+    {
+      "id": "KB-BREADTH",
+      "title": "Declared source-backed understanding breadth",
+      "topics": [
+        "breadth",
+        "units",
+        "facets",
+        "inventory",
+        "scope",
+        "purpose",
+        "configuration",
+        "failure"
+      ],
+      "mandatory": true,
+      "requirement": "Declare PROJECT or SELECTED understanding scope from actual source-owner inventory. Review purpose, structure, behavior, data, configuration, failure and verification per unit with evidence-backed REVIEWED/PARTIAL or explicit UNKNOWN/NOT_APPLICABLE. Align owner units, architecture nodes and existing flows without inferring semantic completeness from indexed files.",
+      "sources": [
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "A full source inventory is not a declaration of complete semantic understanding."
+        }
+      ]
+    },
+    {
+      "id": "KB-EXECUTION-SUBJECT",
+      "title": "Exact retained behavior and oracle testcase subjects",
+      "topics": [
+        "execution",
+        "testcase",
+        "oracle",
+        "subjects",
+        "identity",
+        "xml",
+        "tap",
+        "outcomes"
+      ],
+      "mandatory": true,
+      "requirement": "An EXECUTED behavior or oracle claim binds every referenced run to an exact retained XML classname/name or flat Node TAP test name, a source path already quoted by the claim and its original outcome. Preserve source-manifest and counter checks. Missing, duplicated, ambiguous, skipped or TODO subjects cannot prove execution; source-only projects retain explicit oracle gaps.",
+      "sources": [
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "An executed behavior or oracle claim requires executionSubjects bound to retained testcase identities and outcomes."
+        }
+      ]
+    },
+    {
+      "id": "KB-ASSESSMENT",
+      "title": "Scoped evidence-bound quality review axes",
+      "topics": [
+        "assessment",
+        "scores",
+        "rubric",
+        "reviewer",
+        "quality",
+        "axes",
+        "weight",
+        "limitations"
+      ],
+      "mandatory": false,
+      "requirement": "When an authored assessment is requested, separate project quality from Atlas quality. Declare reviewer, scope, rationale and limits; cite reviewed claims and any retained execution. Use integer 1–100 correctness/verification/clarity inputs and a 40/30/30 score, with axis weights totaling 100 per group. Do not derive a score from gate success or claim automatic semantic coverage or human approval. Without assessment display NOT_ASSESSED.",
+      "sources": [
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "An assessment is a scoped authored review, not a test pass rate or an automatic score."
+        }
+      ]
+    },
+    {
+      "id": "KB-CASE-WITNESS",
+      "title": "Existing positive and negative behavior case witnesses",
+      "topics": [
+        "case",
+        "cases",
+        "negative",
+        "positive",
+        "oracle",
+        "assertion",
+        "path",
+        "witness"
+      ],
+      "mandatory": true,
+      "requirement": "For each new behavior capture declare actual positive/negative cases with preconditions, triggers, expected observations, contiguous node/edge walks, local source claims and exact existing oracle sourceRef indices. Explain reviewed negative scope or an evidence-backed searched gap; NOT_FOUND keeps an UNKNOWN oracle and source search evidence. Do not invent tests or infer case kind from names.",
+      "sources": [
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "Negative observations are explicit reviewed cases or an evidence-backed search gap, never inferred from a happy-path diagram."
+        }
+      ]
+    },
+    {
+      "id": "KB-REACHABILITY",
+      "title": "Reachable outcomes and bounded graph traversal",
+      "topics": [
+        "graph",
+        "reachability",
+        "entry",
+        "outcome",
+        "cycle",
+        "traversal",
+        "metamorphic",
+        "component"
+      ],
+      "mandatory": true,
+      "requirement": "Every behavior node must be reachable from the declared entry and able to reach an OUTCOME, and every declared OUTCOME needs a source-bound case witness. Validate finite contiguous case walks and declared edge coverage without enumerating every loop schedule. Supported cycles remain valid; disconnected operations and trapped cycles fail. Keep dependency graphs separate and preserve semantic-review limits.",
+      "sources": [
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "Every declared behavior outcome has a source-bound case witness reachable from its entry."
+        }
+      ]
+    }
+  ]
+}

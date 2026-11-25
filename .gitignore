@@ -1,0 +1,19 @@
+/allure-results/
+/target/
+# IntelliJ IDEA
+/.idea/
+*.iml*
+/.allure/
+
+# Module build and runtime output
+**/target/
+**/allure-results/
+
+# Generated evidence bundles; artifact documentation remains tracked.
+/artifacts/reports/runs/
+/artifacts/atlas/runs/
+
+# Selected current publication; maintained owner guides remain tracked.
+/artifacts/publication.json
+/artifacts/reports/current/
+/artifacts/atlas/current/
