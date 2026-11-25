@@ -173,7 +173,7 @@ public class DocumentationGovernanceTest {
         List<String> findings = MarkdownDocumentationRules.validateRetainedLivingPrinciples(root, changed);
         assertFinding(findings, "DOC-LIVING-PRINCIPLES");
         Assert.assertTrue(findings.stream().anyMatch(finding -> GovernanceFiles.matchesFinding(
-                finding, "DOC-LIVING-PRINCIPLES", expected)),
+                finding, "DOC-LIVING-PRINCIPLES") && finding.contains(expected)),
                 "The intended principle defect must be diagnosed: " + expected + "; " + GovernanceFiles.problems(findings));
         assertValid(MarkdownDocumentationRules.validateRetainedLivingPrinciples(root, canonical));
     }
@@ -188,6 +188,72 @@ public class DocumentationGovernanceTest {
         String reordered = canonical.replace(first, "LIVING_PRINCIPLE_SWAP")
                 .replace(last, first).replace("LIVING_PRINCIPLE_SWAP", last);
         assertValid(MarkdownDocumentationRules.validateRetainedLivingPrinciples(root, reordered));
+    }
+
+    @DataProvider(name = "livingHtmlPrincipleMutations")
+    public Object[][] livingHtmlPrincipleMutations() {
+        return new Object[][] {
+                {"missing", "HTML missing LD-12"},
+                {"duplicate", "HTML duplicate LD-01"},
+                {"cleanup-promoted", "HTML LD-11 state differs from Markdown"},
+                {"owner-changed", "HTML LD-01 implementation hrefs differ from Markdown"}
+        };
+    }
+
+    @Test(dataProvider = "livingHtmlPrincipleMutations")
+    public void livingHtmlPrinciplesPreserveDeclaredRowsStatesAndOwnerRoutes(String mutation, String expected) throws Exception {
+        Path root = GovernanceFiles.root();
+        String markdown = Files.readString(root.resolve("docs/Living_Architecture_UI_API_doc_v1_0.md"));
+        String canonical = Files.readString(root.resolve("docs/Living_Architecture_UI_API_doc_v1_0.html"));
+        String changed;
+        switch (mutation) {
+            case "missing": changed = canonical.replace(livingPrincipleHtmlRow(canonical, "LD-12"), ""); break;
+            case "duplicate": {
+                String row = livingPrincipleHtmlRow(canonical, "LD-01");
+                changed = canonical.replace(row, row + row); break;
+            }
+            case "cleanup-promoted": {
+                String row = livingPrincipleHtmlRow(canonical, "LD-11");
+                changed = canonical.replace(row, row.replace("<td>PARTIAL</td>", "<td>MAINTAINED</td>")); break;
+            }
+            case "owner-changed": {
+                String row = livingPrincipleHtmlRow(canonical, "LD-01");
+                changed = canonical.replace(row, row.replace("../atf-core/src/main/java/com/ai/core/support/config/ConfigManager.java",
+                        "../atf-core/src/main/java/com/ai/core/reporting/StepLogger.java")); break;
+            }
+            default: throw new AssertionError("Unknown HTML principle mutation: " + mutation);
+        }
+        Assert.assertNotEquals(changed, canonical, "The HTML negative control must change its selected projection boundary");
+        List<String> findings = MarkdownDocumentationRules.validateRetainedLivingProjection(root, markdown, changed);
+        assertFinding(findings, "DOC-LIVING-PRINCIPLES");
+        Assert.assertTrue(findings.stream().anyMatch(finding -> GovernanceFiles.matchesFinding(finding, "DOC-LIVING-PRINCIPLES")
+                && finding.contains(expected)), "The intended HTML projection defect must be diagnosed: " + expected
+                + "; " + GovernanceFiles.problems(findings));
+        assertValid(MarkdownDocumentationRules.validateRetainedLivingProjection(root, markdown, canonical));
+    }
+
+    @Test
+    public void livingHtmlProjectionIgnoresEscapedPrincipleExamples() throws Exception {
+        Path root = GovernanceFiles.root();
+        String markdown = Files.readString(root.resolve("docs/Living_Architecture_UI_API_doc_v1_0.md"));
+        String canonical = Files.readString(root.resolve("docs/Living_Architecture_UI_API_doc_v1_0.html"));
+        String example = livingPrincipleHtmlRow(canonical, "LD-01").replace("<td>MAINTAINED</td>", "<td>UNSUPPORTED_EXAMPLE_STATE</td>")
+                .replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;");
+        String heading = "<h3 id=\"retained-principles\">Retained principles and auditable UI execution</h3>";
+        String changed = canonical.replace(heading, heading + "<pre><code>" + example + "</code></pre>");
+        Assert.assertNotEquals(changed, canonical, "The positive control must add the escaped example");
+        assertValid(MarkdownDocumentationRules.validateRetainedLivingProjection(root, markdown, changed));
+        String inlineCode = canonical.replace("ACCOUNT_DELETION_NOT_IMPLEMENTED",
+                "<code>ACCOUNT_DELETION_NOT_IMPLEMENTED</code>");
+        Assert.assertNotEquals(inlineCode, canonical, "The inline-code control must format the actual cleanup marker");
+        assertValid(MarkdownDocumentationRules.validateRetainedLivingProjection(root, markdown, inlineCode));
+    }
+
+    private static String livingPrincipleHtmlRow(String html, String id) {
+        Matcher row = Pattern.compile("(?is)<tr\\b[^>]*>\\s*<td\\b[^>]*>\\s*" + Pattern.quote(id)
+                + "\\s*</td>[\\s\\S]*?</tr>").matcher(html);
+        Assert.assertTrue(row.find(), "Missing original HTML principle row: " + id);
+        return row.group();
     }
 
     @Test

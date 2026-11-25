@@ -304,7 +304,8 @@ export function verifyUiE2eAudit({sourceManifestText,surefireXml,extentHtml,capt
   requireAudit(Array.isArray(configurationCapture)&&configurationCapture.every(entry=>object(entry)&&typeof entry.className==='string'&&typeof entry.methodName==='string')&&same(configurationCapture.map(entry=>[key(entry),outcome(entry.status)]).sort(),configurations.map(entry=>[key(entry),entry.status]).sort()),'E2E-SUBJECT','configurationFailures','Preserve every additional native configuration outcome separately.');
   requireAudit(object(capture.totals)&&same(['total','passed','failed','skipped'].map(field=>capture.totals[field]),['total','passed','failed','skipped'].map(field=>native.totals[field])),'E2E-VERDICT','totals','Native Extent totals must agree with all XML outcomes, including configuration cases.');
   requireAudit(Array.isArray(capture.methods)&&capture.methods.length===16,'E2E-SUBJECT','capture methods','Sixteen native product method records are required.');
-  const html=nativeHtmlIndex(extentHtml),methodIds=new Set(),stepIds=new Set(),subjects=new Set(),classBindings=new Map(),observations=[],navigationEvidence=[];
+  const html=nativeHtmlIndex(extentHtml),methodIds=new Set(),stepIds=new Set(),subjects=new Set(),classBindings=new Map(),observations=[],navigationEvidence=[],nativeMethods=[];
+  const nativeOrder=new Map(html.all.map((node,index)=>[node,index]));
   const mode=html.all.find(node=>node.tag==='body');
   requireAudit(mode?.attrs['data-atf-report-mode']==='runtime-audited'&&mode.attrs['data-atf-runtime-audit']==='true','E2E-DOM','report mode','The original HTML must contain its native runtime-audit markers.');
   const totalNodes=html.all.filter(node=>node.tag==='h3'&&node.attrs['data-atf-test-cases-total']==='true');
@@ -327,6 +328,7 @@ export function verifyUiE2eAudit({sourceManifestText,surefireXml,extentHtml,capt
     requireAudit(!methodIds.has(method.nodeId)&&!stepIds.has(method.nodeId),'E2E-DOM',subject,'Native method nodes cannot be reused.');methodIds.add(method.nodeId);
     const bound=nodeBinding(html,method.nodeId,subject);
     requireAudit(bound.title===method.methodName&&title(method.methodTitle||method.methodName)===method.methodName&&bound.status===xml.status,'E2E-DOM',subject,'Bind the exact native method title and direct status badge.');
+    requireAudit(!ancestor(bound.card.parent,node=>hasClass(node,'card')),'E2E-DOM',subject,'A product method must be a native class-level method card, not a nested action with a borrowed method title.');
     requireAudit(bound.classNode&&method.classNodeId==='test-id:'+bound.classNode.attrs['test-id'],'E2E-DOM',subject,'Method must remain under its original native class parent.');
     const classTitle=method.className.slice(method.className.lastIndexOf('.')+1);
     const classNames=descendants(bound.classNode,node=>node.tag==='p'&&hasClass(node,'name')).map(textOf);
@@ -398,13 +400,62 @@ export function verifyUiE2eAudit({sourceManifestText,surefireXml,extentHtml,capt
     requireAudit(Array.isArray(method.screenshots)&&method.screenshots.every(object)&&same(method.screenshots.map(image=>[image.sha256,image.mimeType,image.bytes,image.width,image.height]).sort(),images.map(image=>[image.sha256,image.mimeType,image.bytes,image.width,image.height]).sort()),'E2E-SCREENSHOT',subject,'Screenshot metadata must describe exactly the embedded PNGs belonging to this method.');
     requireAudit(xml.status!=='PASS'||images.some(image=>image.label==='Final Screenshot'),'E2E-SCREENSHOT',subject,'The configured passing final-state screenshot must be present in its native method.');
     observations.push({subject,nativeOutcome:xml.status,domOutcome:bound.status,validationState:method.validationState,validationCoverage:!reached.length?'NOT_REACHED':missing.length?'PARTIAL':'COMPLETE',observedValidations:observed,missingValidations:missing,actionCount,failedActions:failedActions.length,screenshots:images.length,redactedInputs});
+    nativeMethods.push({method,bound,steps:stepMap});
   }
   requireAudit(subjects.size===16&&classBindings.size===3,'E2E-SUBJECT','native DOM','Capture every retained subject under exactly its three native class parents.');
+  const classSetup=[];
+  for(const className of [account,profile]){
+    const owners=nativeMethods.filter(entry=>entry.method.className===className).sort((left,right)=>nativeOrder.get(left.bound.anchor)-nativeOrder.get(right.bound.anchor));
+    const chains=owners.flatMap(owner=>[...owner.steps.values()].filter(step=>step.title==='@BeforeClass').map(step=>({owner,step})));
+    const allSkipped=owners.every(owner=>outcome(owner.method.status)==='SKIP');
+    if(allSkipped&&chains.length===0){
+      classSetup.push({className,state:'NOT_REACHED',reason:'ALL_PRODUCT_METHODS_SKIPPED',setupSubject:null,orderedActions:[],scope:'No class setup acceptance is inferred from skipped native methods.'});
+      continue;
+    }
+    requireAudit(chains.length===1,'E2E-SETUP',className,'Retain exactly one native @BeforeClass setup chain; lost or duplicated HTML/capture setup is not acceptable.');
+    const {owner,step:before}=chains[0],setup=owner.steps.get(before.parentId);
+    requireAudit(owner===owners[0]&&setup?.title==='SETUP'&&setup.parentId===null,'E2E-SETUP',className,'The class setup chain belongs below SETUP on the first serialized native method, independently of capture inventory order.');
+    const nested=step=>{
+      const visited=new Set();let current=step;
+      while(current?.parentId!=null){if(current.parentId===before.id)return true;if(visited.has(current.parentId))return false;visited.add(current.parentId);current=owner.steps.get(current.parentId);}
+      return false;
+    };
+    const candidates=[...owner.steps.values()].filter(nested).sort((left,right)=>nativeOrder.get(html.ids.get(left.id)[0])-nativeOrder.get(html.ids.get(right.id)[0]));
+    const successful=(step,message)=>step.status==='PASS'&&step.terminals.some(log=>log.status==='PASS'&&log.text===message);
+    const locator=step=>step.details.some(detail=>detail.startsWith('locator=')&&detail.length>'locator='.length);
+    const navigation=(step,relative)=>/^(?:Navigate|Open)\b/.test(step.title)&&step.details.includes('relativePath='+relative)
+      &&(successful(step,'Navigated')||successful(step,'Opened'));
+    const typed=(step,label)=>step.title==='Type into element: '+label&&locator(step)&&successful(step,'Typed');
+    const clicked=(step,label)=>step.title==='Click on: '+label&&locator(step)&&successful(step,'Clicked');
+    const phases=[
+      ['registration navigation',step=>navigation(step,'/auth/register')],
+      ['registration email action',step=>typed(step,'Email address')],
+      ['registration password action',step=>typed(step,'Password')],
+      ['registration submission',step=>clicked(step,'Register')],
+      ['login email action',step=>typed(step,'Email address')],
+      ['login password action',step=>typed(step,'Password')],
+      ['login submission',step=>clicked(step,'Login')],
+      ['profile navigation',step=>navigation(step,'/account/profile')]
+    ];
+    const orderedActions=[];let position=0;
+    for(const [phase,accept]of phases){
+      const index=candidates.findIndex((candidate,index)=>index>=position&&accept(candidate));
+      if(index<0)break;
+      const action=candidates[index];position=index+1;
+      orderedActions.push({phase,nodeId:action.id,title:action.title,status:action.status});
+    }
+    const complete=before.status==='PASS'&&setup.status==='PASS'&&orderedActions.length===phases.length;
+    const anyPassed=owners.some(entry=>outcome(entry.method.status)==='PASS');
+    const failedSetup=candidates.some(candidate=>candidate.status==='FAIL'&&candidate.terminals.some(log=>log.status==='FAIL'));
+    requireAudit(complete||!anyPassed&&failedSetup&&(before.status==='FAIL'||setup.status==='FAIL'),'E2E-SETUP',className,'A passing class needs observed ordered registration/login/profile setup actions; test-body actions cannot replace missing preconditions. Preserve genuine failed setup separately.');
+    classSetup.push({className,state:complete?'COMPLETE':'FAILED',setupSubject:key(owner.method),setupNodeId:setup.id,beforeClassNodeId:before.id,
+      orderedActions,scope:'Required action observations inside the original SETUP/@BeforeClass chain, ordered by current Spark native HTML method serialization; not universal execution attestation or business-state completeness.'});
+  }
   const productTotals={total:16,passed:product.filter(entry=>entry.status==='PASS').length,failed:product.filter(entry=>entry.status==='FAIL').length,skipped:product.filter(entry=>entry.status==='SKIP').length};
   requireAudit(productTotals.passed===0||navigationEvidence.length>0,'E2E-ID','navigation evidence','Passing product acceptance needs actual captured navigation configuration/URL evidence for its declared target.');
   return {status:'PASSED',scope:'DECLARED_NATIVE_E2E_EVIDENCE_CONSISTENCY',executionAttestation:'NOT_PROVIDED',engine:source.engine,runId:source.runId,sourceCommit:source.sourceCommit,targetUrl:source.targetUrl,
     hashes:{sourceManifestSha256:digest(sourceManifestText),surefireXmlSha256:digest(surefireXml),htmlSha256:digest(extentHtml),captureCanonicalSha256:digest(JSON.stringify(capture)),probeSha256:capture.probeSha256},
-    nativeTotals:native.totals,productTotals,navigationEvidence:{state:navigationEvidence.length?'OBSERVED':'NOT_OBSERVED',records:navigationEvidence},configurationCases:configurations.map(entry=>({subject:key(entry),outcome:entry.status})),methods:observations,
+    nativeTotals:native.totals,productTotals,classSetup,navigationEvidence:{state:navigationEvidence.length?'OBSERVED':'NOT_OBSERVED',records:navigationEvidence},configurationCases:configurations.map(entry=>({subject:key(entry),outcome:entry.status})),methods:observations,
     boundary:'Checks original declared identities, native counters, HTML-owned DOM structure, terminal validation and embedded PNG containers. It does not attest browser execution, pixel meaning, general secret detection or assertion completeness beyond the retained owner map.'};
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
