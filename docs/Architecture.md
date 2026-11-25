@@ -62,7 +62,7 @@ sequenceDiagram
     participant Registry as Registru UI
     participant Adapter as Furnizor UI
     participant Browser as Browser
-    participant Listener as Ascultător
+    participant Listener as Listener
     participant Reports as Rapoarte
     Test->>Core: Pornește testul și solicită sesiunea UI
     Core->>Registry: Rezolvă motorul configurat

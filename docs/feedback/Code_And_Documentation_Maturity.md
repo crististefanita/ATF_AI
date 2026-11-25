@@ -121,3 +121,18 @@ izolate separate. Publicația curentă ignorată existentă își păstrează ar
   a strategiei, comenzile deschise implicit și etichetele false din literali.
 - Execuția finală și revizia completă sunt consemnate aici după validare; un element
   IN PROGRESS nu se închide printr-o comandă pregătită sau inspecția surselor singură.
+
+<a id="retained-first-complete-execution"></a>
+## Prima execuție completă păstrată
+
+Prima selecție completă implicită a reactorului trece în engleză. Modulul atf-tests
+consemnează 678 de cazuri trecute. Rularea română consemnează 677 de cazuri trecute
+și un control documentar pozitiv eșuat; niciun caz nu este omis. Controlul caută
+un titlu HTML englezesc înainte de a insera un exemplu HTML codificat ca text, astfel că nu
+modifică titlul românesc tradus integral.
+
+Testul existent localizează acum ID-ul stabil al secțiunii retained-principles,
+inserează același exemplu literal și păstrează aceeași aserțiune de proiecție.
+Aserțiunile booleene ale precondițiilor evită afișarea întregului HTML la eșecul
+inserării. Ambele rulări native originale rămân intacte la locațiile local-01.
+O nouă execuție completă local-02 în ambele ediții trebuie să treacă înaintea închiderii.
