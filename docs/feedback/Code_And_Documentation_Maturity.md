@@ -24,7 +24,9 @@ documentation. It adds no product journey, runtime feature or emulator.
   unrelated annotations and locally shadowed Test types are positive controls.
 - Bound the existing worker rendezvous and cleanup, propagate its original
   failure, and preserve the test sink reset in finally.
-- State: IN PROGRESS; closure requires native local outcomes below.
+- Delivered quality: 93; correctness/verification/clarity 94/92/92.
+- State: VERIFIED for the observed local selection and bounded worker contract;
+  the native local-02 evidence below owns the execution claim.
 
 <a id="d-010"></a>
 ## D-010: Strategy first, complete translation and source-grounded review
@@ -32,7 +34,7 @@ documentation. It adds no product journey, runtime feature or emulator.
 - Owner: documentation rules, readability component tests and edition policy.
 - Priority: 88; impact/risk/urgency 90/85/85.
 - Baseline quality: 68; correctness/verification/clarity 65/60/80.
-- User-observed defect: main_RO/docs/Testing.md is English. The old policy
+- Baseline user-observed defect: main_RO/docs/Testing.md was English. The old policy
   deliberately permits translation only for READMEs; its green parity result
   therefore certifies an incomplete Romanian documentation edition.
 - Executed baseline signal: the new local language control identifies that exact
@@ -64,8 +66,9 @@ documentation. It adds no product journey, runtime feature or emulator.
 - Bounded parser limit: structural parity still requires single-line link labels
   and canonical link placement on wrapped bullets. Two translation wrapping fixes
   retain that supported form; no complete Markdown parser is claimed.
-- State: IN PROGRESS; closure requires complete semantic review, explicit paired
-  native governance and inspection of changed diagrams/projections.
+- Delivered quality: 92; correctness/verification/clarity 94/90/92.
+- State: VERIFIED for the maintained document inventory, complete declared review,
+  explicit paired native controls and captured desktop document scope below.
 
 <a id="g-016"></a>
 ## G-016: Review removal of an existing regression method
@@ -113,8 +116,37 @@ reactors. The existing ignored current publication remains at its captured scope
 - Baseline: baseline-translation-language.log records the real untranslated
   Testing document before repair. Readability counterexamples preserve actual
   dense strategy prose, default-open commands and fake tags inside literals.
-- Final execution and complete review are recorded here after validation; an
-  IN PROGRESS item is not closed by a prepared command or source-only inspection.
+- Final default local-02 reactor selections: English 690/690
+  and Romanian 690/690 passed, with 0 failures,
+  0 errors and 0 skipped cases in each edition. Each contains 315 governance cases. All five modules executed;
+  the atf-tests selections contain 678 and 678
+  cases respectively. The retained original Surefire XML, completed Maven logs,
+  source manifests and exit receipts own these counts, not copied report summaries.
+- Executed sources: English 1b939695c7a29355bf5e67f50ccbaa0121314c9e and Romanian
+  bfa1bcc341cd4540b8f5ef70457b8483695f0d6c. The completed native local-02 summary binds the
+  local-02 receipts and actual testcase outcomes. 29 existing
+  local API cases and the bounded console worker case passed in each edition;
+  these local API observations do not establish GoRest application acceptance.
+- Existing Node maintenance controls: 182/182 passed per captured edition at
+  a064e9f18f3528c17e109f2119b81808c32ce2e8 and
+  669c2baecd3552a71651283c9eb44021e264e3de. Each retained manifest binds 23 files:
+  19 tools and 4 contract inputs, unchanged from the final native sources. This preserves the captured
+  Node scope; it is not a claim of a new Node execution at the final source commit.
+- Complete document review: the shared translation-review.xml binds 51 reviewed
+  documents, comprising 50 maintained Markdown paths and the Living HTML pair.
+  The actual lexical policy retrieval receipt retains 16 mandatory and 18 selected
+  records. Complete source-grounded EN/RO reading covers language, meaning,
+  conditions, facts, links, diagrams and disclosures; no semantic recall is claimed.
+- Final native desktop document review combines visual02 with the bounded
+  Architecture repair in visual03: 32 records, 56 SVG observations and 98 selected
+  screenshots at 1440/900 widths. Captured source hashes match; geometry findings,
+  page/console errors, external requests and document overflow are 0. Wide Living
+  figures use contained scrolling. Rendering is document-component evidence,
+  not framework/browser application acceptance or universal accessibility proof.
+- The first untranslated baseline and the first complete execution remain retained
+  below. No new E2E journey, emulator or runtime feature was added. G-016, G-014
+  and F-011 remain TODO; synchronization is evidenced separately by actual branch,
+  remote and live identities after the documentation-only closure check.
 
 ## Retained first complete execution
 
@@ -127,5 +159,6 @@ so it performs no mutation against the fully translated Romanian heading.
 The existing test now locates the stable retained-principles section ID, inserts
 the same literal example and preserves the same projection assertion. Boolean
 precondition assertions avoid dumping the complete HTML when insertion fails.
-Both original native runs remain unchanged under their local-01 locators. A new
-complete local-02 execution for both editions must pass before closure.
+Both original native runs remain unchanged under their local-01 locators. The
+accepted local-02 runs recorded in the acceptance evidence preserve that earlier
+failure and establish their own separately captured source and outcomes.
