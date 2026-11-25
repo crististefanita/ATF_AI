@@ -11,7 +11,6 @@ the caller-selected local archive following the [report guide](../../artifacts/r
 |---|---|---|---:|---:|---|---|
 | G-014 | Retain the J1 change-control failure separately from Atlas consistency and scoped catalog success | J1 test-change owner; external observation | 84 | 68 | TODO | [Exact source and required control records](Atlas_Depth_And_Assessment.md#g-014) |
 | F-011 | Keep interaction-tracker cleanup observable when UI engine shutdown throws | Core UI base teardown owner | 82 | 66 | TODO | [Source-only cleanup gap and missing component oracle](Behavior_And_Negative_Cases.md#f-011) |
-| D-009 | Protect all maintained Markdown and complete semantic README parity with owned repair hints | Documentation governance and edition owners | 85 | 78 | IN PROGRESS | [Counterexamples and complete review acceptance](Documentation_And_Translation_Review.md#d-009) |
 
 The register is reserved for framework governance, stability and documentation.
 Product-flow improvement records are excluded from this backlog.
@@ -77,6 +76,7 @@ normalizing their presentation does not claim a fresh execution.
 
 | ID | Delivered behavior | Verification |
 |---|---|---|
+| D-009 | All maintained Markdown has structural/editorial guards; README technical facts and complete Romanian meaning receive distinct checks and review | 250 governance cases per edition, 182 Node cases, semantic review of all 21 README pairs and inspected changed diagrams; [evidence](Documentation_And_Translation_Review.md#d-009) |
 | R-001 | Living principles, semantic expected/actual validation, bounded credential masking and native evidence for the same retained methods | Playwright 16/16 and Selenium 16/16 PASS; EN/RO local selections and 181 Node cases passed; original failed attempts preserved; [evidence](Retained_UI_Auditability.md#r-001) |
 | F-002 | Startup uses maintained suites and explicit runtime configuration | 304 local cases; aggregate profile produced Extent and Allure artifacts |
 | F-003 | Retired generation/audit code, prompts and historical reports are removed from main | 100 browser cases; source and packaged JAR contain no retired components |
