@@ -105,17 +105,58 @@ export function validateArtifactPublication({artifactRoot}) {
     if (entry.path !== 'atlas/current/' + entry.projectId + '/atlas.html') fail('publication.json#atlases/' + index + ' path=' + JSON.stringify(entry.path), 'Each project has exactly one selected atlas/current/<project>/atlas.html reader.');
     declare(entry, 'publication.json#atlases/' + index);
   });
+  const e2ePrefix = 'reports/current/e2e/';
+  const e2eReaders = new Map(), e2eEntries = [];
   manifest.reports.forEach((entry, index) => {
     const location = 'publication.json#reports/' + index;
     if (!artifactKinds.includes(entry.kind)) fail(location, 'Use an existing artifact category.');
-    if (entry.kind === 'build' || typeof entry.path === 'string' && /\.(?:jar|zip|war|class|html?|xhtml)$/i.test(entry.path)) {
-      fail(typeof entry.path === 'string' ? entry.path : location, 'Build payloads and HTML report sites belong in the external immutable archive, not the current native proof selection.');
-    }
     if (typeof entry.path !== 'string' || !entry.path.startsWith('reports/current/')) fail(location + ' path=' + JSON.stringify(entry.path), 'Selected native proof belongs below reports/current.');
+    const e2ePath = entry.path.toLowerCase() === e2ePrefix.slice(0, -1) || entry.path.toLowerCase().startsWith(e2ePrefix);
+    const e2eRoute = /^reports\/current\/e2e\/(playwright|selenium)\/(.+)$/.exec(entry.path);
+    const e2eReader = e2eRoute && e2eRoute[2] === 'ExtentReport.html' && entry.kind === 'extent';
+    if (entry.kind === 'build' || /\.(?:jar|zip|war|class)$/i.test(entry.path)
+        || /\.(?:html?|xhtml)$/i.test(entry.path) && !e2eReader) {
+      fail(entry.path, 'Build payloads and generic HTML report sites belong in the external immutable archive; only a governed per-engine E2E ExtentReport.html may be selected.');
+    }
     if (entry.sourceRevision !== undefined && !revision(entry.sourceRevision)) fail(location, 'Source revision must identify the captured source or UNVERSIONED.');
     if (entry.executionScope !== undefined && (typeof entry.executionScope !== 'string' || !entry.executionScope.trim())) fail(location, 'Execution scope must describe the preserved selection.');
+    if (e2ePath) {
+      if (!e2eRoute) fail(entry.path, 'Use the exact reports/current/e2e/<playwright|selenium>/ publication namespace.');
+      if (entry.uiEngine !== e2eRoute[1] || !portableId(entry.runId)
+          || typeof entry.sourceRevision !== 'string' || !/^[a-f0-9]{40}$/i.test(entry.sourceRevision)) {
+        fail(entry.path, 'Every E2E file needs its exact owning uiEngine, portable runId and captured Git sourceRevision.');
+      }
+      e2eEntries.push(entry);
+      if (e2eReader) {
+        if (typeof entry.executionScope !== 'string' || !entry.executionScope.trim()) fail(entry.path, 'The selected E2E reader must state its actual executionScope.');
+        if (e2eReaders.has(entry.uiEngine)) fail(entry.path, 'Select only one E2E Extent reader per engine.');
+        e2eReaders.set(entry.uiEngine, entry);
+      }
+    }
     declare(entry, location);
   });
+  const e2eOwnedPaths = new Set();
+  for (const [engine, reader] of e2eReaders) {
+    const prefix = e2ePrefix + engine + '/';
+    const references = [['nativeResultsPath', 'test-results'], ['executedSourcePath', 'execution'], ['auditPath', 'execution']];
+    const selected = new Set([reader.path]);
+    for (const [field, kind] of references) {
+      const reference = reader[field];
+      if (!safePath(reference) || !reference.startsWith(prefix) || selected.has(reference)) {
+        fail(reader.path + '#' + field + ' path=' + JSON.stringify(reference), 'Declare a distinct native proof path under the same engine prefix.');
+      }
+      const proof = expected.get(reference.normalize('NFC').toLowerCase());
+      if (!proof || proof.path !== reference || proof.kind !== kind || proof.uiEngine !== engine
+          || proof.runId !== reader.runId || proof.sourceRevision !== reader.sourceRevision) {
+        fail(reader.path + '#' + field + ' path=' + JSON.stringify(reference), 'The referenced declared proof must have the required category and match uiEngine, runId and sourceRevision.');
+      }
+      selected.add(reference);
+    }
+    for (const reference of selected) e2eOwnedPaths.add(reference);
+  }
+  for (const entry of e2eEntries) if (!e2eOwnedPaths.has(entry.path)) {
+    fail(entry.path, 'Every E2E proof file must belong to its declared per-engine reader and three explicit proof references.');
+  }
   manifest.documents.forEach((entry, index) => {
     if (!object(entry) || !publicationDocuments.includes(entry.path)) fail('publication.json#documents/' + index, 'Declare only the four current README and index entry points.');
     declare(entry, 'publication.json#documents/' + index);

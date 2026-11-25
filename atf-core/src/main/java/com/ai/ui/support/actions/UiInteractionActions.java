@@ -3,8 +3,13 @@ package com.ai.ui.support.actions;
 import com.ai.ui.core.runtime.DriverManager;
 
 import java.nio.file.Path;
+import java.util.regex.Pattern;
 
 final class UiInteractionActions {
+    private static final Pattern SENSITIVE_INPUT = Pattern.compile(
+            "(?:^|[^a-z0-9])(?:password|passwd|pwd|secret|token|credential|credentials|passcode|pin)(?:$|[^a-z0-9])",
+            Pattern.CASE_INSENSITIVE);
+
     private UiInteractionActions() {
     }
 
@@ -40,7 +45,8 @@ final class UiInteractionActions {
                 "Type into element: " + description,
                 () -> {
                     UiActionStep.detail(UiActionStep.DETAIL_LOCATOR + cssSelector);
-                    UiActionStep.detail(UiActionStep.DETAIL_VALUE + value);
+                    UiActionStep.detail(UiActionStep.DETAIL_VALUE
+                            + (sensitiveInput(cssSelector, description) ? "[REDACTED]" : value));
                     UiActionWait.visibleIfEngineRequires(cssSelector);
                     DriverManager.getEngine().type(cssSelector, value);
                 },
@@ -61,6 +67,13 @@ final class UiInteractionActions {
                 "Key pressed",
                 "Failed pressing key on: " + description
         );
+    }
+
+    private static boolean sensitiveInput(String cssSelector, String description) {
+        String hint = (description + " " + cssSelector)
+                .replaceAll("([A-Z])([A-Z][a-z])", "$1 $2")
+                .replaceAll("([a-z0-9])([A-Z])", "$1 $2");
+        return SENSITIVE_INPUT.matcher(hint).find();
     }
 
     static void select(String cssSelector, String description, String value) {

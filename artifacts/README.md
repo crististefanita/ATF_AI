@@ -49,12 +49,18 @@ artifacts/
       README.md
       index.html
       selected original XML, TAP and provenance
+      e2e/playwright/ExtentReport.html
+      e2e/selenium/ExtentReport.html
+      per-engine native XML, source manifest and audit JSON
 ```
 
 A clean source checkout may contain only the four tracked guides/template.
 A populated publication has one publication.json inventory binding every
 current payload and generated README/index to its relative path, byte count and
 SHA-256. Atlas records identify their project and captured source revision.
+The optional retained-UI selection owns exactly one native Extent reader and
+three proof files per engine. Its manifest binds the engine, run ID, source
+revision and XML/source/audit references; it is not a generic HTML exception.
 Current means selected for readers; an older capture does not become the latest
 Git HEAD. Original source identities and execution limits stay visible.
 
@@ -64,8 +70,10 @@ Git HEAD. Original source identities and execution limits stay visible.
 2. Preserve complete original runs, failures and analysis inputs in a unique
    external history snapshot. Keep their relative tree and original indexes.
 3. Select one standalone Atlas HTML per project and the native test/source proof
-   needed for the current summary. Keep intermediate renders, complete report
-   sites, duplicate captures and synthetic corruption controls in history.
+   needed for the current summary. The explicit retained-UI role may also select
+   one original Extent reader per engine, together with three bound proof files.
+   Keep intermediate renders, other complete report sites, duplicate captures
+   and synthetic corruption controls in history.
 4. Prepare the current selection and four generated README/index documents in
    staging. Bind their original bytes and revisions in publication.json.
 5. Validate staging, archive the previous selection, and replace the current set
@@ -94,7 +102,7 @@ node --test tools/collect-artifacts.test.mjs
 
 ARTIFACT-PUBLICATION identifies the observed path, owner, repair and focused
 recheck. The checker accepts source-only or complete current layout and rejects
-legacy live history, orphan files, duplicate projects, extra HTMLs, changed or
+legacy live history, orphan files, duplicate projects, undeclared HTMLs, changed or
 missing payloads, links and escaping paths. It never moves or deletes evidence.
 
 Use the [testing guide](../docs/Testing.md) for Java/governance selections and

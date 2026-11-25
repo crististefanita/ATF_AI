@@ -11,6 +11,7 @@ the caller-selected local archive following the [report guide](../../artifacts/r
 |---|---|---|---:|---:|---|---|
 | G-014 | Retain the J1 change-control failure separately from Atlas consistency and scoped catalog success | J1 test-change owner; external observation | 84 | 68 | TODO | [Exact source and required control records](Atlas_Depth_And_Assessment.md#g-014) |
 | F-011 | Keep interaction-tracker cleanup observable when UI engine shutdown throws | Core UI base teardown owner | 82 | 66 | TODO | [Source-only cleanup gap and missing component oracle](Behavior_And_Negative_Cases.md#f-011) |
+| R-001 | Preserve living principles and publish auditable retained UI evidence for both browser providers | UI action/validation reporting and artifact governance | 90 | 56 | IN PROGRESS | [Retained inventory and audit acceptance](Retained_UI_Auditability.md#r-001) |
 
 The register is reserved for framework governance, stability and documentation.
 Product-flow improvement records are excluded from this backlog.
@@ -63,6 +64,7 @@ Retained baseline component scores:
 | A-002 | 85 / 80 / 85 | 70 / 55 / 70 | Existing structural tests needed traversal mutations and generic publisher component proof beyond field presence |
 | F-011 | 85 / 80 / 75 | 70 / 40 / 85 | Source ordering may skip interaction-tracker cleanup on engine quit failure; no component execution establishes a runtime leak |
 | D-008 | 90 / 90 / 90 | 60 / 45 / 70 | Live holds 44 report collections and 14 Atlas captures without a bounded current selection or publication-layout guard |
+| R-001 | 90 / 90 / 90 | 60 / 40 / 65 | Retained product methods lack selected native per-engine evidence; registration validation and sensitive typing details need explicit audit controls |
 
 Historical evidence locators use `${ATF_WORK_ROOT}/...`, with the external
 workspace selected as described in [Development](../Development.md).

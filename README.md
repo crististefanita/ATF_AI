@@ -111,6 +111,12 @@ prepared browser binaries. The aggregate profile also publishes Extent and
 Allure evidence. [Testing](docs/Testing.md) owns setup, selective commands and
 output locations.
 
+For the retained application journeys, use the explicit
+[Playwright/Selenium E2E selection](docs/Testing.md#retained-product-ui-audit).
+The same scenarios exercise either provider; framework browser checks have a
+different proof boundary. The [living principles](docs/Living_Architecture_UI_API_doc_v1_0.md#retained-principles)
+map action, wait, validation, lifecycle and audit responsibilities to their owners.
+
 ## Consumer migration
 
 For an existing consumer, replace `com.ai:test-framework` with

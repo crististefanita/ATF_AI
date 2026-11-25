@@ -107,6 +107,90 @@ public class DocumentationGovernanceTest {
     }
 
     @Test
+    public void retainedLivingPrinciplesHaveConcreteOwnersAndBoundedEvidence() throws Exception {
+        assertValid(MarkdownDocumentationRules.validateRetainedLivingPrinciples(GovernanceFiles.root()));
+    }
+
+    @DataProvider(name = "livingPrincipleMutations")
+    public Object[][] livingPrincipleMutations() {
+        return new Object[][] {
+                {"missing", "missing LD-12"},
+                {"duplicate", "duplicate LD-01"},
+                {"unknown", "unknown principle LD-99"},
+                {"unsupported-state", "unsupported state VERIFIED"},
+                {"cleanup-promoted", "LD-11 cleanup remains PARTIAL"},
+                {"cleanup-limit-removed", "LD-11 cleanup remains PARTIAL"},
+                {"missing-owner", "implementation route is not an owned existing Java source"},
+                {"missing-check", "check route must name an existing Java test source"},
+                {"helper-as-check", "check route must name an existing Java test source"},
+                {"fenced-row", "missing LD-12"},
+                {"duplicate-section", "require one retained-principles anchor"},
+                {"missing-intent", "requires an intent and explicit proof boundary"},
+                {"wrong-columns", "requires six declared table columns"}
+        };
+    }
+
+    @Test(dataProvider = "livingPrincipleMutations")
+    public void livingPrincipleDriftHasOwnedGuidanceAndRepair(String mutation, String expected) throws Exception {
+        Path root = GovernanceFiles.root();
+        String canonical = Files.readString(root.resolve("docs/Living_Architecture_UI_API_doc_v1_0.md"))
+                .replace("\r\n", "\n");
+        List<String> lines = List.of(canonical.split("\n", -1));
+        String first = lines.stream().filter(line -> line.startsWith("| LD-01 |")).findFirst().orElseThrow();
+        String cleanup = lines.stream().filter(line -> line.startsWith("| LD-11 |")).findFirst().orElseThrow();
+        String last = lines.stream().filter(line -> line.startsWith("| LD-12 |")).findFirst().orElseThrow();
+        String changed;
+        switch (mutation) {
+            case "missing": changed = canonical.replace(last + "\n", ""); break;
+            case "duplicate": changed = canonical.replace(first, first + "\n" + first); break;
+            case "unknown": changed = canonical.replace("| LD-12 |", "| LD-99 |"); break;
+            case "unsupported-state": changed = canonical.replace(first, first.replace("| MAINTAINED |", "| VERIFIED |")); break;
+            case "cleanup-promoted": changed = canonical.replace(cleanup, cleanup.replace("| PARTIAL |", "| MAINTAINED |")); break;
+            case "cleanup-limit-removed": changed = canonical.replace("ACCOUNT_DELETION_NOT_IMPLEMENTED", "UNSUPPORTED_CLEANUP_SUCCESS"); break;
+            case "missing-owner": changed = canonical.replace(first,
+                    first.replace("../atf-core/src/main/java/com/ai/core/support/config/ConfigManager.java", "../missing-owner.java")); break;
+            case "missing-check": {
+                String[] cells = first.split("\\|", -1); cells[4] = " No executable check ";
+                changed = canonical.replace(first, String.join("|", cells)); break;
+            }
+            case "helper-as-check": changed = canonical.replace(first, first.replace(
+                    "../atf-tests/src/test/java/com/ai/atf/core/support/config/ConfigManagerFileContractTest.java",
+                    "../atf-tests/src/test/java/com/ai/ui/support/factory/UserDataFactory.java")); break;
+            case "fenced-row": changed = canonical.replace(last + "\n", "") + "\n```markdown\n" + last + "\n```\n"; break;
+            case "duplicate-section": changed = canonical.replace("<a id=\"retained-principles\"></a>",
+                    "<a id=\"retained-principles\"></a>\n<a id=\"retained-principles\"></a>"); break;
+            case "missing-intent": {
+                String[] cells = first.split("\\|", -1); cells[2] = " ";
+                changed = canonical.replace(first, String.join("|", cells)); break;
+            }
+            case "wrong-columns": {
+                String[] cells = first.split("\\|", -1);
+                changed = canonical.replace(first, String.join("|", Arrays.copyOf(cells, cells.length - 1))); break;
+            }
+            default: throw new AssertionError("Unknown living principle mutation: " + mutation);
+        }
+        Assert.assertNotEquals(changed, canonical, "The negative control must change its selected matrix boundary");
+        List<String> findings = MarkdownDocumentationRules.validateRetainedLivingPrinciples(root, changed);
+        assertFinding(findings, "DOC-LIVING-PRINCIPLES");
+        Assert.assertTrue(findings.stream().anyMatch(finding -> GovernanceFiles.matchesFinding(
+                finding, "DOC-LIVING-PRINCIPLES", expected)),
+                "The intended principle defect must be diagnosed: " + expected + "; " + GovernanceFiles.problems(findings));
+        assertValid(MarkdownDocumentationRules.validateRetainedLivingPrinciples(root, canonical));
+    }
+
+    @Test
+    public void livingPrincipleIdentityDoesNotDependOnTableOrdering() throws Exception {
+        Path root = GovernanceFiles.root();
+        String canonical = Files.readString(root.resolve("docs/Living_Architecture_UI_API_doc_v1_0.md"));
+        List<String> lines = List.of(canonical.split("\\R"));
+        String first = lines.stream().filter(line -> line.startsWith("| LD-01 |")).findFirst().orElseThrow();
+        String last = lines.stream().filter(line -> line.startsWith("| LD-12 |")).findFirst().orElseThrow();
+        String reordered = canonical.replace(first, "LIVING_PRINCIPLE_SWAP")
+                .replace(last, first).replace("LIVING_PRINCIPLE_SWAP", last);
+        assertValid(MarkdownDocumentationRules.validateRetainedLivingPrinciples(root, reordered));
+    }
+
+    @Test
     public void validatorAcceptsTheSmallDocumentedReactor() throws Exception {
         try (GovernanceFiles.Fixture fixture = documentation()) {
             fixture.write("docs/governance/readme-edition.properties", "# Declared README edition\nlanguage = en\n");

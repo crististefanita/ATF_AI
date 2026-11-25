@@ -301,3 +301,108 @@ test('the layout CLI is read-only and rejects mixed collection arguments', t => 
   assert.notEqual(rejected.status, 0); assert.match(rejected.stderr, /without collection options/);
   assert.deepEqual(publicationState(f.artifactRoot), before);
 });
+
+function retainedE2ePublication(f, engine, {runId = 'retained-' + engine, sourceRevision = 'c'.repeat(40), skipped = false} = {}) {
+  const prefix = 'reports/current/e2e/' + engine + '/';
+  const identity = {uiEngine:engine, runId, sourceRevision};
+  const proof = (name, kind, content) => {
+    const entry = {id:engine + '-' + name.replaceAll('.', '-'), kind, ...identity, ...f.write(prefix + name, content)};
+    f.manifest.reports.push(entry); return entry;
+  };
+  const native = proof('native.xml', 'test-results', skipped
+    ? '<testsuite tests="1" failures="0" errors="0" skipped="1"><testcase name="original skip"><skipped/></testcase></testsuite>'
+    : '<testsuite tests="1" failures="1" errors="0" skipped="0"><testcase name="original failure"><failure/></testcase></testsuite>');
+  const source = proof('source.json', 'execution', JSON.stringify({sourceCommit:sourceRevision, runId, engine}));
+  const audit = proof('audit.json', 'execution', JSON.stringify({status:skipped ? 'SKIPPED' : 'FAILED', runId, engine}));
+  const reader = {id:engine + '-extent', kind:'extent', ...identity,
+    executionScope:'Original retained application methods; execution outcome remains in native proof',
+    nativeResultsPath:native.path, executedSourcePath:source.path, auditPath:audit.path,
+    ...f.write(prefix + 'ExtentReport.html', '<!doctype html><h1>Original ' + engine + ' E2E report</h1>')};
+  f.manifest.reports.push(reader); f.save();
+  return {reader, native, source, audit};
+}
+
+test('two engine-specific E2E readers bind original failed or skipped proof without inferring a passing execution', t => {
+  const f = publicationFixture(t), playwright = retainedE2ePublication(f, 'playwright'), selenium = retainedE2ePublication(f, 'selenium', {skipped:true});
+  const before = publicationState(f.artifactRoot), result = validateArtifactPublication({artifactRoot:f.artifactRoot});
+  assert.deepEqual(result, {status:'COMPLETE', role:'CURRENT_PUBLICATION', atlases:2, reports:10, files:16});
+  assert.equal(result.executionVerdict, undefined, 'A valid publication is not a passing test verdict.');
+  assert.match(fs.readFileSync(path.join(f.artifactRoot, playwright.native.path), 'utf8'), /failures="1"/);
+  assert.match(fs.readFileSync(path.join(f.artifactRoot, selenium.native.path), 'utf8'), /skipped="1"/);
+  assert.deepEqual(publicationState(f.artifactRoot), before);
+});
+
+test('E2E readers require an exact engine, portable run identity, captured revision and explicit execution scope', t => {
+  for (const [field, value, observed] of [
+    ['uiEngine', undefined, 'ExtentReport.html'], ['uiEngine', 'selenium', 'ExtentReport.html'], ['uiEngine', 'Playwright', 'ExtentReport.html'],
+    ['runId', undefined, 'ExtentReport.html'], ['runId', '../escape', 'ExtentReport.html'], ['runId', 'CON', 'ExtentReport.html'],
+    ['sourceRevision', undefined, 'ExtentReport.html'], ['sourceRevision', 'UNVERSIONED', 'ExtentReport.html'], ['sourceRevision', 'HEAD', 'publication.json'],
+    ['executionScope', undefined, 'ExtentReport.html'], ['executionScope', ' ', 'publication.json']
+  ]) {
+    const f = publicationFixture(t), {reader} = retainedE2ePublication(f, 'playwright');
+    reader[field] = value; f.save(); publicationFailure(f, observed);
+  }
+});
+
+test('each E2E proof reference is declared, distinct, correctly classified and bound to the same engine run and source', t => {
+  for (const proofName of ['native', 'source', 'audit']) {
+    for (const [field, value] of [['kind', 'browser'], ['runId', 'another-run'], ['sourceRevision', 'd'.repeat(40)], ['uiEngine', 'selenium']]) {
+      const f = publicationFixture(t), selected = retainedE2ePublication(f, 'playwright');
+      selected[proofName][field] = value; f.save(); publicationFailure(f, 'reports/current/e2e/playwright/');
+    }
+    const f = publicationFixture(t), selected = retainedE2ePublication(f, 'playwright');
+    f.manifest.reports = f.manifest.reports.filter(entry => entry !== selected[proofName]); f.save();
+    publicationFailure(f, 'ExtentReport.html');
+  }
+  for (const field of ['nativeResultsPath', 'executedSourcePath', 'auditPath']) {
+    for (const reference of [undefined, 'reports/current/e2e/selenium/other.json', 'reports/current/native.xml',
+      'reports/current/e2e/playwright/../escape.json', 'reports/current/e2e/playwright/missing.json', 'reports/current/e2e/playwright/ExtentReport.html']) {
+      const f = publicationFixture(t), {reader} = retainedE2ePublication(f, 'playwright');
+      reader[field] = reference; f.save(); publicationFailure(f, 'ExtentReport.html#' + field, reference);
+    }
+  }
+  const duplicate = publicationFixture(t), selected = retainedE2ePublication(duplicate, 'playwright');
+  selected.reader.auditPath = selected.reader.executedSourcePath; duplicate.save(); publicationFailure(duplicate, 'ExtentReport.html#auditPath');
+  const wrongCase = publicationFixture(t), original = retainedE2ePublication(wrongCase, 'playwright');
+  original.reader.executedSourcePath = original.source.path.replace('source.json', 'SOURCE.json'); wrongCase.save();
+  publicationFailure(wrongCase, 'ExtentReport.html#executedSourcePath');
+});
+
+test('an E2E proof subtree cannot outlive its selected reader or accumulate unreferenced evidence', t => {
+  const orphan = publicationFixture(t), selected = retainedE2ePublication(orphan, 'playwright');
+  orphan.manifest.reports = orphan.manifest.reports.filter(entry => entry !== selected.reader); orphan.save();
+  publicationFailure(orphan, selected.native.path);
+  const extra = publicationFixture(t), owned = retainedE2ePublication(extra, 'playwright');
+  extra.manifest.reports.push({id:'unreferenced', kind:'execution', uiEngine:'playwright', runId:owned.reader.runId,
+    sourceRevision:owned.reader.sourceRevision, ...extra.write('reports/current/e2e/playwright/unreferenced.json', '{}')});
+  extra.save(); publicationFailure(extra, 'unreferenced.json');
+  const duplicate = publicationFixture(t), original = retainedE2ePublication(duplicate, 'selenium');
+  duplicate.manifest.reports.push({...original.reader, id:'second-selenium-reader'}); duplicate.save();
+  publicationFailure(duplicate, original.reader.path);
+  for (const relative of ['reports/current/E2E/playwright/proof.json', 'reports/current/e2e/Playwright/proof.json',
+    'reports/current/e2e/firefox/proof.json', 'reports/current/e2e/orphan.json']) {
+    const f = publicationFixture(t);
+    f.manifest.reports.push({id:'orphan-proof', kind:'execution', uiEngine:'playwright', runId:'retained', sourceRevision:'c'.repeat(40), ...f.write(relative, '{}')});
+    f.save(); publicationFailure(f, relative);
+  }
+});
+
+test('only the canonical extent E2E reader route can use the HTML exception', t => {
+  for (const [relative, kind] of [
+    ['reports/current/e2e/playwright/ExtentReport.html', 'execution'],
+    ['reports/current/e2e/playwright/ExtentReport.html', 'allure'],
+    ['reports/current/e2e/playwright/ExtentReport.html', 'aggregate'],
+    ['reports/current/e2e/playwright/ExtentReport.html', 'test-results'],
+    ['reports/current/e2e/playwright/second.html', 'extent'],
+    ['reports/current/e2e/playwright/ExtentReport.HTML', 'extent'],
+    ['reports/current/e2e/playwright/ExtentReport.htm', 'extent'],
+    ['reports/current/e2e/playwright/ExtentReport.xhtml', 'extent'],
+    ['reports/current/generic/ExtentReport.html', 'extent'],
+    ['reports/current/ExtentReport.html', 'extent']
+  ]) {
+    const f = publicationFixture(t);
+    f.manifest.reports.push({id:'disguised-html', kind, uiEngine:'playwright', runId:'retained', sourceRevision:'c'.repeat(40),
+      executionScope:'Retained execution', ...f.write(relative, '<!doctype html><h1>Unowned HTML</h1>')});
+    f.save(); publicationFailure(f, relative);
+  }
+});

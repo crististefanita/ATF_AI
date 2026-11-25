@@ -52,6 +52,15 @@ Application journeys remain explicit class selections. They need configured
 URLs/accounts and can create data. Local framework results do not establish
 public-site acceptance.
 
+The [retained UI selection](../docs/Testing.md#retained-product-ui-audit) runs
+the same registration, account and profile methods once through each browser
+provider. Product test methods compose services/components and validations;
+actions record technical completion, while validations record expected/actual
+business evidence and a terminal verdict. A negative application scenario passes
+only when its rejection oracle succeeds. See the
+[living principles](../docs/Living_Architecture_UI_API_doc_v1_0.md#retained-principles)
+for the maintained responsibilities and explicit data-cleanup limit.
+
 ## Evidence and maintenance
 
 The existing governance checks enforce the maintained suite catalog, explicit

@@ -777,6 +777,96 @@ final class MarkdownDocumentationRules {
         }
     }
 
+    static List<String> validateRetainedLivingPrinciples(Path root) throws Exception {
+        return validateRetainedLivingPrinciples(root, Files.readString(root.resolve(LIVING + ".md")));
+    }
+
+    /** A bounded source/check map; MAINTAINED is not an inferred execution or coverage verdict. */
+    static List<String> validateRetainedLivingPrinciples(Path root, String markdown) throws Exception {
+        List<String> findings = new ArrayList<>();
+        Path file = root.resolve(LIVING + ".md");
+        List<String> lines = withoutFences(List.of(markdown.replace("\r\n", "\n").split("\n", -1)),
+                root, file, new ArrayList<>(), new HashSet<>());
+        List<Integer> markers = new ArrayList<>();
+        for (int index = 0; index < lines.size(); index++) {
+            if (lines.get(index).strip().equals("<a id=\"retained-principles\"></a>")) markers.add(index);
+        }
+        if (markers.size() != 1) {
+            findings.add(LIVING + ".md:1 DOC-LIVING-PRINCIPLES require one retained-principles anchor, found " + markers.size());
+            return findings;
+        }
+        Set<String> required = new LinkedHashSet<>();
+        for (int index = 1; index <= 12; index++) required.add(String.format(Locale.ROOT, "LD-%02d", index));
+        Set<String> seen = new HashSet<>();
+        boolean headingSeen = false;
+        for (int index = markers.get(0) + 1; index < lines.size(); index++) {
+            String line = lines.get(index).strip();
+            if (line.matches("^#{1,3}\\s+.*")) {
+                if (headingSeen) break;
+                headingSeen = true;
+            }
+            if (!line.matches("^\\|\\s*LD-[^|]*\\|.*")) continue;
+            String[] cells = line.split("\\|", -1);
+            String id = cells[1].strip();
+            String prefix = location(root, file, index) + "DOC-LIVING-PRINCIPLES " + id + " ";
+            if (!required.contains(id)) findings.add(prefix + "unknown principle " + id);
+            if (!seen.add(id)) findings.add(prefix + "duplicate " + id);
+            if (cells.length != 8) {
+                findings.add(prefix + "requires six declared table columns");
+                continue;
+            }
+            if (cells[2].isBlank() || cells[6].isBlank()) findings.add(prefix + "requires an intent and explicit proof boundary");
+            String state = cells[5].strip();
+            if (!Set.of("MAINTAINED", "PARTIAL").contains(state)) {
+                findings.add(prefix + "unsupported state " + state + "; source/check routes cannot infer execution or complete coverage");
+            }
+            if (id.equals("LD-11") && (!state.equals("PARTIAL")
+                    || !cells[6].contains("ACCOUNT_DELETION_NOT_IMPLEMENTED"))) {
+                findings.add(prefix + "LD-11 cleanup remains PARTIAL with ACCOUNT_DELETION_NOT_IMPLEMENTED until its owner supplies independent deletion proof");
+            }
+            validatePrincipleRoutes(root, file, cells[3], false, prefix, findings);
+            validatePrincipleRoutes(root, file, cells[4], true, prefix, findings);
+        }
+        for (String id : required) if (!seen.contains(id)) {
+            findings.add(LIVING + ".md:1 DOC-LIVING-PRINCIPLES missing " + id + "; restore its source/check owners and proof boundary");
+        }
+        return findings;
+    }
+
+    private static void validatePrincipleRoutes(Path root, Path file, String cell,
+                                                boolean check, String prefix, List<String> findings) throws Exception {
+        Matcher links = LINK.matcher(cell);
+        int count = 0;
+        while (links.find()) {
+            count++;
+            String target = links.group(1).strip();
+            boolean valid = target.endsWith(".java") && !target.contains("\\")
+                    && !target.matches("^[A-Za-z][A-Za-z0-9+.-]*:.*") && !target.startsWith("/");
+            Path destination = null;
+            if (valid) {
+                try {
+                    destination = file.getParent().resolve(decode(target)).normalize();
+                    valid = destination.toAbsolutePath().startsWith(root.toAbsolutePath().normalize())
+                            && Files.isRegularFile(destination)
+                            && destination.toRealPath().startsWith(root.toRealPath());
+                } catch (IllegalArgumentException invalid) {
+                    valid = false;
+                }
+            }
+            if (valid) {
+                String relative = GovernanceFiles.relative(root, destination);
+                valid = relative.contains("/src/main/java/") || relative.contains("/src/test/java/");
+                if (check) valid = relative.contains("/src/test/java/")
+                        && destination.getFileName().toString().matches(".*Tests?\\.java")
+                        && Files.readString(destination).contains("@Test");
+            }
+            if (!valid) findings.add(prefix + (check ? "check route must name an existing Java test source: "
+                    : "implementation route is not an owned existing Java source: ") + target);
+        }
+        if (count == 0) findings.add(prefix + (check ? "check route must name an existing Java test source"
+                : "implementation route is not an owned existing Java source"));
+    }
+
     private static String meta(String html, String name) {
         Matcher meta = Pattern.compile("(?is)<meta\\b[^>]*\\bname=[\"']" + Pattern.quote(name)
                 + "[\"'][^>]*\\bcontent=[\"']([^\"']*)[\"'][^>]*>").matcher(html);

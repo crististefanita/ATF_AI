@@ -459,9 +459,14 @@ public class FrameworkArchitectureGovernanceTest {
             String removed = "com.ai.atf.api.lifecycle.BeforeTestOne_TestTwo";
             Files.delete(fixture.root.resolve("atf-tests/src/test/java/" + removed.replace('.', '/') + ".java"));
             addSuiteClass(fixture, "framework-api.xml", "com.ai.api.tests.PositiveUserTests");
+            String registration = "com.ai.atf.ui.RegistrationTests";
+            addSuiteClass(fixture, "framework-browser.xml", registration);
             List<String> failures = FrameworkArchitectureRules.validateSuites(fixture.root);
             assertFinding(failures, "SUITE-EXEMPTION-STALE");
             assertFinding(failures, "SUITE-OPT-IN");
+            Assert.assertTrue(failures.stream().anyMatch(failure -> failure.startsWith(
+                            "framework-browser.xml: SUITE-OPT-IN " + registration + " is ")),
+                    GovernanceFiles.problems(failures));
         }
     }
 

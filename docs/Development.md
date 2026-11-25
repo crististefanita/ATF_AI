@@ -74,7 +74,8 @@ and compatible live state.
 Git synchronization returns tracked source and maintained documentation to live.
 Build output, downloaded browser binaries, caches and intermediate logs remain
 in external validation/evidence directories. At the owner's explicit selection,
-publish a minimal selected proof set and one Atlas HTML per project into the
+publish a minimal selected proof set, one audited retained-UI Extent reader per
+browser engine, and one Atlas HTML per project into the
 live checkout's ignored artifacts/reports/current and artifacts/atlas/current
 trees through the
 [artifact publication contract](../artifacts/README.md). Those copies remain

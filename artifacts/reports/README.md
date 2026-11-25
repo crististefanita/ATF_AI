@@ -34,9 +34,9 @@ Do not collect while writers are active. Paths are resolved at execution time;
 no author drive, cache directory or fixed account path is embedded in the tool.
 
 Complete collections and failed attempts belong in an external history root.
-The live checkout publishes only selected original proof in reports/current,
+The live checkout publishes selected original proof in reports/current,
 following the [bounded publication contract](../README.md). Compilation, caches,
-complete report sites and temporary investigations stay outside live. Preserve
+other complete report sites and temporary investigations stay outside live. Preserve
 historical bundles intact, including their relative assets and source identity.
 
 ```text
@@ -96,7 +96,7 @@ generated reports/current/index.html and README.md state captured revisions,
 actual selections, verdicts and limits. A layout check does not execute tests.
 An older report stays historical and a failed selection stays failed.
 
-Keep full Allure, Extent, aggregate, browser and corruption-fixture trees in
+Keep full Allure, aggregate, browser and corruption-fixture trees in
 external history. Do not duplicate every original collection in live. Identify
 history by snapshot ID and inventory digest; the caller resolves its external
 root through ATF_ARTIFACT_HISTORY_ROOT. Maintained instructions contain no fixed
@@ -109,6 +109,34 @@ source context and original indexes. A source copy without Git metadata is
 reading context, not a substitute for canonical Git verification. Retire an old
 current selection only after its intact external archive is verified.
 
+## Retained UI report publication
+
+The explicit retained-product selection may publish one original
+reports/current/e2e/playwright/ExtentReport.html and one original
+reports/current/e2e/selenium/ExtentReport.html. Screenshots remain embedded in
+their native report. Select three additional proof files per engine: original
+Surefire XML, the original executed-source manifest, and the governed audit JSON.
+Complete runs, logs, prior attempts and other report sites remain in history.
+
+Each selected file declares uiEngine, runId and sourceRevision in publication.json.
+The Extent entry has kind extent and references nativeResultsPath,
+executedSourcePath and auditPath. References must select distinct declared
+test-results/execution/execution files in the same engine directory, with the
+same run/source identity. The reader also states executionScope. No orphan
+proof, second reader, generic execution HTML or cross-engine reference is valid.
+
+The [audit checker](../../tools/verify-ui-e2e-audit.mjs) reconciles original XML
+subjects and outcomes with the native Extent method/step nodes, expected/actual
+validation evidence, screenshot metadata and source/engine identity. Its result
+is bounded audit consistency. A native application FAIL or SKIP stays visible;
+copying a report or passing a layout/audit check cannot turn it into PASS.
+An action PASS cannot substitute for the separate business validation.
+
+The [execution guide](../../docs/Testing.md#retained-product-ui-audit) owns the
+same retained methods and the two browser commands. The
+[living principles](../../docs/Living_Architecture_UI_API_doc_v1_0.md#retained-principles)
+own responsibilities and proof limits, including the demo-data cleanup gap.
+
 ## Verification
 
 From the reactor root, with Node 20+ available:
@@ -116,6 +144,7 @@ From the reactor root, with Node 20+ available:
 ```powershell
 $artifactRoot = Join-Path (Get-Location).Path 'artifacts'
 node --test tools/collect-artifacts.test.mjs
+node --test tools/verify-ui-e2e-audit.test.mjs
 node tools/collect-artifacts.mjs --check-layout "$artifactRoot"
 ```
 
@@ -127,6 +156,8 @@ the maintained guides, source visibility and edition parity; it does not replace
 this explicit tooling selection.
 
 Publication fixtures also cover malformed inventories, duplicate projects,
-extra HTMLs, orphan files, changed/missing proof, unsafe paths, links and legacy
+undeclared HTMLs, orphan files, changed/missing proof, unsafe paths, links and legacy
 history/build/temp folders. Rejected checks preserve the files and their
 timestamps. These controls add no product E2E scenario or runtime feature.
+Retained-UI controls additionally reject mismatched engines, runs, revisions and
+proof references while preserving original failure/skip verdicts.
