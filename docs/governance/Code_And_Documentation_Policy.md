@@ -1,282 +1,358 @@
-# Code and documentation policy
+<a id="code-and-documentation-policy"></a>
+# Politica de cod și documentație
 
-## Ownership and change scope
+<a id="ownership-and-change-scope"></a>
+## Responsabilitate și domeniul schimbării
 
-Use the existing [module boundaries](../Architecture.md). Core contracts remain
-independent of browser and reporting implementations. Product fixtures and
-cross-module checks remain in atf-tests. Documentation-only areas have no POM,
-Java source, generated report or runtime provider.
+Folosește [limitele modulelor](../Architecture.md) existente. Contractele Core
+rămân independente de implementările browserelor și raportării. Cazurile de
+produs și verificările între module rămân în atf-tests. Zonele exclusiv de
+documentație nu au POM, sursă Java, raport generat sau furnizor runtime.
 
-Strengthen existing tests and their useful fixtures before adding another
-execution surface. Do not restore historical skill facades, routing catalogs,
-MCP/Atlas Java validators or generated-test infrastructure through policy work.
+Întărește testele existente și cazurile lor utile înaintea adăugării unei noi
+suprafețe de execuție. Nu restaura fațade istorice de skills, cataloage de rutare,
+validatori Java MCP/Atlas sau infrastructură de teste generate prin lucrul la politici.
 
-## Review a change at its owner
+<a id="review-a-change-at-its-owner"></a>
+## Revizuiește o schimbare la responsabilul său
 
-Use this checklist for the affected contract rather than copying it into each
-module README. Review the implementation, POM, existing tests and owner guide
-together before interpreting an old TODO or run report.
+Folosește această listă pentru contractul afectat, fără a o copia în fiecare
+README de modul. Revizuiește împreună implementarea, POM-ul, testele existente
+și ghidul responsabil înaintea interpretării unui TODO vechi sau raport de rulare.
 
-- [ ] The change has one clear module/document owner and preserves the dependency
-  direction; vendor conversions remain in their adapter.
-- [ ] The public behavior, input and failure are named clearly, with an independent
-  expected result that would reject a plausible wrong implementation.
-- [ ] Waits and external operations are bounded, failures retain diagnostics, and
-  changed state is restored after success or failure.
-- [ ] Existing regressions remain reachable through maintained selections; any
-  deliberate exclusion has an owner and a stated proof boundary.
-- [ ] Coordinates, configuration, commands, examples and diagram arrows agree
-  with the current source, and links route to one canonical contract owner.
-- [ ] Relevant checks and artifacts were inspected at their actual scope; feedback
-  preserves failures and closes only the demonstrated acceptance criteria.
+- [ ] Schimbarea are un responsabil clar de modul/document și păstrează direcția
+  dependențelor; conversiile specifice furnizorului rămân în adaptorul său.
+- [ ] Comportamentul public, intrarea și eșecul sunt numite clar, cu un rezultat
+  așteptat independent care ar respinge o implementare plauzibilă greșită.
+- [ ] Așteptările și operațiile externe sunt limitate, eșecurile păstrează
+  diagnosticele, iar starea schimbată este restaurată după succes sau eșec.
+- [ ] Regresiile existente rămân accesibile prin selecțiile întreținute; orice
+  excludere intenționată are responsabil și limită declarată a dovezii.
+- [ ] Coordonatele, configurația, comenzile, exemplele și săgețile diagramelor
+  corespund sursei curente, iar legăturile trimit la un singur responsabil canonic al contractului.
+- [ ] Verificările și artefactele relevante au fost inspectate în domeniul lor
+  real; feedback-ul păstrează eșecurile și închide numai criteriile de acceptanță demonstrate.
 
-These are review questions. The executable owners below enforce their supported
-rules; a green source guard does not establish every item in this checklist.
+Acestea sunt întrebări de revizuire. Responsabilii executabili de mai jos impun
+regulile suportate; un control de sursă verde nu stabilește fiecare punct din listă.
 
-## Existing test quality
+<a id="existing-test-quality"></a>
+## Calitatea testelor existente
 
-Requirement GOV-DIAG-001: supported governance findings MUST preserve observed
-evidence and provide failure meaning, repair hint, canonical owner and a maintained
-recheck selection. Follow [failure diagnostics](Failure_Diagnostics.md) and keep
-raw evidence separate from suggested causes. Negative fixtures match the emitted
-rule token and requested detail; a related prefix or code mentioned in payload
-does not establish the expected failure. Unknown findings remain unclassified.
+Cerința GOV-DIAG-001: constatările de guvernanță suportate TREBUIE să păstreze
+dovada observată și să ofere sensul eșecului, indiciul de reparare, responsabilul
+canonic și o selecție întreținută de reverificare. Urmează
+[diagnosticele eșecurilor](Failure_Diagnostics.md) și separă dovada brută de
+cauzele sugerate. Cazurile negative potrivesc tokenul regulii emise și detaliul
+cerut; un prefix înrudit sau un cod menționat în conținut nu stabilește eșecul
+așteptat. Constatările necunoscute rămân neclasificate.
 
-- State the protected behavior, its observable result and a useful failure case.
-  Assertions must distinguish the intended result from a plausible wrong result.
-- Prefer observed state and an independent expected value. Matching a copied
-  string, counting assertion words or calling the implementation twice does
-  not establish behavioral correctness.
-- Bound external processes, network waits and browser waits. A timeout must
-  identify the failed operation and preserve useful diagnostics.
-- Restore changed properties, engine state and listeners in cleanup that also
-  runs after failure. Do not convert an unexpected exception into a passing test.
-- Keep meaningful existing test classes reachable through the maintained suite
-  selections. Distinguish deliberate opt-in application tests, fixtures and
-  environment probes from accidentally omitted regressions.
-- A source guard checks architecture or policy. Label that scope separately
-  from runtime execution and controlled application acceptance.
+- Precizează comportamentul protejat, rezultatul observabil și un caz util
+  de eșec. Aserțiunile trebuie să distingă rezultatul intenționat de unul plauzibil greșit.
+- Preferă starea observată și o valoare așteptată independentă. Potrivirea
+  unui șir copiat, numărarea cuvintelor de aserțiune sau apelarea implementării
+  de două ori nu stabilește corectitudinea comportamentală.
+- Limitează procesele externe și așteptările de rețea/browser. Expirarea trebuie
+  să identifice operația eșuată și să păstreze diagnostice utile.
+- Restaurează proprietățile schimbate, starea motorului și listener-ele prin
+  curățare care rulează și după eșec. Nu transforma o excepție neașteptată într-un test trecut.
+- Anotările TestNG întreținute din sursă trebuie să omită `enabled` sau să
+  folosească literalul `true` (parantezele sunt permise). Indicatorii dezactivați
+  sau indirecți pică guvernanța sursei; cazurile imbricate/manuale revizuite păstrează limita explicită.
+- Păstrează clasele semnificative de test existente accesibile prin selecțiile
+  de suite întreținute. Distinge testele explicite de aplicație, cazurile
+  controlate și probele de mediu de regresiile omise accidental.
+- Un control de sursă verifică arhitectura sau politica. Etichetează acel
+  domeniu separat de execuția runtime și acceptanța controlată a aplicației.
 
-## Executable code contracts
+<a id="executable-code-contracts"></a>
+## Contracte de cod executabile
 
-### Explicit imports and visible dependencies
+<a id="explicit-imports-and-visible-dependencies"></a>
+### Importuri explicite și dependențe vizibile
 
-Name every imported Java type and static member explicitly. Normal and static
-wildcard imports hide dependency ownership and are rejected by the existing
-architecture guard. Literal examples and comments are not import declarations.
-Keep same-package references local and remove redundant imports when changing
-the affected file. Compiler attribution and implementation-tree comparison are
-useful for import-only cleanup; a passing text scan alone is not compilation.
+Numește explicit fiecare tip Java și membru static importat. Importurile
+wildcard normale și statice ascund responsabilitatea dependențelor și sunt
+respinse de controlul existent de arhitectură. Exemplele literale și
+comentariile nu sunt declarații de import. Păstrează locale referințele din
+același pachet și elimină importurile redundante când schimbi fișierul afectat.
+Atribuirea de către compilator și comparația arborilor de implementare sunt
+utile curățării exclusive a importurilor; o scanare textuală trecută nu este compilare.
 
-Use named static imports when they make ownership clear. Do not move business
-logic into a test or renderer to shorten a call site. The module boundary and
-vendor-SDK ownership checks continue to apply independently of import style.
+Folosește importuri statice numite când clarifică responsabilitatea. Nu muta
+logica de afaceri într-un test sau renderer pentru a scurta apelul. Limitele
+modulelor și verificările responsabilității SDK-urilor furnizorilor se aplică independent de stilul importurilor.
 
-### English source and comments
+<a id="english-source-and-comments"></a>
+### Sursă și comentarii în engleză
 
-Requirement ENG-001: authored identifiers, comments/Javadoc and framework/test messages MUST be written in English.
+Cerința ENG-001: `authored identifiers, comments/Javadoc and framework/test messages MUST be written in English.`
 
-English documentation is canonical on main. The main_RO documentation edition
-translates README.md prose and diagram labels only, as declared by the
-[README edition contract](Readme_Editions.md). That explicit exception does not
-change the source/comment requirement or exempt other documents.
+Documentația engleză este canonică pe main. Ediția documentației main_RO traduce
+toată proza întreținută a documentației și etichetele explicative ale diagramelor,
+conform [contractului edițiilor README](Readme_Editions.md). Excepția explicită
+nu schimbă cerința ca sursa și comentariile să fie în engleză.
 
-Preserve external payloads, proper names and
-deliberate localization/negative fixtures as data; do not silently translate an
-external contract to satisfy a language check.
+Păstrează conținuturile externe, numele proprii și cazurile intenționate de
+localizare/testare negativă drept date; nu traduce tacit un contract extern
+pentru a satisface o verificare lingvistică.
 
-Existing source governance inspects lexical code, comment and literal regions
-separately, after Java Unicode translation. It rejects known Romanian markers
-in authored names/comments/messages. This deterministic policy complements human
-English review; a finite vocabulary is not a universal language detector.
-The three exact language-policy fixture files have documented literal-data
-ownership for their literal regions, while their identifiers and comments
-remain governed. This is reviewed policy/fixture data, not permission to add
-non-English authored diagnostics in those files. Unused data
-exceptions fail, and a production file cannot receive a blanket test-data
-exemption. New external-language cases need explicit owner review.
+Guvernanța surselor inspectează separat codul, comentariile și literalii după
+traducerea Unicode Java. Respinge markerii românești cunoscuți din identificatori,
+comentarii și mesaje proprii. Vocabularul finit completează revizia umană; nu
+detectează universal limba. Fișierele exacte de politică lingvistică au responsabilitate
+documentată pentru datele literale; identificatorii și comentariile rămân guvernate.
+Excepțiile acoperă date revizuite de politică/test, fără a permite diagnostice
+proprii în alte limbi. Excepțiile nefolosite eșuează; producția nu poate primi
+scutiri generale pentru date de test. Cazurile externe noi necesită revizia explicită
+a responsabilului.
 
-The executable owner is
+Responsabilul executabil este
 [JavaSourceScannerTest](../../atf-tests/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java),
-including repository inspection and deliberate failing comment/name/message cases.
+inclusiv inspecția depozitului și cazurile de comentarii/nume/mesaje cu eșec intenționat.
 [DocumentationGovernanceTest](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationGovernanceTest.java)
-also protects this mandatory requirement, README diagrams and compilable consumer
-examples. From an isolated reactor copy:
+protejează și cerința obligatorie, diagramele README și exemplele compilabile
+ale consumatorilor. Dintr-o copie izolată a reactorului:
+
+<details>
+<summary>Rulează comenzile pentru sursă și comentarii în engleză</summary>
 
 ```powershell
 mvn -B -ntp -pl atf-tests -am "-Dtest=JavaSourceScannerTest,DocumentationGovernanceTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
 ```
 
-### Visibility and execution
+</details>
 
-Inventories must retain legal source-package segments such as `target` and
-`artifacts`; directory names only identify build output outside owned source
-trees. A guard that silently ignores source is not an ownership check.
+<a id="visibility-and-execution"></a>
+### Vizibilitate și execuție
 
-Direct fixed pauses belong to ApiSleeper, UiSleeper and AtfTestWaiter; direct
-console publication belongs to ConsoleLogger. Other code uses the owning
-facade. InterruptedException handling restores the current thread's flag.
-Structural inspection of those call shapes complements real interruption
-tests; it does not prove every possible control-flow path. An API's intentional
-executor/future contract is not an excuse for a blanket text ban or a new
-unreviewed exception.
+Inventarele trebuie să păstreze segmentele legale de pachet sursă precum
+`target` și `artifacts`; numele directoarelor identifică rezultate de build
+numai în afara arborilor sursă deținuți. Un control care ignoră tacit sursa
+nu este o verificare de responsabilitate.
 
-## Maintainability and exceptions
+Pauzele fixe directe aparțin ApiSleeper, UiSleeper și AtfTestWaiter;
+publicarea directă în consolă aparține ConsoleLogger. Restul codului folosește
+fațada responsabilă. Tratarea InterruptedException restaurează indicatorul
+firului curent. Inspecția structurală a acestor forme de apel completează
+testele reale de întrerupere; nu demonstrează orice cale posibilă de control.
+Contractul intenționat executor/future al unui API nu justifică o interdicție
+textuală globală sau o excepție nouă nerevizuită.
 
-Review package cohesion, large methods/classes and resource growth where the
-change occurs. Measurements are signals for an owner to inspect, not quality
-scores or inherited universal limits.
+<a id="maintainability-and-exceptions"></a>
+## Mentenabilitate și excepții
 
-When existing debt needs an exception, name the exact source or inventory,
-owner, observed issue, repair criterion and expiry/review trigger in feedback.
-Do not increase a threshold merely to accept growth. Remove an exception when
-its source disappears or its closure/expiry condition is met; stale or broader
-exceptions must be rejected during review.
+Revizuiește coeziunea pachetelor, metodele/clasele mari și creșterea resurselor
+acolo unde are loc schimbarea. Măsurătorile sunt semnale pentru inspecția
+responsabilului, nu note de calitate sau limite universale moștenite.
 
-Java compatibility follows the compiler contract in the [parent POM](../../pom.xml).
-Keep dependency and source checks aligned with declared module ownership and
-actual compiler behavior; do not infer Java support from a method-name search.
+Când datoria existentă necesită o excepție, numește în feedback sursa sau
+inventarul exact, responsabilul, problema observată, criteriul de reparare
+și expirarea/declanșatorul revizuirii. Nu crește un prag doar pentru a accepta
+creșterea. Elimină excepția când sursa dispare sau condiția de închidere/expirare
+este îndeplinită; excepțiile învechite sau mai ample trebuie respinse la revizuire.
 
-## Documentation and evidence
+Compatibilitatea Java urmează contractul compilatorului din
+[POM-ul părinte](../../pom.xml). Aliniază verificările dependențelor și sursei
+la responsabilitatea declarată a modulelor și comportamentul real al
+compilatorului; nu deduce suportul Java dintr-o căutare de nume de metodă.
 
-For concurrency regressions, synchronize the observed event with a bounded
-rendezvous rather than using a fixed pause to make overlap likely. Keep failure
-results, ordered identities and finally-owned cleanup observable. Deadline tests
-retain their own timeout oracles; increasing a budget is not a substitute for
-diagnosing a scheduling assumption.
+<a id="documentation-and-evidence"></a>
+## Documentație și dovezi
 
-The [artifact area](../../artifacts/README.md) owns evidence preservation and the
-reusable project Atlas protocol. Maintained guides/templates remain source even
-inside an artifacts directory. Only declared report/Atlas run subtrees are data;
-their exclusion must never hide an owned source/resource package with that name.
-Maintenance CLI checks run separately from the Java suite and do not introduce
-a runtime dependency on their tooling language.
+Pentru regresiile de concurență, sincronizează evenimentul observat printr-un
+punct de întâlnire limitat, în locul unei pauze fixe care face probabilă
+suprapunerea. Păstrează observabile eșecurile, identitățile ordonate și
+curățarea deținută de finally. Testele de termen-limită își păstrează oracolele
+de expirare; creșterea unui buget nu înlocuiește diagnosticarea unei presupuneri de planificare.
 
-Keep one canonical owner for each contract. Root/module READMEs orient the
-reader; package guides explain their local responsibilities; feedback holds
-active gaps. Cross-link an existing owner instead of maintaining parallel rules.
+[Zona artefactelor](../../artifacts/README.md) deține păstrarea dovezilor și
+protocolul reutilizabil Atlas pentru proiecte. Ghidurile/șabloanele întreținute
+rămân sursă chiar într-un director artifacts. Numai subarborii declarați de
+rulări raport/Atlas sunt date; excluderea lor nu trebuie să ascundă un pachet
+sursă/resursă deținut cu același nume. Verificările CLI de mentenanță rulează
+separat de suita Java și nu introduc dependență runtime de limbajul utilitarelor.
 
-### Reader orientation and diagrams
+Păstrează un singur responsabil canonic pentru fiecare contract.
+README-urile rădăcină/module orientează cititorul; ghidurile pachetelor explică
+responsabilitățile locale; feedback-ul conține lacunele active. Leagă un
+responsabil existent în locul întreținerii unor reguli paralele.
 
-The first screen should answer what the area does, who owns it, what result it
-produces, how it is verified and where the reader should continue. Use a short
-question-to-owner table when several entry points are useful. The root explains
-composition; module and package guides explain their own contracts.
+<a id="reader-orientation-and-diagrams"></a>
+### Orientarea cititorului și diagrame
 
-Use one diagram for one question: dependency direction, runtime flow or lifecycle
-order. Prefer compact left-to-right flowcharts for new relationship maps; switch
-to a vertical layout when labels would become unreadable at a narrow viewport.
-Use a sequence diagram when ordering matters. Put a short legend immediately after the
-diagram that defines arrow meaning, responsibility and any omitted detail.
-Diagrams explain the POM or implementation; they do not replace either source.
+Primul ecran trebuie să răspundă ce face zona, cine o deține, ce rezultat
+produce, cum se verifică și unde trebuie să continue cititorul. Folosește un
+tabel scurt întrebare–responsabil când există mai multe intrări utile.
+Rădăcina explică alcătuirea; ghidurile modulelor și pachetelor explică propriile contracte.
 
-Use semantic Markdown headings, minimal tables, typed code fences and concise
-labels. Place secondary detail in its owner guide or a named `<details>` block.
-Keep renderer styling out of Markdown rather than embedding local fonts or CSS.
+Folosește o diagramă pentru o întrebare: direcția dependențelor, flux runtime
+sau ordinea ciclului de viață. Preferă diagrame de flux compacte stânga–dreapta
+pentru hărți noi de relații; treci la aranjament vertical când etichetele ar
+deveni ilizibile într-o fereastră îngustă. Folosește secvențe când ordinea
+contează. Pune imediat după diagramă o legendă scurtă care definește sensul
+săgeților, responsabilitatea și detaliile omise. Diagramele explică POM-ul
+sau implementarea; nu înlocuiesc niciuna dintre aceste surse.
 
-Requirement DOC-REVIEW-001: every maintained Markdown document MUST have one H1,
-begin its heading hierarchy at H1 and descend by at most one level at a time.
-Returning to an earlier level is valid. Every opening code fence declares its
-language or `text` for literal output; `java compile` and `properties defaults`
-retain their executable meanings. Fenced examples may illustrate invalid
-Markdown without becoming document structure.
+Folosește titluri Markdown semantice, tabele minimale, blocuri de cod tipizate
+și etichete concise. Pune detaliile secundare în ghidul responsabil sau
+într-un bloc `<details>` numit. Păstrează stilizarea rendererului în afara
+Markdown-ului, fără fonturi locale sau CSS încorporat.
 
-The existing documentation governance applies disclosure balance, presentation
-markup and bounded editorial-artifact checks to all maintained Markdown, not
-only READMEs. Unresolved tokens such as `@@CODE_0@@`, `ZXQ005ZQ` and tokenizer
-word-boundary debris belong to repaired drafting input, not visible prose or
-diagram labels. Literal examples remain data. These finite patterns complement
-human editing; they cannot certify every spelling, language or semantic issue.
+Cerința DOC-REVIEW-001: fiecare document Markdown întreținut TREBUIE să aibă
+un H1, să înceapă ierarhia titlurilor de la H1 și să coboare cel mult un nivel
+odată. Revenirea la un nivel anterior este validă. Fiecare bloc de cod deschis
+declară limba sau `text` pentru rezultat literal; `java compile` și
+`properties defaults` își păstrează sensul executabil. Exemplele în blocuri
+pot ilustra Markdown invalid fără a deveni structura documentului.
 
-Every diagram has an adjacent explanation of arrows, responsibilities and
-omissions. Human review compares that explanation with code/POM ownership and
-actual rendering. Preserve a correct, approved diagram rather than changing
-its geometry merely to satisfy a preferred visual style.
+Guvernanța existentă a documentației aplică verificările de echilibru al
+blocurilor pliabile, markup de prezentare și artefacte editoriale limitate
+tuturor documentelor Markdown întreținute, nu numai README-urilor.
+Tokenurile nerezolvate precum `@@CODE_0@@`, `ZXQ005ZQ` și resturile de
+delimitare a cuvintelor produse de tokenizer aparțin intrărilor editoriale de
+reparat, nu prozei vizibile sau etichetelor diagramelor. Exemplele literale
+rămân date. Aceste modele finite completează editarea umană; nu pot certifica
+orice problemă de ortografie, limbă sau semantică.
 
-### Apply the documentation review in practice
+Fiecare diagramă are o explicație adiacentă a săgeților, responsabilităților
+și omisiunilor. Revizuirea umană compară explicația cu responsabilitatea
+codului/POM-ului și randarea reală. Păstrează o diagramă corectă și aprobată
+în locul schimbării geometriei sale doar pentru un stil vizual preferat.
 
-| Changed claim | Inspect its real source | Required review and evidence |
+<a id="apply-the-documentation-review-in-practice"></a>
+### Aplică revizuirea documentației în practică
+
+| Afirmație schimbată | Inspectează sursa reală | Revizuire și dovadă necesare |
 |---|---|---|
-| A browser or reporting option | Typed option owner and `framework.properties` | Separate source defaults from caller overrides; recheck the documented command |
-| A dependency arrow | Owning POMs and public boundary | Explain whether the arrow means dependency, invocation or evidence; render the changed graph |
-| A failed validation | Existing assertion and original XML/HTML | Preserve expected/actual, actual outcome, owner and repair hint; a hint is not the observed cause |
-| A translated README | Canonical English paragraph, table, code and diagram | Preserve technical literals and quantities; review negations, conditions, scope and proof limits in Romanian |
-| A historical success or score | Original source checkpoint and receipt | Retain its date and selection; link current usage to its canonical owner |
+| O opțiune de browser sau raportare | Responsabilul opțiunii tipizate și `framework.properties` | Separă valorile implicite din sursă de suprascrierile apelantului; reverifică comanda documentată |
+| O săgeată de dependență | POM-urile responsabile și limita publică | Explică dacă săgeata înseamnă dependență, invocare sau dovadă; randează graful schimbat |
+| O validare eșuată | Aserțiunea existentă și XML/HTML originale | Păstrează așteptat/observat, rezultatul real, responsabilul și indiciul de reparare; indiciul nu este cauza observată |
+| Un README tradus | Paragraful, tabelul, codul și diagrama canonice englezești | Păstrează literalii tehnici și cantitățile; revizuiește în română negațiile, condițiile, domeniul și limitele dovezilor |
+| Un succes sau o notă istorică | Revizia sursă și dovada originale | Păstrează data și selecția; leagă utilizarea curentă de responsabilul canonic |
 
-Use the actual `ui.engine` option as an example: its name remains identical in
-both README editions, while its explanatory sentence is translated. A changed
-default must be reconciled with the typed/source owner; a JVM override does not
-prove that the packaged default changed. An `EXECUTED` Atlas oracle must cite
-its actual source fragments and executed subjects; a matching label is not an
-independent assertion witness.
+Folosește opțiunea reală `ui.engine` ca exemplu: numele ei rămâne identic în
+ambele ediții README, în timp ce propoziția explicativă este tradusă.
+O valoare implicită schimbată trebuie reconciliată cu responsabilul tipizat/al
+sursei; o suprascriere JVM nu demonstrează schimbarea valorii implicite din
+pachet. Un oracol Atlas `EXECUTED` trebuie să citeze fragmentele sursă reale
+și subiectele executate; o etichetă corespunzătoare nu este un martor independent al aserțiunii.
 
-Review from the source outward: claim, implementation/POM, owner guide, protected
-counterexample, actual verification, then feedback closure. Run the smallest
-relevant owned selection first. Preserve a failed fixture, fix the identified
-defect and recheck; do not loosen a rule simply to obtain a green report.
+Revizuiește dinspre sursă spre exterior: afirmație, implementare/POM, ghid
+responsabil, contraexemplu protejat, verificare reală, apoi închiderea
+feedback-ului. Rulează mai întâi cea mai mică selecție relevantă cu responsabil.
+Păstrează cazul eșuat, repară defectul identificat și reverifică; nu relaxa
+o regulă doar pentru obținerea unui raport verde.
 
-### Portable paths and executable facts
+<a id="portable-paths-and-executable-facts"></a>
+### Căi portabile și date executabile
 
-Tracked project paths and links are relative to their owning document or the
-reactor root. External locations use an explicit caller-supplied override or a
-declared placeholder such as `${ATF_WORK_ROOT}/runs/...`, as defined in
-[Development](../Development.md#working-roles). Do not publish a workstation drive,
-network share, local-file URI or fixed named account root in source, configuration
-or documentation. Dynamic home-directory inputs and explicit runtime inputs may
-resolve to absolute paths on the caller's machine; derive those values from the
-current reactor root or a named override before passing them to forked processes.
+Căile și legăturile urmărite ale proiectului sunt relative la documentul
+responsabil sau rădăcina reactorului. Locațiile externe folosesc o suprascriere
+explicită furnizată de apelant sau un substituent declarat precum
+`${ATF_WORK_ROOT}/runs/...`, conform [Dezvoltării](../Development.md#working-roles).
+Nu publica în sursă, configurație sau documentație un disc al stației de lucru,
+o partajare de rețea, URI de fișier local sau o rădăcină fixă a unui cont numit.
+Intrările dinamice ale directorului utilizatorului și intrările runtime explicite
+pot fi rezolvate la căi absolute pe calculatorul apelantului; derivă valorile
+din rădăcina reactorului curent sau o suprascriere numită înaintea transmiterii către procesele derivate.
 
-Documented coordinates, paths, commands, profiles, defaults and public entry
-points must agree with the POM, resources and sources they describe. Maintain
-English prose and diagrams whose arrows explain actual responsibilities.
-Literal examples are examples, not evidence that a behavior exists.
+Coordonatele, căile, comenzile, profilurile, valorile implicite și intrările
+publice documentate trebuie să corespundă POM-ului, resurselor și surselor
+descrise. Întreține proză în engleză și diagrame ale căror săgeți explică
+responsabilități reale. Exemplele literale sunt exemple, nu dovadă că există un comportament.
 
-Executable Maven examples use selections that resolve against their actual
-POM/reactor. Configuration blocks explicitly marked `properties defaults`
-describe checked source defaults; override examples do not claim to be defaults.
-Complete public consumer examples marked `java compile` in the root and browser
-adapter READMEs compile against the current public API with Java 11 and annotation
-processing disabled. Ordinary partial/literal examples are not executed as tests.
+Exemplele Maven executabile folosesc selecții care se rezolvă față de POM-ul/
+reactorul real. Blocurile de configurare marcate explicit `properties defaults`
+descriu valori implicite verificate ale sursei; exemplele de suprascriere nu
+pretind valori implicite. Exemplele publice complete ale consumatorilor,
+marcate `java compile` în README-urile rădăcină și ale adaptoarelor de browser,
+se compilează față de API-ul public curent cu Java 11 și procesarea anotărilor
+dezactivată. Exemplele obișnuite parțiale/literale nu sunt executate ca teste.
 
-### Contracts, gaps and execution evidence
+<a id="contracts-gaps-and-execution-evidence"></a>
+### Contracte, lacune și dovezi de execuție
 
-Keep review scores and execution receipts outside stable owner documentation.
-Feedback closure must identify the reproducer, owner, expected outcome and
-observable proof. Preserve the source checkpoint and exact run scope. A source
-move, successful copy, compile or green local suite does not prove a controlled
-application journey. Historical results must retain their original scope.
-Promote reusable behavior into its owner guide and link the closure record rather
-than copying a dated delivery summary into the README. Preserve failed runs when
-they explain the reproducer or limit of a later success.
+Păstrează notele revizuirii și dovezile de execuție în afara documentației
+stabile responsabile. Închiderea feedback-ului trebuie să identifice
+reproducerea, responsabilul, rezultatul așteptat și dovada observabilă.
+Păstrează revizia sursă și domeniul exact al rulării. Mutarea sursei, copierea
+reușită, compilarea sau o suită locală verde nu demonstrează un scenariu de
+aplicație controlat. Rezultatele istorice trebuie să-și păstreze domeniul
+original. Promovează comportamentul reutilizabil în ghidul responsabil și
+leagă înregistrarea închiderii, fără a copia în README un sumar de livrare
+datat. Păstrează rulările eșuate când explică reproducerea sau limita unui succes ulterior.
 
-Feedback assessments declare their criterion, affected scope and supporting
-source/evidence reference. Priority and quality assess different questions and
-follow the [feedback rubric](../feedback/README.md); a count of passing tests does
-not by itself establish coverage or area quality.
+Evaluările feedback-ului declară criteriul, domeniul afectat și referința
+susținătoare de sursă/dovadă. Prioritatea și calitatea evaluează întrebări
+diferite și urmează [grila feedback-ului](../feedback/README.md); numărul
+testelor trecute nu stabilește singur acoperirea sau calitatea zonei.
 
-## Selective adoption from the archive and J0
+<a id="selective-adoption-from-the-archive-and-j0"></a>
+## Adoptare selectivă din arhivă și J0
 
-The archived references below are Git paths at
-`main_mcp` commit `70a7279c2a9560d39e6bd2554cd2f96a88626692`; they are not current
-working-tree paths or active skills.
+Referințele arhivate de mai jos sunt căi Git la commitul `main_mcp`
+`70a7279c2a9560d39e6bd2554cd2f96a88626692`; nu sunt căi curente în copia de
+lucru sau skills active.
 
-| Archived source | Decision | Retained principle |
+| Sursă arhivată | Decizie | Principiu păstrat |
 |---|---|---|
-| `src/main/resources/skills/codequality/contracts/code-quality.yml` | Adapt | Owned debt, explicit repair criteria and stale-exception removal; do not copy old budgets, source roots or legacy allowances |
-| `src/main/java/com/ai/skills/codequality/README.md` | Adapt | Cohesion, Java compatibility and dependency ownership belong to review and existing governance tests |
-| `src/main/java/com/ai/skills/atlas/rules/scoring/AtlasScoreEvidenceTraceRule.java` and `AtlasScoreOverallCalculationRule.java` in that package | Adapt | Review scores need declared axes, evidence and a reproducible calculation; keyword counts are not an oracle |
-| `src/main/java/com/ai/skills/atlas/rules/scoring/limits/AtlasSuiteCompletenessSeparationRule.java` | Adopt principle | Suite success and product coverage are different claims with separate acceptance evidence |
-| `src/test/java/com/ai/skills/codequality/tests/AtfCodeQualityAssertionDensityContractTest.java` | Reject as quality oracle | Assertion-cue density cannot replace inspection of assertions and meaningful negative cases |
-| `src/main/java/com/ai/core/skills` and `src/main/java/com/ai/skills` | Do not restore | Reuse useful rules as documentation/governance without the retired registry, facades or runtime stack |
+| `src/main/resources/skills/codequality/contracts/code-quality.yml` | Adaptează | Datorie cu responsabil, criterii explicite de reparare și eliminarea excepțiilor învechite; nu copia bugete vechi, rădăcini sursă sau permisiuni istorice |
+| `src/main/java/com/ai/skills/codequality/README.md` | Adaptează | Coeziunea, compatibilitatea Java și responsabilitatea dependențelor aparțin revizuirii și testelor existente de guvernanță |
+| `src/main/java/com/ai/skills/atlas/rules/scoring/AtlasScoreEvidenceTraceRule.java` și `AtlasScoreOverallCalculationRule.java` din acel pachet | Adaptează | Notele revizuirii necesită axe declarate, dovezi și calcul reproductibil; numărarea cuvintelor-cheie nu este un oracol |
+| `src/main/java/com/ai/skills/atlas/rules/scoring/limits/AtlasSuiteCompletenessSeparationRule.java` | Adoptă principiul | Succesul suitei și acoperirea produsului sunt afirmații diferite, cu dovezi separate de acceptanță |
+| `src/test/java/com/ai/skills/codequality/tests/AtfCodeQualityAssertionDensityContractTest.java` | Respinge ca oracol de calitate | Densitatea indiciilor de aserțiune nu poate înlocui inspecția aserțiunilor și a cazurilor negative semnificative |
+| `src/main/java/com/ai/core/skills` și `src/main/java/com/ai/skills` | Nu restaura | Refolosește regulile utile ca documentație/guvernanță fără registrul, fațadele sau stiva runtime retrase |
 
-J0 references inform the same separation: `AtfPackageCohesionGovernanceTest`
-uses reviewed inventories and rejects stale exceptions;
-`AtfSourceReadabilityGovernanceTest` checks duplicate imports and keeps legal
-source-package paths visible. Current
-pause/console/interrupt controls adapt the archive's ownership principle to
-ATF_AI's documented execution contracts rather than claiming a verbatim old rule.
-`DocumentedBuildContracts` checks factual build documentation; and
-`DocumentationLifecycleGovernanceTest` keeps delivery history out of stable
-contracts. Adapt those principles to this repository's five modules, TestNG
-and ownership. J0 workspace catalogs, consumer rules and language aliases are
-not ATF_AI contracts.
+Referințele J0 susțin aceeași separare: `AtfPackageCohesionGovernanceTest`
+folosește inventare revizuite și respinge excepțiile învechite;
+`AtfSourceReadabilityGovernanceTest` verifică importurile duplicate și
+păstrează vizibile căile legale ale pachetelor sursă. Controalele curente de
+pauză/consolă/întrerupere adaptează principiul responsabilității din arhivă
+la contractele documentate ale execuției ATF_AI, fără a pretinde o regulă
+veche copiată literal. `DocumentedBuildContracts` verifică documentația
+factuală de build; `DocumentationLifecycleGovernanceTest` ține istoricul
+livrărilor în afara contractelor stabile. Adaptează principiile la cele cinci
+module, TestNG și responsabilitatea acestui depozit. Cataloagele de spații de
+lucru, regulile consumatorilor și aliasurile lingvistice J0 nu sunt contracte ATF_AI.
+<a id="reader-oriented-guides"></a>
+## Ghiduri orientate către cititor
+
+Cerința DOC-READ-001: păstrează vizibilă decizia cititorului înaintea detaliilor
+de implementare sau execuție. Testing.md deține strategia și dovezile;
+[ghidul de comenzi](../Testing_Commands.md) legat deține rețetele reproductibile.
+
+| Sarcina cititorului | Structură preferată | Ce trebuie să rămână explicit |
+|---|---|---|
+| Alegerea între selecții sau opțiuni | Tabel comparativ | Precondițiile și dovada oferită de fiecare alegere |
+| Urmărirea lucrului ordonat sau a ciclului de viață | Pași numerotați sau diagramă | Direcție, actori, ramuri și legendă adiacentă |
+| Inspectarea verificărilor sau constrângerilor paralele | Liste cu puncte | Condiții independente fără ascunderea excepțiilor |
+| Copierea comenzilor de execuție | Details închis implicit, cu sumar descriptiv | Scop, precondiții și dovezi așteptate |
+| Înțelegerea unui motiv sau a unei consecințe | Proză scurtă și coerentă | Condiții, negații și limite |
+
+Fragmentele canonice recuperate rămân literali de politică citați în engleză
+în ambele ediții; traduce explicația din jurul lor. Aceste alegeri se bazează
+pe conținut, nu pe cote de diagrame/tabele/puncte. O diagramă explică relații
+reale; legenda sa precizează sensul săgeților, responsabilitatea și omisiunile.
+Nu ascunde o precondiție într-un bloc pliabil doar pentru scurtarea paginii.
+
+Controlul de sursă măsoară blocurile logice de proză dincolo de împărțirea
+fizică pe linii. Orientarea strategică din Testing.md permite cel mult
+3 propoziții și 100 de cuvinte vizibile per paragraf. Referințele operaționale
+detaliate folosesc limita de paragraf de 100 de cuvinte; toată proza inspectată
+folosește limita de 45 de cuvinte per propoziție. Acestea sunt declanșatoare
+ale revizuirii, nu note de lizibilitate sau dovezi că textul mai scurt este corect.
+
+Listele, tabelele, codul literal și conținutul pliabil au roluri distincte
+de lectură. Proza înregistrărilor istorice își păstrează forma de dovadă;
+feedback/README rămâne ghid operațional. Datele sursei, legăturile, codul
+și traducerea lor rămân supuse celorlalte controale. Revizuiește manual proza
+din blocurile pliabile ca parte a revizuirii întregului document.
+
+Cerința DOC-RUN-001: blocurile shell Maven executabile din documentația
+întreținută TREBUIE să fie în details echilibrat, fără niciun atribut open.
+Numește în sumar selecția sau scopul real. Păstrează vizibile strategia și
+limitele dovezilor; reverificările de diagnostic inline rămân direct lizibile.
+Cazurile literale de text/cod nu sunt rețete shell executabile. Controlul
+inspectează taguri reale în afara blocurilor/comentariilor și recunoaște
+invocări Maven/wrapper, nu un cuvânt-cheie din proză.

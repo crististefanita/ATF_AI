@@ -1,170 +1,176 @@
-# Complete Atlas delivery, knowledge and governance
+<a id="complete-atlas-delivery-knowledge-and-governance"></a>
+# Livrare Atlas completă, cunoștințe și guvernanță
 
-Baseline: `c06fc31f4d4a28e64eaf257adf6e4a21509d2d49`. This recorded review reopened
-the presentation and understanding scope of Atlas. Earlier G-009 evidence remains
-valid for declared source/artifact consistency; it did not establish a complete
-standalone understanding report. Keep that distinction rather than retroactively
-rescoring or relabeling the earlier checks.
+Referință inițială: `c06fc31f4d4a28e64eaf257adf6e4a21509d2d49`. Această revizie înregistrată a redeschis
+domeniul prezentării și înțelegerii Atlas. Dovezile G-009 anterioare rămân
+valide pentru consistența declarată sursă/artefact; nu au stabilit un raport complet
+și autonom de înțelegere. Păstrați această distincție în loc să
+recalculați sau să reetichetați retroactiv verificările anterioare.
 
-The archived Atlas at `70a7279c2a9560d39e6bd2554cd2f96a88626692` owns a dedicated
-shared stylesheet, collapsible report sections, behavior graphs, evidence rows,
-source-to-behavior trace and an audit boundary. Its framework report explicitly
-adapts the subject from application business to framework capabilities. The useful
-contract can be recovered without restoring retired runtime registries or
-services. Current canonical documentation and authored code/comments are English.
+Atlas-ul arhivat la `70a7279c2a9560d39e6bd2554cd2f96a88626692` deține o foaie de stil
+partajată dedicată, secțiuni de raport pliabile, grafuri de comportament, rânduri de dovezi,
+trasabilitate de la sursă la comportament și o limită de audit. Raportul său de framework
+adaptează explicit subiectul de la logica de afaceri a aplicației la capabilitățile framework-ului. Contractul
+util poate fi recuperat fără a restaura registre sau servicii de execuție
+retrase. Documentația canonică actuală și codul/comentariile redactate sunt în engleză.
 
-## D-005 — one complete understanding artifact per target
+<a id="d-005--one-complete-understanding-artifact-per-target"></a>
+## D-005 — un artefact complet de înțelegere per țintă
 
-- Owner: Atlas report contract, canonical CSS, publisher and generated delivery.
-- Priority: 94, from impact/risk/urgency 95/90/95.
-- Baseline quality: 47, from correctness/verification/clarity 50/35/55.
-- Baseline observation: the publication then had separate overview, project-map,
-  architecture, testing and limits HTML pages. Its per-project index did not
-  satisfy the requested one-file understanding artifact. That layout also
-  omitted the dedicated archived visual system and emphasized module topology
-  over existing behavior, objects, outcomes and test oracles. The
-  [current reader publication owner](../../artifacts/atlas/README.md#reader-delivery-and-knowledge)
-  describes the delivered single-file contract; these observations retain their
-  original baseline scope.
-- Consequence: a copied page loses information or navigation dependencies, and a
-  dependency diagram may look like a sufficient explanation of tested behavior.
-- Correction: maintain a dedicated CSS asset, embed its canonical UTF-8 LF
-  content, and publish one complete project-specific `delivery/atlas.html` per
-  invocation. Keep source/audit inputs outside the reader delivery directory.
-  Explain existing behavior separately from dependency topology. Preserve the
-  old CSS and report contract provenance and document adaptations explicitly.
-- Acceptance: copying only atlas.html preserves every required section, inline
-  diagram, full Markdown input and declared machine/evidence payload. All final
-  navigation is internal. An extra HTML anywhere in delivery/ and a combined or
-  wrong-target report fail governance. Any language/build system is supported
-  through actual target facts; absent tests or Git metadata remain explicit.
-  A supported single state/component may have no edges with its limitation
-  recorded. Old and new desktop rendering are reviewed
-  with no device emulation. Source-only behavior keeps its real proof scope.
-- Delivered quality: 95, from correctness/verification/clarity 95/94/97.
-- State: VERIFIED for the complete single-target reader delivery and reviewed desktop presentation.
+- Responsabil: contractul raportului Atlas, CSS-ul canonic, publicatorul și livrarea generată.
+- Prioritate: 94, din impact/risc/urgență 95/90/95.
+- Calitate inițială: 47, din corectitudine/verificare/claritate 50/35/55.
+- Observație inițială: publicația avea atunci pagini HTML separate pentru prezentare generală, harta proiectului,
+  arhitectură, testare și limite. Indexul său per proiect nu
+  îndeplinea cerința artefactului de înțelegere într-un singur fișier. Acea structură
+  omitea și sistemul vizual dedicat arhivat și accentua topologia modulelor
+  în detrimentul comportamentelor, obiectelor, rezultatelor și oracolelor de test existente.
+  [Responsabilul publicației curente pentru cititor](../../artifacts/atlas/README.md#reader-delivery-and-knowledge)
+  descrie contractul livrat de fișier unic; aceste observații își păstrează
+  domeniul inițial de referință.
+- Consecință: o pagină copiată pierde informații sau dependențe de navigare, iar o
+  diagramă de dependențe poate părea o explicație suficientă a comportamentului testat.
+- Corecție: întreținerea unei resurse CSS dedicate, încorporarea conținutului său canonic UTF-8 LF
+  și publicarea unui singur `delivery/atlas.html` complet, specific proiectului,
+  per invocare. Păstrarea intrărilor de sursă/audit în afara directorului de livrare pentru cititor.
+  Explicarea comportamentului existent separat de topologia dependențelor. Păstrarea
+  provenienței vechiului CSS și contract de raport și documentarea explicită a adaptărilor.
+- Acceptanță: copierea doar a atlas.html păstrează fiecare secțiune obligatorie, diagramă
+  încorporată, intrare Markdown completă și încărcătură declarată de date pentru mașină/dovezi. Întreaga navigare
+  finală este internă. Un HTML suplimentar oriunde în delivery/ și un raport combinat sau
+  pentru ținta greșită eșuează guvernanța. Orice limbaj/sistem de compilare este susținut
+  prin faptele reale ale țintei; absența testelor sau a metadatelor Git rămâne explicită.
+  O singură stare/componentă susținută de surse poate să nu aibă muchii, cu limitarea
+  înregistrată. Randările desktop veche și nouă sunt revizuite
+  fără emulare de dispozitiv. Comportamentul susținut doar de surse își păstrează domeniul real al dovezii.
+- Calitate livrată: 95, din corectitudine/verificare/claritate 95/94/97.
+- Stare: VERIFIED pentru livrarea completă către cititor a unei singure ținte și prezentarea desktop revizuită.
 
-## G-010 — constructive governance for the complete Atlas contract
+<a id="g-010--constructive-governance-for-the-complete-atlas-contract"></a>
+## G-010 — guvernanță constructivă pentru contractul Atlas complet
 
-- Owner: optional Atlas maintenance checks, diagnostics and existing documentation
-  governance.
-- Priority: 92, from impact/risk/urgency 95/90/85.
-- Baseline quality: 58, from correctness/verification/clarity 65/50/55.
-- Observation: the earlier verifier checks source, quote, document and execution
-  identities, but it does not establish the complete HTML's CSS, presentation,
-  behavior contract, single-target delivery or mandatory knowledge requirements.
-  Generic errors also lack a stable rule, owner and focused repair route.
-- Consequence: a structurally incomplete output can retain valid sidecar hashes,
-  and a reader must infer how to repair it from a short exception message.
-- Correction: add deterministic complete-document verification and negative
-  controls for source/evidence drift, missing sections, altered CSS, external
-  resources, behavior/edge/oracle references, wrong-target payloads and an extra
-  HTML in the reader directory. Preserve original observations and classify only
-  supported failure families. Expose rule ID, meaning, repair hint, canonical
-  owner and recheck command; an unknown cause remains unknown.
-- Acceptance: each negative fixture fails for its intended rule and evidence;
-  a repaired fixture passes. No rule is weakened to close a report. Counts,
-  verdicts, dirty-source changes and partial governance mappings retain their
-  actual scope. Existing Java documentation checks cover the maintained owners;
-  dedicated maintenance checks govern generated report data.
-- Delivered quality: 95, from correctness/verification/clarity 96/95/94.
-- State: VERIFIED for the declared Atlas structure, evidence, isolation and constructive-failure controls.
+- Responsabil: verificările opționale de întreținere Atlas, diagnosticele și guvernanța existentă a
+  documentației.
+- Prioritate: 92, din impact/risc/urgență 95/90/85.
+- Calitate inițială: 58, din corectitudine/verificare/claritate 65/50/55.
+- Observație: verificatorul anterior controlează identitățile surselor, citatelor, documentelor și execuțiilor,
+  dar nu stabilește CSS-ul, prezentarea,
+  contractul comportamental, livrarea unei singure ținte sau cerințele obligatorii de cunoștințe ale HTML-ului complet.
+  Erorilor generice le lipsesc și o regulă stabilă, un responsabil și o cale focalizată de remediere.
+- Consecință: un rezultat incomplet structural poate păstra hash-uri valide ale fișierelor auxiliare,
+  iar cititorul trebuie să deducă remedierea dintr-un mesaj scurt de excepție.
+- Corecție: adăugarea verificării deterministe a documentului complet și a controalelor
+  negative pentru divergența surselor/dovezilor, secțiuni lipsă, CSS modificat, resurse
+  externe, referințe la comportamente/muchii/oracole, date pentru ținta greșită și un HTML
+  suplimentar în directorul cititorului. Păstrarea observațiilor originale și clasificarea numai
+  a familiilor de eșec susținute. Expunerea ID-ului regulii, semnificației, indicației de remediere, responsabilului
+  canonic și comenzii de reverificare; o cauză necunoscută rămâne necunoscută.
+- Acceptanță: fiecare fixture negativ eșuează pentru regula și dovada intenționate;
+  un fixture reparat trece. Nicio regulă nu este slăbită pentru a închide un raport. Numerele,
+  verdictele, modificările surselor locale și mapările parțiale de guvernanță își păstrează
+  domeniul real. Verificările Java existente ale documentației acoperă responsabilii întreținuți;
+  verificările dedicate de întreținere guvernează datele generate ale rapoartelor.
+- Calitate livrată: 95, din corectitudine/verificare/claritate 96/95/94.
+- Stare: VERIFIED pentru controalele declarate privind structura Atlas, dovezile, izolarea și eșecurile constructive.
 
-## K-001 — cited knowledge retrieval with mandatory policy
+<a id="k-001--cited-knowledge-retrieval-with-mandatory-policy"></a>
+## K-001 — recuperarea cunoștințelor citate cu politici obligatorii
 
-- Owner: Atlas knowledge records, archived provenance, retrieval and reviewer.
-- Priority: 85, from impact/risk/urgency 90/80/80.
-- Baseline quality: 33, from correctness/verification/clarity 40/20/35.
-- Observation: useful requirements live in the archived skill, CSS and rule
-  catalog, but the active protocol has no cited retrieval corpus. Repeated manual
-  summaries already dropped presentation and behavior requirements.
-- Consequence: a narrow prompt or a high-ranked fragment may omit mandatory
-  policy or transfer another project's architecture into the selected target.
-- Correction: curate a small local knowledge base with stable IDs, topic terms,
-  exact archived excerpts, commit/blob identity and explicit current adaptations.
-  Return deterministic query results with a corpus digest and retain every
-  mandatory policy independently of its query rank. Use retrieved context with
-  actual target source and existing test oracles, or an explicit searched-scope
-  oracle gap when no test is found; policy retrieval is never proof
-  of product execution or semantic completeness.
-- Acceptance: provenance and retrieval controls reject altered citations,
-  missing mandatory policy and unsupported corpus structure. Unrelated queries
-  cannot bypass mandatory report requirements. Each invocation produces one
-  project-specific understanding HTML, including non-ATF and unversioned targets.
-  No vector database, language-model runtime,
-  new Java feature, product/E2E scenario or emulator is introduced.
-- Delivered quality: 92, from correctness/verification/clarity 93/90/92.
-- State: VERIFIED for the cited local retrieval stage and mandatory contract policy.
+- Responsabil: înregistrările de cunoștințe Atlas, proveniența arhivată, recuperarea și revizorul.
+- Prioritate: 85, din impact/risc/urgență 90/80/80.
+- Calitate inițială: 33, din corectitudine/verificare/claritate 40/20/35.
+- Observație: cerințe utile se află în skill-ul arhivat, CSS și catalogul de
+  reguli, dar protocolul activ nu are un corpus de recuperare cu citări. Rezumatele manuale
+  repetate au omis deja cerințe de prezentare și comportament.
+- Consecință: o solicitare îngustă sau un fragment bine clasat poate omite politici
+  obligatorii sau poate transfera arhitectura altui proiect în ținta selectată.
+- Corecție: întreținerea unei mici baze locale de cunoștințe cu ID-uri stabile, termeni tematici,
+  extrase arhivate exacte, identități de commit/blob și adaptări actuale explicite.
+  Returnarea unor rezultate deterministe ale interogării, cu un rezumat criptografic al corpusului, și păstrarea fiecărei
+  politici obligatorii independent de poziția sa în rezultatele interogării. Folosirea contextului recuperat împreună cu
+  sursa reală a țintei și oracolele de test existente sau cu o lacună explicită de oracol
+  pentru domeniul căutat atunci când nu se găsește niciun test; recuperarea politicilor nu este niciodată dovadă
+  de execuție a produsului sau de completitudine semantică.
+- Acceptanță: controalele de proveniență și recuperare resping citările modificate,
+  lipsa politicilor obligatorii și structura nesusținută a corpusului. Interogările fără legătură
+  nu pot ocoli cerințele obligatorii ale raportului. Fiecare invocare produce un
+  HTML de înțelegere specific proiectului, inclusiv pentru ținte non-ATF și neversionate.
+  Nu se introduce nicio bază de date vectorială, infrastructură de execuție a modelelor lingvistice,
+  funcționalitate Java nouă, scenariu de produs/E2E sau emulator.
+- Calitate livrată: 92, din corectitudine/verificare/claritate 93/90/92.
+- Stare: VERIFIED pentru etapa locală de recuperare cu citări și politicile obligatorii ale contractului.
 
-## G-011 — keep feedback baseline inputs distinct from verified history
+<a id="g-011--keep-feedback-baseline-inputs-distinct-from-verified-history"></a>
+## G-011 — păstrarea intrărilor inițiale de feedback distincte de istoricul verificat
 
-- Owner: feedback register and existing documentation governance.
-- Priority: 78, from impact/risk/urgency 75/80/80.
-- Baseline quality: 50, from correctness/verification/clarity 50/40/60.
-- Observation: verified-summary rows were duplicated into the four-column
-  retained baseline table. They contain behavior/evidence text where numeric
-  impact/risk/urgency and correctness/verification/clarity inputs belong. The
-  active/verified register checks did not detect this malformed baseline shape.
-- Consequence: the table no longer supports the documented score rubric even
-  though each valid historical correction remains recorded elsewhere.
-- Correction: remove only those duplicate summaries from the baseline-input
-  table, retain its real numeric historical inputs and preserve every row in
-  verified history. Add a focused malformed-baseline regression with a repair
-  route to the score rubric.
-- Acceptance: valid retained numeric inputs pass; substituted summary text,
-  malformed component triples and values outside 1–100 fail the intended rule.
-  English/Romanian README order, links, code and topology remain aligned.
-- Delivered quality: 96, from correctness/verification/clarity 98/94/95.
-- State: VERIFIED for numeric feedback baseline integrity and retained history.
+- Responsabil: registrul de feedback și guvernanța existentă a documentației.
+- Prioritate: 78, din impact/risc/urgență 75/80/80.
+- Calitate inițială: 50, din corectitudine/verificare/claritate 50/40/60.
+- Observație: rândurile de rezumat verificat au fost duplicate în tabelul de referință
+  inițială păstrată, cu patru coloane. Conțin text despre comportamente/dovezi în locul intrărilor numerice
+  de impact/risc/urgență și corectitudine/verificare/claritate. Verificările registrului
+  activ/verificat nu detectau această formă incorectă a referinței inițiale.
+- Consecință: tabelul nu mai susține grila de notare documentată, deși
+  fiecare corecție istorică validă rămâne înregistrată în altă parte.
+- Corecție: eliminarea numai a rezumatelor duplicate din tabelul intrărilor
+  inițiale, păstrarea intrărilor sale istorice numerice reale și a fiecărui rând în
+  istoricul verificat. Adăugarea unei regresii focalizate pentru referința inițială malformată, cu o cale
+  de remediere către grila de notare.
+- Acceptanță: intrările numerice valide păstrate trec; textul de rezumat substituit,
+  tripletele de componente malformate și valorile în afara intervalului 1–100 eșuează regula intenționată.
+  Ordinea README-urilor engleză/română, legăturile, codul și topologia rămân aliniate.
+- Calitate livrată: 96, din corectitudine/verificare/claritate 98/94/95.
+- Stare: VERIFIED pentru integritatea referinței numerice inițiale a feedback-ului și istoricul păstrat.
 
-## Closure record
+<a id="closure-record"></a>
+## Înregistrarea închiderii
 
-The delivered scores above assess only their named contract areas. They are
-review judgments under the feedback rubric, not global ATF maturity scores,
-coverage percentages or automatic semantic-completeness scores. All baseline
-priorities, quality scores and observations remain unchanged.
+Notele livrate de mai sus evaluează numai domeniile de contract numite. Sunt
+judecăți de revizie conform grilei de feedback, nu note globale de maturitate ATF,
+procente de acoperire sau note automate de completitudine semantică. Toate prioritățile
+inițiale, notele de calitate și observațiile rămân neschimbate.
 
-- Maintenance verification: `atlas-single-node-06` passed 66 tests with zero
-  failures, cancellations, skips or TODO outcomes. The selection contains the
-  source/evidence verifier, complete report, knowledge and deep-bundle controls,
-  including malformed JSON, case-insensitive library boundaries, declared oracle
-  status and static section navigation.
-- Existing Java governance: `modules-atlas-complete-main-governance-01` and
-  `modules-atlas-complete-ro-governance-01` each passed 211 tests, with zero
-  failures/errors/skips, using fixed EN/RO source and immutable peer copies. The
-  source revisions were `233d7444d5e8bbdf915d32660a98b07a76246f50` and
-  `d4bfea58f1d8a6b92114c14ee7677ab91d44e9a9`. The later canonical navigation
-  correction is covered by the 66-check maintenance selection and desktop
-  review; it does not introduce a runtime Java or suite change.
-- Knowledge provenance: the corpus has 14 contract records, of which 12 are
-  mandatory; the knowledge selection has 12 checks. The corpus cites
-  three verified archived Git blobs at
-  `70a7279c2a9560d39e6bd2554cd2f96a88626692`. Current adaptations keep English,
-  one selected project, absent-oracle disclosure and canonical embedded styling
-  explicit. Retrieval remains local lexical policy context for a reviewer.
-- Static reader acceptance: separate AI and J1 HTML files were copied alone
-  into isolated reader folders and opened at desktop widths 1440 and 1920. All
-  ten required sections, internal links, disclosure and inline diagrams remained
-  available; the final layout had no page overflow, external resources, duplicate
-  IDs, broken anchors, executable scripts or hidden section headings. This is
-  document rendering, not product/API/browser-journey execution.
-- Preserved failures: an initial dry generation was rejected on source drift
-  while its inputs were changing. The input was reviewed and recaptured. A later
-  dry report exposed an inherited sticky navigation overlay that occluded section
-  headings; canonical CSS now uses static section navigation, with a deliberate
-  sticky-navigation negative control. A second visual review exposed a dependency arrow routed
-  through an unrelated provider node. Routing now uses the direct same-column
-  path when unobstructed, with an explicit regression and visual intersection
-  review. No source, evidence or visual guard was weakened to close these
-  observations.
-- Evidence is retained as immutable external execution/render receipts, including
-  `${ATF_WORK_ROOT}/runs/atlas-single-node-06.tap`, the two named Maven logs,
-  `${ATF_WORK_ROOT}/reviews/20261125-atlas-single-document/legacy-render/` and
+- Verificare de întreținere: `atlas-single-node-06` a trecut 66 de teste cu zero
+  eșecuri, anulări, omiteri sau rezultate TODO. Selecția conține verificatorul
+  surselor/dovezilor, controalele pentru raportul complet, cunoștințe și pachetul aprofundat,
+  inclusiv JSON malformat, limite de biblioteci fără diferențiere între majuscule și minuscule, starea declarată a oracolului
+  și navigarea statică între secțiuni.
+- Guvernanță Java existentă: `modules-atlas-complete-main-governance-01` și
+  `modules-atlas-complete-ro-governance-01` au trecut fiecare 211 teste, cu zero
+  eșecuri/erori/omiteri, folosind surse EN/RO fixe și copii pereche imuabile. Reviziile
+  sursă au fost `233d7444d5e8bbdf915d32660a98b07a76246f50` și
+  `d4bfea58f1d8a6b92114c14ee7677ab91d44e9a9`. Corecția ulterioară a navigării canonice
+  este acoperită de selecția de întreținere cu 66 de verificări și de revizia
+  desktop; nu introduce o schimbare în Java de execuție sau în suite.
+- Proveniența cunoștințelor: corpusul are 14 înregistrări de contract, dintre care 12 sunt
+  obligatorii; selecția de cunoștințe are 12 verificări. Corpusul citează
+  trei blob-uri Git arhivate verificate la
+  `70a7279c2a9560d39e6bd2554cd2f96a88626692`. Adaptările actuale păstrează explicite limba engleză,
+  un singur proiect selectat, declararea absenței oracolului și stilul canonic încorporat.
+  Recuperarea rămâne context local de politici lexicale pentru un revizor.
+- Acceptanța documentului static pentru cititor: fișiere HTML AI și J1 separate au fost copiate singure
+  în directoare izolate pentru cititor și deschise la lățimi desktop de 1440 și 1920. Toate
+  cele zece secțiuni obligatorii, legăturile interne, detaliile expandabile și diagramele încorporate au rămas
+  disponibile; structura finală nu avea depășiri de pagină, resurse externe, ID-uri
+  duplicate, ancore defecte, scripturi executabile sau titluri de secțiune ascunse. Aceasta este
+  randare de documente, nu execuție de produs/API/parcursuri de browser.
+- Eșecuri păstrate: o generare inițială de probă a fost respinsă din cauza divergenței surselor
+  în timp ce intrările sale se schimbau. Intrarea a fost revizuită și recapturată. Un raport
+  de probă ulterior a expus o suprapunere moștenită a navigării fixe care acoperea titlurile
+  secțiunilor; CSS-ul canonic folosește acum navigare statică între secțiuni, cu un control
+  negativ deliberat pentru navigarea fixă. O a doua revizie vizuală a expus o săgeată de dependență rutată
+  printr-un nod de furnizor fără legătură. Rutarea folosește acum calea directă pe aceeași coloană
+  când este neobstrucționată, cu o regresie explicită și revizie vizuală
+  a intersecțiilor. Niciun control de sursă, dovezi sau vizual nu a fost slăbit pentru a închide aceste
+  observații.
+- Dovezile sunt păstrate ca înregistrări externe imuabile de execuție/randare, inclusiv
+  `${ATF_WORK_ROOT}/runs/atlas-single-node-06.tap`, cele două jurnale Maven numite,
+  `${ATF_WORK_ROOT}/reviews/20261125-atlas-single-document/legacy-render/` și
   `${ATF_WORK_ROOT}/reviews/20261125-atlas-single-document/new-render-dry-05/`.
-  Final source validation after this feedback-only closure binds the final
-  README editions, examples and ownership links separately.
+  Validarea finală a surselor după această închidere care privește doar feedback-ul leagă separat edițiile
+  README finale, exemplele și legăturile de responsabilitate.
 
-The delivery is one complete understanding HTML per selected project, not an
-automatic whole-project semantic proof. Existing source remains authoritative;
-unknown tests, partial mappings, later source changes and execution gaps remain
-visible. No product/E2E scenario, emulator or runtime Java feature was added.
+Livrarea este un singur HTML complet de înțelegere per proiect selectat, nu o
+dovadă semantică automată a întregului proiect. Sursele existente rămân autoritative;
+testele necunoscute, mapările parțiale, schimbările ulterioare ale surselor și lacunele de execuție rămân
+vizibile. Nu s-a adăugat niciun scenariu de produs/E2E, emulator sau funcționalitate Java de execuție.

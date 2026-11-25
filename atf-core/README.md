@@ -54,10 +54,15 @@ Implementările de browser și raportare sunt furnizate de modulele lor.
 
 Dintr-o copie izolată a reactorului:
 
+<details>
+<summary>Rulează comenzile: Verificare</summary>
+
 ```powershell
 mvn -B -ntp -pl atf-core -am test
 mvn -B -ntp -pl atf-tests -am "-Dtest=ConfigManagerFileContractTest,BaseTestAPIContractTest,BaseTestUIContractTest,StepLoggerContractTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
 ```
+
+</details>
 
 Prima comandă rulează verificările native Core; a doua selectează regresiile
 între module. [Testare](../docs/Testing.md) descrie verificările complete locale,

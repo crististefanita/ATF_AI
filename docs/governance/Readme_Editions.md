@@ -1,98 +1,141 @@
-# English and Romanian README editions
+<a id="english-and-romanian-documentation-editions"></a>
+# Edițiile documentației în engleză și română
 
-## Ownership and scope
+<a id="ownership-and-scope"></a>
+## Responsabilitate și domeniu
 
-The main branch owns the English framework and documentation. The main_RO branch
-provides a Romanian edition of every README.md at exactly the same project path.
-Both branches contain the same runtime, tests, POMs, configuration defaults and
-non-README documentation. The single edition setting is the only configuration
-difference. This is a documentation edition, not a second framework variant.
+Ramura main deține frameworkul și documentația în engleză. Ramura main_RO
+oferă o ediție română completă la aceleași căi din proiect. Aceasta include
+toate documentele Markdown întreținute, nu doar README.md, și proiecția
+esențială Living HTML. Rapoartele istorice generate își păstrează limba și sursa capturate.
 
-| Content | main | main_RO |
+| Conținut | main | main_RO |
 |---|---|---|
-| README prose, headings, tables and diagram labels | English | Romanian, with the same meaning and hierarchy |
-| README paths, link destinations and incoming English anchors | Canonical | Preserved; translated headings add English anchor aliases |
-| Executable code, commands, coordinates, identifiers and comments | English canonical examples | Unchanged examples |
-| Inline code and numeric facts in corresponding table rows | Canonical technical literals and quantities | Same values, order and row association |
-| Mermaid topology and rendering directives | Canonical | Same nodes, edges and geometry; explanatory labels translated |
-| Other documentation, including the living Markdown/HTML pair | English | Same English source |
+| Proză, titluri, tabele și etichete de diagramă Markdown întreținute | Engleză | Traducere română completă, cu același sens și aceeași ierarhie |
+| Căi, destinații ale legăturilor și ancore de intrare în engleză | Canonice | Păstrate; titlurile traduse adaugă aliasuri de ancore englezești |
+| Cod executabil, comenzi, coordonate, identificatori și comentarii sursă | Exemple canonice în engleză | Exemple identice |
+| Cod inline și date numerice în rândurile de tabel corespunzătoare | Literali și cantități canonice | Aceleași valori, ordine și asociere cu rândurile |
+| Topologie Mermaid și directive de randare | Canonice | Aceleași noduri, muchii și geometrie; etichete explicative traduse |
+| Living HTML | Proiecție legată de sursa engleză | Proiecție legată de sursa română, cu același CSS dedicat și aceleași rute responsabile |
+| Runtime, teste, POM-uri, configurație, înregistrări de cunoaștere și utilitare | Canonice | Sursă identică |
 | docs/governance/readme-edition.properties | language=en | language=ro |
+| docs/governance/translation-review.xml | Declarație comună de revizuire EN/RO | Declarație identică, cu ambele digesturi ale documentelor |
 
-The edition policy accepts exactly one language key with value en or ro.
-Standard properties whitespace and comments use the same parser for local and
-paired validation. Duplicate settings, extra keys, malformed escapes and
-unsupported languages fail closed.
+Numele istoric al fișierului de proprietăți rămâne compatibil; limba sa se
+aplică întregii ediții întreținute a documentației. Politica acceptă exact
+o cheie language cu valoarea en sau ro. Setările duplicate, cheile suplimentare,
+secvențele escape malformate și limbile nesuportate eșuează în mod închis.
 
-The English source/comment requirement remains mandatory in both branches.
-The Romanian documentation exception applies only to files named README.md;
-it does not allow Romanian Java messages or comments, or silently exempt other
-documents from their English policy.
+Cerința sursei/comentariilor în engleză se aplică în ambele ramuri. Traducerea
+este o excepție pentru proza documentației și etichetele explicative ale diagramelor;
+nu permite mesaje Java, comentarii de cod sau exemple executabile în română.
 
-## Synchronization and review
+<a id="synchronization-and-review"></a>
+## Sincronizare și revizuire
 
 ```mermaid
 flowchart TB
-    Main["English source"] --> Freeze["Freeze source checkpoint"]
-    Freeze --> Translate["Translate matching READMEs"]
-    Translate --> Check["Check both editions"]
-    Check --> Publish["Synchronize branches"]
-    Check -. drift .-> Translate
+    Main["Sursa în engleză"] --> Freeze["Fixează revizia sursă"]
+    Freeze --> Translate["Traduce toate documentele întreținute"]
+    Translate --> Review["Recuperează contextul și revizuiește perechile EN/RO complete"]
+    Review --> Check["Verifică ambele ediții și randează schimbările"]
+    Check --> Publish["Sincronizează ramurile"]
+    Check -. derivă .-> Translate
 ```
 
-Arrows show the documentation delivery sequence. A failed comparison returns to
-the owning translation or source; publishing follows the reviewed source state.
-Changes to main must be reconciled into main_RO before declaring the editions
-aligned. Do not merge a translated README back into main as English content.
+Săgețile continue arată ordinea livrării; săgeata întreruptă întoarce deriva
+observată la responsabil. Verificările urmează revizuirii textelor complete.
+Publicarea urmează stării sursă validate și nu stabilește singură calitatea semantică.
 
-1. Work in separate main and main_RO checkouts below the selected external work
-   root. Preserve concurrent changes and the main_mcp archive.
-2. Reconcile all non-README files to the chosen main checkpoint. Translate every
-   README completely, preserving paths, sections, paragraphs, table shape,
-   examples and link destinations. Add explicit English heading anchors beside
-   translated headings so incoming links remain valid.
-3. Review meaning, terminology and diagram readability in Romanian. Automated
-   structural equality does not establish translation quality.
-4. Validate each edition from its own disposable reactor snapshot. Select the
-   other snapshot explicitly for the cross-edition check below.
-5. Record both source commits, the README inventory, comparison and actual test
-   results outside source checkouts. Synchronize verified branches without
-   overwriting concurrent work.
+1. Folosește copii separate main și main_RO sub rădăcina de lucru selectată
+   de apelant. Păstrează schimbările concurente și referința arhivei locale.
+2. Reconciliază codul/configurația și traduce complet fiecare document întreținut.
+   Păstrează exemplele, datele, legăturile, structura tabelelor și topologia diagramelor.
+3. Adaugă aliasuri explicite pentru titlurile englezești, astfel încât legăturile
+   de intrare să rămână valide. Regenerează Living HTML din Markdown-ul românesc, inclusiv propriul digest al sursei.
+4. Revizuiește fiecare pereche completă prin procesul de mai jos. Leagă declarația
+   comună de ambele hash-uri normalizate ale documentelor după revizuire.
+5. Validează instantanee temporare cu o pereche explicită. Înregistrează
+   commiturile sursă, selecția, rezultatele reale și dovezile externe înaintea sincronizării.
 
-## Existing executable checks
+<a id="existing-executable-checks"></a>
+## Verificările executabile existente
 
-The existing DocumentationGovernanceTest checks local links, examples, style,
-balanced details/summary blocks, adjacent diagram explanations and the declared
-README language. Its positive and deliberate negative fixtures protect edition
-inventory, commands, links, anchors, diagram topology and non-README identity.
-The scanner continues checking English source and comments independently.
+DocumentationGovernanceTest protejează legăturile, structura, exemplele,
+valorile implicite, comenzile, ancorele, topologia și datele tehnice ale fiecărui
+Markdown întreținut. Perechea Living verifică suplimentar limba, ordinea
+secțiunilor, digestul sursei și rândurile principiilor. Sursa din afara documentației trebuie să rămână identică între ediții.
 
-From a disposable reactor root, select a caller-supplied peer snapshot:
+Din rădăcina unui reactor temporar, selectează un instantaneu pereche existent:
+
+<details>
+<summary>Verifică edițiile complete pereche ale documentației</summary>
 
 ```powershell
 $peerRoot = (Resolve-Path -LiteralPath $env:ATF_DOCS_PEER_ROOT -ErrorAction Stop).Path
-mvn -B -ntp -pl atf-tests -am "-Dtest=DocumentationGovernanceTest" "-Dsurefire.failIfNoSpecifiedTests=false" "-Datf.docs.peer.root=$peerRoot" test
+mvn -B -ntp -pl atf-tests -am "-Dtest=DocumentationGovernanceTest,DocumentationReadabilityRulesTest" "-Dsurefire.failIfNoSpecifiedTests=false" "-Datf.docs.peer.root=$peerRoot" test
 ```
 
-ATF_DOCS_PEER_ROOT and atf.docs.peer.root are verification inputs, not framework
-runtime options. They may point to any existing location; no workstation path
-or sibling-directory assumption is embedded in the project. Without the peer
-input, the normal suite validates its own edition and fixtures. Cross-edition
-identity is claimed only after the explicit pair selection runs successfully.
+</details>
 
-The comparison normalizes CRLF/LF for maintained text and permits README prose
-translation, diagram labels and English anchor aliases. It rejects missing or
-extra files, changed examples or commands, changed link destinations, missing
-incoming anchors, changed diagram topology and other source/configuration drift.
+ATF_DOCS_PEER_ROOT și atf.docs.peer.root sunt intrări de verificare, nu opțiuni
+runtime. Pot indica orice locație existentă. Identitatea între ediții este
+afirmată numai după reușita selecției explicite a perechii.
 
-The protected-facts comparison also preserves inline code, including multiline
-code spans and embedded backticks, and numeric table facts at their row positions.
-Equivalent code-span delimiters and ordinary prose reflow remain valid. A failure
-names the first differing protected-item ordinal and the two inventories, rather
-than printing complete source or payload values into diagnostics.
+| Control | Observație suportată | Limită |
+|---|---|---|
+| DOC-EDITION-LANGUAGE | Un document declarat românesc cu proză semnificativă nu conține un marcaj românesc cunoscut | Un semnal de vocabular nu poate dovedi limba fiecărei fraze |
+| DOC-EDITION-UNTRANSLATED | Un bloc englezesc vizibil și semnificativ rămâne neschimbat în traducerea pereche | Engleza reformulată sau sensul inversat necesită revizuire semantică |
+| DOC-EDITION-PARITY / FACTS / ANCHOR | Structura, comenzile, literalii, datele numerice din tabele, topologia sau rutele derivă | Egalitatea tehnică nu stabilește fidelitatea prozei |
+| DOC-TRANSLATION-REVIEW | Un document întreținut nu are o înregistrare completă de revizuire declarată | Declarația consemnează responsabilitatea revizorului, nu un verdict lingvistic automat |
+| DOC-TRANSLATION-STALE | Hash-ul documentului local revizuit diferă față de conținutul normalizat curent | Orice document editat necesită reînnoirea revizuirii |
 
-Human semantic review is required for every README pair. Check each paragraph,
-table row, diagram legend and disclosure: negations, prerequisites, independent
-assertion witnesses, optional retrieval receipts, source commits and scoped
-execution limits must keep the same meaning. Translate readable prose rather
-than abbreviating it to match only the heading structure. Technical token
-equality cannot detect an inverted sentence or an omitted semantic qualifier.
+Delimitările echivalente de cod inline, reașezarea paragrafelor simple și LF/CRLF
+rămân valide. Inspecția structurală a legăturilor cere momentan etichete pe un
+singur rând și poziționare canonică în elementele de listă reașezate; este un
+contract limitat al sursei, nu un parser Markdown complet.
+
+Comparația blocurilor neschimbate exclude blocurile literale,
+codul inline și URL-urile legăturilor; titlurile, elementele listelor și
+rândurile tabelelor sunt unități de proză separate. Respinge unitățile identice
+cu cel puțin 12 cuvinte alfabetice. Detectarea lingvistică locală folosește
+același prag și vocabularul de marcaje cunoscute, cu limitele finite precizate mai sus.
+
+<a id="whole-document-review"></a>
+<a id="whole-document-review-1"></a>
+## Revizuirea întregului document
+
+Folosește recuperarea pentru context, apoi citește documentul canonic complet
+și corespondentul său românesc complet. Fragmentele recuperate nu înlocuiesc
+niciodată perechea completă. Recuperarea Atlas întreținută este lexicală
+deterministă; nu oferă un serviciu de traducere sau garanție lingvistică semantică.
+
+<details>
+<summary>Recuperează contextul politicii pentru revizuirea bilingvă a documentației</summary>
+
+```powershell
+node tools/atlas-report.mjs retrieve --query "English documentation governance evidence complete source review"
+```
+
+</details>
+
+Păstrează acea dovadă în afara sursei, împreună cu contractul curent al ediției,
+politica de cod/documentație și fișierele EN/RO selectate complete. Fișierele
+sursă sunt dovada; înregistrarea recuperării explică cerințele consultate.
+
+- Citește fiecare secțiune, paragraf, element de listă, rând de tabel, bloc pliabil
+  și legendă. Verifică scopul, actorul, condițiile, negațiile, ordinea și limitele dovezilor.
+- Păstrează exemplele literale și tokenurile tehnice de stare/ID. Traduce complet
+  textul explicativ; un titlu românesc peste un corp englezesc este insuficient.
+- Inspectează sursa/POM-ul real din spatele afirmațiilor factuale. Randează
+  diagramele schimbate și Living HTML; structura automată nu certifică aspectul.
+- Repară discrepanțele înainte de marcarea perechii ca revizuită. Leagă ambele
+  valori SHA-256 normalizate în translation-review.xml și păstrează dovezile
+  detaliate externe. Nu reîmprospăta hash-urile fișierelor necitite sau revizuite parțial.
+
+Declarația comună enumeră fiecare Markdown întreținut și Living HTML.
+Dimensiunile obligatorii sunt limba, sensul, condițiile, datele, legăturile,
+diagramele și blocurile pliabile. Intrările lipsă, duplicate, străine, parțiale
+sau învechite eșuează. Revizorul declarat rămâne responsabil pentru calitatea
+semantică pe care verificările deterministe nu o pot stabili. O verificare
+reușită a perechii are exact limitele declarate.

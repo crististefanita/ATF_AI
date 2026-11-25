@@ -1,157 +1,166 @@
-# Retained UI execution and auditable report evidence
+<a id="retained-ui-execution-and-auditable-report-evidence"></a>
+# Execuția UI păstrată și dovezi de raportare auditabile
 
-Baseline: main source checkpoint `fe2940f`. Reference: the locally preserved
-`main_mcp` checkpoint `70a7279c2a9560d39e6bd2554cd2f96a88626692`, including its
-living-architecture HTML. This scope preserves the existing product methods and
-improves their reporting, maintenance checks and documentation. It adds no
-application journey, emulator, invoice creation or admin-order mutation.
+Bază: revizia sursă main `fe2940f`. Referință: revizia `main_mcp` păstrată local
+`70a7279c2a9560d39e6bd2554cd2f96a88626692`, inclusiv HTML-ul arhitecturii vii.
+Acest domeniu păstrează metodele existente de produs și îmbunătățește raportarea,
+verificările de mentenanță și documentația lor. Nu adaugă scenarii de aplicație,
+emulatoare, creare de facturi sau modificări ale comenzilor administrative.
 
 <a id="r-001"></a>
-## R-001: Make retained Playwright and Selenium evidence independently auditable
+<a id="r-001-make-retained-playwright-and-selenium-evidence-independently-auditable"></a>
+## R-001: Fă dovezile Playwright și Selenium păstrate auditabile independent
 
-- Owner: generic UI action reporting, product validation owners, report
-  publication and living-documentation governance.
-- Priority: 90, from impact/risk/urgency 90/90/90.
-- Baseline quality: 56, from correctness/verification/clarity 60/40/65.
-- Baseline observation: the same registration, account and profile methods exist in the
-  archived branch and current framework. The neutral action/step/backend and
-  listener architecture is retained. However, framework-ui/framework-browser
-  select framework contracts, not these product journeys. At that baseline, the reader
-  publication contained no native product E2E report for either engine.
-- Baseline reporting gaps: RegistrationValidation asserted its business conditions
-  without its own expected/actual validation steps. Generic typing published
-  password values as ordinary details. A registration BeforeMethod recorded
-  unconditional Ready/PASS without observing a precondition. These were audit
-  defects, not reasons to invent new application cases.
-- Correction: preserve the existing methods and their business assertions;
-  use explicit three-class selections with an external run per engine. Keep
-  semantic actions distinct from business validation, preserve original
-  failures, mask sensitive framework value details and remove the empty Ready
-  report step. Bind native readers to original XML, source and audit evidence.
-- Governance: protect the retained living-principles map and its real owner/check
-  links; retain the separate framework-suite opt-in boundary. Component controls
-  cover expected/actual terminal validation events, unchanged typed inputs,
-  original failure identity, both wait-capability paths, native audit subjects,
-  verdict reconciliation and the narrow per-engine HTML publication role.
-- Acceptance: execute the same retained method inventory through both native
-  providers against the explicitly selected demo; preserve actual FAIL/SKIP as
-  well as PASS. Reconcile native XML and report method/step nodes, source/engine
-  identities, final screenshots and audit limits. Publish one original Extent
-  reader per engine with three proof files, keeping complete history external.
-  Pass focused maintenance/governance checks and the relevant framework baseline;
-  preserve README edition parity and the paired living HTML/Markdown source hash.
-- State: VERIFIED for the bounded retained-UI auditability scope below.
-- Delivered quality: 94, from correctness/verification/clarity 94/92/96. This is
-  an evidence-backed maintenance judgment for this scope, not coverage, general
-  demo stability, complete data cleanup or a whole-framework score.
+- Responsabil: raportarea generică a acțiunilor UI, responsabilii validării
+  de produs, publicarea rapoartelor și guvernanța documentației vii.
+- Prioritate: 90, din impact/risc/urgență 90/90/90.
+- Calitate inițială: 56, din corectitudine/verificare/claritate 60/40/65.
+- Observație inițială: aceleași metode de înregistrare, cont și profil există
+  în ramura arhivată și frameworkul curent. Arhitectura neutră de acțiuni/pași/backend
+  și listener este păstrată. Totuși, framework-ui/framework-browser selectează
+  contractele frameworkului, nu aceste scenarii de produs. La acea bază,
+  publicarea cititoarelor nu conținea raport E2E nativ de produs pentru niciun motor.
+- Lacune inițiale de raportare: RegistrationValidation verifica condițiile
+  de afaceri fără pași proprii de validare așteptat/observat. Tastarea generică
+  publica parole drept detalii obișnuite. Un BeforeMethod de înregistrare
+  consemna Ready/PASS necondiționat fără observarea unei precondiții.
+  Acestea erau defecte de audit, nu motive de a inventa cazuri noi de aplicație.
+- Corecție: păstrează metodele existente și aserțiunile lor de afaceri;
+  folosește selecții explicite de trei clase, cu o rulare externă per motor.
+  Separă acțiunile semantice de validarea de afaceri, păstrează eșecurile
+  originale, maschează detaliile valorilor sensibile din framework și elimină
+  pasul gol Ready. Leagă cititoarele native de XML-urile, sursa și dovezile de audit originale.
+- Guvernanță: protejează harta principiilor vii păstrate și legăturile sale
+  reale responsabil/verificare; păstrează limita separată de activare a suitelor
+  frameworkului. Controalele de componentă acoperă evenimentele terminale de
+  validare așteptat/observat, intrările tastate neschimbate, identitatea eșecului
+  original, ambele căi ale capabilității de așteptare, subiectele auditului nativ,
+  reconcilierea verdictelor și rolul restrâns al publicării HTML per motor.
+- Acceptanță: execută același inventar păstrat de metode prin ambii furnizori
+  nativi pe demo-ul selectat explicit; păstrează FAIL/SKIP reale, precum și
+  PASS. Reconciliază XML-ul nativ și nodurile de metodă/pas ale raportului,
+  identitățile sursă/motor, capturile finale și limitele auditului. Publică
+  un cititor Extent original per motor cu trei fișiere de dovadă, păstrând
+  istoricul complet extern. Treci controalele focalizate de mentenanță/guvernanță
+  și baza relevantă a frameworkului; păstrează paritatea edițiilor README și hash-ul sursei perechii vii HTML/Markdown.
+- Stare: VERIFIED pentru domeniul limitat de auditabilitate UI păstrată de mai jos.
+- Calitate livrată: 94, din corectitudine/verificare/claritate 94/92/96. Aceasta
+  este o evaluare de mentenanță susținută de dovezi pentru acest domeniu,
+  nu acoperire, stabilitate generală a demo-ului, curățare completă a datelor sau notă a întregului framework.
 
-## Existing inventory and proof boundaries
+<a id="existing-inventory-and-proof-boundaries"></a>
+## Inventarul existent și limitele dovezilor
 
-| Retained class | Existing methods | Browser selection |
+| Clasă păstrată | Metode existente | Selecție de browser |
 |---|---:|---|
-| com.ai.atf.ui.RegistrationTests | 6 | Playwright and Selenium, same methods |
-| com.ai.ui.tests.AccountAuthenticatedAreaTests | 5 | Playwright and Selenium, same methods |
-| com.ai.ui.tests.ProfileContactAddressMemoryTests | 5 | Playwright and Selenium, same methods |
+| com.ai.atf.ui.RegistrationTests | 6 | Playwright și Selenium, aceleași metode |
+| com.ai.ui.tests.AccountAuthenticatedAreaTests | 5 | Playwright și Selenium, aceleași metode |
+| com.ai.ui.tests.ProfileContactAddressMemoryTests | 5 | Playwright și Selenium, aceleași metode |
 
-A negative application case passes when its independent rejection oracle passes.
-It is distinct from a failed TestNG test. An action PASS records technical
-completion; validation owns the business comparison and its terminal result.
-Configuration setup evidence is not an extra application test case. Missing or
-unreached evidence must remain explicit rather than receiving a fabricated PASS.
+Un caz negativ de aplicație trece când trece oracolul său independent de respingere.
+Este diferit de un test TestNG eșuat. Un PASS de acțiune consemnează finalizarea
+tehnică; validarea deține comparația de afaceri și rezultatul său terminal.
+Dovada pregătirii configurației nu este un caz suplimentar de test de aplicație.
+Dovada lipsă sau neatinsă trebuie să rămână explicită, fără a primi un PASS inventat.
 
 ```mermaid
-flowchart LR
-    Methods["Same retained methods"] --> Actions["UIActions and observed actions"]
-    Actions --> Validation["Expected versus actual business oracle"]
-    Validation --> Listener["Original TestNG outcome and screenshot"]
-    Listener --> Reader["Native Extent reader per engine"]
-    Reader --> Audit["XML, source and DOM audit reconciliation"]
+flowchart TB
+    Methods["Aceleași metode păstrate"] --> Actions["UIActions și acțiuni observate"]
+    Actions --> Validation["Oracol de afaceri așteptat versus observat"]
+    Validation --> Listener["Rezultat TestNG original și captură"]
+    Listener --> Reader["Cititor Extent nativ per motor"]
+    Reader --> Audit["Reconciliere audit XML, sursă și DOM"]
 ```
 
-Arrows show evidence responsibility. Audit consistency is separate from
-execution success and from exhaustive semantic coverage.
+Săgețile arată responsabilitatea dovezilor. Consecvența auditului este
+separată de succesul execuției și de acoperirea semantică exhaustivă.
 
-## Living principles and explicit limits
+<a id="living-principles-and-explicit-limits"></a>
+## Principii vii și limite explicite
 
-The [retained principles](../Living_Architecture_UI_API_doc_v1_0.md#retained-principles)
-map archived intent to current owners and checks. Monolithic build rules,
-hardwired Allure listeners, a blanket nested-step ban and fixed old browser
-defaults must be reconciled with the chosen modular architecture. Their intent
-does not authorize restoring retired MCP/skill runtime code.
+[Principiile păstrate](../Living_Architecture_UI_API_doc_v1_0.md#retained-principles)
+leagă intenția arhivată de responsabilii și verificările curente. Regulile
+monolitice de build, listener-ele Allure fixate, interzicerea globală a pașilor
+imbricați și vechile valori implicite fixe de browser trebuie reconciliate
+cu arhitectura modulară aleasă. Intenția lor nu autorizează restaurarea codului runtime MCP/skills retras.
 
-The existing demo journeys create synthetic customers. They do not delete those
-customers. Browser quit is session cleanup, not proof of application-data cleanup;
-the living cleanup principle remains PARTIAL. Shared class setup supports the
-existing read-only account/profile checks, with each method opening its own area.
-No new cleanup journey or invoice/admin acceptance is inferred here.
+Scenariile demo existente creează clienți sintetici. Nu șterg acești clienți.
+Închiderea browserului curăță sesiunea, nu dovedește curățarea datelor aplicației;
+principiul viu de curățare rămâne PARTIAL. Pregătirea comună la nivel de clasă
+susține verificările existente doar pentru citire de cont/profil, fiecare
+metodă deschizând propria zonă. Nu se deduce aici un nou scenariu de curățare sau acceptanță facturi/admin.
 
-Sensitive-input masking covers explicit framework typing details from the
-declared label/selector semantics. It does not rewrite arbitrary provider
-exception messages or unrelated caller logs. Native artifacts require their own
-review; an error must retain its original technical identity and actual outcome.
+Mascarea intrărilor sensibile acoperă detaliile explicite de tastare ale
+frameworkului, pe baza semanticii declarate a etichetei/selectorului. Nu rescrie
+mesaje arbitrare ale excepțiilor furnizorului sau jurnale fără legătură ale
+apelantului. Artefactele native necesită propria revizuire; o eroare trebuie
+să-și păstreze identitatea tehnică originală și rezultatul real.
 
-G-014 and F-011 retain their independent TODO scopes. Historical Atlas captures
-keep their captured source revisions; this work does not silently regenerate
-their project understanding or reinterpret previous test outcomes.
+G-014 și F-011 își păstrează domeniile TODO independente. Capturile istorice
+Atlas păstrează reviziile sursă capturate; această lucrare nu le regenerează
+tacit înțelegerea proiectului și nu reinterpretează rezultatele testelor anterioare.
 
-## Verified delivery and preserved observations
+<a id="verified-delivery-and-preserved-observations"></a>
+## Livrare verificată și observații păstrate
 
-The same 16 retained methods passed through each native provider: **Playwright
-16/16 PASS and Selenium 16/16 PASS**, with zero skipped methods. Both original
-readers are reconciled against native XML for method/step identities,
-expected/actual validation evidence, credential-detail masking, final PNG
-containers and class setup. The two real shared setup scopes remain
-configuration evidence beneath their first native serialized method in report
-order; they add no product cases. Selected original screenshots and native
-report rendering were reviewed separately.
+Aceleași 16 metode păstrate au trecut prin fiecare furnizor nativ: **Playwright
+16/16 PASS și Selenium 16/16 PASS**, cu zero metode omise. Ambele cititoare
+originale sunt reconciliate cu XML-ul nativ pentru identități de metode/pași,
+dovezi de validare așteptat/observat, mascarea detaliilor acreditărilor,
+containere PNG finale și pregătirea clasei. Cele două domenii reale de pregătire
+comună rămân dovezi de configurare sub prima lor metodă nativă serializată
+în ordinea raportului; nu adaugă cazuri de produs. Capturile originale selectate
+și randarea rapoartelor native au fost revizuite separat.
 
-| Selection | Original source | Result / external run |
+| Selecție | Sursă originală | Rezultat / rulare externă |
 |---|---|---|
 | Playwright | `31db3ca93c2f302c8ceb355859a550db8fbcb37a` | 16/16 PASS; `retained-product-e2e-final-02-playwright` |
 | Selenium | `31db3ca93c2f302c8ceb355859a550db8fbcb37a` | 16/16 PASS; `retained-product-e2e-final-01-selenium` |
-| English default local reactor | `fc6a86fbc378f194318c0c651ee0994b3d0ce9f6` | BUILD SUCCESS; selected atf-tests XML 594/594 PASS; `modules-retained-ui-main-local-03` |
-| Romanian default local reactor | `a90914f1177e85c9dfef5973096b03c822039139` | BUILD SUCCESS; selected atf-tests XML 594/594 PASS; `modules-retained-ui-ro-local-03` |
-| Node component/governance tools | `fc6a86fbc378f194318c0c651ee0994b3d0ce9f6` | 181/181 PASS; `node-03` |
+| Reactorul local implicit engleză | `fc6a86fbc378f194318c0c651ee0994b3d0ce9f6` | BUILD SUCCESS; XML atf-tests selectat 594/594 PASS; `modules-retained-ui-main-local-03` |
+| Reactorul local implicit română | `a90914f1177e85c9dfef5973096b03c822039139` | BUILD SUCCESS; XML atf-tests selectat 594/594 PASS; `modules-retained-ui-ro-local-03` |
+| Utilitare Node de componentă/guvernanță | `fc6a86fbc378f194318c0c651ee0994b3d0ce9f6` | 181/181 PASS; `node-03` |
 
-Native product executions retain their original source revision. The later
-portability repair changes only the Node XML-rejection fixture; exact Java, POM
-and resource inventories/hashes remain unchanged between the native selections
-and the accepted default reactors. Compilation caches contain no previous test
-results; normal Maven test phases ran again into fresh output directories.
+Execuțiile native de produs își păstrează revizia sursă originală. Repararea
+ulterioară de portabilitate schimbă numai cazul Node de respingere XML;
+inventarele/hash-urile exacte Java, POM și resurse rămân neschimbate între
+selecțiile native și reactoarele implicite acceptate. Cache-urile de compilare
+nu conțin rezultate de test anterioare; fazele normale Maven de test au rulat din nou în directoare noi de rezultate.
 
-Original evidence remains under `${ATF_WORK_ROOT}/runs` and
-`${ATF_WORK_ROOT}/reviews/20261125-retained-ui-audit`, including source manifests,
-process exits, native XML/HTML, captures, component TAP, rendering observations,
-source-edition parity and publication journals. The [current report guide](../../artifacts/reports/README.md)
-owns the portable commands and selected native readers. The generated current
-selection contains 22 files; the previous 26-file publication and its 690-file
-source context remain byte-identical in external history. Existing Atlas
-readers retain their original captured revisions and dedicated styles.
+Dovezile originale rămân sub `${ATF_WORK_ROOT}/runs` și
+`${ATF_WORK_ROOT}/reviews/20261125-retained-ui-audit`, inclusiv manifestele
+sursei, codurile de ieșire, XML/HTML native, capturi, TAP de componentă,
+observații de randare, paritatea edițiilor sursei și jurnalele publicării.
+[Ghidul curent al rapoartelor](../../artifacts/reports/README.md) deține comenzile
+portabile și cititoarele native selectate. Selecția curentă generată conține
+22 de fișiere; publicarea anterioară de 26 de fișiere și contextul ei sursă
+de 690 de fișiere rămân identice la nivel de octeți în istoricul extern.
+Cititoarele Atlas existente păstrează reviziile capturate și stilurile dedicate originale.
 
-The first full-local attempt stopped during compilation because the new
-governance fixture called an existing helper with the wrong arity. The second
-executed 594 atf-tests invocations in each edition and correctly failed one
-portability check on an authored absolute file URI. Both observations remain
-archived. The repaired URI is resolved from the current module at runtime; the
-DTD/external-entity rejection assertion and portability guard remain intact.
+Prima încercare completă locală s-a oprit la compilare deoarece noul caz de
+guvernanță apela o funcție existentă cu număr greșit de argumente. A doua a
+executat 594 de invocări atf-tests în fiecare ediție și a eșuat corect la o
+verificare de portabilitate pentru un URI de fișier absolut scris în sursă.
+Ambele observații rămân arhivate. URI-ul reparat este rezolvat din modulul
+curent la runtime; aserțiunea de respingere DTD/entitate externă și controlul de portabilitate rămân intacte.
 
-The first final Playwright selection produced **15 PASS / 1 FAIL**: the
-duplicate-email method hit a 20-second navigation timeout before its business
-oracle. Its original XML, HTML, screenshot and passing *consistency* audit still
-retain that failure. The same complete selection was rerun separately, with the
-same timeout and no retry/skip policy or assertion relaxation. Its 16/16 result
-does not erase the timeout or prove that the public demo cannot fluctuate.
+Prima selecție finală Playwright a produs **15 PASS / 1 FAIL**: metoda cu
+e-mail duplicat a atins o expirare de navigare de 20 de secunde înaintea
+oracolului de afaceri. XML-ul, HTML-ul, captura și auditul de *consecvență*
+trecut originale păstrează acel eșec. Aceeași selecție completă a fost rerulată
+separat, cu aceeași expirare, fără relaxarea politicii de reîncercare/omitere
+sau a aserțiunilor. Rezultatul 16/16 nu șterge expirarea și nu dovedește că demo-ul public nu poate fluctua.
 
-The living Markdown/HTML projection retains all twelve principle IDs, real
-owner/check links and matching row text; mutation controls reject missing IDs,
-wrong owners, altered HTML states/hrefs and invented completion. Principle
-identity remains independent of Markdown table order. The known cleanup
-obligation LD-11 remains **PARTIAL**. No new E2E method, emulator, application
-deletion workflow, invoice creation or admin mutation was added.
+Proiecția vie Markdown/HTML păstrează toate cele douăsprezece ID-uri de
+principii, legăturile reale responsabil/verificare și textul corespunzător
+al rândurilor; controalele de mutație resping ID-uri lipsă, responsabili
+greșiți, stări/href-uri HTML modificate și finalizări inventate. Identitatea
+principiilor rămâne independentă de ordinea tabelului Markdown. Obligația
+cunoscută de curățare LD-11 rămâne **PARTIAL**. Nu s-au adăugat metode E2E,
+emulatoare, fluxuri de ștergere a aplicației, creare de facturi sau modificări administrative.
 
-Visual review also observed a demo MFA enrollment QR/key below the profile
-fields in the original full-page Playwright images. Typed-detail masking does
-not sanitize credentials displayed in page pixels. The original HTML/PNGs stay
-in the ignored local publication and external history; their retention is not
-credential-redaction or public-sharing acceptance. No literal key, QR payload
-or altered image is reproduced in this feedback.
+Revizuirea vizuală a observat și un QR/cheie de înrolare MFA demo sub câmpurile
+profilului în imaginile originale Playwright ale paginii complete. Mascarea
+detaliilor tastate nu curăță acreditările afișate în pixelii paginii. HTML-ul
+și PNG-urile originale rămân în publicarea locală ignorată și istoricul extern;
+păstrarea lor nu constituie acceptanță de redactare a acreditărilor sau de
+partajare publică. Nicio cheie literală, conținut QR sau imagine modificată nu este reprodusă în acest feedback.

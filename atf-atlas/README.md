@@ -154,9 +154,14 @@ verifică în continuare sensul sursei. Constatările aparțin
 
 Rulează dintr-o copie izolată a reactorului, conform ghidului [Dezvoltare](../docs/Development.md):
 
+<details>
+<summary>Rulează comenzile: Verificare</summary>
+
 ```powershell
 mvn -B -ntp -pl atf-tests -am "-Dtest=DocumentationGovernanceTest,FrameworkArchitectureGovernanceTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
 ```
+
+</details>
 
 Rulează verificările opționale de mentenanță Atlas din rădăcina reactorului:
 

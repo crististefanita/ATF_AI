@@ -102,11 +102,16 @@ furnizorul instalat și setarea `ui.engine` de dinaintea inițializării selecte
 
 Dintr-o copie izolată a reactorului:
 
+<details>
+<summary>Rulează comenzile: Verificare</summary>
+
 ```powershell
 mvn -B -ntp -pl atf-selenium -am test
 mvn -B -ntp -pl atf-tests -am "-Dtest=SeleniumPlaywrightLocatorParityContractTest,UiEngineScreenshotSmokeTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
 mvn -B -ntp -pl atf-tests -am -Pbrowser test
 ```
+
+</details>
 
 Prima comandă rulează verificările native ale furnizorului și Core fără a porni Chrome.
 A doua selectează regresiile existente pentru locatori locali, răspunsuri reale de rețea

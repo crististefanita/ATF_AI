@@ -1,150 +1,159 @@
-# Project map template
+<a id="project-map-template"></a>
+# Șablonul hărții proiectului
 
-Copy this template to a new analysis output; do not fill the maintained template
-with one project's dated execution results. Keep source paths relative to the
-target root and identify its revision. Use UNKNOWN where a fact was not observed.
+Copiază șablonul într-un rezultat nou de analiză; nu completa șablonul menținut
+cu rezultatele datate ale execuției unui proiect. Păstrează căile sursă relative
+la rădăcina țintei și identifică revizia. Folosește UNKNOWN pentru un fapt neobservat.
 
-Publish README.md, project-map.md, architecture.md, testing-and-governance.md,
-open-questions.md, source-index.json and analysis.json as auditable inputs in one
-new run directory. The reader deliverable is exactly one complete HTML for one
-selected project: delivery/atlas.html. No other HTML may appear below delivery/.
-Keep intermediate HTML, Markdown, manifests and audit/render outputs outside
-that reader directory. The delivery directory contains exactly one ordinary file,
-atlas.html; non-HTML sidecars and nested files are also rejected. A multi-page
-index is not the final understanding report.
-See the [complete report contract](../../atf-atlas/Report_Contract.md).
+Publică README.md, project-map.md, architecture.md, testing-and-governance.md,
+open-questions.md, source-index.json și analysis.json ca intrări auditabile într-un
+nou director de rulare. Livrabilul cititorului este exact un HTML complet pentru
+un proiect selectat: delivery/atlas.html. Niciun alt HTML nu poate apărea sub delivery/.
+Păstrează HTML-ul intermediar, Markdown-ul, manifestele și rezultatele auditului/randării
+în afara acelui director. Directorul livrării conține exact un fișier obișnuit,
+atlas.html; fișierele auxiliare non-HTML și fișierele imbricate sunt de asemenea respinse.
+Un index cu pagini multiple nu este raportul final de înțelegere.
+Consultă [contractul raportului complet](../../atf-atlas/Report_Contract.md).
 
-analysis.json schemaVersion 1 pins projectId/revision, sourceIndexSha256,
-documents with hashes, claims and evidence. Every declared document must exist.
-The source index schemaVersion 1 identifies the same project/revision and records
-each captured path, SHA-256 and role; distinguish reviewed files from state-only
-captures. The checker verifies captured paths, not unindexed semantic scope.
-Use UNVERSIONED when the source has no Git metadata. Record the actual language,
-build system, absence of tests and inspected scope; do not copy ATF defaults into
-another project. The same delivery contract applies to knowledge-assisted intake.
-Use sourceDocuments to list complete maintained target documents that the reader
-needs for this scope. Every entry is target-relative and bound to the source
-index. Include the actual README, architecture, testing and relevant usage/contract
-owners instead of offering partial excerpts or navigation to separate HTML pages.
+Leagă intrările de sursa reală și de documentele complete:
 
-## Target and proof boundary
+- analysis.json schemaVersion 1 fixează projectId/revision, sourceIndexSha256,
+  documents cu hash-uri, claims și evidence. Fiecare document declarat trebuie să existe.
+- Indexul sursei schemaVersion 1 identifică același proiect/revizie și consemnează
+  fiecare cale capturată, SHA-256 și rol. Distinge fișierele revizuite de capturile
+  numai de stare; verificatorul controlează căile capturate, nu domeniul semantic neindexat.
+- Folosește UNVERSIONED când lipsesc metadatele Git. Consemnează limba reală, sistemul
+  de construire, testele absente și domeniul inspectat; nu copia valorile implicite ale altui proiect.
+- Același contract al livrării se aplică intrărilor asistate de cunoștințe.
+- sourceDocuments enumeră documentele complete menținute ale țintei necesare domeniului.
+  Fiecare intrare este relativă la țintă și legată de indexul sursei. Include README-ul,
+  arhitectura, testarea și ghidurile reale de utilizare/contract, fără extrase parțiale
+  sau navigare spre pagini HTML separate.
 
-| Field | Observed value | Evidence |
+<a id="target-and-proof-boundary"></a>
+## Ținta și limitele dovezii
+
+| Câmp | Valoare observată | Dovadă |
 |---|---|---|
-| Project/revision and worktree state | UNKNOWN | Source identity or preserved manifest |
-| Requested scope and exclusions | UNKNOWN | Caller request |
-| Languages and build/package tools | UNKNOWN | Actual declarations |
-| Entry documentation and public entry points | UNKNOWN | Relative source paths |
-| Inspected areas and uninspected areas | UNKNOWN | source-index.json |
-| Tests executed for this analysis | NOT EXECUTED unless proven | Exact selection, result and artifacts |
+| Proiect/revizie și starea arborelui de lucru | UNKNOWN | Identitatea sursei sau manifest păstrat |
+| Domeniul cerut și excluderile | UNKNOWN | Cererea apelantului |
+| Limbi și instrumente de construire/împachetare | UNKNOWN | Declarații reale |
+| Documentație de intrare și puncte publice de intrare | UNKNOWN | Căi relative ale sursei |
+| Zone inspectate și neinspectate | UNKNOWN | source-index.json |
+| Teste executate pentru această analiză | NOT EXECUTED dacă nu există dovadă | Selecția exactă, rezultatul și artefactele |
 
-For each claim assign a unique uppercase ID, exact statement and status:
-SOURCE_REVIEWED, EXECUTED, NOT_EXECUTED or UNKNOWN. Source references declare path,
-startLine, endLine and the exact source quote. Declare governanceStatus MAPPED
-with concrete governanceRefs, or NOT_MAPPED with the gap kept visible. Every
-claim ID/statement must appear in project-map.md. Do not replace a reference with
-a keyword count or a path copied from another project.
+Atribuie fiecărei afirmații un ID unic cu majuscule, textul exact și starea:
+SOURCE_REVIEWED, EXECUTED, NOT_EXECUTED sau UNKNOWN. Referințele sursă declară path,
+startLine, endLine și citatul exact. Declară governanceStatus MAPPED cu governanceRefs
+concrete sau NOT_MAPPED, păstrând lacuna vizibilă. Fiecare ID/text al afirmației
+trebuie să apară în project-map.md. Nu înlocui o referință cu numărarea cuvintelor-cheie
+sau cu o cale copiată din alt proiect.
 
-Execution evidence declares its projectId, artifact-relative path, SHA-256,
-selection, original source identity and status. An EXECUTED claim references
-Surefire XML or flat Node TAP evidence, its observed tests/failures/errors/skipped counters and a
-sourceManifest whose manifest maps project-relative paths to hashes. The evidence
-sourceIdentity is the SHA-256 of that preserved source manifest. Both the claim's
-implementation and governance references must match the executed source bytes.
-Historical HTML/reports remain historical; do not relabel them as a fresh run.
-An EXECUTED claim also declares verdict PASSED or FAILED, matching its referenced
-testcase outcomes. Counter-only headers do not establish an executed selection.
+Dovezile de execuție declară projectId, calea relativă la artefacte, SHA-256,
+selecția, identitatea originală a sursei și starea.
 
-Default source binding is exact. If publication changes only text line endings,
-declare sourceNormalization CRLF_LF, retain each live raw sha256 plus a computed
-normalizedSha256, and retain a verified normalizedManifest beside the original
-execution manifest. The checker still rejects changed content. Normalization
-does not apply to published lib artifacts. Record any derived provenance and
-its original source-manifest digest rather than rewriting old run evidence.
+- O afirmație EXECUTED referă XML Surefire sau TAP Node plat, numărătorile observate
+  tests/failures/errors/skipped și un sourceManifest care asociază căi relative cu
+  hash-uri. sourceIdentity este SHA-256 al acelui manifest păstrat.
+- Referințele implementării și guvernanței trebuie să corespundă octeților sursei executate.
+- HTML-urile/rapoartele istorice rămân istorice; nu le reeticheta ca rulare nouă.
+- Verdictul EXECUTED este PASSED sau FAILED și corespunde rezultatelor cazurilor
+  referite. Antetele numai cu numărători nu stabilesc o selecție executată.
 
-## Architecture and ownership
+Legarea implicită a sursei este exactă. Dacă publicarea schimbă numai finalurile
+de linie ale textului, declară sourceNormalization CRLF_LF, păstrează fiecare sha256
+brut live și normalizedSha256 calculat și un normalizedManifest verificat lângă
+manifestul original al execuției. Verificatorul respinge în continuare conținutul
+schimbat. Normalizarea nu se aplică artefactelor lib publicate. Consemnează proveniența
+derivată și digest-ul manifestului sursă original fără a rescrie dovezile rulărilor vechi.
 
-Describe the smallest useful module/component map. Add a diagram whose nodes and
-arrows are justified by actual declarations/calls, followed by a legend. Identify
-state, configuration, external dependencies and resource/cleanup ownership.
-Represent the map as dependencyGraphs with id, title, kind DEPENDENCY, nodes and
-edges. Each node has id, label, x, y and kind MODULE, COMPONENT, SERVICE or BOUNDARY.
-Each edge has from, to, label and claimId. A single supported component can have
-zero edges when the graph limitation explains the absence of declared dependencies.
+<a id="architecture-and-ownership"></a>
+## Arhitectură și responsabilități
 
-| Concern | Owner | Public contract | Source reference |
+Descrie cea mai mică hartă utilă de module/componente. Adaugă o diagramă cu noduri
+și săgeți justificate de declarații/apeluri reale, urmată de legendă. Identifică
+starea, configurația, dependențele externe și responsabilitatea resurselor/curățării.
+Reprezintă harta prin dependencyGraphs cu id, title, kind DEPENDENCY, nodes și edges.
+Fiecare nod are id, label, x, y și kind MODULE, COMPONENT, SERVICE sau BOUNDARY.
+Fiecare muchie are from, to, label și claimId. O singură componentă susținută de
+sursă poate avea zero muchii când limita grafului explică absența dependențelor declarate.
+
+| Aspect | Responsabil | Contract public | Referință sursă |
 |---|---|---|---|
-| Entry/composition | UNKNOWN | UNKNOWN | UNKNOWN |
-| Core behavior and data model | UNKNOWN | UNKNOWN | UNKNOWN |
-| External adapters and failures | UNKNOWN | UNKNOWN | UNKNOWN |
-| Configuration and outputs | UNKNOWN | UNKNOWN | UNKNOWN |
+| Intrare/compoziție | UNKNOWN | UNKNOWN | UNKNOWN |
+| Comportament de bază și model de date | UNKNOWN | UNKNOWN | UNKNOWN |
+| Adaptoare externe și eșecuri | UNKNOWN | UNKNOWN | UNKNOWN |
+| Configurație și rezultate | UNKNOWN | UNKNOWN | UNKNOWN |
 
-## Behavior, verification and proof limits
+<a id="behavior-verification-and-proof-limits"></a>
+## Comportament, verificare și limitele dovezii
 
-Explain the selected project's existing operations and observed state changes,
-not just its package or dependency topology. For a framework, identify the
-consumer, request, value/artifact, lifecycle or failure contract and observed
-outcome. For an application, use its actual actor, object and supported operation.
+Explică operațiile existente ale proiectului selectat și schimbările observate de
+stare, nu numai topologia pachetelor sau dependențelor. Pentru un framework,
+identifică consumatorul, cererea, valoarea/artefactul, contractul de ciclu/eșec și
+rezultatul observat. Pentru o aplicație, folosește actorul real, obiectul și operația acceptată.
 
-| behaviorFlows field | Required meaning |
+| Câmp behaviorFlows | Sens obligatoriu |
 |---|---|
-| id and title | Stable local identity and readable existing behavior |
-| actor, intent, object and operation | Actual consumer/actor, purpose, subject and action |
-| outcome | Observed or source-supported result, with its proof scope |
-| testOracle and oracleStatus | Actual existing oracle, or searched scope and NOT_FOUND gap |
-| oracleClaimId | Separate SOURCE_REVIEWED/EXECUTED test claim, or UNKNOWN claim for NOT_FOUND |
-| claimIds | Existing reviewed/executed source claims supporting this explanation |
-| limits | Unexecuted areas, partial mapping and interpretation boundaries |
-| graph | BEHAVIOR kind, nodes with id/label/x/y/kind, edges with from/to/label/claimId |
+| id și title | Identitate locală stabilă și comportament existent lizibil |
+| actor, intent, object și operation | Consumator/actor real, scop, subiect și acțiune |
+| outcome | Rezultat observat sau susținut de sursă, cu limitele dovezii |
+| testOracle și oracleStatus | Criteriu de verificare existent real sau domeniu căutat și lacună NOT_FOUND |
+| oracleClaimId | Afirmație de test separată SOURCE_REVIEWED/EXECUTED sau afirmație UNKNOWN pentru NOT_FOUND |
+| claimIds | Afirmații sursă existente revizuite/executate care susțin explicația |
+| limits | Zone neexecutate, mapare parțială și limite de interpretare |
+| graph | kind BEHAVIOR, noduri cu id/label/x/y/kind, muchii cu from/to/label/claimId |
 
-Every edge and flow claim resolves to a SOURCE_REVIEWED or EXECUTED analysis claim.
-An absent test oracle does not create an executable claim. A supported single
-behavior state may have no edge when graph.limits states why a transition was
-not established. Do not invent a flow or request new product/E2E tests to fill it.
+Fiecare afirmație de muchie și flux se rezolvă la o afirmație de analiză SOURCE_REVIEWED
+sau EXECUTED. Un criteriu de test absent nu creează o afirmație executabilă. O singură
+stare comportamentală susținută poate să nu aibă muchii când graph.limits declară
+motivul lipsei unei tranziții stabilite. Nu inventa fluxuri și nu cere teste noi de
+produs/E2E pentru a umple lacuna.
 
-| Behavior or invariant | Implementation | Existing check or review | Proof scope and gap |
+| Comportament sau invariant | Implementare | Verificare sau revizuire existentă | Limitele dovezii și lacuna |
 |---|---|---|---|
-| UNKNOWN | UNKNOWN | UNKNOWN | Keep source inspection separate from actual execution |
+| UNKNOWN | UNKNOWN | UNKNOWN | Separă inspecția sursei de execuția reală |
 
-Record exact commands only after resolving them against the target's actual
-configuration. Link retained outcomes, including failures and unexecuted areas.
-Do not derive quality from file counts, assertion keywords or a copied report.
+Consemnează comenzile exacte numai după rezolvarea lor față de configurația reală
+a țintei. Leagă rezultatele păstrate, inclusiv eșecurile și zonele neexecutate.
+Nu deduce calitatea din numărul fișierelor, cuvinte ale aserțiunilor sau un raport copiat.
 
-## Declared breadth record
+<a id="declared-breadth-record"></a>
+## Înregistrarea amplorii declarate
 
-The reader bundle uses renderVersion 3 for a new public capture. Add
-analysis.understanding with schemaVersion 1, scope PROJECT or SELECTED,
-scopeStatement, inventoryClaimIds and units. PROJECT aligns declared review-unit
-and architecture inventories. SELECTED explains omitted owners. Neither scope
-means complete semantic coverage. Inventory claims cite the actual declarations.
+Pachetul cititorului folosește renderVersion 3 pentru o captură publică nouă.
+Adaugă analysis.understanding cu schemaVersion 1, scope PROJECT sau SELECTED,
+scopeStatement, inventoryClaimIds și units. PROJECT aliniază inventarele unităților
+revizuite și arhitecturii. SELECTED explică responsabilii omiși. Niciun domeniu nu
+înseamnă acoperire semantică completă. Afirmațiile inventarului citează declarațiile reale.
 
-| Unit field | Required meaning |
+| Câmp al unității | Sens obligatoriu |
 |---|---|
-| id, label and kind | Actual local owner; MODULE, COMPONENT, SERVICE or BOUNDARY |
-| scopePaths | Normalized target-relative source file/directory scopes present in the index |
-| claimIds | Reviewed claims with source references inside this owner |
-| sharedClaimIds | Explicit reviewed references to another source owner |
-| flowIds | Existing behavior flow IDs that link this unit back through unitIds |
-| facets | All seven reading facets with statuses, claimIds and explanations |
-| limits | What this unit review does not establish |
+| id, label și kind | Responsabil local real; MODULE, COMPONENT, SERVICE sau BOUNDARY |
+| scopePaths | Domenii normalizate de fișiere/directoare sursă relative la țintă, prezente în index |
+| claimIds | Afirmații revizuite cu referințe sursă în acest responsabil |
+| sharedClaimIds | Referințe explicite revizuite către alt responsabil al sursei |
+| flowIds | ID-uri de fluxuri existente care leagă invers unitatea prin unitIds |
+| facets | Toate cele șapte fațete de lectură, cu stări, claimIds și explicații |
+| limits | Ce nu stabilește revizuirea acestei unități |
 
-| Facet | Status | Claim IDs | Explanation and remaining limit |
+| Fațetă | Stare | ID-uri de afirmații | Explicație și limită rămasă |
 |---|---|---|---|
-| purpose | UNKNOWN | None observed | Responsibility, callers and scope |
-| structure | UNKNOWN | None observed | Entries, boundaries and dependencies |
-| behavior | UNKNOWN | None observed | Existing operation, object and outcome |
-| data | UNKNOWN | None observed | Values, state, schemas and outputs |
-| configuration | UNKNOWN | None observed | Actual defaults, properties and selections |
-| failure | UNKNOWN | None observed | Errors, limits, interruption and cleanup |
-| verification | UNKNOWN | None observed | Existing assertions, review and executed proof |
+| purpose | UNKNOWN | Niciuna observată | Responsabilitate, apelanți și domeniu |
+| structure | UNKNOWN | Niciuna observată | Intrări, limite și dependențe |
+| behavior | UNKNOWN | Niciuna observată | Operație existentă, obiect și rezultat |
+| data | UNKNOWN | Niciuna observată | Valori, stare, scheme și rezultate |
+| configuration | UNKNOWN | Niciuna observată | Valori implicite, proprietăți și selecții reale |
+| failure | UNKNOWN | Niciuna observată | Erori, limite, întrerupere și curățare |
+| verification | UNKNOWN | Niciuna observată | Aserțiuni existente, revizuire și dovezi executate |
 
-Replace UNKNOWN only after inspection. REVIEWED and PARTIAL need supported
-claimIds; NOT_APPLICABLE needs a reason and cannot dismiss every facet. Reviewed
-behavior links an existing flow. Dependency nodes declare unitId. Behavior flows
-declare unitIds with matching reverse flowIds. Graph kinds remain BEHAVIOR and
-DEPENDENCY; a behavior edge may cite only its own flow's claimIds.
+Înlocuiește UNKNOWN numai după inspecție. REVIEWED și PARTIAL cer claimIds susținute;
+NOT_APPLICABLE cere motiv și nu poate elimina fiecare fațetă. Comportamentul revizuit
+leagă un flux existent. Nodurile de dependență declară unitId. Fluxurile comportamentale
+declară unitIds cu flowIds inverse corespunzătoare. Tipurile de graf rămân BEHAVIOR și
+DEPENDENCY; o muchie comportamentală poate cita numai claimIds ale propriului flux.
 
-For an EXECUTED behavior/oracle claim, add executionSubjects:
+Pentru o afirmație EXECUTED de comportament/criteriu, adaugă executionSubjects:
 
 ```json
 {
@@ -156,103 +165,113 @@ For an EXECUTED behavior/oracle claim, add executionSubjects:
 }
 ```
 
-Use the exact retained XML classname/name; an absent classname is the empty
-string. For flat Node TAP, use the exact testName and empty/omitted testClass.
-sourcePath must already be quoted in that claim. The example selects zero-based
-entry 0 in the oracle claim's sourceRefs, not a source line number or a testcase
-position. Replace it with the actual matching fragments. EXECUTED case oracles
-require these indices on each subject and a retained subject for every selected
-oracleRefIndices entry; a file hash or suite total cannot supply that binding.
-Bind each evidence ID. Missing,
-ambiguous, duplicated, skipped or TODO subjects do not establish execution.
-Preserve failures and original provenance. Review the assertion's semantics
-separately; a testcase identity alone does not prove every prose clause.
+Leagă subiecți exacți și fragmente sursă selectate:
 
-## Behavior case witnesses
+- Folosește classname/name din XML-ul păstrat; classname absent este șirul gol.
+  TAP Node plat folosește testName exact și testClass gol/omis.
+- sourcePath trebuie să fie deja citat în afirmație. Exemplul selectează intrarea
+  0 cu indexare de la zero din sourceRefs, nu o linie sursă sau poziția unui caz;
+  înlocuiește-o cu fragmentele reale corespunzătoare.
+- Fiecare subiect al unui criteriu EXECUTED de caz declară acești indici, iar subiecții
+  păstrați acoperă fiecare intrare oracleRefIndices selectată. Un hash de fișier sau totalul suitei este insuficient.
+- Leagă fiecare ID de dovadă. Subiecții absenți, ambigui, duplicați, omiși sau TODO
+  nu stabilesc execuția; păstrează eșecurile și proveniența originală.
+- Revizuiește separat sensul aserțiunii. Identitatea cazului nu demonstrează fiecare propoziție.
 
-Each flow declares caseAnalysis schemaVersion 1, entryNodeId, pathScope,
-negativeScope and cases. Every behavior edge has a unique id. All behavior nodes
-are reachable from entry and can reach an OUTCOME, each with a case witness.
-Dependency topology has a separate purpose and may have disconnected modules.
+<a id="behavior-case-witnesses"></a>
+## Martori ai cazurilor comportamentale
 
-| Case field | Source-reviewed content |
+Fiecare flux declară caseAnalysis schemaVersion 1, entryNodeId, pathScope,
+negativeScope și cases. Fiecare muchie comportamentală are un id unic. Toate nodurile
+comportamentale sunt accesibile din intrare și pot ajunge la un OUTCOME, fiecare cu
+martor de caz. Topologia dependențelor are scop separat și poate avea module neconectate.
+
+| Câmp al cazului | Conținut revizuit în sursă |
 |---|---|
-| id, kind and title | Unique existing POSITIVE/NEGATIVE case and purpose |
-| precondition, trigger and expected | Actual setup, operation/input and observation |
-| nodeIds and edgeIds | Contiguous directed walk from entry to an OUTCOME |
-| claimIds | Reviewed flow-local source claims supporting this case |
-| oracleClaimId and oracleStatus | Exact existing local oracle or UNKNOWN/NOT_FOUND gap |
-| oracleRefIndices | Selected sourceRefs indices in that oracle claim |
-| assertion and limits | Actual comparison/rejection and its proof boundaries |
+| id, kind și title | Caz existent unic POSITIVE/NEGATIVE și scopul său |
+| precondition, trigger și expected | Pregătire reală, operație/intrare și observație |
+| nodeIds și edgeIds | Parcurs direcționat contiguu de la intrare la un OUTCOME |
+| claimIds | Afirmații sursă revizuite locale fluxului care susțin cazul |
+| oracleClaimId și oracleStatus | Criteriu local existent exact sau lacună UNKNOWN/NOT_FOUND |
+| oracleRefIndices | Indici sourceRefs selectați în afirmația acelui criteriu |
+| assertion și limits | Comparație/respingere reală și limitele dovezii |
 
-NOT_FOUND declares oracleGap with searchedClaimIds and explanation. Record actual
-search evidence rather than inventing a test or run. negativeScope records
-status REVIEWED, PARTIAL, UNKNOWN or NOT_APPLICABLE, nonempty reviewed claimIds
-for the inspected scope and explanation. REVIEWED requires a negative witness;
-NOT_APPLICABLE cannot contradict one. Existing
-negative cases need source and assertion witnesses; gaps remain explicit.
+NOT_FOUND declară oracleGap cu searchedClaimIds și explanation. Consemnează dovezi
+reale ale căutării fără a inventa un test sau o rulare. negativeScope consemnează
+status REVIEWED, PARTIAL, UNKNOWN sau NOT_APPLICABLE, claimIds revizuite nevide
+pentru domeniul inspectat și explanation. REVIEWED cere martor negativ;
+NOT_APPLICABLE nu îl poate contrazice. Cazurile negative existente cer martori în
+sursă și aserțiuni; lacunele rămân explicite.
 
-REPRESENTATIVE describes selected case paths. ALL_DECLARED_EDGES requires them
-to cover the declared edge set; it does not assert every implementation branch
-or loop schedule. Repeated nodes are valid in a finite cycle walk. Positive and
-negative cases may share a terminal when their source-supported observations
-differ. Do not classify a case from an assertion keyword or relabel source review
-as execution.
+REPRESENTATIVE descrie căi de caz selectate. ALL_DECLARED_EDGES cere acoperirea
+setului de muchii declarat; nu afirmă fiecare ramură de implementare sau planificare
+a buclelor. Nodurile repetate sunt valide într-un parcurs ciclic finit. Cazurile
+pozitive și negative pot avea aceeași stare finală când observațiile susținute de
+sursă diferă. Nu clasifica un caz dintr-un cuvânt al aserțiunii și nu reeticheta
+revizuirea sursei ca execuție.
 
-The entry may be any actual behavior node kind; actor/intent are separate flow
-fields, so do not invent an intent node for an actual state/action entry.
-Supported behavior self-loops need a finite case witness, an outcome escape and
-a clear rendered corridor. Dependency self-loops remain invalid. A bounded
-single-OUTCOME entry remains valid with an explicit searched oracle gap.
+Intrarea poate avea orice tip real de nod comportamental; actor/intent sunt câmpuri
+separate ale fluxului, deci nu inventa un nod de intenție pentru o intrare reală de
+stare/acțiune. Buclele comportamentale către sine acceptate cer un martor finit,
+o ieșire spre rezultat și un traseu randat clar. Buclele dependențelor către sine
+rămân invalide. O intrare delimitată cu un singur OUTCOME rămâne validă cu o lacună
+explicită a criteriului căutat.
 
-Selected oracle source ranges must not overlap any implementation range in the
-same file; changing a range by one line does not establish independence.
-Nonoverlapping source fragments in the same file remain valid. For EXECUTED case
-oracles, each executionSubjects entry declares nonempty unique sourceRefIndices
-into that oracle's sourceRefs, all matching its sourcePath. Actual subjects must
-cover every case-selected oracleRefIndices entry as well as satisfying the
-retained XML/TAP identity/outcome gate.
+Intervalele selectate ale sursei criteriului nu se pot suprapune niciunui interval
+al implementării din același fișier; schimbarea unei limite cu o linie nu stabilește
+independența. Fragmentele fără suprapunere din același fișier rămân valide. Pentru
+criterii EXECUTED de caz, fiecare intrare executionSubjects declară sourceRefIndices
+unici nevizi în sourceRefs, toți corespunzători sourcePath. Subiecții reali trebuie
+să acopere fiecare intrare oracleRefIndices selectată și să satisfacă poarta
+identității/rezultatului XML/TAP păstrate.
 
-A REVIEWED failure facet needs an owned flow with a NEGATIVE witness and
-negativeScope REVIEWED or PARTIAL. A negative source claim alone is insufficient.
+O fațetă de eșec REVIEWED necesită un flux propriu cu martor NEGATIVE și
+negativeScope REVIEWED sau PARTIAL. O afirmație sursă negativă singură este insuficientă.
 
-## Optional evidence-bound assessment
+<a id="optional-evidence-bound-assessment"></a>
+## Evaluare opțională susținută de dovezi
 
-If requested, add analysis.assessment with method EVIDENCE_BOUND_REVIEW, reviewer,
-scope, limits and groups. Each group declares id, label, scope, limits and axes.
-Use separate project-quality and atlas-quality groups. Every axis declares id,
-label, correctness, verification, clarity, score, weight, claimIds, evidenceIds,
-reason and limits. Numeric fields are integers 1–100. score is the rounded
-40/30/30 weighted review of correctness/verification/clarity. Axis weights sum to
-100 per group, whose score is the rounded weighted mean. Cite actual reviewed
-claims and retained evidence IDs; an honest source-only review may have empty
-evidenceIds. Without an assessment, retain NOT_ASSESSED.
+Dacă este cerută, adaugă analysis.assessment cu method EVIDENCE_BOUND_REVIEW,
+reviewer, scope, limits și groups. Fără evaluare, păstrează NOT_ASSESSED.
 
-Do not confuse these quality axes with feedback urgency, test pass percentages,
-code coverage or automatic semantic completeness. State limitations and explain
-every judgment. Do not copy another project's score.
+- Fiecare grup declară id, label, scope, limits și axes. Separă grupurile project-quality
+  și atlas-quality.
+- Fiecare axă declară id, label, correctness, verification, clarity, score,
+  weight, claimIds, evidenceIds, reason și limits.
+- Câmpurile numerice sunt întregi 1–100. score este evaluarea ponderată rotunjită
+  40/30/30 a correctness/verification/clarity. Ponderile axelor însumează 100 per grup,
+  iar scorul grupului este media ponderată rotunjită.
+- Citează afirmații revizuite și ID-uri de dovezi păstrate. O revizuire onestă numai
+  din sursă poate avea evidenceIds gol.
 
-## Complete reader artifact and knowledge
+Nu confunda axele de calitate cu urgența feedback-ului, procentele testelor trecute,
+acoperirea codului sau completitudinea semantică automată. Declară limitele și explică
+fiecare judecată. Nu copia scorul altui proiect.
 
-Retrieve cited policy for the requested scope and retain the corpus digest,
-returned record IDs and every mandatory requirement. Retrieval supplies context
-to a source-grounded reviewer; it is not evidence that a project behavior ran.
-Unknown facts stay explicit. The complete HTML includes all required sections,
-canonical embedded CSS, inline SVG, exact source/governance fragments, complete
-declared Markdown and original XML/TAP/source-manifest payloads. Internal
-navigation and native disclosure must work when atlas.html is copied alone.
-No score is inferred; an unassessed area remains NOT_ASSESSED.
+<a id="complete-reader-artifact-and-knowledge"></a>
+## Artefactul complet al cititorului și cunoștințe
 
-Retain the entire canonical retrieval receipt and full knowledge-source bytes,
-including optional records, ranking, citations and provenance. Checking only
-mandatory records or a corpus hash does not authenticate an edited receipt.
+Regăsește politica citată pentru domeniul cerut și păstrează digest-ul corpusului,
+ID-urile întoarse și fiecare cerință obligatorie. Regăsirea oferă context unui revizor
+ancorat în sursă; nu demonstrează executarea unui comportament al proiectului.
+Faptele necunoscute rămân explicite. HTML-ul complet include toate secțiunile cerute,
+CSS-ul canonic încorporat, SVG inline, fragmente exacte de sursă/guvernanță,
+Markdown-ul declarat complet și corpurile originale XML/TAP/manifest-sursă.
+Navigarea internă și plierea nativă trebuie să funcționeze când atlas.html este copiat
+singur. Nu se deduce niciun scor; o zonă neevaluată rămâne NOT_ASSESSED.
 
-## Maintenance and open questions
+Păstrează întreaga dovadă canonică a regăsirii și octeții compleți ai sursei cunoștințelor,
+inclusiv înregistrările opționale, clasarea, citările și proveniența. Verificarea numai
+a înregistrărilor obligatorii sau a hash-ului corpusului nu autentifică o dovadă editată.
 
-| Question or reproducible gap | Evidence | Owner | Next verification |
+<a id="maintenance-and-open-questions"></a>
+## Mentenanță și întrebări deschise
+
+| Întrebare sau lacună reproductibilă | Dovadă | Responsabil | Verificare următoare |
 |---|---|---|---|
-| UNKNOWN | UNKNOWN | UNKNOWN | The smallest check needed to resolve the fact |
+| UNKNOWN | UNKNOWN | UNKNOWN | Cea mai mică verificare necesară pentru clarificarea faptului |
 
-Keep stable usage at its source owner. Keep changing findings in feedback and
-generated analysis/evidence in the selected artifact root. Declare confidence and
-remaining uncertainty without inventing an overall score or an E2E expansion.
+Păstrează utilizarea stabilă la responsabilul sursei. Păstrează constatările
+schimbătoare în feedback și analiza/dovezile generate în rădăcina artefactelor
+selectată. Declară încrederea și incertitudinea rămasă fără a inventa un scor global
+sau o extindere E2E.

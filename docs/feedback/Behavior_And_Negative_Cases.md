@@ -1,244 +1,253 @@
-# Behavior cases, negative observations and component proof scope
+<a id="behavior-cases-negative-observations-and-component-proof-scope"></a>
+# Cazuri de comportament, observații negative și domeniul dovezilor de componentă
 
-Baseline: ATF_AI `8fc368f`. This review deepens existing behavior explanations,
-RAG-style authoring governance and maintenance tests. It adds no product/E2E
-scenario, emulator or Java runtime feature. Earlier Atlas delivery, provenance,
-breadth and assessment closures retain their original scope and scores. G-014
-remains an independent open observation about the captured J1 change-control
-failure; Atlas consistency cannot close or relabel that failure.
+Referință inițială: ATF_AI `8fc368f`. Această revizie aprofundează explicațiile comportamentale existente,
+guvernanța redactării de tip RAG și testele de întreținere. Nu adaugă scenarii de produs/E2E,
+emulatoare sau funcționalități Java de execuție. Închiderile anterioare privind livrarea Atlas, proveniența,
+amploarea și evaluarea își păstrează domeniul și notele originale. G-014
+rămâne o observație deschisă independentă asupra eșecului capturat al controlului schimbărilor J1;
+consistența Atlas nu poate închide sau reeticheta acel eșec.
 
-The private mutation results are retained under
-`${ATF_WORK_ROOT}/reviews/20261125-atlas-behavior/`. A valid generic baseline and
-an independent dangling-endpoint control distinguish actual accepted model gaps
-from a broken probe. Matching source bytes and a passing publisher prove declared
-consistency; they do not automatically prove coherent behavior or prose truth.
+Rezultatele private ale mutațiilor sunt păstrate sub
+`${ATF_WORK_ROOT}/reviews/20261125-atlas-behavior/`. O referință generică validă și
+un control independent de capăt fără țintă disting lacunele efective ale modelului acceptat
+de o sondă defectă. Octeții sursă identici și o publicare reușită dovedesc consistența
+declarată; nu dovedesc automat coerența comportamentului sau adevărul prozei.
 
 ```mermaid
 flowchart TB
-    Source["Existing source and actual oracle"] --> Case["Condition, trigger and expected observation"]
-    Case --> Walk["Directed case path and selected oracle fragments"]
-    Walk --> Guard["Reachability and bounded graph invariants"]
-    Guard --> Component["Generic publisher component proof"]
-    Component --> Reader["One complete source-bound reader HTML"]
+    Source["Surse existente și oracol real"] --> Case["Condiție, declanșator și observație așteptată"]
+    Case --> Walk["Calea orientată a cazului și fragmentele de oracol selectate"]
+    Walk --> Guard["Accesibilitate și invariante delimitate ale grafului"]
+    Guard --> Component["Dovadă generică de componentă a publicatorului"]
+    Component --> Reader["Un HTML complet pentru cititor, legat de surse"]
 ```
 
-Arrows show evidence assembly and maintenance checks. They do not introduce a
-new product flow. Human review remains responsible for whether each case
-describes the actual implementation and assertion.
+Săgețile arată asamblarea dovezilor și verificările de întreținere. Nu introduc un
+flux nou de produs. Revizia umană rămâne responsabilă pentru a stabili dacă fiecare caz
+descrie implementarea și aserțiunea efective.
 
 <a id="g-015"></a>
-## G-015: Reachable outcomes and exact case/oracle bindings
+<a id="g-015-reachable-outcomes-and-exact-caseoracle-bindings"></a>
+## G-015: Rezultate accesibile și legături exacte caz/oracol
 
-- Owner: Atlas behavior model, graph traversal and source/oracle evidence.
-- Priority: 93, from impact/risk/urgency 95/90/90.
-- Baseline quality: 62, from correctness/verification/clarity 65/55/65.
-- Observation: reversing the generic fixture's sole INTENT-to-OUTCOME edge still
-  published successfully. Adding a disconnected ACTION-to-OUTCOME lobe also
-  passed. A flow could identify its implementation-only source claim as its
-  SOURCE_REVIEWED oracle after removing all governance references. A separate
-  negative behavior/oracle claim and REVIEWED failure facet still admitted a
-  positive-only graph. The dangling-endpoint negative control correctly failed.
-- Consequence: exact endpoint and source identities do not establish a path to
-  the observation, an actual independent oracle or a described negative case.
-- Correction: new renderVersion 3 captures declare caseAnalysis, an entry,
-  stable edge IDs, positive/negative case walks, exact selected oracle source
-  references and explicit negative scope. Every behavior node is reachable from
-  entry and can reach an OUTCOME; every outcome has a case witness. Preserve
-  reviewed source and retained execution scope. NOT_FOUND uses UNKNOWN oracle
-  identity with reviewed search evidence. No word-based oracle/case classifier
-  substitutes for source review.
-- Acceptance: intended controls reject reversed/disconnected/trapped paths,
-  noncontiguous case edges, unobserved outcomes, unsupported local claims,
-  unrelated oracle reference indices and undisclosed negative gaps. Supported
-  cycles, shared positive/negative terminals and explicit no-test search gaps
-  remain valid. Dependency graphs keep their separate topology semantics.
-- Evidence: `behavior-probe-results.json` and private complete artifacts in the
-  review root; maintained `tools/atlas-behavior.test.mjs` and publisher/bundle
-  component controls record the corrected contract.
-- State: CLOSED. Delivered quality: 95, from correctness/verification/clarity 96/95/94.
-- Verified result: The final 138-case Node selection passed. Directed reachability and reverse outcome escape reject reversed, disconnected and trapped paths; finite cycles and self-loops with escape remain valid. Every declared outcome has a finite positive/negative witness, and exact selected oracle fragments stay independent of implementation. Full-publisher mutations now reject case-variant paths and hardlink/copy aliases by verified content identity, including permitted text normalization. Original false-pass probes and corrected rejection receipts remain preserved. Both edition selections passed 232/232 Java cases.
-- Closure receipts: `${ATF_WORK_ROOT}/runs/atlas-behavior-acceptance-publication-audit.json`, original Java XML/Node TAP and source manifests, and `${ATF_WORK_ROOT}/reviews/20261125-atlas-behavior/new-render-acceptance-04/metrics.json`. Final synchronized readers are recaptured and audited separately against their exact source.
+- Responsabil: modelul comportamental Atlas, traversarea grafului și dovezile sursă/oracol.
+- Prioritate: 93, din impact/risc/urgență 95/90/90.
+- Calitate inițială: 62, din corectitudine/verificare/claritate 65/55/65.
+- Observație: inversarea singurei muchii de la INTENT la OUTCOME din fixture-ul generic permitea în continuare
+  publicarea cu succes. Adăugarea unui subgraf deconectat de la ACTION la OUTCOME
+  trecea, de asemenea. Un flux putea identifica afirmația sa sursă, exclusiv de implementare, ca
+  oracol SOURCE_REVIEWED după eliminarea tuturor referințelor de guvernanță. O afirmație separată
+  de comportament/oracol negativ și o fațetă de eșec REVIEWED admiteau încă un
+  graf exclusiv pozitiv. Controlul negativ pentru capăt fără țintă eșua corect.
+- Consecință: identitățile exacte ale capetelor și surselor nu stabilesc o cale către
+  observație, un oracol efectiv independent sau un caz negativ descris.
+- Corecție: capturile noi renderVersion 3 declară caseAnalysis, o intrare,
+  ID-uri stabile ale muchiilor, trasee de caz pozitive/negative, referințe sursă exacte ale oracolului
+  selectat și un domeniu negativ explicit. Fiecare nod de comportament este accesibil de la
+  intrare și poate ajunge la un OUTCOME; fiecare rezultat are un caz martor. Păstrarea
+  surselor revizuite și a domeniului execuțiilor păstrate. NOT_FOUND folosește identitatea de oracol UNKNOWN
+  cu dovezi revizuite ale căutării. Niciun clasificator de oracole/cazuri bazat pe cuvinte
+  nu înlocuiește revizia surselor.
+- Acceptanță: controalele intenționate resping căile inversate/deconectate/fără ieșire,
+  muchiile necontigue ale cazurilor, rezultatele neobservate, afirmațiile locale nesusținute,
+  indicii de referință fără legătură ai oracolului și lacunele negative nedeclarate. Ciclurile susținute,
+  terminalele partajate pozitive/negative și lacunele explicite de căutare fără teste
+  rămân valide. Grafurile de dependențe își păstrează semantica topologică separată.
+- Dovezi: `behavior-probe-results.json` și artefactele private complete în
+  rădăcina de revizie; `tools/atlas-behavior.test.mjs` întreținut și controalele de componentă
+  ale publicatorului/pachetului înregistrează contractul corectat.
+- Stare: CLOSED. Calitate livrată: 95, din corectitudine/verificare/claritate 96/95/94.
+- Rezultat verificat: selecția finală Node cu 138 de cazuri a trecut. Accesibilitatea orientată și căutarea inversă a unei ieșiri către rezultat resping căile inversate, deconectate și fără ieșire; ciclurile finite și buclele proprii cu ieșire rămân valide. Fiecare rezultat declarat are un martor finit pozitiv/negativ, iar fragmentele exacte ale oracolului selectat rămân independente de implementare. Mutațiile prin publicatorul complet resping acum variantele de capitalizare ale căilor și aliasurile prin legături fizice/copii pe baza identității verificate a conținutului, inclusiv normalizarea permisă a textului. Sondele originale cu rezultat fals pozitiv și înregistrările respingerilor corectate rămân păstrate. Ambele selecții ale edițiilor au trecut 232/232 de cazuri Java.
+- Înregistrări de închidere: `${ATF_WORK_ROOT}/runs/atlas-behavior-acceptance-publication-audit.json`, XML-ul Java/TAP-ul Node și manifestele sursă originale și `${ATF_WORK_ROOT}/reviews/20261125-atlas-behavior/new-render-acceptance-04/metrics.json`. Documentele finale sincronizate pentru cititor sunt recapturate și auditate separat față de sursele lor exacte.
 
 <a id="d-007"></a>
-## D-007: Existing branches and negative observations in the reader
+<a id="d-007-existing-branches-and-negative-observations-in-the-reader"></a>
+## D-007: Ramuri existente și observații negative în documentul pentru cititor
 
-- Owner: selected-project source reviewer and actual code/test owners.
-- Priority: 86, from impact/risk/urgency 90/80/85.
-- Baseline quality: 59, from correctness/verification/clarity 65/55/55.
-- Observation: representative operation diagrams did not identify each existing
-  rejection/failure observation with its precondition, trigger, path and exact
-  assertion source. A negative claim could appear in a facet ledger without
-  becoming an understandable behavior case.
-- Consequence: readers still had to rediscover failure boundaries, and a generic
-  arrow label could hide whether a step invokes an operation, returns an
-  observation or preserves an original failure.
-- Correction: review existing positive and meaningful negative source cases,
-  including supported validation, retry/budget, configuration, lifecycle,
-  cleanup and observation boundaries. Write source-specific transition labels,
-  expected observations and selected existing assertion references. Preserve
-  partial or searched gaps rather than requesting additional E2E coverage.
-- Acceptance: case conditions, triggers, observations and graph paths match the
-  captured source. Representative versus declared-edge coverage is explicit.
-  A negative result is not relabeled as product failure when the test correctly
-  expects rejection. Source review is not promoted to a fresh execution. Deliver
-  one complete HTML per project with readable diagrams, actual oracle fragments,
-  canonical embedded style and retained limitations. Keep English main and all
-  Romanian README paths aligned 1:1 on main_RO.
-- Evidence: fresh source-bound AI/J1 case inputs, original proof records and
-  inspected desktop reader captures in the caller-selected artifact area.
-- State: CLOSED. Delivered quality: 92, from correctness/verification/clarity 94/88/94.
-- Verified result: The two captured readers explain AI: 11 / J1: 10 existing behavior flows with AI: 25 / J1: 28 cases, 24 positive and 29 negative in total. Each case states precondition, trigger, expected observation, directed walk, assertion and limitations; six AI missing-oracle cases remain explicit searched gaps. Twenty-one AI and 23 J1 source documents are embedded. Four real desktop Chromium records at 1440/1920 inspected 46 diagrams against exact isolated reader bytes. Negative application observations remain distinct from failed tests. J1 original 211/1 governance outcome remains historical and FAILED; no J1 test was rerun.
-- Closure receipts: `${ATF_WORK_ROOT}/runs/atlas-behavior-acceptance-publication-audit.json`, original Java XML/Node TAP and source manifests, and `${ATF_WORK_ROOT}/reviews/20261125-atlas-behavior/new-render-acceptance-04/metrics.json`. Final synchronized readers are recaptured and audited separately against their exact source.
+- Responsabil: revizorul surselor proiectului selectat și responsabilii efectivi ai codului/testelor.
+- Prioritate: 86, din impact/risc/urgență 90/80/85.
+- Calitate inițială: 59, din corectitudine/verificare/claritate 65/55/55.
+- Observație: diagramele reprezentative ale operațiilor nu identificau fiecare observație existentă
+  de respingere/eșec cu precondiția, declanșatorul, calea și sursa exactă a
+  aserțiunii sale. O afirmație negativă putea apărea într-un registru de fațete fără
+  a deveni un caz de comportament ușor de înțeles.
+- Consecință: cititorii încă trebuiau să redescopere limitele eșecurilor, iar o etichetă
+  generică de săgeată putea ascunde dacă un pas invocă o operație, returnează o
+  observație sau păstrează un eșec original.
+- Corecție: revizuirea cazurilor sursă pozitive și a celor negative relevante existente,
+  inclusiv a limitelor susținute de validare, reîncercare/buget, configurație, ciclu de viață,
+  curățare și observație. Redactarea etichetelor de tranziție specifice surselor,
+  a observațiilor așteptate și a referințelor selectate la aserțiuni existente. Păstrarea
+  lacunelor parțiale sau căutate în locul solicitării unei acoperiri E2E suplimentare.
+- Acceptanță: condițiile, declanșatorii, observațiile și căile de graf ale cazurilor corespund
+  surselor capturate. Distincția dintre acoperirea reprezentativă și cea a muchiilor declarate este explicită.
+  Un rezultat negativ nu este reetichetat ca eșec al produsului când testul așteaptă corect
+  respingerea. Revizia surselor nu este promovată la execuție nouă. Livrarea
+  unui HTML complet per proiect cu diagrame lizibile, fragmente reale de oracol,
+  stil canonic încorporat și limitări păstrate. Păstrarea main în engleză și a tuturor
+  căilor README românești aliniate 1:1 pe main_RO.
+- Dovezi: intrări noi de caz AI/J1 legate de surse, înregistrări originale de dovezi și
+  capturi inspectate ale documentelor desktop pentru cititor în zona de artefacte selectată de apelant.
+- Stare: CLOSED. Calitate livrată: 92, din corectitudine/verificare/claritate 94/88/94.
+- Rezultat verificat: cele două documente capturate explică AI: 11 / J1: 10 fluxuri de comportament existente cu AI: 25 / J1: 28 de cazuri, 24 pozitive și 29 negative în total. Fiecare caz declară precondiția, declanșatorul, observația așteptată, traseul orientat, aserțiunea și limitările; șase cazuri AI fără oracol rămân lacune căutate explicite. Sunt încorporate douăzeci și unu de documente sursă AI și 23 J1. Patru înregistrări reale Chromium desktop la 1440/1920 au inspectat 46 de diagrame față de octeții exacți ai documentelor izolate pentru cititor. Observațiile negative ale aplicației rămân distincte de testele eșuate. Rezultatul original J1 de guvernanță 211/1 rămâne istoric și FAILED; niciun test J1 nu a fost rerulat.
+- Înregistrări de închidere: `${ATF_WORK_ROOT}/runs/atlas-behavior-acceptance-publication-audit.json`, XML-ul Java/TAP-ul Node și manifestele sursă originale și `${ATF_WORK_ROOT}/reviews/20261125-atlas-behavior/new-render-acceptance-04/metrics.json`. Documentele finale sincronizate pentru cititor sunt recapturate și auditate separat față de sursele lor exacte.
 
 <a id="a-002"></a>
-## A-002: Algorithm, component and runtime proof remain distinct
+<a id="a-002-algorithm-component-and-runtime-proof-remain-distinct"></a>
+## A-002: Dovezile de algoritm, componentă și execuție rămân distincte
 
-- Owner: Atlas maintenance tests, retrieval policy and proof-scope reviewer.
-- Priority: 84, from impact/risk/urgency 85/80/85.
-- Baseline quality: 66, from correctness/verification/clarity 70/55/70.
-- Observation: field-presence and identity checks did not exercise outcome
-  reachability, reverse outcome escape, case continuity or their invariance under
-  harmless model transformations. Authentic policy fallback for a query with no
-  lexical match was valid, but it was not semantic project retrieval.
-- Consequence: increasing a structural test count can look like deeper behavior
-  assurance without testing the properties that support that claim.
-- Correction: combine focused traversal/case checks, metamorphic mutation controls
-  and generic publisher component fixtures. Reorder or consistently rename a
-  valid model without changing the result; remove its sole outcome path and
-  require the intended failure. Keep bounded cycles and source-only/no-test
-  projects valid. Retain complete canonical receipts and distinguish policy
-  context from project source facts and original runtime outcomes.
-- Acceptance: each corrupted fixture fails for the intended rule, and a repaired
-  valid fixture passes. Node/edge order, consistent renaming and valid layout
-  changes preserve logical results. Publisher components enforce the same graph
-  contract as the pure algorithm. Tests do not promise automatic semantic
-  completeness, classify cases from names or manufacture a runtime acceptance
-  verdict. Any optional 1–100 review axes retain their separate evidence scopes.
-- Evidence: focused behavior tests, publisher/bundle component results, exact
-  XML/TAP/source captures and reviewed negative controls outside source-owned code.
-- State: CLOSED. Delivered quality: 94, from correctness/verification/clarity 95/94/92.
-- Verified result: Pure graph traversal, metamorphic ordering/renaming/cut-path controls, a 12000-node nonrecursive chain and publisher/bundle components passed in the 138-case maintenance cohort. Five new invocations in the existing API component class independently verify transport versus status verdict, original assertion identity, no false PASS event and default delay versus positive-header cap. No HTTP, browser, product/E2E scenario or emulator is used by those component checks. Original Node01 compatibility failures, Node02 prior pass and Node03 stale corpus citation failures retain their own TAP/source snapshots; Node05 is the final 138-case pass.
-- Closure receipts: `${ATF_WORK_ROOT}/runs/atlas-behavior-acceptance-publication-audit.json`, original Java XML/Node TAP and source manifests, and `${ATF_WORK_ROOT}/reviews/20261125-atlas-behavior/new-render-acceptance-04/metrics.json`. Final synchronized readers are recaptured and audited separately against their exact source.
+- Responsabil: testele de întreținere Atlas, politica de recuperare și revizorul domeniului dovezilor.
+- Prioritate: 84, din impact/risc/urgență 85/80/85.
+- Calitate inițială: 66, din corectitudine/verificare/claritate 70/55/70.
+- Observație: verificările de prezență a câmpurilor și identitate nu exercitau accesibilitatea
+  rezultatelor, căutarea inversă a ieșirii către rezultat, continuitatea cazurilor sau invarianța lor la
+  transformări inofensive ale modelului. Mecanismul autentic de rezervă pentru politici, la o interogare fără
+  potrivire lexicală, era valid, dar nu reprezenta recuperare semantică despre proiect.
+- Consecință: creșterea numărului de teste structurale poate părea o asigurare comportamentală
+  mai profundă fără a testa proprietățile care susțin acea afirmație.
+- Corecție: combinarea verificărilor focalizate de traversare/caz, a controalelor metamorfice de mutație
+  și a fixture-urilor generice de componentă a publicatorului. Reordonarea sau redenumirea consecventă a unui
+  model valid fără a schimba rezultatul; eliminarea singurei sale căi către rezultat și
+  cererea eșecului intenționat. Păstrarea validității ciclurilor delimitate și a proiectelor bazate doar pe surse/fără teste.
+  Păstrarea înregistrărilor canonice complete și distingerea contextului de politici
+  de faptele sursă ale proiectului și de rezultatele originale la execuție.
+- Acceptanță: fiecare fixture corupt eșuează pentru regula intenționată, iar un fixture valid
+  reparat trece. Ordinea nodurilor/muchiilor, redenumirea consecventă și schimbările valide de aranjare
+  păstrează rezultatele logice. Componentele publicatorului impun același contract
+  de graf ca algoritmul pur. Testele nu promit completitudine semantică automată,
+  nu clasifică cazurile după nume și nu fabrică un verdict de acceptanță
+  la execuție. Orice axe opționale de revizie 1–100 își păstrează domeniile separate ale dovezilor.
+- Dovezi: teste focalizate de comportament, rezultate de componentă publicator/pachet, capturi exacte
+  XML/TAP/sursă și controale negative revizuite în afara codului deținut de surse.
+- Stare: CLOSED. Calitate livrată: 94, din corectitudine/verificare/claritate 95/94/92.
+- Rezultat verificat: traversarea pură a grafului, controalele metamorfice de reordonare/redenumire/tăiere a căii, un lanț nerecursiv cu 12000 de noduri și componentele publicatorului/pachetului au trecut în grupul de întreținere cu 138 de cazuri. Cinci invocări noi în clasa existentă de componentă API verifică independent transportul față de verdictul de stare, identitatea aserțiunii originale, absența unui eveniment PASS fals și întârzierea implicită față de limita antetului pozitiv. Acele verificări de componentă nu folosesc HTTP, browser, scenarii de produs/E2E sau emulatoare. Eșecurile originale de compatibilitate Node01, trecerea anterioară Node02 și eșecurile Node03 privind citări învechite din corpus își păstrează propriile instantanee TAP/sursă; Node05 este trecerea finală cu 138 de cazuri.
+- Înregistrări de închidere: `${ATF_WORK_ROOT}/runs/atlas-behavior-acceptance-publication-audit.json`, XML-ul Java/TAP-ul Node și manifestele sursă originale și `${ATF_WORK_ROOT}/reviews/20261125-atlas-behavior/new-render-acceptance-04/metrics.json`. Documentele finale sincronizate pentru cititor sunt recapturate și auditate separat față de sursele lor exacte.
 
 <a id="f-011"></a>
-## F-011: UI teardown exception and interaction-tracker cleanup
+<a id="f-011-ui-teardown-exception-and-interaction-tracker-cleanup"></a>
+## F-011: Excepție la închiderea UI și curățarea urmăritorului de interacțiuni
 
-- Owner: Core UI base teardown and thread-owned interaction state.
-- Priority: 82, from impact/risk/urgency 85/80/75.
-- Baseline quality: 66, from correctness/verification/clarity 70/40/85.
-- Observation: source review of
+- Responsabil: închiderea clasei de bază UI din Core și starea interacțiunilor deținută de fir.
+- Prioritate: 82, din impact/risc/urgență 85/80/75.
+- Calitate inițială: 66, din corectitudine/verificare/claritate 70/40/85.
+- Observație: revizia sursei
   [BaseTestUI](../../atf-core/src/main/java/com/ai/ui/core/runtime/BaseTestUI.java)
-  shows that tearDown calls DriverManager.quitEngine before
-  UiInteractionTracker.clear. A quit exception can bypass that later clear call.
+  arată că tearDown apelează DriverManager.quitEngine înainte de
+  UiInteractionTracker.clear. O excepție la închidere poate ocoli acel apel ulterior de ștergere.
   [DriverManager](../../atf-core/src/main/java/com/ai/ui/core/runtime/DriverManager.java)
-  removes its ENGINE reference in finally, which is a separate cleanup contract.
-  The existing
+  își elimină referința ENGINE în finally, ceea ce reprezintă un contract separat de curățare.
   [BaseTestUIContractTest](../../atf-tests/src/test/java/com/ai/atf/core/support/base/BaseTestUIContractTest.java)
-  checks lifecycle hooks/source ownership rather than this failure observation.
-- Proof limit: this is a source-supported control-flow gap. No component execution
-  in this review reproduces retained tracker state or establishes a runtime leak.
-  Passing architecture or Atlas checks cannot promote that missing observation
-  into a verified teardown guarantee.
-- Required next evidence: a bounded pure component oracle that independently
-  observes interaction-tracker state and engine ownership when quit throws,
-  while preserving the original exception. It belongs to the existing UI base
-  lifecycle contract, not a new product/E2E journey or emulator.
-- Current action: retain the gap and exact source/oracle limits in the Atlas.
-  This phase makes no Core Java runtime correction and does not close the item.
-- State: OPEN source-review gap; TODO in the active register. A future bounded
-  component observation and an authorized correction are needed before closure.
+  existent verifică punctele de integrare ale ciclului de viață/proprietatea surselor, nu această observație de eșec.
+- Limita dovezii: aceasta este o lacună a fluxului de control susținută de surse. Nicio execuție de componentă
+  din această revizie nu reproduce starea păstrată a urmăritorului și nu stabilește o scurgere la execuție.
+  Trecerea verificărilor de arhitectură sau Atlas nu poate transforma acea observație lipsă
+  într-o garanție verificată de închidere.
+- Următoarele dovezi necesare: un oracol pur de componentă, delimitat, care observă independent
+  starea urmăritorului de interacțiuni și proprietatea motorului când quit aruncă o excepție,
+  păstrând excepția originală. Aparține contractului existent al ciclului de viață al clasei de bază
+  UI, nu unui nou parcurs de produs/E2E sau unui emulator.
+- Acțiune curentă: păstrarea lacunei și a limitelor exacte ale surselor/oracolului în Atlas.
+  Această fază nu face nicio corecție Java de execuție în Core și nu închide elementul.
+- Stare: lacună OPEN din revizia surselor; TODO în registrul activ. O observație viitoare de
+  componentă delimitată și o corecție autorizată sunt necesare înainte de închidere.
 
-## Verification and closure
+<a id="verification-and-closure"></a>
+## Verificare și închidere
 
-Use the project root and keep generated results in the selected artifact area:
+Folosiți rădăcina proiectului și păstrați rezultatele generate în zona de artefacte selectată:
 
 ```powershell
 node --test tools/verify-atlas.test.mjs tools/atlas-report.test.mjs tools/atlas-knowledge.test.mjs tools/atlas-bundle.test.mjs tools/atlas-execution.test.mjs tools/atlas-understanding.test.mjs tools/atlas-behavior.test.mjs
 ```
 
-Follow [Development](../Development.md) for isolated existing Java governance,
-compiled documentation examples and README-edition parity. Preserve original
-failed observations and successful reruns. Close each item only after its stated
-acceptance passes, record exact commands/source/evidence and delivered quality
-with component inputs, then add its concise verified-register receipt. Keep the
-baseline judgments above. A copied artifact or regenerated catalog is not a new
-test execution, and success in one proof scope does not close G-014.
+Urmați [Dezvoltarea](../Development.md) pentru guvernanța Java existentă izolată,
+exemplele compilate din documentație și paritatea edițiilor README. Păstrați observațiile originale
+de eșec și rerulările reușite. Închideți fiecare element numai după trecerea acceptanței sale
+declarate, înregistrați comenzile/sursele/dovezile exacte și calitatea livrată
+cu intrările componentelor, apoi adăugați înregistrarea sa concisă în registrul verificat. Păstrați
+judecățile inițiale de mai sus. Un artefact copiat sau un catalog regenerat nu este o nouă
+execuție de test, iar succesul într-un domeniu de dovadă nu închide G-014.
 
-## Scoped review grades and remaining gaps
+<a id="scoped-review-grades-and-remaining-gaps"></a>
+## Note de revizie delimitate și lacune rămase
 
-The same six axes per group separate the framework source from Atlas/RAG quality.
-Scores are authored review judgments, not test coverage, pass rates or presumed
-human approval. Each axis combines correctness 40%, verification 30% and clarity 30%;
-full claim references, weights and limitations are embedded in each reader.
+Aceleași șase axe per grup separă sursele framework-ului de calitatea Atlas/RAG.
+Notele sunt judecăți de revizie redactate, nu acoperire de teste, rate de trecere sau aprobare
+umană presupusă. Fiecare axă combină corectitudinea 40%, verificarea 30% și claritatea 30%;
+referințele complete la afirmații, ponderile și limitările sunt încorporate în fiecare document pentru cititor.
 
-### Project source qualities
+<a id="project-source-qualities"></a>
+### Calitățile surselor proiectului
 
-| Axis | AI (1-100) | J1 (1-100) |
+| Axă | AI (1-100) | J1 (1-100) |
 |---|---:|---:|
-| Architecture and ownership | 92 | 92 |
-| Governance precision and repair guidance | 92 | 88 |
-| Configuration and failure discipline | 85 | 87 |
-| Existing oracle quality and stability evidence | 89 | 76 |
-| Documentation contracts and clarity | 90 | 91 |
-| Maintainability and portability | 89 | 89 |
-| Weighted group | 90 | 87 |
+| Arhitectură și responsabilitate | 92 | 92 |
+| Precizia guvernanței și îndrumarea pentru remediere | 92 | 88 |
+| Disciplina configurației și a eșecurilor | 85 | 87 |
+| Calitatea oracolelor existente și dovezile de stabilitate | 89 | 76 |
+| Contractele și claritatea documentației | 90 | 91 |
+| Mentenabilitate și portabilitate | 89 | 89 |
+| Grup ponderat | 90 | 87 |
 
-### Atlas and RAG qualities
+<a id="atlas-and-rag-qualities"></a>
+### Calitățile Atlas și RAG
 
-| Axis | AI (1-100) | J1 (1-100) |
+| Axă | AI (1-100) | J1 (1-100) |
 |---|---:|---:|
-| Declared coverage and project depth | 87 | 85 |
-| Behavior and negative-outcome explanation | 89 | 89 |
-| Evidence honesty and provenance | 95 | 93 |
-| Generation governance and repair diagnostics | 94 | 92 |
-| Retrieval and source-grounded authoring discipline | 89 | 89 |
-| Offline delivery and reader structure | 91 | 91 |
-| Weighted group | 91 | 90 |
+| Acoperire declarată și profunzimea proiectului | 87 | 85 |
+| Explicarea comportamentului și a rezultatelor negative | 89 | 89 |
+| Onestitatea dovezilor și proveniența | 95 | 93 |
+| Guvernanța generării și diagnosticele de remediere | 94 | 92 |
+| Disciplina recuperării și a redactării ancorate în surse | 89 | 89 |
+| Livrare offline și structura pentru cititor | 91 | 91 |
+| Grup ponderat | 91 | 90 |
 
-G-014 remains TODO for J1-owned change controls. F-011 remains a source-only
-UI cleanup gap: no component proof establishes a tracker leak or a completed fix.
-Representative case witnesses expose declared-edge gaps and cannot establish
-exhaustive branch coverage, prose truth or semantic RAG recall. The policy corpus
-contains 19 records, 16 mandatory; exact cited fragments and complete canonical
-receipts are governed independently of target-source evidence.
+G-014 rămâne TODO pentru controalele schimbărilor deținute de J1. F-011 rămâne o lacună
+de curățare UI susținută doar de surse: nicio dovadă de componentă nu stabilește o scurgere a urmăritorului sau o remediere finalizată.
+Cazurile martor reprezentative expun lacunele muchiilor declarate și nu pot stabili
+acoperire exhaustivă a ramurilor, adevărul prozei sau capacitatea semantică de recuperare RAG. Corpusul de politici
+conține 19 înregistrări, 16 obligatorii; fragmentele citate exacte și înregistrările canonice
+complete sunt guvernate independent de dovezile surselor țintă.
 
-The Node03 citation failure correctly detected an obsolete verbatim requirement
-after the owning assessment contract was clarified from presumed human review to
-authored review. Aligning the exact knowledge quote repaired the inconsistency;
-no citation check was weakened. Node01 caught a historical/source-only input
-compatibility regression, repaired while preserving mandatory V3 case validation.
+Eșecul de citare Node03 a detectat corect o cerință literală învechită
+după ce contractul responsabil de evaluare a fost clarificat de la revizie umană presupusă la
+revizie redactată. Alinierea citatului exact al cunoștințelor a reparat inconsistența;
+nicio verificare de citare nu a fost slăbită. Node01 a detectat o regresie de compatibilitate a intrărilor istorice/bazate doar pe surse,
+reparată cu păstrarea validării obligatorii V3 a cazurilor.
 
-The first desktop acceptance retained two findings in the AI polling graph, at
-both widths: bypass arrows crossed two failure nodes and a label. Moving those
-two nodes to the free right lane repaired presentation only. Exact case paths,
-claims, edge directions, assertions and source limits were unchanged; the failed
-HTML/metrics and the accepted new capture are retained separately.
+Prima acceptanță desktop a păstrat două constatări în graful de interogare repetată AI, la
+ambele lățimi: săgețile de ocolire traversau două noduri de eșec și o etichetă. Mutarea celor
+două noduri pe culoarul liber din dreapta a reparat numai prezentarea. Căile exacte ale cazurilor,
+afirmațiile, direcțiile muchiilor, aserțiunile și limitele surselor au rămas neschimbate; HTML-ul/metricele
+eșuate și noua captură acceptată sunt păstrate separat.
 
-## Presentation checks for a new project capture
+<a id="presentation-checks-for-a-new-project-capture"></a>
+## Verificări de prezentare pentru o nouă captură de proiect
 
-Use actual native desktop DOM bounds for node collisions, clipped labels, edges
-through unrelated nodes, label-to-node collisions and edge-label pairs. Require
-an explicit empty `edgeLabelPairOverlaps` array for every observed SVG. A missing
-array is NOT_ASSESSED and requires the current document component gate.
+Folosiți limitele DOM native reale pe desktop pentru coliziunile între noduri, etichetele tăiate, muchiile
+prin noduri fără legătură, coliziunile etichetă-nod și perechile de etichete ale muchiilor. Cereți
+un tablou explicit gol `edgeLabelPairOverlaps` pentru fiecare SVG observat. Un tablou lipsă
+este NOT_ASSESSED și necesită controlul curent de componentă a documentului.
 
-Keep a known overlapping-label control, its repaired non-overlapping control
-and a touching-boundary control separate from the delivered report. Touching
-bounds have zero intersection area; they are accepted. For a real collision,
-shorten the precise condition label or move the outcome to a free lane, then
-recheck the complete graph inventory and unchanged source/case bindings.
-Preserve original failures, the fresh HTML hashes and both desktop widths.
+Păstrați un control cunoscut cu etichete suprapuse, controlul său reparat fără suprapunere
+și un control cu limite care se ating separat de raportul livrat. Limitele care se ating
+au aria de intersecție zero; sunt acceptate. Pentru o coliziune reală,
+scurtați eticheta precisă a condiției sau mutați rezultatul pe un culoar liber, apoi
+reverificați inventarul complet de grafuri și legăturile sursă/caz neschimbate.
+Păstrați eșecurile originale, hash-urile HTML noi și ambele lățimi desktop.
 
-Manual inspection of the J1 listener graph also found a label-pair collision
-that the earlier label-to-node check could not detect. Shortening the two
-condition labels preserved their meaning. The new document component gate
-checks label pairs with native font metrics and independent negative, repaired
-and touching controls. The earlier geometry pass retains its narrower scope.
+Inspecția manuală a grafului ascultătorului J1 a găsit și o coliziune între perechi de etichete
+pe care verificarea anterioară etichetă-nod nu o putea detecta. Scurtarea celor două
+etichete de condiție le-a păstrat sensul. Noul control de componentă a documentului
+verifică perechile de etichete cu metrici native de font și controale independente negative, reparate
+și de atingere. Verificarea geometrică anterioară își păstrează domeniul mai îngust.
 
-The canonical Git source audit twice exceeded its original 10-second subprocess
-deadline on this host. The isolated probe observed normal main calls around
-7.5 seconds and a J1 HEAD timeout at 10.7 seconds. Increasing only the two
-existing Git deadlines to 60 seconds preserves HEAD, inventory and byte checks.
-The final Node05 cohort rechecks the changed verifier; Node04 remains a prior
-passing snapshot. Java/POM/resources remain byte-identical to the accepted
-232-case selections. No fake Git metadata, source emulator or product service
-substitutes for canonical source verification.
+Auditul canonic al surselor Git a depășit de două ori termenul-limită original de 10 secunde al subprocesului
+pe această gazdă. Sonda izolată a observat apeluri main normale în jur de
+7.5 secunde și o expirare J1 HEAD la 10.7 secunde. Mărirea numai a celor două
+termene-limită Git existente la 60 de secunde păstrează verificările HEAD, ale inventarului și ale octeților.
+Grupul final Node05 reverifică verificatorul schimbat; Node04 rămâne un instantaneu
+trecut anterior. Java/POM/resursele rămân identice la nivel de octeți cu selecțiile acceptate
+cu 232 de cazuri. Nicio metadată Git falsă, emulator de surse sau serviciu de produs
+nu înlocuiește verificarea canonică a surselor.

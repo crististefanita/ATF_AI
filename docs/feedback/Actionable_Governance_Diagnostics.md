@@ -1,133 +1,145 @@
-# Actionable governance diagnostics and exact negative controls
+<a id="actionable-governance-diagnostics-and-exact-negative-controls"></a>
+# Diagnostice acționabile de guvernanță și controale negative exacte
 
-Baseline: `3edac5a1d502284469a45ef1ce3fbff0ba496a2e`. Scope: existing test
-utilities, governance fixtures and documentation. No runtime feature, new Java
-file, E2E journey or emulator is requested. The main_RO edition retains the same
-code and non-README documents.
+Bază: `3edac5a1d502284469a45ef1ce3fbff0ba496a2e`. Domeniu: utilitare de test
+existente, cazuri de guvernanță și documentație. Nu se solicită funcționalitate
+runtime, fișier Java nou, scenariu E2E sau emulator. Ediția main_RO păstrează
+același cod și aceleași documente non-README.
 
-## G-008 — constructive governance failures
+<a id="g-008--constructive-governance-failures"></a>
+## G-008 — eșecuri constructive de guvernanță
 
-- Owner: GovernanceFiles and the existing architecture/documentation/source guards.
-- Priority: 83, from impact/risk/urgency 90/75/75.
-- Baseline quality: 62, from correctness/verification/clarity 75/45/60.
-- Observation: the shared formatter only joins raw strings. A failing check does
-  not consistently identify why the rule matters, its owning contract, a useful
-  correction and a bounded recheck selection. Raw findings must remain intact.
-- Acceptance: existing failures carry observed evidence, failure meaning, repair
-  hint, canonical owner and maintained recheck command. Preserve input order,
-  duplicate findings, file/suite scope and original line numbers; do not invent
-  locations or infer a root cause for an unknown rule. Document the correction
-  workflow and protect the formatting with positive and negative controls.
-- State: VERIFIED on 2026-11-25. Owned diagnostics preserve original evidence,
-  order, duplicates and producer scope. Real import/link/language fixtures reject
-  bad input and accept a repair; all known owner routes and maintained recheck
-  classes resolve. Unknown findings retain explicit uncertainty.
-- Delivered quality: 95, from correctness/verification/clarity 95/95/95.
+- Responsabil: GovernanceFiles și controalele existente de arhitectură/documentație/sursă.
+- Prioritate: 83, din impact/risc/urgență 90/75/75.
+- Calitate inițială: 62, din corectitudine/verificare/claritate 75/45/60.
+- Observație: formatatorul comun doar unește șiruri brute. O verificare eșuată
+  nu identifică în mod consecvent motivul regulii, contractul responsabil,
+  o corecție utilă și o selecție limitată de reverificare. Constatările brute trebuie păstrate intacte.
+- Acceptanță: eșecurile existente includ dovada observată, sensul eșecului,
+  indiciul de remediere, responsabilul canonic și comanda întreținută de reverificare.
+  Păstrează ordinea intrării, constatările duplicate, domeniul fișierului/suitei
+  și numerele originale ale liniilor; nu inventa locații și nu deduce cauza
+  unei reguli necunoscute. Documentează fluxul corecției și protejează formatarea prin controale pozitive și negative.
+- Stare: VERIFIED la 2026-11-25. Diagnosticele cu responsabil păstrează dovezile
+  originale, ordinea, duplicatele și domeniul producătorului. Cazurile reale
+  de import/legături/limbă resping intrarea incorectă și acceptă repararea;
+  toate rutele responsabile cunoscute și clasele întreținute de reverificare
+  se rezolvă. Constatările necunoscute păstrează incertitudinea explicită.
+- Calitate livrată: 95, din corectitudine/verificare/claritate 95/95/95.
 
-## T-006 — exact rule identity in negative governance fixtures
+<a id="t-006--exact-rule-identity-in-negative-governance-fixtures"></a>
+## T-006 — identitatea exactă a regulii în cazurile negative de guvernanță
 
-- Owner: the existing assertFinding helpers and their shared finding matcher.
-- Priority: 86, from impact/risk/urgency 90/85/75.
-- Baseline quality: 68, from correctness/verification/clarity 75/50/75.
-- Observation: substring matching can mistake DOC-EDITION-PARITY for DOC-EDITION,
-  or accept a code mentioned only in the observed payload. A negative fixture
-  could pass for the wrong rule even though the intended guard disappeared.
-- Acceptance: match the actual emitted rule token and retain requested location
-  or detail fragments. Reject prefix collisions, payload mentions and formatter
-  repair text as evidence. Deliberate failing assertions must expose the expected
-  rule and the actual finding; repaired fixture input must pass its own guard.
-- State: VERIFIED on 2026-11-25. Both existing assertion helpers match the emitted
-  rule token and requested evidence fragment. Independent prefix/payload/location
-  controls reject the wrong finding, including an actual failing assertion.
-  Existing negative fixtures also require owned guidance for emitted findings.
-- Delivered quality: 95, from correctness/verification/clarity 95/96/95.
+- Responsabil: funcțiile assertFinding existente și mecanismul comun de potrivire a constatărilor.
+- Prioritate: 86, din impact/risc/urgență 90/85/75.
+- Calitate inițială: 68, din corectitudine/verificare/claritate 75/50/75.
+- Observație: potrivirea pe subșir poate confunda DOC-EDITION-PARITY cu
+  DOC-EDITION sau poate accepta un cod menționat numai în conținutul observat.
+  Un caz negativ putea trece pentru regula greșită, deși controlul intenționat dispăruse.
+- Acceptanță: potrivește tokenul real al regulii emise și păstrează fragmentele
+  cerute de locație sau detaliu. Respinge coliziunile de prefix, mențiunile
+  din conținut și textul de remediere al formatatorului drept dovezi.
+  Aserțiunile cu eșec intenționat trebuie să expună regula așteptată și constatarea
+  reală; intrarea reparată a cazului trebuie să treacă propriul control.
+- Stare: VERIFIED la 2026-11-25. Ambele funcții existente de aserțiune potrivesc
+  tokenul regulii emise și fragmentul de dovadă cerut. Controalele independente
+  de prefix/conținut/locație resping constatarea greșită, inclusiv printr-o
+  aserțiune realmente eșuată. Cazurile negative existente cer și îndrumare responsabilă pentru constatările emise.
+- Calitate livrată: 95, din corectitudine/verificare/claritate 95/96/95.
 
-## Reference scope
+<a id="reference-scope"></a>
+## Domeniul referinței
 
-ATF_J0 at `96f50e5f277771ca9dfac3b7c959b47188afd0b0` separates finding,
-rule and fix in DocumentationGovernanceSupport. Its pending reporting-feedback
-changes are unrelated and remain untouched. J0 is inspected, not executed.
-The immutable main_mcp archive at `70a7279c2a9560d39e6bd2554cd2f96a88626692`
-demonstrates failure meaning/repair hints and explicit negative root-cause
-controls. Adopt those diagnostic principles in current test utilities, without
-copying its YAML catalogs, skill packages, runtime, report generation or numeric
-inventory thresholds. Reference files and hashes remain in external evidence.
+ATF_J0 la `96f50e5f277771ca9dfac3b7c959b47188afd0b0` separă constatarea,
+regula și remedierea în DocumentationGovernanceSupport. Schimbările sale în curs
+în feedback-ul raportării sunt independente și rămân neatinse. J0 este inspectat,
+nu executat. Arhiva imuabilă main_mcp la
+`70a7279c2a9560d39e6bd2554cd2f96a88626692` demonstrează sensul eșecului,
+indicii de remediere și controale negative explicite ale cauzei. Adoptă aceste
+principii de diagnostic în utilitarele de test curente, fără a copia cataloagele
+YAML, pachetele de skills, runtime-ul, generarea rapoartelor sau pragurile numerice
+de inventar. Fișierele de referință și hash-urile rămân în dovezile externe.
 
-## Focused observations
+<a id="focused-observations"></a>
+## Observații focalizate
 
-The first prepared-source probe rejected the new import example because its
-Java fixture omitted a named package. The actual finding was PACKAGE, so the
-exact IMPORT-WILDCARD assertion correctly failed. Correct the fixture package
-and its path; keep the package rule and import rule intact. The corrected probe
-passed 17 direct invocations, including real import/link/language repairs and
-the canonical diagnostic-owner routes. These are not TestNG reactor totals.
-Both original focused logs and source manifests are retained under the external
-work root as modules-diagnostics-focused-01 and modules-diagnostics-focused-02.
-Both complete edition selections subsequently passed; their scope is recorded below.
+Prima probă din sursa pregătită a respins noul exemplu de import, deoarece
+cazul său Java omitea un pachet numit. Constatarea reală era PACKAGE, astfel
+încât aserțiunea exactă IMPORT-WILDCARD a eșuat corect. Corectează pachetul
+cazului și calea sa; păstrează intacte regula de pachet și cea de import.
+Proba corectată a trecut 17 invocări directe, inclusiv reparări reale de
+import/legături/limbă și rutele canonice ale responsabililor de diagnostic.
+Acestea nu sunt totaluri TestNG ale reactorului. Ambele jurnale focalizate originale
+și manifestele sursei sunt păstrate sub rădăcina externă de lucru ca
+modules-diagnostics-focused-01 și modules-diagnostics-focused-02.
+Ulterior, ambele selecții complete de ediție au trecut; domeniul lor este înregistrat mai jos.
 
-The first complete selections each executed 550 cases: 549 passed and one
-existing architecture fixture failed because its expectation was only the phrase
-static ownership inventory. The new assertion contract correctly rejected that
-unclassified expectation. Bind the fixture to DEPENDENCY-COORDINATE and require
-the actual unresolved artifact in the same observed finding. Preserve both
-unsuccessful complete runs; no runtime rule or expected module graph changes.
+Primele selecții complete au executat fiecare 550 de cazuri: 549 trecute și
+un caz existent de arhitectură eșuat, deoarece așteptarea sa era doar expresia
+static ownership inventory. Noul contract al aserțiunii a respins corect acea
+așteptare neclasificată. Leagă cazul de DEPENDENCY-COORDINATE și cere artefactul
+real nerezolvat în aceeași constatare observată. Păstrează ambele rulări complete
+nereușite; nu se schimbă vreo regulă runtime sau graful așteptat al modulelor.
 
-## Current comparison and ratings
+<a id="current-comparison-and-ratings"></a>
+## Comparația și notele curente
 
-Use the same engineering rubric and weights as the previous comparison. The
-scores are review assessments, not coverage, uptime or a runtime benchmark.
-J0 remains source-review only at the captured revision; its pending feedback
-changes were preserved and its reactor was not run.
+Folosește aceeași grilă inginerească și aceleași ponderi ca în comparația
+anterioară. Notele sunt evaluări de revizuire, nu acoperire, disponibilitate
+sau benchmark runtime. J0 rămâne revizuit doar la nivel de sursă la revizia
+capturată; schimbările sale în curs au fost păstrate, iar reactorul său nu a fost rulat.
 
-| Axis | Weight | ATF_AI previous | ATF_AI current | ATF_J0 source review |
+| Axă | Pondere | ATF_AI anterior | ATF_AI curent | ATF_J0 revizuire sursă |
 |---|---:|---:|---:|---:|
-| Architecture and boundaries | 20 | 90 | 90 | 92 |
-| Executable governance | 30 | 94 | 95 | 94 |
-| Existing-test quality | 25 | 91 | 92 | 88 |
-| Documentation and navigation | 15 | 94 | 95 | 89 |
-| Feedback ownership and lifecycle | 10 | 93 | 93 | 85 |
-| Weighted overall | 100 | **92** | **93** | **90** |
+| Arhitectură și limite | 20 | 90 | 90 | 92 |
+| Guvernanță executabilă | 30 | 94 | 95 | 94 |
+| Calitatea testelor existente | 25 | 91 | 92 | 88 |
+| Documentație și navigare | 15 | 94 | 95 | 89 |
+| Responsabilitatea și ciclul feedback-ului | 10 | 93 | 93 | 85 |
+| Total ponderat | 100 | **92** | **93** | **90** |
 
-Unrounded totals are 92.35, 93.05 and 90.45. Owned diagnostics and resolvable
-guidance improve executable governance; exact negative controls improve the
-existing test oracle; the new failure guide and diagram improve navigation and
-understanding. Module/test counts receive no points. The small score difference
-does not prove runtime superiority over an unexecuted reference project.
+Totalurile nerotunjite sunt 92.35, 93.05 și 90.45. Diagnosticele cu responsabil
+și îndrumarea rezolvabilă îmbunătățesc guvernanța executabilă; controalele
+negative exacte îmbunătățesc oracolul testului existent; noul ghid al eșecurilor
+și diagrama îmbunătățesc navigarea și înțelegerea. Numerele de module/teste
+nu primesc puncte. Diferența mică de note nu demonstrează superioritate runtime față de un proiect de referință neexecutat.
 
-## Executed evidence and boundaries
+<a id="executed-evidence-and-boundaries"></a>
+## Dovezi executate și limite
 
-| Selection | Source checkpoint | Outcome | Evidence name |
+| Selecție | Revizie sursă | Rezultat | Numele dovezii |
 |---|---|---|---|
-| First focused direct-method probe | Prepared source from 3edac5a | Failed: new import fixture had no named package; expected IMPORT-WILDCARD was correctly rejected | modules-diagnostics-focused-01 |
-| Corrected focused probe | Prepared source from the same baseline | 17 direct invocations passed; not a TestNG suite total | modules-diagnostics-focused-02 |
-| Complete English local selection with explicit peer | 5324975 | 550 passed; 211 governance and 24 framework API cases included | modules-diagnostics-main-local-02 |
-| Complete Romanian local selection with explicit peer | dd3f5b7 | 550 passed; same governance/API scope | modules-diagnostics-ro-local-02 |
+| Prima probă focalizată prin metode directe | Sursă pregătită din 3edac5a | Eșuată: noul caz de import nu avea pachet numit; IMPORT-WILDCARD așteptat a fost respins corect | modules-diagnostics-focused-01 |
+| Proba focalizată corectată | Sursă pregătită din aceeași bază | 17 invocări directe trecute; nu un total de suită TestNG | modules-diagnostics-focused-02 |
+| Selecția locală completă engleză cu pereche explicită | 5324975 | 550 trecute; incluse 211 cazuri de guvernanță și 24 API ale frameworkului | modules-diagnostics-main-local-02 |
+| Selecția locală completă română cu pereche explicită | dd3f5b7 | 550 trecute; același domeniu de guvernanță/API | modules-diagnostics-ro-local-02 |
 
-Both reactors finished with zero failures, errors or skips. Counts overlap across
-editions. Runtime Java, POMs, library-native tests, public E2E sources and the
-essential HTML/Markdown architecture pair are unchanged. No Java file, E2E
-journey, emulator, Maven module or restored historical runtime was introduced.
-Browser/aggregate profiles were not rerun for these test-support/documentation
-changes; no new browser or external application acceptance is claimed.
+Ambele reactoare s-au încheiat fără eșecuri, erori sau omiteri. Numerele se
+suprapun între ediții. Java runtime, POM-urile, testele native ale bibliotecilor,
+sursele E2E publice și perechea esențială HTML/Markdown de arhitectură sunt
+neschimbate. Nu s-au introdus fișiere Java, scenarii E2E, emulatoare, module
+Maven sau runtime istoric restaurat. Profilurile de browser/agregare nu au
+fost rerulate pentru aceste schimbări de suport de test/documentație;
+nu se pretinde acceptanță nouă de browser sau aplicație externă.
 
-The accepted source class files remain unchanged by the final feedback receipt.
-A fresh paired source/documentation check validates those receipt-only edits,
-including compiler-checked consumer examples and full edition identity; it is
-not another execution of every fixture case. All 21 README paths, hierarchy,
-commands, code blocks, links, incoming anchors and topology remain aligned.
-Only README prose and the declared edition property differ between branches.
+Fișierele de clase ale sursei acceptate rămân neschimbate de dovada finală de
+feedback. O verificare nouă sursă/documentație în pereche validează acele editări
+exclusiv de dovadă, inclusiv exemplele consumatorilor verificate de compilator
+și identitatea completă a edițiilor; nu este o nouă execuție a fiecărui caz.
+Toate cele 21 de căi README, ierarhia, comenzile, blocurile de cod, legăturile,
+ancorele de intrare și topologia rămân aliniate. Între ramuri diferă numai proza README și proprietatea declarată a ediției.
 
-Desktop Chromium rendered 12 document/edition/width records at 1440/520 px,
-without emulation or page overflow; the minimum measured label height was 24 px. Root README architecture
-and existing Playwright/Selenium examples remain unchanged. The first preview
-attempt timed out while loading the old rendered template; that unsuccessful
-log remains preserved. The accepted preview uses pinned local resources and an
-empty initial page, with external requests blocked.
+Chromium desktop a randat 12 înregistrări document/ediție/lățime la 1440/520 px,
+fără emulare sau depășire a paginii; înălțimea minimă măsurată a etichetelor a
+fost 24 px. Arhitectura README-ului rădăcină și exemplele existente
+Playwright/Selenium rămân neschimbate. Prima previzualizare a expirat încărcând
+șablonul vechi randat; jurnalul nereușit rămâne păstrat. Previzualizarea
+acceptată folosește resurse locale fixate și o pagină inițială goală, cu cererile externe blocate.
 
-Review references, original focused failures, source hashes, translated README
-reviews and diagram evidence belong under
-${ATF_WORK_ROOT}/reviews/20261125-diagnostics. Exact source snapshots,
-commands and logs belong under the external validation/runs directories. Current
-report bundles and final verification receipts are archived by purpose under
-${ATF_WORK_ROOT}/artifacts/reports/runs. The original failed probe is preserved;
-collection is not an execution verdict. No authenticated GoRest write is claimed.
+Referințele revizuirii, eșecurile focalizate originale, hash-urile sursei,
+revizuirile README-urilor traduse și dovezile diagramelor aparțin
+${ATF_WORK_ROOT}/reviews/20261125-diagnostics. Instantaneele exacte ale sursei,
+comenzile și jurnalele aparțin directoarelor externe validation/runs.
+Pachetele de rapoarte curente și dovezile finale de verificare sunt arhivate
+după scop sub ${ATF_WORK_ROOT}/artifacts/reports/runs. Proba originală eșuată
+este păstrată; colectarea nu este verdict de execuție. Nu se pretinde scriere GoRest autentificată.

@@ -19,7 +19,7 @@ documentație și guvernanță; nu este un al șaselea modul Maven.
 |---|---|
 | Cum se revizuiesc codul, testele existente și documentația? | [Politica pentru cod și documentație](Code_And_Documentation_Policy.md) |
 | Cum înțeleg un eșec și verific remedierea lui? | [Diagnosticarea eșecurilor și controale negative exacte](Failure_Diagnostics.md) |
-| Cum se păstrează echivalența README-urilor în engleză și română? | [Edițiile README](Readme_Editions.md) |
+| Cum se păstrează echivalența documentelor în engleză și română? | [Edițiile documentației](Readme_Editions.md) |
 | Ce modul gestionează contractul modificat? | [Arhitectură](../Architecture.md) și ghidul de modul indicat |
 | Ce teste existente îl protejează? | [Harta de acoperire Atlas](../../atf-atlas/Coverage_Map.md) și [Testare](../Testing.md) |
 | Ce rămâne nerezolvat și ce ar închide constatarea? | [Feedback](../feedback/README.md) |
@@ -48,6 +48,8 @@ rămase și dovezile de închidere la limitele declarate.
 |---|---|---|
 | Arhitectură | [Regulile de arhitectură](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureRules.java) și [fixture-urile existente](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureGovernanceTest.java) | Limitele modulelor și furnizorilor, vizibilitatea surselor și regulile susținute de responsabilitate a execuției |
 | Documentație | [Regulile Markdown](../../atf-tests/src/test/java/com/ai/atf/governance/MarkdownDocumentationRules.java) și [fixture-urile existente](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationGovernanceTest.java) | Legături, fapte declarate despre construcție și valori implicite, ciclu de viață, arhitectură în ambele formate și exemple compilabile |
+| Lizibilitate | [Reguli pentru cititor și cazuri de componentă](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationReadabilityRulesTest.java) | Decizii în paragrafele strategiei, proză de referință limitată și rețete Maven pliate |
+| Revizia edițiilor | [Controale de traducere](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationTranslationRules.java) | Semnale românești acceptate, blocuri englezești neschimbate și actualitatea amprentelor reviziei complete |
 | Inspecția surselor | [Fixture-urile scanerului Java](../../atf-tests/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java) | Regiuni lexicale susținute, politica markerilor cunoscuți pentru engleză și excepțiile exacte pentru date |
 | Comportament | Testele indicate de [harta de acoperire](../../atf-atlas/Coverage_Map.md) | Rezultatele observate explicite și limitele fixture-urilor |
 

@@ -1,0 +1,123 @@
+<a id="code-governance-readable-testing-strategy-and-complete-romanian-edition"></a>
+# Guvernanța codului, strategie de testare lizibilă și ediție română completă
+
+Baza reviziei: main `3663419b34ec6adc96120b419738b77afe145e9e` și main_RO
+`aebbbcfaaf32f91b87e86fdf7d7923e040202728`. J0 este inspectat numai în citire la
+`96f50e5f277771ca9dfac3b7c959b47188afd0b0`; cele două modificări locale de feedback
+rămân intacte. Revizia întărește guvernanța surselor, testele locale existente și
+documentația. Nu adaugă fluxuri de produs, funcționalități runtime sau emulatoare.
+
+<a id="g-017"></a>
+<a id="g-017-existing-regressions-must-remain-executable-and-bounded"></a>
+## G-017: Regresiile existente trebuie să rămână executabile și limitate
+
+- Responsabil: validatorul AST existent al suitelor și ConsoleSignatureContractTest.
+- Prioritate: 84; impact/risc/urgență 90/80/75.
+- Calitatea inițială: 76; corectitudine/verificare/claritate 80/65/80.
+- Reproducere: o adnotare menținută schimbată în `@Test(enabled=false)`
+  rămâne numărată ca executabilă de inventarul vechi bazat pe tipul adnotării.
+  Selecția XML singură nu protejează acest contract al sursei.
+- Defect independent de stabilitate: un contract de consolă selectat apelează
+  `worker.join()` fără limită. Un fir de jurnalizare blocat putea bloca poarta locală.
+- Corecție: inspectează atributele adnotării TestNG prin AST-ul compilatorului existent.
+  Atributul enabled omis și literalul true sunt acceptate; indirectarea eșuează explicit,
+  fără a pretinde că parsarea rezolvă constante Java externe.
+- Fixture-urile imbricate/manuale existente își păstrează limitele revizuite. Comentariile,
+  șirurile, adnotările fără legătură și tipurile Test locale sunt controale pozitive.
+- Limitează așteptarea și curățarea firului existent, propagă eșecul original
+  și păstrează resetarea destinației de test în finally.
+- Stare: IN PROGRESS; închiderea necesită rezultatele locale native de mai jos.
+
+<a id="d-010"></a>
+<a id="d-010-strategy-first-complete-translation-and-source-grounded-review"></a>
+## D-010: Strategie întâi, traducere completă și revizie bazată pe surse
+
+- Responsabil: regulile documentației, testele de componentă pentru lizibilitate și politica edițiilor.
+- Prioritate: 88; impact/risc/urgență 90/85/85.
+- Calitatea inițială: 68; corectitudine/verificare/claritate 65/60/80.
+- Defect observat de utilizator: main_RO/docs/Testing.md este în engleză. Politica veche
+  permite deliberat traducerea numai pentru README-uri; rezultatul ei verde de paritate
+  certifică astfel o ediție română incompletă a documentației.
+- Semnal inițial executat: noul control local al limbii identifică exact acea cale
+  Testing și alte 26 de documente englezești înaintea traducerii. Dovada inițială
+  este păstrată extern; reprezintă un defect reprodus, nu o rulare finală eșuată.
+- Strategia testării: păstrează selecția, ariile dovezilor API, identitatea browserului,
+  observațiile independente și limitele dovezilor în Testing.md. Mută cele zece
+  blocuri originale de execuție neschimbate în Testing_Commands.md, în secțiuni
+  pliate cu rezumate utile. Ancorele de intrare existente se păstrează.
+- Lizibilitate: adoptă principiul J0 al deciziilor clare, distingând explicit rolurile.
+  Strategia folosește limita de 3 propoziții/100 de cuvinte pe paragraf logic;
+  referințele operaționale detaliate folosesc 100 de cuvinte și limita de 45 pe propoziție.
+  Acestea declanșează revizia; nu sunt note, cote de diagrame sau lungimi de rând.
+- Toate ghidurile operaționale primesc controalele de proză acceptate; înregistrările
+  istorice își păstrează forma dovezilor. Blocurile Maven executabile rămân supuse
+  guvernanței plierii în ambele zone. Comenzile inline de diagnostic rămân vizibile.
+- Traducere: fiecare document Markdown menținut și proiecția HTML Living primesc
+  un corespondent românesc la calea identică, inclusiv feedback-ul istoric.
+  Codul, comenzile, datele de cunoștințe, identificatorii, stările și literalii
+  canonici citați ai politicilor rămân exacți. Rapoartele generate originale își păstrează limba.
+- Controalele deterministe identifică markerii românești absenți, blocurile englezești
+  semnificative neschimbate, abaterile structurale/tehnice și amprentele de revizie expirate.
+  Nu pot certifica fiecare propoziție tradusă sau detecta orice inversare de sens.
+- Revizie asistată de RAG: păstrează dovada recuperării deterministe existente a politicilor,
+  adaugă responsabilii reali ai edițiilor/politicilor și citește fiecare pereche EN/RO completă.
+  Verifică condițiile, negațiile, cronologia, actorii, limitele dovezilor și legendele.
+  XML-ul comun leagă fiecare document de ambele amprente normalizate și declară
+  revizorul/dimensiunile. Actualizarea amprentelor fără lectură nu înseamnă acceptanță.
+- Limita parserului: paritatea structurală cere încă etichete de legătură pe un
+  singur rând și poziționare canonică în listele reașezate. Două corecții ale
+  traducerilor păstrează forma acceptată; nu se pretinde un parser Markdown complet.
+- Stare: IN PROGRESS; închiderea necesită revizie semantică completă, guvernanță
+  nativă explicită între ediții și inspecția diagramelor/proiecțiilor modificate.
+
+<a id="g-016"></a>
+<a id="g-016-review-removal-of-an-existing-regression-method"></a>
+## G-016: Revizuiește eliminarea unei metode de regresie existente
+
+- Responsabil: politica de mentenanță a testelor și modulul testului modificat.
+- Prioritate: 75; impact/risc/urgență 80/70/70.
+- Calitate: 69; corectitudine/verificare/claritate 75/50/80.
+- Observație: eliminarea unei metode dintr-o clasă încă selectată poate lăsa
+  inventarul claselor neschimbat. Iterația nu introduce o poartă Git pentru
+  schimbarea testelor și nu pretinde protecția eliminării metodelor.
+- Referință J0: TestChangeGovernanceTest și GitTestChanges separă baza imuabilă,
+  calea exactă modificată, raționamentul revizorului și dovada verificării. Păstrează
+  principiul fără a copia cataloage de consumatori sau a inventa cereri de aprobare.
+- Acceptanță: un control limitat viitor trebuie să reproducă eliminarea reală a unei metode,
+  să distingă fixture-urile/refactorizările de pierderea dovezii, să acopere schimbările
+  comise și locale, să respingă intrări expirate/străine și să ofere un indiciu de remediere.
+- Stare: TODO. Inspecția surselor dovedește lacuna, nu o mutație executată.
+
+<a id="comparable-source-review-scores"></a>
+## Note comparabile ale reviziei surselor
+
+Acestea sunt aprecieri 1–100 ale maturității surselor pe aceleași axe inspectate.
+J0 nu a fost compilat sau executat; notele nu stabilesc repetabilitatea sau acoperirea.
+Diagnosticele și limitele existente sunt evaluate independent de numărul testelor.
+
+| Axă | Pondere | AI inițial | Sursa AI corectată | Sursa J0 inspectată |
+|---|---:|---:|---:|---:|
+| Limitele modulelor și responsabilitățile | 25% | 92 | 92 | 94 |
+| Acoperirea guvernanței executabile | 25% | 88 | 90 | 92 |
+| Cazuri negative și rezultate așteptate independente | 20% | 90 | 91 | 94 |
+| Așteptări limitate și curățare | 20% | 85 | 87 | 92 |
+| Diagnostice utile pentru corecții | 10% | 94 | 94 | 88 |
+| Evaluarea ponderată a surselor | 100% | 89.4 | 90.5 | 92.5 |
+
+AI îmbunătățește selecția executabilă și un responsabil al concurenței limitate.
+J0 păstrează controale mai puternice ale schimbărilor și agregării ciclului de viață;
+AI păstrează observații emise mai bune, distincția cauză/remediere și reverificări exacte.
+F-011 rămâne deschis. Notele mari cer dovezi mai puternice, nu afirmații mai largi nesusținute.
+
+<a id="acceptance-evidence"></a>
+## Dovezi de acceptanță
+
+Rădăcina externă a reviziei este `${ATF_WORK_ROOT}/reviews/20261125-code-and-documentation-governance`.
+Rulările native și manifestele surselor folosesc `${ATF_WORK_ROOT}/runs/` și reactoare
+izolate separate. Publicația curentă ignorată existentă își păstrează aria capturată.
+
+- Baza: baseline-translation-language.log consemnează documentul Testing realmente
+  netradus înaintea corecției. Contraexemplele de lizibilitate păstrează proza densă
+  a strategiei, comenzile deschise implicit și etichetele false din literali.
+- Execuția finală și revizia completă sunt consemnate aici după validare; un element
+  IN PROGRESS nu se închide printr-o comandă pregătită sau inspecția surselor singură.

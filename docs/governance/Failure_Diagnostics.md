@@ -1,131 +1,154 @@
-# Understanding and repairing a governance failure
+<a id="understanding-and-repairing-a-governance-failure"></a>
+# Înțelegerea și repararea unui eșec de guvernanță
 
-## Read the evidence before changing the rule
+<a id="read-the-evidence-before-changing-the-rule"></a>
+## Citește dovada înainte de schimbarea regulii
 
-Requirement GOV-DIAG-001: a supported governance finding MUST preserve observed
-evidence and expose its failure meaning, repair hint, canonical owner and
-maintained recheck selection. Hints describe plausible corrections; they do not
-establish the root cause or authorize weakening a contract.
+Cerința GOV-DIAG-001: o constatare de guvernanță suportată TREBUIE să păstreze
+dovada observată și să expună sensul eșecului, indiciul de reparare, responsabilul
+canonic și selecția întreținută de reverificare. Indiciile descriu corecții
+plauzibile; nu stabilesc cauza și nu autorizează slăbirea unui contract.
 
-The shared formatter belongs to
+Formatatorul comun aparține
 [GovernanceFiles](../../atf-tests/src/test/java/com/ai/atf/governance/GovernanceFiles.java).
-Architecture, documentation and English-source checks retain their existing
-validators and finding codes. Messages and comments remain English in both
-editions. This is existing test support, with no runtime service or rule module.
+Controalele de arhitectură, documentație și sursă engleză își păstrează
+validatorii existenți și codurile constatărilor. Mesajele și comentariile
+rămân în engleză în ambele ediții. Acesta este suport de test existent, fără serviciu runtime sau modul de reguli.
 
 ```mermaid
 flowchart TB
-    Finding["Observed finding"] --> Owner["Rule and owner"]
-    Owner --> Cause["Reproduce and inspect"]
-    Cause --> Repair["Repair the source"]
-    Repair --> Recheck["Recheck the contract"]
-    Recheck --> Feedback["Update scoped feedback"]
-    Recheck -. still fails .-> Cause
+    Finding["Constatare observată"] --> Owner["Regulă și responsabil"]
+    Owner --> Cause["Reproduce și inspectează"]
+    Cause --> Repair["Repară sursa"]
+    Repair --> Recheck["Reverifică contractul"]
+    Recheck --> Feedback["Actualizează feedback-ul delimitat"]
+    Recheck -. încă eșuează .-> Cause
 ```
 
-Arrows show a correction based on observed evidence. A failed recheck returns to
-investigation; a suggested repair becomes verified only through inspection and
-execution. Feedback closes only the demonstrated acceptance criteria.
+Săgețile arată o corecție bazată pe dovada observată. O reverificare eșuată
+revine la investigare; o remediere sugerată devine verificată numai prin
+inspecție și execuție. Feedback-ul închide numai criteriile de acceptanță demonstrate.
 
-## Message structure
+<a id="message-structure"></a>
+## Structura mesajului
 
-| Field | Meaning | Reader action |
+| Câmp | Sens | Acțiunea cititorului |
 |---|---|---|
-| Observed | Original finding, including location/code/details | Preserve it and identify the actual difference |
-| Failure meaning | Why the supported rule matters | Check its boundary against current source |
-| Repair hint | A correction to investigate | Reproduce before changing the source or owner guide |
-| Owner | Canonical project-relative contract path/fragment | Read the contract and implementation together |
-| Recheck | Maintained selection from an isolated reactor root | Execute the affected guard and inspect the result |
+| Observed | Constatarea originală, inclusiv locație/cod/detalii | Păstreaz-o și identifică diferența reală |
+| Failure meaning | Motivul pentru care contează regula suportată | Verifică limita sa față de sursa curentă |
+| Repair hint | O corecție de investigat | Reproduce înainte de schimbarea sursei sau a ghidului responsabil |
+| Owner | Calea/fragmentul contractului canonic, relativ la proiect | Citește împreună contractul și implementarea |
+| Recheck | Selecția întreținută din rădăcina unui reactor izolat | Execută controlul afectat și inspectează rezultatul |
 
-Order, repeated findings and multiline details are preserved. Only repeated
-recheck commands are collapsed. Line numbers are shown only when supplied by the
-producer; file/suite findings remain at that scope. An empty list means no
-findings were supplied, not that every guard ran.
+Ordinea, constatările repetate și detaliile pe mai multe linii sunt păstrate.
+Numai comenzile repetate de reverificare sunt grupate. Numerele liniilor sunt
+afișate numai când sunt furnizate de producător; constatările de fișier/suită
+rămân la acel nivel. O listă goală înseamnă că nu s-au furnizat constatări,
+nu că fiecare control a rulat.
 
-An actual IMPORT-WILDCARD finding retains its Java path and rule token, explains
-explicit imports, links the [import owner](Code_And_Documentation_Policy.md#explicit-imports-and-visible-dependencies)
-and selects FrameworkArchitectureGovernanceTest. DOC-LINK selects documentation
-governance; ENG-COMMENT selects JavaSourceScannerTest. The original evidence is
-independent of these explanatory fields.
+O constatare reală IMPORT-WILDCARD își păstrează calea Java și tokenul regulii,
+explică importurile explicite, leagă [responsabilul importurilor](Code_And_Documentation_Policy.md#explicit-imports-and-visible-dependencies)
+și selectează FrameworkArchitectureGovernanceTest. DOC-LINK selectează
+guvernanța documentației; ENG-COMMENT selectează JavaSourceScannerTest.
+Dovada originală este independentă de aceste câmpuri explicative.
 
-## Choose the smallest owned correction
+<a id="choose-the-smallest-owned-correction"></a>
+## Alege cea mai mică corecție cu responsabil
 
-| Finding family | Canonical contract | Constructive correction |
+| Familia constatării | Contract canonic | Corecție constructivă |
 |---|---|---|
-| Reactor, coordinates, dependencies and cycles | [Module ownership](../Architecture.md#module-ownership) | Reconcile the reported POM/profile and existing graph |
-| SDK, source reference and providers | [Provider composition](../Architecture.md#provider-composition) | Keep concrete implementations in their existing adapters |
-| Imports and package/source layout | [Code policy](Code_And_Documentation_Policy.md) | Name dependencies explicitly; remove duplicate/shadow ownership |
-| Waits, console, interruption and paths | [Execution and paths](Code_And_Documentation_Policy.md#visibility-and-execution) | Use established owners and caller-supplied roots |
-| Suite wiring and inventory | [Existing-test quality](Code_And_Documentation_Policy.md#existing-test-quality) | Restore the affected existing regression and supported selection |
-| Markdown structure, route or diagram | [Documentation and rendering](#documentation-and-rendering) | Repair the real target, syntax or explanatory legend |
-| Examples, commands and defaults | [Testing](../Testing.md) | Align examples with actual public APIs and declarations |
-| README editions | [Edition contract](Readme_Editions.md) | Preserve code, links, anchors, commands, topology and non-README identity |
-| Inline code or numeric translation facts | [Protected README facts](Readme_Editions.md#existing-executable-checks) | Use the reported item ordinal to compare canonical code spans and corresponding numeric table rows; retain human semantic review |
-| Living architecture pair | [Essential source](../Living_Architecture_UI_API_doc_v1_0.md) | Synchronize HTML/Markdown, source digest and navigation |
-| Feedback state and lifecycle | [Feedback rubric](../feedback/README.md) | Retain baseline assessments and close only proven criteria |
-| English source/prose and data exceptions | [English requirement](Code_And_Documentation_Policy.md#english-source-and-comments) | Translate authored text and keep reviewed external data exact |
+| Reactor, coordonate, dependențe și cicluri | [Responsabilitatea modulelor](../Architecture.md#module-ownership) | Reconciliază POM-ul/profilul raportat și graful existent |
+| SDK, referință sursă și furnizori | [Compunerea furnizorilor](../Architecture.md#provider-composition) | Păstrează implementările concrete în adaptoarele lor existente |
+| Importuri și structură pachet/sursă | [Politica de cod](Code_And_Documentation_Policy.md) | Numește dependențele explicit; elimină responsabilitatea duplicată/ascunsă |
+| Așteptări, consolă, întrerupere și căi | [Execuție și căi](Code_And_Documentation_Policy.md#visibility-and-execution) | Folosește responsabilii stabiliți și rădăcini furnizate de apelant |
+| Legarea suitelor și inventarul | [Calitatea testelor existente](Code_And_Documentation_Policy.md#existing-test-quality) | Restaurează regresia existentă afectată și selecția suportată |
+| Structură Markdown, rută sau diagramă | [Documentație și randare](#documentation-and-rendering) | Repară ținta reală, sintaxa sau legenda explicativă |
+| Exemple, comenzi și valori implicite | [Testare](../Testing.md) | Aliniază exemplele la API-urile publice și declarațiile reale |
+| Edițiile documentației | [Contractul edițiilor](Readme_Editions.md) | Păstrează codul, legăturile, ancorele, comenzile, topologia și identitatea sursei din afara documentației |
+| Cod inline sau date numerice traduse | [Datele protejate ale documentației](Readme_Editions.md#existing-executable-checks) | Folosește poziția raportată pentru a compara codul inline canonic și rândurile numerice corespunzătoare; păstrează revizuirea semantică umană |
+| Perechea arhitecturii vii | [Sursa esențială](../Living_Architecture_UI_API_doc_v1_0.md) | Sincronizează HTML/Markdown, digestul sursei și navigarea |
+| Starea și ciclul feedback-ului | [Grila feedback-ului](../feedback/README.md) | Păstrează evaluările inițiale și închide numai criteriile dovedite |
+| Sursă/proză engleză și excepții de date | [Cerința engleză](Code_And_Documentation_Policy.md#english-source-and-comments) | Traduce textul propriu și păstrează exacte datele externe revizuite |
 
-Do not remove assertions, skip a gate, enable an opt-in product selection, add a
-dummy route or expand an exemption just to silence a failure. If the rule is
-wrong, record its reproducer, owner, proposed correction and independent negative
-control before changing it. No E2E expansion is needed.
+Nu elimina aserțiuni, nu omite controale, nu activa o selecție explicită de
+produs, nu adăuga o rută fictivă și nu lărgi o excepție doar pentru a reduce
+la tăcere un eșec. Dacă regula este greșită, înregistrează reproducerea,
+responsabilul, corecția propusă și controlul negativ independent înaintea schimbării sale. Nu este necesară extinderea E2E.
 
-## Exact negative controls
+<a id="exact-negative-controls"></a>
+## Controale negative exacte
 
-A negative fixture must match the emitted rule token plus any requested location
-or detail. DOC-EDITION-PARITY differs from DOC-EDITION. A code in a filename,
-payload, explanation or repair hint is not the observed rule. The assertion must
-still fail when only a related or unrelated finding remains.
+Un caz negativ trebuie să potrivească tokenul regulii emise și orice locație
+sau detaliu cerut. DOC-EDITION-PARITY diferă de DOC-EDITION. Un cod dintr-un
+nume de fișier, conținut, explicație sau indiciu de reparare nu este regula
+observată. Aserțiunea trebuie să continue să eșueze când rămâne numai o constatare înrudită sau fără legătură.
 
-Existing architecture/documentation assertion helpers enforce this identity and
-require owned guidance for their emitted findings. A useful fixture proves the
-invalid input is rejected, then a real correction clears its guard. New rule
-codes need owned guidance and an actual negative fixture; counting assertions or
-finding a matching word in a rendered message is insufficient.
+Funcțiile existente de aserțiune pentru arhitectură/documentație impun această
+identitate și cer îndrumare responsabilă pentru constatările emise. Un caz
+util demonstrează respingerea intrării invalide, apoi o corecție reală elimină
+constatarea. Codurile noi de reguli necesită îndrumare responsabilă și un caz
+negativ real; numărarea aserțiunilor sau găsirea unui cuvânt într-un mesaj randat este insuficientă.
 
-## Documentation and rendering
+<a id="documentation-and-rendering"></a>
+## Documentație și randare
 
-Inspect the named document and its actual target or diagram source. Repair
-malformed fences/disclosures before interpreting downstream diagram errors.
-Render changed diagrams and inspect labels, arrows and overflow; a source guard
-does not render Mermaid or certify appearance. Preserve an approved root map
-unless an observed mismatch requires a scoped correction.
+Inspectează documentul numit și ținta sa reală sau sursa diagramei. Repară
+blocurile de cod/pliabile malformate înaintea interpretării erorilor ulterioare
+de diagramă. Randează diagramele schimbate și inspectează etichetele, săgețile
+și depășirile; controlul de sursă nu randează Mermaid și nu certifică aspectul.
+Păstrează harta rădăcină aprobată, exceptând o corecție delimitată cerută de o nepotrivire observată.
 
-For README translations use the explicit peer input in
-[README editions](Readme_Editions.md#synchronization-and-review). A local edition
-check alone does not establish cross-branch identity.
+Pentru traducerea documentației folosește intrarea explicită a perechii din
+[edițiile README](Readme_Editions.md#synchronization-and-review). Verificarea
+locală a ediției nu stabilește singură identitatea între ramuri.
 
-DOC-TITLE, DOC-HEADING, DOC-FENCE-LANGUAGE and DOC-EDITORIAL apply to every
-maintained Markdown document. Correct the first actual title, hierarchy, fence
-or drafting token before interpreting later findings. Literal examples may
-intentionally contain invalid syntax; a valid repair changes the owned prose,
-not the guard's exclusions. DOC-EDITION-FACTS reports the protected item to inspect,
-while DOC-EDITION-PARITY retains its structural/topology responsibility.
+DOC-TITLE, DOC-HEADING, DOC-FENCE-LANGUAGE și DOC-EDITORIAL se aplică fiecărui
+Markdown întreținut. Corectează primul titlu, nivel de ierarhie, bloc sau token
+editorial realmente incorect înaintea interpretării constatărilor ulterioare.
+Exemplele literale pot conține intenționat sintaxă invalidă; repararea validă
+schimbă proza responsabilă, nu excluderile controlului. DOC-EDITION-FACTS
+raportează elementul protejat de inspectat, în timp ce DOC-EDITION-PARITY păstrează responsabilitatea structurală/de topologie.
 
-The retained-UI maintenance CLI has its own actual `Owner` and `Recheck` fields.
-Its component regression resolves the emitted documentation route and executes
-the suggested command against synthetic report inputs. That proves a usable
-repair route; it does not execute an application journey or establish browser
-acceptance.
+CLI-ul de mentenanță pentru UI păstrat are propriile câmpuri reale `Owner` și
+`Recheck`. Regresia sa de componentă rezolvă ruta de documentație emisă și
+execută comanda sugerată pe intrări sintetice de raport. Aceasta demonstrează
+o rută de reparare utilizabilă; nu execută un scenariu de aplicație și nu stabilește acceptanța de browser.
 
-## Unknown findings
+<a id="unknown-findings"></a>
+## Constatări necunoscute
 
-Unknown/unstructured findings retain their original evidence and explicitly
-unclassified meaning/selection. A code mentioned in payload must not select a
-known repair. Inspect the emitting validator before choosing a correction.
-Parser, I/O and infrastructure exceptions retain their stack/cause; the finding
-formatter does not convert every exception into a classified result.
+Constatările necunoscute/nestructurate își păstrează dovada originală și sensul/
+selecția explicit neclasificate. Un cod menționat în conținut nu trebuie să
+selecteze o remediere cunoscută. Inspectează validatorul emitent înaintea
+alegerii corecției. Excepțiile de parsare, I/O și infrastructură își păstrează
+stiva/cauza; formatatorul nu transformă orice excepție într-un rezultat clasificat.
 
-## Verification and feedback
+<a id="verification-and-feedback"></a>
+## Verificare și feedback
 
-From an isolated reactor copy, run the existing owners:
+Dintr-o copie izolată a reactorului, rulează responsabilii existenți:
+
+<details>
+<summary>Rulează comenzile de verificare și feedback</summary>
 
 ```powershell
-mvn -B -ntp -pl atf-tests -am "-Dtest=FrameworkArchitectureGovernanceTest,DocumentationGovernanceTest,JavaSourceScannerTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
+mvn -B -ntp -pl atf-tests -am "-Dtest=FrameworkArchitectureGovernanceTest,DocumentationGovernanceTest,DocumentationReadabilityRulesTest,JavaSourceScannerTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
 ```
 
-These guards verify supported source/documentation contracts and diagnostic
-controls. Runtime regression outcomes remain separate evidence. Record the exact
-selection, original failure, investigated cause, correction, successful recheck
-and proof limit in [feedback](../feedback/README.md). Preserve original reports
-through the [report archive](../../artifacts/reports/README.md).
+</details>
+
+Aceste controale verifică contractele suportate de sursă/documentație și
+controalele de diagnostic. Rezultatele regresiilor runtime rămân dovezi
+separate. Înregistrează selecția exactă, eșecul original, cauza investigată,
+corecția, reverificarea reușită și limita dovezii în
+[feedback](../feedback/README.md). Păstrează rapoartele originale prin
+[arhiva rapoartelor](../../artifacts/reports/README.md).
+
+Constatările de lizibilitate explică dacă trebuie separată o decizie,
+comparate alternativele într-un tabel, folosite puncte paralele sau desenat
+un flux real cu legendă. Eșecurile blocurilor de comenzi cer details închis
+implicit, sumar descriptiv și precondiții vizibile. Constatările de traducere
+disting semnalul lingvistic suportat, proza sursă neschimbată, deriva tehnică
+și revizuirea completă învechită; urmează
+[revizuirea întregului document](Readme_Editions.md#whole-document-review)
+înaintea reînnoirii hash-urilor pereche. Un hash corectat singur nu este o reparare semantică.

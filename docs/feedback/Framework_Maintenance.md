@@ -1,130 +1,137 @@
-# Framework maintenance
+<a id="framework-maintenance"></a>
+# Mentenanța frameworkului
 
-F-008 records the verified desktop browser matrix. The remaining sections
-retain framework configuration, cleanup and regression evidence at its original
-scope. Current execution commands belong to [Testing](../Testing.md).
+F-008 consemnează matricea verificată a browserelor desktop. Celelalte secțiuni
+păstrează dovezile de configurare, curățare și regresie ale frameworkului în
+domeniul lor original. Comenzile curente aparțin [Testării](../Testing.md).
 
-## F-008 — Selenium browser matrix
+<a id="f-008--selenium-browser-matrix"></a>
+## F-008 — matricea browserelor Selenium
 
-- Status: VERIFIED for the selected Windows 11 x64 matrix: Selenium 4.54.0,
-  Chrome/ChromeDriver 158.0.8127.88 and exact typed CDP v158. The actual configured
-  executable, capabilities and instantiated domain were checked, with no missing
-  or nearest typed-CDP warning in the accepted run and no warning suppression.
-- Owner: [atf-selenium](../../atf-selenium/README.md), specifically its
-  [network implementation](../../atf-selenium/src/main/java/com/ai/ui/core/engine/selenium/network).
-  [atf-tests](../../atf-tests/README.md) owns cross-adapter acceptance.
-- Original reproducer: the retained browser suite with
-  `org.seleniumhq.selenium:selenium-java:4.45.0` and downloaded
-  Chrome/ChromeDriver `158.0.8127.88`; run `mvn -B -ntp -Pbrowser test` from an
-  isolated reactor copy with the selected binaries.
-- Original observation: Selenium reported that no matching typed CDP implementation was bundled.
-  Browser parity passed through the adapter's existing behavior while this
-  version-alignment warning remained.
-- Expected: document and verify an intentional SDK/browser/driver/CDP combination,
-  including the actual network-response capability relied on by callers.
-- Historical evidence: framework-browser-02.log under
-  ${ATF_WORK_ROOT}/runs/20261124-framework. Binaries and drivers remain under
-  ${ATF_WORK_ROOT}/cache. Existing
-  [capability](../../atf-tests/src/test/java/com/ai/atf/ui/component/UiEngineCapabilityContractTest.java),
-  [delegation](../../atf-tests/src/test/java/com/ai/atf/ui/component/UiEngineDelegationContractTest.java)
-  and [Selenium source](../../atf-tests/src/test/java/com/ai/atf/ui/component/engine/SeleniumEngineInternalContractTest.java)
-  contracts do not replace a real browser network-response probe.
-- Current evidence: the existing
-  [cross-engine parity fixture](../../atf-tests/src/test/java/com/ai/atf/ui/component/parity/SeleniumPlaywrightLocatorParityContractTest.java)
-  passed 2 positive response probes and 4 URL/method mismatch probes against its
-  local server. The accepted standalone browser run passed 120 checks: 108 in
-  atf-tests and 12 native library checks. The native exact-provider check and
-  browser assertions verify the selected matrix through the existing Manager
-  route. Source, environment, exact commands and failed historical runs are in
-  [F-008 and its shared ledger](Browser_Compatibility_And_Portability.md#f-008).
+- Stare: VERIFIED pentru matricea Windows 11 x64 selectată: Selenium 4.54.0,
+  Chrome/ChromeDriver 158.0.8127.88 și CDP tipizat exact v158. Executabilul
+  configurat efectiv, capabilitățile și domeniul instanțiat au fost verificate;
+  rularea acceptată nu are avertismente privind CDP tipizat absent/aproximat și nu suprimă avertismente.
+- Responsabil: [atf-selenium](../../atf-selenium/README.md), mai precis
+  [implementarea de rețea](../../atf-selenium/src/main/java/com/ai/ui/core/engine/selenium/network).
+  [atf-tests](../../atf-tests/README.md) deține acceptanța între adaptoare.
+- Reproducere originală: suita de browser păstrată, cu
+  `org.seleniumhq.selenium:selenium-java:4.45.0` și Chrome/ChromeDriver
+  `158.0.8127.88` descărcate; rulează `mvn -B -ntp -Pbrowser test` dintr-o
+  copie izolată a reactorului, cu binarele selectate.
+- Observație originală: Selenium a raportat că nu include o implementare CDP tipizată corespunzătoare.
+  Paritatea browserelor a trecut prin comportamentul existent al adaptorului,
+  deși avertismentul de aliniere a versiunilor a rămas.
+- Așteptat: documentează și verifică o combinație intenționată SDK/browser/driver/CDP,
+  inclusiv capabilitatea reală de răspuns de rețea pe care se bazează apelanții.
+- Dovezi istorice: framework-browser-02.log în
+  ${ATF_WORK_ROOT}/runs/20261124-framework. Binarele și driverele rămân în
+  ${ATF_WORK_ROOT}/cache. Contractele existente de
+  [capabilitate](../../atf-tests/src/test/java/com/ai/atf/ui/component/UiEngineCapabilityContractTest.java),
+  [delegare](../../atf-tests/src/test/java/com/ai/atf/ui/component/UiEngineDelegationContractTest.java)
+  și [sursă Selenium](../../atf-tests/src/test/java/com/ai/atf/ui/component/engine/SeleniumEngineInternalContractTest.java)
+  nu înlocuiesc o probă reală de răspuns de rețea în browser.
+- Dovezi curente: cazul existent de
+  [paritate între motoare](../../atf-tests/src/test/java/com/ai/atf/ui/component/parity/SeleniumPlaywrightLocatorParityContractTest.java)
+  a trecut 2 probe pozitive de răspuns și 4 probe de nepotrivire URL/metodă
+  pe serverul său local. Rularea de browser separată acceptată a trecut 120 de
+  verificări: 108 în atf-tests și 12 verificări native ale bibliotecilor.
+  Verificarea nativă a furnizorului exact și aserțiunile de browser verifică
+  matricea selectată prin ruta Manager existentă. Sursa, mediul, comenzile exacte
+  și rulările istorice eșuate sunt în
+  [F-008 și registrul său comun](Browser_Compatibility_And_Portability.md#f-008).
 
-| Closure probe | Required observation | Current evidence |
+| Probă de închidere | Observație necesară | Dovezi curente |
 |---|---|---|
-| Version selection | Record OS, SDK, actual browser/driver versions and typed CDP availability; preserve any warning | Selected Windows matrix, actual executable and exact instantiated v158 domain passed; the old 4.45.0 warning remains historical evidence |
-| Actual network response | Trigger one local request; verify method, URL, status and body from the observed response | 2 positive probes passed, one per adapter, including actual request and response bodies |
-| Negative network outcome | Missing/mismatched response fails within its declared wait budget | 4 real URL/method mismatch probes passed across both adapters |
-| Cross-adapter retention | Existing browser suite remains green with the selected environment and SDK-default Playwright Node | modules-f008-browser-accepted passed all 120 browser/native checks; local and aggregate each passed 514 |
+| Selectarea versiunilor | Înregistrează sistemul, SDK-ul, versiunile reale ale browserului/driverului și disponibilitatea CDP tipizat; păstrează orice avertisment | Matricea Windows selectată, executabilul real și domeniul exact v158 instanțiat au trecut; avertismentul vechi pentru 4.45.0 rămâne dovadă istorică |
+| Răspuns real de rețea | Declanșează o cerere locală; verifică metoda, URL-ul, starea și corpul răspunsului observat | 2 probe pozitive trecute, câte una pentru fiecare adaptor, inclusiv corpurile reale ale cererii și răspunsului |
+| Rezultat negativ de rețea | Răspunsul absent/nepotrivit eșuează în bugetul de așteptare declarat | 4 probe reale de nepotrivire URL/metodă trecute pentru cele două adaptoare |
+| Păstrarea parității adaptoarelor | Suita de browser existentă rămâne verde cu mediul selectat și Node implicit din SDK-ul Playwright | modules-f008-browser-accepted a trecut toate cele 120 de verificări de browser/native; selecțiile locală și agregată au trecut fiecare 514 |
 
-This closure covers the recorded OS and pinned binaries. A different platform,
-SDK, browser, driver or typed-CDP selection requires the same fresh observations
-and full browser acceptance; [Testing](../Testing.md#browser-preparation-and-checks)
-owns the maintained preparation. A version declaration or warning suppression
-alone is insufficient. The earlier modules-phase2-browser-final cleanup failures,
-the 119-check phase-two receipt and the later modules-f008-browser-final cleanup
-failure retain their original scope in the linked records. Local network
-acceptance establishes the recorded framework boundary; it does not claim a
-controlled application journey.
+Această închidere acoperă sistemul înregistrat și binarele fixate. O altă
+platformă, versiune SDK/browser/driver sau selecție CDP tipizat necesită aceleași
+observații noi și acceptanța completă de browser;
+[Testarea](../Testing.md#browser-preparation-and-checks) deține pregătirea întreținută.
+Declararea unei versiuni sau suprimarea avertismentelor nu este suficientă.
+Eșecurile anterioare de curățare modules-phase2-browser-final, dovada de 119
+verificări din etapa a doua și eșecul ulterior de curățare modules-f008-browser-final
+își păstrează domeniul original în înregistrările legate. Acceptanța locală de
+rețea stabilește limita înregistrată a frameworkului; nu pretinde un scenariu de aplicație controlat.
 
-## F-002 — reproducible startup
+<a id="f-002--reproducible-startup"></a>
+## F-002 — pornire reproductibilă
 
-- Status: VERIFIED for the historical premodular correction.
-- Original reproducer: follow the root startup guide from a fresh checkout.
-- Prior observation: absent classes/calibration files were referenced and default
-  discovery mixed local checks with public-site tests.
-- Delivered correction: maintained local defaults, explicit opt-in browser/application
-  selections and an explicit configuration-file override.
-- Historical verification: 304 local cases and focused file-override checks passed.
-  The current modular commands are owned by [Testing](../Testing.md).
+- Stare: VERIFIED pentru corecția istorică anterioară modularizării.
+- Reproducere originală: urmează ghidul de pornire din rădăcină într-o copie nouă.
+- Observație anterioară: erau referite clase/fișiere de calibrare absente,
+  iar descoperirea implicită amesteca verificările locale cu testele site-ului public.
+- Corecție livrată: valori locale implicite întreținute, selecții explicite
+  de browser/aplicație și suprascriere explicită a fișierului de configurare.
+- Verificare istorică: 304 cazuri locale și verificările focalizate de suprascriere
+  prin fișier au trecut. Comenzile modulare curente aparțin [Testării](../Testing.md).
 
-## F-003 — functional framework boundary
+<a id="f-003--functional-framework-boundary"></a>
+## F-003 — limita funcțională a frameworkului
 
-- Status: VERIFIED for the historical cleanup; original implementation retained
-  on `main_mcp`.
-- Original reproducer: inspect production sources and test profiles.
-- Prior observation: prompts, generation/promotion infrastructure and historical
-  generated artifacts were mixed into the runtime framework.
-- Delivered correction: retain UI/API execution, runtime reporting and meaningful
-  regressions; remove retired runtime components and dedicated resources/tests.
-- Historical verification: source, JAR, local and browser acceptance passed.
-  Recovering a reusable review rule does not restore its old runtime machinery.
+- Stare: VERIFIED pentru curățarea istorică; implementarea originală este
+  păstrată pe `main_mcp`.
+- Reproducere originală: inspectează sursele de producție și profilurile de test.
+- Observație anterioară: prompturi, infrastructură de generare/promovare și
+  artefacte istorice generate erau amestecate în frameworkul runtime.
+- Corecție livrată: păstrează execuția UI/API, raportarea runtime și regresiile
+  semnificative; elimină componentele runtime retrase și resursele/testele dedicate.
+- Verificare istorică: acceptanța sursei, JAR-ului, selecției locale și browserelor
+  a trecut. Recuperarea unei reguli de revizuire reutilizabile nu restaurează mecanismul său runtime vechi.
 
-## F-006 — regression setup
+<a id="f-006--regression-setup"></a>
+## F-006 — pregătirea regresiilor
 
-- Status: VERIFIED for the historical regression correction.
-- Original reproducer: execute the retained local suite after retiring old profiles.
-- Prior observation: two Allure regressions reflected a moved method, a topology
-  check read a retired suite, and a polling success case had a 50 ms wall-clock budget.
-- Delivered correction: exercise the public result factory, remove the retired
-  topology check and preserve exact polling supplier/attempt assertions with a
-  separate timeout case and a usable scheduling budget.
-- Historical verification: 304 tests passed, with no failures/errors/skips, in the
-  framework-final copy; local-acceptance.log and local-results/ retain the receipt.
+- Stare: VERIFIED pentru corecția istorică a regresiilor.
+- Reproducere originală: execută suita locală păstrată după retragerea profilurilor vechi.
+- Observație anterioară: două regresii Allure reflectau o metodă mutată, o
+  verificare de topologie citea o suită retrasă, iar un caz pozitiv de interogare repetată avea un buget real de 50 ms.
+- Corecție livrată: exercită fabrica publică de rezultate, elimină verificarea
+  de topologie retrasă și păstrează aserțiunile exacte ale furnizorului/încercărilor
+  de interogare, cu un caz separat de expirare și un buget de planificare utilizabil.
+- Verificare istorică: 304 teste au trecut fără eșecuri/erori/omiteri în copia
+  framework-final; local-acceptance.log și local-results/ păstrează dovada.
 
-## Historical correction evidence
+<a id="historical-correction-evidence"></a>
+## Dovezile corecțiilor istorice
 
-The records in this section precede module extraction. They preserve original
-counts and provenance; they are not current distribution instructions.
+Înregistrările din această secțiune preced extragerea modulelor. Păstrează
+numerele și proveniența originale; nu sunt instrucțiuni de distribuție curente.
 
-- Baseline: all original production and test sources compiled successfully.
-- Initial corrections: 12 local cases passed, 0 failures/errors/skips.
-- Historical source and execution evidence remains in Git history and the
-  external runs/20261124-framework archive. Product-flow improvement records
-  have been removed from this framework maintenance backlog.
+- Bază: toate sursele originale de producție și de test s-au compilat cu succes.
+- Corecții inițiale: 12 cazuri locale trecute, 0 eșecuri/erori/omiteri.
+- Dovezile istorice de sursă și execuție rămân în istoricul Git și arhiva externă
+  runs/20261124-framework. Înregistrările privind îmbunătățirea fluxurilor de
+  produs au fost eliminate din această listă de mentenanță a frameworkului.
 
-Historical code checkpoints are `c590d62` for cleanup and `661d4dc` for the enabled
-aggregate profile. The archived original is `70a7279` on main_mcp. The later
-[M-001 record](Module_Architecture.md) owns modularization evidence.
+Reviziile istorice sunt `c590d62` pentru curățare și `661d4dc` pentru profilul
+agregat activat. Originalul arhivat este `70a7279` pe main_mcp. Înregistrarea
+[M-001](Module_Architecture.md) ulterioară deține dovezile modularizării.
 
-Evidence root: ${ATF_WORK_ROOT}/runs/20261124-framework. Each row is a separate run;
-counts overlap and must not be summed as unique tests.
+Rădăcina dovezilor: ${ATF_WORK_ROOT}/runs/20261124-framework. Fiecare rând este
+o rulare separată; numerele se suprapun și nu trebuie însumate ca teste unice.
 
-| Historical check | Result | Evidence relative to the root |
+| Verificare istorică | Rezultat | Dovadă relativă la rădăcină |
 |---|---|---|
-| Default local suite | 304 passed, 0 failed/error/skipped | local-acceptance.log and local-results/ |
-| Explicit Allure subset | 11 passed, 0 failed/error/skipped | framework-allure.log |
-| Browser suite | 100 passed, 0 failed/error/skipped | framework-browser-02.log; XML in the framework-browser-01 validation copy |
-| Aggregate profile | 304 passed; Extent and 305 passed Allure result JSONs including the summary | aggregate-enabled.log and aggregate-enabled-results/ |
-| Generated Extent overview | 0 published-overview violations | aggregate-artifact-audit.log |
-| Package | JAR built; 0 retired entries | package.log and package-provenance.json |
+| Suita locală implicită | 304 trecute, 0 eșecuri/erori/omiteri | local-acceptance.log și local-results/ |
+| Subsetul Allure explicit | 11 trecute, 0 eșecuri/erori/omiteri | framework-allure.log |
+| Suita de browser | 100 trecute, 0 eșecuri/erori/omiteri | framework-browser-02.log; XML în copia de validare framework-browser-01 |
+| Profilul agregat | 304 trecute; Extent și 305 rezultate Allure JSON trecute, inclusiv sumarul | aggregate-enabled.log și aggregate-enabled-results/ |
+| Prezentarea Extent generată | 0 încălcări ale prezentării publicate | aggregate-artifact-audit.log |
+| Pachetul | JAR construit; 0 intrări retrase | package.log și package-provenance.json |
 
-The historical aggregate artifacts are under
+Artefactele agregate istorice sunt în
 ${ATF_WORK_ROOT}/validation/framework-final/target/atf-core-aggregate-report.
-The historical package was `com.ai:test-framework:1.0.0`; its original JAR path,
-source commit and SHA-256 remain in package-provenance.json. Current consumption
-uses the [modular coordinates](../../README.md#consumer-migration). Copying or
-renaming that receipt does not imply a new package version or execution.
+Pachetul istoric era `com.ai:test-framework:1.0.0`; calea sa JAR originală,
+commitul sursă și SHA-256 rămân în package-provenance.json. Consumul curent
+folosește [coordonatele modulare](../../README.md#consumer-migration). Copierea
+sau redenumirea acelei dovezi nu implică o versiune nouă de pachet sau o nouă execuție.
 
-The historical browser run used SDK-default Node. The selector run set
-PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 after browser preparation. Its installer-output
-warning and the CDP warning remain part of that evidence; neither has been silently
-removed by this documentation review.
+Rularea istorică de browser a folosit Node implicit din SDK. Rularea selectorului
+a setat PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 după pregătirea browserului.
+Avertismentul instalatorului și cel CDP rămân parte a acelei dovezi;
+niciunul nu a fost eliminat tacit de această revizuire a documentației.

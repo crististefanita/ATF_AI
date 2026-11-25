@@ -30,11 +30,16 @@ comportamentul observabil, fără a dubla tokenurile implementării.
 
 Rulează dintr-o copie izolată a reactorului:
 
+<details>
+<summary>Rulează comenzile: Execuție</summary>
+
 ```powershell
 mvn -B -ntp -pl atf-tests -am "-Datf.test.suite=src/test/resources/suites/framework-reporting.xml" test
 mvn -B -ntp -pl atf-tests -am "-Datf.test.suite=src/test/resources/suites/framework-allure.xml" "-Dreporting.engine=allure" test
 mvn -B -ntp -Paggregate test
 ```
+
+</details>
 
 Verificările redării în browser și ale capturilor folosesc profilul browser explicit,
 după pregătire. [Testare](../../../../../../../../../docs/Testing.md) definește pregătirea și

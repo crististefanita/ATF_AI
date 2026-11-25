@@ -61,6 +61,7 @@ O copie curată a surselor poate conține numai cele patru ghiduri/șabloane urm
 O publicație completată are un inventar publication.json care leagă fiecare
 fișier curent și fiecare README/index generat de calea relativă, dimensiune și
 SHA-256. Înregistrările Atlas identifică proiectul și revizia sursei capturate.
+
 Selecția UI păstrată, opțională, gestionează exact un document Extent nativ și
 trei fișiere de dovezi pentru fiecare motor. Manifestul său leagă motorul,
 ID-ul rulării, revizia sursei și referințele XML/sursă/audit; nu este o excepție HTML generică.

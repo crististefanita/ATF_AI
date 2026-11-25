@@ -103,11 +103,16 @@ Folosește JDK 17+ și Maven; compilarea țintește Java 11. Pregătește o copi
 temporară de validare conform ghidului [Dezvoltare](docs/Development.md), apoi rulează
 din rădăcina reactorului:
 
+<details>
+<summary>Rulează comenzile: Pornire</summary>
+
 ```powershell
 mvn -B -ntp test
 mvn -B -ntp -Pbrowser test
 mvn -B -ntp -Paggregate test
 ```
+
+</details>
 
 Execuția implicită rulează verificările native ale modulelor și regresiile locale de framework și guvernanță.
 Profilul browser selectează fixture-uri locale de browser în atf-tests și necesită
@@ -192,14 +197,14 @@ al framework-ului prin guvernanța documentației.
 <a id="language-and-review-contract"></a>
 ## Reguli de limbă și revizuire
 
-Ramura main este ediția engleză. Ramura main_RO oferă fiecare README în română,
-la aceeași cale din proiect. Exemplele executabile, sursele și comentariile
+Ramura main este ediția engleză. Ramura main_RO oferă toate documentele Markdown menținute și HTML-ul Living în română,
+la aceleași căi din proiect. Exemplele executabile, sursele și comentariile
 rămân în engleză în ambele ediții; [guvernanța edițiilor](docs/governance/Readme_Editions.md)
-protejează ierarhia, legăturile și identitatea surselor.
+protejează ierarhia, legăturile, faptele tehnice și revizia integrală legată de surse.
 
 Identificatorii din surse, comentariile, textele jurnalelor și mesajele de aserțiune
 sau diagnostic **TREBUIE scrise în engleză** în ambele ramuri. Documentația și
-etichetele diagramelor sunt în engleză pe main, cu excepția declarată pentru README-uri pe main_RO.
+etichetele diagramelor sunt în engleză pe main, cu ediția completă declarată a documentației pe main_RO.
 Datele literale ale produselor externe și fixture-urile intenționat invalide păstrează
 textul necesar contractului lor. Urmează
 [politica pentru cod și documentație](docs/governance/Code_And_Documentation_Policy.md)

@@ -1,141 +1,152 @@
-# Code governance, stable regressions and artifact ownership
+<a id="code-governance-stable-regressions-and-artifact-ownership"></a>
+# Guvernanța codului, regresii stabile și responsabilitatea artefactelor
 
-Baseline: `fb39f9cf35a815aff5dee7a237b0970b77105ebb`. This phase changes
-governance, existing framework regressions, maintenance tooling and documentation.
-It adds no E2E journey, emulator or Java runtime feature. The Romanian edition
-uses main_RO at the owner's explicit request.
+Bază: `fb39f9cf35a815aff5dee7a237b0970b77105ebb`. Această etapă schimbă
+guvernanța, regresiile existente ale frameworkului, utilitarele de mentenanță
+și documentația. Nu adaugă scenarii E2E, emulatoare sau funcționalități Java runtime.
+Ediția română folosește main_RO la cererea explicită a responsabilului.
 
-## G-007 — explicit Java import ownership
+<a id="g-007--explicit-java-import-ownership"></a>
+## G-007 — responsabilitate explicită pentru importurile Java
 
-- Owner: existing architecture governance and the affected source packages.
-- Priority: 80, from impact/risk/urgency 85/75/75.
-- Baseline quality: 78, from correctness/verification/clarity 85/70/75.
-- Observation: wildcard imports hide the concrete types and static members used
-  by runtime/test classes; duplicate and module checks do not forbid them.
-- Acceptance: explicit imports compile with identical implementation bodies.
-  Existing governance rejects normal/static wildcard declarations, including
-  whitespace and Unicode variants, while ignoring literal examples/comments.
-- State: VERIFIED on 2026-11-25. All 17 import-only implementation trees are
-  identical and the full local/aggregate selections compile and pass. Four
-  wildcard variants and literal/comment controls are protected by existing
-  architecture fixtures. No runtime behavior change was required.
-- Delivered quality: 95, from correctness/verification/clarity 96/94/95.
+- Responsabil: guvernanța arhitecturii existente și pachetele sursă afectate.
+- Prioritate: 80, din impact/risc/urgență 85/75/75.
+- Calitate inițială: 78, din corectitudine/verificare/claritate 85/70/75.
+- Observație: importurile wildcard ascund tipurile concrete și membrii statici
+  folosiți de clasele runtime/de test; verificările de duplicate și module nu le interzic.
+- Acceptanță: importurile explicite se compilează cu corpuri de implementare
+  identice. Guvernanța existentă respinge declarațiile wildcard normale/statice,
+  inclusiv variante cu spații și Unicode, ignorând exemplele literale/comentariile.
+- Stare: VERIFIED la 2026-11-25. Toți cei 17 arbori de implementare schimbați
+  doar prin importuri sunt identici, iar selecțiile complete locale/agregate se
+  compilează și trec. Patru variante wildcard și controalele de literali/comentarii
+  sunt protejate de cazurile existente de arhitectură. Nu a fost necesară schimbarea comportamentului runtime.
+- Calitate livrată: 95, din corectitudine/verificare/claritate 96/94/95.
 
-## T-005 — deterministic worker-limit regression
+<a id="t-005--deterministic-worker-limit-regression"></a>
+## T-005 — regresie deterministă a limitei lucrătorilor
 
-- Owner: AggregateParallelCollectionContractTest in atf-tests.
-- Priority: 81, from impact/risk/urgency 85/80/70.
-- Baseline quality: 70, from correctness/verification/clarity 80/55/70.
-- Observation: the existing concurrency check uses a 75 ms pause to make worker
-  overlap likely. A delayed worker can invalidate that assumption.
-- Acceptance: use an explicit bounded rendezvous, retain the concurrency ceiling,
-  require actual successful results and keep cleanup in finally. Repeat the
-  existing selection without adding a product/E2E test.
-- State: VERIFIED on 2026-11-25. The existing method uses a bounded two-worker
-  rendezvous, requires the exact ceiling, successful worker outcomes and declared
-  result order. Twenty consecutive direct invocations and all accepted reactor
-  selections passed.
-- Delivered quality: 95, from correctness/verification/clarity 95/96/95.
+- Responsabil: AggregateParallelCollectionContractTest din atf-tests.
+- Prioritate: 81, din impact/risc/urgență 85/80/70.
+- Calitate inițială: 70, din corectitudine/verificare/claritate 80/55/70.
+- Observație: verificarea concurenței existentă folosește o pauză de 75 ms
+  pentru a face probabilă suprapunerea lucrătorilor. Un lucrător întârziat poate invalida presupunerea.
+- Acceptanță: folosește o sincronizare explicită, limitată; păstrează plafonul
+  concurenței, cere rezultate reale reușite și păstrează curățarea în finally.
+  Repetă selecția existentă fără a adăuga un test de produs/E2E.
+- Stare: VERIFIED la 2026-11-25. Metoda existentă folosește o sincronizare
+  limitată între doi lucrători, cere plafonul exact, rezultatele reușite ale
+  lucrătorilor și ordinea declarată a rezultatelor. Douăzeci de invocări directe
+  consecutive și toate selecțiile acceptate ale reactorului au trecut.
+- Calitate livrată: 95, din corectitudine/verificare/claritate 95/96/95.
 
-## D-003 — governed artifacts and reusable Atlas intake
+<a id="d-003--governed-artifacts-and-reusable-atlas-intake"></a>
+## D-003 — artefacte guvernate și intrare Atlas reutilizabilă
 
-- Owner: artifacts documentation, maintenance tooling and existing governance.
-- Priority: 85, from impact/risk/urgency 90/85/70.
-- Baseline quality: 55, from correctness/verification/clarity 65/40/55.
-- Observation: artifacts is globally excluded from the inventory, so maintained
-  documentation there would escape links, language and edition checks. Report
-  evidence is scattered across module targets and external run directories.
-- Acceptance: govern the artifact READMEs/templates; exclude only declared run
-  data outside owned source trees. Archive existing reports and assets without
-  changing their contents, retaining classification, provenance and SHA-256.
-  A collector must reject overwrites and recursive destinations, report partial
-  failures and distinguish collection from execution. Atlas intake must describe
-  any caller-selected project using observed sources and explicit unknowns,
-  without adding a runtime analyzer or restoring retired infrastructure.
-- State: VERIFIED on 2026-11-25. Maintained artifact guides/templates are governed;
-  exact generated run subtrees remain excluded outside owned source. Eight real
-  filesystem/CLI regressions passed; current and historical report bundles were
-  archived and rehashed. The documented generic Atlas intake was applied to ATF
-  with source references and explicit proof boundaries.
-- Delivered quality: 94, from correctness/verification/clarity 94/95/93.
-  Generated bundles remain outside tracked source.
+- Responsabil: documentația artefactelor, utilitarele de mentenanță și guvernanța existentă.
+- Prioritate: 85, din impact/risc/urgență 90/85/70.
+- Calitate inițială: 55, din corectitudine/verificare/claritate 65/40/55.
+- Observație: artifacts este exclus global din inventar, astfel că documentația
+  întreținută acolo ar evita verificările de legături, limbă și ediție. Dovezile
+  rapoartelor sunt dispersate între directoarele target ale modulelor și rulările externe.
+- Acceptanță: guvernează README-urile/șabloanele artefactelor; exclude numai
+  datele de rulare declarate din afara arborilor sursă deținuți. Arhivează
+  rapoartele și resursele existente fără a le schimba conținutul, păstrând
+  clasificarea, proveniența și SHA-256. Colectorul trebuie să respingă
+  suprascrierile și destinațiile recursive, să raporteze eșecurile parțiale
+  și să distingă colectarea de execuție. Intrarea Atlas trebuie să descrie
+  orice proiect selectat de apelant folosind surse observate și necunoscute
+  explicite, fără analizor runtime nou sau restaurarea infrastructurii retrase.
+- Stare: VERIFIED la 2026-11-25. Ghidurile/șabloanele întreținute ale artefactelor
+  sunt guvernate; subarborii exacți ai rulărilor generate rămân excluși în afara
+  sursei deținute. Opt regresii reale de sistem de fișiere/CLI au trecut;
+  pachetele curente și istorice au fost arhivate și reverificate prin hash.
+  Protocolul generic documentat de intrare Atlas a fost aplicat ATF cu
+  referințe sursă și limite explicite ale dovezilor.
+- Calitate livrată: 94, din corectitudine/verificare/claritate 94/95/93.
+  Pachetele generate rămân în afara sursei urmărite.
 
-Useful J0 practices are explicit imports, owned cleanup, source/output separation,
-observable regression outcomes and one canonical documentation owner. J0 remains
-a read-only reference; no J0 build or pending change is modified by this work.
+Practicile J0 utile sunt importurile explicite, curățarea cu responsabil,
+separarea sursei de rezultate, rezultatele observabile ale regresiilor și un
+singur responsabil canonic al documentației. J0 rămâne o referință doar pentru
+citire; această lucrare nu modifică niciun build J0 sau schimbare în curs.
 
-## Current comparison and adopted practices
+<a id="current-comparison-and-adopted-practices"></a>
+## Comparația curentă și practicile adoptate
 
-ATF_J0 was inspected again at 96f50e5f277771ca9dfac3b7c959b47188afd0b0.
-Its worktree was clean when captured; no J0 build or modification was performed.
-The earlier comparison retains its original revision and dirty-state evidence.
-This review uses the current code/documentation best-practice guides and source
-governance owners as references, adapting their responsibilities to AI's existing
-Java 11/TestNG structure. J0's named-static-import guidance informs the explicit
-import rule; its contract/gap/evidence distinction informs artifact ownership.
+ATF_J0 a fost inspectat din nou la 96f50e5f277771ca9dfac3b7c959b47188afd0b0.
+Copia sa de lucru era curată la capturare; nu s-a efectuat build sau modificare J0.
+Comparația anterioară păstrează revizia originală și dovezile stării modificate.
+Această revizuire folosește ghidurile curente de bune practici de cod/documentație
+și responsabilii guvernanței sursei ca referințe, adaptând responsabilitățile lor
+la structura Java 11/TestNG existentă a AI. Îndrumarea J0 pentru importuri statice
+numite informează regula importurilor explicite; distincția sa contract/lacună/dovadă informează responsabilitatea artefactelor.
 
-The same 1–100 rubric and weights as the previous maturity review apply. These
-are engineering assessments, not coverage, uptime or a runtime benchmark.
+Se aplică aceeași grilă 1–100 și aceleași ponderi ca în revizuirea anterioară
+a maturității. Acestea sunt evaluări inginerești, nu acoperire, disponibilitate sau benchmark runtime.
 
-| Axis | Weight | ATF_AI previous | ATF_AI current | ATF_J0 source review |
+| Axă | Pondere | ATF_AI anterior | ATF_AI curent | ATF_J0 revizuire sursă |
 |---|---:|---:|---:|---:|
-| Architecture and boundaries | 20 | 90 | 90 | 92 |
-| Executable governance | 30 | 93 | 94 | 94 |
-| Existing-test quality | 25 | 90 | 91 | 88 |
-| Documentation and navigation | 15 | 93 | 94 | 89 |
-| Feedback ownership and lifecycle | 10 | 93 | 93 | 85 |
-| Weighted overall | 100 | **92** | **92** | **90** |
+| Arhitectură și limite | 20 | 90 | 90 | 92 |
+| Guvernanță executabilă | 30 | 93 | 94 | 94 |
+| Calitatea testelor existente | 25 | 90 | 91 | 88 |
+| Documentație și navigare | 15 | 93 | 94 | 89 |
+| Responsabilitatea și ciclul feedback-ului | 10 | 93 | 93 | 85 |
+| Total ponderat | 100 | **92** | **92** | **90** |
 
-Unrounded current totals are 92.35 for AI and 90.45 for J0. The rounded AI score
-remains 92 because this is a focused improvement within a broader framework
-assessment. Governed imports and owned artifact sources improve enforceable
-boundaries; bounded rendezvous and checked worker outcomes improve one existing
-regression. New artifact guides, category navigation and Atlas intake improve
-understanding. No points are awarded for file/test counts or deleting scope.
-J0 retains source-review confidence only. Neither score certifies arbitrary
-consumer projects, every supported browser or public application persistence.
+Totalurile curente nerotunjite sunt 92.35 pentru AI și 90.45 pentru J0.
+Nota AI rotunjită rămâne 92, deoarece aceasta este o îmbunătățire focalizată
+într-o evaluare mai largă a frameworkului. Importurile guvernate și sursele
+artefactelor cu responsabil îmbunătățesc limitele impuse; sincronizarea limitată
+și rezultatele verificate ale lucrătorilor îmbunătățesc o regresie existentă.
+Noile ghiduri ale artefactelor, navigarea pe categorii și intrarea Atlas
+îmbunătățesc înțelegerea. Nu se acordă puncte pentru numărul de fișiere/teste
+sau ștergerea unui domeniu. J0 păstrează încrederea bazată doar pe revizuirea
+sursei. Nicio notă nu certifică proiecte arbitrare ale consumatorilor, toate
+browserele suportate sau persistența aplicației publice.
 
-## Delivered evidence and proof limits
+<a id="delivered-evidence-and-proof-limits"></a>
+## Dovezi livrate și limitele verificării
 
-| Selection | Source checkpoint | Observed result | Evidence name |
+| Selecție | Revizie sursă | Rezultat observat | Numele dovezii |
 |---|---|---|---|
-| First focused governance/concurrency probe | Prepared source from fb39f9cf | 200 passed, one new portability-fixture failure; preserved as unsuccessful evidence | modules-quality-probe-01 |
-| Complete English local selection with explicit peer | 1055ca3 | 533 passed, including 194 governance and 24 framework API cases | modules-quality-main-local-01 |
-| Complete Romanian local selection with explicit peer | 222b5ba | 533 passed, including the same governance/API scope | modules-quality-ro-local-01 |
-| Complete aggregate profile with explicit peer | 1055ca3 | 533 passed; existing Extent/Allure aggregate output retained | modules-quality-main-aggregate-01 |
-| Maintenance collector | Same collector source as the accepted checkpoint | Eight filesystem/CLI checks passed | quality-artifact-tooling-final.log |
-| Existing worker-limit method | Same Java source as the accepted checkpoint | 20 consecutive direct invocations passed | quality-concurrency-repeat.json |
-| Import-only scope | fb39f9cf compared with the accepted checkpoint | All 17 implementation trees identical | quality-import-audit.json |
+| Prima probă focalizată de guvernanță/concurență | Sursă pregătită din fb39f9cf | 200 trecute, un eșec nou al cazului de portabilitate; păstrat drept dovadă nereușită | modules-quality-probe-01 |
+| Selecția locală completă engleză cu pereche explicită | 1055ca3 | 533 trecute, inclusiv 194 cazuri de guvernanță și 24 API ale frameworkului | modules-quality-main-local-01 |
+| Selecția locală completă română cu pereche explicită | 222b5ba | 533 trecute, inclusiv același domeniu de guvernanță/API | modules-quality-ro-local-01 |
+| Profilul agregat complet cu pereche explicită | 1055ca3 | 533 trecute; rezultatele agregate Extent/Allure existente sunt păstrate | modules-quality-main-aggregate-01 |
+| Colectorul de mentenanță | Aceeași sursă a colectorului ca la revizia acceptată | Opt verificări de sistem de fișiere/CLI trecute | quality-artifact-tooling-final.log |
+| Metoda existentă de limitare a lucrătorilor | Aceeași sursă Java ca la revizia acceptată | 20 de invocări directe consecutive trecute | quality-concurrency-repeat.json |
+| Domeniul exclusiv de importuri | fb39f9cf comparat cu revizia acceptată | Toți cei 17 arbori de implementare identici | quality-import-audit.json |
 
-The initial negative portability fixture constructed a complete drive path from
-adjacent constants, so source governance correctly found it in the test itself.
-The corrected fixture uses the existing explicit test-data construction pattern;
-the path rule and runtime behavior were not relaxed. Original unsuccessful XML
-and logs are retained. Counts overlap across selections.
+Cazul negativ inițial de portabilitate construia o cale completă de disc din
+constante adiacente, astfel încât guvernanța sursei a identificat-o corect chiar
+în test. Cazul corectat folosește modelul explicit existent de construire a
+datelor de test; regula căilor și comportamentul runtime nu au fost relaxate.
+XML-urile și jurnalele originale nereușite sunt păstrate. Numerele se suprapun între selecții.
 
-Report bundles are below `${ATF_WORK_ROOT}/artifacts/reports/runs`, grouped by
-source run name. The collector preserves source-relative trees and original
-bytes, generates category catalogs/indexes and rechecks every copied SHA-256.
-Collection is distinct from execution. The preserved historical browser bundle
-modules-f008-browser-accepted keeps its original source revision and outcome;
-it is not a fresh browser selection in this phase. No authenticated GoRest write
-request or product acceptance is claimed.
+Pachetele de rapoarte sunt sub `${ATF_WORK_ROOT}/artifacts/reports/runs`, grupate
+după numele rulării sursă. Colectorul păstrează arborii relativi la sursă și
+octeții originali, generează cataloage/indexuri pe categorii și reverifică
+fiecare SHA-256 copiat. Colectarea este distinctă de execuție. Pachetul istoric
+de browser modules-f008-browser-accepted păstrat își menține revizia sursă și
+rezultatul originale; nu este o nouă selecție de browser în această etapă.
+Nu se pretinde cerere GoRest de scriere autentificată sau acceptanță de produs.
 
-The applied Atlas example is below
-`${ATF_WORK_ROOT}/artifacts/atlas/runs/atf-ai/quality-01`, with a project map,
-source index and open proof boundaries. This demonstrates the maintained intake
-protocol on ATF; it does not establish an automatic universal analyzer. The
-reusable contract stays at artifacts/atlas/README.md and its English template.
+Exemplul Atlas aplicat este sub
+`${ATF_WORK_ROOT}/artifacts/atlas/runs/atf-ai/quality-01`, cu o hartă a proiectului,
+index sursă și limite deschise ale dovezilor. Demonstrează protocolul întreținut
+de intrare pentru ATF; nu stabilește un analizor universal automat. Contractul
+reutilizabil rămâne în artifacts/atlas/README.md și în șablonul său în engleză.
 
-All 21 README pairs retain hierarchy, commands, code blocks, link destinations,
-incoming anchors and Mermaid topology. Other source is identical apart from the
-declared README language property. Desktop Chromium rendered 36 document/edition/
-width combinations at 1440/520 px, with no page overflow and minimum measured
-label height of 17 px. No device emulation was used.
+Toate cele 21 de perechi README păstrează ierarhia, comenzile, blocurile de cod,
+destinațiile legăturilor, ancorele de intrare și topologia Mermaid. Restul sursei
+este identic, exceptând proprietatea declarată a limbii README. Chromium desktop
+a randat 36 de combinații document/ediție/lățime la 1440/520 px, fără depășirea
+paginii și cu înălțimea minimă măsurată a etichetelor de 17 px. Nu s-a folosit emulare de dispozitiv.
 
-Detailed manifests, source hashes, reference copies and visual metrics are below
-`${ATF_WORK_ROOT}/reviews/20261124-quality-artifacts`. Final receipt-only changes
-receive a fresh paired source/documentation validation using the same compiled
-Java as the accepted full selection. That check is not another run of all
-fixture cases. The full API/runtime and import-only implementation source remains
-the accepted source. Final audit and synchronization receipts remain external.
+Manifestele detaliate, hash-urile sursei, copiile de referință și metricile vizuale
+sunt sub `${ATF_WORK_ROOT}/reviews/20261124-quality-artifacts`. Schimbările finale
+exclusiv de dovadă primesc o validare nouă sursă/documentație în pereche, folosind
+același Java compilat ca selecția completă acceptată. Verificarea nu este o nouă
+rulare a tuturor cazurilor controlate. Sursa completă API/runtime și implementarea
+schimbată doar prin importuri rămân sursa acceptată. Dovezile finale de audit și sincronizare rămân externe.

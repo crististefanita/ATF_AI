@@ -12,6 +12,9 @@ jurnale și rapoarte în zona externă; copiile selectate și verificate pot fi 
 | ID | Constatare | Responsabil | Prioritate (1-100) | Calitate (1-100) | Stare | Dovada închiderii |
 |---|---|---|---:|---:|---|---|
 | G-014 | Păstrează eșecul de control al schimbărilor J1 separat de consistența Atlas și de rezultatul reușit al catalogului în aria verificată | Responsabilul schimbărilor testelor J1; observație externă | 84 | 68 | TODO | [Sursa exactă și înregistrările de control necesare](Atlas_Depth_And_Assessment.md#g-014) |
+| G-017 | Respinge testele menținute dezactivate în surse și limitează firul existent al consolei | Responsabilii suitelor/consolei existente | 84 | 76 | IN PROGRESS | [Contraexemple și limitele corecției](Code_And_Documentation_Maturity.md#g-017) |
+| D-010 | Păstrează strategia lizibilă și traduce toate documentele menținute cu revizie integrală | Responsabilii documentației și edițiilor | 88 | 68 | IN PROGRESS | [Baza limbii și limitele explicite ale dovezilor](Code_And_Documentation_Maturity.md#d-010) |
+| G-016 | Revizuiește pierderea unei metode de regresie existente dintr-o clasă încă selectată | Responsabilul mentenanței testelor | 75 | 69 | TODO | [Lacuna observată în surse și acceptanța limitată](Code_And_Documentation_Maturity.md#g-016) |
 | F-011 | Păstrează observabilă curățarea urmăririi interacțiunilor când închiderea motorului UI aruncă o excepție | Responsabilul închiderii UI din Core | 82 | 66 | TODO | [Lipsa observată în surse și criteriul de componentă absent](Behavior_And_Negative_Cases.md#f-011) |
 
 Registrul este rezervat guvernanței, stabilității și documentației framework-ului.
@@ -44,6 +47,7 @@ demonstrat/critic, în funcție de axa relevantă. Rotunjește la cel mai apropi
 cu jumătățile în sus. Precizează aria, observațiile și componentele notei în
 înregistrarea indicată. Un element închis își păstrează acolo evaluarea inițială;
 înregistrările istorice verificate nu primesc note retrospective inventate.
+
 Revizuiește notele când se schimbă dovezile sau aria, nu doar când crește numărul testelor.
 Guvernanța existentă a documentației validează cele două coloane distincte,
 intervalul întreg și câmpurile acționabile pentru responsabil, stare și dovezi.
@@ -52,6 +56,9 @@ Componentele păstrate ale evaluărilor inițiale:
 
 | ID | Impact / risc / urgență | Corectitudine / verificare / claritate | Limitele dovezilor |
 |---|---|---|---|
+| G-017 | 90 / 80 / 75 | 80 / 65 / 80 | Teste selectate dezactivate în surse și un fir de consolă nelimitat |
+| D-010 | 90 / 85 / 85 | 65 / 60 / 80 | Documentația din afara README-urilor rămâne engleză în ediția declarată română |
+| G-016 | 80 / 70 / 70 | 75 / 50 / 80 | Eliminarea unei metode poate păstra selecția clasei; observație numai din surse |
 | G-006 | 90 / 80 / 75 | 85 / 65 / 80 | Verificările de structură și de ediție lipseau din versiunea inițială analizată |
 | F-008 | 90 / 70 / 75 | 70 / 70 / 75 | Verificările reale de rețea locală trec; selecția SDK/browser/CDP tipizat era nealiniată |
 | G-005 | 85 / 80 / 75 | 70 / 40 / 55 | Rădăcinile de execuție sunt rezolvate dinamic, dar instrucțiunile conțin căi specifice stației |

@@ -166,11 +166,13 @@ Absența testelor, metadatelor Git sau dependențelor declarate rămâne explici
 Publicarea încorporează CSS-ul canonic, SVG, toate documentele Markdown declarate,
 datele sursă/analiză și conținutul original XML/TAP/de proveniență declarat.
 Navigarea internă și secțiunile native pliabile rămân utilizabile când copiezi doar HTML-ul.
+
 Selectează documente suplimentare menținute ale țintei prin sourceDocuments, legate
 de indexul surselor, astfel încât ghidurile, arhitectura, testarea și utilizarea
 să rămână disponibile integral în acel artefact. Comanda understand este un alias
 pentru publish; ambele consumă o analiză revizuită pornind de la sursă și aplică
 politicile obligatorii, fără a deduce automat proiectul printr-un model de limbaj.
+
 Recuperarea politicilor returnează înregistrări citate și digestul corpusului;
 cerințele obligatorii se aplică și unei întrebări fără legătură. Sursele selectate
 și criteriile reale de verificare, nu un fragment de politică recuperat, stabilesc
@@ -208,7 +210,9 @@ care ies din rădăcină și afirmațiile executate legate de alt proiect sau al
 octeți sursă. Afirmațiile EXECUTED cer rezultate Surefire XML ori Node TAP plat,
 contoare/verdict și manifestul original al surselor; HTML-ul ori un rezultat
 istoric/omis nu sunt suficiente. O execuție eșuată rămâne eșuată chiar dacă dovada
-ei trece verificarea de consistență. Verificarea raportului complet respinge și
+ei trece verificarea de consistență.
+
+Verificarea raportului complet respinge și
 secțiunile lipsă, CSS-ul canonic schimbat, referințele nesusținute către
 comportament/diagramă/criteriu, dependențele externe, identitatea mixtă a țintei
 și un HTML suplimentar în directorul pentru cititor. Eșecurile păstrează ID-ul

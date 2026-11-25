@@ -1,40 +1,42 @@
-# Browser compatibility and portable project guidance
+<a id="browser-compatibility-and-portable-project-guidance"></a>
+# Compatibilitatea browserelor și ghiduri portabile pentru proiect
 
-Baseline: `805d58e7670ff1e4fa16d53c56fc0827f7cfd3cb`.
-Scores follow the separate priority/quality rubric in the
-[feedback register](README.md#assessment-rubric-and-evidence-locations).
-Initial component scores and evidence remain there after closure.
+Referință inițială: `805d58e7670ff1e4fa16d53c56fc0827f7cfd3cb`.
+Notele urmează grila separată de prioritate/calitate din
+[registrul de feedback](README.md#assessment-rubric-and-evidence-locations).
+Notele inițiale ale componentelor și dovezile rămân acolo după închidere.
 
-## Shared acceptance ledger
+<a id="shared-acceptance-ledger"></a>
+## Registru comun de acceptanță
 
-Implementation checkpoint: `6a88fc9536625ee019f3010607c9a9b1ba256923`.
-Each run's external `${ATF_WORK_ROOT}/runs/<stem>-source.json` preserves exact
-arguments, environment inputs, binary hashes and the complete tested file-hash
-manifest. Its sourceCommit field records base `805d58e`, before the working
-content was committed; it is not the final implementation identity. These three
-feedback closure files were updated after execution.
+Reper de implementare: `6a88fc9536625ee019f3010607c9a9b1ba256923`.
+Fișierul extern `${ATF_WORK_ROOT}/runs/<stem>-source.json` al fiecărei rulări păstrează argumentele
+exacte, intrările de mediu, hash-urile binarelor și manifestul complet al hash-urilor
+fișierelor testate. Câmpul său sourceCommit înregistrează baza `805d58e`, înainte de comiterea
+conținutului de lucru; nu este identitatea finală a implementării. Aceste trei
+fișiere de închidere a feedback-ului au fost actualizate după execuție.
 
-All three accepted copies ran below
-`${ATF_WORK_ROOT}/validation/portable workspace/<stem>`. The exact common Maven
-argument prefix, with the external root normalized, is
+Toate cele trei copii acceptate au rulat sub
+`${ATF_WORK_ROOT}/validation/portable workspace/<stem>`. Prefixul exact comun al argumentelor
+Maven, cu rădăcina externă normalizată, este
 `mvn -B -ntp -Dmaven.repo.local=${ATF_WORK_ROOT}/cache/m2`:
 
-| Run stem | Remaining arguments | Result |
+| Identificator de bază al rulării | Argumente rămase | Rezultat |
 |---|---|---|
-| modules-f008-local-accepted | `-o verify` | 514 passed: 502 atf-tests and 12 native checks; no failures/errors/skips |
-| modules-f008-aggregate-final | `-o -Paggregate test` | 514 passed: 502 atf-tests and 12 native checks; no failures/errors/skips |
-| modules-f008-browser-accepted | `-o -Pbrowser test` | 120 passed: 108 browser-suite and 12 native checks; no failures/errors/skips |
+| modules-f008-local-accepted | `-o verify` | 514 trecute: 502 atf-tests și 12 verificări native; fără eșecuri/erori/omiteri |
+| modules-f008-aggregate-final | `-o -Paggregate test` | 514 trecute: 502 atf-tests și 12 verificări native; fără eșecuri/erori/omiteri |
+| modules-f008-browser-accepted | `-o -Pbrowser test` | 120 trecute: 108 din suita de browser și 12 verificări native; fără eșecuri/erori/omiteri |
 
-Logs use the same stems under `${ATF_WORK_ROOT}/runs`; XML remains in each
-validation copy's module target/surefire-reports directories. Counts overlap and
-must not be summed as unique tests. Publication and packaged-JAR audits are
-separate checks and are not asserted by this ledger.
+Jurnalele folosesc aceiași identificatori sub `${ATF_WORK_ROOT}/runs`; XML-ul rămâne în directoarele
+target/surefire-reports ale modulelor fiecărei copii de validare. Numerele se suprapun și
+nu trebuie însumate ca teste unice. Auditurile de publicare și ale JAR-urilor împachetate sunt
+verificări separate și nu sunt afirmate de acest registru.
 
-The runner appended quoted java.io.tmpdir and atf.selenium.cache.root properties
-through JAVA_TOOL_OPTIONS. TEMP/TMP used the run's .tmp directory; the ATF fallback
-root was `${ATF_WORK_ROOT}/cache/selenium-f008-fallback-empty`, without a cached
-driver. No webdriver.chrome.driver override bypassed Manager. The pinned
-environment used:
+Lansatorul a adăugat proprietățile java.io.tmpdir și atf.selenium.cache.root, între ghilimele,
+prin JAVA_TOOL_OPTIONS. TEMP/TMP au folosit directorul .tmp al rulării; rădăcina ATF de rezervă
+a fost `${ATF_WORK_ROOT}/cache/selenium-f008-fallback-empty`, fără un driver
+în cache. Nicio suprascriere webdriver.chrome.driver nu a ocolit Manager. Mediul
+fixat a folosit:
 
 ```text
 SE_BROWSER_PATH=${ATF_WORK_ROOT}/cache/selenium/chrome/win64/158.0.8127.88/chrome.exe
@@ -48,163 +50,167 @@ PLAYWRIGHT_BROWSERS_PATH=${ATF_WORK_ROOT}/cache/playwright
 PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
 ```
 
-Host: Windows 11 x64, NT 10.0.26300; Temurin JDK 21.0.12.1+1 and Maven 3.10.
-Library compilation targets Java 11. The Playwright SDK used its bundled Node.
-Preparation and skipped execution are not acceptance receipts.
+Gazdă: Windows 11 x64, NT 10.0.26300; Temurin JDK 21.0.12.1+1 și Maven 3.10.
+Compilarea bibliotecilor vizează Java 11. SDK-ul Playwright a folosit Node inclus.
+Pregătirea și execuția omisă nu sunt înregistrări de acceptanță.
 
-| Preserved failed log | Original observation |
+| Jurnal de eșec păstrat | Observație originală |
 |---|---|
-| modules-f008-governance-probe.log | 173 governance cases, 3 failures: scoring-header schema, an XPath false positive and a portability negative-fixture finding |
-| modules-f008-local-final.log | 514 checks including 12 native checks, 1 failed UNC portability fixture |
-| modules-f008-browser-final.log | 120 checks including 12 native checks, 1 failed network invocation interrupted during DriverService.stop cleanup after 37.17 seconds against its former 30-second method cap |
+| modules-f008-governance-probe.log | 173 de cazuri de guvernanță, 3 eșecuri: schema antetului de notare, un fals pozitiv XPath și o constatare într-un fixture negativ de portabilitate |
+| modules-f008-local-final.log | 514 verificări incluzând 12 verificări native, 1 fixture UNC de portabilitate eșuat |
+| modules-f008-browser-final.log | 120 de verificări incluzând 12 verificări native, 1 invocare de rețea eșuată, întreruptă în curățarea DriverService.stop după 37.17 secunde, față de limita anterioară de 30 de secunde a metodei |
 
-These failures remain historical evidence and are not accepted runs.
+Aceste eșecuri rămân dovezi istorice și nu sunt rulări acceptate.
 
-## Closure assessments
+<a id="closure-assessments"></a>
+## Evaluări de închidere
 
-Baseline priority/quality and their original components remain in the register.
-Priority below retains remediation urgency at that baseline; it is not a new
-current priority assigned after closure. Closure quality reassesses only the
-documented area and evidence, using the existing rubric.
+Prioritatea/calitatea inițiale și componentele lor originale rămân în registru.
+Prioritatea de mai jos păstrează urgența remedierii la acea referință inițială; nu este o nouă
+prioritate curentă atribuită după închidere. Calitatea la închidere reevaluează numai
+domeniul și dovezile documentate, folosind grila existentă.
 
-| ID | Baseline priority / quality | Closure quality | Correctness / verification / clarity | Assessed scope |
+| ID | Prioritate / calitate inițiale | Calitate la închidere | Corectitudine / verificare / claritate | Domeniu evaluat |
 |---|---|---:|---|---|
-| F-008 | 81 / 72 | 94 | 95 / 95 / 90 | Actual selected Windows matrix and local response contracts; other matrices require fresh proof |
-| G-005 | 82 / 57 | 95 | 95 / 95 / 95 | Bounded authored-path rules and relocated Windows execution |
-| D-001 | 55 / 80 | 94 | 95 / 90 / 95 | Current owner navigation, public examples and the inspected responsive renderer |
-| T-004 | 70 / 72 | 95 | 95 / 95 / 95 | Six observed network bodies and cleanup paths with independent deadlines |
+| F-008 | 81 / 72 | 94 | 95 / 95 / 90 | Matricea Windows efectiv selectată și contractele locale de răspuns; alte matrice necesită dovezi noi |
+| G-005 | 82 / 57 | 95 | 95 / 95 / 95 | Reguli delimitate pentru căile redactate și execuție Windows relocată |
+| D-001 | 55 / 80 | 94 | 95 / 90 / 95 | Navigarea curentă către responsabili, exemplele publice și randorul adaptiv inspectat |
+| T-004 | 70 / 72 | 95 | 95 / 95 / 95 | Șase corpuri de test de rețea observate și căi de curățare cu termene-limită independente |
 
 <a id="f-008"></a>
-## F-008: Align the maintained browser matrix
+<a id="f-008-align-the-maintained-browser-matrix"></a>
+## F-008: Alinierea matricei de browsere întreținute
 
-- Owner: atf-selenium dependency management and existing native/browser contracts.
-- Original observation: Selenium 4.45.0 bundled typed CDP 147–149 while the
-  selected Chrome and ChromeDriver were 158.0.8127.88. Real response probes
-  passed, but a nearest/missing typed-CDP warning remained.
-- Selected matrix: Selenium 4.54.0, Chrome for Testing 158.0.8127.88,
-  ChromeDriver 158.0.8127.88 and exact typed CDP v158 on the host recorded above.
-- Implementation boundary: change the existing Selenium version property and
-  strengthen existing tests. Preserve runtime classes and driver fallback
-  behavior. The maintained setup uses existing Selenium Manager environment
-  settings and the existing configurable ATF fallback-cache root.
-- Expected: the actual WebDriver browser/driver capabilities, selected typed
-  provider, CDP product and launched executable agree with this matrix. Real
-  positive and URL/method mismatch response probes pass on both adapters.
-  No nearest-provider warning is suppressed or accepted as exact matching.
-- Acceptance: rerun the scoped native/network tests, full local verification,
-  full browser profile and aggregate publication from independent disposable
-  copies. Record OS, JDK, Maven, exact binaries, dependency selection and evidence.
-  The [canonical preparation](../Testing.md#browser-preparation-and-checks)
-  must pin the executable as well as the driver version; an installed Chrome
-  that happens to share the version is not equivalent binary-selection proof.
-- Delivered: the existing
-  [native provider check](../../atf-selenium/src/test/java/com/ai/ui/core/engine/selenium/SeleniumProviderTest.java)
-  selects exact v158CdpInfo. The existing
-  [browser fixture](../../atf-tests/src/test/java/com/ai/atf/ui/component/parity/SeleniumPlaywrightLocatorParityContractTest.java)
-  verifies actual browser/driver capabilities, CDP product, instantiated
-  v158Domains and the launched binary against SE_BROWSER_PATH. Both positive
-  probes and all four URL/method mismatch probes passed in full browser acceptance.
-  No missing/nearest typed-CDP warning appeared and none was suppressed.
-- Status: VERIFIED for this pinned Windows matrix by the accepted executions
-  above. This pass changes zero production Java files; the dependency correction
-  is the existing Selenium version property. Another platform or version requires
-  renewed matrix and browser acceptance, not extrapolation from this result.
+- Responsabil: gestionarea dependențelor atf-selenium și contractele native/de browser existente.
+- Observație originală: Selenium 4.45.0 includea CDP tipizat 147–149, în timp ce
+  Chrome și ChromeDriver selectate erau 158.0.8127.88. Sondele reale de răspuns
+  treceau, dar rămânea o avertizare de CDP tipizat aproximativ/lipsă.
+- Matrice selectată: Selenium 4.54.0, Chrome for Testing 158.0.8127.88,
+  ChromeDriver 158.0.8127.88 și CDP tipizat exact v158 pe gazda înregistrată mai sus.
+- Limita implementării: schimbarea proprietății existente a versiunii Selenium și
+  întărirea testelor existente. Păstrarea claselor de execuție și a comportamentului
+  de rezervă al driverului. Configurarea întreținută folosește setările de mediu Selenium Manager
+  existente și rădăcina de cache de rezervă ATF configurabilă existentă.
+- Rezultat așteptat: capabilitățile efective browser/driver WebDriver, furnizorul tipizat
+  selectat, produsul CDP și executabilul lansat corespund acestei matrice. Sondele reale
+  pozitive și cele de nepotrivire URL/metodă trec pe ambele adaptoare.
+  Nicio avertizare de furnizor aproximativ nu este suprimată sau acceptată drept potrivire exactă.
+- Acceptanță: rerularea testelor native/de rețea delimitate, a verificării locale complete,
+  a profilului complet de browser și a publicării agregate din copii temporare
+  independente. Înregistrarea sistemului de operare, JDK, Maven, binarelor exacte, selecției dependențelor și dovezilor.
+  [Pregătirea canonică](../Testing.md#browser-preparation-and-checks)
+  trebuie să fixeze executabilul, precum și versiunea driverului; un Chrome instalat
+  care se întâmplă să aibă aceeași versiune nu este o dovadă echivalentă de selecție a binarului.
+- Livrat:
+  [verificarea furnizorului nativ](../../atf-selenium/src/test/java/com/ai/ui/core/engine/selenium/SeleniumProviderTest.java)
+  existentă selectează exact v158CdpInfo. [Fixture-ul de browser](../../atf-tests/src/test/java/com/ai/atf/ui/component/parity/SeleniumPlaywrightLocatorParityContractTest.java)
+  existent verifică capabilitățile efective browser/driver, produsul CDP,
+  v158Domains instanțiat și binarul lansat față de SE_BROWSER_PATH. Ambele sonde
+  pozitive și toate cele patru sonde de nepotrivire URL/metodă au trecut în acceptanța completă de browser.
+  Nu a apărut nicio avertizare de CDP tipizat lipsă/aproximativ și niciuna nu a fost suprimată.
+- Stare: VERIFIED pentru această matrice Windows fixată, prin execuțiile acceptate
+  de mai sus. Această etapă schimbă zero fișiere Java de producție; corecția dependenței
+  este proprietatea existentă a versiunii Selenium. O altă platformă sau versiune necesită
+  o nouă acceptanță a matricei și browserului, nu extrapolare din acest rezultat.
 
-Primary references supporting the selected matrix and setup:
+Referințe primare care susțin matricea și configurarea selectate:
 
-- [Official Selenium downloads](https://www.selenium.dev/downloads/).
-- [Selenium 4.54 Java changelog](https://github.com/SeleniumHQ/selenium/blob/selenium-4.54.0/java/CHANGELOG).
-- [Published Selenium 4.54 dependency descriptor](https://repo.maven.apache.org/maven2/org/seleniumhq/selenium/selenium-java/4.54.0/selenium-java-4.54.0.pom).
-- [Exact Chrome for Testing release manifest](https://googlechromelabs.github.io/chrome-for-testing/158.0.8127.88.json).
-- [Official Selenium Manager configuration](https://www.selenium.dev/documentation/selenium_manager/).
+- [Descărcări oficiale Selenium](https://www.selenium.dev/downloads/).
+- [Jurnalul modificărilor Java Selenium 4.54](https://github.com/SeleniumHQ/selenium/blob/selenium-4.54.0/java/CHANGELOG).
+- [Descriptorul publicat al dependențelor Selenium 4.54](https://repo.maven.apache.org/maven2/org/seleniumhq/selenium/selenium-java/4.54.0/selenium-java-4.54.0.pom).
+- [Manifestul exact al versiunii Chrome for Testing](https://googlechromelabs.github.io/chrome-for-testing/158.0.8127.88.json).
+- [Configurarea oficială Selenium Manager](https://www.selenium.dev/documentation/selenium_manager/).
 
 <a id="g-005"></a>
-## G-005: Keep project paths portable
+<a id="g-005-keep-project-paths-portable"></a>
+## G-005: Păstrarea portabilității căilor proiectului
 
-- Owner: source/documentation governance and the owning guides.
-- Original observation: startup and historical receipts embedded the author's
-  workstation layout. One unsupported-upload test used an unrelated absolute
-  dummy filename. Runtime cache/temp roots already derived from caller settings.
-- Requirement: authored repository instructions, source and configuration use
-  project-relative paths, classpath resources or explicit caller/environment
-  roots. Resolve an absolute runtime path from those inputs when an API requires
-  it. Do not embed workstation drives, account directories or private file URIs.
-- Delivered: normalize historical evidence to `${ATF_WORK_ROOT}`;
-  retain original execution provenance outside the checkout. Resolve consumer
-  configuration once from the reactor root so Maven module forks see the same
-  file. Keep JVM temp/user-home APIs and HTTP/API paths valid.
-- Acceptance: meaningful positive and negative source/configuration/documentation
-  fixtures protect the boundary, including decoded Java literals, escaping,
-  Windows/UNC/account-root forms and environment-derived paths. Build/test a
-  relocated disposable copy and retain source comparisons.
-- Verification: existing
-  [path governance](../../atf-tests/src/test/java/com/ai/atf/governance/GovernanceFiles.java)
-  and [architecture fixtures](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureGovernanceTest.java)
-  check fixed paths in owned text and decoded Java literals. Dynamic home/caller
-  roots, JVM temp/user-home resolution, HTTP/API paths and explicit XPath selectors
-  remain valid. The accepted local and aggregate copies both ran successfully
-  under the relocated portable workspace path.
-- Status: VERIFIED for the bounded guard and recorded relocated executions.
-  This does not establish all possible shell expansions or acceptance on every OS.
+- Responsabil: guvernanța surselor/documentației și ghidurile responsabile.
+- Observație originală: pornirea și înregistrările istorice încorporau structura stației
+  de lucru a autorului. Un test de încărcare nesusținută folosea un nume absolut fără legătură
+  pentru un fișier fictiv. Rădăcinile de cache/temporare la execuție derivau deja din setările apelantului.
+- Cerință: instrucțiunile redactate din depozit, sursele și configurația folosesc
+  căi relative la proiect, resurse classpath sau rădăcini explicite ale apelantului/mediului.
+  Rezolvați o cale absolută la execuție din acele intrări când un API o
+  cere. Nu încorporați unități de disc ale stației de lucru, directoare de cont sau URI-uri private de fișier.
+- Livrat: normalizarea dovezilor istorice la `${ATF_WORK_ROOT}`;
+  păstrarea provenienței originale a execuțiilor în afara copiei de lucru. Rezolvarea configurației
+  consumatorului o singură dată din rădăcina reactorului, astfel încât procesele modulelor Maven să vadă același
+  fișier. Păstrarea validității API-urilor JVM pentru temporare/directorul utilizatorului și a căilor HTTP/API.
+- Acceptanță: fixture-uri pozitive și negative relevante pentru surse/configurație/documentație
+  protejează limita, inclusiv literali Java decodați, secvențe de escapare,
+  forme Windows/UNC/rădăcină de cont și căi derivate din mediu. Compilarea/testarea unei
+  copii temporare relocate și păstrarea comparațiilor surselor.
+- Verificare:
+  [guvernanța căilor](../../atf-tests/src/test/java/com/ai/atf/governance/GovernanceFiles.java)
+  și [fixture-urile de arhitectură](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureGovernanceTest.java)
+  existente verifică căile fixe în textul deținut și în literalii Java decodați. Rădăcinile dinamice ale utilizatorului/apelantului,
+  rezolvarea JVM pentru temporare/directorul utilizatorului, căile HTTP/API și selectorii XPath expliciți
+  rămân valide. Ambele copii acceptate, locală și agregată, au rulat cu succes
+  sub calea relocată a spațiului de lucru portabil.
+- Stare: VERIFIED pentru controlul delimitat și execuțiile relocate înregistrate.
+  Aceasta nu stabilește toate expansiunile shell posibile sau acceptanța pe fiecare sistem de operare.
 
 <a id="d-001"></a>
-## D-001: Improve README navigation and review practice
+<a id="d-001-improve-readme-navigation-and-review-practice"></a>
+## D-001: Îmbunătățirea navigării README și a practicii de revizie
 
-- Owner: root/module documentation and the canonical governance policy.
-- Original observation: the README had accurate public examples, but reader
-  navigation, flow/dependency separation and review guidance could be clearer.
-- Expected: compact architecture maps answer specific reader questions. Adjacent
-  legends explain arrow meaning and ownership. Detailed implementation notes
-  remain in their owning guides. Concrete Playwright/Selenium examples compile
-  against the public API. All authored prose, code and comments remain English.
-- Adoption from J0: reader-question navigation, one-purpose diagrams, nearby
-  legends and one canonical evidence-based review checklist. Do not copy J0's
-  module catalog, language aliases or runtime contracts into this framework.
-- Acceptance: documentation/source governance passes; links and mandatory
-  sections/examples resolve; diagrams are rendered and checked for legibility.
-  README content matches the five-module reactor and documentation-only Atlas.
-- Delivered: the root and owner indexes route readers by question; code/docs
-  review has one canonical policy. The three complete Java examples are unchanged
-  and compile through existing documentation governance. Actual Mermaid 11.4.1
-  rendered all five README diagrams at 1440 and 520 px; the minimum rendered label
-  height was 17 px, with no clipped labels or horizontal page overflow. Living
-  HTML retains 34 headings, 7 static SVGs and zero scripts, with its introduction
-  inspected at both widths.
-- Evidence: `${ATF_WORK_ROOT}/tools/f008-readme-preview-iteration-03` preserves
-  PNGs, SVGs, source/asset hashes, example comparisons and measured results.
-  Initial small-label diagrams and iteration-02 remain separate historical
-  previews. The final lifecycle alias is Test, avoiding the former Consumer wrap.
-- Status: VERIFIED by the accepted governance-containing runs and actual visual
-  inspection. The local responsive viewer does not prove every Markdown host's
-  rendering; finite language markers still require human English review.
+- Responsabil: documentația din rădăcină/module și politica canonică de guvernanță.
+- Observație originală: README-ul avea exemple publice corecte, dar navigarea
+  cititorului, separarea fluxurilor de dependențe și îndrumarea pentru revizie puteau fi mai clare.
+- Rezultat așteptat: hărți compacte de arhitectură răspund unor întrebări specifice ale cititorului. Legendele
+  alăturate explică semnificația săgeților și responsabilitatea. Notele detaliate de implementare
+  rămân în ghidurile lor responsabile. Exemplele concrete Playwright/Selenium se compilează
+  față de API-ul public. Întreaga proză, întregul cod și toate comentariile redactate rămân în engleză.
+- Preluare din J0: navigare după întrebările cititorului, diagrame cu un singur scop, legende
+  apropiate și o singură listă canonică de revizie bazată pe dovezi. Nu copiați catalogul
+  de module, aliasurile lingvistice sau contractele de execuție J0 în acest framework.
+- Acceptanță: guvernanța documentației/surselor trece; legăturile și secțiunile/exemplele
+  obligatorii se rezolvă; diagramele sunt randate și verificate pentru lizibilitate.
+  Conținutul README corespunde reactorului cu cinci module și Atlas-ului exclusiv de documentație.
+- Livrat: indicii din rădăcină și ai responsabililor îndrumă cititorii după întrebare; revizia codului/documentației
+  are o singură politică canonică. Cele trei exemple Java complete sunt neschimbate
+  și se compilează prin guvernanța existentă a documentației. Mermaid 11.4.1 efectiv
+  a randat toate cele cinci diagrame README la 1440 și 520 px; înălțimea minimă a etichetelor
+  randate a fost de 17 px, fără etichete tăiate sau depășire orizontală a paginii. HTML-ul Living
+  păstrează 34 de titluri, 7 SVG-uri statice și zero scripturi, cu introducerea
+  inspectată la ambele lățimi.
+- Dovezi: `${ATF_WORK_ROOT}/tools/f008-readme-preview-iteration-03` păstrează
+  PNG-uri, SVG-uri, hash-uri de surse/resurse, comparații ale exemplelor și rezultate măsurate.
+  Diagramele inițiale cu etichete mici și iteration-02 rămân previzualizări istorice
+  separate. Aliasul final al ciclului de viață este Test, evitând împărțirea anterioară a lui Consumer pe rânduri.
+- Stare: VERIFIED prin rulările acceptate care includ guvernanță și prin inspecția vizuală
+  efectivă. Vizualizatorul local adaptiv nu dovedește randarea pe fiecare gazdă Markdown;
+  markerii lingvistici finiți necesită în continuare revizie umană în engleză.
 
 <a id="t-004"></a>
-## T-004: Bound browser fixture lifetime separately from network matching
+<a id="t-004-bound-browser-fixture-lifetime-separately-from-network-matching"></a>
+## T-004: Delimitarea duratei de viață a fixture-ului de browser separat de potrivirea rețelei
 
-- Owner: the two existing network methods in SeleniumPlaywrightLocatorParityContractTest.
-- Reproducer: modules-f008-browser-final.log records one timeout among 108
-  browser-suite cases, with all 12 native checks passing. The invocation took
-  37.17 seconds and was interrupted inside DriverService.stop/ExternalProcess.waitFor
-  during finally-owned ChromeDriver cleanup. Earlier historical runs also
-  retained cleanup-timeout observations; they are not erased by this correction.
-- Expected: the network matcher keeps its two-second setting, and a mismatched
-  URL/method keeps its independent 15-second observed upper bound. Setup and
-  owned process cleanup have a separate finite whole-fixture lifetime.
-- Correction: change only the two existing method caps from 30 to 60 seconds,
-  calibrated against the repeated cleanup stack and observed 37-second lifetime.
-  Add monotonic setup/body-completion/cleanup receipts. A completion marker is
-  emitted only after every body assertion; cleanup failures remain failures.
-  Preserve request counts, payloads, version/binary/domain checks, invocation
-  threads and production shutdown behavior.
-- Acceptance: full local and aggregate suites plus the standalone browser
-  profile pass without skips. Inspect all six invocations' phase receipts and the real
-  request/response results; a budget change or a partial rerun alone is not proof.
-- Delivered: the accepted standalone browser run contains 18 monotonic phase lines
-  for all six network invocations: setup complete, body complete and cleanup exit.
-  Every cleanup records bodyCompleted=true after the body assertions. Maximum
-  cleanup was 458 ms and maximum complete fixture time was 5280 ms. The two-second
-  network wait and independent 15-second negative bound are unchanged; no assertion
-  or cleanup failure was converted into success.
-- Status: VERIFIED by all three accepted full selections above. The initial
-  37.17-second cleanup failure remains in the failed-run ledger; these observations
-  establish the recorded executions, not a universal guarantee about process timing.
+- Responsabil: cele două metode de rețea existente în SeleniumPlaywrightLocatorParityContractTest.
+- Reproducere: modules-f008-browser-final.log înregistrează o expirare între cele 108
+  cazuri ale suitei de browser, cu toate cele 12 verificări native trecute. Invocarea a durat
+  37.17 secunde și a fost întreruptă în DriverService.stop/ExternalProcess.waitFor
+  în timpul curățării ChromeDriver deținute de finally. Rulările istorice anterioare
+  păstrează și observații privind expirarea curățării; ele nu sunt șterse de această corecție.
+- Rezultat așteptat: potrivirea de rețea își păstrează setarea de două secunde, iar o
+  nepotrivire de URL sau metodă își păstrează limita superioară observată independentă de 15 secunde. Pregătirea și
+  curățarea proceselor deținute au o durată de viață finită separată pentru întregul fixture.
+- Corecție: schimbarea numai a limitelor celor două metode existente de la 30 la 60 de secunde,
+  calibrată față de stiva repetată de curățare și durata de viață observată de 37 de secunde.
+  Adăugarea unor înregistrări monotone pentru pregătire/finalizarea corpului/curățare. Un marker de finalizare este
+  emis numai după fiecare aserțiune din corp; eșecurile de curățare rămân eșecuri.
+  Păstrarea numerelor de cereri, încărcăturilor de date, verificărilor de versiune/binar/domeniu, firelor
+  de invocare și comportamentului de oprire din producție.
+- Acceptanță: suitele complete locală și agregată, plus profilul de browser
+  separat, trec fără omiteri. Inspectarea înregistrărilor de fază ale tuturor celor șase invocări și a rezultatelor
+  reale cerere/răspuns; schimbarea unui buget sau o rerulare parțială singură nu reprezintă dovadă.
+- Livrat: rularea de browser separată acceptată conține 18 linii de fază monotone
+  pentru toate cele șase invocări de rețea: pregătire completă, corp complet și ieșire din curățare.
+  Fiecare curățare înregistrează bodyCompleted=true după aserțiunile corpului. Curățarea
+  maximă a fost de 458 ms, iar timpul maxim complet al fixture-ului a fost de 5280 ms. Așteptarea de rețea de două secunde
+  și limita negativă independentă de 15 secunde sunt neschimbate; nicio aserțiune
+  sau eroare de curățare nu a fost convertită în succes.
+- Stare: VERIFIED prin toate cele trei selecții complete acceptate de mai sus. Eșecul inițial de curățare
+  de 37.17 secunde rămâne în registrul rulărilor eșuate; aceste observații
+  stabilesc execuțiile înregistrate, nu o garanție universală privind durata proceselor.

@@ -1,122 +1,126 @@
-# Bounded publication and immutable external history
+<a id="bounded-publication-and-immutable-external-history"></a>
+# Publicare delimitată și istoric extern imuabil
 
-Baseline: source checkpoint `6232c00`. This review changes maintenance tooling,
-governance and documentation. It adds no runtime feature, product E2E scenario
-or emulator. G-014 and F-011 retain their independent open scopes.
+Referință inițială: reperul sursă `6232c00`. Această revizie modifică instrumentele de întreținere,
+guvernanța și documentația. Nu adaugă funcționalități de execuție, scenarii E2E de produs
+sau emulatoare. G-014 și F-011 își păstrează domeniile deschise independente.
 
 <a id="d-008"></a>
-## D-008: Separate selected current artifacts from execution history
+<a id="d-008-separate-selected-current-artifacts-from-execution-history"></a>
+## D-008: Separarea artefactelor curente selectate de istoricul execuțiilor
 
-- Owner: artifact publication, immutable collection and documentation governance.
-- Priority: 90, from impact/risk/urgency 90/90/90.
-- Baseline quality: 59, from correctness/verification/clarity 60/45/70.
-- Observation: the live checkout contained 44 report collections and 14 Atlas
-  captures: 6,876 generated files, 196,583,138 bytes. Existing guides explicitly
-  allowed every historical/failed bundle in the live runs trees. Neither a
-  current-selection limit nor a publication-layout check existed. There was no
-  release directory or release JAR/ZIP payload in the inspected live tree.
-- Consequence: original failures, fixtures, helper scripts and old render
-  captures occupied the same visible publication area as selected reader output.
-  Collection integrity was governed, but a growing live archive remained legal.
-- Correction: retain one selected standalone HTML per project under
-  artifacts/atlas/current and an explicit minimal original proof set under
-  artifacts/reports/current. A publication.json inventory binds all current
-  files and entry documents. Full history moves together to a caller-selected
-  external snapshot, preserving bytes, relative dependencies and original
-  indexes. Snapshot IDs and inventory digests identify history; source commands
-  contain no fixed author-machine location.
-- Governance: extend existing collector component tests with valid source-only
-  and published layouts, then reject duplicates, orphan content, changed or
-  missing files, links, escaping paths, extra HTMLs and legacy/build/temp/release
-  folders. ARTIFACT-PUBLICATION reports the observed path, meaning, owner, repair
-  and focused recheck. Validation is read only. Existing Java fixtures protect
-  source/resource ownership while excluding only root generated current data.
-- Acceptance: verify the complete before/archive inventory; preserve all
-  original test verdicts and source identities; validate the staged/current
-  selection and local links; pass the focused maintenance and Java governance
-  selections; preserve 21 English/Romanian README pairs and unchanged executable
-  examples. Record actual before/after counts and original evidence locations.
-- Proof boundary: current means selected publication, not latest HEAD. The
-  retained Atlas snapshots keep their captured source identities. Copying or
-  moving their HTML does not regenerate a project analysis. Original native
-  XML/TAP/source manifests remain immutable; selected proof and fresh layout
-  checks have separate scopes.
-- State: CLOSED for this bounded publication scope. Delivered quality: 94, from
-  correctness/verification/clarity 95/95/90. The two existing independent open
-  findings remain outside this closure.
+- Responsabil: publicarea artefactelor, colectarea imuabilă și guvernanța documentației.
+- Prioritate: 90, din impact/risc/urgență 90/90/90.
+- Calitate inițială: 59, din corectitudine/verificare/claritate 60/45/70.
+- Observație: copia de lucru live conținea 44 de colecții de rapoarte și 14 capturi Atlas:
+  6,876 de fișiere generate, 196,583,138 de octeți. Ghidurile existente permiteau explicit
+  fiecare pachet istoric/eșuat în arborii de rulări live. Nu exista nici o
+  limită pentru selecția curentă, nici o verificare a structurii de publicare. Nu exista
+  niciun director de livrare și niciun JAR/ZIP de livrare în arborele live inspectat.
+- Consecință: eșecurile originale, fixture-urile, scripturile auxiliare și capturile
+  vechi de randare ocupau aceeași zonă vizibilă de publicare ca rezultatele selectate pentru cititor.
+  Integritatea colecțiilor era guvernată, dar creșterea arhivei live rămânea permisă.
+- Corecție: păstrarea unui singur HTML autonom selectat per proiect sub
+  artifacts/atlas/current și a unui set minim explicit de dovezi originale sub
+  artifacts/reports/current. Un inventar publication.json leagă toate fișierele curente
+  și documentele de intrare. Istoricul complet este mutat împreună într-un instantaneu
+  extern selectat de apelant, păstrând octeții, dependențele relative și indicii
+  originali. ID-urile instantaneelor și rezumatele criptografice ale inventarului identifică istoricul; comenzile sursă
+  nu conțin nicio locație fixă de pe calculatorul autorului.
+- Guvernanță: extinderea testelor de componentă existente ale colectorului cu structuri valide, exclusiv de surse
+  și de publicare, apoi respingerea duplicatelor, conținutului orfan, fișierelor schimbate sau
+  lipsă, legăturilor, căilor care ies din domeniul permis, HTML-urilor suplimentare și directoarelor moștenite/de compilare/temporare/de livrare.
+  ARTIFACT-PUBLICATION raportează calea observată, semnificația, responsabilul, remedierea
+  și reverificarea focalizată. Validarea este doar în citire. Fixture-urile Java existente protejează
+  proprietatea surselor/resurselor, excluzând numai datele curente generate din rădăcină.
+- Acceptanță: verificarea inventarului complet anterior/din arhivă; păstrarea tuturor
+  verdictelor originale ale testelor și identităților surselor; validarea selecției din pregătire/curente
+  și a legăturilor locale; trecerea selecțiilor focalizate de întreținere și guvernanță Java;
+  păstrarea celor 21 de perechi README engleză/română și a exemplelor executabile
+  neschimbate. Înregistrarea numerelor efective înainte/după și a locațiilor dovezilor originale.
+- Limita dovezii: curent înseamnă publicația selectată, nu cel mai recent HEAD.
+  Instantaneele Atlas păstrate își mențin identitățile surselor capturate. Copierea sau
+  mutarea HTML-urilor lor nu regenerează analiza unui proiect. Manifestele native originale
+  XML/TAP/sursă rămân imuabile; dovada selectată și verificările noi ale structurii
+  au domenii separate.
+- Stare: CLOSED pentru acest domeniu delimitat de publicare. Calitate livrată: 94, din
+  corectitudine/verificare/claritate 95/95/90. Cele două constatări independente existente
+  rămân în afara acestei închideri.
 
 ```mermaid
 flowchart TB
-    Source["Existing source and completed outputs"] --> History["External immutable snapshot"]
-    History --> Choice["Explicit current selection"]
-    Choice --> Atlas["One HTML per project"]
-    Choice --> Proof["Original native proof and source identity"]
-    Atlas --> Guard["Manifest, shape and link checks"]
+    Source["Surse existente și rezultate finalizate"] --> History["Instantaneu extern imuabil"]
+    History --> Choice["Selecție curentă explicită"]
+    Choice --> Atlas["Un HTML per proiect"]
+    Choice --> Proof["Dovadă nativă originală și identitatea sursei"]
+    Atlas --> Guard["Verificări de manifest, structură și legături"]
     Proof --> Guard
 ```
 
-Arrows show preservation and publication. They do not represent a new product
-flow or a new execution of retained tests. A historical failed selection remains
-failed after relocation.
+Săgețile indică păstrarea și publicarea. Nu reprezintă un flux nou de
+produs sau o nouă execuție a testelor păstrate. O selecție istorică eșuată rămâne
+eșuată după relocare.
 
-## Recovery and future updates
+<a id="recovery-and-future-updates"></a>
+## Recuperare și actualizări viitoare
 
-Prepare a complete replacement in external staging. Archive the previous
-selection before retiring its live paths. Validate resolved move targets against
-the intended workspace, reject links and concurrent changes, and preserve the
-before/archive manifest. Keep an explicit recovery record if publication fails;
-do not delete history to force a clean result.
+Pregătiți o înlocuire completă într-o zonă externă de pregătire. Arhivați selecția precedentă
+înainte de a-i retrage căile live. Validați destinațiile rezolvate ale mutărilor față de
+spațiul de lucru dorit, respingeți legăturile și schimbările concurente și păstrați
+manifestul anterior/din arhivă. Păstrați o înregistrare explicită de recuperare dacă publicarea eșuează;
+nu ștergeți istoricul pentru a forța un rezultat curat.
 
-Run the read-only publication checker after every selection update. Original
-run collection remains supported in external history. A separately authorized
-release process owns release qualification; archive collection and source
-governance cannot infer it from a directory name or build artifact.
+Rulați verificatorul de publicare doar în citire după fiecare actualizare a selecției. Colectarea originală
+a rulărilor rămâne disponibilă în istoricul extern. Un proces de livrare autorizat separat
+deține calificarea livrării; colectarea arhivei și guvernanța surselor
+nu o pot deduce din numele unui director sau dintr-un artefact de compilare.
 
-## Verified delivery and assessment
+<a id="verified-delivery-and-assessment"></a>
+## Livrare verificată și evaluare
 
-The live generated publication decreased from 6,876 files / 196,583,138 bytes
-to 26 files / 19,622,111 bytes, plus the four Git-owned artifact guides.
-Both original project HTML hashes are unchanged. The current manifest binds
-2 Atlas readers, 19 native proof/source records and four entry documents.
-All 6,876 original generated files were verified before and after the two
-same-volume external history moves. No original file was deleted or rewritten.
-The external snapshot ID is `20261125-organization-01`; its original inventory
-SHA-256 is `f80981c482dab162877180c8b368ac4b113ddd80ab10e060bf40991b15f0e2a8`.
+Publicația live generată a scăzut de la 6,876 de fișiere / 196,583,138 de octeți
+la 26 de fișiere / 19,622,111 de octeți, plus cele patru ghiduri pentru artefacte deținute de Git.
+Hash-urile HTML originale ale ambelor proiecte sunt neschimbate. Manifestul curent leagă
+2 documente de lectură Atlas, 19 înregistrări native de dovezi/surse și patru documente de intrare.
+Toate cele 6,876 de fișiere generate originale au fost verificate înainte și după cele două
+mutări ale istoricului extern pe același volum. Niciun fișier original nu a fost șters sau rescris.
+ID-ul instantaneului extern este `20261125-organization-01`; SHA-256 al inventarului său
+original este `f80981c482dab162877180c8b368ac4b113ddd80ab10e060bf40991b15f0e2a8`.
 
-The focused existing Java governance selection passed 211 tests per edition,
-with zero failures, errors or skips. It includes framework architecture,
-documentation and Java source scanning. The collector/publication component
-selection passed 20 tests with an explicit TAP reporter and frozen source
-hashes. Four generated entry documents were checked using their final live
-relative links. Twenty-one README pairs retain their governed hierarchy and
-shared executable examples.
+Selecția focalizată de guvernanță Java existentă a trecut 211 teste per ediție,
+cu zero eșecuri, erori sau omiteri. Include arhitectura framework-ului,
+documentația și scanarea surselor Java. Selecția de componente pentru colectare/publicare
+a trecut 20 de teste cu un raportor TAP explicit și hash-uri înghețate ale surselor.
+Patru documente de intrare generate au fost verificate folosind legăturile lor relative live
+finale. Douăzeci și una de perechi README își păstrează ierarhia guvernată și
+exemplele executabile comune.
 
-The first Node capture actually passed all 20 tests, but its external acceptance
-helper expected TAP while Node selected its default spec reporter. That helper
-reported a failed capture qualification. The original output and exit receipt
-remain preserved; the second attempt explicitly selected TAP and passed both
-execution and capture qualification. No test assertion was weakened.
+Prima captură Node a trecut efectiv toate cele 20 de teste, dar utilitarul său extern de acceptanță
+aștepta TAP, în timp ce Node a selectat raportorul spec implicit. Acel utilitar
+a raportat eșecul calificării capturii. Rezultatul original și înregistrarea codului de ieșire
+rămân păstrate; a doua încercare a selectat explicit TAP și a trecut atât
+execuția, cât și calificarea capturii. Nicio aserțiune de test nu a fost slăbită.
 
-Fresh Java and Node results are separate from the retained 232/232-case Java
-and 138-case Node historical selections. Both Atlas readers retain their
-original captured project revisions; this organization change is not a new
-analysis of their later HEADs. Complete historical failed runs, source captures,
-render observations and relative dependencies remain together outside live.
+Rezultatele Java și Node noi sunt separate de selecțiile istorice păstrate de 232/232 de cazuri Java
+și 138 de cazuri Node. Ambele documente de lectură Atlas își păstrează
+reviziile originale ale proiectelor capturate; această reorganizare nu este o nouă
+analiză a HEAD-urilor lor ulterioare. Rulările istorice eșuate complete, capturile surselor,
+observațiile de randare și dependențele relative rămân împreună în afara copiei live.
 
-| Assessment axis | Baseline (1-100) | Delivered (1-100) | Evidence boundary |
+| Axă de evaluare | Referință inițială (1-100) | Livrat (1-100) | Limita dovezilor |
 |---|---:|---:|---|
-| Correctness | 60 | 95 | Exact original/archive bytes, declared current shapes and useful rejection paths |
-| Verification | 45 | 95 | 20 component cases, 211/211 Java cases, fresh source identities and live entry links |
-| Clarity | 70 | 90 | Two-tier ownership diagrams, explicit reader entry points, external history and recovery rules |
-| Weighted quality | 59 | 94 | Existing feedback rubric; bounded artifact-publication scope only |
+| Corectitudine | 60 | 95 | Octeți originali/din arhivă identici, structuri curente declarate și căi utile de respingere |
+| Verificare | 45 | 95 | 20 de cazuri de componentă, 211/211 cazuri Java, identități noi ale surselor și legături live de intrare |
+| Claritate | 70 | 90 | Diagrame de proprietate pe două niveluri, puncte de intrare explicite pentru cititor, istoric extern și reguli de recuperare |
+| Calitate ponderată | 59 | 94 | Grila de feedback existentă; numai domeniul delimitat al publicării artefactelor |
 
-These scores are an authored review of the delivered organization and its
-proof. They do not imply full runtime coverage, release qualification or an
-updated maturity score for either captured project. G-014 and F-011 remain TODO.
+Aceste note reprezintă o evaluare redactată a organizării livrate și a
+dovezilor sale. Nu implică acoperire completă la execuție, calificarea livrării sau o
+notă de maturitate actualizată pentru vreunul dintre proiectele capturate. G-014 și F-011 rămân TODO.
 
-The first final-documentation check rejected a delivered D-008 summary inserted
-into the numeric baseline table in both editions (DOC-FEEDBACK-SCHEMA). Its
-original failed log and exact source capture remain external evidence. Moving
-only that summary to the verified-corrections table preserves the original
-90/90/90 and 60/45/70 baseline components. The existing guard caught the error
-before final synchronization; its schema and assertions were retained.
+Prima verificare finală a documentației a respins un rezumat al livrării D-008 introdus
+în tabelul numeric al referinței inițiale din ambele ediții (DOC-FEEDBACK-SCHEMA). Jurnalul său
+original de eșec și captura exactă a surselor rămân dovezi externe. Mutarea
+numai a acelui rezumat în tabelul corecțiilor verificate păstrează componentele inițiale
+90/90/90 și 60/45/70. Controlul existent a detectat eroarea
+înaintea sincronizării finale; schema și aserțiunile sale au fost păstrate.

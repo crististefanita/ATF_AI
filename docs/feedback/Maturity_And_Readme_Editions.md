@@ -1,110 +1,115 @@
-# Framework maturity and README editions
+<a id="framework-maturity-and-readme-editions"></a>
+# Maturitatea frameworkului și edițiile README
 
-## Comparison scope and rating method
+<a id="comparison-scope-and-rating-method"></a>
+## Domeniul comparației și metoda de notare
 
-ATF_AI baseline: `79fec10bc516ac1b32d19fe8afd99a4496382bd1`.
-ATF_J0 reference: `287c7ae8c8906f669ea278c68d51e5f507a44ae7`, including its
-inspected local documentation/governance changes. J0 was read only; its pending
-changes were preserved, and its reactor was not executed. The reference state
-and dirty-file inventory are preserved in the external review evidence.
+Baza ATF_AI: `79fec10bc516ac1b32d19fe8afd99a4496382bd1`.
+Referința ATF_J0: `287c7ae8c8906f669ea278c68d51e5f507a44ae7`, inclusiv
+schimbările locale de documentație/guvernanță inspectate. J0 a fost doar citit;
+schimbările sale în curs au fost păstrate, iar reactorul său nu a fost executat.
+Starea referinței și inventarul fișierelor modificate sunt păstrate în dovezile externe ale revizuirii.
 
-Scores are 1–100 engineering assessments of comparable framework concerns.
-They are not coverage percentages, functional equivalence or measured uptime.
-The same weights apply to both projects; module/test counts do not earn points.
-Weighted total is rounded to the nearest integer, with halves upward.
+Notele sunt evaluări inginerești 1–100 ale unor preocupări comparabile ale
+frameworkurilor. Nu sunt procente de acoperire, echivalență funcțională sau
+disponibilitate măsurată. Ambele proiecte folosesc aceleași ponderi; numerele
+de module/teste nu aduc puncte. Totalul ponderat este rotunjit la cel mai apropiat întreg, cu jumătățile în sus.
 
-| Axis | Weight | ATF_AI baseline | ATF_AI reviewed changes | ATF_J0 source review |
+| Axă | Pondere | ATF_AI inițial | ATF_AI schimbări revizuite | ATF_J0 revizuire sursă |
 |---|---:|---:|---:|---:|
-| Architecture and boundaries | 20 | 90 | 90 | 92 |
-| Executable governance | 30 | 91 | 93 | 94 |
-| Existing-test quality | 25 | 89 | 90 | 88 |
-| Documentation and navigation | 15 | 90 | 93 | 89 |
-| Feedback ownership and lifecycle | 10 | 80 | 93 | 85 |
-| Weighted overall | 100 | **89** | **92** | **90** |
+| Arhitectură și limite | 20 | 90 | 90 | 92 |
+| Guvernanță executabilă | 30 | 91 | 93 | 94 |
+| Calitatea testelor existente | 25 | 89 | 90 | 88 |
+| Documentație și navigare | 15 | 90 | 93 | 89 |
+| Responsabilitatea și ciclul feedback-ului | 10 | 80 | 93 | 85 |
+| Total ponderat | 100 | **89** | **92** | **90** |
 
-Unrounded totals are 89.05, 91.65 and 90.45. The delivery column assesses the
-reviewed source changes; actual execution evidence is recorded below. J0's
-score has source-review confidence only, so a small score difference should
-not be interpreted as a runtime benchmark or proof of superior reliability.
+Totalurile nerotunjite sunt 89.05, 91.65 și 90.45. Coloana livrării evaluează
+schimbările sursă revizuite; dovezile execuției reale sunt înregistrate mai jos.
+Nota J0 are încredere bazată doar pe revizuirea sursei; o diferență mică nu
+trebuie interpretată drept benchmark runtime sau dovadă de fiabilitate superioară.
 
-## Findings and selective adoption
+<a id="findings-and-selective-adoption"></a>
+## Constatări și adoptare selectivă
 
-| Concern | Observed comparison | Delivered boundary |
+| Preocupare | Comparație observată | Limită livrată |
 |---|---|---|
-| Architecture | AI has five Maven modules and independent browser providers; J0 has broader library/consumer separation | Keep the existing AI module graph and vendor-neutral Core; no new runtime feature or module |
-| README structure | J0 checks semantic Markdown, disclosure blocks and nearby diagram explanations more deeply | Strengthen the existing documentation guard and its deliberate failing fixtures |
-| Language editions | J0 checks edition configuration and source/translation structure | main remains English; main_RO translates every README at the same path, preserving examples, links, anchors and topology |
-| Existing-test quality | Both projects benefit from independently observed failure paths rather than assertion counts | Existing governance fixtures now reject missing files, changed commands/links/edges, missing aliases and non-README source drift |
-| Feedback lifecycle | AI retained old product-flow improvement and withdrawn acceptance records alongside framework work | Remove those entries and references from the current feedback area; preserve their original history outside it |
+| Arhitectură | AI are cinci module Maven și furnizori de browser independenți; J0 separă mai amplu bibliotecile de consumatori | Păstrează graful existent al modulelor AI și Core neutru față de furnizori; fără funcționalitate runtime sau modul nou |
+| Structură README | J0 verifică mai profund Markdown semantic, blocurile pliabile și explicațiile apropiate diagramelor | Întărește controlul existent de documentație și cazurile sale cu eșec intenționat |
+| Ediții lingvistice | J0 verifică configurația ediției și structura sursă/traducere | main rămâne în engleză; main_RO traduce fiecare README la aceeași cale, păstrând exemplele, legăturile, ancorele și topologia |
+| Calitatea testelor existente | Ambele proiecte beneficiază de căi de eșec observate independent, nu de numărarea aserțiunilor | Cazurile de guvernanță existente resping acum fișiere lipsă, comenzi/legături/muchii schimbate, aliasuri lipsă și derivă a sursei non-README |
+| Ciclul feedback-ului | AI păstra înregistrări vechi de îmbunătățire a fluxurilor de produs și acceptanțe retrase lângă lucrul la framework | Elimină aceste intrări și referințe din zona curentă de feedback; păstrează istoricul lor original în afara ei |
 
-Inspected J0 owners include DocumentationReadmeStructureGovernanceTest,
+Responsabilii J0 inspectați includ DocumentationReadmeStructureGovernanceTest,
 DocumentationDiagramGovernanceTest, DocumentationLifecycleGovernanceTest,
 DocumentationLanguagePolicy, documentation-editions.mjs,
-ConsumerSuiteCoverageGovernanceTest and its documentation/code best-practice
-guides. Their useful principles were adapted to AI's existing TestNG/Java 11
-contracts. J0-specific module catalogs, numeric style budgets and Java 21 runtime
-implementation were not copied.
+ConsumerSuiteCoverageGovernanceTest și ghidurile sale de bune practici pentru
+documentație/cod. Principiile utile au fost adaptate la contractele TestNG/Java 11
+existente ale AI. Cataloagele de module specifice J0, bugetele numerice de stil
+și implementarea runtime Java 21 nu au fost copiate.
 
-## G-006 — README governance and Romanian edition
+<a id="g-006--readme-governance-and-romanian-edition"></a>
+## G-006 — guvernanța README și ediția română
 
-- Owner: atf-tests documentation governance and docs/governance.
-- Baseline priority: 84, from impact/risk/urgency 90/80/75.
-- Baseline quality: 78, from correctness/verification/clarity 85/65/80.
-- Reproducers: an incomplete details block or unexplained diagram could pass;
-  no declared Romanian README edition or cross-edition identity check existed.
-- Expected: malformed or unsupported edition settings fail closed. Only Romanian
-  READMEs receive the language exception; source/comments and other documents
-  keep their English policy. Both editions retain exactly the same README paths,
-  structure, executable examples, link destinations, incoming anchors and code.
-- Status: VERIFIED on 2026-11-24. Both materialized editions passed their complete
-  local suite with the explicit peer check active: 526 cases each, including
-  187 governance and 24 framework API cases, with zero failures/errors/skips.
-- Delivered quality: 94, from correctness/verification/clarity 94/94/94. The
-  baseline priority and quality above remain historical assessments of this item.
-- All 18 README paths, executable examples, incoming English anchors, link
-  destinations and Mermaid topology match. Non-README source is identical apart
-  from the single declared edition setting. No new Java class, production/POM
-  change, E2E test or emulator was introduced.
+- Responsabil: guvernanța documentației din atf-tests și docs/governance.
+- Prioritate inițială: 84, din impact/risc/urgență 90/80/75.
+- Calitate inițială: 78, din corectitudine/verificare/claritate 85/65/80.
+- Reproduceri: un bloc details incomplet sau o diagramă neexplicată putea trece;
+  nu exista o ediție README română declarată sau o verificare de identitate între ediții.
+- Așteptat: setările de ediție malformate sau nesuportate eșuează în mod închis.
+  Numai README-urile românești primesc excepția lingvistică; sursa/comentariile
+  și celelalte documente păstrează politica engleză. Ambele ediții păstrează
+  exact aceleași căi README, structură, exemple executabile, destinații ale legăturilor, ancore de intrare și cod.
+- Stare: VERIFIED la 2026-11-24. Ambele ediții materializate au trecut suita locală
+  completă cu verificarea explicită a perechii activă: câte 526 de cazuri,
+  inclusiv 187 de guvernanță și 24 API ale frameworkului, fără eșecuri/erori/omiteri.
+- Calitate livrată: 94, din corectitudine/verificare/claritate 94/94/94.
+  Prioritatea și calitatea inițiale de mai sus rămân evaluări istorice ale acestei intrări.
+- Toate cele 18 căi README, exemplele executabile, ancorele de intrare în engleză,
+  destinațiile legăturilor și topologia Mermaid corespund. Sursa non-README
+  este identică, exceptând unica setare de ediție declarată. Nu s-au introdus
+  clase Java, schimbări de producție/POM, teste E2E sau emulatoare noi.
 
-The durable process belongs to [README editions](../governance/Readme_Editions.md)
-and the [code/documentation policy](../governance/Code_And_Documentation_Policy.md).
-The checks establish supported structure and identity, not automatic semantic
-translation quality or every possible Markdown/Mermaid grammar. Human review
-continues to own meaning and diagram readability. Source-based guards do not
-replace runtime regression outcomes.
+Procesul durabil aparține [edițiilor README](../governance/Readme_Editions.md)
+și [politicii pentru cod/documentație](../governance/Code_And_Documentation_Policy.md).
+Verificările stabilesc structura și identitatea suportate, nu calitatea semantică
+automată a traducerii sau toate gramaticile posibile Markdown/Mermaid.
+Revizuirea umană rămâne responsabilă pentru sens și lizibilitatea diagramelor.
+Controalele de sursă nu înlocuiesc rezultatele regresiilor runtime.
 
-## Evidence ownership
+<a id="evidence-ownership"></a>
+## Responsabilitatea dovezilor
 
-| Selection | Source checkpoint | Result | External run name |
+| Selecție | Revizie sursă | Rezultat | Numele rulării externe |
 |---|---|---|---|
-| Initial documentation/scanner subset | Prepared source from the recorded baseline | 102 passed | modules-maturity-governance-01 |
-| First complete English and Romanian selections | c2463f3 / ba314ee | Each had one new parity failure caused by generated Allure output; retained as unsuccessful evidence | modules-maturity-main-local-01 / modules-maturity-ro-local-01 |
-| Accepted complete English selection with peer | c65db3e | 526 passed; 187 governance and 24 API cases included | modules-maturity-main-local-02 |
-| Accepted complete Romanian selection with peer | 059d6dc | 526 passed; 187 governance and 24 API cases included | modules-maturity-ro-local-02 |
+| Subsetul inițial de documentație/scanner | Sursă pregătită din baza înregistrată | 102 trecute | modules-maturity-governance-01 |
+| Primele selecții complete engleză și română | c2463f3 / ba314ee | Fiecare a avut un eșec nou de paritate cauzat de rezultate Allure generate; păstrate drept dovezi nereușite | modules-maturity-main-local-01 / modules-maturity-ro-local-01 |
+| Selecția completă engleză acceptată, cu pereche | c65db3e | 526 trecute; incluse 187 de guvernanță și 24 API | modules-maturity-main-local-02 |
+| Selecția completă română acceptată, cu pereche | 059d6dc | 526 trecute; incluse 187 de guvernanță și 24 API | modules-maturity-ro-local-02 |
 
-The initial standalone pair check also exposed CRLF/LF differences in gitignore
-and SPI descriptors. Normalization now applies to those maintained text files;
-a changed provider declaration still fails. The complete-suite failure exposed
-generated Allure output outside src. The corrected shared inventory excludes
-known output directories while retaining identically named owned resources.
-Existing architecture and edition fixtures prove both sides of that boundary.
+Verificarea inițială separată a perechii a expus și diferențe CRLF/LF în
+gitignore și descriptorii SPI. Normalizarea se aplică acum acestor fișiere text
+întreținute; o declarație de furnizor schimbată continuă să eșueze.
+Eșecul suitei complete a expus rezultate Allure generate în afara src.
+Inventarul comun corectat exclude directoarele de rezultate cunoscute,
+păstrând resursele deținute cu nume identice. Cazurile existente de arhitectură și ediție demonstrează ambele părți ale acestei limite.
 
-Actual Mermaid review used desktop Chromium at 1440 and 520 px, without device
-emulation: 28 document/edition/viewport records, nine diagrams per edition,
-zero page overflow and a minimum measured label height of 17 px. The first
-preview's small secondary diagrams were corrected to vertical layouts in both
-editions; the approved root topology and executable examples remain intact.
-The accepted previews and metrics are in diagram-review-02 below the review root;
-diagram-review-01 preserves the original observation.
+Revizuirea reală Mermaid a folosit Chromium desktop la 1440 și 520 px, fără
+emulare de dispozitiv: 28 de înregistrări document/ediție/fereastră, nouă diagrame
+per ediție, zero depășiri ale paginii și o înălțime minimă măsurată a etichetelor
+de 17 px. Diagramele secundare mici din prima previzualizare au fost corectate
+cu aranjamente verticale în ambele ediții; topologia aprobată a rădăcinii și
+exemplele executabile rămân intacte. Previzualizările și metricile acceptate
+sunt în diagram-review-02 sub rădăcina revizuirii; diagram-review-01 păstrează observația originală.
 
-The external review root is `${ATF_WORK_ROOT}/reviews/20261124-maturity`.
-Fresh snapshots, exact resolved commands, source manifests and logs belong under
-the selected external work root's validation/runs directories. The earlier
-API receipt keeps its original 24-case scope; no GoRest write execution is
-claimed without a supplied token. Final evidence must retain failed launches
-and distinguish fixtures from real application execution.
+Rădăcina externă a revizuirii este `${ATF_WORK_ROOT}/reviews/20261124-maturity`.
+Instantaneele noi, comenzile rezolvate exact, manifestele sursei și jurnalele
+aparțin directoarelor validation/runs din rădăcina externă de lucru selectată.
+Dovada API anterioară își păstrează domeniul original de 24 de cazuri; nu se
+pretinde execuția scrierilor GoRest fără token furnizat. Dovezile finale trebuie
+să păstreze pornirile nereușite și să distingă cazurile controlate de execuția aplicației reale.
 
-The final source/receipt check uses the existing complete governance selection
-in each edition with its peer explicitly selected. The exact commands, final
-commits and per-module XML totals are preserved in
-`${ATF_WORK_ROOT}/runs/maturity-final-evidence.json`; counts overlap across runs.
+Verificarea finală sursă/dovadă folosește selecția completă de guvernanță existentă
+în fiecare ediție, cu perechea selectată explicit. Comenzile exacte, commiturile
+finale și totalurile XML per modul sunt păstrate în
+`${ATF_WORK_ROOT}/runs/maturity-final-evidence.json`; numerele se suprapun între rulări.

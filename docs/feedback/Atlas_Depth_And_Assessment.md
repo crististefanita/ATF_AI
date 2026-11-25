@@ -1,261 +1,272 @@
-# Atlas source depth, execution identity and review axes
+<a id="atlas-source-depth-execution-identity-and-review-axes"></a>
+# Profunzimea surselor Atlas, identitatea execuțiilor și axele de revizie
 
-Baseline: ATF_AI `eb610a7471200ff8e7783d34e23848258219ac67` and the
-source-bound AI/J1 complete-01 reports. The earlier G-009, G-010, K-001 and D-005
-closures retain their documented scope and scores. Their checks established
-declared consistency, complete single-file delivery and the then-current policy
-contract. They did not establish automatic semantic completeness or a global
-framework grade. This review records newly reproduced gaps separately.
+Referință inițială: ATF_AI `eb610a7471200ff8e7783d34e23848258219ac67` și
+rapoartele complete-01 AI/J1 legate de surse. Închiderile anterioare G-009, G-010, K-001 și D-005
+își păstrează domeniul și notele documentate. Verificările lor au stabilit
+consistența declarată, livrarea completă într-un singur fișier și contractul de politici
+valabil atunci. Nu au stabilit completitudinea semantică automată sau o notă globală
+a framework-ului. Această revizie înregistrează separat lacunele nou reproduse.
 
-The selected J1 tree has concurrent local changes. Its captured source hashes
-and observed dirty state matter; neither its commit alone nor an earlier passing
-governance report establishes the state of every current file. This task reads
-that source without editing it. Existing tests may be inspected or rerun within
-their declared scope; no product/E2E scenario or emulator is added.
+Arborele J1 selectat are modificări locale concurente. Contează hash-urile surselor sale capturate
+și starea observată cu modificări locale; nici commit-ul său singur, nici un raport anterior de guvernanță
+cu rezultat reușit nu stabilește starea fiecărui fișier curent. Această sarcină citește
+sursele fără a le edita. Testele existente pot fi inspectate sau rerulate în
+domeniul lor declarat; nu se adaugă scenarii de produs/E2E sau emulatoare.
 
-## Scope and sequence
+<a id="scope-and-sequence"></a>
+## Domeniu și succesiune
 
 ```mermaid
 flowchart TB
-    Reproduce["Preserve actual counterexamples"] --> Contract["Declare bounded repair and owner"]
-    Contract --> Negative["Add meaningful negative governance controls"]
-    Negative --> Review["Review actual source across owner facets"]
-    Review --> Capture["Capture fresh source and retained evidence"]
-    Capture --> Deliver["Publish and inspect one HTML per project"]
-    Deliver --> Assess["Explain separate project and Atlas axes"]
-    Assess --> Close["Close only with completed gates"]
+    Reproduce["Păstrarea contraexemplelor reale"] --> Contract["Declararea remedierii delimitate și a responsabilului"]
+    Contract --> Negative["Adăugarea controalelor negative de guvernanță relevante"]
+    Negative --> Review["Revizuirea surselor reale pe fațetele responsabililor"]
+    Review --> Capture["Capturarea surselor noi și a dovezilor păstrate"]
+    Capture --> Deliver["Publicarea și inspectarea unui HTML per proiect"]
+    Deliver --> Assess["Explicarea axelor separate pentru proiect și Atlas"]
+    Assess --> Close["Închiderea numai cu verificările finalizate"]
 ```
 
-Arrows show the review sequence. A passing mechanical gate verifies its declared
-structure and provenance; the reviewer still checks the source-to-prose meaning.
-Feedback remains IN PROGRESS until its stated gates complete. Priority and
-quality use the separate rubrics in the [register](README.md); neither is a
-test pass rate. Baseline quality remains preserved when delivered quality is
-later recorded.
+Săgețile arată succesiunea reviziei. Un control mecanic trecut verifică structura
+și proveniența declarate; revizorul verifică în continuare sensul de la sursă la proză.
+Feedback-ul rămâne IN PROGRESS până când verificările sale declarate se finalizează. Prioritatea și
+calitatea folosesc grilele separate din [registru](README.md); niciuna nu reprezintă o
+rată de trecere a testelor. Calitatea inițială rămâne păstrată când calitatea livrată este
+înregistrată ulterior.
 
 <a id="g-012"></a>
-## G-012: Exact execution, local graph and knowledge trace
+<a id="g-012-exact-execution-local-graph-and-knowledge-trace"></a>
+## G-012: Execuție exactă, graf local și trasabilitatea cunoștințelor
 
-- Owner: Atlas execution binding, complete bundle, publisher and knowledge receipt.
-- Priority: 93, from impact/risk/urgency 95/90/90.
-- Baseline quality: 61, from correctness/verification/clarity 65/55/60.
-- Observation: a private fixture marked an oracle EXECUTED/PASSED using XML for
-  `different.project.UnrelatedTest/doesNotExerciseTheResponse`. Matching hashes
-  showed that the oracle file existed during the run, but did not identify an
-  executed case. Other fixtures passed with a graph edge outside its flow's
-  claimIds, swapped graph kinds and a counterfeit optional knowledge record with
-  fabricated citation/ranking/provenance alongside a genuine corpus digest.
-- Consequence: a mechanically consistent report can overstate execution scope
-  or display requirements that were never retrieved from the canonical corpus.
-- Correction: require executionSubjects for EXECUTED claims used by behavior or
-  oracle links; bind exact retained XML/TAP identities, quoted owner paths and
-  outcomes while retaining existing source-manifest checks. Enforce local edge
-  membership and graph kinds. Compare the complete canonical retrieval receipt
-  and retain full knowledge-source bytes, including optional records and citations.
-- Acceptance: independent negative controls reject unrelated/missing/ambiguous/
-  duplicated/skipped subjects, incorrect outcomes, unsupported proof, mismatched
-  source/target, forged optional policy, altered ranking/citations and borrowed
-  graph claims. Both live and portable validators use the same execution gate.
-  Source-only/no-test projects remain valid without invented execution. Original
-  failures and successful repairs remain separately recoverable.
-- Independent review also reproduced testcase markup inside XML processing
-  instructions/output containers, illegal raw XML identities, mixed-suite verdict
-  conflation and a semantically equal corpus with rewritten byte provenance.
-  Structural parsing rejects fake identities and malformed XML; a selected test
-  keeps its own verdict beside the untouched suite verdict. Full receipt checks
-  require the canonical original corpus byte digest as well as semantic identity.
-- The retained Node 02 integration run had 109 cases and three failures: two
-  historical optional-inventory fixtures encountered the newly required flow-ID
-  guard too early, and an existing CLI subprocess exceeded its unchanged ten
-  second startup budget during concurrent builds. The inventory guard now applies
-  after the historical optional path. Node03 passed 110 cases with serial test-file
-  scheduling to isolate CLI startup from cross-file process contention; it does
-  not widen a product timeout or replace the original failed evidence. The final
-  Node04 selection passed 111 cases after full canonical-receipt metadata controls.
-- Evidence: private baseline probes and controls audit under
-  `${ATF_WORK_ROOT}/reviews/20261125-atlas-depth/`; maintained checks are
+- Responsabil: legarea execuțiilor Atlas, pachetul complet, publicatorul și înregistrarea recuperării cunoștințelor.
+- Prioritate: 93, din impact/risc/urgență 95/90/90.
+- Calitate inițială: 61, din corectitudine/verificare/claritate 65/55/60.
+- Observație: un fixture privat marca un oracol EXECUTED/PASSED folosind XML pentru
+  `different.project.UnrelatedTest/doesNotExerciseTheResponse`. Hash-urile identice
+  arătau că fișierul oracolului exista în timpul rulării, dar nu identificau un
+  caz executat. Alte fixture-uri treceau cu o muchie de graf în afara claimIds
+  ale fluxului său, tipuri de graf inversate și o înregistrare opțională falsificată de cunoștințe cu
+  citare/clasificare/proveniență fabricate alături de un rezumat criptografic autentic al corpusului.
+- Consecință: un raport consistent mecanic poate exagera domeniul execuției
+  sau afișa cerințe care nu au fost niciodată recuperate din corpusul canonic.
+- Corecție: cerința executionSubjects pentru afirmațiile EXECUTED folosite de legăturile de comportament sau
+  oracol; legarea identităților exacte XML/TAP păstrate, a căilor citate ale responsabililor și
+  a rezultatelor, păstrând verificările existente ale manifestului surselor. Impunerea apartenenței locale a
+  muchiilor și a tipurilor de graf. Compararea înregistrării canonice complete de recuperare
+  și păstrarea integrală a octeților surselor de cunoștințe, inclusiv a înregistrărilor opționale și citărilor.
+- Acceptanță: controalele negative independente resping subiecții fără legătură/lipsă/ambigui/
+  duplicați/omiși, rezultatele incorecte, dovezile nesusținute, sursa/ținta
+  nepotrivită, politicile opționale falsificate, clasificarea/citările modificate și afirmațiile
+  împrumutate ale grafului. Validatorii live și portabil folosesc același control al execuției.
+  Proiectele bazate doar pe surse/fără teste rămân valide fără execuții inventate. Eșecurile
+  originale și remedierile reușite rămân recuperabile separat.
+- Revizia independentă a reprodus și marcaje testcase în instrucțiuni de procesare XML/
+  containere de ieșire, identități XML brute nelegale, confundarea verdictelor din suite mixte
+  și un corpus egal semantic, dar cu proveniența octeților rescrisă.
+  Parsarea structurală respinge identitățile false și XML-ul malformat; un test selectat
+  își păstrează propriul verdict alături de verdictul neatins al suitei. Verificările înregistrării complete
+  cer rezumatul criptografic canonic al octeților corpusului original, precum și identitatea semantică.
+- Rularea de integrare Node 02 păstrată avea 109 cazuri și trei eșecuri: două
+  fixture-uri istorice ale inventarului opțional au întâlnit prea devreme noul control obligatoriu al ID-ului de
+  flux, iar un subproces CLI existent a depășit bugetul său neschimbat de pornire de zece
+  secunde în timpul compilărilor concurente. Controlul inventarului se aplică acum
+  după calea opțională istorică. Node03 a trecut 110 cazuri cu planificare serială a fișierelor
+  de test pentru a izola pornirea CLI de concurența proceselor între fișiere; nu
+  mărește un termen-limită al produsului și nu înlocuiește dovezile originale de eșec. Selecția finală
+  Node04 a trecut 111 cazuri după controalele complete ale metadatelor înregistrării canonice.
+- Dovezi: sondele private de referință inițială și auditul controalelor sub
+  `${ATF_WORK_ROOT}/reviews/20261125-atlas-depth/`; verificările întreținute sunt
   `tools/atlas-execution.test.mjs`, `tools/atlas-bundle.test.mjs`,
-  `tools/verify-atlas.test.mjs` and `tools/atlas-report.test.mjs`.
-- State: CLOSED. Delivered quality: 95, from correctness/verification/clarity 95/95/94.
-- Verified result: The final 111-case maintenance selection passed. Original failed fixtures, Node02, the successful Node03 and final Node04 remain separately retained. Real J1 XML binds four passed catalog-negative subjects and the separate failed change-control subject without changing the whole-suite verdict. Canonical retrieval equality covers all metadata and original corpus bytes. Both existing 211-case Java selections passed after their separately retained README repair.
-- Closure receipts: `${ATF_WORK_ROOT}/runs/atlas-depth-acceptance-publication-audit.json`, original run XML/TAP/source manifests and `${ATF_WORK_ROOT}/reviews/20261125-atlas-depth/new-render-acceptance-01/metrics.json`. Final synchronized readers are recaptured and audited separately against their exact source.
+  `tools/verify-atlas.test.mjs` și `tools/atlas-report.test.mjs`.
+- Stare: CLOSED. Calitate livrată: 95, din corectitudine/verificare/claritate 95/95/94.
+- Rezultat verificat: selecția finală de întreținere cu 111 cazuri a trecut. Fixture-urile originale eșuate, Node02, Node03 reușit și Node04 final rămân păstrate separat. XML-ul J1 real leagă patru subiecți trecuți ai cazurilor negative de catalog și subiectul separat eșuat al controlului schimbărilor, fără a schimba verdictul întregii suite. Egalitatea recuperării canonice acoperă toate metadatele și octeții originali ai corpusului. Ambele selecții Java existente cu 211 cazuri au trecut după remedierea README păstrată separat.
+- Înregistrări de închidere: `${ATF_WORK_ROOT}/runs/atlas-depth-acceptance-publication-audit.json`, manifestele originale XML/TAP/sursă ale rulărilor și `${ATF_WORK_ROOT}/reviews/20261125-atlas-depth/new-render-acceptance-01/metrics.json`. Documentele finale sincronizate pentru cititor sunt recapturate și auditate separat față de sursele lor exacte.
 
 <a id="g-013"></a>
-## G-013: Declared source breadth and honest gaps
+<a id="g-013-declared-source-breadth-and-honest-gaps"></a>
+## G-013: Amploarea declarată a surselor și lacune oneste
 
-- Owner: understanding schema, source inventory and authoring reviewer.
-- Priority: 88, from impact/risk/urgency 90/85/85.
-- Baseline quality: 61, from correctness/verification/clarity 65/55/60.
-- Observation: the initial AI report indexed its project but explained three
-  behavior flows; J1 explained one Shop component/report flow. Full byte
-  inventory and a complete reader file did not provide an auditable declaration
-  of reviewed owners, remaining areas or facet depth.
-- Consequence: a useful selected example can appear to explain the whole project,
-  and later retrieval-assisted authoring can repeat that omission without a
-  machine-visible gap.
-- Correction: renderVersion 2 requires analysis.understanding schemaVersion 1,
-  PROJECT/SELECTED scope, scopeStatement, inventoryClaimIds and actual owner units.
-  Units own scopePaths, claims, explicit shared references, flows, limits and all
-  seven facets: purpose, structure, behavior, data, configuration, failure and
-  verification. REVIEWED/PARTIAL need supported source claims; UNKNOWN and
-  NOT_APPLICABLE need honest explanations. Architecture nodes and unit/flow
-  ownership cross-reference each other.
-- Acceptance: controls reject fictitious scope paths, borrowed owner evidence,
-  missing facets, unsupported reviewed status, dangling/asymmetric links and
-  unexplained architecture/unit mismatch. A no-Git/no-test single component
-  remains valid; missing behavior or verification is disclosed without adding
-  product tests. Facet counts are review declarations, never semantic-coverage
-  percentages. Old renderer-version history remains preserved at its original scope.
-- Independent review rejected a shared-only unit marked entirely REVIEWED.
-  Each reviewed/partial facet now needs its owner's source claim; verification
-  alone may point to an explicitly shared oracle. UNKNOWN units remain honest gaps.
-- Evidence: `tools/atlas-understanding.test.mjs`, current report contract and
-  newly captured per-project understanding inventories outside maintained source.
-- State: CLOSED. Delivered quality: 92, from correctness/verification/clarity 94/92/90.
-- Verified result: Both fresh inventories passed source, owner, seven-facet and bidirectional flow checks. AI has five owners, eight flows and 48 claims; J1 has five owners, six flows and 37 claims. AI retains 11 REVIEWED/24 PARTIAL facets and J1 5 REVIEWED/30 PARTIAL facets. Meaningful mutation controls reject foreign/shared-only ownership, missing facets and unsupported flow/node scope. These counts remain declarations, not semantic coverage.
-- Closure receipts: `${ATF_WORK_ROOT}/runs/atlas-depth-acceptance-publication-audit.json`, original run XML/TAP/source manifests and `${ATF_WORK_ROOT}/reviews/20261125-atlas-depth/new-render-acceptance-01/metrics.json`. Final synchronized readers are recaptured and audited separately against their exact source.
+- Responsabil: schema de înțelegere, inventarul surselor și revizorul redactării.
+- Prioritate: 88, din impact/risc/urgență 90/85/85.
+- Calitate inițială: 61, din corectitudine/verificare/claritate 65/55/60.
+- Observație: raportul AI inițial își indexa proiectul, dar explica trei
+  fluxuri de comportament; J1 explica un flux Shop de componentă/raport. Inventarul
+  complet de octeți și un fișier complet pentru cititor nu furnizau o declarație auditabilă
+  a responsabililor revizuiți, a zonelor rămase sau a profunzimii fațetelor.
+- Consecință: un exemplu selectat util poate părea că explică întregul proiect,
+  iar redactarea ulterioară asistată de recuperare poate repeta acea omisiune fără o
+  lacună vizibilă pentru mașină.
+- Corecție: renderVersion 2 cere analysis.understanding schemaVersion 1,
+  domeniul PROJECT/SELECTED, scopeStatement, inventoryClaimIds și unități reale de responsabilitate.
+  Unitățile dețin scopePaths, afirmații, referințe partajate explicite, fluxuri, limite și toate
+  cele șapte fațete: scop, structură, comportament, date, configurație, eșec și
+  verificare. REVIEWED/PARTIAL necesită afirmații susținute de surse; UNKNOWN și
+  NOT_APPLICABLE necesită explicații oneste. Nodurile de arhitectură și proprietatea unităților/fluxurilor
+  se referențiază reciproc.
+- Acceptanță: controalele resping căile de domeniu fictive, dovezile împrumutate de la alți responsabili,
+  fațetele lipsă, starea de revizie nesusținută, legăturile fără țintă/asimetrice și
+  nepotrivirea neexplicată arhitectură/unitate. O singură componentă fără Git/fără teste
+  rămâne validă; lipsa comportamentului sau verificării este declarată fără adăugarea
+  testelor de produs. Numerele de fațete sunt declarații de revizie, niciodată procente de
+  acoperire semantică. Istoricul versiunilor vechi ale randorului rămâne păstrat în domeniul său original.
+- Revizia independentă a respins o unitate bazată exclusiv pe referințe partajate, marcată integral REVIEWED.
+  Fiecare fațetă revizuită/parțială necesită acum afirmația sursă a responsabilului său; doar verificarea
+  poate indica un oracol explicit partajat. Unitățile UNKNOWN rămân lacune oneste.
+- Dovezi: `tools/atlas-understanding.test.mjs`, contractul curent al raportului și
+  inventarele de înțelegere nou capturate per proiect, în afara surselor întreținute.
+- Stare: CLOSED. Calitate livrată: 92, din corectitudine/verificare/claritate 94/92/90.
+- Rezultat verificat: ambele inventare noi au trecut verificările de sursă, responsabil, șapte fațete și flux bidirecțional. AI are cinci responsabili, opt fluxuri și 48 de afirmații; J1 are cinci responsabili, șase fluxuri și 37 de afirmații. AI păstrează 11 fațete REVIEWED/24 PARTIAL, iar J1 5 REVIEWED/30 PARTIAL. Controalele relevante de mutație resping proprietatea străină/bazată exclusiv pe referințe partajate, fațetele lipsă și domeniul nesusținut al fluxurilor/nodurilor. Aceste numere rămân declarații, nu acoperire semantică.
+- Înregistrări de închidere: `${ATF_WORK_ROOT}/runs/atlas-depth-acceptance-publication-audit.json`, manifestele originale XML/TAP/sursă ale rulărilor și `${ATF_WORK_ROOT}/reviews/20261125-atlas-depth/new-render-acceptance-01/metrics.json`. Documentele finale sincronizate pentru cititor sunt recapturate și auditate separat față de sursele lor exacte.
 
 <a id="d-006"></a>
-## D-006: Deeper project explanations and coherent reader delivery
+<a id="d-006-deeper-project-explanations-and-coherent-reader-delivery"></a>
+## D-006: Explicații mai profunde ale proiectului și livrare coerentă pentru cititor
 
-- Owner: source reviewer, target documentation owners and Atlas reader contract.
-- Priority: 86, from impact/risk/urgency 90/80/85.
-- Baseline quality: 61, from correctness/verification/clarity 65/60/55.
-- Observation: the complete-01 AI/J1 artifacts preserve their declared inputs
-  and one-file reader delivery. Their selected behavior examples leave actual
-  framework/consumer responsibilities, state, defaults, failure handling and
-  verification ownership unevenly explained.
-- Consequence: readers need another manual source pass to distinguish a genuine
-  contract from an incidental component example or a historical proof snapshot.
-- Correction: inspect current source owner by owner; expand existing behavior
-  and oracle narratives, data/configuration/failure explanations and maintained
-  guide selection. Preserve the essential AI living architecture in Markdown and
-  HTML. Keep J1 binary-library ownership separate from consumer-owned source and
-  distinguish current dirty code from retained qualification evidence.
-- Acceptance: each delivered source claim and quote resolves against its capture;
-  every reviewed unit declares all seven facets; existing flows explain actors,
-  operations, values and observable outcomes. The one final HTML contains all
-  declared inputs, canonical embedded CSS, clear diagrams, full source/evidence
-  provenance and explicit gaps. Inspect desktop rendering, disclosure, navigation
-  and offline behavior. Code/comments and canonical documentation remain English;
-  the main_RO README hierarchy remains 1:1 with main.
-- Evidence: fresh AI/J1 inputs, exact source captures, one reader HTML per project
-  and desktop review records under the caller-selected artifacts/review roots.
-- State: CLOSED. Delivered quality: 89, from correctness/verification/clarity 90/85/90.
-- Verified result: The accepted AI/J1 readers retain 20/23 maintained source documents plus complete declared analysis/source/evidence inputs. Four real desktop Chromium records at 1440 and 1920 inspected 32 diagrams with no network/script/page error, clipping, overlap or header occlusion. Concrete transition labels and their source claims replaced generic arrow verbs. One complete HTML per target was copied alone for review; no product journey, E2E or emulator was added.
-- Closure receipts: `${ATF_WORK_ROOT}/runs/atlas-depth-acceptance-publication-audit.json`, original run XML/TAP/source manifests and `${ATF_WORK_ROOT}/reviews/20261125-atlas-depth/new-render-acceptance-01/metrics.json`. Final synchronized readers are recaptured and audited separately against their exact source.
+- Responsabil: revizorul surselor, responsabilii documentației țintă și contractul documentului Atlas pentru cititor.
+- Prioritate: 86, din impact/risc/urgență 90/80/85.
+- Calitate inițială: 61, din corectitudine/verificare/claritate 65/60/55.
+- Observație: artefactele complete-01 AI/J1 păstrează intrările declarate
+  și livrarea într-un singur fișier pentru cititor. Exemplele lor selectate de comportament lasă explicate
+  neuniform responsabilitățile efective framework/consumator, starea, valorile implicite, tratarea eșecurilor și
+  responsabilitatea verificării.
+- Consecință: cititorii au nevoie de încă o parcurgere manuală a surselor pentru a distinge un contract
+  real de un exemplu incidental de componentă sau de un instantaneu istoric de dovezi.
+- Corecție: inspectarea surselor curente, responsabil cu responsabil; extinderea explicațiilor existente despre comportament
+  și oracole, a explicațiilor despre date/configurație/eșec și a selecției ghidurilor
+  întreținute. Păstrarea arhitecturii esențiale Living AI în Markdown și
+  HTML. Păstrarea proprietății bibliotecilor binare J1 separat de sursele deținute de consumatori și
+  distingerea codului curent cu modificări locale de dovezile de calificare păstrate.
+- Acceptanță: fiecare afirmație sursă și citat livrat se rezolvă față de captura sa;
+  fiecare unitate revizuită declară toate cele șapte fațete; fluxurile existente explică actorii,
+  operațiile, valorile și rezultatele observabile. HTML-ul final unic conține toate
+  intrările declarate, CSS-ul canonic încorporat, diagrame clare, proveniența completă a surselor/dovezilor
+  și lacune explicite. Inspectarea randării desktop, a detaliilor expandabile, a navigării
+  și a comportamentului offline. Codul/comentariile și documentația canonică rămân în engleză;
+  ierarhia README main_RO rămâne 1:1 cu main.
+- Dovezi: intrări AI/J1 noi, capturi exacte de surse, câte un HTML pentru cititor per proiect
+  și înregistrări ale reviziei desktop sub rădăcinile de artefacte/revizie selectate de apelant.
+- Stare: CLOSED. Calitate livrată: 89, din corectitudine/verificare/claritate 90/85/90.
+- Rezultat verificat: documentele AI/J1 acceptate pentru cititor păstrează 20/23 de documente sursă întreținute, plus intrările complete declarate de analiză/surse/dovezi. Patru înregistrări reale Chromium desktop la 1440 și 1920 au inspectat 32 de diagrame fără erori de rețea/script/pagină, tăieri, suprapuneri sau acoperirea titlurilor. Etichete concrete de tranziție și afirmațiile lor sursă au înlocuit verbele generice ale săgeților. Un HTML complet per țintă a fost copiat singur pentru revizie; nu s-a adăugat niciun parcurs de produs, E2E sau emulator.
+- Înregistrări de închidere: `${ATF_WORK_ROOT}/runs/atlas-depth-acceptance-publication-audit.json`, manifestele originale XML/TAP/sursă ale rulărilor și `${ATF_WORK_ROOT}/reviews/20261125-atlas-depth/new-render-acceptance-01/metrics.json`. Documentele finale sincronizate pentru cititor sunt recapturate și auditate separat față de sursele lor exacte.
 
 <a id="a-001"></a>
-## A-001: Evidence-bound 1–100 review axes
+<a id="a-001-evidence-bound-1100-review-axes"></a>
+## A-001: Axe de revizie 1–100 legate de dovezi
 
-- Owner: assessment reviewer, rubric and validation contract.
-- Priority: 81, from impact/risk/urgency 85/75/80.
-- Baseline quality: 53, from correctness/verification/clarity 60/45/50.
-- Observation: the request asks for suitable separate 1–100 axes. Existing
-  feedback scores assess narrow corrected findings; they cannot stand in for
-  current project or Atlas grades. Source consistency and passing governance
-  selections do not supply a rubric or prove every behavior.
-- Consequence: reusing a closure score as a global quality score hides scope,
-  uncertainty, evidence age and unexecuted contracts.
-- Correction: optional EVIDENCE_BOUND_REVIEW declares reviewer, scope, limits and
-  separate project-quality/atlas-quality groups. Every axis has correctness,
-  verification and clarity inputs, the rounded 40/30/30 score, an integer weight,
-  reviewed claimIds, evidenceIds, reason and limits. Weights sum to 100 per group.
-  The group is the rounded weighted mean; NOT_ASSESSED remains valid when no
-  assessment is requested or supported.
-- Acceptance: reject out-of-range/fractional inputs, incorrect computed scores,
-  weights not totaling 100, unsupported claims/evidence and missing scope or
-  limitations. Explain project-specific axes using current source and retained
-  outcomes; explain common publisher controls consistently across targets.
-  No score is inferred from file/test counts, lexical ranking or gate success.
-- Evidence: `tools/atlas-understanding.test.mjs`, review narratives and the fresh
-  per-project assessment records embedded in their one-file reader artifacts.
-- State: CLOSED. Delivered quality: 92, from correctness/verification/clarity 92/94/90.
-- Verified result: Both explicit assessments passed their source/evidence references and 40/30/30 arithmetic, integer ranges and weights. Six comparable project-source axes and six Atlas/RAG axes keep separate totals: AI 90/90 and J1 87/89. The J1 change-control failure affects current compliance/readiness and stays visible. These authored Codex-assisted review judgments do not presume human approval, full runtime acceptance or automatic semantic certification.
-- Closure receipts: `${ATF_WORK_ROOT}/runs/atlas-depth-acceptance-publication-audit.json`, original run XML/TAP/source manifests and `${ATF_WORK_ROOT}/reviews/20261125-atlas-depth/new-render-acceptance-01/metrics.json`. Final synchronized readers are recaptured and audited separately against their exact source.
+- Responsabil: revizorul evaluării, grila și contractul de validare.
+- Prioritate: 81, din impact/risc/urgență 85/75/80.
+- Calitate inițială: 53, din corectitudine/verificare/claritate 60/45/50.
+- Observație: cererea solicită axe separate 1–100 potrivite. Notele existente
+  din feedback evaluează constatări corectate înguste; nu pot înlocui notele
+  curente ale proiectelor sau ale Atlas-ului. Consistența surselor și selecțiile de guvernanță
+  trecute nu furnizează o grilă și nu dovedesc fiecare comportament.
+- Consecință: reutilizarea unei note de închidere ca notă globală de calitate ascunde domeniul,
+  incertitudinea, vechimea dovezilor și contractele neexecutate.
+- Corecție: EVIDENCE_BOUND_REVIEW opțional declară revizorul, domeniul, limitele și
+  grupurile separate project-quality/atlas-quality. Fiecare axă are intrări de corectitudine,
+  verificare și claritate, nota rotunjită 40/30/30, o pondere întreagă,
+  claimIds revizuite, evidenceIds, motiv și limite. Ponderile însumează 100 per grup.
+  Grupul este media ponderată rotunjită; NOT_ASSESSED rămâne valid când nu este
+  cerută sau susținută nicio evaluare.
+- Acceptanță: respingerea intrărilor în afara intervalului/fracționare, a notelor calculate incorect,
+  a ponderilor care nu însumează 100, a afirmațiilor/dovezilor nesusținute și a domeniului sau
+  limitărilor lipsă. Explicarea axelor specifice proiectului folosind sursele curente și rezultatele
+  păstrate; explicarea consecventă a controalelor comune ale publicatorului între ținte.
+  Nicio notă nu este dedusă din numărul fișierelor/testelor, clasificarea lexicală sau succesul controalelor.
+- Dovezi: `tools/atlas-understanding.test.mjs`, explicațiile reviziei și înregistrările noi
+  de evaluare per proiect încorporate în artefactele lor de lectură într-un singur fișier.
+- Stare: CLOSED. Calitate livrată: 92, din corectitudine/verificare/claritate 92/94/90.
+- Rezultat verificat: ambele evaluări explicite au trecut verificările referințelor lor la surse/dovezi și ale aritmeticii 40/30/30, intervalelor întregi și ponderilor. Șase axe comparabile ale surselor proiectului și șase axe Atlas/RAG păstrează totaluri separate: AI 90/90 și J1 87/89. Eșecul controlului schimbărilor J1 afectează conformitatea/pregătirea curentă și rămâne vizibil. Aceste judecăți de revizie redactate cu asistență Codex nu presupun aprobare umană, acceptanță completă la execuție sau certificare semantică automată.
+- Înregistrări de închidere: `${ATF_WORK_ROOT}/runs/atlas-depth-acceptance-publication-audit.json`, manifestele originale XML/TAP/sursă ale rulărilor și `${ATF_WORK_ROOT}/reviews/20261125-atlas-depth/new-render-acceptance-01/metrics.json`. Documentele finale sincronizate pentru cititor sunt recapturate și auditate separat față de sursele lor exacte.
 
 <a id="g-014"></a>
-## G-014: Current J1 change-control compliance stays open
+<a id="g-014-current-j1-change-control-compliance-stays-open"></a>
+## G-014: Conformitatea curentă J1 privind controlul schimbărilor rămâne deschisă
 
-- Owner: J1 test-change owner. This is an external project observation, not an
-  ATF_AI runtime correction or authority to edit concurrent J1 work.
-- Priority: 84, from impact/risk/urgency 85/85/80.
-- Baseline quality: 68, from correctness/verification/clarity 65/50/90.
-- Observation: the isolated existing WholeAtfGovernanceSuiteTest selection
-  captured the J1 dirty tree at base `4e3cac10061c95ea2b9b32cc18a6d4add1007a1e`.
-  Its 35 XML reports reconcile to 211 tests, 210 passed, one failure and no errors
-  or skips. TestChangeGovernanceTest.moduleTestChangesRequireAnExplicitControlRecord
-  correctly reports two TEST-CHANGE-REQUIRED violations: the modified
-  WholeAtfGovernanceSuiteTest.java and added
-  governance/release/ConsumerEvidenceCatalogGovernanceTest.java lack eligible
-  ACTIVE/VERIFIED controls for that exact baseline and those paths.
-- Interpretation: J1 documents the requirement in its test guide and implements
-  the guard. The current changes do not satisfy it. The new catalog's six tests
-  passed; that scoped result does not turn the whole suite into PASSED. At review,
-  the captured raw source hashes still matched live J1. Later changes require a
-  new capture; a commit alone cannot identify a dirty tree.
-- Required action: the J1 owner records justified structured testChanges for the
-  two exact paths and baseline, including reason, proof and expiry, then runs the
-  existing governance selection with a new immutable run ID. Do not weaken the
-  rule, invent retrospective approval or amend the original failed XML.
-- Evidence: `${ATF_WORK_ROOT}/runs/j1-atlas-depth-governance-01.log`, its original
-  source manifest and XML; classification under
+- Responsabil: responsabilul schimbărilor de teste J1. Aceasta este o observație asupra unui proiect extern, nu o
+  corecție de execuție ATF_AI sau o autorizare de a edita lucrul concurent J1.
+- Prioritate: 84, din impact/risc/urgență 85/85/80.
+- Calitate inițială: 68, din corectitudine/verificare/claritate 65/50/90.
+- Observație: selecția izolată existentă WholeAtfGovernanceSuiteTest
+  a capturat arborele J1 cu modificări locale la baza `4e3cac10061c95ea2b9b32cc18a6d4add1007a1e`.
+  Cele 35 de rapoarte XML ale sale se reconciliază la 211 teste, 210 trecute, un eșec și fără erori
+  sau omiteri. TestChangeGovernanceTest.moduleTestChangesRequireAnExplicitControlRecord
+  raportează corect două încălcări TEST-CHANGE-REQUIRED: fișierul modificat
+  WholeAtfGovernanceSuiteTest.java și fișierul adăugat
+  governance/release/ConsumerEvidenceCatalogGovernanceTest.java nu au controale
+  ACTIVE/VERIFIED eligibile pentru acea bază exactă și acele căi.
+- Interpretare: J1 documentează cerința în ghidul său de testare și implementează
+  controlul. Modificările curente nu o satisfac. Cele șase teste ale noului catalog
+  au trecut; acel rezultat delimitat nu transformă întreaga suită în PASSED. La revizie,
+  hash-urile brute ale surselor capturate corespundeau încă J1 live. Schimbările ulterioare necesită o
+  captură nouă; un commit singur nu poate identifica un arbore cu modificări locale.
+- Acțiune necesară: responsabilul J1 înregistrează testChanges structurate și justificate pentru
+  cele două căi exacte și baza exactă, incluzând motivul, dovada și expirarea, apoi rulează
+  selecția existentă de guvernanță cu un nou ID imuabil de rulare. Nu slăbiți
+  regula, nu inventați aprobare retrospectivă și nu modificați XML-ul original eșuat.
+- Dovezi: `${ATF_WORK_ROOT}/runs/j1-atlas-depth-governance-01.log`, manifestul său original
+  de surse și XML-ul; clasificarea sub
   `${ATF_WORK_ROOT}/reviews/20261125-atlas-depth/j1-governance-failure-01.md`.
-  The new J1 Atlas embeds the original failure and its captured-source comparison.
-- State: TODO. No J1 source or control record was changed by this review. This
-  finding remains open independently of the completed Atlas delivery gates.
+  Noul Atlas J1 încorporează eșecul original și comparația sa cu sursele capturate.
+- Stare: TODO. Această revizie nu a schimbat nicio sursă J1 sau înregistrare de control. Această
+  constatare rămâne deschisă independent de verificările finalizate ale livrării Atlas.
 
-## Verification and closure route
+<a id="verification-and-closure-route"></a>
+## Calea de verificare și închidere
 
-Run the focused maintenance selection from the project root:
+Rulați selecția focalizată de întreținere din rădăcina proiectului:
 
 ```powershell
 node --test tools/verify-atlas.test.mjs tools/atlas-report.test.mjs tools/atlas-knowledge.test.mjs tools/atlas-bundle.test.mjs tools/atlas-execution.test.mjs tools/atlas-understanding.test.mjs
 ```
 
-Follow [Development](../Development.md) for isolated existing Java documentation
-and architecture governance and README-edition parity. Preserve the exact
-commands, source manifests, original XML/TAP, failed observations and successful
-reruns in the caller-selected artifact area. A copied report is not another run.
-Keep generated maps outside source-owned areas that prohibit them. Close each
-item only after its own acceptance checks complete, then record delivered quality
-with its component inputs and add a concise verified-register receipt. Preserve
-these baseline observations and avoid retrospective global rescoring.
+Urmați [Dezvoltarea](../Development.md) pentru guvernanța izolată existentă a documentației
+și arhitecturii Java și pentru paritatea edițiilor README. Păstrați comenzile
+exacte, manifestele surselor, XML/TAP original, observațiile de eșec și rerulările
+reușite în zona de artefacte selectată de apelant. Un raport copiat nu este o altă rulare.
+Păstrați hărțile generate în afara zonelor deținute de surse care le interzic. Închideți fiecare
+element numai după finalizarea propriilor verificări de acceptanță, apoi înregistrați calitatea livrată
+cu intrările componentelor sale și adăugați o înregistrare concisă în registrul verificat. Păstrați
+aceste observații inițiale și evitați renotarea globală retrospectivă.
 
-## Scoped reviewer scores
+<a id="scoped-reviewer-scores"></a>
+## Note de revizor cu domeniu delimitat
 
-The same six axes are used per group. Full weights, correctness/verification/clarity
-inputs, source claims, original execution IDs, rationale and limits remain in each
-complete reader. These are representative review judgments, not coverage or pass
-percentages. Source and Atlas quality are not merged into one grade.
+Aceleași șase axe sunt folosite per grup. Ponderile complete, intrările de corectitudine/verificare/claritate,
+afirmațiile sursă, ID-urile originale ale execuțiilor, justificarea și limitele rămân în fiecare
+document complet pentru cititor. Acestea sunt judecăți reprezentative de revizie, nu procente de acoperire sau
+de trecere. Calitatea surselor și calitatea Atlas nu sunt unite într-o singură notă.
 
-### Project source qualities
+<a id="project-source-qualities"></a>
+### Calitățile surselor proiectului
 
-| Axis | AI (1-100) | J1 (1-100) |
+| Axă | AI (1-100) | J1 (1-100) |
 |---|---:|---:|
-| Architecture and ownership | 92 | 92 |
-| Governance precision and repair guidance | 92 | 88 |
-| Configuration and failure discipline | 85 | 87 |
-| Existing oracle quality and stability evidence | 89 | 76 |
-| Documentation contracts and clarity | 90 | 91 |
-| Maintainability and portability | 89 | 89 |
-| Weighted group | 90 | 87 |
+| Arhitectură și responsabilitate | 92 | 92 |
+| Precizia guvernanței și îndrumarea pentru remediere | 92 | 88 |
+| Disciplina configurației și a eșecurilor | 85 | 87 |
+| Calitatea oracolelor existente și dovezile de stabilitate | 89 | 76 |
+| Contractele și claritatea documentației | 90 | 91 |
+| Mentenabilitate și portabilitate | 89 | 89 |
+| Grup ponderat | 90 | 87 |
 
-### Atlas and RAG qualities
+<a id="atlas-and-rag-qualities"></a>
+### Calitățile Atlas și RAG
 
-| Axis | AI (1-100) | J1 (1-100) |
+| Axă | AI (1-100) | J1 (1-100) |
 |---|---:|---:|
-| Declared coverage and project depth | 86 | 84 |
-| Behavior and negative-outcome explanation | 87 | 86 |
-| Evidence honesty and provenance | 95 | 93 |
-| Generation governance and repair diagnostics | 94 | 92 |
-| Retrieval and source-grounded authoring discipline | 88 | 88 |
-| Offline delivery and reader structure | 91 | 91 |
-| Weighted group | 90 | 89 |
+| Acoperire declarată și profunzimea proiectului | 86 | 84 |
+| Explicarea comportamentului și a rezultatelor negative | 87 | 86 |
+| Onestitatea dovezilor și proveniența | 95 | 93 |
+| Guvernanța generării și diagnosticele de remediere | 94 | 92 |
+| Disciplina recuperării și a redactării ancorate în surse | 88 | 88 |
+| Livrare offline și structura pentru cititor | 91 | 91 |
+| Grup ponderat | 90 | 89 |
 
-The two original AI governance attempt01 runs each failed one README-edition
-check: wrapping `schemaVersion 1` before `1. Declare` accidentally created an
-English ordered-list item. Correcting the paragraph restored the declared
-translation structure; both attempt02 selections passed all 211 cases. Their
-failed reports remain immutable alongside the repaired results. G-014 remains
-TODO for the independently owned J1 change-control records.
+Cele două rulări originale AI de guvernanță attempt01 au eșuat fiecare la o verificare a edițiilor README:
+împărțirea lui `schemaVersion 1` înainte de `1. Declare` a creat accidental un
+element de listă ordonată în engleză. Corectarea paragrafului a restaurat structura
+de traducere declarată; ambele selecții attempt02 au trecut toate cele 211 cazuri. Rapoartele lor
+eșuate rămân imuabile alături de rezultatele reparate. G-014 rămâne
+TODO pentru înregistrările J1 de control al schimbărilor, cu responsabilitate independentă.

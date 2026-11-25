@@ -1,93 +1,104 @@
 <a id="living-architecture"></a>
-# Living Architecture (UI + API)
+<a id="living-architecture-ui--api"></a>
+# Arhitectură vie (UI + API)
 
-This guide preserves the essential UI, API, reporting and test contracts from
-the archived v1.0 architecture. It reconciles them with the current modular
-framework. The retained filename identifies the document lineage, not a new
-library release or an execution receipt.
+Acest ghid păstrează contractele esențiale UI, API, de raportare și testare din
+arhitectura v1.0 arhivată. Le reconciliază cu framework-ul modular curent. Numele
+păstrat al fișierului identifică filiația documentului, nu o nouă versiune a
+bibliotecii sau o dovadă de execuție.
 
-The [HTML companion](Living_Architecture_UI_API_doc_v1_0.html) presents the same
-sections with collapsible panels and static diagrams. This Markdown document
-owns the content; the HTML metadata records its source filename and normalized
-SHA-256. Update both together. [Architecture](Architecture.md) owns the concise
-module map, [Testing](Testing.md) owns commands, and [feedback](feedback/README.md)
-owns unresolved criteria. This guide records no fresh application acceptance.
+[Documentul HTML asociat](Living_Architecture_UI_API_doc_v1_0.html) prezintă aceleași
+secțiuni în panouri pliabile și diagrame statice. Acest document Markdown deține
+conținutul; metadatele HTML consemnează numele fișierului sursă și SHA-256 normalizat.
+Actualizează-le împreună. [Arhitectura](Architecture.md) definește harta concisă a
+modulelor, [Testare](Testing.md) definește strategia,
+[colecția de comenzi](Testing_Commands.md) definește rețetele de execuție, iar
+[feedback-ul](feedback/README.md) gestionează criteriile nerezolvate. Ghidul nu consemnează acceptanță nouă a aplicației.
 
-The [maintained browser matrix](Testing.md#selenium-pinned-manager-route) owns
-the Selenium/browser/driver/CDP pins and portable binary preparation. Project
-paths derive from the reactor root or explicit caller/environment inputs;
-absolute runtime paths are resolved from those inputs when an API requires them.
+Diagramele HTML late păstrează dimensiunea nativă a etichetelor. Derulează în
+interiorul figurii pentru o secvență lată; pagina rămâne lizibilă.
+
+[Matricea de browser menținută](Testing.md#selenium-pinned-manager-route) definește
+versiunile fixate Selenium/browser/driver/CDP și pregătirea portabilă a binarelor.
+Căile proiectului provin din rădăcina reactorului sau din intrări explicite ale
+apelantului/mediului; căile absolute de execuție se rezolvă din aceste intrări
+când un API le cere.
 
 <a id="approach"></a>
-## 1) Approach and scope
+<a id="1-approach-and-scope"></a>
+## 1) Abordare și domeniu
 
 <details open>
-<summary>Responsibilities and vocabulary</summary>
+<summary>Responsabilități și vocabular</summary>
 
-| Label | Meaning | Boundary |
+| Etichetă | Sens | Limită |
 |---|---|---|
-| CORE | Shared contracts, configuration and lifecycle | Browser and reporting vendor SDKs stay outside Core |
-| UI | Engine-neutral actions, waits, browser lifecycle and observations | Application pages and workflows stay in test support |
-| API | HTTP execution, response validation and application services | HTTP transport is distinct from business assertions |
-| REPORTING | Extent/Allure implementation and publication | Core exposes neutral reporting contracts and an optional backend SPI |
+| CORE | Contracte comune, configurație și ciclu de viață | SDK-urile furnizorilor de browser și raportare rămân în afara Core |
+| UI | Acțiuni și așteptări neutre față de motor, ciclu de browser și observații | Paginile și fluxurile aplicației rămân în suportul de test |
+| API | Execuție HTTP, validarea răspunsurilor și servicii de aplicație | Transportul HTTP este distinct de aserțiunile de afaceri |
+| REPORTING | Implementare și publicare Extent/Allure | Core expune contracte neutre de raportare și un SPI opțional pentru implementare |
 
-The interaction model remains `UIActions + WaitUtils + UIEngine` for UI,
-`Steps + Services + ApiActions/ApiClient + Validators` for API, and
-`StepLogger + ReportingManager + ReportLogger` for semantic reporting.
-TestNG owns test outcomes. The browser and reporting providers implement
-contracts; they do not decide business success from constructed evidence.
+Modelul de interacțiune rămâne `UIActions + WaitUtils + UIEngine` pentru UI,
+`Steps + Services + ApiActions/ApiClient + Validators` pentru API și
+`StepLogger + ReportingManager + ReportLogger` pentru raportarea semantică.
+TestNG deține rezultatele testelor. Furnizorii de browser și raportare implementează
+contracte; nu decid succesul de afaceri pe baza unor dovezi construite.
 
 </details>
 
 <a id="ownership-map"></a>
-### Current source and module ownership
+<a id="current-source-and-module-ownership"></a>
+### Responsabilitățile curente ale surselor și modulelor
 
-Libraries compile to Java 11 bytecode. Use the JDK/Maven preparation described
-in the [root guide](../README.md#start). Public Java packages retain the `com.ai`
-root across modules; sharing a package prefix does not permit a reverse dependency.
+Bibliotecile se compilează în bytecode Java 11. Folosește pregătirea JDK/Maven
+descrisă în [ghidul principal](../README.md#start). Pachetele Java publice păstrează
+rădăcina `com.ai` între module; un prefix comun nu permite o dependență inversă.
 
-| Maven module | Owned source | Primary consumer contract |
+| Modul Maven | Sursă gestionată | Contract principal pentru consumator |
 |---|---|---|
-| [atf-core](../atf-core/README.md) | Neutral `com.ai.core`, `com.ai.api.core`, neutral `com.ai.ui.core`, generic UI action/wait facades | UIEngine, UiEngineProvider, ConfigManager, StepLogger, ReportLogger, ReportingBackend |
-| [atf-playwright](../atf-playwright/README.md) | `com.ai.ui.core.engine.playwright` | Playwright implementation of UiEngineProvider |
-| [atf-selenium](../atf-selenium/README.md) | `com.ai.ui.core.engine.selenium` | Selenium implementation of UiEngineProvider |
-| [atf-reporting](../atf-reporting/README.md) | Reporting backend, concrete listeners, Extent/Allure adapters and aggregate writers | ReportingBackend and neutral ReportLogger operations |
-| [atf-tests](../atf-tests/README.md) | Cross-module integration/governance checks and product UI/API support under test sources | Verification and explicit application journeys |
+| [atf-core](../atf-core/README.md) | `com.ai.core` neutru, `com.ai.api.core`, `com.ai.ui.core` neutru, fațade generice pentru acțiuni/așteptări UI | UIEngine, UiEngineProvider, ConfigManager, StepLogger, ReportLogger, ReportingBackend |
+| [atf-playwright](../atf-playwright/README.md) | `com.ai.ui.core.engine.playwright` | Implementarea Playwright a UiEngineProvider |
+| [atf-selenium](../atf-selenium/README.md) | `com.ai.ui.core.engine.selenium` | Implementarea Selenium a UiEngineProvider |
+| [atf-reporting](../atf-reporting/README.md) | Implementarea raportării, ascultători concreți, adaptoare Extent/Allure și generatoare agregate | ReportingBackend și operații neutre ReportLogger |
+| [atf-tests](../atf-tests/README.md) | Verificări de integrare/guvernanță între module și suport UI/API de produs în sursele de test | Verificare și scenarii explicite de aplicație |
 
-There are five Maven modules. Each browser adapter and Reporting depends on
-Core; atf-tests consumes all four libraries with test scope. The parent POM
-coordinates versions. The [documentation-only Atlas](../atf-atlas/README.md) is a review/ownership
-map outside the Maven reactor; it supplies no Java runtime or provider.
+Există cinci module Maven. Fiecare adaptor de browser și Reporting depind de
+Core; atf-tests consumă cele patru biblioteci ca dependențe de test. POM-ul părinte
+coordonează versiunile. [Atlasul exclusiv documentar](../atf-atlas/README.md) este o
+hartă de revizuire/responsabilități în afara reactorului Maven; nu oferă execuție Java sau furnizori.
 
-Product pages, services, factories, steps, business validations and application
-scenarios live under `atf-tests/src/test`. Generic UIActions and WaitUtils retain
-their existing packages in Core for compatibility. Concrete browser SDK classes
-remain inside the owning adapter. A consumer selects the libraries it needs;
-it does not consume atf-tests as a production API.
+Paginile produsului, serviciile, fabricile, pașii, validările de afaceri și scenariile
+aplicației se află sub `atf-tests/src/test`. UIActions și WaitUtils generice păstrează
+pachetele existente în Core pentru compatibilitate. Clasele SDK concrete ale browserelor
+rămân în adaptorul responsabil. Consumatorul selectează bibliotecile necesare;
+nu consumă atf-tests ca API de producție.
 
 <a id="configuration"></a>
-## 2) Centralized configuration
+<a id="2-centralized-configuration"></a>
+## 2) Configurație centralizată
 
 <a id="configuration-precedence"></a>
-### Loading and precedence
+<a id="loading-and-precedence"></a>
+### Încărcare și precedență
 
 [ConfigManager](../atf-core/src/main/java/com/ai/core/support/config/ConfigManager.java)
-loads `framework.properties` from the classpath, or an explicit file selected by
-`-Dframework.properties=...`. Its packaged source owner is
-`atf-core/src/main/resources/framework.properties`. Runtime loading does not
-search a monolithic source tree. Individual JVM properties override loaded keys.
+încarcă `framework.properties` din classpath sau un fișier explicit selectat prin
+`-Dframework.properties=...`. Sursa împachetată responsabilă este
+`atf-core/src/main/resources/framework.properties`. Încărcarea la execuție nu caută
+un arbore sursă monolitic. Proprietățile JVM individuale suprascriu cheile încărcate.
 
-Use `get(key, default)` for optional values and `require(key)` for nonblank
-required values. Configuration access and validation belong to Core typed options;
-application steps should not duplicate parsing. Explicit environment settings,
-browser caches and suite selection remain caller-owned. Do not place credentials
-or assumed machine-specific paths into published examples.
+Folosește `get(key, default)` pentru valori opționale și `require(key)` pentru valori
+obligatorii nevide. Accesul și validarea configurației aparțin opțiunilor tipizate Core;
+pașii aplicației nu trebuie să dubleze interpretarea. Setările explicite ale mediului,
+cache-urile browserelor și selecția suitei rămân responsabilitatea apelantului.
+Nu pune acreditări sau căi presupuse ale unei mașini în exemplele publicate.
 
 <a id="ui-configuration"></a>
-### UI configuration
+<a id="ui-configuration-1"></a>
+### Configurație UI
 
 <details open>
-<summary>Maintained UI defaults</summary>
+<summary>Valori implicite UI menținute</summary>
 
 ```properties defaults
 base.url=https://practicesoftwaretesting.com
@@ -102,24 +113,26 @@ ui.screenshots.on.failure.only=false
 ui.screenshots.capture.final.state=true
 ```
 
-`ui.engine` selects an installed `playwright` or `selenium` provider. Discovery
-does not start a browser. Missing or duplicate providers produce diagnostics;
-an unavailable adapter is not a reason to silently select another engine.
+`ui.engine` selectează un furnizor instalat `playwright` sau `selenium`.
+Descoperirea nu pornește un browser. Furnizorii absenți sau duplicați produc
+diagnostice; indisponibilitatea unui adaptor nu justifică selectarea tacită a altui motor.
 
-An explicit valid window size takes precedence. Otherwise the resolver uses a
-usable system size, with `2560x1440` as the headless/unavailable-system fallback.
-That fallback is not a promise that every configured session has that size.
-Zoom is normalized to supported levels: the configured `60` resolves to `67`.
-Navigation and screenshots preserve the resolved zoom. Browser preparation and
-SDK-default Node selection are covered in [Testing](Testing.md#browser-preparation-and-checks).
+Dimensiunea explicită validă a ferestrei are prioritate. Altfel, rezolvarea folosește
+o dimensiune utilizabilă a sistemului, cu `2560x1440` ca alternativă când execuția
+este fără interfață sau sistemul nu oferă o dimensiune utilizabilă. Alternativa nu
+promite că fiecare sesiune configurată are acea dimensiune. Zoomul se normalizează
+la nivelurile acceptate: valoarea configurată `60` devine `67`. Navigarea și capturile
+păstrează zoomul rezolvat. Pregătirea browserelor și selecția Node implicită a SDK-ului
+sunt descrise în [Testare](Testing.md#browser-preparation-and-checks).
 
 </details>
 
 <a id="api-report-configuration"></a>
-### API and reporting configuration
+<a id="api-and-reporting-configuration"></a>
+### Configurație API și raportare
 
 <details open>
-<summary>Maintained API and report defaults</summary>
+<summary>Valori implicite API și raportare menținute</summary>
 
 ```properties defaults
 base.url.api=https://gorest.co.in
@@ -135,197 +148,210 @@ reports.timestamp.format=yyyy-MM-dd_HH-mm-ss
 console.details.enabled=true
 ```
 
-The maximum rate-limit retry count must be nonnegative. Zero permits the initial
-request without reattempts; negative values fail before execution.
+Numărul maxim de reîncercări la limitarea ratei trebuie să fie nenegativ. Zero
+permite cererea inițială fără reîncercări; valorile negative eșuează înaintea execuției.
 
-These URLs are defaults, not authorization to mutate an application. API write
-flows require an explicit usable token. `BaseTestAPI` skips its write-oriented
-setup when that token is blank; a skip is not acceptance. Caller-controlled
-anonymous/invalid-auth fixtures use the explicit request paths designed for them.
-Normal authentication is centralized in ApiClient; special negative-auth helpers
-are test support, not a second production authentication mechanism.
+Aceste URL-uri sunt valori implicite, nu autorizare pentru modificarea unei aplicații.
+Fluxurile API de scriere cer un token explicit utilizabil. `BaseTestAPI` sare
+inițializarea orientată spre scriere dacă tokenul este gol; omiterea nu înseamnă
+acceptanță. Fixture-urile anonime/cu autentificare invalidă controlate de apelant
+folosesc căile explicite de cerere destinate lor. Autentificarea obișnuită este
+centralizată în ApiClient; utilitarele speciale de autentificare negativă sunt suport
+de test, nu un al doilea mecanism de autentificare de producție.
 
-Core can execute without a Reporting backend. Installing atf-reporting enables
-its Extent/Allure implementation. The two report engines are selected by
-`reporting.engine` behind one ReportingBackend service and the neutral facade;
-invalid engine configuration is a diagnostic, not a
-documented universal NO-OP fallback. Report directories are relative to the
-executing validation module unless overridden.
+Core poate executa fără o implementare Reporting. Instalarea atf-reporting activează
+implementarea Extent/Allure. Cele două motoare de raportare sunt selectate prin
+`reporting.engine`, în spatele unui serviciu ReportingBackend și al fațadei neutre;
+configurația invalidă a motorului produce un diagnostic, nu o alternativă universală
+NO-OP documentată. Directoarele rapoartelor sunt relative la modulul de validare
+executant dacă nu sunt suprascrise.
 
 </details>
 
 <a id="architecture-diagrams"></a>
-## 3) Architecture diagrams
+<a id="3-architecture-diagrams"></a>
+## 3) Diagrame de arhitectură
 
 <a id="module-dependencies"></a>
-### Maven dependency direction
+<a id="maven-dependency-direction"></a>
+### Direcția dependențelor Maven
 
 ```mermaid
 flowchart LR
     PW["atf-playwright"] --> Core["atf-core"]
     SE["atf-selenium"] --> Core
     Reporting["atf-reporting"] --> Core
-    Tests["atf-tests: test scope"] --> PW
+    Tests["atf-tests: domeniu de test"] --> PW
     Tests --> SE
     Tests --> Reporting
     Tests --> Core
 ```
 
-Arrows mean dependency, not execution order. Core never loads a browser or
-reporting vendor class directly. Java service descriptors belong to their
-providers. atf-tests verifies composition; it is not a dependency of a library.
-The documentary Atlas is absent from this runtime graph by design.
+Săgețile înseamnă dependență, nu ordine de execuție. Core nu încarcă direct o clasă
+a unui furnizor de browser sau raportare. Descriptorii serviciilor Java aparțin
+furnizorilor. atf-tests verifică compoziția; nu este o dependență a unei biblioteci.
+Atlasul documentar lipsește intenționat din acest graf de execuție.
 
 <a id="canonical-rules"></a>
-## 4) Canonical execution rules
+<a id="4-canonical-execution-rules"></a>
+## 4) Reguli canonice de execuție
 
-MUST and MUST NOT below are scoped review rules. They do not imply that every
-statement has an automatic guard. The [verification map](#verification-map)
-identifies current source/test owners; unresolved acceptance stays in feedback.
+MUST și MUST NOT de mai jos sunt reguli de revizuire cu domeniu delimitat.
+Nu implică existența unui control automat pentru fiecare afirmație.
+[Harta verificării](#verification-map) identifică responsabilii actuali ai surselor/testelor;
+acceptanța nerezolvată rămâne în feedback.
 
 <a id="retained-principles"></a>
-### Retained principles and auditable UI execution
+<a id="retained-principles-and-auditable-ui-execution"></a>
+### Principii păstrate și execuție UI auditabilă
 
-The archived v1.0 headings define the lineage of these twelve retained
-principles. Their intent remains mandatory within its stated layer. The
-[reconciled decisions](#historical-reconciliation) explain superseded literal
-rules; removing an obsolete implementation constraint does not remove its
-ownership, failure-truth or evidence obligation.
+Titlurile v1.0 arhivate definesc filiația acestor douăsprezece principii păstrate.
+Intenția lor rămâne obligatorie în stratul declarat.
+[Deciziile reconciliate](#historical-reconciliation) explică regulile literale înlocuite;
+eliminarea unei restricții de implementare depășite nu elimină obligația privind
+responsabilitatea, adevărul eșecului sau dovezile.
 
-`MAINTAINED` means that the current source owner and an existing check are
-identified. It does not mean that a check was executed, that every branch was
-covered, or that a public application accepted the scenario. `PARTIAL` exposes
-a known unfulfilled obligation. Execution evidence belongs to its exact source,
-selection, engine and native result in the [report publication](../artifacts/reports/README.md).
+`MAINTAINED` înseamnă că sunt identificați responsabilul sursei curente și o verificare
+existentă. Nu înseamnă că verificarea s-a executat, că fiecare ramură este acoperită
+sau că o aplicație publică a acceptat scenariul. `PARTIAL` expune o obligație cunoscută
+neîndeplinită. Dovezile de execuție aparțin sursei exacte, selecției, motorului și
+rezultatului nativ din [publicarea rapoartelor](../artifacts/reports/README.md).
 
-| ID | Archived intent / current decision | Implementation owner | Existing checks | State | Proof boundary |
+| ID | Intenție arhivată / decizie curentă | Responsabilul implementării | Verificări existente | Stare | Limitele dovezii |
 |---|---|---|---|---|---|
-| LD-01 | Section 3, Config: one configuration owner; use required/optional typed access. | [ConfigManager](../atf-core/src/main/java/com/ai/core/support/config/ConfigManager.java) | [Configuration loading](../atf-tests/src/test/java/com/ai/atf/core/support/config/ConfigManagerFileContractTest.java) | MAINTAINED | Source-owned precedence and validation; caller credentials and environment availability remain separate. |
-| LD-02 | Section 3, UI interactions: application interactions use UIActions; vendor engines own capabilities rather than business decisions. | [UIActions](../atf-core/src/main/java/com/ai/ui/support/actions/UIActions.java) | [Engine delegation](../atf-tests/src/test/java/com/ai/atf/ui/component/UiEngineDelegationContractTest.java) | MAINTAINED | Technical engine tests may call the interface directly; application scenarios may not branch on vendor SDKs. |
-| LD-03 | Section 3, engine-dependent waits: Selenium requires explicit facade waits; Playwright supplies native auto-wait capability. | [UiActionWait](../atf-core/src/main/java/com/ai/ui/support/actions/UiActionWait.java) | [Action and input parity](../atf-tests/src/test/java/com/ai/atf/ui/component/UiEngineActionParityContractTest.java) | MAINTAINED | Both wait-capability paths are component contracts; native browser observations and product outcomes need their own execution. |
-| LD-04 | Section 3, Waits: WaitUtils observes bounded conditions and does not independently emit FAIL. | [WaitUtils](../atf-core/src/main/java/com/ai/ui/support/wait/WaitUtils.java) | [Bounded wait regressions](../atf-tests/src/test/java/com/ai/atf/ui/component/WaitUtilsContractTest.java) | MAINTAINED | The enclosing action or validation owns its terminal verdict; a polling timeout is not a successful observation. |
-| LD-05 | Section 3, Validation: reusable validations compare independent actual values with expected business conditions inside explicit Validate steps. | [Registration validation](../atf-tests/src/test/java/com/ai/ui/support/validation/RegistrationValidation.java) and [Profile validation](../atf-tests/src/test/java/com/ai/ui/support/validation/ProfileAccountValidation.java) | [Registration validation contracts](../atf-tests/src/test/java/com/ai/atf/ui/component/RegistrationValidationContractTest.java) | MAINTAINED | Expected/actual details and one terminal verdict explain the assertion; action completion alone does not establish business success. |
-| LD-06 | Section 4, Details and exceptions: the listener owns test lifecycle and preserves the actual failure outside an action step. | [ReportingTestListener](../atf-reporting/src/main/java/com/ai/core/reporting/listener/ReportingTestListener.java) and [BaseTestUI](../atf-core/src/main/java/com/ai/ui/core/runtime/BaseTestUI.java) | [Listener failures](../atf-tests/src/test/java/com/ai/atf/core/reporting/lifecycle/TestListenerFailureContractTest.java) | MAINTAINED | Class setup and teardown remain configuration evidence, not additional product tests; failure attribution must retain its original scope. |
-| LD-07 | Sections 3.5 and 4, step ownership: details require an active step; each owned step has one terminal verdict; nested depth is supported. | [StepLogger](../atf-core/src/main/java/com/ai/core/reporting/StepLogger.java) and [StepScope](../atf-core/src/main/java/com/ai/core/reporting/step/StepScope.java) | [Step lifecycle regressions](../atf-tests/src/test/java/com/ai/atf/core/reporting/regression/StepLoggerContractTest.java) | MAINTAINED | Nested actions must return to their validation scope; closing an unfinished scope is not an implicit PASS. |
-| LD-08 | Section 4, Stacktrace and screenshot: retain one failing-step trace and listener-owned test-level failure attachments. | [UI screenshot handler](../atf-core/src/main/java/com/ai/ui/core/reporting/UiScreenshotFailureHandler.java) and [Failure attachment registry](../atf-core/src/main/java/com/ai/core/reporting/attachment/FailureAttachmentRegistry.java) | [Failure attachment contracts](../atf-tests/src/test/java/com/ai/atf/core/reporting/attachment/FailureAttachmentRegistryTest.java) | MAINTAINED | Configured final-state capture is distinct from a failure screenshot; missing attachments do not convert a failure into success. |
-| LD-09 | Section 4, Extensibility and operations: application layers emit semantic evidence through the neutral facade; Reporting owns adapters and lifecycle. | [ReportingManager](../atf-core/src/main/java/com/ai/core/reporting/ReportingManager.java) and [DefaultReportingBackend](../atf-reporting/src/main/java/com/ai/core/reporting/DefaultReportingBackend.java) | [Reporting manager contracts](../atf-tests/src/test/java/com/ai/atf/core/reporting/regression/ReportingManagerSessionContractTest.java) | MAINTAINED | Backend absence, invalid configuration and adapter diagnostics have different contracts; no universal silent fallback is inferred. |
-| LD-10 | Section 5, Test data and independence: factories own unique product values; scenarios remain independent of method order and declare shared fixture lifecycle. | [UserDataFactory](../atf-tests/src/test/java/com/ai/ui/support/factory/UserDataFactory.java) and [ProfileAccountComponent](../atf-tests/src/test/java/com/ai/ui/support/component/ProfileAccountComponent.java) | [Registration submission contracts](../atf-tests/src/test/java/com/ai/atf/ui/component/RegistrationSubmissionContractTest.java) | MAINTAINED | Framework counterexamples may use literal malformed data; shared account/profile fixtures are class-scoped and their selected checks only read account state. |
-| LD-11 | Section 5, Test data: cleanup of created application data remains mandatory and must have its own observable contract. | [RegistrationService](../atf-tests/src/test/java/com/ai/ui/support/service/RegistrationService.java) and [ProfileAccountComponent](../atf-tests/src/test/java/com/ai/ui/support/component/ProfileAccountComponent.java) | [Registration submission contracts](../atf-tests/src/test/java/com/ai/atf/ui/component/RegistrationSubmissionContractTest.java) | PARTIAL | ACCOUNT_DELETION_NOT_IMPLEMENTED: retained public-demo tests create accounts and select no account-deletion operation. Submission checks do not prove cleanup. |
-| LD-12 | Sections 4 and 5, engine independence: select the same retained scenarios through configuration for Playwright and Selenium. | [UIEngineRegistry](../atf-core/src/main/java/com/ai/ui/core/engine/UiEngineRegistry.java) | [Registration scenarios](../atf-tests/src/test/java/com/ai/atf/ui/RegistrationTests.java), [Account scenarios](../atf-tests/src/test/java/com/ai/ui/tests/AccountAuthenticatedAreaTests.java) and [Profile scenarios](../atf-tests/src/test/java/com/ai/ui/tests/ProfileContactAddressMemoryTests.java) | MAINTAINED | SAME_RETAINED_SCENARIOS: the same 16 existing methods form both engine selections. Only native result identities and actual application observations establish their execution outcomes. |
+| LD-01 | Secțiunea 3, Config: un singur responsabil al configurației; acces tipizat obligatoriu/opțional. | [ConfigManager](../atf-core/src/main/java/com/ai/core/support/config/ConfigManager.java) | [Încărcarea configurației](../atf-tests/src/test/java/com/ai/atf/core/support/config/ConfigManagerFileContractTest.java) | MAINTAINED | Precedența și validarea aparțin sursei; acreditările apelantului și disponibilitatea mediului rămân separate. |
+| LD-02 | Secțiunea 3, interacțiuni UI: interacțiunile aplicației folosesc UIActions; motoarele furnizorilor dețin capabilități, nu decizii de afaceri. | [UIActions](../atf-core/src/main/java/com/ai/ui/support/actions/UIActions.java) | [Delegarea motorului](../atf-tests/src/test/java/com/ai/atf/ui/component/UiEngineDelegationContractTest.java) | MAINTAINED | Testele tehnice ale motorului pot apela direct interfața; scenariile aplicației nu se pot ramifica după SDK-ul furnizorului. |
+| LD-03 | Secțiunea 3, așteptări dependente de motor: Selenium cere așteptări explicite prin fațadă; Playwright oferă așteptare automată nativă. | [UiActionWait](../atf-core/src/main/java/com/ai/ui/support/actions/UiActionWait.java) | [Paritatea acțiunilor și intrărilor](../atf-tests/src/test/java/com/ai/atf/ui/component/UiEngineActionParityContractTest.java) | MAINTAINED | Ambele căi ale capabilităților de așteptare sunt contracte de componentă; observațiile native în browser și rezultatele produsului necesită propria execuție. |
+| LD-04 | Secțiunea 3, așteptări: WaitUtils observă condiții delimitate și nu emite independent FAIL. | [WaitUtils](../atf-core/src/main/java/com/ai/ui/support/wait/WaitUtils.java) | [Regresii ale așteptărilor delimitate](../atf-tests/src/test/java/com/ai/atf/ui/component/WaitUtilsContractTest.java) | MAINTAINED | Acțiunea sau validarea înconjurătoare deține verdictul final; expirarea interogării repetate nu este o observație reușită. |
+| LD-05 | Secțiunea 3, validare: validările reutilizabile compară valori reale independente cu condițiile de afaceri așteptate în pași Validate expliciți. | [Validarea înregistrării](../atf-tests/src/test/java/com/ai/ui/support/validation/RegistrationValidation.java) și [validarea profilului](../atf-tests/src/test/java/com/ai/ui/support/validation/ProfileAccountValidation.java) | [Contractele validării înregistrării](../atf-tests/src/test/java/com/ai/atf/ui/component/RegistrationValidationContractTest.java) | MAINTAINED | Detaliile așteptat/observat și un verdict final explică aserțiunea; finalizarea acțiunii nu stabilește singură succesul de afaceri. |
+| LD-06 | Secțiunea 4, detalii și excepții: ascultătorul deține ciclul testului și păstrează eșecul real din afara unui pas de acțiune. | [ReportingTestListener](../atf-reporting/src/main/java/com/ai/core/reporting/listener/ReportingTestListener.java) și [BaseTestUI](../atf-core/src/main/java/com/ai/ui/core/runtime/BaseTestUI.java) | [Eșecurile ascultătorului](../atf-tests/src/test/java/com/ai/atf/core/reporting/lifecycle/TestListenerFailureContractTest.java) | MAINTAINED | Inițializarea și închiderea clasei rămân dovezi de configurație, nu teste suplimentare de produs; atribuirea eșecului trebuie să păstreze domeniul original. |
+| LD-07 | Secțiunile 3.5 și 4, responsabilitatea pașilor: detaliile cer un pas activ; fiecare pas deținut are un verdict final; adâncimea imbricată este acceptată. | [StepLogger](../atf-core/src/main/java/com/ai/core/reporting/StepLogger.java) și [StepScope](../atf-core/src/main/java/com/ai/core/reporting/step/StepScope.java) | [Regresiile ciclului pașilor](../atf-tests/src/test/java/com/ai/atf/core/reporting/regression/StepLoggerContractTest.java) | MAINTAINED | Acțiunile imbricate trebuie să revină în domeniul validării; închiderea unui domeniu nefinalizat nu este PASS implicit. |
+| LD-08 | Secțiunea 4, urmă de stivă și captură: păstrează o urmă a pasului eșuat și atașamentele de eșec la nivel de test deținute de ascultător. | [Gestionarul capturilor UI](../atf-core/src/main/java/com/ai/ui/core/reporting/UiScreenshotFailureHandler.java) și [registrul atașamentelor de eșec](../atf-core/src/main/java/com/ai/core/reporting/attachment/FailureAttachmentRegistry.java) | [Contractele atașamentelor de eșec](../atf-tests/src/test/java/com/ai/atf/core/reporting/attachment/FailureAttachmentRegistryTest.java) | MAINTAINED | Captura configurată a stării finale este distinctă de captura la eșec; lipsa atașamentelor nu transformă eșecul în succes. |
+| LD-09 | Secțiunea 4, extensibilitate și operații: straturile aplicației emit dovezi semantice prin fațada neutră; Reporting deține adaptoarele și ciclul de viață. | [ReportingManager](../atf-core/src/main/java/com/ai/core/reporting/ReportingManager.java) și [DefaultReportingBackend](../atf-reporting/src/main/java/com/ai/core/reporting/DefaultReportingBackend.java) | [Contractele gestionarului raportării](../atf-tests/src/test/java/com/ai/atf/core/reporting/regression/ReportingManagerSessionContractTest.java) | MAINTAINED | Absența implementării, configurația invalidă și diagnosticele adaptorului au contracte diferite; nu se deduce o alternativă tacită universală. |
+| LD-10 | Secțiunea 5, date de test și independență: fabricile dețin valori unice de produs; scenariile rămân independente de ordinea metodelor și declară ciclul fixture-ului comun. | [UserDataFactory](../atf-tests/src/test/java/com/ai/ui/support/factory/UserDataFactory.java) și [ProfileAccountComponent](../atf-tests/src/test/java/com/ai/ui/support/component/ProfileAccountComponent.java) | [Contractele trimiterii înregistrării](../atf-tests/src/test/java/com/ai/atf/ui/component/RegistrationSubmissionContractTest.java) | MAINTAINED | Contraexemplele de framework pot folosi date literale malformate; fixture-urile comune de cont/profil au domeniu de clasă, iar verificările selectate doar citesc starea contului. |
+| LD-11 | Secțiunea 5, date de test: curățarea datelor create în aplicație rămâne obligatorie și trebuie să aibă propriul contract observabil. | [RegistrationService](../atf-tests/src/test/java/com/ai/ui/support/service/RegistrationService.java) și [ProfileAccountComponent](../atf-tests/src/test/java/com/ai/ui/support/component/ProfileAccountComponent.java) | [Contractele trimiterii înregistrării](../atf-tests/src/test/java/com/ai/atf/ui/component/RegistrationSubmissionContractTest.java) | PARTIAL | ACCOUNT_DELETION_NOT_IMPLEMENTED: testele păstrate pe demo-ul public creează conturi și nu selectează vreo operație de ștergere a contului. Verificările trimiterii nu demonstrează curățarea. |
+| LD-12 | Secțiunile 4 și 5, independența motorului: selectează aceleași scenarii păstrate prin configurație pentru Playwright și Selenium. | [UIEngineRegistry](../atf-core/src/main/java/com/ai/ui/core/engine/UiEngineRegistry.java) | [Scenariile de înregistrare](../atf-tests/src/test/java/com/ai/atf/ui/RegistrationTests.java), [scenariile de cont](../atf-tests/src/test/java/com/ai/ui/tests/AccountAuthenticatedAreaTests.java) și [scenariile de profil](../atf-tests/src/test/java/com/ai/ui/tests/ProfileContactAddressMemoryTests.java) | MAINTAINED | SAME_RETAINED_SCENARIOS: aceleași 16 metode existente formează ambele selecții de motor. Numai identitățile rezultatelor native și observațiile reale din aplicație stabilesc rezultatele execuției lor. |
 
-For each selected UI scenario, the action step records intent, locator and the
-reportable input; password/secret-labelled values are represented by
-`[REDACTED]` while the original value still reaches the browser. This bounded
-classification does not inspect arbitrary application fields or sanitize SDK
-exception text. A final artifact review must check the actual generated
-evidence for unintended sensitive values.
+Pentru fiecare scenariu UI selectat, pasul acțiunii consemnează intenția, locatorul
+și intrarea raportabilă; valorile etichetate ca parolă/secret sunt reprezentate prin
+`[REDACTED]`, în timp ce valoarea originală ajunge în browser. Această clasificare
+delimitată nu inspectează câmpuri arbitrare ale aplicației și nu curăță textul
+excepțiilor SDK. Revizuirea finală a artefactelor trebuie să verifice dovezile
+generate efectiv pentru valori sensibile neintenționate.
 
-The validation step states the expectation, reads the observed value and owns
-the assertion and terminal PASS/FAIL. Expected negative application behavior
-can pass its test only when that expected rejection is independently observed.
-An unexpected browser, action, assertion or configuration failure retains its
-actual failed or skipped result; recording contract metadata cannot certify it.
+Pasul validării declară așteptarea, citește valoarea observată și deține aserțiunea
+și verdictul final PASS/FAIL. Comportamentul negativ așteptat al aplicației poate
+trece testul numai când respingerea așteptată este observată independent. Un eșec
+neașteptat de browser, acțiune, aserțiune sau configurație își păstrează rezultatul
+real eșuat sau omis; consemnarea metadatelor contractului nu îl poate certifica.
 
-The [documentation governance owner](../atf-tests/src/test/java/com/ai/atf/governance/DocumentationGovernanceTest.java)
-checks the twelve IDs, real source/check routes and bounded states. Missing or
-duplicate principles and promotion of the declared cleanup gap are diagnostic
-failures. These structural guards do not establish semantic completeness or
-replace native product acceptance.
+[Responsabilul guvernanței documentației](../atf-tests/src/test/java/com/ai/atf/governance/DocumentationGovernanceTest.java)
+verifică cele douăsprezece ID-uri, căile reale către surse/verificări și stările
+delimitate. Principiile absente sau duplicate și promovarea lacunei declarate de
+curățare sunt eșecuri de diagnostic. Aceste controale structurale nu stabilesc
+completitudinea semantică și nu înlocuiesc acceptanța nativă a produsului.
 
 <a id="configuration-boundary"></a>
-### Configuration and reporting boundaries
+<a id="configuration-and-reporting-boundaries"></a>
+### Limitele configurației și raportării
 
-- MUST keep one Core configuration loader and use its typed option owners.
-- MUST route semantic execution reporting through StepLogger/ReportLogger.
-- MUST keep Extent/Allure SDK imports inside atf-reporting and browser SDK imports
-  inside the corresponding adapter.
-- MUST NOT let a business step instantiate a reporting adapter or control test
-  start/end/flush. Lifecycle ownership belongs to the listener/backend.
-- MAY publish neutral runtime events from adapters through the Core publisher;
-  this does not grant an adapter access to StepLogger or backend internals.
+- MUST păstra un singur încărcător de configurație Core și folosi responsabilii opțiunilor sale tipizate.
+- MUST direcționa raportarea semantică a execuției prin StepLogger/ReportLogger.
+- MUST păstra importurile SDK Extent/Allure în atf-reporting și importurile SDK de browser
+  în adaptorul corespunzător.
+- MUST NOT permite unui pas de afaceri să instanțieze un adaptor de raportare sau să
+  controleze începutul/sfârșitul/scrierea completă a testului. Ciclul de viață aparține ascultătorului/implementării.
+- MAY publica evenimente neutre de execuție din adaptoare prin publicatorul Core;
+  aceasta nu oferă adaptorului acces la StepLogger sau la mecanismele interne ale implementării.
 
 <a id="ui-interactions"></a>
-### UI interactions, selectors and evidence
+<a id="ui-interactions-selectors-and-evidence"></a>
+### Interacțiuni UI, selectori și dovezi
 
-Application workflows use generic UIActions and reusable page/validation owners.
-UIEngine provides browser capabilities such as interaction, reads, waits,
-screenshots and network-response observation; it does not implement customer or
-order business rules. Framework adapter/contract tests may exercise UIEngine
-directly to test that boundary. They are not application-layer examples.
+Fluxurile aplicației folosesc UIActions generice și responsabili reutilizabili de
+pagini/validări. UIEngine oferă capabilități de browser precum interacțiuni, citiri,
+așteptări, capturi și observarea răspunsurilor de rețea; nu implementează regulile
+de afaceri ale clienților sau comenzilor. Testele de adaptor/contract ale framework-ului
+pot exercita direct UIEngine pentru această limită. Nu sunt exemple pentru stratul aplicației.
 
-Prefer stable semantic CSS locators. Use the supported locator vocabulary and
-exact text/identity matching when required. XPath is appropriate when the
-supported CSS/semantic expression cannot express the needed relationship.
-Do not infer browser parity merely because the same string compiles.
+Preferă locatori CSS semantici stabili. Folosește vocabularul de locatori acceptat
+și potrivirea exactă a textului/identității când este necesară. XPath este potrivit
+când expresia CSS/semantică acceptată nu poate exprima relația necesară.
+Nu deduce paritatea browserelor numai pentru că același șir se compilează.
 
-Observed evidence MUST come from the matched element or response. A creation
-ID identifies the desired invoice; it does not prove that the invoice appears
-in the customer's list. Persisted status value, display label and row identity
-are separate observations. A registration helper submits one identity once;
-it must expose a failed result instead of silently replacing that customer.
+Dovezile observate MUST proveni din elementul sau răspunsul potrivit. Un ID de
+creare identifică factura dorită; nu demonstrează prezența în lista clientului.
+Valoarea persistată a stării, eticheta afișată și identitatea rândului sunt observații
+separate. Un utilitar de înregistrare trimite o singură identitate o singură dată;
+trebuie să expună rezultatul eșuat în loc să înlocuiască tacit acel client.
 
 <a id="bounded-waits"></a>
-### Waits, retries and timing
+<a id="waits-retries-and-timing"></a>
+### Așteptări, reîncercări și temporizare
 
-UIActions applies engine-aware waits: Selenium reports `supportsAutoWait=false`,
-while Playwright reports `true`. Shared explicit conditions use WaitUtils and
-the configured timeout. Adapter internals may implement their native waiting
-mechanism; the old blanket rule forbidding every wait outside WaitUtils is not
-a description of the current source.
+UIActions aplică așteptări în funcție de motor: Selenium declară `supportsAutoWait=false`,
+iar Playwright declară `true`. Condițiile explicite comune folosesc WaitUtils și
+timpul-limită configurat. Mecanismele interne ale adaptoarelor pot implementa așteptarea
+nativă; vechea regulă generală care interzicea orice așteptare în afara WaitUtils
+nu descrie sursa curentă.
 
-WaitUtils supplies observations and throws when a required condition is unmet;
-it may append detail to an active step but does not independently emit FAIL.
-The enclosing action/validation owns the verdict. Prefer observable completion
-and a bounded timeout to fixed sleeps. Current pause helpers and legacy waits
-are not evidence of deterministic timing; evaluate them in their existing tests.
+WaitUtils furnizează observații și aruncă o excepție când o condiție obligatorie
+nu este îndeplinită; poate adăuga detalii unui pas activ, dar nu emite independent
+FAIL. Acțiunea/validarea înconjurătoare deține verdictul. Preferă finalizarea observabilă
+și un timp-limită delimitat în locul pauzelor fixe. Utilitarele curente de pauză și
+așteptările vechi nu dovedesc temporizare deterministă; evaluează-le în testele existente.
 
-API polling and rate-limit retries have separate policies. Preserve the exact
-supplier/attempt assertions, terminal result and negative timeout case. A retry
-does not establish that a non-idempotent operation was rolled back or safe to
-repeat. Do not change waits, retries or expected values only to obtain a green run.
+Interogarea repetată API și reîncercările la limitarea ratei au politici separate.
+Păstrează aserțiunile exacte pentru furnizor/încercări, rezultatul final și cazul
+negativ de expirare. O reîncercare nu stabilește că o operație ne-idempotentă a fost
+anulată sau poate fi repetată sigur. Nu schimba așteptările, reîncercările sau valorile
+așteptate numai pentru a obține o rulare verde.
 
 <a id="validation-layer"></a>
-### Validation and assertion ownership
+<a id="validation-and-assertion-ownership"></a>
+### Responsabilitatea validării și aserțiunilor
 
-Application validations compare independently observed actual values with the
-expected business contract and produce useful failure evidence. Reuse the
-validation owner instead of scattering business assertions through services.
-Framework/unit tests assert their own technical contracts directly; they are
-not required to route every assertion through a product validation class.
+Validările aplicației compară valori reale observate independent cu contractul
+de afaceri așteptat și produc dovezi utile la eșec. Reutilizează responsabilul
+validării în loc să împrăștii aserțiuni de afaceri prin servicii. Testele de
+framework/unitate își afirmă direct contractele tehnice; nu trebuie să treacă
+fiecare aserțiune printr-o clasă de validare a produsului.
 
-A business failure must remain a failed test. Continuing later independent
-tests is a runner/suite policy, not permission to swallow the original failure.
-Expected-failure fixtures must declare their expected outcome and preserve a
-separate oracle; a deliberately produced report FAIL is not automatically a
-failed outer regression.
+Un eșec de afaceri trebuie să rămână un test eșuat. Continuarea testelor independente
+ulterioare este politica executantului/suitei, nu permisiune de a ascunde eșecul
+original. Fixture-urile cu eșec așteptat trebuie să declare rezultatul așteptat și
+să păstreze un criteriu separat; un FAIL produs intenționat într-un raport nu înseamnă
+automat eșecul regresiei exterioare.
 
 <a id="api-orchestration"></a>
-### API steps, services and HTTP execution
+<a id="api-steps-services-and-http-execution"></a>
+### Pași API, servicii și execuție HTTP
 
-| Layer | Responsibility | Boundary |
+| Strat | Responsabilitate | Limită |
 |---|---|---|
-| Application test | Compose a scenario and own its fixture/cleanup | Does not duplicate transport, auth or backend reporting |
-| Steps | Coordinate semantic calls and validations | Use factories/builders for reusable valid business data |
-| Service | Own endpoint paths and invoke ApiClient requests | Does not hide business assertions in transport methods |
-| ApiActions / request executor | Wrap the supplied call, retry policy and report details | Return the actual RestAssured Response |
-| Validator | Assert status, headers, body/schema and eventual state | Own expected/actual evidence and a bounded polling contract |
+| Test de aplicație | Compune un scenariu și deține fixture-ul/curățarea | Nu dublează transportul, autentificarea sau raportarea implementării |
+| Steps | Coordonează apeluri semantice și validări | Folosește fabrici/constructori pentru date de afaceri valide reutilizabile |
+| Service | Deține căile endpoint-urilor și invocă cereri ApiClient | Nu ascunde aserțiuni de afaceri în metodele de transport |
+| ApiActions / executantul cererii | Încadrează apelul furnizat, politica reîncercărilor și detaliile raportului | Întoarce răspunsul RestAssured Response real |
+| Validator | Afirmă starea, antetele, corpul/schema și starea eventuală | Deține dovezi așteptat/observat și un contract delimitat de interogare repetată |
 
-Use the configured API base URL plus the service-relative path. API steps pass
-the observed response into validators. A service can use ApiClient inside the
-call supplied to ApiActions; it must not be described as an alternative direct
-reporting engine. Existing invalid-auth/raw-payload helpers are intentional
-test-support exceptions, not a universal payload policy.
+Folosește URL-ul de bază API configurat plus calea relativă a serviciului. Pașii
+API transmit răspunsul observat către validatori. Un serviciu poate folosi ApiClient
+în apelul furnizat către ApiActions; nu trebuie descris ca motor alternativ de
+raportare directă. Utilitarele existente de autentificare invalidă/corp brut sunt
+excepții intenționate de suport pentru teste, nu o politică universală a corpurilor cererilor.
 
-HTTP steps use a semantic title such as `POST /public/v2/users` and retain method,
-relative/full path, actual status and request/response details. Normal model
-serialization and response formatting belong to the shared helpers. Preserve
-literal invalid payloads when a negative test requires them; replacing them
-with a valid builder would remove the behavior under test.
+Pașii HTTP folosesc un titlu semantic precum `POST /public/v2/users` și păstrează
+metoda, calea relativă/completă, starea reală și detaliile cererii/răspunsului.
+Serializarea normală a modelelor și formatarea răspunsurilor aparțin utilitarelor
+comune. Păstrează corpuri invalide literale când un test negativ le cere; înlocuirea
+cu un constructor valid ar elimina comportamentul testat.
 
 <a id="step-contract"></a>
-### StepLogger contract
+<a id="steplogger-contract"></a>
+### Contractul StepLogger
 
-The supported public operations include:
+Operațiile publice acceptate includ:
 
 ```java
 StepLogger.startStep(String title);
@@ -337,212 +363,222 @@ StepLogger.fail(String message, String stacktraceAsText);
 StepLogger.step(String title); // returns an AutoCloseable StepScope
 ```
 
-Details and terminal operations require an active step. Step context is held
-per thread and cleared at test boundaries. Nested step depth is supported;
-the archived rule that a second active step is always forbidden is obsolete.
-Callers must close the scope they own and avoid duplicate terminal publication.
-StepScope guards its own close/pass/fail operations.
+Detaliile și operațiile finale necesită un pas activ. Contextul pasului este ținut
+pe fir și curățat la limitele testului. Adâncimea imbricată a pașilor este acceptată;
+regula arhivată care interzicea întotdeauna un al doilea pas activ este depășită.
+Apelanții trebuie să închidă domeniul deținut și să evite publicarea finală duplicată.
+StepScope își protejează propriile operații close/pass/fail.
 
-An uncompleted StepScope logs a diagnostic and closes its depth; it does not
-manufacture a passed business verdict. The current implementation does not
-globally enforce an exactly-once terminal call across arbitrary caller misuse.
-Use existing regressions to protect lifecycle behavior rather than documenting
-a stronger guarantee than the source provides.
+Un StepScope nefinalizat înregistrează un diagnostic și își închide adâncimea;
+nu fabrică un verdict de afaceri trecut. Implementarea curentă nu impune global
+un apel final exact o dată în fața utilizării arbitrar incorecte de către apelanți.
+Folosește regresiile existente pentru ciclul de viață în loc să documentezi o
+promisiune mai puternică decât oferă sursa.
 
 <a id="module-constraints"></a>
-### Global and module constraints
+<a id="global-and-module-constraints"></a>
+### Restricții globale și de modul
 
-Production libraries require their runtime dependencies. Compile-time Lombok
-and test-scoped test doubles/checks have intentional distinct scopes.
-atf-tests depends on libraries in test scope; the archived prohibition on all
-test-scoped dependencies and separate Maven modules does not apply.
+Bibliotecile de producție necesită dependențele lor de execuție. Lombok la compilare
+și dublurile/verificările destinate testelor au domenii distincte intenționate.
+atf-tests depinde de biblioteci în domeniul de test; interdicția arhivată asupra
+tuturor dependențelor de test și modulelor Maven separate nu se aplică.
 
-Keep public contracts small, avoid accidental overrides of Object lifecycle/
-monitor methods, and make ownership explicit. Source governance must examine
-all production module roots, profiles, imported/qualified types and relevant
-simple type references. A copied source tree or matching filename does not
-prove a valid dependency direction.
+Păstrează contractele publice mici, evită suprascrieri accidentale ale metodelor de
+ciclu de viață/monitor ale Object și explicitează responsabilitățile. Guvernanța surselor
+trebuie să examineze toate rădăcinile modulelor de producție, profilurile, tipurile
+importate/calificate și referințele simple relevante. Un arbore sursă copiat sau un
+nume de fișier potrivit nu demonstrează o direcție validă a dependenței.
 
 <a id="reporting"></a>
-## 5) Reporting flows and lifecycle
+<a id="5-reporting-flows-and-lifecycle"></a>
+## 5) Fluxuri de raportare și ciclu de viață
 
 <a id="reporting-ui-flow"></a>
-### UI actions to semantic reporting
+<a id="ui-actions-to-semantic-reporting"></a>
+### De la acțiuni UI la raportare semantică
 
 ```mermaid
 flowchart LR
-    Test["UI scenario"] --> Workflow["Product workflow"]
+    Test["Scenariu UI"] --> Workflow["Flux de produs"]
     Workflow --> Actions["UIActions"]
     Actions --> Step["StepLogger"]
     Step --> Facade["ReportingManager"]
     Facade --> Logger["ReportLogger"]
-    Logger --> Backend["Extent or Allure"]
+    Logger --> Backend["Extent sau Allure"]
 ```
 
-UIActions owns the action step, locator/value/wait detail and observed action
-outcome. The selected UIEngine performs browser work through its adapter.
-Reporting receives neutral events. Product code is insulated from the browser
-and reporting SDKs; technical adapter tests verify the lower-level boundary.
+UIActions deține pasul acțiunii, detaliile locatorului/valorii/așteptării și rezultatul
+observat al acțiunii. UIEngine selectat execută lucrul în browser prin adaptor.
+Raportarea primește evenimente neutre. Codul produsului este izolat de SDK-urile
+browserelor și raportării; testele tehnice ale adaptoarelor verifică limita inferioară.
 
 <a id="reporting-api-flow"></a>
-### API calls and validations to semantic reporting
+<a id="api-calls-and-validations-to-semantic-reporting"></a>
+### De la apeluri și validări API la raportare semantică
 
 ```mermaid
 flowchart LR
-    Test["API scenario"] --> Steps["API steps"]
-    Steps --> Service["Service and ApiActions"]
-    Steps --> Validation["Response validators"]
+    Test["Scenariu API"] --> Steps["Pași API"]
+    Steps --> Service["Serviciu și ApiActions"]
+    Steps --> Validation["Validatorii răspunsului"]
     Service --> Step["StepLogger"]
     Validation --> Step
     Step --> Facade["ReportingManager"]
-    Facade --> Backend["ReportLogger and backend"]
+    Facade --> Backend["ReportLogger și implementare"]
 ```
 
-Call completion and business validation are distinct observations. A response
-arriving successfully does not prove its business content is correct. HTTP
-call steps retain request/status/response facts; validation steps explain their
-expectation and observed comparison. Cleanup/polling helpers have their own
-scope and must not be mistaken for complete application acceptance.
+Finalizarea apelului și validarea de afaceri sunt observații distincte. Sosirea
+reușită a unui răspuns nu demonstrează corectitudinea conținutului de afaceri.
+Pașii apelurilor HTTP păstrează faptele cererii/stării/răspunsului; pașii validării
+explică așteptarea și comparația observată. Utilitarele de curățare/interogare repetată
+au propriul domeniu și nu trebuie confundate cu acceptanța completă a aplicației.
 
 <a id="test-lifecycle"></a>
-### TestNG lifecycle and failure ownership
+<a id="testng-lifecycle-and-failure-ownership"></a>
+### Ciclul TestNG și responsabilitatea eșecului
 
 ```mermaid
 sequenceDiagram
     participant TestNG
-    participant Facade as Core TestListener
-    participant Backend as Reporting backend
+    participant Facade as TestListener Core
+    participant Backend as Implementarea raportării
     participant Steps as StepLogger
-    participant Allure as Native Allure listener
-    TestNG->>Facade: suite and test lifecycle callbacks
-    Facade->>Backend: delegate through ReportingBackend
-    Backend->>Steps: bind or clear invocation delegate
-    Steps->>Backend: semantic step data
-    TestNG->>Allure: native TestNG service callbacks
-    TestNG->>Facade: success, failure or skip
-    Facade->>Backend: preserve actual outcome and finalize
+    participant Allure as Ascultător Allure nativ
+    TestNG->>Facade: apeluri ale ciclului suitei și testului
+    Facade->>Backend: deleagă prin ReportingBackend
+    Backend->>Steps: leagă sau curăță delegatul invocării
+    Steps->>Backend: date semantice ale pasului
+    TestNG->>Allure: apeluri native ale serviciului TestNG
+    TestNG->>Facade: succes, eșec sau omitere
+    Facade->>Backend: păstrează rezultatul real și finalizează
 ```
 
-The Core TestListener is the stable facade. atf-reporting supplies
-ReportingTestListener through ReportingBackend and owns session/group/invocation
-state, attachments, flushing and runtime audit. BaseTestUI/BaseTestAPI declare
-the Core listener; they do not import AllureTestNg. Native Allure TestNG service
-discovery belongs to the Reporting dependency. Do not add the archived direct
-Allure listener annotation/order to Core or manually duplicate that provider.
+TestListener Core este fațada stabilă. atf-reporting oferă ReportingTestListener
+prin ReportingBackend și deține starea sesiunii/grupului/invocării, atașamentele,
+scrierea completă și auditul execuției. BaseTestUI/BaseTestAPI declară ascultătorul
+Core; nu importă AllureTestNg. Descoperirea serviciului nativ Allure TestNG aparține
+dependenței Reporting. Nu adăuga în Core vechea adnotare/ordine directă a ascultătorului
+Allure și nu duplica manual acel furnizor.
 
-An exception outside an action step is handled at the test lifecycle boundary.
-Its existence must not be lost because no semantic step was open. Configuration
-failures, skipped cases and controlled failure simulations remain distinguishable
-from ordinary successful execution. Optional diagnostic/publication failures
-are recorded separately from the business outcome.
+O excepție din afara unui pas de acțiune este tratată la limita ciclului testului.
+Existența ei nu trebuie pierdută fiindcă nu exista un pas semantic deschis. Eșecurile
+de configurație, cazurile omise și simulările controlate de eșec rămân distincte de
+execuția obișnuită reușită. Eșecurile opționale de diagnostic/publicare se consemnează
+separat de rezultatul de afaceri.
 
 <a id="ui-screenshots"></a>
-### UI lifecycle, failure screenshots and final state
+<a id="ui-lifecycle-failure-screenshots-and-final-state"></a>
+### Ciclu UI, capturi la eșec și stare finală
 
 ```mermaid
 sequenceDiagram
     participant TestNG
     participant Base as BaseTestUI
     participant Driver as DriverManager
-    participant Listener as Reporting listener
-    participant Capture as Screenshot handler
-    TestNG->>Base: before class
-    Base->>Driver: initialize selected engine
-    TestNG->>Listener: start invocation and reset capture state
-    TestNG->>Listener: failure or eligible success
-    Listener->>Capture: request failure or final-state evidence
-    Capture->>Driver: capture only with active engine and logger
-    TestNG->>Base: after class, always run
-    Base->>Driver: attempt engine quit, then clear interaction state
+    participant Listener as Ascultător de raportare
+    participant Capture as Gestionar de capturi
+    TestNG->>Base: înaintea clasei
+    Base->>Driver: inițializează motorul selectat
+    TestNG->>Listener: începe invocarea și resetează starea capturii
+    TestNG->>Listener: eșec sau succes eligibil
+    Listener->>Capture: solicită dovezi de eșec sau stare finală
+    Capture->>Driver: capturează numai cu motor și logger active
+    TestNG->>Base: după clasă, rulează întotdeauna
+    Base->>Driver: încearcă închiderea motorului, apoi curăță starea interacțiunilor
 ```
 
-BaseTestUI initializes/quits the engine once per class with always-run teardown.
-It does not orchestrate report sessions. Failure/final-state registries invoke
-the UI attachment handler. ScreenshotManager attaches at most once per invocation
-after a successful capture/attachment; without an active engine/logger it does
-not manufacture evidence.
+BaseTestUI inițializează/închide motorul o dată pe clasă, cu închidere programată
+întotdeauna. Nu orchestrează sesiunile raportării. Registrele de eșec/stare finală
+invocă gestionarul atașamentelor UI. ScreenshotManager atașează cel mult o dată pe
+invocare după o captură/atașare reușită; fără motor/logger active nu fabrică dovezi.
 
-The final diagram arrow describes the teardown call order. DriverManager removes
-its engine reference in finally if engine quit throws; BaseTestUI's later
-interaction-tracker clear can then be bypassed. The source-supported
-[F-011 cleanup gap](feedback/Behavior_And_Negative_Cases.md#f-011)
-remains open; always-run scheduling does not prove that every cleanup operation
-completes. This framework-state limit is separate from LD-11's application-data
-cleanup obligation.
+Ultima săgeată descrie ordinea apelurilor de închidere. DriverManager își elimină
+referința la motor în finally dacă închiderea motorului aruncă o excepție; curățarea
+ulterioară a urmăririi interacțiunilor din BaseTestUI poate fi astfel ocolită.
+[Lacuna de curățare F-011 susținută de sursă](feedback/Behavior_And_Negative_Cases.md#f-011)
+rămâne deschisă; programarea întotdeauna nu demonstrează finalizarea fiecărei
+operații de curățare. Această limită a stării framework-ului este separată de
+obligația LD-11 privind curățarea datelor aplicației.
 
-Failure capture is configuration-dependent. Eligible success can also capture
-the final UI state when screenshots are enabled, failure-only mode is disabled
-and final-state capture is enabled. The old rule saying screenshots occur only
-on FAIL is no longer valid. Retain the complete screenshot, current zoom and
-its test identity; do not treat a viewport crop or another test's image as proof.
+Captura la eșec depinde de configurație. Succesul eligibil poate captura și starea
+UI finală când capturile sunt activate, modul exclusiv-la-eșec este dezactivat și
+captura stării finale este activată. Vechea regulă potrivit căreia capturile apar
+numai la FAIL nu mai este validă. Păstrează captura completă, zoomul curent și
+identitatea testului; nu trata un decupaj al ferestrei sau imaginea altui test ca dovadă.
 
 <a id="api-lifecycle"></a>
-### API lifecycle, authentication and validation
+<a id="api-lifecycle-authentication-and-validation"></a>
+### Ciclu API, autentificare și validare
 
 ```mermaid
 sequenceDiagram
     participant TestNG
     participant Base as BaseTestAPI
-    participant Steps as Application steps
-    participant HTTP as ApiActions and service
+    participant Steps as Pașii aplicației
+    participant HTTP as ApiActions și serviciu
     participant Validate as ResponseValidator
-    TestNG->>Base: initialize client and check write token
-    TestNG->>Steps: execute selected scenario
-    Steps->>HTTP: semantic method, path and payload
-    HTTP->>Steps: actual Response and call evidence
-    Steps->>Validate: expected status and business content
-    Validate->>Steps: observed verdict
-    TestNG->>Base: retain success, failure or skip
+    TestNG->>Base: inițializează clientul și verifică tokenul de scriere
+    TestNG->>Steps: execută scenariul selectat
+    Steps->>HTTP: metodă, cale și corp semantice
+    HTTP->>Steps: Response real și dovezile apelului
+    Steps->>Validate: stare și conținut de afaceri așteptate
+    Validate->>Steps: verdict observat
+    TestNG->>Base: păstrează succesul, eșecul sau omiterea
 ```
 
-BaseTestAPI is write-oriented: blank authentication causes its readiness skip.
-Core API execution is independent of UI initialization. Application factories
-own reusable models; services own relative endpoints; shared execution applies
-the configured retry policy; validators own assertions and schemas. Separate
-anonymous/invalid-auth paths remain explicit negative fixtures.
+BaseTestAPI este orientat spre scriere: autentificarea goală provoacă omiterea
+pregătirii. Execuția API Core este independentă de inițializarea UI. Fabricile
+aplicației dețin modelele reutilizabile; serviciile dețin endpoint-urile relative;
+execuția comună aplică politica configurată a reîncercărilor; validatorii dețin
+aserțiunile și schemele. Căile separate anonime/cu autentificare invalidă rămân
+fixture-uri negative explicite.
 
 <a id="report-node-model"></a>
-### Test and step node evidence model
+<a id="test-and-step-node-evidence-model"></a>
+### Modelul dovezilor pentru nodurile de test și pas
 
 ```mermaid
 flowchart LR
-    Test["Test identity and actual outcome"] --> Step["Semantic step"]
-    Test --> Screenshot["Eligible test screenshot"]
-    Step --> Detail["Locator or HTTP details"]
-    Step --> Payload["Structured payload evidence"]
-    Step --> Verdict["Step verdict and failure context"]
+    Test["Identitatea testului și rezultatul real"] --> Step["Pas semantic"]
+    Test --> Screenshot["Captură eligibilă a testului"]
+    Step --> Detail["Detalii de locator sau HTTP"]
+    Step --> Payload["Dovezi structurate ale corpului"]
+    Step --> Verdict["Verdictul pasului și contextul eșecului"]
 ```
 
-The test node identifies the invocation and final status. Step nodes hold
-semantic details and relevant payload/failure context; screenshot evidence is
-associated with its test. Keep failures scannable and avoid publishing the same
-business exception through unrelated nodes. Do not promise that every report
-kind has identical DOM or that every failure is exclusively represented by one
-specific HTML block: runtime, aggregate and synthetic report shapes differ.
+Nodul testului identifică invocarea și starea finală. Nodurile pașilor țin detalii
+semantice și context relevant de corp/eșec; dovezile de captură sunt asociate testului.
+Păstrează eșecurile ușor de parcurs și evită publicarea aceleiași excepții de afaceri
+prin noduri fără legătură. Nu promite un DOM identic pentru toate rapoartele sau
+reprezentarea exclusivă a fiecărui eșec într-un anumit bloc HTML: formele rapoartelor
+de execuție, agregate și sintetice diferă.
 
 <a id="reporting-engines"></a>
-### Engines, adapters and fail-safety
+<a id="engines-adapters-and-fail-safety"></a>
+### Motoare, adaptoare și protejarea eșecului
 
-Extent and Allure implement ReportLogger behind the installed ReportingBackend.
-Extent manages its explicit report nodes and flush/finalization. Allure's native
-TestNG integration owns its test lifecycle while the adapter publishes semantic
-steps and structured evidence. Backend implementations and engine selection
-remain inside atf-reporting, reached through Core facades.
+Extent și Allure implementează ReportLogger în spatele ReportingBackend instalat.
+Extent își gestionează nodurile explicite și scrierea completă/finalizarea. Integrarea
+TestNG nativă Allure deține ciclul testului, iar adaptorul publică pași semantici și
+dovezi structurate. Implementările și selecția motorului rămân în atf-reporting,
+accesate prin fațadele Core.
 
-Nonblocking diagnostics preserve optional publication/attachment problems
-without rewriting the original business outcome. This is not a guarantee that
-invalid configuration, missing required providers or every I/O failure is ignored.
-Inspect diagnostics and actual artifacts as well as the runner exit code.
-Adding an engine is a future implementation change; this guide adds no engine.
+Diagnosticele neblocante păstrează problemele opționale de publicare/atașare fără
+a rescrie rezultatul original de afaceri. Aceasta nu garantează ignorarea unei
+configurații invalide, a furnizorilor obligatorii absenți sau a fiecărui eșec I/O.
+Inspectează diagnosticele și artefactele reale, precum și codul de ieșire al executantului.
+Adăugarea unui motor este o schimbare viitoare de implementare; ghidul nu adaugă motoare.
 
 <a id="console-and-details"></a>
-### Console details and example evidence
+<a id="console-details-and-example-evidence"></a>
+### Detalii de consolă și exemplu de dovezi
 
-Semantic steps use a readable title, indented details and a terminal verdict.
-`console.details.enabled=false` suppresses optional console details, not the
-underlying test oracle. Core console/diagnostic helpers can emit framework
-diagnostics; the archived absolute claim that no component except StepLogger
-ever writes a console message is not a current source invariant.
+Pașii semantici folosesc titlu lizibil, detalii indentate și verdict final.
+`console.details.enabled=false` suprimă detaliile opționale din consolă, nu criteriul
+de verificare al testului. Utilitarele Core de consolă/diagnostic pot emite diagnostice
+ale framework-ului; afirmația arhivată absolută că nicio componentă în afară de
+StepLogger nu scrie vreodată în consolă nu este un invariant al sursei curente.
 
 ```text
 POST /public/v2/users
@@ -556,38 +592,41 @@ Validate status: expected 201
 PASS Response validated
 ```
 
-The example explains layout; it is not an executed request or a current test
-count. UI details similarly identify locator, input/selection and applied wait.
-Examples must not expose tokens or suggest that a known expected value is an
-independent observation.
+Exemplul explică aranjarea; nu este o cerere executată sau un număr curent de teste.
+Detaliile UI identifică similar locatorul, intrarea/selecția și așteptarea aplicată.
+Exemplele nu trebuie să expună tokenuri sau să sugereze că o valoare așteptată
+cunoscută reprezintă o observație independentă.
 
 <a id="test-organization"></a>
-## 6) Test organization and requirements
+<a id="6-test-organization-and-requirements"></a>
+## 6) Organizarea și cerințele testelor
 
 <a id="ui-scenarios"></a>
-### UI scenarios and lifecycle ownership
+<a id="ui-scenarios-and-lifecycle-ownership"></a>
+### Scenarii UI și responsabilitatea ciclului de viață
 
-Application UI classes use BaseTestUI or an intentional owner-reviewed lifecycle.
-They compose product services/actions/pages/validations rather than browser SDK
-calls. Framework/native tests can own lightweight engine fixtures directly;
-they are not forced to launch an application or extend the product base class.
+Clasele UI ale aplicației folosesc BaseTestUI sau un ciclu de viață intenționat,
+revizuit de responsabil. Compun servicii/acțiuni/pagini/validări de produs în locul
+apelurilor SDK de browser. Testele framework/native pot deține direct fixture-uri
+ușoare de motor; nu sunt obligate să lanseze aplicația sau să extindă clasa de bază a produsului.
 
-The historical registration example was `/auth/register`, with positive and
-negative outcomes. Preserve that intent by verifying meaningful business
-behavior and failure variants, not by asserting an arbitrary universal test
-count or making every unrelated UI test navigate to registration. The retained
-registration regressions cover one identity/one submission and visible errors.
+Exemplul istoric de înregistrare era `/auth/register`, cu rezultate pozitive și
+negative. Păstrează intenția verificând comportamente de afaceri relevante și
+variante de eșec, fără a afirma un număr universal arbitrar de teste sau a impune
+înregistrarea fiecărui test UI fără legătură. Regresiile păstrate ale înregistrării
+acoperă o identitate/o trimitere și erori vizibile.
 
 <a id="api-scenarios"></a>
-### API scenarios, independence and cleanup
+<a id="api-scenarios-independence-and-cleanup"></a>
+### Scenarii API, independență și curățare
 
-Application API tests own their created entities and remain independent of
-method order. A GET/update/delete scenario creates the entity it requires;
-cleanup does not silently replace its business oracle. A complete lifecycle
-scenario distinguishes creation, retrieval, update, deletion and verification
-of deletion. Shared fixtures must declare their lifecycle and cleanup limits.
+Testele API ale aplicației dețin entitățile create și rămân independente de ordinea
+metodelor. Un scenariu GET/update/delete creează entitatea necesară; curățarea nu
+înlocuiește tacit criteriul său de afaceri. Un scenariu complet de ciclu de viață
+distinge crearea, citirea, actualizarea, ștergerea și verificarea ștergerii.
+Fixture-urile comune trebuie să declare ciclul de viață și limitele curățării.
 
-The archived examples use these service operations:
+Exemplele arhivate folosesc următoarele operații de serviciu:
 
 ```text
 POST   /public/v2/users       -> creation contract
@@ -597,53 +636,59 @@ PATCH  /public/v2/users/{id}  -> partial update contract
 DELETE /public/v2/users/{id}  -> deletion contract
 ```
 
-Expected statuses/content come from the selected target's contract, not from
-this illustrative endpoint list. JSON schema validation belongs to response
-validation inside a meaningful step. A list of methods does not prove endpoint
-coverage, and a local mock does not prove public-service acceptance.
+Stările/conținutul așteptate provin din contractul țintei selectate, nu din această
+listă ilustrativă de endpoint-uri. Validarea schemei JSON aparține validării
+răspunsului într-un pas relevant. O listă de metode nu demonstrează acoperirea
+endpoint-urilor, iar o dublură locală nu demonstrează acceptanța serviciului public.
 
 <a id="test-data-and-auth"></a>
-### Test data, authentication and negative fixtures
+<a id="test-data-authentication-and-negative-fixtures"></a>
+### Date de test, autentificare și fixture-uri negative
 
-Reusable fixture data belongs under `atf-tests/src/test/resources/tests/testdata` and
-its factories/builders. Existing DataGenerator owns unique application values.
-JSON is the retained data format for shared product examples; unit tests may
-use in-memory doubles, and negative tests may need literal malformed data.
-The old requirement that every value in every test must come from JSON is not
-a valid global invariant for framework regressions.
+Datele reutilizabile de fixture aparțin `atf-tests/src/test/resources/tests/testdata`
+și fabricilor/constructorilor lor. DataGenerator existent deține valorile unice ale
+aplicației. JSON este formatul păstrat pentru exemplele comune de produs; testele
+unitare pot folosi dubluri în memorie, iar testele negative pot cere date literale
+malformate. Vechea cerință ca fiecare valoare din fiecare test să provină din JSON
+nu este un invariant global valid pentru regresiile framework-ului.
 
-Supply authentication at runtime. Do not paste real tokens into documents,
-committed fixtures or report examples. Negative-auth helpers can explicitly
-select missing/invalid authentication; they do not change the configured
-identity behind a positive helper's caller. Inspect existing demo-account
-assumptions before controlled application execution.
+Furnizează autentificarea la execuție. Nu lipi tokenuri reale în documente,
+fixture-uri înregistrate sau exemple de raport. Utilitarele de autentificare
+negativă pot selecta explicit autentificarea absentă/invalidă; nu schimbă identitatea
+configurată în spatele apelantului unui utilitar pozitiv. Inspectează ipotezele
+existente privind conturile demo înainte de execuția controlată a aplicației.
 
 <a id="test-oracles"></a>
-### Observable oracles and honest execution scope
+<a id="observable-oracles-and-honest-execution-scope"></a>
+### Criterii observabile și limite oneste de execuție
 
-Existing regressions should distinguish expected and observed values, retain
-the negative path and fail when the protected behavior is removed. Source
-shape assertions protect architecture; they do not replace runtime behavior.
-Do not convert a failure to a skip, loosen the expected value, delete the
-negative case or increase timeouts without a diagnosed cause and owner.
+Regresiile existente trebuie să distingă valori așteptate și observate, să păstreze
+calea negativă și să eșueze când comportamentul protejat este eliminat. Aserțiunile
+privind forma sursei protejează arhitectura; nu înlocuiesc comportamentul la execuție.
+Nu transforma un eșec în omitere, nu relaxa valoarea așteptată, nu șterge cazul negativ
+și nu crește timpii-limită fără o cauză diagnosticată și un responsabil.
 
-Use the maintained local, browser, Allure and aggregate selections described
-in Testing. Scope results separately: native contracts, local fixtures,
-real-browser fixtures and controlled application journeys answer different
-questions. The current maintenance scope keeps the existing E2E inventory and
-improves framework stability, documentation and governance. The
-[feedback register](feedback/README.md) owns scope decisions and browser/CDP
-matrix evidence. Local fixtures do not establish public application acceptance.
+Folosește selecțiile menținute locale, de browser, Allure și agregate descrise în
+Testare. Delimitează separat rezultatele: contractele native, fixture-urile locale,
+fixture-urile în browsere reale și scenariile controlate de aplicație răspund unor
+întrebări diferite. Domeniul curent al mentenanței păstrează inventarul E2E existent
+și îmbunătățește stabilitatea framework-ului, documentația și guvernanța.
+[Registrul de feedback](feedback/README.md) gestionează deciziile de domeniu și
+dovezile matricei browser/CDP. Fixture-urile locale nu stabilesc acceptanța aplicației publice.
 
 <a id="delivery"></a>
-## 7) Delivery artifacts and execution
+<a id="7-delivery-artifacts-and-execution"></a>
+## 7) Artefacte de livrare și execuție
 
-Required maintained artifacts include the parent/module POMs, module READMEs,
-Core framework.properties, owned library sources, test resources/suites and
-the paired architecture guide. Runtime JARs contain their owned classes and
-service descriptors. atf-tests holds verification sources and no production
-framework API. Current consumption replaces the historical monolithic
-coordinate as described in [consumer migration](../README.md#consumer-migration).
+Artefactele menținute obligatorii includ POM-urile părinte/module, README-urile
+modulelor, framework.properties Core, sursele bibliotecilor, resursele/suitele de
+test și perechea ghidului arhitecturii. JAR-urile de execuție conțin clasele proprii
+și descriptorii serviciilor. atf-tests ține sursele de verificare și nu oferă un API
+de framework pentru producție. Consumul curent înlocuiește coordonata monolitică
+istorică descrisă în [migrarea consumatorului](../README.md#consumer-migration).
+
+<details>
+<summary>Rulează comenzile pentru 7) Artefacte de livrare și execuție</summary>
 
 ```powershell
 mvn -B -ntp verify
@@ -651,47 +696,50 @@ mvn -B -ntp -Pbrowser test
 mvn -B -ntp -Paggregate test
 ```
 
-Run those commands only from a prepared disposable validation copy. Browser
-installation, explicit Allure selection, class filters, caches and output
-locations are documented in Testing. Keep evidence outside development/live
-sources. Record the actual selection, source checkpoint, statuses and artifacts;
-a skipped or copied run is not a successful execution.
+</details>
+
+Rulează comenzile numai dintr-o copie temporară pregătită pentru validare.
+Instalarea browserelor, selecția Allure explicită, filtrele de clasă, cache-urile
+și locațiile rezultatelor sunt documentate în Testare. Păstrează dovezile în afara
+surselor de dezvoltare/live. Consemnează selecția reală, punctul sursei, stările și
+artefactele; o rulare omisă sau copiată nu este o execuție reușită.
 
 <a id="historical-reconciliation"></a>
-## 8) Reconciled archival decisions
+<a id="8-reconciled-archival-decisions"></a>
+## 8) Decizii arhivate reconciliate
 
-| Archived v1.0 claim | Current interpretation |
+| Afirmație v1.0 arhivată | Interpretare curentă |
 |---|---|
-| One src tree, one POM and no Maven modules | Superseded by five owned Maven modules and test-scoped verification |
-| Every dependency must be runtime scoped | Runtime dependencies, compile-time annotations and test-only tools have distinct intentional scopes |
-| Core base classes directly declare AllureTestNg first | Core declares TestListener; Reporting owns native Allure service integration |
-| A new step cannot start inside an active step | Current StepExecutionContext supports nested depth; callers own their scope's completion |
-| Only FAIL can have a screenshot | Configured final-state success capture is also supported |
-| Every UI test must visit registration; every assertion/data value must use one product pattern | Product review rules are scoped; native/regression and intentional negative fixtures retain their own oracles |
-| CSS is the only selector form | Stable CSS and the shared semantic vocabulary remain preferred; the existing XPath bridge is allowed when that supported vocabulary cannot express the relationship |
-| Every unavailable/invalid reporter is silently NO-OP | Core can run without a backend; invalid required configuration/provider selection is still diagnosed |
-| A single 2560x1440 size describes every session | Explicit/system sizing takes precedence; this is the fallback, with supported zoom normalization |
+| Un arbore src, un POM și fără module Maven | Înlocuită de cinci module Maven responsabile și verificare în domeniul de test |
+| Fiecare dependență trebuie să fie de execuție | Dependențele de execuție, adnotările de compilare și instrumentele exclusiv de test au domenii distincte intenționate |
+| Clasele de bază Core declară direct AllureTestNg primul | Core declară TestListener; Reporting deține integrarea serviciului Allure nativ |
+| Un pas nou nu poate începe într-un pas activ | StepExecutionContext curent acceptă adâncime imbricată; apelanții dețin finalizarea domeniului |
+| Numai FAIL poate avea captură | Este acceptată și captura configurată a stării finale la succes |
+| Fiecare test UI trebuie să viziteze înregistrarea; fiecare aserțiune/valoare trebuie să folosească un singur tipar de produs | Regulile de revizuire a produsului sunt delimitate; fixture-urile native/de regresie și negative intenționate păstrează criterii proprii |
+| CSS este singura formă de selector | CSS stabil și vocabularul semantic comun rămân preferate; puntea XPath existentă este permisă când vocabularul acceptat nu poate exprima relația |
+| Fiecare raportor indisponibil/invalid este tacit NO-OP | Core poate rula fără implementare; configurația obligatorie invalidă/selecția furnizorului sunt totuși diagnosticate |
+| O singură dimensiune 2560x1440 descrie fiecare sesiune | Dimensiunea explicită/de sistem are prioritate; aceasta este alternativa, cu normalizarea acceptată a zoomului |
 
-No archived rule restores generation, promotion, server or agent execution.
-Reusable code/documentation review policies are maintained as governance.
-Atlas remains a documentary context and ownership map; proposed analysis
-workflows do not become implemented runtime capabilities merely by appearing
-in this guide.
+Nicio regulă arhivată nu restaurează generare, promovare, server sau execuție de agenți.
+Politicile reutilizabile de revizuire a codului/documentației sunt menținute ca guvernanță.
+Atlas rămâne context documentar și hartă a responsabilităților; fluxurile de analiză
+propuse nu devin capabilități implementate de execuție numai fiindcă apar în ghid.
 
 <a id="verification-map"></a>
-## 9) Source ownership and verification map
+<a id="9-source-ownership-and-verification-map"></a>
+## 9) Harta responsabilităților surselor și verificării
 
-| Contract | Source owner | Existing verification owner |
+| Contract | Responsabilul sursei | Responsabilul verificării existente |
 |---|---|---|
-| Core configuration and overrides | [ConfigManager](../atf-core/src/main/java/com/ai/core/support/config/ConfigManager.java) | [Configuration regression](../atf-tests/src/test/java/com/ai/atf/core/support/config/ConfigManagerFileContractTest.java) |
-| Browser-neutral provider selection | [UiEngineRegistry](../atf-core/src/main/java/com/ai/ui/core/engine/UiEngineRegistry.java) | [Core registry tests](../atf-core/src/test/java/com/ai/ui/core/engine/UiEngineRegistryTest.java) and adapter native tests |
-| Window/zoom resolution | [UIWindowSizeResolver](../atf-core/src/main/java/com/ai/ui/core/engine/window/UIWindowSizeResolver.java) | [UI contract area](../atf-tests/src/test/java/com/ai/atf/ui/component) |
-| Action waits and verdicts | [UiActionWait](../atf-core/src/main/java/com/ai/ui/support/actions/UiActionWait.java) and [WaitUtils](../atf-core/src/main/java/com/ai/ui/support/wait/WaitUtils.java) | [Wait regressions](../atf-tests/src/test/java/com/ai/atf/ui/component/WaitUtilsContractTest.java) |
-| Step lifecycle | [StepLogger](../atf-core/src/main/java/com/ai/core/reporting/StepLogger.java) and [StepScope](../atf-core/src/main/java/com/ai/core/reporting/step/StepScope.java) | [Reporting regressions](../atf-tests/src/test/java/com/ai/atf/core/reporting) |
-| API call reporting | [ApiActions](../atf-core/src/main/java/com/ai/api/core/client/ApiActions.java) and [ApiExecutionReporter](../atf-core/src/main/java/com/ai/api/core/client/ApiExecutionReporter.java) | [API regression area](../atf-tests/src/test/java/com/ai/atf/api) |
-| Reporting and attachments | [ReportingTestListener](../atf-reporting/src/main/java/com/ai/core/reporting/listener/ReportingTestListener.java) and [UI screenshot handler](../atf-core/src/main/java/com/ai/ui/core/reporting/UiScreenshotFailureHandler.java) | [Reporting test ownership](../atf-tests/src/test/java/com/ai/atf/core/reporting/README.md) |
-| Dependency/docs governance | [Existing governance tests](../atf-tests/src/test/java/com/ai/atf/governance) | [Governance owner](../atf-tests/README.md) |
+| Configurație Core și suprascrieri | [ConfigManager](../atf-core/src/main/java/com/ai/core/support/config/ConfigManager.java) | [Regresia configurației](../atf-tests/src/test/java/com/ai/atf/core/support/config/ConfigManagerFileContractTest.java) |
+| Selecție neutră a furnizorului de browser | [UiEngineRegistry](../atf-core/src/main/java/com/ai/ui/core/engine/UiEngineRegistry.java) | [Testele registrului Core](../atf-core/src/test/java/com/ai/ui/core/engine/UiEngineRegistryTest.java) și testele native ale adaptoarelor |
+| Rezolvarea ferestrei/zoomului | [UIWindowSizeResolver](../atf-core/src/main/java/com/ai/ui/core/engine/window/UIWindowSizeResolver.java) | [Zona contractelor UI](../atf-tests/src/test/java/com/ai/atf/ui/component) |
+| Așteptări și verdicte de acțiune | [UiActionWait](../atf-core/src/main/java/com/ai/ui/support/actions/UiActionWait.java) și [WaitUtils](../atf-core/src/main/java/com/ai/ui/support/wait/WaitUtils.java) | [Regresiile așteptărilor](../atf-tests/src/test/java/com/ai/atf/ui/component/WaitUtilsContractTest.java) |
+| Ciclul pașilor | [StepLogger](../atf-core/src/main/java/com/ai/core/reporting/StepLogger.java) și [StepScope](../atf-core/src/main/java/com/ai/core/reporting/step/StepScope.java) | [Regresiile raportării](../atf-tests/src/test/java/com/ai/atf/core/reporting) |
+| Raportarea apelurilor API | [ApiActions](../atf-core/src/main/java/com/ai/api/core/client/ApiActions.java) și [ApiExecutionReporter](../atf-core/src/main/java/com/ai/api/core/client/ApiExecutionReporter.java) | [Zona regresiilor API](../atf-tests/src/test/java/com/ai/atf/api) |
+| Raportare și atașamente | [ReportingTestListener](../atf-reporting/src/main/java/com/ai/core/reporting/listener/ReportingTestListener.java) și [gestionarul capturilor UI](../atf-core/src/main/java/com/ai/ui/core/reporting/UiScreenshotFailureHandler.java) | [Responsabilitățile testelor de raportare](../atf-tests/src/test/java/com/ai/atf/core/reporting/README.md) |
+| Guvernanța dependențelor/documentației | [Testele existente de guvernanță](../atf-tests/src/test/java/com/ai/atf/governance) | [Responsabilul guvernanței](../atf-tests/README.md) |
 
-The map identifies implementation and retained regression locations. It is not
-a claim that every rule has been executed in every environment. Keep open
-acceptance, exact evidence and future documentary proposals at their owner.
+Harta identifică locațiile implementării și ale regresiilor păstrate. Nu afirmă
+că fiecare regulă a fost executată în fiecare mediu. Păstrează acceptanța deschisă,
+dovezile exacte și propunerile documentare viitoare la responsabilul lor.

@@ -1,323 +1,245 @@
-# Framework testing
+<a id="framework-testing"></a>
+# Testarea framework-ului
 
-## Run location and scope
+Acest ghid definește selecția testelor, limitele dovezilor și revizuirea acestora.
+Folosește [colecția de comenzi](Testing_Commands.md) pentru exemple executabile.
+Rețetele sunt pliate implicit pentru a nu ascunde strategia de testare sub comenzile de pregătire.
 
-Run every Maven command below from the reactor root of a disposable validation
-copy, following [Development](Development.md). Do not build in the development
-or live checkout. Keep Maven/browser caches and each run's evidence outside
-those source checkouts.
+<a id="run-location-and-scope"></a>
+## Locația și domeniul rulării
 
-## Choose the proof boundary
+Rulează Maven din rădăcina reactorului unei copii temporare de validare, conform
+[Dezvoltare](Development.md). Păstrează compilările, cache-urile Maven/browser și
+dovezile complete ale rulărilor în afara checkout-urilor sursă de dezvoltare și live.
 
-| Change or question | Existing selection | What to inspect |
+Domeniul curent al mentenanței păstrează inventarul E2E existent. Îmbunătățește
+determinismul, aserțiunile, documentația și guvernanța verificărilor existente.
+Folosește browsere desktop; nu adăuga scenarii de aplicație și nu utiliza emulatoare.
+
+<a id="choose-the-proof-boundary"></a>
+## Alege limitele dovezii
+
+| Schimbare sau întrebare | Selecție existentă | Observație necesară |
 |---|---|---|
-| A library's own contract | Native module checks with its dependencies | Actual selected classes and assertions |
-| Cross-module behavior or governance | Default local suite | Observable local outcomes and useful negative fixtures |
-| Real browser actions, responses or screenshots | Browser profile | Both selected adapters, cleanup and complete artifacts |
-| Extent/Allure publication | Aggregate profile and the native Allure subset | Executed outcomes plus generated report data/rendering |
-| An application journey | Explicit concrete test selection | Intended deployment, identities, persisted state and cleanup |
+| Contractul propriu al unei biblioteci | Verificări native ale modulului împreună cu dependențele | Clasele selectate și aserțiunile lor s-au executat |
+| Comportament între module sau guvernanță | Suita locală implicită | Rezultate locale și controale negative relevante |
+| Acțiuni, răspunsuri sau capturi reale de browser | Profilul browser | Ambele adaptoare selectate, curățarea și artefactele complete |
+| Publicare Extent/Allure | Subsetul Allure nativ și profilul aggregate | Rezultate reale și datele/randarea raportului generat |
+| Un scenariu existent de aplicație | Selecție explicită de clasă concretă | Implementarea țintă, identitățile, starea persistată și limitele curățării |
 
-Use the smallest selection that exposes the changed boundary, then run the
-relevant complete suite before closure. A source guard proves its supported
-inspection rule; local fixtures and browser pages do not establish controlled
-application acceptance.
+Folosește cea mai mică selecție care expune limita schimbată. Înainte de închiderea
+feedback-ului, rulează suita completă relevantă și inspectează rezultatele reale.
 
-The current maintenance scope retains the existing E2E inventory. Improve
-determinism, assertions, documentation and governance of existing checks;
-do not add application journeys during this phase. Use desktop browsers for
-browser checks. Emulators are outside the requested execution scope.
-
-Select original native test proof and source/verification receipts for the
-checkout's ignored artifacts/reports/current tree after external validation.
-Its README/index describe actual selections, captured revisions and verdicts.
-The explicit retained-UI role can also publish one original audited Extent
-reader per browser engine with its native XML, executed-source manifest and
-audit proof. Other full report sites remain external.
-Complete runs and failures remain in external history. Publish one selected
-Atlas HTML per project under artifacts/atlas/current and run the
-[dedicated consistency check](../artifacts/atlas/README.md#verification) before
-claiming that generated documentation matches captured live source and evidence.
-Use the [publication layout check](../artifacts/README.md#verification) before
-replacing the current selection. A retained capture is not automatically the
-latest HEAD, and publication does not execute its original tests again.
-
-## Local baseline
-
-```powershell
-mvn -B -ntp test
+```mermaid
+flowchart TB
+    Question["Contract schimbat sau întrebare de revizuire"] --> Selection["Alege verificări existente pentru acea limită"]
+    Selection --> Execute["Execută într-o copie temporară de validare"]
+    Execute --> Observe["Inspectează rezultatele și artefactele native"]
+    Observe --> Claim["Declară rezultatul observat și limitele dovezii"]
+    Claim --> Retain["Păstrează sursa, selecția și dovezile"]
 ```
 
-The root command runs native library checks and the
-[framework-local suite](../atf-tests/src/test/resources/suites/framework-local.xml)
-in atf-tests, including governance. Local regressions use fixtures and doubles
-for configuration, API execution, UI delegation and reporting. They exclude
-browser-dependent cases, intentional failure fixtures and live application
-journeys. A successful compile or a skipped suite is not execution evidence.
+Săgețile continue arată succesiunea revizuirii, nu apeluri de execuție sau dependențe de module.
 
-## Selective checks
+- Păstrează rezultatele observate PASS, FAIL și SKIP.
+- Un control de sursă demonstrează numai regula de inspecție acceptată. Fixture-urile
+  locale și paginile de browser nu stabilesc acceptanța controlată a aplicației.
+- Publicarea și verificările de consistență nu rerulează testele și nu extind limitele dovezii.
 
-Use `-pl atf-tests -am` to build the test module and its library dependencies.
-Suite paths below are relative to the atf-tests module:
+<a id="local-baseline"></a>
+## Baza locală
 
-```powershell
-mvn -B -ntp -pl atf-tests -am "-Datf.test.suite=src/test/resources/suites/framework-ui.xml" test
-mvn -B -ntp -pl atf-tests -am "-Datf.test.suite=src/test/resources/suites/framework-api.xml" test
-mvn -B -ntp -pl atf-tests -am "-Dtest=InvoiceEvidenceContractTest,RegistrationSubmissionContractTest,ConfigManagerFileContractTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
-```
+Selecția implicită din rădăcină rulează verificările native ale bibliotecilor și
+[framework-local.xml](../atf-tests/src/test/resources/suites/framework-local.xml)
+în atf-tests, inclusiv guvernanța.
 
-The class-filter flag lets upstream modules continue when the requested class
-exists only in atf-tests. Check that the selected downstream tests actually ran.
-Use the [API](../atf-tests/src/test/resources/suites/framework-api.xml),
-[UI](../atf-tests/src/test/resources/suites/framework-ui.xml) or
-[reporting](../atf-tests/src/test/resources/suites/framework-reporting.xml) suite
-for a maintained subset. These subsets do not replace the complete default
-governance run.
+- Fixture-urile și dublurile locale acoperă configurația, execuția API, delegarea
+  UI și raportarea.
+- Sunt excluse cazurile dependente de browser, fixture-urile de eșec intenționat
+  și scenariile live de aplicație.
+- O compilare reușită sau o suită omisă nu reprezintă dovezi de execuție.
 
-The API subset selects BaseTestAPIContractTest and
-ApiCoreExecutionArchitectureContractTest. It checks framework setup, write
-readiness, retry budgets, call ordering and failure propagation with local
-fixtures and doubles. It does not call the GoRest service. The existing
-[PositiveUserTests](../atf-tests/src/test/java/com/ai/api/tests/PositiveUserTests.java)
-contains two opt-in GoRest write journeys; both require auth.token. An empty
-token causes the shared setup to skip them, which is not passing API application
-acceptance. Record these two execution scopes separately.
+Folosește [rețeta bazei locale](Testing_Commands.md#local-baseline).
 
-A library's native checks can be selected with its module and dependencies,
-for example `mvn -B -ntp -pl atf-core -am test`. That selection does not run
-the cross-module regressions in atf-tests.
+<a id="selective-checks"></a>
+## Verificări selective
 
-## Browser preparation and checks
+Subseturile menținute [API](../atf-tests/src/test/resources/suites/framework-api.xml),
+[UI](../atf-tests/src/test/resources/suites/framework-ui.xml) și
+[raportare](../atf-tests/src/test/resources/suites/framework-reporting.xml)
+răspund unor întrebări focalizate. Nu înlocuiesc rularea completă implicită de guvernanță.
 
-Use the portable work-root/cache variables from
-[Development](Development.md#working-roles), then enter the validation copy's
-reactor root. Keep browser acquisition separate from acceptance evidence.
+| Domeniu API | Responsabil existent | Ce stabilește rezultatul |
+|---|---|---|
+| Contracte API locale ale framework-ului | BaseTestAPIContractTest și ApiCoreExecutionArchitectureContractTest | Inițializare, pregătirea scrierii, bugete, ordinea apelurilor și propagarea eșecului cu fixture-uri/dubluri locale; fără cerere GoRest |
+| Scenarii API opționale de aplicație | [PositiveUserTests](../atf-tests/src/test/java/com/ai/api/tests/PositiveUserTests.java) | Două scrieri GoRest existente, numai când sunt executate cu `auth.token` explicit; SKIP din inițializarea cu token gol nu este acceptanța aplicației |
 
-### Playwright runtime
+Selecția modulului/dependențelor compilează bibliotecile din amonte. Un filtru de
+clasă poate lăsa modulele fără clasă corespunzătoare să continue; verifică execuția
+efectivă a testelor cerute din aval. O rulare numai a bibliotecii nu execută
+regresiile între module din atf-tests.
 
-Install the Chromium revision selected by the pinned Playwright Java SDK.
-The SDK uses its bundled Node runtime. Prepare local Maven artifacts before
-invoking the adapter's CLI:
+Consultă [rețetele selective](Testing_Commands.md#selective-checks).
 
-```powershell
-$env:PLAYWRIGHT_BROWSERS_PATH = Join-Path $workRoot 'cache/playwright'
-mvn -B -ntp "-Dmaven.repo.local=$mavenCache" -pl atf-playwright -am "-DskipTests" install
-mvn -B -ntp "-Dmaven.repo.local=$mavenCache" -f atf-playwright/pom.xml org.codehaus.mojo:exec-maven-plugin:3.5.0:java "-Dexec.mainClass=com.microsoft.playwright.CLI" "-Dexec.args=install chromium"
-$env:PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = '1'
-```
+<a id="browser-preparation-and-checks"></a>
+## Pregătirea și verificarea browserelor
 
-The preparation command skips execution and is not acceptance evidence.
-The Playwright skip flag affects bootstrap downloads, not browser actions.
+Pregătește ambele medii de execuție ale browserelor înainte de acceptarea
+comportamentului. Folosește intrările portabile pentru rădăcina de lucru/cache
+în [Dezvoltare](Development.md#working-roles). Obținerea unui binar de browser
+este separată de executarea unei verificări de acceptanță.
 
-### Selenium pinned Manager route
+<a id="playwright-runtime"></a>
+### Mediul de execuție Playwright
 
-Use the versions selected by the [parent POM](../pom.xml) and browser contract:
+SDK-ul Java Playwright fixat selectează revizia Chromium și folosește propriul
+Node inclus. `PLAYWRIGHT_BROWSERS_PATH` poate selecta cache-ul extern.
+Pregătirea omite execuția testelor; `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD` controlează
+descărcările inițiale, nu acțiunile browserului.
 
-| Component | Selected version |
+Folosește [rețeta pregătirii Playwright](Testing_Commands.md#playwright-runtime).
+
+<a id="selenium-pinned-manager-route"></a>
+### Calea Selenium Manager cu versiuni fixate
+
+[POM-ul părinte](../pom.xml) și contractul browserului selectează această matrice:
+
+| Componentă | Versiune selectată |
 |---|---|
 | Selenium Java | 4.54.0 |
 | Chrome for Testing | 158.0.8127.88 |
 | ChromeDriver | 158.0.8127.88 |
-| Required typed CDP | 158 |
+| CDP tipizat obligatoriu | 158 |
 
-The [Selenium release](https://www.selenium.dev/downloads/) supplies the Java SDK;
-the [Chrome for Testing manifest](https://googlechromelabs.github.io/chrome-for-testing/158.0.8127.88.json)
-supplies platform-specific browser/driver downloads. Obtain the exact Chrome
-binary for the host OS and set the caller-provided ATF_CHROME_BINARY to that
-existing executable. The following setup resolves that input without assuming
-a workstation path or operating-system cache layout.
+- Selectează un executabil Chrome existent, specific gazdei, prin `ATF_CHROME_BINARY`.
+- Un `webdriver.chrome.driver` explicit sau un driver utilizabil din cache-ul ATF
+  are prioritate față de Manager. Folosește un cache alternativ ATF gol sau inexistent pentru Manager.
+- Aliniază configurația/cache-ul Manager separat cu matricea; setări conflictuale
+  în `se-config.toml` pot suprascrie intrările de mediu.
+- Păstrează dovezile reale ale browserului, driverului, binarului selectat și CDP-ului tipizat.
 
-The existing factory gives an explicit webdriver.chrome.driver or an ATF-cached
-driver priority over Selenium Manager. Leave that JVM property unset, including
-in inherited JVM options, and use an empty or nonexistent ATF fallback cache.
-The separate Selenium Manager cache holds its downloaded assets. Its configuration
-must agree with these pins; a conflicting se-config.toml can override environment
-settings, as described in [Selenium Manager configuration](https://www.selenium.dev/documentation/selenium_manager/#configuration).
+Clasa existentă de paritate locatori/rețea exercită ambele adaptoare. `ui.engine`
+nu restrânge furnizorii săi de date la un singur motor. Folosește
+[rețeta pregătirii Manager și parității](Testing_Commands.md#selenium-pinned-manager-route).
 
-```powershell
-$seleniumCache = Join-Path $workRoot 'cache/selenium'
-$fallbackCache = Join-Path $workRoot 'cache/selenium-fallback-empty'
-if (Test-Path -LiteralPath $fallbackCache) {
-    if (@(Get-ChildItem -LiteralPath $fallbackCache -Force).Count -gt 0) {
-        throw 'Use an empty ATF fallback cache to exercise Selenium Manager.'
-    }
-}
-$env:SE_BROWSER_PATH = (Resolve-Path -LiteralPath $env:ATF_CHROME_BINARY -ErrorAction Stop).Path
-$env:SE_DRIVER_VERSION = '158.0.8127.88'
-$env:SE_CACHE_PATH = $seleniumCache
-$env:SE_SKIP_DRIVER_IN_PATH = 'true'
-$env:SE_SKIP_BROWSER_IN_PATH = 'true'
-$env:SE_AVOID_STATS = 'true'
-Remove-Item Env:SE_OFFLINE -ErrorAction SilentlyContinue
-mvn -B -ntp "-Dmaven.repo.local=$mavenCache" -pl atf-tests -am "-Datf.selenium.cache.root=$fallbackCache" "-Dtest=SeleniumPlaywrightLocatorParityContractTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
-```
+<a id="complete-browser-selection"></a>
+### Selecția completă de browser
 
-That existing parity class runs both adapters; ui.engine does not reduce its data
-providers to one engine. With downloads permitted, the invocation warms the real
-Manager route and executes local locator/network contracts. Retain the actual
-browser, driver, selected binary and typed CDP evidence. It does not establish
-an application journey or replace the complete browser selection.
-
-### Complete browser selection
-
-After Maven dependencies and both browser runtimes are prepared, retain the same
-environment and fallback-cache argument for offline acceptance:
-
-```powershell
-$env:SE_OFFLINE = 'true'
-mvn -B -ntp -o "-Dmaven.repo.local=$mavenCache" "-Datf.selenium.cache.root=$fallbackCache" -Pbrowser test
-```
-
-SE_OFFLINE controls Selenium Manager network access; Maven's `-o` controls Maven
-artifact resolution. Enable them only after the required assets are cached.
-The browser profile selects
+Profilul browser selectează
 [framework-browser.xml](../atf-tests/src/test/resources/suites/framework-browser.xml)
-only in atf-tests; native library checks remain part of the reactor run.
-The suite uses local pages to cover engine parity, screenshots, window/zoom
-behavior and reporting interactions.
+numai în atf-tests. Verificările native ale bibliotecilor rămân parte a rulării
+reactorului. Paginile locale acoperă paritatea motoarelor, capturile, comportamentul
+ferestrei/zoomului și raportarea.
 
-Preserve complete screenshots when inspecting browser evidence. A version change
-requires a fresh matrix check and browser run, with results recorded in feedback.
+- `SE_OFFLINE` controlează accesul Manager la rețea; opțiunea offline Maven
+  controlează rezolvarea artefactelor Maven. Activează-le după punerea în cache a resurselor necesare.
+- Păstrează capturile complete. O schimbare de versiune necesită o verificare nouă
+  a matricei și o rulare de browser, consemnate în feedback.
 
-## Reporting acceptance
+Folosește [rețeta completă de browser](Testing_Commands.md#complete-browser-selection).
 
-The native Allure subset and aggregate publication are explicit:
+<a id="reporting-acceptance"></a>
+## Acceptanța raportării
 
-```powershell
-mvn -B -ntp -pl atf-tests -am "-Datf.test.suite=src/test/resources/suites/framework-allure.xml" "-Dreporting.engine=allure" test
-mvn -B -ntp -Paggregate test
-```
+[Subsetul Allure nativ](../atf-tests/src/test/resources/suites/framework-allure.xml)
+verifică integrarea nativă.
+[Suita agregată](../atf-tests/src/test/resources/suites/framework-aggregate.xml)
+colectează cazuri executate și publică atât Extent, cât și Allure.
 
-The [Allure suite](../atf-tests/src/test/resources/suites/framework-allure.xml)
-checks the native integration. The
-[aggregate suite](../atf-tests/src/test/resources/suites/framework-aggregate.xml)
-collects executed cases and publishes both Extent and Allure evidence.
-Inspect the generated artifacts as well as the TestNG outcome: verify counts,
-statuses, timing, attachments and declared output paths.
+Inspectează numărătorile, stările, temporizările, atașamentele și căile declarate
+ale rezultatelor, precum și rezultatul TestNG. Folosește [rețetele raportării](Testing_Commands.md#reporting-acceptance).
 
-## Application journeys
+<a id="application-journeys"></a>
+## Scenarii de aplicație
 
-Product support and opt-in application classes live in atf-tests. Configure
-`base.url` and `base.url.api` for the intended environment. API writes require
-an explicit `auth.token`. Select a concrete class with `-Dtest` and the same
-upstream no-match flag shown above.
+Suportul produsului și clasele opționale de aplicație aparțin atf-tests. Selectează
+o clasă concretă existentă și configurează `base.url`/`base.url.api` pentru țintă;
+scrierile API necesită și `auth.token` explicit.
 
-These journeys can create users, orders or invoices. A missing credential,
-unavailable service or unexecuted journey does not establish application
-acceptance. The active acceptance gaps remain in
-[feedback](feedback/README.md).
+Aceste scenarii pot crea utilizatori, comenzi sau facturi. Acreditările absente,
+serviciile indisponibile și scenariile neexecutate nu stabilesc acceptanța.
+
+- Consemnează lacunele framework-ului în [feedback](feedback/README.md), păstrând domeniul.
+- Verifică [precondițiile selecției aplicației](Testing_Commands.md#application-journeys).
 
 <a id="existing-product-e2e-audit"></a>
-## Retained product UI audit
+<a id="retained-product-ui-audit"></a>
+## Auditul UI de produs păstrat
 
-The existing registration, authenticated-account and profile checks use the
-same test methods for both providers. They are distinct from framework-ui and
-framework-browser, which select framework contracts and browser fixtures.
-Neither maintained framework suite silently opts into the public application.
+Aceleași metode existente rulează prin oricare dintre furnizori. Sunt separate de
+framework-ui și framework-browser; aceste suite nu selectează tacit aplicația publică.
 
-| Existing owner | Methods | Observed contract |
+| Responsabil existent | Metode | Contract observat |
 |---|---:|---|
-| [RegistrationTests](../atf-tests/src/test/java/com/ai/atf/ui/RegistrationTests.java) | 6 | Successful registration and required-field, email, duplicate, password and phone rejection |
-| [AccountAuthenticatedAreaTests](../atf-tests/src/test/java/com/ai/ui/tests/AccountAuthenticatedAreaTests.java) | 5 | Authenticated account, profile, favorites, invoices and messages navigation |
-| [ProfileContactAddressMemoryTests](../atf-tests/src/test/java/com/ai/ui/tests/ProfileContactAddressMemoryTests.java) | 5 | Registered contact and address values remain observable in the profile |
+| [RegistrationTests](../atf-tests/src/test/java/com/ai/atf/ui/RegistrationTests.java) | 6 | Înregistrare și respingerea câmpurilor obligatorii, emailului, duplicatelor, parolei și telefonului |
+| [AccountAuthenticatedAreaTests](../atf-tests/src/test/java/com/ai/ui/tests/AccountAuthenticatedAreaTests.java) | 5 | Navigarea autentificată în cont, profil, favorite, facturi și mesaje |
+| [ProfileContactAddressMemoryTests](../atf-tests/src/test/java/com/ai/ui/tests/ProfileContactAddressMemoryTests.java) | 5 | Valorile înregistrate de contact/adresă rămân observabile în profil |
 
-Use a separate disposable validation copy and output history for each command.
-Prepare browser binaries using the sections above. The explicit URL below is
-the configured testing demo; replace it with the intended deployment when
-appropriate. These retained methods create synthetic customers. They do not
-create invoices or change admin orders, and they do not delete their customers.
-Browser teardown closes sessions; it is not application-data cleanup.
+Folosește câte o copie de validare și un istoric de rezultate separat pentru fiecare
+motor. Selecția demo configurată creează clienți sintetici; nu creează facturi,
+nu schimbă comenzile admin și nu șterge acești clienți. Închiderea browserului
+închide sesiunile, nu datele aplicației.
 
-```powershell
-mvn -B -ntp -pl atf-tests -am "-Dtest=RegistrationTests,AccountAuthenticatedAreaTests,ProfileContactAddressMemoryTests" "-Dsurefire.failIfNoSpecifiedTests=false" "-Dui.engine=playwright" "-Dbase.url=https://practicesoftwaretesting.com" "-Dreporting.engine=extent" "-Dreports.timestamp.enabled=false" "-Dui.screenshots.enabled=true" "-Dui.screenshots.on.failure.only=false" "-Dui.screenshots.capture.final.state=true" test
-mvn -B -ntp -pl atf-tests -am "-Dtest=RegistrationTests,AccountAuthenticatedAreaTests,ProfileContactAddressMemoryTests" "-Dsurefire.failIfNoSpecifiedTests=false" "-Dui.engine=selenium" "-Dbase.url=https://practicesoftwaretesting.com" "-Dreporting.engine=extent" "-Dreports.timestamp.enabled=false" "-Dui.screenshots.enabled=true" "-Dui.screenshots.on.failure.only=false" "-Dui.screenshots.capture.final.state=true" test
-```
+- PASS al acțiunii înseamnă finalizare tehnică. PASS de afaceri necesită validare
+  separată cu observații așteptate/reale.
+- Un scenariu negativ trece când criteriul respingerii reușește. Validarea absentă
+  sau neatinsă nu este acel succes.
+- Păstrează rezultatele originale FAIL/SKIP, identitățile exacte clasă/metodă,
+  hash-urile sursei, comanda, URL-ul, identitatea browserului și dovezile raportului nativ.
 
-For each engine, retain original Surefire XML, source hashes, command, URL,
-browser identity and ExtentReport.html. Reconcile the exact class/method subjects
-and statuses with the report nodes. An action PASS establishes action completion;
-the separate validation step must state expected/actual observations before
-business PASS. Preserve FAIL and SKIP outcomes and distinguish missing or
-unreached validation from a successful negative scenario.
+[Principiile vii](Living_Architecture_UI_API_doc_v1_0.md#retained-principles)
+definesc responsabilitățile sursei;
+[contractul publicării](../artifacts/reports/README.md#retained-ui-report-publication)
+definește cititorul fiecărui motor.
+[Rețetele UI păstrate](Testing_Commands.md#retained-product-ui-audit) separă
+execuția, controalele de mentenanță și reverificarea consistenței unui cititor existent.
+Consistența nu stabilește execuție nouă, curățarea datelor sau acoperire exhaustivă.
 
-The [living principles](Living_Architecture_UI_API_doc_v1_0.md#retained-principles)
-define the source responsibilities. The
-[report publication contract](../artifacts/reports/README.md#retained-ui-report-publication)
-defines the per-engine reader and proof boundary. Audit consistency does not
-establish a test execution, application-data cleanup or exhaustive coverage.
-
-```powershell
-node --test tools/verify-ui-e2e-audit.test.mjs tools/collect-artifacts.test.mjs
-```
-
-The command above executes the maintenance controls. To recheck one already
-published native reader without launching browsers or changing its evidence,
-select its existing four-file engine directory from the reactor root:
-
-```powershell
-$engine = 'playwright'
-$auditRoot = Join-Path (Get-Location).Path "artifacts/reports/current/e2e/$engine"
-node tools/verify-ui-e2e-audit.mjs --source "$auditRoot/source.json" --xml "$auditRoot/native.xml" --html "$auditRoot/ExtentReport.html" --capture "$auditRoot/audit.json"
-```
-
-Choose selenium for the other published engine. These files are publication
-prerequisites and are absent in a source-only checkout. audit.json is the
-preserved native DOM capture, not the consistency result printed by this command.
-The checker reads the original files and writes its verdict to standard output;
-preserve a new receipt outside source when recording that recheck. A PASSED
-consistency result retains the original native PASS, FAIL and SKIP outcomes.
-
-## Explicit configuration
+<a id="explicit-configuration"></a>
+## Configurație explicită
 
 [ConfigManager](../atf-core/src/main/java/com/ai/core/support/config/ConfigManager.java)
-loads the classpath framework.properties resource by default. An explicit file
-replaces that resource; it must provide the settings needed by the selected
-consumer. Individual JVM properties still take precedence.
+încarcă implicit `framework.properties` din classpath. Un fișier explicit al
+consumatorului înlocuiește acea resursă și trebuie să ofere setările consumatorului
+selectat. Proprietățile JVM individuale au în continuare prioritate.
 
-For a consumer-supplied file at config/local.properties in the validation copy,
-or an existing file selected through ATF_CONFIG_FILE, resolve the path once at
-the reactor root before Maven enters individual modules:
+Rezolvă un fișier existent o singură dată din rădăcina reactorului, înainte ca Maven
+să intre în module. [Rețeta configurației](Testing_Commands.md#explicit-configuration)
+acceptă `ATF_CONFIG_FILE` sau `config/local.properties` al consumatorului.
 
-```powershell
-$projectRoot = (Get-Location).Path
-$configInput = if ($env:ATF_CONFIG_FILE) {
-    $env:ATF_CONFIG_FILE
-} else {
-    Join-Path $projectRoot 'config/local.properties'
-}
-$configPath = (Resolve-Path -LiteralPath $configInput -ErrorAction Stop).Path
-mvn -B -ntp "-Dframework.properties=$configPath" test
-```
+- Consumatorul furnizează fișierul; rezolvarea eșuează înainte de Maven dacă lipsește.
+- Transmiterea căii rezolvate evită ipotezele despre directorul curent al proceselor separate.
 
-This file is an explicit consumer prerequisite, not a bundled repository file.
-Resolution fails before Maven if it does not exist. Passing the resolved path
-avoids relying on each forked test process having the same working directory.
+<a id="output-and-evidence"></a>
+## Rezultate și dovezi
 
-## Output and evidence
+Căile implicite sunt relative la copia temporară de validare:
 
-The [artifact archive](../artifacts/reports/README.md) owns report classification,
-copy integrity and the explicit maintenance-tool checks. Run its Node selection
-when changing the collector; Java governance checks do not execute that CLI.
-
-The `atf.build.directory` override relocates Maven compile output for atf-tests
-only. `surefire.reportsDirectory` selects that module's execution results.
-Upstream library targets and runtime report destinations are configured
-separately; these properties do not relocate every artifact in the reactor.
-
-Under the default configuration, paths are relative to the validation copy:
-
-| Output | Location |
+| Rezultat | Locație |
 |---|---|
-| Surefire/TestNG results | Each tested module's target/surefire-reports |
-| Cross-module results | atf-tests/target/surefire-reports |
-| Extent reports | atf-tests/target/reports |
-| Allure raw results | atf-tests/target/allure-results |
-| Aggregate publication | atf-tests/target/atf-core-aggregate-report |
+| Rezultate Surefire/TestNG | target/surefire-reports al fiecărui modul testat |
+| Rezultate între module | atf-tests/target/surefire-reports |
+| Rapoarte Extent | atf-tests/target/reports |
+| Rezultate brute Allure | atf-tests/target/allure-results |
+| Publicare agregată | atf-tests/target/atf-core-aggregate-report |
 
-The aggregate directory retains its compatibility name. Runtime properties can
-redirect report output. Preserve a fresh copy or unique result directories for
-each acceptance run so a focused rerun cannot overwrite earlier XML.
+Directorul agregat își păstrează numele de compatibilitate; proprietățile de execuție
+pot redirecționa raportarea. `atf.build.directory` și `surefire.reportsDirectory`
+afectează numai atf-tests, fără să mute toate artefactele reactorului.
+Consultă [detaliile rezultatelor](Testing_Commands.md#output-and-evidence).
 
-Record the source checkpoint, exact command, selected suite, counts and external
-artifact paths in feedback. Distinguish historical baseline evidence, newly
-executed checks, skipped cases and unexecuted checks. A copied report or a
-renamed directory is not a new run.
+| Rolul dovezii | Limita păstrării | Revizuire necesară |
+|---|---|---|
+| Rulări complete și eșecuri | Istoric extern imuabil al rulărilor | Punctul sursei, comanda/selecția exactă, numărătorile și artefactele originale |
+| Dovezi native și înregistrări selectate | artifacts/reports/current ignorat | Revizie capturată, verdict real și [structura publicării](../artifacts/README.md#verification) |
+| Cititor UI păstrat | Un cititor Extent original auditat pentru fiecare motor, cu dovezi native XML/sursă/audit | Subiecți/stări exacte și [contractul arhivei de rapoarte](../artifacts/reports/README.md) |
+| Cititor Atlas selectat | Un HTML pentru fiecare proiect în artifacts/atlas/current | [Verificarea consistenței Atlas](../artifacts/atlas/README.md#verification) față de sursa/dovezile capturate |
+
+- Păstrează fiecare rulare separat pentru ca o rerulare focalizată să nu suprascrie XML-ul anterior.
+- Consemnează în feedback sursa, comanda, suita selectată, numărătorile și locațiile
+  externe ale dovezilor.
+- Distinge verificările istorice, nou executate, omise și neexecutate.
+- O captură păstrată nu este automat cel mai recent HEAD; copierea sau publicarea
+  ei nu este o rulare nouă.
+- Guvernanța Java nu execută CLI-ul colectorului de artefacte. Rulează selecția
+  Node explicită a arhivei când modifici acel instrument.

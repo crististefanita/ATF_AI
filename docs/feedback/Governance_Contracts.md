@@ -1,216 +1,226 @@
-# Deeper executable contracts
+<a id="deeper-executable-contracts"></a>
+# Contracte executabile aprofundate
 
-Baseline: `2f676d9`. This pass adapts useful J0 documentation/source-governance
-practices and the archive's ownership principles. It adds no runtime feature,
-module, skill registry or agent instruction file. Minimal corrections to existing
-defects are permitted; source changes and evidence must be identified explicitly.
+Referință inițială: `2f676d9`. Această etapă adaptează practici utile J0 de guvernanță
+a documentației/surselor și principiile de responsabilitate din arhivă. Nu adaugă funcționalități de execuție,
+module, registre de skill-uri sau fișiere de instrucțiuni pentru agenți. Corecțiile minime ale defectelor
+existente sunt permise; schimbările surselor și dovezile trebuie identificate explicit.
 
-## Closure evidence
+<a id="closure-evidence"></a>
+## Dovezi de închidere
 
-Implementation checkpoint: `3286731a158dce2885608e8f9f2e4fd684f6b72f`.
-The local and aggregate final copies include the T-003 fixture correction.
-Every command below ran from its own isolated reactor under
-${ATF_WORK_ROOT}/validation. The workspace-normalized common command prefix was
-`mvn -B -ntp -Dmaven.repo.local=${ATF_WORK_ROOT}\cache\m2`; append the row's arguments.
-Logs are under ${ATF_WORK_ROOT}/runs and module XML results remain in the corresponding
-validation copy's target/surefire-reports directories.
+Reper de implementare: `3286731a158dce2885608e8f9f2e4fd684f6b72f`.
+Copiile finale locală și agregată includ corecția fixture-ului T-003.
+Fiecare comandă de mai jos a rulat din propriul reactor izolat sub
+${ATF_WORK_ROOT}/validation. Prefixul comun al comenzii, normalizat la spațiul de lucru, a fost
+`mvn -B -ntp -Dmaven.repo.local=${ATF_WORK_ROOT}\cache\m2`; adăugați argumentele rândului.
+Jurnalele sunt sub ${ATF_WORK_ROOT}/runs, iar rezultatele XML ale modulelor rămân în directoarele
+target/surefire-reports ale copiei de validare corespunzătoare.
 
-| Validation copy and log stem | Command arguments | Observed result |
+| Copie de validare și identificator de bază al jurnalului | Argumentele comenzii | Rezultat observat |
 |---|---|---|
-| modules-phase2-local-reliable-final | `-o verify` | 474 passed: 463 atf-tests and 11 native library checks; no failures/errors/skips |
-| modules-phase2-aggregate-reliable-final | `-o -Paggregate test` | 474 passed: 463 atf-tests and 11 native library checks; no failures/errors/skips |
-| modules-phase2-browser-alone | `-o -Pbrowser test` | 119 passed: 108 browser-suite and 11 native library checks; no failures/errors/skips |
+| modules-phase2-local-reliable-final | `-o verify` | 474 trecute: 463 atf-tests și 11 verificări native ale bibliotecilor; fără eșecuri/erori/omiteri |
+| modules-phase2-aggregate-reliable-final | `-o -Paggregate test` | 474 trecute: 463 atf-tests și 11 verificări native ale bibliotecilor; fără eșecuri/erori/omiteri |
+| modules-phase2-browser-alone | `-o -Pbrowser test` | 119 trecute: 108 din suita de browser și 11 verificări native ale bibliotecilor; fără eșecuri/erori/omiteri |
 
-The standalone browser copy predates the final T-003 edit to
-WaitUtilsContractTest. The maintained
-[browser suite](../../atf-tests/src/test/resources/suites/framework-browser.xml)
-does not select that class; selected browser tests and runtime sources were
-unchanged. This establishes the selected browser scope, not an identical full
-checkout. Counts overlap across runs and must not be summed as unique tests.
-These execution receipts do not assert a fresh publication or packaged-JAR audit.
+Copia separată pentru browser precedă modificarea finală T-003 din
+WaitUtilsContractTest. [Suita de browser](../../atf-tests/src/test/resources/suites/framework-browser.xml)
+întreținută nu selectează acea clasă; testele de browser selectate și sursele de execuție erau
+neschimbate. Aceasta stabilește domeniul de browser selectat, nu o copie de lucru complet
+identică. Numerele se suprapun între rulări și nu trebuie însumate ca teste unice.
+Aceste înregistrări de execuție nu afirmă o publicare nouă sau un audit nou al JAR-urilor împachetate.
 
-Earlier failed executions remain evidence, not replacement success receipts:
+Execuțiile eșuate anterioare rămân dovezi, nu înregistrări de succes care le înlocuiesc:
 
-| Historical failed log | Observed failure |
+| Jurnal istoric de eșec | Eșec observat |
 |---|---|
-| modules-phase2-browser-final.log | 108 browser-suite invocations, 2 failures: the positive and mismatch network invocations exceeded their 30-second method limits during browser cleanup; 11 native checks passed |
-| modules-phase2-aggregate-readme-final.log | 463 atf-tests invocations, 1 failure: the input-value success fixture took 898 ms against its former 600 ms budget; 11 native checks passed |
+| modules-phase2-browser-final.log | 108 invocări ale suitei de browser, 2 eșecuri: invocările de rețea pozitivă și de nepotrivire au depășit limitele metodelor de 30 de secunde în timpul curățării browserului; 11 verificări native au trecut |
+| modules-phase2-aggregate-readme-final.log | 463 de invocări atf-tests, 1 eșec: fixture-ul de succes pentru valoarea de intrare a durat 898 ms față de bugetul său anterior de 600 ms; 11 verificări native au trecut |
 
-Independent README example evidence is
-${ATF_WORK_ROOT}/tools/readme-example-qa-20261124-01/results.json, compile.log and the
-engine execution logs/XML in that directory. All three complete README examples
-compiled against the existing public API with Java 11; the Playwright and Selenium
-examples each executed one local-page test successfully, with no failures/skips.
-They are separate QA executions, not additional reactor cases.
+Dovezile independente pentru exemplele README sunt
+${ATF_WORK_ROOT}/tools/readme-example-qa-20261124-01/results.json, compile.log și
+jurnalele/XML-ul de execuție ale motoarelor din acel director. Toate cele trei exemple README complete
+s-au compilat față de API-ul public existent cu Java 11; exemplele Playwright și Selenium
+au executat fiecare cu succes câte un test pe o pagină locală, fără eșecuri/omiteri.
+Sunt execuții QA separate, nu cazuri suplimentare ale reactorului.
 
 <a id="g-002"></a>
-## G-002: Source visibility and execution ownership
+<a id="g-002-source-visibility-and-execution-ownership"></a>
+## G-002: Vizibilitatea surselor și responsabilitatea execuției
 
-- Owner: atf-tests,
+- Responsabil: atf-tests,
   [GovernanceFiles](../../atf-tests/src/test/java/com/ai/atf/governance/GovernanceFiles.java),
   [FrameworkArchitectureRules](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureRules.java)
-  and [existing architecture regressions](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureGovernanceTest.java).
-- Original observation: global directory-name exclusions could hide legal source packages
-  named target or artifacts. Whole-runtime pause, console and interrupt policies
-  were documented or checked locally but not governed across modules.
-- Expected: owned Java/resource sources remain visible regardless of legal
-  package names; actual build output stays excluded. Direct pauses and console
-  publication have exact owners. InterruptedException catches structurally
-  restore the current thread's flag, backed by separate behavioral tests.
-- Acceptance: compilable legal-package fixtures expose forbidden/duplicate
-  imports; output fixtures stay excluded. Negative execution fixtures distinguish
-  real calls from comments/literals/static imports and wrong-thread restoration.
-  Existing API/UI wait tests prove actual interrupt preservation.
-- Delivered: source inventories preserve owned legal package paths; exact-owner
-  guards reject real pause/console violations and incorrect interrupt restoration.
-  Structural checks are complemented by behavioral API/UI interruption cases;
-  they do not establish universal control-flow correctness.
-- Status: VERIFIED by the final local and aggregate executions above.
+  și [regresiile de arhitectură existente](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureGovernanceTest.java).
+- Observație originală: excluderile globale după numele directoarelor puteau ascunde pachete sursă legale
+  numite target sau artifacts. Politicile de pauză, consolă și întrerupere pentru întregul cod de execuție
+  erau documentate sau verificate local, dar nu erau guvernate între module.
+- Rezultat așteptat: sursele Java/resurse deținute rămân vizibile indiferent de numele legale
+  ale pachetelor; rezultatele reale ale compilării rămân excluse. Pauzele directe și publicarea
+  în consolă au responsabili exacți. Tratarea excepțiilor InterruptedException restaurează structural
+  indicatorul firului curent, susținută de teste comportamentale separate.
+- Acceptanță: fixture-uri compilabile cu pachete legale expun importuri interzise/duplicate;
+  fixture-urile de ieșire rămân excluse. Fixture-urile negative de execuție disting
+  apelurile reale de comentarii/literali/importuri statice și de restaurarea pe firul greșit.
+  Testele API/UI existente de așteptare dovedesc păstrarea efectivă a întreruperii.
+- Livrat: inventarele surselor păstrează căile pachetelor legale deținute; controalele de responsabilitate
+  exactă resping încălcările reale de pauză/consolă și restaurarea incorectă a întreruperii.
+  Verificările structurale sunt completate de cazuri comportamentale de întrerupere API/UI;
+  nu stabilesc corectitudinea universală a fluxului de control.
+- Stare: VERIFIED prin execuțiile finale locală și agregată de mai sus.
 
 <a id="g-003"></a>
-## G-003: Executable documentation facts and lifecycle
+<a id="g-003-executable-documentation-facts-and-lifecycle"></a>
+## G-003: Fapte executabile din documentație și ciclu de viață
 
-- Owner: existing
-  [documentation rules](../../atf-tests/src/test/java/com/ai/atf/governance/MarkdownDocumentationRules.java)
-  and [documentation regressions](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationGovernanceTest.java),
-  stable guides and the canonical Living Architecture Markdown/HTML pair.
-- Original observation: fenced Maven commands were not tied to real profile/module/suite/test
-  selections, and a changed documented default could remain green after simply
-  refreshing the HTML source hash. Stable guides could accumulate scorecards or
-  dated success receipts without a lifecycle finding.
-- Expected: supported executable commands resolve against their selected POM and
-  source inventory. Explicit properties-default blocks agree with current
-  framework.properties; alternative examples remain examples. Stable owner guides
-  describe current contracts while feedback retains scoped historical receipts.
-- Acceptance: meaningful pass/fail fixtures cover unavailable profiles, missing
-  suites/classes/POMs, stale defaults and misplaced receipts, including literal
-  examples and legitimate feedback exceptions. The maintained guide stays paired.
-- Delivered: supported single-line Maven command fences resolve selected POMs,
-  reactor/parent profiles, modules, suites and actual test-class filters. Quoted
-  arguments and literal/comment examples have explicit fixture coverage.
-  `properties defaults` blocks match framework.properties. Stable-guide lifecycle
-  checks retain feedback/historical record exceptions and the paired-guide hash.
-  This is bounded command analysis, not a general shell or effective-POM solver.
-- Status: VERIFIED by the final local and aggregate executions above.
+- Responsabil:
+  [regulile de documentație](../../atf-tests/src/test/java/com/ai/atf/governance/MarkdownDocumentationRules.java)
+  și [regresiile de documentație](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationGovernanceTest.java)
+  existente, ghidurile stabile și perechea canonică Living Architecture Markdown/HTML.
+- Observație originală: comenzile Maven din blocuri nu erau legate de selecții reale de profiluri/module/suite/teste,
+  iar o valoare implicită documentată schimbată putea rămâne verde după simpla
+  reîmprospătare a hash-ului sursă HTML. Ghidurile stabile puteau acumula tabele de note sau
+  înregistrări datate de succes fără o constatare de ciclu de viață.
+- Rezultat așteptat: comenzile executabile susținute se rezolvă față de POM-ul selectat și
+  inventarul surselor. Blocurile explicite de valori implicite ale proprietăților corespund fișierului curent
+  framework.properties; exemplele alternative rămân exemple. Ghidurile stabile ale responsabililor
+  descriu contractele actuale, în timp ce feedback-ul păstrează înregistrările istorice delimitate.
+- Acceptanță: fixture-uri relevante de succes/eșec acoperă profiluri indisponibile, suite/clase/POM-uri
+  lipsă, valori implicite învechite și înregistrări plasate greșit, inclusiv exemple
+  literale și excepții legitime de feedback. Ghidul întreținut rămâne în pereche.
+- Livrat: blocurile de comenzi Maven susținute, pe un singur rând, rezolvă POM-urile selectate,
+  profilurile reactorului/părintelui, modulele, suitele și filtrele efective de clase de test. Argumentele între
+  ghilimele și exemplele literale/din comentarii au acoperire explicită prin fixture-uri.
+  Blocurile `properties defaults` corespund framework.properties. Verificările ciclului de viață al ghidurilor
+  stabile păstrează excepțiile pentru feedback/înregistrări istorice și hash-ul ghidului pereche.
+  Aceasta este o analiză delimitată a comenzilor, nu un interpretor shell general sau un rezolvitor de POM efectiv.
+- Stare: VERIFIED prin execuțiile finale locală și agregată de mai sus.
 
 <a id="t-002"></a>
-## T-002: Actual API execution and local browser network evidence
+<a id="t-002-actual-api-execution-and-local-browser-network-evidence"></a>
+## T-002: Execuție API efectivă și dovezi locale de rețea în browser
 
-- Owner: existing
-  [API execution regressions](../../atf-tests/src/test/java/com/ai/atf/core/support/base/ApiCoreExecutionArchitectureContractTest.java),
-  [reporting-session regressions](../../atf-tests/src/test/java/com/ai/atf/core/reporting/regression/ReportingManagerSessionContractTest.java)
-  and [cross-engine parity fixture](../../atf-tests/src/test/java/com/ai/atf/ui/component/parity/SeleniumPlaywrightLocatorParityContractTest.java).
-- Original observation: retry policy/parser checks did not execute ApiRequestExecutor itself.
-  No real browser network-response acceptance was recorded; capability, delegation
-  and source checks could not establish observed request/response payloads.
-- Expected: executor attempts, retry delays and reporter ordering have independent
-  observations. Suite cache/generation behavior follows actual ReportingSession
-  semantics. Both engines observe a real local request and response; mismatches
-  fail within their wait budget and cleanup owns its server/browser state.
-- Acceptance: existing API/session regressions cover retry success/exhaustion,
-  non-retry and exception paths. Existing browser parity tests assert URL, method,
-  status and actual payloads plus URL/method mismatch outcomes against a local
-  server. No public application mutation or empty-body fallback counts as proof.
-- Delivered: local executor and reporting-session cases passed in the final local
-  and aggregate suites. Real browser observations passed for both engines:
-  2 positive response probes and 4 URL/method mismatch probes within the complete
-  119-check browser/native run. Server and browser cleanup are exercised; the
-  earlier cleanup timeouts remain in the failed-run ledger above.
-- Status: VERIFIED for these local framework contracts. F-008 has a later,
-  independent browser/driver/typed CDP matrix receipt. Local network pages
-  establish the stated framework contract. Current scope is recorded in the [register](README.md).
+- Responsabil:
+  [regresiile de execuție API](../../atf-tests/src/test/java/com/ai/atf/core/support/base/ApiCoreExecutionArchitectureContractTest.java),
+  [regresiile sesiunilor de raportare](../../atf-tests/src/test/java/com/ai/atf/core/reporting/regression/ReportingManagerSessionContractTest.java)
+  și [fixture-ul de paritate între motoare](../../atf-tests/src/test/java/com/ai/atf/ui/component/parity/SeleniumPlaywrightLocatorParityContractTest.java)
+  existente.
+- Observație originală: verificările politicii/parserului de reîncercare nu executau ApiRequestExecutor în sine.
+  Nu era înregistrată nicio acceptanță reală a răspunsurilor de rețea în browser; verificările de capabilitate, delegare
+  și surse nu puteau stabili încărcăturile cerere/răspuns observate.
+- Rezultat așteptat: încercările executorului, întârzierile reîncercărilor și ordinea raportării au observații
+  independente. Comportamentul cache-ului/generării suitei urmează semantica efectivă ReportingSession.
+  Ambele motoare observă o cerere și un răspuns locale reale; nepotrivirile
+  eșuează în bugetul lor de așteptare, iar curățarea deține starea serverului/browserului.
+- Acceptanță: regresiile API/de sesiune existente acoperă succesul/epuizarea reîncercărilor,
+  căile fără reîncercare și cele de excepție. Testele existente de paritate în browser verifică URL-ul, metoda,
+  starea și încărcăturile reale, plus rezultatele nepotrivirilor URL/metodă față de un server
+  local. Nicio modificare a aplicației publice sau soluție de rezervă cu corp gol nu contează drept dovadă.
+- Livrat: cazurile locale ale executorului și sesiunilor de raportare au trecut în suitele finale
+  locală și agregată. Observațiile reale din browser au trecut pentru ambele motoare:
+  2 sonde pozitive de răspuns și 4 sonde de nepotrivire URL/metodă în rularea completă
+  cu 119 verificări de browser/native. Curățarea serverului și browserului este exercitată;
+  expirările anterioare ale curățării rămân în registrul rulărilor eșuate de mai sus.
+- Stare: VERIFIED pentru aceste contracte locale ale framework-ului. F-008 are o înregistrare ulterioară,
+  independentă, a matricei browser/driver/CDP tipizat. Paginile locale de rețea
+  stabilesc contractul declarat al framework-ului. Domeniul curent este înregistrat în [registru](README.md).
 
 <a id="f-009"></a>
-## F-009: Negative API retry budgets skip the request
+<a id="f-009-negative-api-retry-budgets-skip-the-request"></a>
+## F-009: Bugetele negative de reîncercare API omit cererea
 
-- Owner: atf-core
+- Responsabil: atf-core
   [ApiRuntimeOptions](../../atf-core/src/main/java/com/ai/api/core/client/ApiRuntimeOptions.java)
-  and the existing API execution regressions linked in T-002.
-- Original reproducer: create options with maxRateLimitRetries=-1 and execute a request
-  whose supplier increments a counter. The unchanged compiled baseline returned
-  attempts=0 and response=null with supplierCalls=0.
-- Evidence: ${ATF_WORK_ROOT}/runs/negative-api-retry-baseline.log and the independent
-  runtime-deepen-20261124 reproduction under ${ATF_WORK_ROOT}/tools.
-- Expected: reject a negative factory argument or configured retry value before
-  execution with an actionable diagnostic. A zero retry budget still executes
-  the initial request once; valid retry behavior remains unchanged.
-- Scope decision: the user approved minimal corrections to existing defects,
-  without new runtime classes/features. Do not approve the old null result with
-  a passing test or alter unrelated factory-delay behavior.
-- Delivered: existing factory/load validation rejects negative retry budgets
-  before request execution. Existing regressions verify negative options and
-  configuration, one initial request with zero retries, and valid retry behavior.
-  The Living Architecture pair documents this same contract.
-- Status: VERIFIED by the final local and aggregate executions above.
+  și regresiile existente de execuție API legate în T-002.
+- Reproducere originală: crearea opțiunilor cu maxRateLimitRetries=-1 și executarea unei cereri
+  al cărei furnizor incrementează un contor. Versiunea de referință compilată neschimbată a returnat
+  attempts=0 și response=null, cu supplierCalls=0.
+- Dovezi: ${ATF_WORK_ROOT}/runs/negative-api-retry-baseline.log și reproducerea independentă
+  runtime-deepen-20261124 sub ${ATF_WORK_ROOT}/tools.
+- Rezultat așteptat: respingerea unui argument negativ al fabricii sau a unei valori configurate negative pentru reîncercări înainte de
+  execuție, cu un diagnostic acționabil. Un buget de zero reîncercări execută în continuare
+  cererea inițială o dată; comportamentul valid de reîncercare rămâne neschimbat.
+- Decizie de domeniu: utilizatorul a aprobat corecții minime ale defectelor existente,
+  fără clase/funcționalități de execuție noi. Nu validați vechiul rezultat null printr-un
+  test trecut și nu modificați comportamentul fără legătură al întârzierii din fabrică.
+- Livrat: validarea existentă din fabrică/încărcare respinge bugetele negative de reîncercare
+  înainte de executarea cererii. Regresiile existente verifică opțiunile și configurația
+  negative, o singură cerere inițială cu zero reîncercări și comportamentul valid de reîncercare.
+  Perechea Living Architecture documentează același contract.
+- Stare: VERIFIED prin execuțiile finale locală și agregată de mai sus.
 
 <a id="g-004"></a>
-## G-004: English authored source, comments and diagnostics
+<a id="g-004-english-authored-source-comments-and-diagnostics"></a>
+## G-004: Surse, comentarii și diagnostice redactate în engleză
 
-- Owner: atf-tests JavaSourceScanner and its existing
-  [language-governance regressions](../../atf-tests/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java),
-  with [ENG-001](../governance/Code_And_Documentation_Policy.md#english-source-and-comments)
-  and documentation governance as the public contract owners.
-- Requirement: all authored code identifiers, comments/Javadoc and framework/test
-  messages MUST be written in English (ENG-001 in the canonical policy).
-  External/localized data remains data. The requirement itself and its linked
-  test owner are maintained as documentation contracts.
-- Expected: executable code, comment and literal regions are checked separately;
-  comments cannot hide behind test-data exceptions. Exact policy-fixture owners
-  and their reasons are explicit, stale exemptions fail, and production files
-  cannot receive blanket test-data exemptions.
-- Acceptance: real repository inspection plus negative fixtures for Romanian
-  identifiers, comments, Javadoc, diagnostics and Unicode-escaped markers;
-  positive literal/comment delimiter cases and narrowly owned localized data.
-  README architecture diagrams and concrete Playwright/Selenium consumer examples
-  are required; declared complete examples compile against actual public APIs.
-- Delivered: repository guards distinguish identifiers, comments/Javadoc and
-  literal messages after Java Unicode translation. The three exact policy/data
-  fixture exceptions retain reasons and stale-exception checks; their identifiers
-  and comments remain governed. The three required README examples also guard
-  authored identifiers, comments and literal messages, and compile against the
-  current public API. The independent three-example compile and one-test-per-engine
-  executions are recorded above; no new tracked Java example class was added.
-- Limit: finite known-marker checks complement manual English review; they do not
-  establish universal semantic language detection or justify translating external data.
-- Status: VERIFIED by final local/aggregate governance and the independent README QA.
+- Responsabil: JavaSourceScanner din atf-tests și
+  [regresiile sale existente de guvernanță lingvistică](../../atf-tests/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java),
+  împreună cu [ENG-001](../governance/Code_And_Documentation_Policy.md#english-source-and-comments)
+  și guvernanța documentației ca responsabili ai contractului public.
+- Cerință: toți identificatorii de cod redactați, comentariile/Javadoc și mesajele framework-ului/testelor
+  TREBUIE scrise în engleză (ENG-001 în politica canonică).
+  Datele externe/localizate rămân date. Cerința însăși și responsabilul de test legat
+  sunt întreținute ca documente contractuale.
+- Rezultat așteptat: regiunile de cod executabil, comentarii și literali sunt verificate separat;
+  comentariile nu se pot ascunde în spatele excepțiilor pentru date de test. Responsabilii exacți ai fixture-urilor de politică
+  și motivele lor sunt explicite, excepțiile învechite eșuează, iar fișierele de producție
+  nu pot primi excepții generale pentru date de test.
+- Acceptanță: inspectarea reală a depozitului, plus fixture-uri negative pentru identificatori
+  românești, comentarii, Javadoc, diagnostice și markeri cu escapare Unicode;
+  cazuri pozitive pentru delimitatori de literali/comentarii și date localizate cu responsabilitate strictă.
+  Diagramele de arhitectură README și exemplele concrete de consum Playwright/Selenium
+  sunt obligatorii; exemplele declarate complete se compilează față de API-urile publice efective.
+- Livrat: controalele depozitului disting identificatorii, comentariile/Javadoc și
+  mesajele literale după traducerea Unicode Java. Cele trei excepții exacte ale fixture-urilor de politică/date
+  păstrează motivele și verificările de excepții învechite; identificatorii
+  și comentariile lor rămân guvernate. Cele trei exemple README obligatorii controlează și
+  identificatorii, comentariile și mesajele literale redactate și se compilează față de
+  API-ul public actual. Compilarea independentă a celor trei exemple și execuțiile cu câte un test per motor
+  sunt înregistrate mai sus; nu s-a adăugat nicio clasă exemplu Java nouă urmărită.
+- Limită: verificările finite ale markerilor cunoscuți completează revizia manuală în engleză; nu
+  stabilesc detectarea semantică universală a limbii și nu justifică traducerea datelor externe.
+- Stare: VERIFIED prin guvernanța finală locală/agregată și QA-ul README independent.
 
 <a id="f-010"></a>
-## F-010: Repeated configuration changes lose an absent original value
+<a id="f-010-repeated-configuration-changes-lose-an-absent-original-value"></a>
+## F-010: Schimbările repetate de configurație pierd valoarea originală absentă
 
-- Owner: existing
+- Responsabil:
   [AtfRuntimeConfigSandbox](../../atf-core/src/main/java/com/ai/core/support/contract/ids/AtfRuntimeConfigSandbox.java),
-  [configuration regressions](../../atf-tests/src/test/java/com/ai/atf/core/support/config/ConfigManagerFileContractTest.java)
-  and reporting-session regressions linked in T-002.
-- Original observation: putIfAbsent treats an existing null snapshot as absent. Starting with
-  no property, setting it to A and then B replaces the original null snapshot
-  with A; close restores A instead of absence. Both system and framework values
-  use this pattern. The new invalid-engine regression exposed the leaked value
-  at TestNG suite finish.
-- Expected: both snapshot maps preserve their first observed value exactly once,
-  including null, across repeated set/clear operations.
-- Acceptance: direct configuration regressions and the original reporting-session
-  scenario pass without a nested-sandbox workaround or engine fallback change.
-- Delivered: containsKey-based capture preserves that first snapshot in both maps.
-  Direct absent/present/empty-system-value fixtures and the original invalid-engine
-  reporting-session scenario passed without the workaround. ConfigManager's merged
-  lookup semantics are unchanged; this does not prove raw source precedence or
-  provenance for every system/configuration combination.
-- Status: VERIFIED by the final local and aggregate executions above.
+  [regresiile de configurație](../../atf-tests/src/test/java/com/ai/atf/core/support/config/ConfigManagerFileContractTest.java)
+  existente și regresiile sesiunilor de raportare legate în T-002.
+- Observație originală: putIfAbsent tratează un instantaneu null existent ca absent. Pornind fără
+  proprietate, setarea ei la A și apoi B înlocuiește instantaneul original null
+  cu A; close restaurează A în locul absenței. Valorile de sistem și cele ale framework-ului
+  folosesc ambele acest tipar. Noua regresie pentru motor invalid a expus valoarea scăpată
+  la terminarea suitei TestNG.
+- Rezultat așteptat: ambele mapări de instantanee își păstrează prima valoare observată exact o dată,
+  inclusiv null, pe parcursul operațiilor repetate de setare/ștergere.
+- Acceptanță: regresiile directe de configurație și scenariul original al sesiunii de raportare
+  trec fără o soluție de ocolire cu sandbox imbricat sau o schimbare a mecanismului de rezervă al motorului.
+- Livrat: capturarea bazată pe containsKey păstrează primul instantaneu în ambele mapări.
+  Fixture-urile directe pentru valoare de sistem absentă/prezentă/goală și scenariul original al sesiunii de raportare
+  cu motor invalid au trecut fără soluția de ocolire. Semantica de căutare combinată a ConfigManager
+  este neschimbată; aceasta nu dovedește precedența brută a surselor sau
+  proveniența pentru fiecare combinație sistem/configurație.
+- Stare: VERIFIED prin execuțiile finale locală și agregată de mai sus.
 
 <a id="t-003"></a>
-## T-003: Input-value success regression depends on scheduler latency
+<a id="t-003-input-value-success-regression-depends-on-scheduler-latency"></a>
+## T-003: Regresia de succes a valorii de intrare depinde de latența planificatorului
 
-- Owner: existing
-  [WaitUtilsContractTest](../../atf-tests/src/test/java/com/ai/atf/ui/component/WaitUtilsContractTest.java);
-  production WaitUtils is unchanged.
-- Reproducer: modules-phase2-aggregate-readme-final.log records a failure after
-  one empty value read. The success fixture requires two observations, polls at
-  250 ms and had only a 600 ms total budget; the invocation took 898 ms.
-- Expected: a success regression observes the second value and asserts exactly
-  two reads. Scheduler delay must not be its success oracle. The independent
-  never-matching test still asserts the timeout diagnostic and an observed read.
-- Correction: only the success fixture budget and its English explanatory comment
-  changed. The five-second bound retains the two-value sequence, matching predicate
-  and exact two-read assertion. The separate 10 ms never-match timeout case is unchanged.
-- Status: VERIFIED by the final local and aggregate executions above. The failed
-  pre-correction aggregate receipt remains in the historical ledger.
+- Responsabil:
+  [WaitUtilsContractTest](../../atf-tests/src/test/java/com/ai/atf/ui/component/WaitUtilsContractTest.java)
+  existent;
+  WaitUtils de producție este neschimbat.
+- Reproducere: modules-phase2-aggregate-readme-final.log înregistrează un eșec după
+  o singură citire de valoare goală. Fixture-ul de succes necesită două observații, interoghează la
+  250 ms și avea un buget total de numai 600 ms; invocarea a durat 898 ms.
+- Rezultat așteptat: o regresie de succes observă a doua valoare și verifică exact
+  două citiri. Întârzierea planificatorului nu trebuie să fie oracolul său de succes. Testul independent
+  fără potrivire verifică în continuare diagnosticul de expirare și o citire observată.
+- Corecție: s-au schimbat numai bugetul fixture-ului de succes și comentariul său explicativ în engleză.
+  Limita de cinci secunde păstrează secvența de două valori, predicatul de potrivire
+  și aserțiunea de exact două citiri. Cazul separat de expirare de 10 ms fără potrivire este neschimbat.
+- Stare: VERIFIED prin execuțiile finale locală și agregată de mai sus. Înregistrarea agregată
+  eșuată înaintea corecției rămâne în registrul istoric.

@@ -11,6 +11,7 @@ ghidurile responsabililor păstrează contractele detaliate, iar feedback-ul des
 |---|---|
 | Ce este ATF și de ce bibliotecă am nevoie? | [Prezentarea principală](../README.md) |
 | Cine gestionează un API, furnizor sau o limită de dependență? | [Arhitectură](Architecture.md) |
+| Unde găsesc rețete executabile fără să ascundă strategia? | [Ghidul comenzilor pliate](Testing_Commands.md) |
 | Ce verificări existente demonstrează comportamentul modificat? | [Testare](Testing.md) și [harta de acoperire Atlas](../atf-atlas/Coverage_Map.md) |
 | Unde trebuie să stea modificările, copiile de validare, cache-urile și dovezile? | [Dezvoltare](Development.md) |
 | Cum se revizuiesc codul, testele, README-urile și diagramele? | [Politicile de guvernanță](governance/README.md) |

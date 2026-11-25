@@ -38,12 +38,17 @@ propusă prin selecția menținută. Un indiciu de remediere nu dovedește cauza
 
 Dintr-o copie izolată a reactorului:
 
+<details>
+<summary>Rulează comenzile: Execuție</summary>
+
 ```powershell
 mvn -B -ntp test
 mvn -B -ntp -pl atf-tests -am test
 mvn -B -ntp -Pbrowser test
 mvn -B -ntp -Paggregate test
 ```
+
+</details>
 
 Execuția implicită selectează framework-local, inclusiv guvernanța. Profilul browser
 selectează framework-browser numai în acest modul. Profilul aggregate execută

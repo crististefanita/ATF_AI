@@ -1,94 +1,98 @@
-# Atlas evidence and local report publication
+<a id="atlas-evidence-and-local-report-publication"></a>
+# Dovezi Atlas și publicarea locală a rapoartelor
 
-Baseline: `e82c9a734c03480be7f7fd14330a370b4bd3d2d3`. At this recorded checkpoint,
-the owner explicitly selected the live ATF_AI artifacts directory for generated
-report copies and Atlas analyses. Builds remain isolated below the external work root. Preserve
-existing source changes in J1; generated maps remain outside its maintained
-docs/lib perimeter. No E2E journey, emulator or Java runtime feature is added.
+Referință inițială: `e82c9a734c03480be7f7fd14330a370b4bd3d2d3`. La acest reper înregistrat,
+responsabilul a selectat explicit directorul de artefacte ATF_AI live pentru copiile generate
+ale rapoartelor și analizele Atlas. Compilările rămân izolate sub rădăcina externă de lucru. Păstrați
+schimbările existente ale surselor J1; hărțile generate rămân în afara perimetrului său întreținut
+docs/lib. Nu se adaugă parcursuri E2E, emulatoare sau funcționalități Java de execuție.
 
-## D-004 — discoverable local test evidence
+<a id="d-004--discoverable-local-test-evidence"></a>
+## D-004 — dovezi locale de testare ușor de găsit
 
-- Owner: artifacts guides, testing documentation and local archive publication.
-- Priority: 85, from impact/risk/urgency 90/80/80.
-- Baseline quality: 58, from correctness/verification/clarity 70/45/55.
-- Baseline observation: completed reports existed in external staging, while the
-  requested live artifacts area contained only source guides. Its wording then
-  discouraged any generated report copy in the live checkout.
-- Acceptance: retain isolated builds, explicitly support caller-selected live
-  archive copies, preserve source-relative assets and SHA-256, provide a local
-  report index and current testing READMEs. Preserve failed/old evidence and
-  distinguish copying from fresh execution.
-- Delivered quality: 95, from correctness/verification/clarity 95/94/97.
-- State: VERIFIED for selected completed archive publication.
-- Evidence: the initial publication copied 19 completed bundles and 3,660 retained files into the
-  selected ignored local reports area and rehashed against their original
-  manifests. The generated index and testing README distinguished fresh results,
-  failed attempts and retained history. Source-relative report assets remain
-  together. That checkpoint used artifacts/reports/runs/index.html in the selected
-  checkout; the complete historical layout is now preserved externally. The
-  [current selection and history owner](../../artifacts/reports/README.md#current-selection-and-history)
-  describes today's reader publication. Later receipts retain their own bundles
-  and counts without rewriting this checkpoint's original results.
+- Responsabil: ghidurile artefactelor, documentația de testare și publicarea arhivei locale.
+- Prioritate: 85, din impact/risc/urgență 90/80/80.
+- Calitate inițială: 58, din corectitudine/verificare/claritate 70/45/55.
+- Observație inițială: rapoartele finalizate existau într-o zonă externă de pregătire, în timp ce
+  zona live de artefacte solicitată conținea doar ghiduri sursă. Formularea ei de atunci
+  descuraja orice copie de raport generat în copia de lucru live.
+- Acceptanță: păstrarea compilărilor izolate, susținerea explicită a copiilor de arhivă live
+  selectate de apelant, păstrarea resurselor relative la sursă și a SHA-256, furnizarea unui index
+  local al rapoartelor și a README-urilor de testare actualizate. Păstrarea dovezilor eșuate/vechi și
+  distingerea copierii de execuția nouă.
+- Calitate livrată: 95, din corectitudine/verificare/claritate 95/94/97.
+- Stare: VERIFIED pentru publicarea arhivei finalizate selectate.
+- Dovezi: publicarea inițială a copiat 19 pachete finalizate și 3,660 de fișiere păstrate în
+  zona locală de rapoarte ignorată selectată și a recalculat hash-urile față de manifestele lor
+  originale. Indexul generat și README-ul de testare distingeau rezultatele noi,
+  încercările eșuate și istoricul păstrat. Resursele rapoartelor relative la sursă rămân
+  împreună. Acel reper folosea artifacts/reports/runs/index.html în copia de lucru
+  selectată; structura istorică completă este acum păstrată extern.
+  [Responsabilul selecției curente și al istoricului](../../artifacts/reports/README.md#current-selection-and-history)
+  descrie publicația de astăzi pentru cititor. Înregistrările ulterioare își păstrează propriile pachete
+  și numere fără a rescrie rezultatele originale ale acestui reper.
 
-## G-009 — verify generated Atlas against its actual target
+<a id="g-009--verify-generated-atlas-against-its-actual-target"></a>
+## G-009 — verificarea Atlas-ului generat față de ținta sa reală
 
-- Owner: Atlas intake/template, maintenance verification and existing governance.
-- Priority: 89, from impact/risk/urgency 95/85/80.
-- Baseline quality: 55, from correctness/verification/clarity 65/35/60.
-- Observation: maintained Atlas guides are governed, but generated run data is
-  intentionally outside source governance. A formatted project map alone does
-  not verify its source identity, test binding, quotes or live drift. J1's binary
-  library perimeter must not be replaced by AI's source-module architecture.
-- Acceptance: generate distinct target-bound maps, source indexes and proof
-  boundaries for AI/J1; validate declared source/document/evidence hashes and
-  exact source references. Existing governance results retain their actual
-  target/scope. Reject changed source, cross-project identity and unsupported
-  execution claims. Preserve pending J1 changes and explicit unknowns.
-- Delivered quality: 93, from correctness/verification/clarity 95/92/92.
-- State: VERIFIED for declared source/artifact consistency and scoped review.
-- Evidence: separate AI/J1 maps bind their own POM module graphs, source roots,
-  owner boundaries, exact source/governance fragments and execution evidence.
-  Each includes five Markdown/HTML documents and a static module diagram.
-  AI owns five source-library/test modules; J1 has five different local modules
-  and consumes six versioned binary library pairs. J1 maps remain outside its
-  maintained docs/lib tree; existing J1 work was preserved.
-- Proof boundary: a related governance mapping is not complete coverage of every
-  clause. Unmapped declarations are explicit. The source comparison records
-  changes since execution; it does not certify later edits. The checker validates
-  declared files, paths, quotes, hashes, XML/TAP outcomes and source bindings,
-  while semantic completeness requires review.
+- Responsabil: colectarea inițială/șablonul Atlas, verificarea de întreținere și guvernanța existentă.
+- Prioritate: 89, din impact/risc/urgență 95/85/80.
+- Calitate inițială: 55, din corectitudine/verificare/claritate 65/35/60.
+- Observație: ghidurile Atlas întreținute sunt guvernate, dar datele generate ale rulărilor sunt
+  intenționat în afara guvernanței surselor. O hartă de proiect formatată nu
+  verifică singură identitatea sursei, legătura cu testele, citatele sau divergența live. Perimetrul bibliotecilor binare
+  J1 nu trebuie înlocuit cu arhitectura modulelor sursă AI.
+- Acceptanță: generarea unor hărți distincte, legate de țintă, a unor indici de surse și a unor limite
+  de dovadă pentru AI/J1; validarea hash-urilor declarate ale surselor/documentelor/dovezilor și
+  a referințelor exacte la surse. Rezultatele guvernanței existente își păstrează ținta/domeniul
+  real. Respingerea surselor schimbate, a identității între proiecte și a afirmațiilor de execuție
+  nesusținute. Păstrarea schimbărilor J1 în așteptare și a necunoscutelor explicite.
+- Calitate livrată: 93, din corectitudine/verificare/claritate 95/92/92.
+- Stare: VERIFIED pentru consistența declarată sursă/artefact și revizia cu domeniu delimitat.
+- Dovezi: hărțile AI/J1 separate leagă propriile grafuri de module POM, rădăcini de surse,
+  limite de responsabilitate, fragmente exacte de surse/guvernanță și dovezi de execuție.
+  Fiecare include cinci documente Markdown/HTML și o diagramă statică a modulelor.
+  AI deține cinci module de biblioteci sursă/teste; J1 are cinci module locale diferite
+  și consumă șase perechi de biblioteci binare versionate. Hărțile J1 rămân în afara arborelui său
+  întreținut docs/lib; lucrul J1 existent a fost păstrat.
+- Limita dovezii: o mapare de guvernanță asociată nu reprezintă acoperirea completă a fiecărei
+  clauze. Declarațiile nemapate sunt explicite. Compararea surselor înregistrează
+  schimbările de la execuție; nu certifică modificările ulterioare. Verificatorul validează
+  fișierele, căile, citatele, hash-urile, rezultatele XML/TAP și legăturile cu sursele declarate,
+  în timp ce completitudinea semantică necesită revizie.
 
-## Validation receipt
+<a id="validation-receipt"></a>
+## Înregistrarea validării
 
-- AI EN and RO: `modules-atlas-main-governance-02` and
-  `modules-atlas-ro-governance-02`, each 211 tests, zero failures/errors/skips,
-  from frozen source/peer editions. EN source: `17afeed7af4952d10fd12094a216ea2da5d01f1c`.
-  The earlier attempts are retained: changing peer tooling during execution
-  correctly triggered cross-edition source-parity findings. No rule was relaxed.
-- J1: `j1-atlas-governance-02`, 205 tests, zero failures/errors/skips, from the
-  captured dirty source based on `4e3cac10061c95ea2b9b32cc18a6d4add1007a1e`.
-  Its earlier attempt retained one Git-discovery isolation failure because TMP
-  was inside the cloned repository; the corrected run placed TMP outside Git.
-  Later local J1 edits are recorded separately from this passing snapshot.
-- Atlas maintenance: `atlas-verifier-06`, 12 tests passed. Negative controls reject
-  source/document drift, altered quotes/ranges, target confusion, escaping paths,
-  unsupported execution proof, inconsistent counters and changed executed bytes.
-  The real mixed self-closing/body-bearing Surefire layout found during collection
-  has a regression. Explicit CRLF/LF equivalence cannot normalize published lib
-  artifacts or hide a content change.
-  Individual flat TAP outcomes also reject a failed test whose summary counters
-  were both altered to claim success. The collector's existing eight checks were
-  rerun successfully as `atlas-collector-01`.
-- Static documentation review rendered ten HTML documents plus both indexes in
-  real desktop Chromium without device emulation. Diagrams loaded, pages had no
-  horizontal overflow or script errors, and evidence disclosure opened. Visual
-  inspection corrected an overlapping direct AI dependency arrow. TAB interactive
-  review was unavailable after two service timeouts; no interactive acceptance
-  is claimed. A later source snapshot requires revalidation of its own map.
-- Retained J1 component HTML is historical: its selected checks and unqualified
-  aggregate observation keep their original qualification record. Copying does
-  not establish fresh API/network or browser execution. Earlier 550-check AI
-  suites and browser qualification bundles are likewise historical in this task.
+- AI EN și RO: `modules-atlas-main-governance-02` și
+  `modules-atlas-ro-governance-02`, fiecare cu 211 teste, zero eșecuri/erori/omiteri,
+  din ediții sursă/pereche înghețate. Sursa EN: `17afeed7af4952d10fd12094a216ea2da5d01f1c`.
+  Încercările anterioare sunt păstrate: schimbarea instrumentelor ediției pereche în timpul execuției
+  a declanșat corect constatări de paritate a surselor între ediții. Nicio regulă nu a fost relaxată.
+- J1: `j1-atlas-governance-02`, 205 teste, zero eșecuri/erori/omiteri, din
+  sursa capturată cu modificări locale, bazată pe `4e3cac10061c95ea2b9b32cc18a6d4add1007a1e`.
+  Încercarea sa anterioară a păstrat un eșec de izolare a descoperirii Git deoarece TMP
+  era în interiorul depozitului clonat; rularea corectată a plasat TMP în afara Git.
+  Modificările locale J1 ulterioare sunt înregistrate separat de acest instantaneu reușit.
+- Întreținere Atlas: `atlas-verifier-06`, 12 teste trecute. Controalele negative resping
+  divergența surselor/documentelor, citatele/intervalele modificate, confuzia între ținte, căile care ies din domeniul permis,
+  dovezile de execuție nesusținute, contoarele inconsistente și octeții executați schimbați.
+  Structura Surefire reală, mixtă, cu elemente autoînchise și elemente cu corp, găsită în timpul colectării,
+  are un test de regresie. Echivalența explicită CRLF/LF nu poate normaliza artefactele lib
+  publicate și nu poate ascunde o schimbare de conținut.
+  Rezultatele TAP individuale, plate, resping și un test eșuat ale cărui contoare de rezumat
+  au fost ambele modificate pentru a pretinde succesul. Cele opt verificări existente ale colectorului au fost
+  rerulate cu succes ca `atlas-collector-01`.
+- Revizia documentației statice a randat zece documente HTML plus ambii indici în
+  Chromium desktop real, fără emulare de dispozitiv. Diagramele s-au încărcat, paginile nu aveau
+  depășire orizontală sau erori de script, iar detaliile dovezilor s-au deschis. Inspecția
+  vizuală a corectat o săgeată directă de dependență AI care se suprapunea. Revizia interactivă TAB
+  nu a fost disponibilă după două expirări ale serviciului; nu se revendică acceptanță
+  interactivă. Un instantaneu sursă ulterior necesită revalidarea propriei hărți.
+- HTML-ul de componente J1 păstrat este istoric: verificările sale selectate și observația agregată
+  necalificată își păstrează înregistrarea originală de calificare. Copierea nu
+  stabilește o execuție nouă API/rețea sau de browser. Suitele AI anterioare de 550 de verificări
+  și pachetele de calificare a browserelor sunt, de asemenea, istorice în această sarcină.
 
-Atlas remains a documentation/governance protocol. Any added checker is optional
-maintenance tooling, not a runtime analyzer or a universal semantic proof.
+Atlas rămâne un protocol de documentație/guvernanță. Orice verificator adăugat este un instrument
+opțional de întreținere, nu un analizor la execuție sau o dovadă semantică universală.

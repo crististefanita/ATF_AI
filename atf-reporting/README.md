@@ -46,11 +46,16 @@ Raportarea obișnuită nu depinde de dovezi istorice sau de fișiere de calibrar
 
 Dintr-o copie izolată a reactorului:
 
+<details>
+<summary>Rulează comenzile: Verificare</summary>
+
 ```powershell
 mvn -B -ntp -pl atf-reporting -am test
 mvn -B -ntp -pl atf-tests -am "-Datf.test.suite=src/test/resources/suites/framework-reporting.xml" test
 mvn -B -ntp -Paggregate test
 ```
+
+</details>
 
 Verificările native protejează integrarea modulului; regresiile între module protejează
 ciclul de viață și prezentarea. [Testare](../docs/Testing.md) definește și verificările

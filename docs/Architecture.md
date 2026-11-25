@@ -1,116 +1,135 @@
-# Framework architecture
+<a id="framework-architecture"></a>
+# Arhitectura framework-ului
 
-## Module ownership
+<a id="module-ownership"></a>
+## Responsabilitățile modulelor
 
-The [parent POM](../pom.xml) coordinates five modules with one version.
-Core owns reusable contracts and lifecycle. Each browser implementation and the
-reporting implementation depends on Core. The test module consumes all four
-libraries with test scope.
+[POM-ul părinte](../pom.xml) coordonează cinci module cu aceeași versiune.
+Core gestionează contractele reutilizabile și ciclul de viață. Fiecare implementare
+de browser și implementarea raportării depind de Core. Modulul de teste consumă
+cele patru biblioteci ca dependențe destinate testelor.
 
 ```mermaid
 flowchart LR
-    PW["atf-playwright"] -->|depends on| Core["atf-core"]
-    SE["atf-selenium"] -->|depends on| Core
-    Reports["atf-reporting"] -->|depends on| Core
-    Tests["atf-tests"] -. verifies .-> Core
-    Tests -. verifies .-> PW
-    Tests -. verifies .-> SE
-    Tests -. verifies .-> Reports
+    PW["atf-playwright"] -->|depinde de| Core["atf-core"]
+    SE["atf-selenium"] -->|depinde de| Core
+    Reports["atf-reporting"] -->|depinde de| Core
+    Tests["atf-tests"] -. verifică .-> Core
+    Tests -. verifică .-> PW
+    Tests -. verifică .-> SE
+    Tests -. verifică .-> Reports
 ```
 
-Solid arrows show library dependencies; dotted arrows show verification use.
-There is no dependency from Core to a browser or report implementation.
+Săgețile continue arată dependențele bibliotecilor; cele punctate arată utilizarea
+pentru verificare. Core nu depinde de o implementare de browser sau de raportare.
 
-| Module | Source ownership |
+| Modul | Responsabilitatea surselor |
 |---|---|
-| [atf-core](../atf-core/README.md) | com.ai.core.support, neutral com.ai.core.reporting, com.ai.api.core, neutral com.ai.ui.core and UIActions |
+| [atf-core](../atf-core/README.md) | com.ai.core.support, com.ai.core.reporting neutru, com.ai.api.core, com.ai.ui.core neutru și UIActions |
 | [atf-playwright](../atf-playwright/README.md) | com.ai.ui.core.engine.playwright |
 | [atf-selenium](../atf-selenium/README.md) | com.ai.ui.core.engine.selenium |
-| [atf-reporting](../atf-reporting/README.md) | Reporting providers, adapters, listeners, attachment publication, runtime audit and aggregate writers |
-| [atf-tests](../atf-tests/README.md) | com.ai.atf tests and product-specific com.ai.ui.support / com.ai.api.support fixtures |
+| [atf-reporting](../atf-reporting/README.md) | Furnizori de raportare, adaptoare, ascultători, publicarea atașamentelor, audit de execuție și generatoare agregate |
+| [atf-tests](../atf-tests/README.md) | Testele com.ai.atf și fixture-urile specifice produsului com.ai.ui.support / com.ai.api.support |
 
-Packages retain their Java names across modules. Module ownership, dependency
-declarations and imports together define the boundary.
+Pachetele își păstrează numele Java între module. Responsabilitățile modulelor,
+declarațiile dependențelor și importurile definesc împreună limitele.
 
-## Provider composition
+<a id="provider-composition"></a>
+## Compoziția furnizorilor
 
 [UIEngine](../atf-core/src/main/java/com/ai/ui/core/engine/UIEngine.java)
-is the browser-neutral API. [UiEngineProvider](../atf-core/src/main/java/com/ai/ui/core/engine/UiEngineProvider.java)
-is discovered with Java ServiceLoader. The configured `ui.engine` selects an
-available provider; an adapter JAR supplies its implementation and service
-registration. Browser SDK types stay inside the owning adapter module.
+este API-ul independent de browser. [UiEngineProvider](../atf-core/src/main/java/com/ai/ui/core/engine/UiEngineProvider.java)
+este descoperit prin Java ServiceLoader. Setarea `ui.engine` selectează un furnizor
+disponibil; JAR-ul adaptorului oferă implementarea și înregistrarea serviciului.
+Tipurile SDK-ului de browser rămân în modulul adaptorului responsabil.
 
-Core also owns ReportLogger, TestStatus, StepLogger and the
-[ReportingBackend SPI](../atf-core/src/main/java/com/ai/core/reporting/spi/ReportingBackend.java).
-The reporting module supplies
+Core gestionează și ReportLogger, TestStatus, StepLogger și
+[SPI-ul ReportingBackend](../atf-core/src/main/java/com/ai/core/reporting/spi/ReportingBackend.java).
+Modulul de raportare oferă
 [DefaultReportingBackend](../atf-reporting/src/main/java/com/ai/core/reporting/DefaultReportingBackend.java)
-through ServiceLoader. Core's compatibility
+prin ServiceLoader. Fațada de compatibilitate
 [TestListener](../atf-core/src/main/java/com/ai/core/reporting/listener/TestListener.java)
-forwards TestNG events to the backend's concrete
-[ReportingTestListener](../atf-reporting/src/main/java/com/ai/core/reporting/listener/ReportingTestListener.java).
-Native Allure service integration belongs to atf-reporting; Core base classes
-do not declare a vendor reporting listener.
+din Core transmite evenimentele TestNG către
+[ReportingTestListener](../atf-reporting/src/main/java/com/ai/core/reporting/listener/ReportingTestListener.java)
+concret al implementării. Integrarea serviciului Allure nativ aparține atf-reporting;
+clasele de bază Core nu declară un ascultător de raportare al unui furnizor.
 
 ```mermaid
 sequenceDiagram
-    participant Test as Test and product fixture
-    participant Core as Core lifecycle and steps
-    participant Registry as UI provider registry
-    participant Adapter as Selected browser provider
-    participant Browser as Browser and application
-    participant Listener as Reporting TestNG listener
-    participant Reports as Reporting backend
-    Test->>Core: Start test and request UI session
-    Core->>Registry: Resolve configured engine
-    Registry->>Adapter: Create neutral engine
-    Adapter->>Browser: Open session
-    Test->>Core: Execute UI or API steps
-    Core->>Adapter: Delegate UI action
-    Adapter->>Browser: Act and read evidence
-    Browser-->>Test: Observed state
-    Core->>Reports: Publish steps through reporting SPI
-    Listener->>Reports: Publish lifecycle outcome and attachments
-    Core->>Adapter: Close UI session
-    Listener->>Reports: Finish and flush execution
+    %%{init: {"sequence":{"width":80,"actorMargin":16,"messageMargin":22,"diagramMarginX":8,"diagramMarginY":8,"wrap":true,"mirrorActors":false}}}%%
+    participant Test as Test
+    participant Core as Core
+    participant Registry as Registru UI
+    participant Adapter as Furnizor UI
+    participant Browser as Browser
+    participant Listener as Ascultător
+    participant Reports as Rapoarte
+    Test->>Core: Pornește testul și solicită sesiunea UI
+    Core->>Registry: Rezolvă motorul configurat
+    Registry->>Adapter: Creează motorul neutru
+    Adapter->>Browser: Deschide sesiunea
+    Test->>Core: Execută pași UI sau API
+    Core->>Adapter: Deleagă acțiunea UI
+    Adapter->>Browser: Acționează și citește dovezile
+    Browser-->>Test: Stare observată
+    Core->>Reports: Publică pașii prin SPI-ul de raportare
+    Listener->>Reports: Publică rezultatul ciclului de viață și atașamentele
+    Core->>Adapter: Închide sesiunea UI
+    Listener->>Reports: Finalizează și scrie complet execuția
 ```
 
-The sequence shows responsibility boundaries, not every TestNG callback.
-The reporting listener and backend are supplied by atf-reporting. API-only
-execution uses the Core API runtime without a browser session.
+Săgețile continue arată apeluri sau publicări direcționate; cea punctată întoarce
+o stare observată. Secvența arată limitele responsabilităților, fără să enumere fiecare apel TestNG.
 
-## Configuration and resources
+| ID actor | Responsabilitate reală |
+|---|---|
+| `Test` | Testul consumatorului și fixture-ul de produs |
+| `Core` | Ciclul de viață și pașii Core |
+| `Registry` | UiEngineRegistry rezolvă UiEngineProvider configurat |
+| `Adapter` | Furnizorul UIEngine instalat selectat și adaptorul său de browser |
+| `Browser` | Sesiunea de browser și aplicația țintă |
+| `Listener` | ReportingTestListener oferit de atf-reporting |
+| `Reports` | ReportingBackend oferit de atf-reporting |
+
+Ascultătorul și implementarea raportării sunt oferite de atf-reporting. Execuția
+exclusiv API folosește infrastructura API Core fără o sesiune de browser.
+
+<a id="configuration-and-resources"></a>
+## Configurație și resurse
 
 [ConfigManager](../atf-core/src/main/java/com/ai/core/support/config/ConfigManager.java)
-loads the Core classpath defaults or an explicitly selected file. JVM properties
-override individual settings. Consumers should resolve packaged resources from
-the classpath; source locations are for development governance.
+încarcă valorile implicite Core din classpath sau un fișier selectat explicit.
+Proprietățile JVM suprascriu setări individuale. Consumatorii trebuie să rezolve
+resursele împachetate din classpath; locațiile surselor servesc guvernanței dezvoltării.
 
-Production sources belong to each library's src/main tree. Product fixtures,
-test resources and suite XML belong to atf-tests/src/test. Source-reading
-governance resolves the reactor root and owning module rather than assuming
-that the process working directory contains a single src tree.
+Sursele de producție aparțin arborelui src/main al fiecărei biblioteci. Fixture-urile
+de produs, resursele de test și XML-urile suitelor aparțin atf-tests/src/test.
+Guvernanța care citește surse rezolvă rădăcina reactorului și modulul responsabil,
+fără să presupună că directorul curent al procesului conține un singur arbore src.
 
-## Observable product evidence
+<a id="observable-product-evidence"></a>
+## Dovezi observabile ale produsului
 
-[Invoice evidence checks](../atf-tests/src/test/java/com/ai/atf/ui/component/InvoiceEvidenceContractTest.java)
-protect the exact customer row observed in the invoice list. Opening details
-with a creation-response ID still requires observing that matching row.
-Admin status evidence records the persisted selection after reopening the edit
-page and the matching order row. A persisted value and its visible label remain
-separate observations.
+[Verificările dovezilor de factură](../atf-tests/src/test/java/com/ai/atf/ui/component/InvoiceEvidenceContractTest.java)
+protejează rândul exact al clientului observat în lista facturilor. Deschiderea
+detaliilor cu un ID din răspunsul de creare necesită în continuare observarea
+rândului corespunzător. Dovada stării admin consemnează selecția persistată după
+redeschiderea paginii de editare și rândul comenzii corespunzătoare. Valoarea
+persistată și eticheta sa vizibilă rămân observații separate.
 
-[Registration submission checks](../atf-tests/src/test/java/com/ai/atf/ui/component/RegistrationSubmissionContractTest.java)
-protect one submission of one identity. Callers validate the observed result;
-a form error does not trigger an implicit replacement customer.
+[Verificările trimiterii înregistrării](../atf-tests/src/test/java/com/ai/atf/ui/component/RegistrationSubmissionContractTest.java)
+protejează o singură trimitere a unei singure identități. Apelanții validează
+rezultatul observat; o eroare de formular nu declanșează implicit un client înlocuitor.
 
-## Reporting and evidence
+<a id="reporting-and-evidence"></a>
+## Raportare și dovezi
 
-[atf-reporting](../atf-reporting/README.md) translates neutral report operations
-into Extent and Allure. Runtime registries connect screenshots and final-state
-attachments to the correct test. Aggregate writers preserve executed outcomes,
-counts, timing and runtime evidence with a caller-owned descriptor.
+[atf-reporting](../atf-reporting/README.md) transformă operațiile neutre de raportare
+în Extent și Allure. Registrele de execuție leagă capturile și atașamentele stării
+finale de testul corect. Generatoarele agregate păstrează rezultatele executate,
+numărătorile, temporizarea și dovezile de execuție cu un descriptor gestionat de apelant.
 
-Ordinary execution requires no historical report or calibration file.
-[Testing](Testing.md) distinguishes native results, application acceptance and
-artifact inspection. [Feedback](feedback/README.md) records incomplete checks
-and evidence-backed corrections.
+Execuția obișnuită nu necesită rapoarte istorice sau fișiere de calibrare.
+[Testare](Testing.md) distinge rezultatele native, acceptanța aplicației și inspecția
+artefactelor. [Feedback-ul](feedback/README.md) consemnează verificările incomplete
+și corecțiile susținute de dovezi.
