@@ -453,7 +453,7 @@ sequenceDiagram
     Listener->>Capture: request failure or final-state evidence
     Capture->>Driver: capture only with active engine and logger
     TestNG->>Base: after class, always run
-    Base->>Driver: quit engine and clear interaction state
+    Base->>Driver: attempt engine quit, then clear interaction state
 ```
 
 BaseTestUI initializes/quits the engine once per class with always-run teardown.
@@ -461,6 +461,14 @@ It does not orchestrate report sessions. Failure/final-state registries invoke
 the UI attachment handler. ScreenshotManager attaches at most once per invocation
 after a successful capture/attachment; without an active engine/logger it does
 not manufacture evidence.
+
+The final diagram arrow describes the teardown call order. DriverManager removes
+its engine reference in finally if engine quit throws; BaseTestUI's later
+interaction-tracker clear can then be bypassed. The source-supported
+[F-011 cleanup gap](feedback/Behavior_And_Negative_Cases.md#f-011)
+remains open; always-run scheduling does not prove that every cleanup operation
+completes. This framework-state limit is separate from LD-11's application-data
+cleanup obligation.
 
 Failure capture is configuration-dependent. Eligible success can also capture
 the final UI state when screenshots are enabled, failure-only mode is disabled

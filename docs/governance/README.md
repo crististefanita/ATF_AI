@@ -54,3 +54,36 @@ rămase și dovezile de închidere la limitele declarate.
 O politică scrisă nu este dovada unei verificări automate. Menține identificabile
 criteriile de revizuire manuală; înregistrează verificarea lipsă ca lacună, fără a afirma
 că o suită verde demonstrează întreaga politică.
+
+<a id="best-practices-for-a-documentation-review"></a>
+## Bune practici pentru revizuirea documentației
+
+| Nivelul revizuirii | Întrebare concretă | Dovezi pentru finalizare |
+|---|---|---|
+| Faptele din surse | Există această opțiune, valoare implicită, comandă sau dependență la sursa de referință indicată? | Inspecția POM-ului, resurselor și API-ului și verificarea faptelor definită de responsabil |
+| Structura documentului | Poate cititorul urmări un singur titlu, o ierarhie logică, exemple cu limbaj declarat și secțiuni pliabile echilibrate? | Verificarea existentă a documentației, cu controale care eșuează intenționat |
+| Traducerea | Păstrează fiecare paragraf românesc condițiile, negațiile, literalii tehnici și limitele dovezilor? | Revizuirea umană integrală a perechilor și verificarea faptelor protejate, legăturilor, exemplelor și topologiei |
+| Diagramele | Ce înseamnă săgețile și corespunde redarea lor vizibilă surselor? | Legendă alăturată, comparație cu sursele/POM-ul și inspecția fiecărei redări modificate |
+| Închiderea | Ce observație exactă s-a schimbat și ce rămâne necunoscut? | Commit-urile surselor, rezultatele selecțiilor efectiv executate și feedback cu limite explicite |
+
+```mermaid
+flowchart TB
+    Claim["Afirmație documentată"] --> Guard["Verificări automate ale surselor și structurii"]
+    Claim --> Review["Revizuirea umană a sensului și responsabilității"]
+    Review --> Render["Inspecția redării diagramelor modificate"]
+    Guard --> Evidence["Dovezi reale cu limite explicite"]
+    Render --> Evidence
+    Evidence --> Closure["Ghid responsabil și feedback"]
+```
+
+Săgețile disting verificările automate de revizuirea semantică și vizuală. Ambele
+trasee contribuie cu dovezi; niciunul nu certifică singur o traducere sau întregul
+comportament de execuție. Urmează [procedura de revizuire](Code_And_Documentation_Policy.md#apply-the-documentation-review-in-practice)
+și [contractul edițiilor](Readme_Editions.md) înainte de sincronizare.
+
+Verificările de stil susținute se aplică tuturor documentelor Markdown menținute.
+Regulile specifice README-urilor gestionează în continuare prezentarea modulelor
+și exemplele pentru consumatori. Codul literal rămâne în engleză în ambele ediții,
+iar observațiile istorice își păstrează sursa și selecția capturate.
+[Ghidul eșecurilor](Failure_Diagnostics.md) explică locația emisă, regula,
+indicația de remediere, responsabilul și comanda de reverificare.

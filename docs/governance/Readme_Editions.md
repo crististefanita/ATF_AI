@@ -13,6 +13,7 @@ difference. This is a documentation edition, not a second framework variant.
 | README prose, headings, tables and diagram labels | English | Romanian, with the same meaning and hierarchy |
 | README paths, link destinations and incoming English anchors | Canonical | Preserved; translated headings add English anchor aliases |
 | Executable code, commands, coordinates, identifiers and comments | English canonical examples | Unchanged examples |
+| Inline code and numeric facts in corresponding table rows | Canonical technical literals and quantities | Same values, order and row association |
 | Mermaid topology and rendering directives | Canonical | Same nodes, edges and geometry; explanatory labels translated |
 | Other documentation, including the living Markdown/HTML pair | English | Same English source |
 | docs/governance/readme-edition.properties | language=en | language=ro |
@@ -82,3 +83,16 @@ The comparison normalizes CRLF/LF for maintained text and permits README prose
 translation, diagram labels and English anchor aliases. It rejects missing or
 extra files, changed examples or commands, changed link destinations, missing
 incoming anchors, changed diagram topology and other source/configuration drift.
+
+The protected-facts comparison also preserves inline code, including multiline
+code spans and embedded backticks, and numeric table facts at their row positions.
+Equivalent code-span delimiters and ordinary prose reflow remain valid. A failure
+names the first differing protected-item ordinal and the two inventories, rather
+than printing complete source or payload values into diagnostics.
+
+Human semantic review is required for every README pair. Check each paragraph,
+table row, diagram legend and disclosure: negations, prerequisites, independent
+assertion witnesses, optional retrieval receipts, source commits and scoped
+execution limits must keep the same meaning. Translate readable prose rather
+than abbreviating it to match only the heading structure. Technical token
+equality cannot detect an inverted sentence or an omitted semantic qualifier.

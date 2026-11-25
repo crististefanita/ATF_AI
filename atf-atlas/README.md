@@ -90,12 +90,12 @@ responsabilului care verifică sursele; nu demonstrează execuție sau înțeleg
 <a id="review-breadth-and-quality-axes"></a>
 ## Aria revizuirii și axele de calitate
 
-Capturile noi declară aria revizuirii PROJECT sau SELECTED, unitățile reale cu
-responsabilitate și șapte perspective de lectură susținute de dovezi: scop,
+Capturile noi declară aria revizuirii PROJECT sau SELECTED, unitățile reale de
+analiză cu responsabilitate asupra surselor și șapte perspective de lectură susținute de dovezi: scop,
 structură, comportament, date, configurație, eșec și verificare. REVIEWED,
 PARTIAL, UNKNOWN și NOT_APPLICABLE fac vizibilă lectura rămasă. Un fișier capturat
-pentru identitate nu este automat revizuit. Arhitectura declarată, unitățile
-responsabile și fluxurile existente se referă reciproc.
+pentru identitate nu este automat revizuit. Arhitectura declarată, componentele
+responsabile ale unităților și fluxurile existente se referă reciproc.
 
 ```mermaid
 flowchart TB
@@ -118,7 +118,7 @@ Atlas au grupuri și axe ponderate separate. Criteriile și câmpurile verificab
 aparțin [contractului raportului](Report_Contract.md); observațiile curente și
 dovezile de închidere aparțin
 [feedback-ului despre profunzime](../docs/feedback/Atlas_Depth_And_Assessment.md).
-Nici o verificare automată, nici un inventar al surselor nu stabilesc înțelegerea
+Nicio verificare automată și niciun inventar al surselor nu stabilesc înțelegerea
 semantică completă sau o notă automată de calitate.
 
 <a id="behavior-cases-and-negative-scope"></a>

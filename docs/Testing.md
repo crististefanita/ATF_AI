@@ -206,6 +206,7 @@ unavailable service or unexecuted journey does not establish application
 acceptance. The active acceptance gaps remain in
 [feedback](feedback/README.md).
 
+<a id="existing-product-e2e-audit"></a>
 ## Retained product UI audit
 
 The existing registration, authenticated-account and profile checks use the
@@ -247,6 +248,23 @@ establish a test execution, application-data cleanup or exhaustive coverage.
 ```powershell
 node --test tools/verify-ui-e2e-audit.test.mjs tools/collect-artifacts.test.mjs
 ```
+
+The command above executes the maintenance controls. To recheck one already
+published native reader without launching browsers or changing its evidence,
+select its existing four-file engine directory from the reactor root:
+
+```powershell
+$engine = 'playwright'
+$auditRoot = Join-Path (Get-Location).Path "artifacts/reports/current/e2e/$engine"
+node tools/verify-ui-e2e-audit.mjs --source "$auditRoot/source.json" --xml "$auditRoot/native.xml" --html "$auditRoot/ExtentReport.html" --capture "$auditRoot/audit.json"
+```
+
+Choose selenium for the other published engine. These files are publication
+prerequisites and are absent in a source-only checkout. audit.json is the
+preserved native DOM capture, not the consistency result printed by this command.
+The checker reads the original files and writes its verdict to standard output;
+preserve a new receipt outside source when recording that recheck. A PASSED
+consistency result retains the original native PASS, FAIL and SKIP outcomes.
 
 ## Explicit configuration
 

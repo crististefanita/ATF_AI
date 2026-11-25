@@ -276,3 +276,60 @@ test('CLI reads space-containing input paths without changing the original evide
   const invalid=spawnSync(process.execPath,[fileURLToPath(new URL('./verify-ui-e2e-audit.mjs',import.meta.url)),'--output',path.join(directory,'not-created.json')],{encoding:'utf8',windowsHide:true,timeout:30000});
   assert.equal(invalid.status,1);assert.match(invalid.stderr,/Repair hint:/);assert.equal(fs.existsSync(path.join(directory,'not-created.json')),false);
 });
+
+test('actual audit failures resolve to a live owner and a runnable four-input recheck',t=>{
+  const root=path.resolve(fileURLToPath(new URL('../',import.meta.url)));
+  const script=fileURLToPath(new URL('./verify-ui-e2e-audit.mjs',import.meta.url));
+  const failed=spawnSync(process.execPath,[script],{encoding:'utf8',windowsHide:true,timeout:30000});
+  assert.equal(failed.status,1,failed.stderr);assert.match(failed.stderr,/^UI-E2E-AUDIT E2E-SOURCE\r?\n/);
+  const owners=[...failed.stderr.matchAll(/^Owner: (.+)$/gm)],rechecks=[...failed.stderr.matchAll(/^Recheck: (.+)$/gm)];
+  assert.equal(owners.length,1,'An emitted failure needs one canonical owner.');
+  assert.equal(rechecks.length,1,'An emitted failure needs one executable recheck.');
+  const owner=owners[0][1].trim(),parts=owner.split('#');
+  assert.equal(parts.length,2,'The owner must include its documentation fragment.');
+  const [relative,encodedFragment]=parts,fragment=decodeURIComponent(encodedFragment),file=path.resolve(root,relative);
+  assert.ok(!path.isAbsolute(relative)&&file.startsWith(root+path.sep)&&relative.endsWith('.md'));
+  assert.ok(fs.statSync(file).isFile(),'The emitted owner must name an existing document.');
+  const assertOwnerFragment=markdown=>{
+    const visible=[];let fence=null;
+    for(const line of markdown.split(/\r?\n/)){
+      const marker=/^ {0,3}(`{3,}|~{3,})(.*)$/.exec(line);
+      if(fence){
+        if(marker&&marker[1][0]===fence[0]&&marker[1].length>=fence.length&&!marker[2].trim())fence=null;
+      }else if(marker)fence=marker[1];
+      else visible.push(line);
+    }
+    const prose=visible.join('\n'),anchors=new Set();
+    for(const match of prose.matchAll(/^\s*<a\b[^>]*\s(?:id|name)=["']([^"']+)["'][^>]*>\s*<\/a>\s*$/gmi))anchors.add(match[1]);
+    for(const line of visible){
+      const heading=/^ {0,3}#{1,6}\s+(.+?)\s*#*\s*$/.exec(line);
+      if(heading)anchors.add(heading[1].toLowerCase().replace(/[^\p{L}\p{N}_\-\s]/gu,'').replace(/\s/g,'-'));
+    }
+    assert.ok(anchors.has(fragment),'Missing emitted owner fragment: '+owner);
+  };
+  assertOwnerFragment(fs.readFileSync(file,'utf8'));
+  assertOwnerFragment('# Component owner\n\n<a id="'+fragment+'"></a>\n');
+  assertOwnerFragment('# '+fragment.replaceAll('-',' ')+'\n');
+  for(const markdown of [
+    '# Component owner\n\nThe original anchor is missing.\n',
+    '# Component owner\n\n<a id="'+fragment+'-moved"></a>\n',
+    '# Component owner\n\n````markdown\n<a id="'+fragment+'"></a>\n```\n## '+fragment+'\n````\n',
+    '# Component owner\n\n~~~markdown\n<a id="'+fragment+'"></a>\n```\n## '+fragment+'\n~~~\n'
+  ])assert.throws(()=>assertOwnerFragment(markdown),/Missing emitted owner fragment:/);
+  const command=rechecks[0][1].trim().split(/\s+/);
+  assert.equal(command.length,10,'The recheck names Node, its tool and four input pairs.');
+  assert.equal(command[0],'node');assert.equal(path.resolve(root,command[1]),script);
+  assert.ok(fs.statSync(path.resolve(root,command[1])).isFile());
+  const flags=command.filter((_,index)=>index>=2&&index%2===0);
+  assert.deepEqual(flags.slice().sort(),['--capture','--html','--source','--xml']);
+  for(let index=3;index<command.length;index+=2)assert.match(command[index],/^<[^<>]+>$/);
+  const directory=fs.mkdtempSync(path.join(os.tmpdir(),'atf-ui-audit-guidance-'));
+  t.after(()=>{assert.ok(fs.realpathSync(directory).startsWith(fs.realpathSync(os.tmpdir())+path.sep));assert.ok(path.basename(directory).startsWith('atf-ui-audit-guidance-'));fs.rmSync(directory,{recursive:true});});
+  const value=fixture(),inputs={'--source':value.sourceManifestText,'--xml':value.surefireXml,'--html':value.extentHtml,'--capture':JSON.stringify(value.capture)};
+  const args=[path.resolve(root,command[1])];
+  for(const flag of flags){const input=path.join(directory,flag.slice(2)+' native.txt');fs.writeFileSync(input,inputs[flag]);args.push(flag,input);}
+  const checked=spawnSync(process.execPath,args,{cwd:root,encoding:'utf8',windowsHide:true,timeout:30000});
+  assert.equal(checked.status,0,checked.stderr);
+  const result=JSON.parse(checked.stdout);assert.equal(result.status,'PASSED');
+  assert.deepEqual(result.productTotals,{total:16,passed:16,failed:0,skipped:0});
+});

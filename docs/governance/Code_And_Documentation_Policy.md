@@ -174,10 +174,46 @@ Use semantic Markdown headings, minimal tables, typed code fences and concise
 labels. Place secondary detail in its owner guide or a named `<details>` block.
 Keep renderer styling out of Markdown rather than embedding local fonts or CSS.
 
-The existing documentation governance rejects presentation markup in README
-prose, unbalanced details/summary blocks and diagrams without an adjacent
-explanation. Code fences remain literal examples. Human review verifies that
-the explanation accurately describes arrows, responsibilities and omissions.
+Requirement DOC-REVIEW-001: every maintained Markdown document MUST have one H1,
+begin its heading hierarchy at H1 and descend by at most one level at a time.
+Returning to an earlier level is valid. Every opening code fence declares its
+language or `text` for literal output; `java compile` and `properties defaults`
+retain their executable meanings. Fenced examples may illustrate invalid
+Markdown without becoming document structure.
+
+The existing documentation governance applies disclosure balance, presentation
+markup and bounded editorial-artifact checks to all maintained Markdown, not
+only READMEs. Unresolved tokens such as `@@CODE_0@@`, `ZXQ005ZQ` and tokenizer
+word-boundary debris belong to repaired drafting input, not visible prose or
+diagram labels. Literal examples remain data. These finite patterns complement
+human editing; they cannot certify every spelling, language or semantic issue.
+
+Every diagram has an adjacent explanation of arrows, responsibilities and
+omissions. Human review compares that explanation with code/POM ownership and
+actual rendering. Preserve a correct, approved diagram rather than changing
+its geometry merely to satisfy a preferred visual style.
+
+### Apply the documentation review in practice
+
+| Changed claim | Inspect its real source | Required review and evidence |
+|---|---|---|
+| A browser or reporting option | Typed option owner and `framework.properties` | Separate source defaults from caller overrides; recheck the documented command |
+| A dependency arrow | Owning POMs and public boundary | Explain whether the arrow means dependency, invocation or evidence; render the changed graph |
+| A failed validation | Existing assertion and original XML/HTML | Preserve expected/actual, actual outcome, owner and repair hint; a hint is not the observed cause |
+| A translated README | Canonical English paragraph, table, code and diagram | Preserve technical literals and quantities; review negations, conditions, scope and proof limits in Romanian |
+| A historical success or score | Original source checkpoint and receipt | Retain its date and selection; link current usage to its canonical owner |
+
+Use the actual `ui.engine` option as an example: its name remains identical in
+both README editions, while its explanatory sentence is translated. A changed
+default must be reconciled with the typed/source owner; a JVM override does not
+prove that the packaged default changed. An `EXECUTED` Atlas oracle must cite
+its actual source fragments and executed subjects; a matching label is not an
+independent assertion witness.
+
+Review from the source outward: claim, implementation/POM, owner guide, protected
+counterexample, actual verification, then feedback closure. Run the smallest
+relevant owned selection first. Preserve a failed fixture, fix the identified
+defect and recheck; do not loosen a rule simply to obtain a green report.
 
 ### Portable paths and executable facts
 

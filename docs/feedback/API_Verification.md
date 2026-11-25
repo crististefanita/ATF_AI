@@ -48,8 +48,11 @@ the two external write journeys have no fresh execution result here.
 
 ## External evidence and unsuccessful launch
 
-All locators below use the caller-selected ATF_WORK_ROOT. The source checkout
-and live checkout contain no generated run artifacts.
+All locators below use the caller-selected ATF_WORK_ROOT. At this recorded
+2026-11-24 checkpoint, the source and live checkouts contained no generated run
+artifacts. Later selected local publication follows the
+[current selection and history contract](../../artifacts/reports/README.md#current-selection-and-history);
+it does not execute or alter this original API receipt.
 
 - Accepted copy: `${ATF_WORK_ROOT}/validation/portable workspace/modules-api-focused-02`.
 - Accepted log: `${ATF_WORK_ROOT}/runs/modules-api-focused-02.log`.

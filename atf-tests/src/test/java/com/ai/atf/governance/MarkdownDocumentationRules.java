@@ -31,6 +31,8 @@ final class MarkdownDocumentationRules {
     private static final Pattern REFERENCE_DEFINITION = Pattern.compile("^ {0,3}\\[([^]\\r\\n]+)]:\\s*(?:<([^>]+)>|(\\S+))(?:\\s+.*)?$");
     private static final Pattern REFERENCE = Pattern.compile("!?\\[([^]\\r\\n]+)](?:\\[([^]\\r\\n]*)])?");
     private static final Pattern HEADING = Pattern.compile("^ {0,3}#{1,6}\\s+(.+?)\\s*#*\\s*$");
+    private static final Pattern EDITORIAL_ARTIFACT = Pattern.compile("@@CODE_\\d+@@|ZXQ\\d+ZQ|\\u2581");
+    private static final Pattern TABLE_NUMBER = Pattern.compile("(?<![\\p{L}\\p{N}_])\\d+(?:[.,/-]\\d+)*(?:%)?");
     private static final Pattern EXPLICIT_ANCHOR = Pattern.compile("<(?:a|h[1-6])\\b[^>]*(?:id|name)=[\"']([^\"']+)[\"']", Pattern.CASE_INSENSITIVE);
     // A deterministic guard for known Romanian remnants, not a general language detector.
     private static final Pattern ROMANIAN_PROSE = Pattern.compile(
@@ -99,11 +101,8 @@ final class MarkdownDocumentationRules {
                     violations.add(location(root, file, index) + "DOC-LANGUAGE known Romanian prose marker; maintain English documentation");
                 }
             }
-            if (file.getFileName().toString().equals("README.md")) {
-                validateReadmeStyle(root, file, proseLines, violations);
-                long titles = visible.stream().filter(line -> line.matches("^#\\s+.*")).count();
-                if (titles != 1) violations.add(GovernanceFiles.relative(root, file) + ":1 DOC-TITLE expected one H1, found " + titles);
-            }
+            validateReadmeStyle(root, file, proseLines, violations);
+            validateMarkdownHeadings(root, file, proseLines, violations);
             String relative = GovernanceFiles.relative(root, file);
             if (EXAMPLE_READMES.contains(relative)) {
                 if (compilationExamples(lines).stream().noneMatch(example -> !example.isBlank())) {
@@ -177,6 +176,9 @@ final class MarkdownDocumentationRules {
         java.util.Deque<Boolean> details = new java.util.ArrayDeque<>();
         for (int index = 0; index < lines.size(); index++) {
             String line = lines.get(index);
+            if (EDITORIAL_ARTIFACT.matcher(line).find()) {
+                violations.add(location(root, file, index) + "DOC-EDITORIAL remove unresolved translation or drafting markers from visible prose");
+            }
             if (Pattern.compile("(?i)<(?:font|center|script|style)\\b|\\bstyle\\s*=").matcher(line).find()) {
                 violations.add(location(root, file, index) + "DOC-README-STYLE use semantic Markdown rather than presentation markup");
             }
@@ -196,6 +198,23 @@ final class MarkdownDocumentationRules {
             }
         }
         if (!details.isEmpty()) violations.add(GovernanceFiles.relative(root, file) + ":1 DOC-README-DETAILS close every details block");
+    }
+
+    private static void validateMarkdownHeadings(Path root, Path file, List<String> lines, List<String> violations) {
+        int titles = 0, previous = 0;
+        for (int index = 0; index < lines.size(); index++) {
+            String line = lines.get(index);
+            if (!HEADING.matcher(line).matches()) continue;
+            String heading = line.stripLeading();
+            int level = 0;
+            while (level < heading.length() && heading.charAt(level) == '#') level++;
+            if (level == 1) titles++;
+            if ((previous == 0 && level != 1) || level > previous + 1) {
+                violations.add(location(root, file, index) + "DOC-HEADING begin with H1 and descend one heading level at a time");
+            }
+            previous = level;
+        }
+        if (titles != 1) violations.add(GovernanceFiles.relative(root, file) + ":1 DOC-TITLE expected one H1, found " + titles);
     }
 
     /** Compare materialized editions without Git, browser execution or runtime changes. */
@@ -221,6 +240,14 @@ final class MarkdownDocumentationRules {
                 List<String> enLines = Files.readAllLines(en), roLines = Files.readAllLines(ro);
                 if (!readmeContract(enLines).equals(readmeContract(roLines))) {
                     violations.add(relative + ": DOC-EDITION-PARITY preserve structure, commands, links and diagram topology");
+                }
+                List<String> enFacts = readmeProtectedFacts(enLines), roFacts = readmeProtectedFacts(roLines);
+                if (!enFacts.equals(roFacts)) {
+                    int mismatch = 0;
+                    while (mismatch < Math.min(enFacts.size(), roFacts.size())
+                            && enFacts.get(mismatch).equals(roFacts.get(mismatch))) mismatch++;
+                    violations.add(relative + ": DOC-EDITION-FACTS preserve inline code and numeric table facts; first differing protected item="
+                            + (mismatch + 1) + "; English items=" + enFacts.size() + "; Romanian items=" + roFacts.size());
                 }
                 if (!anchors(roLines).containsAll(anchors(enLines))) {
                     violations.add(relative + ": DOC-EDITION-ANCHOR retain English heading anchors as compatibility aliases");
@@ -279,6 +306,36 @@ final class MarkdownDocumentationRules {
             }
         }
         return result;
+    }
+
+    /** Translation changes prose, not technical code spans or quantities in corresponding table rows. */
+    private static List<String> readmeProtectedFacts(List<String> lines) {
+        List<String> visible = new ArrayList<>();
+        String fence = null;
+        for (String line : lines) {
+            Matcher marker = FENCE.matcher(line);
+            if (fence == null && marker.matches()) { fence = marker.group(1); visible.add(""); }
+            else if (fence != null && marker.matches() && marker.group(1).charAt(0) == fence.charAt(0)
+                    && marker.group(1).length() >= fence.length() && marker.group(2).isBlank()) { fence = null; visible.add(""); }
+            else visible.add(fence == null ? line : "");
+        }
+        String source = String.join("\n", visible);
+        List<String> facts = new ArrayList<>();
+        for (int[] span : inlineCodeRanges(source)) {
+            String payload = source.substring(span[1], span[2]).replace('\n', ' ');
+            if (payload.startsWith(" ") && payload.endsWith(" ") && !payload.isBlank()) {
+                payload = payload.substring(1, payload.length() - 1);
+            }
+            facts.add("inline:" + payload);
+        }
+        int row = 0;
+        for (String line : withoutInlineCode(visible)) {
+            if (!line.stripLeading().startsWith("|")) continue;
+            row++;
+            Matcher number = TABLE_NUMBER.matcher(line);
+            while (number.find()) facts.add("table-row:" + row + ":number:" + number.group());
+        }
+        return facts;
     }
 
     /** Compile declared consumer examples once, separately from ordinary link/factual fixtures. */
@@ -1034,6 +1091,8 @@ final class MarkdownDocumentationRules {
                 fence = candidate.group(1);
                 language = candidate.group(2).strip();
                 opening = index;
+                if (language.isBlank()) violations.add(location(root, file, index)
+                        + "DOC-FENCE-LANGUAGE declare a language or text for a literal output block");
                 diagram.clear();
                 visible.add("");
             } else if (fence != null && candidate.matches()
@@ -1056,6 +1115,9 @@ final class MarkdownDocumentationRules {
                     // Link validation still ignores all fenced examples.
                     if (english && ROMANIAN_PROSE.matcher(line).find()) {
                         violations.add(location(root, file, index) + "DOC-LANGUAGE known Romanian marker in diagram labels");
+                    }
+                    if (!line.stripLeading().startsWith("%%") && EDITORIAL_ARTIFACT.matcher(line).find()) {
+                        violations.add(location(root, file, index) + "DOC-EDITORIAL remove unresolved translation or drafting markers from diagram labels");
                     }
                 }
                 visible.add("");
@@ -1143,26 +1205,34 @@ final class MarkdownDocumentationRules {
     private static List<String> withoutInlineCode(List<String> lines) {
         String source = String.join("\n", lines);
         StringBuilder visible = new StringBuilder(source);
+        for (int[] span : inlineCodeRanges(source)) {
+            for (int index = span[0]; index < span[3]; index++) {
+                if (source.charAt(index) != '\n') visible.setCharAt(index, ' ');
+            }
+        }
+        return List.of(visible.toString().split("\n", -1));
+    }
+
+    private static List<int[]> inlineCodeRanges(String source) {
+        List<int[]> spans = new ArrayList<>();
         for (int cursor = 0; cursor < source.length();) {
             if (source.charAt(cursor) != '`' || escaped(source, cursor)) { cursor++; continue; }
             int opening = cursor;
             while (cursor < source.length() && source.charAt(cursor) == '`') cursor++;
             int length = cursor - opening;
             int search = cursor;
-            int end = -1;
+            int end = -1, contentEnd = -1;
             while (search < source.length()) {
                 if (source.charAt(search) != '`') { search++; continue; }
                 int run = search;
                 while (search < source.length() && source.charAt(search) == '`') search++;
-                if (search - run == length) { end = search; break; }
+                if (search - run == length) { end = search; contentEnd = run; break; }
             }
             if (end < 0) continue;
-            for (int index = opening; index < end; index++) {
-                if (source.charAt(index) != '\n') visible.setCharAt(index, ' ');
-            }
+            spans.add(new int[] {opening, cursor, contentEnd, end});
             cursor = end;
         }
-        return List.of(visible.toString().split("\n", -1));
+        return spans;
     }
 
     private static boolean escaped(String source, int index) {

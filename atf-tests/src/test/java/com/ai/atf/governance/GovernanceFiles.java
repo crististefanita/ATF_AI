@@ -265,7 +265,7 @@ final class GovernanceFiles {
                 "The existing verification inventory and maintained selections disagree.",
                 "Restore the affected existing regression to its owned selection or reconcile a reviewed exclusion; keep governance in the local gate and aggregate inventory aligned.",
                 policy + "#existing-test-quality", architecture);
-        help(result, "DOC-MISSING DOC-MODULE DOC-OWNER DOC-TITLE DOC-AGENT-CONTROL DOC-ATLAS-BOUNDARY",
+        help(result, "DOC-MISSING DOC-MODULE DOC-OWNER DOC-AGENT-CONTROL DOC-ATLAS-BOUNDARY",
                 "A maintained documentation owner is missing or contains material outside its declared purpose.",
                 "Restore the reported owner guide and required structure; keep Atlas documentation-only and project rules in the canonical owner documentation.",
                 "docs/governance/README.md", documentation);
@@ -273,10 +273,14 @@ final class GovernanceFiles {
                 "A documented local route or fragment has no observed target.",
                 "Correct the source-relative destination or restore the intended real anchor; verify the incoming route without adding a dummy target.",
                 policy + "#portable-paths-and-executable-facts", documentation);
-        help(result, "DOC-FENCE DOC-MERMAID DOC-DIAGRAM DOC-DIAGRAM-LEGEND DOC-README-ARCHITECTURE DOC-README-DETAILS DOC-README-STYLE",
+        help(result, "DOC-MERMAID DOC-DIAGRAM DOC-DIAGRAM-LEGEND DOC-README-ARCHITECTURE",
                 "Markdown structure or a diagram no longer explains the owned contract in its supported form.",
                 "Repair the reported fence/section/disclosure, diagram declaration or adjacent legend, then render the affected diagram and preserve its actual responsibilities.",
                 "docs/governance/Failure_Diagnostics.md#documentation-and-rendering", documentation);
+        help(result, "DOC-TITLE DOC-HEADING DOC-FENCE DOC-FENCE-LANGUAGE DOC-README-DETAILS DOC-README-STYLE DOC-EDITORIAL",
+                "Maintained Markdown has invalid structure, presentation markup or unresolved editorial artifacts.",
+                "Keep one H1, descend one heading level at a time, label fenced examples, balance details/summary and repair the actual prose or diagram label; literal code remains data. Recheck the affected document and review its rendering and translation meaning.",
+                policy + "#reader-orientation-and-diagrams", documentation);
         help(result, "DOC-BUILD-FACT DOC-COMMAND DOC-DEFAULT",
                 "Documented execution/configuration differs from the source-owned declaration.",
                 "Compare the reported command/default with the actual POM, suite and resource; correct the stale owner instead of changing runtime defaults to fit prose.",
@@ -289,9 +293,9 @@ final class GovernanceFiles {
                 "The maintained living architecture HTML and Markdown no longer describe the same source contract.",
                 "Reconcile both formats, source digest, real headings and local navigation; retain the essential document in both formats without adding executable scripts.",
                 "docs/Living_Architecture_UI_API_doc_v1_0.md", documentation);
-        help(result, "DOC-EDITION DOC-EDITION-ANCHOR DOC-EDITION-CONTENT DOC-EDITION-INVENTORY DOC-EDITION-PAIR DOC-EDITION-PARITY",
+        help(result, "DOC-EDITION DOC-EDITION-ANCHOR DOC-EDITION-CONTENT DOC-EDITION-INVENTORY DOC-EDITION-PAIR DOC-EDITION-PARITY DOC-EDITION-FACTS",
                 "The declared README edition or its source/translation identity is inconsistent.",
-                "Restore the exact en/ro policy or reconcile the reported pair; preserve code, commands, links, anchors, topology and non-README source, then run the explicit peer check.",
+                "Restore the exact en/ro policy or reconcile the reported pair; compare the reported protected-item ordinal and preserve fenced/inline code, numeric table facts, commands, links, anchors, topology and non-README source, then run the explicit peer check. Review prose meaning separately.",
                 "docs/governance/Readme_Editions.md", documentation);
         help(result, "DOC-LIVING-PRINCIPLES",
                 "A retained living-architecture principle, real owner/check route or declared proof limit drifted.",

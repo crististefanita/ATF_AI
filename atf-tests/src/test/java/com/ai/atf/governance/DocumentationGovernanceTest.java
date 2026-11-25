@@ -351,6 +351,114 @@ public class DocumentationGovernanceTest {
         }
     }
 
+    @DataProvider(name = "allMarkdownStructureDrift")
+    public Object[][] allMarkdownStructureDrift() {
+        return new Object[][] {
+                {"## Contract\n\nNo document title.\n", "DOC-TITLE"},
+                {"# Review\n\n# Second title\n", "DOC-TITLE"},
+                {"# Review\n\n### Skipped level\n", "DOC-HEADING"},
+                {"## Contract\n\n# Late title\n", "DOC-HEADING"},
+                {"# Review\n\n```\nliteral output\n```\n", "DOC-FENCE-LANGUAGE"},
+                {"# Review\n\n~~~\nliteral output\n~~~\n", "DOC-FENCE-LANGUAGE"},
+                {"# Review\n\n<details><summary>Contract</summary>\nUnclosed detail.\n", "DOC-README-DETAILS"},
+                {"# Review\n\n<style>body { color: red; }</style>\n", "DOC-README-STYLE"}
+        };
+    }
+
+    @Test(dataProvider = "allMarkdownStructureDrift")
+    public void normativeMarkdownHasOwnedStructuralFailuresAndARealRepair(String document, String code) throws Exception {
+        try (GovernanceFiles.Fixture fixture = documentation()) {
+            fixture.write("docs/Review.md", document);
+            List<String> findings = MarkdownDocumentationRules.validate(fixture.root);
+            assertFinding(findings, code);
+            String report = GovernanceFiles.problems(findings);
+            Assert.assertTrue(report.contains("Observed: docs/Review.md:"));
+            Assert.assertTrue(report.contains("Repair hint:"));
+            Assert.assertTrue(report.contains("Owner: docs/governance/Code_And_Documentation_Policy.md#reader-orientation-and-diagrams"));
+            fixture.write("docs/Review.md", "# Review\n\n## Contract\n\nOwned behavior.\n");
+            assertValid(MarkdownDocumentationRules.validate(fixture.root));
+        }
+    }
+
+    @DataProvider(name = "editorialMarkers")
+    public Object[][] editorialMarkers() {
+        return new Object[][] {{"@@CODE_0@@"}, {"ZXQ005ZQ"}, {"\u2581unfinished"}};
+    }
+
+    @Test(dataProvider = "editorialMarkers")
+    public void editorialArtifactsFailInProseAndDiagramLabelsButLiteralExamplesRemainData(String marker) throws Exception {
+        try (GovernanceFiles.Fixture fixture = documentation()) {
+            String original = "# Review\n\n## Contract\n\nSource facts.\n";
+            fixture.write("docs/Review.md", original + "\n" + marker + "\n");
+            assertFinding(MarkdownDocumentationRules.validate(fixture.root), "DOC-EDITORIAL");
+            fixture.write("docs/Review.md", original + "\n```mermaid\nflowchart LR\nA[\"" + marker
+                    + "\"] --> B[\"Owned result\"]\n```\n\nThe arrow shows the result owner.\n");
+            assertFinding(MarkdownDocumentationRules.validate(fixture.root), "DOC-EDITORIAL");
+            fixture.write("docs/Review.md", original + "\nLiteral marker `" + marker + "`.\n\n```text\n"
+                    + marker + "\n### Literal heading\n<style>example</style>\n```\n");
+            assertValid(MarkdownDocumentationRules.validate(fixture.root));
+        }
+    }
+
+    @Test
+    public void normativeMarkdownAcceptsTypedNestedFencesAndLegalHeadingReturns() throws Exception {
+        try (GovernanceFiles.Fixture fixture = documentation()) {
+            fixture.write("docs/Review.md", "#\tReview\n\n## First\n\n### Child\n\n## Second\n\n"
+                    + "<details>\n<summary>Literal example</summary>\n\n````markdown\n# Sample\n\n```\noutput\n```\n````\n\n</details>\n");
+            assertValid(MarkdownDocumentationRules.validate(fixture.root));
+        }
+    }
+
+    @DataProvider(name = "readmeProtectedFactDrift")
+    public Object[][] readmeProtectedFactDrift() {
+        return new Object[][] {
+                {"`ui.engine`", "`unknown.engine`"},
+                {"`com.ai:atf-core:1.0.0`", "`com.ai:atf-core:9.0.0`"},
+                {"`src/test/resources/suites/framework-local.xml`", "`src/test/resources/suites/absent.xml`"},
+                {"| 1.0.0 | 16 |", "| 9.0.0 | 16 |"},
+                {"| 1.0.0 | 16 |", "| 1.0.0 | 99 |"},
+                {"`ui.engine`", "ui.engine"}
+        };
+    }
+
+    @Test(dataProvider = "readmeProtectedFactDrift")
+    public void readmeTechnicalFactsRejectTranslationDriftWithOwnedDiagnostics(String before, String after) throws Exception {
+        try (GovernanceFiles.Fixture english = documentation(); GovernanceFiles.Fixture romanian = documentation()) {
+            romanian.write("docs/governance/readme-edition.properties", "language=ro\n");
+            String facts = "\n## Technical facts\n\nSelect `ui.engine`; retain `com.ai:atf-core:1.0.0` and "
+                    + "`src/test/resources/suites/framework-local.xml`.\n\n| Release | Cases |\n|---|---:|\n| 1.0.0 | 16 |\n";
+            append(english, "README.md", facts);
+            String canonical = Files.readString(english.root.resolve("README.md"));
+            romanian.write("README.md", canonical);
+            assertValid(MarkdownDocumentationRules.validateReadmeParity(english.root, romanian.root));
+            String drifted = canonical.replace(before, after);
+            Assert.assertNotEquals(drifted, canonical, "The counterexample must change its technical fact");
+            romanian.write("README.md", drifted);
+            List<String> findings = MarkdownDocumentationRules.validateReadmeParity(english.root, romanian.root);
+            assertFinding(findings, "DOC-EDITION-FACTS");
+            String report = GovernanceFiles.problems(findings);
+            Assert.assertTrue(report.contains("first differing protected item="));
+            Assert.assertTrue(report.contains("Owner: docs/governance/Readme_Editions.md"));
+            romanian.write("README.md", canonical);
+            assertValid(MarkdownDocumentationRules.validateReadmeParity(english.root, romanian.root));
+        }
+    }
+
+    @Test
+    public void protectedFactsPermitTranslatedLabelsReflowAndEquivalentCodeSpanDelimiters() throws Exception {
+        try (GovernanceFiles.Fixture english = documentation(); GovernanceFiles.Fixture romanian = documentation()) {
+            romanian.write("docs/governance/readme-edition.properties", "language=ro\n");
+            String facts = "\n## Technical facts\n\nChoose `ui.engine` and ``literal ` delimiter``.\n\n"
+                    + "| Release | Cases |\n|---|---:|\n| 1.0.0 | 16 |\n";
+            append(english, "README.md", facts);
+            String canonical = Files.readString(english.root.resolve("README.md"));
+            romanian.write("README.md", canonical.replace("Choose `ui.engine` and", "Alege `ui.engine`\nși")
+                    .replace("``literal ` delimiter``", "```literal ` delimiter```")
+                    .replace("| Release | Cases |", "| Versiune | Cazuri |"));
+            assertValid(MarkdownDocumentationRules.validateReadmeParity(english.root, romanian.root));
+        }
+    }
+
     @Test
     public void validatorRejectsMissingLinkTargetsAndMissingFragments() throws Exception {
         try (GovernanceFiles.Fixture fixture = documentation()) {

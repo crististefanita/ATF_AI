@@ -60,6 +60,7 @@ independent of these explanatory fields.
 | Markdown structure, route or diagram | [Documentation and rendering](#documentation-and-rendering) | Repair the real target, syntax or explanatory legend |
 | Examples, commands and defaults | [Testing](../Testing.md) | Align examples with actual public APIs and declarations |
 | README editions | [Edition contract](Readme_Editions.md) | Preserve code, links, anchors, commands, topology and non-README identity |
+| Inline code or numeric translation facts | [Protected README facts](Readme_Editions.md#existing-executable-checks) | Use the reported item ordinal to compare canonical code spans and corresponding numeric table rows; retain human semantic review |
 | Living architecture pair | [Essential source](../Living_Architecture_UI_API_doc_v1_0.md) | Synchronize HTML/Markdown, source digest and navigation |
 | Feedback state and lifecycle | [Feedback rubric](../feedback/README.md) | Retain baseline assessments and close only proven criteria |
 | English source/prose and data exceptions | [English requirement](Code_And_Documentation_Policy.md#english-source-and-comments) | Translate authored text and keep reviewed external data exact |
@@ -93,6 +94,19 @@ unless an observed mismatch requires a scoped correction.
 For README translations use the explicit peer input in
 [README editions](Readme_Editions.md#synchronization-and-review). A local edition
 check alone does not establish cross-branch identity.
+
+DOC-TITLE, DOC-HEADING, DOC-FENCE-LANGUAGE and DOC-EDITORIAL apply to every
+maintained Markdown document. Correct the first actual title, hierarchy, fence
+or drafting token before interpreting later findings. Literal examples may
+intentionally contain invalid syntax; a valid repair changes the owned prose,
+not the guard's exclusions. DOC-EDITION-FACTS reports the protected item to inspect,
+while DOC-EDITION-PARITY retains its structural/topology responsibility.
+
+The retained-UI maintenance CLI has its own actual `Owner` and `Recheck` fields.
+Its component regression resolves the emitted documentation route and executes
+the suggested command against synthetic report inputs. That proves a usable
+repair route; it does not execute an application journey or establish browser
+acceptance.
 
 ## Unknown findings
 

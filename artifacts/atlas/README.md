@@ -69,7 +69,7 @@ Folosește această cerere cu un responsabil de analiză sau un asistent care po
 Produce și README.md, architecture.md, testing-and-governance.md și analysis.json,
 care leagă hash-urile documentelor, o singură identitate a țintei, citatele și
 intervalele exacte de linii, referințele guvernanței și dovezile păstrate. Indexul
-surselor distinge responsabilii revizuiți semantic de fișierele capturate numai
+surselor distinge componentele și documentele de referință revizuite semantic de fișierele capturate numai
 pentru identitatea stării. Înregistrează starea reală a modificărilor locale;
 commit-ul singur nu identifică sursele necomise sau bibliotecile binare selectate.
 
@@ -95,8 +95,8 @@ de teste noi de produs/E2E. Timpul analizei și timpul execuției sunt separate.
 Capturile publice noi folosesc renderVersion 3 și analysis.understanding cu
 schemaVersion 1. Declară aria PROJECT sau SELECTED, scopeStatement și
 inventoryClaimIds pornind de la declarațiile reale ale pachetelor, construcției,
-intrărilor și responsabilităților. Enumeră unitățile cu responsabilii reali ai
-surselor. Aria PROJECT aliniază inventarul unităților cu arhitectura declarată;
+intrărilor și responsabilităților. Enumeră unitățile conform responsabilităților
+reale ale componentelor și documentelor sursă. Aria PROJECT aliniază inventarul unităților cu arhitectura declarată;
 nu certifică fiecare linie indexată. Aria SELECTED precizează zonele inspectate
 și excluderile. Evită un număr fix de module sau fluxuri: un proiect simplu poate
 avea în mod legitim o singură componentă.
@@ -165,7 +165,7 @@ Absența testelor, metadatelor Git sau dependențelor declarate rămâne explici
 
 Publicarea încorporează CSS-ul canonic, SVG, toate documentele Markdown declarate,
 datele sursă/analiză și conținutul original XML/TAP/de proveniență declarat.
-Navigarea internă și secțiunile native rămân utilizabile când copiezi doar HTML-ul.
+Navigarea internă și secțiunile native pliabile rămân utilizabile când copiezi doar HTML-ul.
 Selectează documente suplimentare menținute ale țintei prin sourceDocuments, legate
 de indexul surselor, astfel încât ghidurile, arhitectura, testarea și utilizarea
 să rămână disponibile integral în acel artefact. Comanda understand este un alias

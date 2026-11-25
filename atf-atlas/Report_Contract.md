@@ -11,6 +11,11 @@ target identities, such as AI and J1, or adding an extra HTML in that directory
 violates the delivery contract. Select a monorepo and its scope explicitly when
 that monorepo itself is the target; do not import facts from an unrelated project.
 
+The delivery directory contains exactly one ordinary file: atlas.html. This is a
+single-file contract, so non-HTML sidecars, nested files and symbolic links are
+also rejected. Source, analysis, execution and render-review inputs stay outside
+delivery/ in their declared analysis or artifact location.
+
 The document must remain readable offline when copied alone. The canonical CSS is
 [atlas.css](assets/atlas.css); the publisher embeds its canonical UTF-8 LF bytes,
 normalizing CRLF once without changing content. Markdown,
@@ -233,6 +238,13 @@ without behavioral subjects when no behavior references it. Source-reviewed
 behavior and NOT_FOUND oracle gaps require no invented run. The subject binding
 proves retained identity and outcome; source-to-assertion semantics still need a
 human review. This is maintenance governance, with no new product/E2E scenario.
+
+For a renderVersion 3 EXECUTED case oracle, sourceRefIndices additionally selects
+the exact zero-based entries in that oracle claim's sourceRefs. Each selected
+entry must match its subject's sourcePath, and the retained subjects together
+must cover every case-selected oracleRefIndices entry. Indices are not line
+numbers; the selected references already own their exact startLine, endLine and
+quote. See the [copyable subject shape](../artifacts/atlas/Project_Map_Template.md#declared-breadth-record).
 
 ## Evidence-bound review axes
 
