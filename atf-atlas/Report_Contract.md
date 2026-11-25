@@ -41,7 +41,7 @@ euristici sprijină lectura; nu demonstrează adevărul semantic sau un design p
 
 Sonda nativă măsoară lățimea vizibilă a celulei, numărul de linii, fontul și
 decuparea. Semnalează proza lungă sub 180 CSS px cu cel puțin șase linii când
-o celulă alăturată scurtă primește peste 1.8 ori lățimea ei. Respinge și depășirea
+o celulă alăturată cu cel mult trei linii primește peste 1.8 ori lățimea ei. Respinge și depășirea
 documentului, textul ascuns în celule, fontul sub 13 CSS px și derularea inaccesibilă.
 Revizuiește eșecurile măsurate cu ATLAS-PRESENTATION, contractul responsabil și
 indicația de remediere. Păstrează conținutul când repari lățimile sau alegi fișe de caz.

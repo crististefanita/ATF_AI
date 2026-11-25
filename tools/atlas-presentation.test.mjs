@@ -48,6 +48,8 @@ test('authored resources, executable HTML and CSS remain inert text',()=>{
 test('code is protected from emphasis parsing',()=>{
   assert.equal(presentationMarkdown('**Observed** `**literal**`'),'<p><strong>Observed</strong> <code>**literal**</code></p>');
   assert.equal(presentationMarkdown('`'),'<p>`</p>');
+  assert.equal(presentationMarkdown('**Observed `value` stays**'),'<p><strong>Observed <code>value</code> stays</strong></p>');
+  assert.equal(presentationMarkdown('\u0000ATLAS_CODE_0\u0000 `safe`'),'<p>\u0000ATLAS_CODE_0\u0000 <code>safe</code></p>');
 });
 test('command recipes remain closed native disclosures',()=>{
   const html=presentationMarkdown('<details open>\n<summary>Local verification</summary>\n\n```powershell\nmvn test\n```\n\n</details>');
@@ -73,6 +75,7 @@ test('measured narrow prose versus wide short text fails, then passes after widt
   const bad=metrics([cell(explanation,100,12),cell('PASSED',450,1)]);
   assert.equal(reviewAtlasLayout(bad).status,'REPAIR_REQUIRED');assert.match(reviewAtlasLayout(bad).findings[0],/starves long prose/);
   assert.throws(()=>validateAtlasLayout(bad),error=>error.code==='ATLAS-PRESENTATION'&&error.message.includes('Observed:')&&error.message.includes('Repair hint:')&&error.hint.includes('allocate space to prose'));
+  assert.equal(reviewAtlasLayout(metrics([cell(explanation,100,12),cell(explanation,450,3)])).status,'REPAIR_REQUIRED');
   const repaired=metrics([cell(explanation,450,3),cell('PASSED',100,1)]);
   assert.equal(reviewAtlasLayout(repaired).status,'PASSED');
 });
