@@ -41,8 +41,9 @@ or emulator. G-014 and F-011 retain their independent open scopes.
   moving their HTML does not regenerate a project analysis. Original native
   XML/TAP/source manifests remain immutable; selected proof and fresh layout
   checks have separate scopes.
-- State: IN PROGRESS. Archive identity, final layout, focused tests and edition
-  synchronization must pass before closure.
+- State: CLOSED for this bounded publication scope. Delivered quality: 94, from
+  correctness/verification/clarity 95/95/90. The two existing independent open
+  findings remain outside this closure.
 
 ```mermaid
 flowchart TB
@@ -70,3 +71,52 @@ Run the read-only publication checker after every selection update. Original
 run collection remains supported in external history. A separately authorized
 release process owns release qualification; archive collection and source
 governance cannot infer it from a directory name or build artifact.
+
+## Verified delivery and assessment
+
+The live generated publication decreased from 6,876 files / 196,583,138 bytes
+to 26 files / 19,622,111 bytes, plus the four Git-owned artifact guides.
+Both original project HTML hashes are unchanged. The current manifest binds
+2 Atlas readers, 19 native proof/source records and four entry documents.
+All 6,876 original generated files were verified before and after the two
+same-volume external history moves. No original file was deleted or rewritten.
+The external snapshot ID is `20261125-organization-01`; its original inventory
+SHA-256 is `f80981c482dab162877180c8b368ac4b113ddd80ab10e060bf40991b15f0e2a8`.
+
+The focused existing Java governance selection passed 211 tests per edition,
+with zero failures, errors or skips. It includes framework architecture,
+documentation and Java source scanning. The collector/publication component
+selection passed 20 tests with an explicit TAP reporter and frozen source
+hashes. Four generated entry documents were checked using their final live
+relative links. Twenty-one README pairs retain their governed hierarchy and
+shared executable examples.
+
+The first Node capture actually passed all 20 tests, but its external acceptance
+helper expected TAP while Node selected its default spec reporter. That helper
+reported a failed capture qualification. The original output and exit receipt
+remain preserved; the second attempt explicitly selected TAP and passed both
+execution and capture qualification. No test assertion was weakened.
+
+Fresh Java and Node results are separate from the retained 232/232-case Java
+and 138-case Node historical selections. Both Atlas readers retain their
+original captured project revisions; this organization change is not a new
+analysis of their later HEADs. Complete historical failed runs, source captures,
+render observations and relative dependencies remain together outside live.
+
+| Assessment axis | Baseline (1-100) | Delivered (1-100) | Evidence boundary |
+|---|---:|---:|---|
+| Correctness | 60 | 95 | Exact original/archive bytes, declared current shapes and useful rejection paths |
+| Verification | 45 | 95 | 20 component cases, 211/211 Java cases, fresh source identities and live entry links |
+| Clarity | 70 | 90 | Two-tier ownership diagrams, explicit reader entry points, external history and recovery rules |
+| Weighted quality | 59 | 94 | Existing feedback rubric; bounded artifact-publication scope only |
+
+These scores are an authored review of the delivered organization and its
+proof. They do not imply full runtime coverage, release qualification or an
+updated maturity score for either captured project. G-014 and F-011 remain TODO.
+
+The first final-documentation check rejected a delivered D-008 summary inserted
+into the numeric baseline table in both editions (DOC-FEEDBACK-SCHEMA). Its
+original failed log and exact source capture remain external evidence. Moving
+only that summary to the verified-corrections table preserves the original
+90/90/90 and 60/45/70 baseline components. The existing guard caught the error
+before final synchronization; its schema and assertions were retained.

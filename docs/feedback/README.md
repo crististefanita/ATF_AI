@@ -11,7 +11,6 @@ the caller-selected local archive following the [report guide](../../artifacts/r
 |---|---|---|---:|---:|---|---|
 | G-014 | Retain the J1 change-control failure separately from Atlas consistency and scoped catalog success | J1 test-change owner; external observation | 84 | 68 | TODO | [Exact source and required control records](Atlas_Depth_And_Assessment.md#g-014) |
 | F-011 | Keep interaction-tracker cleanup observable when UI engine shutdown throws | Core UI base teardown owner | 82 | 66 | TODO | [Source-only cleanup gap and missing component oracle](Behavior_And_Negative_Cases.md#f-011) |
-| D-008 | Bound current publication and retain complete immutable history outside live | Artifact publication and maintenance governance | 90 | 59 | IN PROGRESS | [Inventory, layout and archive acceptance](Artifact_Publication_And_History.md#d-008) |
 
 The register is reserved for framework governance, stability and documentation.
 Product-flow improvement records are excluded from this backlog.
@@ -110,6 +109,7 @@ normalizing their presentation does not claim a fresh execution.
 | G-015 | Reachable case paths, independent exact oracle fragments and honest negative scope are governed | 138 maintenance cases, alias/cycle/corruption controls and both Java edition selections passed; [evidence](Behavior_And_Negative_Cases.md#g-015) |
 | D-007 | Existing positive and negative behavior is explained in each complete reader | AI: 11 / J1: 10 flows, 53 cases, 4 desktop records/46 diagrams and 21/23 embedded source guides; [evidence](Behavior_And_Negative_Cases.md#d-007) |
 | A-002 | Pure traversal, publisher components and API component proof retain independent scopes | 138 Node cases and five added invocations in the existing API contract class passed; retained original XML/TAP; [evidence](Behavior_And_Negative_Cases.md#a-002) |
+| D-008 | Current artifact publication is bounded and complete immutable history stays outside live | 26 generated current files, two unchanged Atlas readers, 20 component cases and 211/211 Java governance cases; [evidence](Artifact_Publication_And_History.md#d-008) |
 
 Desktop browser acceptance criteria and explicitly historical correction receipts are in
 [framework maintenance](Framework_Maintenance.md). Current closure contracts and
