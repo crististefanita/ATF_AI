@@ -270,3 +270,29 @@ element de listă ordonată în engleză. Corectarea paragrafului a restaurat st
 de traducere declarată; ambele selecții attempt02 au trecut toate cele 211 cazuri. Rapoartele lor
 eșuate rămân imuabile alături de rezultatele reparate. G-014 rămâne
 TODO pentru înregistrările J1 de control al schimbărilor, cu responsabilitate independentă.
+
+## D-011
+
+Stare: REVIEWING. Responsabil: proprietarii documentației Atlas și ai instrumentelor
+ de mentenanță. Prioritate 88; calitate inițială 58. Intrări pentru prioritate:
+impact 90, expunere 85, urgență 85. Intrări pentru calitate: corectitudine 65,
+verificare 45, claritate 60. Sunt evaluări delimitate ale prezentării pentru
+cititor, nu note pentru întregul framework.
+
+Cititorii capturați AI/J1 foloseau alocarea generică a coloanelor și afișau listele
+și tabelele Markdown sursă ca paragrafe literale separate. O comparație densă de
+cazuri putea alătura precondiții lungi și identificatori scurți fără un contract
+pentru spațiul de lectură. Verificările existente de consistență a octeților nu
+puteau demonstra echilibrul vizual.
+
+- Păstrează cititorul original și fiecare identitate capturată de sursă/dovadă.
+- Guvernează blocurile semantice, legendele alăturate și fișele verticale complete.
+- Verifică alocarea limitată a coloanelor și geometria reală cu situații negative,
+  remediate și valide; păstrează diagnostice utile cu responsabil.
+- Separă revizia desktop nativă de execuția produsului/E2E și de emulare.
+
+Dovezile se păstrează sub `${ATF_WORK_ROOT}/reviews/20261126-atlas-presentation`.
+Închiderea cere selecția Node completă, guvernanța documentației pereche,
+randarea nativă AI/J1 la lățimile declarate și compararea exactă a pachetului
+capturat. Euristica geometrică finită și subsetul Markdown nu demonstrează
+completitudine semantică sau design vizual perfect. Nu se autorizează un flux nou de produs.

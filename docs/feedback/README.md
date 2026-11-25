@@ -11,6 +11,7 @@ jurnale și rapoarte în zona externă; copiile selectate și verificate pot fi 
 
 | ID | Constatare | Responsabil | Prioritate (1-100) | Calitate (1-100) | Stare | Dovada închiderii |
 |---|---|---|---:|---:|---|---|
+| D-011 | Guvernează structura lecturii Atlas, legendele și echilibrul măsurat al tabelelor | Proprietarii documentației Atlas și ai instrumentelor de mentenanță | 88 | 58 | REVIEWING | [Defecte reproduse și acceptanță delimitată](Atlas_Depth_And_Assessment.md#d-011) |
 | G-014 | Păstrează eșecul de control al schimbărilor J1 separat de consistența Atlas și de rezultatul reușit al catalogului în aria verificată | Responsabilul schimbărilor testelor J1; observație externă | 84 | 68 | TODO | [Sursa exactă și înregistrările de control necesare](Atlas_Depth_And_Assessment.md#g-014) |
 | G-016 | Revizuiește pierderea unei metode de regresie existente dintr-o clasă încă selectată | Responsabilul mentenanței testelor | 75 | 69 | TODO | [Lacuna observată în surse și acceptanța limitată](Code_And_Documentation_Maturity.md#g-016) |
 | F-011 | Păstrează observabilă curățarea urmăririi interacțiunilor când închiderea motorului UI aruncă o excepție | Responsabilul închiderii UI din Core | 82 | 66 | TODO | [Lipsa observată în surse și criteriul de componentă absent](Behavior_And_Negative_Cases.md#f-011) |
@@ -54,6 +55,7 @@ Componentele păstrate ale evaluărilor inițiale:
 
 | ID | Impact / risc / urgență | Corectitudine / verificare / claritate | Limitele dovezilor |
 |---|---|---|---|
+| D-011 | 90 / 85 / 85 | 65 / 45 / 60 | Lățimi HTML generice, blocuri sursă literale și absența verificării lizibilității măsurate |
 | G-017 | 90 / 80 / 75 | 80 / 65 / 80 | Teste selectate dezactivate în surse și un fir de consolă nelimitat |
 | D-010 | 90 / 85 / 85 | 65 / 60 / 80 | Documentația din afara README-urilor rămâne engleză în ediția declarată română |
 | G-016 | 80 / 70 / 70 | 75 / 50 / 80 | Eliminarea unei metode poate păstra selecția clasei; observație numai din surse |

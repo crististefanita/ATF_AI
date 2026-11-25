@@ -9,6 +9,7 @@ import {retrieveAtlasKnowledge,validateAtlasKnowledge} from './atlas-knowledge.m
 import {validateAtlasBundle} from './atlas-bundle.mjs';
 import {validateAtlasUnderstanding,understandingFacets} from './atlas-understanding.mjs';
 import {validateAtlasBehavior} from './atlas-behavior.mjs';
+import {presentationTable,presentationMarkdown,graphLegend} from './atlas-presentation.mjs';
 
 const repositoryRoot=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 export const atlasSections=['context','behavior','evidence','trace','architecture','audit','knowledge','limits','documents','provenance'];
@@ -105,12 +106,12 @@ function graphSvg(graph){
   return '<div class="diag"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 '+height+'" role="img" aria-label="'+escape(graph.title)+'"><title>'+escape(graph.title)+'</title>'+edges+boxes+'</svg></div>';
 }
 
-const table=(headers,rows)=>'<div class="table-scroll"><table><thead><tr>'+headers.map(value=>'<th>'+escape(value)+'</th>').join('')+'</tr></thead><tbody>'+rows.map(row=>'<tr>'+row.map(value=>'<td>'+escape(value)+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>';
+const legacyTable=(headers,rows)=>'<div class="table-scroll"><table><thead><tr>'+headers.map(value=>'<th>'+escape(value)+'</th>').join('')+'</tr></thead><tbody>'+rows.map(row=>'<tr>'+row.map(value=>'<td>'+escape(value)+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>';
 const details=(title,body)=>'<details><summary>'+escape(title)+'</summary><div class="content">'+body+'</div></details>';
 const original=(title,value)=>details(title,'<pre>'+escape(typeof value==='string'?value:JSON.stringify(value,null,2))+'</pre>');
 const section=(id,title,body,open=false)=>'<details id="'+id+'" data-atlas-section="'+id+'"'+(open?' open':'')+'><summary>'+escape(title)+'</summary><div class="content">'+body+'</div></details>';
 
-function markdown(text){
+function legacyMarkdown(text){
   const output=[];let fence=null,code=[];
   for(const line of text.split(/\r?\n/)){
     const marker=/^\s*(`{3,}|~{3,})(.*)$/.exec(line);
@@ -126,7 +127,11 @@ function markdown(text){
 
 function reviewKnowledgeReceipt(receipt,source,required){
   requireAtlas(receipt&&nonempty(receipt.query),'ATLAS-KNOWLEDGE','A cited retrieval query is required');
-  const expected=retrieveAtlasKnowledge({query:receipt.query});
+  let expected=retrieveAtlasKnowledge({query:receipt.query});
+  // A portable capture retains its original raw digest even across an LF/CRLF checkout.
+  const currentKnowledge=fs.readFileSync(path.join(repositoryRoot,'atf-atlas/knowledge/atlas-contracts.json'),'utf8');
+  if(source?.encoding==='UTF8'&&typeof source.text==='string'&&digest(Buffer.from(source.text))===source.sha256
+    &&source.text.replaceAll('\r\n','\n')===currentKnowledge.replaceAll('\r\n','\n'))expected={...expected,sourceSha256:source.sha256};
   requireAtlas(isDeepStrictEqual(receipt,expected),'ATLAS-KNOWLEDGE','The complete retrieval receipt differs from canonical retrieval');
   requireAtlas(receipt.corpusSha256===expected.corpusSha256&&receipt.sourceSha256===expected.sourceSha256&&receipt.retrievalScope===expected.retrievalScope
     &&receipt.semanticRecall===expected.semanticRecall&&Array.isArray(receipt.records)&&Array.isArray(receipt.selectedIds)&&Array.isArray(receipt.mandatoryIds),
@@ -149,6 +154,9 @@ export function renderAtlasHtml(bundle,css){
   validateAtlasBundle(bundle);reviewKnowledgeReceipt(bundle.knowledge,bundle.knowledgeSource,bundle.renderVersion>=2);
   const caseReview=reviewUnderstanding(bundle.analysis,{requiredCases:bundle.renderVersion>=3,sourceIndex:bundle.sourceIndex});
   const {analysis,sourceIndex,knowledge,documents,evidenceFiles,consistency}=bundle;
+  const table=bundle.renderVersion>=4?presentationTable:legacyTable;
+  const markdown=bundle.renderVersion>=4?presentationMarkdown:legacyMarkdown;
+  const diagram=graph=>bundle.renderVersion>=4?'<figure class="atlas-graph">'+graphSvg(graph)+graphLegend(graph)+'</figure>':graphSvg(graph);
   const claims=analysis.claims;
   const breadth=validateAtlasUnderstanding(analysis,sourceIndex,{required:bundle.renderVersion>=2});
   const matrix=analysis.understanding?details('Declared review breadth and remaining gaps', '<p>'+escape(analysis.understanding.scopeStatement)+'</p>'+table(['Owner / scope',...understandingFacets],analysis.understanding.units.map(unit=>[unit.label+' / '+unit.scopePaths.join(', '),...understandingFacets.map(name=>unit.facets[name].status)]))
@@ -157,7 +165,7 @@ export function renderAtlasHtml(bundle,css){
   const context='<p>'+escape(analysis.projectId)+' · revision <code>'+escape(analysis.revision)+'</code></p><p>Source fingerprint: <code>'+escape(sourceIndex.fingerprint||digest(JSON.stringify(sourceIndex.files)))+'</code></p>'
     +'<p>Worktree: '+escape(sourceIndex.worktreeStatus?'DIRTY; exact state retained below':'No dirty state declared')+'. Consistency: '+escape(consistency.status)+'. Semantic completeness: HUMAN_REVIEW_REQUIRED. Assessment: '+(breadth.assessment?'EXPLICIT_SCOPED_REVIEW':'NOT_ASSESSED')+'.</p>'
     +'<p>Source review, executed checks and historical observations have separate scopes. A later edit requires a new capture and verification.</p>';
-  const behavior=analysis.behaviorFlows.map(flow=>'<article class="card"><h2>'+escape(flow.title)+'</h2>'+graphSvg(flow.graph)
+  const behavior=analysis.behaviorFlows.map(flow=>'<article class="card"><h2>'+escape(flow.title)+'</h2>'+diagram(flow.graph)
     +(flow.caseAnalysis?table(['Case','Kind / exact oracle fragment','Precondition and trigger','Expected observation','Directed witness','Independent assertion and limits'],flow.caseAnalysis.cases.map(witness=>[
       witness.title,witness.kind+' / '+witness.oracleStatus+' / '+witness.oracleClaimId+' / '+(witness.oracleStatus==='NOT_FOUND'
         ?'Searched: '+witness.oracleGap.searchedClaimIds.join(', ')+'. '+witness.oracleGap.explanation
@@ -168,7 +176,7 @@ export function renderAtlasHtml(bundle,css){
   const evidence=table(['Claim','Statement','Scope / verdict','Related governance','Execution IDs'],claims.map(claim=>[claim.id,claim.statement,claim.status+(claim.verdict?' / '+claim.verdict:''),claim.governanceStatus,(claim.evidenceIds||[]).join(', ')]))
     +'<p>Related mappings are traceability, not complete coverage of every clause. NOT_MAPPED remains explicit.</p>';
   const trace=claims.map(claim=>details(claim.id+' · '+claim.statement,[...(claim.sourceRefs||[]).map(ref=>({...ref,owner:'Source'})),...(claim.governanceRefs||[]).map(ref=>({...ref,owner:'Related governance'}))].map(ref=>'<p class="source-path">'+escape(ref.owner+' · '+ref.path+':'+ref.startLine+'–'+ref.endLine)+'</p><pre>'+escape(ref.quote)+'</pre>').join(''))).join('');
-  const architecture=analysis.dependencyGraphs.map(graph=>'<h2>'+escape(graph.title)+'</h2>'+graphSvg(graph)+table(['From','To','Declared relation','Source claim'],graph.edges.map(edge=>[edge.from,edge.to,edge.label,edge.claimId]))).join('')
+  const architecture=analysis.dependencyGraphs.map(graph=>'<h2>'+escape(graph.title)+'</h2>'+diagram(graph)+table(['From','To','Declared relation','Source claim'],graph.edges.map(edge=>[edge.from,edge.to,edge.label,edge.claimId]))).join('')
     +'<p>These are declared module dependencies. Behavior diagrams above describe observations and outcomes separately.</p>';
   const audit=table(['Evidence','Project','Original status','Tests / failures / errors / skipped','Selection','Executed source identity'],(analysis.evidence||[]).map(item=>[item.id,item.projectId,item.status,[item.tests,item.failures,item.errors,item.skipped].map(value=>value??'—').join(' / '),item.selection,item.sourceIdentity]))
     +'<p>Execution verdicts come from original supported XML/TAP. Consistency success does not change a failed or historical execution into a passing result.</p>'+original('Verification result',consistency);
@@ -236,7 +244,7 @@ export function publishAtlas({sourceRoot,analysisRoot,artifactRoot,root=reposito
   const sourceDocuments=referencedSources.filter(item=>(analysis.sourceDocuments||[]).includes(item.path));
   const knowledge=retrieveAtlasKnowledge({query,root}),css=canonicalCss(root),knowledgeBytes=fs.readFileSync(path.join(root,'atf-atlas/knowledge/atlas-contracts.json'));
   const knowledgeSource={path:'atf-atlas/knowledge/atlas-contracts.json',sha256:digest(knowledgeBytes),...preservedText(knowledgeBytes)};
-  const bundle={schemaVersion:1,renderVersion:3,analysis,analysisText,sourceIndex,sourceIndexText,documents,sourceDocuments,referencedSources,evidenceFiles,knowledge,knowledgeSource,consistency};
+  const bundle={schemaVersion:1,renderVersion:4,analysis,analysisText,sourceIndex,sourceIndexText,documents,sourceDocuments,referencedSources,evidenceFiles,knowledge,knowledgeSource,consistency};
   const html=renderAtlasHtml(bundle,css);validateAtlasHtml({html,css,projectId:analysis.projectId});
   const delivery=path.join(analysisDirectory,'delivery');
   requireAtlas(within(artifacts,delivery)&&!fs.existsSync(delivery),'ATLAS-PATH','Use a new analysis delivery directory; existing output is preserved');

@@ -92,7 +92,7 @@ de teste noi de produs/E2E. Timpul analizei și timpul execuției sunt separate.
 <a id="declared-review-units-and-seven-facets"></a>
 ## Unități declarate și șapte perspective de revizuire
 
-Capturile publice noi folosesc renderVersion 3 și analysis.understanding cu
+Capturile publice noi folosesc renderVersion 4 și analysis.understanding cu
 schemaVersion 1. Declară aria PROJECT sau SELECTED, scopeStatement și
 inventoryClaimIds pornind de la declarațiile reale ale pachetelor, construcției,
 intrărilor și responsabilităților. Enumeră unitățile conform responsabilităților
@@ -201,7 +201,7 @@ $analysisRoot = (Resolve-Path -LiteralPath $env:ATLAS_ANALYSIS_ROOT -ErrorAction
 $artifactRoot = (Resolve-Path -LiteralPath $env:ATF_ARTIFACT_ROOT -ErrorAction Stop).Path
 node tools/verify-atlas.mjs --source "$targetRoot" --analysis "$analysisRoot" --artifacts "$artifactRoot"
 node tools/atlas-report.mjs publish --source "$targetRoot" --analysis "$analysisRoot" --artifacts "$artifactRoot"
-node --test tools/verify-atlas.test.mjs tools/atlas-report.test.mjs tools/atlas-knowledge.test.mjs tools/atlas-bundle.test.mjs tools/atlas-execution.test.mjs tools/atlas-understanding.test.mjs tools/atlas-behavior.test.mjs
+node --test tools/verify-atlas.test.mjs tools/atlas-report.test.mjs tools/atlas-presentation.test.mjs tools/atlas-knowledge.test.mjs tools/atlas-bundle.test.mjs tools/atlas-execution.test.mjs tools/atlas-understanding.test.mjs tools/atlas-behavior.test.mjs
 ```
 
 [Verificatorul](../../tools/verify-atlas.mjs) respinge deriva surselor/documentelor

@@ -121,7 +121,7 @@ Nu deduce calitatea din numărul fișierelor, cuvinte ale aserțiunilor sau un r
 <a id="declared-breadth-record"></a>
 ## Înregistrarea amplorii declarate
 
-Pachetul cititorului folosește renderVersion 3 pentru o captură publică nouă.
+Pachetul cititorului folosește renderVersion 4 pentru o captură publică nouă.
 Adaugă analysis.understanding cu schemaVersion 1, scope PROJECT sau SELECTED,
 scopeStatement, inventoryClaimIds și units. PROJECT aliniază inventarele unităților
 revizuite și arhitecturii. SELECTED explică responsabilii omiși. Niciun domeniu nu

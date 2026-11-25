@@ -815,3 +815,19 @@ a:hover {
 
 /* Atlas document composition and accessible local navigation. */
 marker#arrow path{fill:var(--accent)}body{font-size:15px}.wrap{max-width:1320px}nav{display:flex;gap:10px;flex-wrap:wrap;position:static;background:var(--panel);padding:12px;z-index:2;border:1px solid var(--border);border-radius:12px}nav a{padding:6px 10px}pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:38rem;overflow:auto}code{overflow-wrap:anywhere}.table-scroll{overflow:auto}table{min-width:640px}.diag svg{min-width:640px}.source-path{font-family:var(--mono);color:var(--accent)}details[open]>summary{margin-bottom:14px}.claim-status{font-weight:700}.complete-source{margin:16px 0}.note{color:var(--muted)}@media print{nav{position:static}body{background:white;color:#172d3b}details{break-inside:avoid}pre{max-height:none}a{color:#174c73}.diag{background:#f7f9fb}}
+/* Renderer 4: bounded content widths, readable case records and explicit graph legends. */
+.atlas-table{max-width:100%;border-radius:10px;scrollbar-gutter:stable}
+.atlas-table:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.atlas-table table{table-layout:fixed;width:100%}
+.atlas-table th,.atlas-table td{white-space:normal;overflow-wrap:anywhere;word-break:normal;line-height:1.65;font-size:14px}
+.atlas-table th{text-align:left}
+.atlas-table td[data-column-kind="metric"]{font-variant-numeric:tabular-nums}
+.atlas-cases{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,30rem),1fr));gap:16px;margin:20px 0}
+.atlas-case{min-width:0;border:1px solid var(--border);border-radius:12px;padding:18px;background:var(--panel)}
+.atlas-case h3{margin-top:0}
+.atlas-case dl{margin:0}
+.atlas-case dt{font-weight:700;color:var(--accent);margin-top:14px}
+.atlas-case dd{margin:4px 0 0;line-height:1.7;overflow-wrap:anywhere}
+.atlas-graph{margin:20px 0}
+.atlas-legend{padding:14px 18px;border-left:3px solid var(--accent);background:var(--panel);font-size:14px;line-height:1.65}
+.atlas-legend ul{margin-bottom:0}

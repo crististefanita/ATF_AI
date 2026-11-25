@@ -87,6 +87,13 @@ complet offline. Absența testelor, metadatelor Git sau dependențelor rămâne
 explicită, împreună cu aria și limitele sursei. Recuperarea oferă politici citate
 responsabilului care verifică sursele; nu demonstrează execuție sau înțelegere semantică completă.
 
+Versiunea 4 guvernează și structura lecturii și echilibrul măsurat al tabelelor.
+Explicațiile primesc spațiu, comparațiile dense au derulare locală, dovezile lungi
+de caz devin fișe verticale complete și fiecare graf declarat are o legendă
+alăturată. [Contractul de prezentare](Report_Contract.md#reader-presentation-and-render-review)
+separă verificările de componentă, măsurătorile desktop native și revizia vizuală
+umană. Cititorii istorici și dovezile lor capturate rămân imuabile.
+
 <a id="review-breadth-and-quality-axes"></a>
 ## Aria revizuirii și axele de calitate
 
@@ -124,7 +131,7 @@ semantică completă sau o notă automată de calitate.
 <a id="behavior-cases-and-negative-scope"></a>
 ## Cazuri de comportament și limitele analizei negative
 
-Capturile noi renderVersion 3 explică situațiile pozitive și negative existente,
+Capturile noi renderVersion 4 explică situațiile pozitive și negative existente,
 cu precondiții, declanșatori, observații așteptate și fragmentele exacte ale
 criteriilor din surse. Fiecare flux declară intrarea, ID-uri stabile ale săgeților,
 parcursuri continue și aria revizuirii negative. Fiecare rezultat are un caz
@@ -166,7 +173,7 @@ mvn -B -ntp -pl atf-tests -am "-Dtest=DocumentationGovernanceTest,FrameworkArchi
 Rulează verificările opționale de mentenanță Atlas din rădăcina reactorului:
 
 ```powershell
-node --test tools/verify-atlas.test.mjs tools/atlas-report.test.mjs tools/atlas-knowledge.test.mjs tools/atlas-bundle.test.mjs tools/atlas-execution.test.mjs tools/atlas-understanding.test.mjs tools/atlas-behavior.test.mjs
+node --test tools/verify-atlas.test.mjs tools/atlas-report.test.mjs tools/atlas-presentation.test.mjs tools/atlas-knowledge.test.mjs tools/atlas-bundle.test.mjs tools/atlas-execution.test.mjs tools/atlas-understanding.test.mjs tools/atlas-behavior.test.mjs
 ```
 
 Această selecție verifică documentația și arhitectura declarată; nu execută

@@ -118,7 +118,7 @@ fi intrarea reală; nu inventa un nod de intenție. Buclele comportamentale fini
 acceptate rămân valide cu ieșire spre rezultat și randare clară; buclele unei
 dependențe către sine rămân invalide.
 
-Politicile obligatorii pentru cazuri și accesibilitate extind capturile noi renderVersion 3.
+Politicile obligatorii pentru cazuri și accesibilitate se aplică versiunilor renderVersion 3 și ulterioare.
 Revizuiește cazurile reale pozitive și negative cu precondiții, declanșatori,
 observații așteptate, parcursuri contigue de noduri/muchii și fragmentele selectate
 ale criteriilor existente. Fiecare rezultat declarat are un martor de caz; toate
@@ -138,3 +138,10 @@ intenționate și reparațiile reușite. Dovezile autentice și clasarea lexical
 separate de înțelegerea proiectului. O interogare fără potriviri lexicale păstrează
 politica obligatorie; clasarea sa nu poate stabili corectitudinea sursei sau
 completitudinea semantică.
+
+Înregistrarea recuperată KB-STYLE oferă contextul designului arhivat. Aplică
+[contractul curent de prezentare](Report_Contract.md#reader-presentation-and-render-review)
+și controalele de componentă/randare înaintea publicării. Un extras recuperat
+despre stil nu înlocuiește cerințele actuale și nu demonstrează lizibilitatea
+vizuală. Publicarea nouă folosește versiunea 4; regulile păstrate ale versiunii 3
+pentru cazuri și accesibilitate continuă să se aplice.

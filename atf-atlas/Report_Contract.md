@@ -5,6 +5,69 @@ Extrasele canonice pentru regăsire apar ca literali tehnici inline. Păstrează
 lor englezesc exact în fiecare ediție a documentației; traduce explicațiile din jur
 păstrând cerința citată și limitele dovezii.
 
+<a id="reader-presentation-and-render-review"></a>
+## Prezentarea pentru cititor și verificarea randării
+
+ATLAS-REPORT-005: publicările noi folosesc renderVersion 4. Prezentarea urmează
+aceleași principii de lectură ca documentația menținută. Explică scopul și limitele
+înaintea detaliilor; folosește liste pentru observații paralele, tabele pentru
+comparații și diagrame pentru relații susținute. Nu adăuga diagrame decorative sau cote.
+
+```mermaid
+flowchart TB
+    Source["Surse revizuite și dovezi originale"] --> Structure["Structură semantică de lectură"]
+    Structure --> Layout["Tabele adaptate conținutului și legende alăturate"]
+    Layout --> Measure["Măsurare desktop nativă și revizie vizuală"]
+    Measure --> Reader["Un singur HTML complet offline"]
+```
+
+Săgețile descriu revizia publicării, nu comportamentul aplicației. Identitățile
+surselor și execuțiilor originale rămân neschimbate de o actualizare a prezentării.
+
+| Element pentru cititor | Prezentare cerută | Limita verificării |
+|---|---|---|
+| Explicație | Paragrafe logice reunite și ierarhie relevantă a titlurilor | Blocuri Markdown acceptate; textul original complet rămâne încorporat |
+| Observații paralele | Liste semantice, fără marcatori afișați literal în paragrafe | Controale de componentă pentru blocuri și inspecția intrărilor generate |
+| Comparație | Coloane adaptate conținutului, aliniere sus, identificatori împărțiți și text complet | Geometria nativă a celulelor la lățimile desktop declarate |
+| Dovadă lungă de caz | Fișă verticală cu fiecare câmp original | Observația așteptată independentă, aserțiunea și limitele rămân vizibile |
+| Diagramă | Legendă alăturată pentru casete, săgeți, domeniul dovezii și omisiuni | Săgețile de dependență și tranzițiile comportamentale păstrează sensuri distincte |
+| Tabel dens | Derulare locală denumită, accesibilă prin tastatură | Fără depășirea documentului, decupare, puncte de suspensie sau micșorarea forțată a textului |
+
+[Controalele de prezentare](../tools/atlas-presentation.test.mjs) verifică situații
+negative, remediate și valide. Alocarea coloanelor rezervă prozei cel puțin 300
+CSS px înaintea extinderii proporționale; metricile și identificatorii au influență
+limitată. Un identificator lung nu poate ocupa spațiul coloanei explicative. Aceste
+euristici sprijină lectura; nu demonstrează adevărul semantic sau un design perfect.
+
+Sonda nativă măsoară lățimea vizibilă a celulei, numărul de linii, fontul și
+decuparea. Semnalează proza lungă sub 180 CSS px cu cel puțin șase linii când
+o celulă alăturată scurtă primește peste 1.8 ori lățimea ei. Respinge și depășirea
+documentului, textul ascuns în celule, fontul sub 13 CSS px și derularea inaccesibilă.
+Revizuiește eșecurile măsurate cu ATLAS-PRESENTATION, contractul responsabil și
+indicația de remediere. Păstrează conținutul când repari lățimile sau alegi fișe de caz.
+
+Randează la 1440 și 900 CSS px în Chromium desktop real, fără emulare de dispozitiv
+sau URL de produs. Extinde secțiunile revizuite; inspectează diagramele, legendele,
+tabelele, secțiunile pliabile, navigarea și resursele offline. Păstrează metricile,
+capturile, identitatea stilului și controalele negative urmate de remediere. Un
+rezultat automat reușit este un semnal limitat; revizorul verifică în continuare
+ordinea lecturii, echilibrul și relevanța sensului.
+
+Rendererul Markdown acceptă titluri, paragrafe reunite, liste simple, tabele
+comparative, blocuri de cod delimitate și secțiuni native închise. Legăturile și
+HTML-ul redactat rămân text inert. Blocurile Mermaid păstrează sursa completă cu
+o notă explicită; grafurile declarate ale analizei furnizează SVG inline. Listele
+imbricate și extensiile arbitrare Markdown/HTML nu reprezintă un contract complet
+de parsare. Verifică sensul lor în intrările originale complete înaintea aprobării.
+
+Istoricul renderVersion 1–3 rămâne acceptat cu randarea și stilul încorporat
+originale. Păstrează cititorii originali imuabili. Un cititor nou cu versiunea 4
+poate actualiza prezentarea unei capturi existente numai când fiecare câmp al
+pachetului, cu excepția renderVersion, rămâne neschimbat; nu este o nouă revizie
+a surselor sau execuție. Diferența exactă LF/CRLF în sursa de cunoștințe păstrează
+hash-ul brut original și trebuie să corespundă conținutului canonic normalizat;
+alte diferențe de octeți eșuează.
+
 <a id="purpose-and-ownership"></a>
 ## Scop și responsabilitate
 
@@ -142,7 +205,7 @@ teste de produs sau un model de limbaj. Testele dedicate includ coruperi intenț
 ale sursei, dovezilor, cunoștințelor, grafului și prezentării.
 
 ```powershell
-node --test tools/verify-atlas.test.mjs tools/atlas-report.test.mjs tools/atlas-knowledge.test.mjs tools/atlas-bundle.test.mjs tools/atlas-execution.test.mjs tools/atlas-understanding.test.mjs tools/atlas-behavior.test.mjs
+node --test tools/verify-atlas.test.mjs tools/atlas-report.test.mjs tools/atlas-presentation.test.mjs tools/atlas-knowledge.test.mjs tools/atlas-bundle.test.mjs tools/atlas-execution.test.mjs tools/atlas-understanding.test.mjs tools/atlas-behavior.test.mjs
 ```
 
 După pregătirea unei analize legate de sursă de către revizor, publică din rădăcina
@@ -260,7 +323,7 @@ Legarea subiecților demonstrează identitatea și rezultatul păstrate; sensul 
 sursă la aserțiune necesită în continuare revizuire umană. Aceasta este guvernanță
 de mentenanță, fără scenariu nou de produs/E2E.
 
-Pentru un criteriu EXECUTED de caz renderVersion 3, sourceRefIndices selectează
+Pentru un criteriu EXECUTED de caz renderVersion 3 sau ulterior, sourceRefIndices selectează
 suplimentar intrările exacte cu indexare de la zero din sourceRefs ale afirmației
 criteriului. Fiecare intrare selectată trebuie să corespundă sourcePath al subiectului,
 iar subiecții păstrați împreună trebuie să acopere fiecare oracleRefIndices selectat
@@ -315,7 +378,7 @@ noi trebuie să păstreze indicii utile de remediere și să demonstreze regula 
 <a id="behavior-cases-and-negative-observations"></a>
 ## Cazuri comportamentale și observații negative
 
-ATLAS-REPORT-004: capturile publice noi folosesc renderVersion 3. Fiecare flux
+ATLAS-REPORT-004: capturile publice noi folosesc renderVersion 4. Fiecare flux
 comportamental declară caseAnalysis schemaVersion 1. Capturile renderVersion 1/2
 anterioare păstrează octeții originali, generatorul fixat și limitele dovezii;
 nu sunt certificate retroactiv sub acest contract al cazurilor.
