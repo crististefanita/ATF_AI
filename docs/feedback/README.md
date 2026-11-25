@@ -13,7 +13,6 @@ jurnale și rapoarte în zona externă; copiile selectate și verificate pot fi 
 |---|---|---|---:|---:|---|---|
 | G-014 | Păstrează eșecul de control al schimbărilor J1 separat de consistența Atlas și de succesul catalogului | Responsabilul schimbărilor J1; observație externă | 84 | 68 | TODO | [Sursa exactă și înregistrările necesare](Atlas_Depth_And_Assessment.md#g-014) |
 | F-011 | Păstrează observabilă curățarea urmăririi interacțiunilor când închiderea motorului UI aruncă o excepție | Responsabilul închiderii UI din Core | 82 | 66 | TODO | [Lipsa observată în surse și criteriul de componentă absent](Behavior_And_Negative_Cases.md#f-011) |
-| R-001 | Păstrează principiile vii și publică dovezi auditabile ale testelor UI păstrate pentru ambii furnizori de browser | Raportarea acțiunilor/validărilor UI și guvernanța artefactelor | 90 | 56 | IN PROGRESS | [Inventarul păstrat și acceptanța auditului](Retained_UI_Auditability.md#r-001) |
 
 Registrul este rezervat guvernanței, stabilității și documentației framework-ului.
 Înregistrările despre îmbunătățirea fluxurilor de produs sunt excluse din această listă.
@@ -81,6 +80,7 @@ normalizarea prezentării nu reprezintă o nouă execuție.
 
 | ID | Comportament livrat | Verificare |
 |---|---|---|
+| R-001 | Principii Living Documentation, validări semantice expected/actual, mascarea limitată a credențialelor și dovezi native pentru aceleași metode existente | Playwright 16/16 și Selenium 16/16 PASS; selecțiile locale EN/RO și 181 cazuri Node au trecut; încercările eșuate sunt păstrate; [dovezi](Retained_UI_Auditability.md#r-001) |
 | F-002 | Pornirea folosește suite menținute și configurație explicită de execuție | 304 cazuri locale; profilul aggregate a produs artefacte Extent și Allure |
 | F-003 | Codul retras de generare/audit, prompturile și rapoartele istorice sunt eliminate din main | 100 cazuri de browser; sursa și JAR-ul împachetat nu conțin componente retrase |
 | F-006 | Regresiile păstrate apelează utilitarele curente și folosesc căi menținute către suite | 304 cazuri locale și 11 cazuri Allure au trecut |
