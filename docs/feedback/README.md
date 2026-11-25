@@ -9,7 +9,7 @@ the caller-selected local archive following the [report guide](../../artifacts/r
 
 | ID | Finding | Owner | Priority (1-100) | Quality (1-100) | Status | Closure evidence |
 |---|---|---|---:|---:|---|---|
-| D-011 | Govern Atlas reading structure, legends and measured table balance | Atlas documentation and maintenance-tool owners | 88 | 58 | REVIEWING | [Reproduced reader defects and bounded acceptance](Atlas_Depth_And_Assessment.md#d-011) |
+| D-011 | Govern Atlas reading structure, legends and measured table balance | Atlas documentation and maintenance-tool owners | 88 | 58 | IN PROGRESS | [Reproduced reader defects and bounded acceptance](Atlas_Depth_And_Assessment.md#d-011) |
 | G-014 | Retain the J1 change-control failure separately from Atlas consistency and scoped catalog success | J1 test-change owner; external observation | 84 | 68 | TODO | [Exact source and required control records](Atlas_Depth_And_Assessment.md#g-014) |
 | G-016 | Review loss of an existing regression method within a still-selected class | Test-maintenance owner | 75 | 69 | TODO | [Source-only gap and bounded acceptance](Code_And_Documentation_Maturity.md#g-016) |
 | F-011 | Keep interaction-tracker cleanup observable when UI engine shutdown throws | Core UI base teardown owner | 82 | 66 | TODO | [Source-only cleanup gap and missing component oracle](Behavior_And_Negative_Cases.md#f-011) |

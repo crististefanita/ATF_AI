@@ -262,7 +262,7 @@ TODO for the independently owned J1 change-control records.
 
 ## D-011
 
-Status: REVIEWING. Owner: Atlas documentation and maintenance-tool owners.
+Status: IN PROGRESS. Owner: Atlas documentation and maintenance-tool owners.
 Priority 88; baseline quality 58. Priority inputs: impact 90, exposure 85,
 urgency 85. Quality inputs: correctness 65, verification 45, clarity 60.
 These are scoped reader-presentation judgments, not framework-wide scores.
