@@ -115,6 +115,13 @@ executabile de browser pregătite. Profilul aggregate publică și dovezi Extent
 Allure. [Testare](docs/Testing.md) descrie pregătirea, comenzile selective și
 locațiile rezultatelor.
 
+Pentru scenariile de aplicație păstrate, folosește
+[selecția E2E Playwright/Selenium](docs/Testing.md#retained-product-ui-audit).
+Aceleași scenarii verifică oricare dintre furnizori; verificările de browser ale
+framework-ului au limite diferite ale dovezilor. [Principiile vii](docs/Living_Architecture_UI_API_doc_v1_0.md#retained-principles)
+leagă responsabilitățile pentru acțiuni, așteptări, validare, ciclu de viață și
+audit de proprietarii lor.
+
 <a id="consumer-migration"></a>
 ## Migrarea consumatorilor
 

@@ -52,12 +52,18 @@ artifacts/
       README.md
       index.html
       selected original XML, TAP and provenance
+      e2e/playwright/ExtentReport.html
+      e2e/selenium/ExtentReport.html
+      per-engine native XML, source manifest and audit JSON
 ```
 
 O copie curată a surselor poate conține numai cele patru ghiduri/șabloane urmărite.
 O publicație completată are un inventar publication.json care leagă fiecare
 fișier curent și fiecare README/index generat de calea relativă, dimensiune și
 SHA-256. Înregistrările Atlas identifică proiectul și revizia sursei capturate.
+Selecția UI păstrată, opțională, gestionează exact un document Extent nativ și
+trei fișiere de dovezi pentru fiecare motor. Manifestul său leagă motorul,
+ID-ul rulării, revizia sursei și referințele XML/sursă/audit; nu este o excepție HTML generică.
 Curent înseamnă selectat pentru cititori; o captură mai veche nu devine cel mai
 recent Git HEAD. Identitatea originală a surselor și limitele execuției rămân vizibile.
 
@@ -68,8 +74,11 @@ recent Git HEAD. Identitatea originală a surselor și limitele execuției răm�
 2. Păstrează rulările originale complete, eșecurile și intrările analizei într-un
    instantaneu unic de istoric extern. Păstrează arborele relativ și indexurile originale.
 3. Selectează un HTML Atlas independent pentru fiecare proiect și dovezile native
-   ale testelor/surselor necesare rezumatului curent. Păstrează în istoric redările
-   intermediare, site-urile complete de raportare, capturile duplicate și controalele sintetice de corupere.
+   ale testelor/surselor necesare rezumatului curent. Rolul explicit al selecției
+   UI păstrate poate selecta și un document Extent original pentru fiecare motor,
+   împreună cu trei fișiere de dovezi legate. Păstrează în istoric redările
+   intermediare, celelalte site-uri complete de raportare, capturile duplicate
+   și controalele sintetice de corupere.
 4. Pregătește în staging selecția curentă și cele patru documente README/index generate.
    Leagă octeții și reviziile lor originale în publication.json.
 5. Validează staging-ul, arhivează selecția anterioară și înlocuiește setul curent
@@ -100,7 +109,7 @@ node --test tools/collect-artifacts.test.mjs
 ARTIFACT-PUBLICATION identifică calea observată, responsabilul, remedierea și
 reverificarea focalizată. Verificatorul acceptă structura numai cu surse sau
 structura curentă completă și respinge istoricul vechi live, fișierele orfane,
-proiectele duplicate, HTML-urile suplimentare, fișierele modificate ori lipsă,
+proiectele duplicate, HTML-urile nedeclarate, fișierele modificate ori lipsă,
 legăturile și căile care ies din perimetru. Nu mută și nu șterge niciodată dovezi.
 
 Folosește [ghidul de testare](../docs/Testing.md) pentru selecțiile Java/de guvernanță și

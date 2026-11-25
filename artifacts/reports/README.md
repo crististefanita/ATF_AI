@@ -37,9 +37,9 @@ Nu colecta cât timp există scrieri active. Căile sunt rezolvate la execuție;
 unealta nu include unitatea autorului, directoare fixe de cache sau căi de conturi.
 
 Colecțiile complete și încercările eșuate aparțin unei rădăcini externe de istoric.
-Copia live publică numai dovezile originale selectate în reports/current, conform
+Copia live publică dovezile originale selectate în reports/current, conform
 [contractului publicației limitate](../README.md). Compilarea, cache-urile,
-site-urile complete de raportare și investigațiile temporare rămân în afara copiei live.
+celelalte site-uri complete de raportare și investigațiile temporare rămân în afara copiei live.
 Păstrează pachetele istorice intacte, inclusiv resursele relative și identitatea surselor.
 
 ```text
@@ -101,7 +101,7 @@ Fișierele generate reports/current/index.html și README.md precizează revizii
 capturate, selecțiile reale, rezultatele și limitele. Verificarea structurii nu
 execută teste. Un raport mai vechi rămâne istoric, iar o selecție eșuată rămâne eșuată.
 
-Păstrează arborii compleți Allure, Extent, aggregate, browser și ai fixture-urilor
+Păstrează arborii compleți Allure, aggregate, browser și ai fixture-urilor
 corupte deliberat în istoricul extern. Nu duplica fiecare colecție originală în live.
 Identifică istoricul prin ID-ul instantaneului și digestul inventarului; apelantul
 rezolvă rădăcina externă prin ATF_ARTIFACT_HISTORY_ROOT. Instrucțiunile menținute nu
@@ -114,6 +114,38 @@ contextul surselor și indexurile originale. O copie a surselor fără metadate 
 este context de lectură, fără a substitui verificarea Git canonică. Retrage o
 selecție curentă veche numai după verificarea arhivei sale externe intacte.
 
+<a id="retained-ui-report-publication"></a>
+## Publicarea rapoartelor UI păstrate
+
+Selecția explicită de teste de produs păstrate poate publica un document original
+reports/current/e2e/playwright/ExtentReport.html și un document original
+reports/current/e2e/selenium/ExtentReport.html. Capturile de ecran rămân încorporate
+în raportul lor nativ. Selectează trei fișiere suplimentare de dovezi pentru
+fiecare motor: XML-ul Surefire original, manifestul original al surselor executate
+și JSON-ul de audit guvernat. Rulările complete, jurnalele, încercările anterioare
+și celelalte site-uri de raportare rămân în istoric.
+
+Fiecare fișier selectat declară uiEngine, runId și sourceRevision în publication.json.
+Intrarea Extent are kind extent și referințe nativeResultsPath,
+executedSourcePath și auditPath. Referințele trebuie să selecteze fișiere declarate
+distincte test-results/execution/execution din același director al motorului,
+cu aceeași identitate de rulare/sursă. Documentul declară și executionScope. Nu
+sunt valide dovezile orfane, un al doilea document, un HTML generic de execuție
+sau o referință între motoare diferite.
+
+[Verificatorul de audit](../../tools/verify-ui-e2e-audit.mjs) reconciliază
+subiecții și rezultatele XML-ului original cu nodurile native Extent pentru
+metode/pași, dovezile de validare așteptate/observate, metadatele capturilor și
+identitatea sursei/motorului. Rezultatul său reprezintă consistența limitată a
+auditului. Un FAIL sau SKIP nativ al aplicației rămâne vizibil; copierea unui
+raport sau trecerea unei verificări de structură/audit nu îl poate transforma
+în PASS. Un PASS al acțiunii nu poate înlocui validarea separată a regulii de afaceri.
+
+[Ghidul de execuție](../../docs/Testing.md#retained-product-ui-audit) gestionează
+aceleași metode păstrate și cele două comenzi de browser.
+[Principiile vii](../../docs/Living_Architecture_UI_API_doc_v1_0.md#retained-principles)
+gestionează responsabilitățile și limitele dovezilor, inclusiv lacuna privind curățarea datelor demonstrative.
+
 <a id="verification"></a>
 ## Verificare
 
@@ -122,6 +154,7 @@ Din rădăcina reactorului, cu Node 20+ disponibil:
 ```powershell
 $artifactRoot = Join-Path (Get-Location).Path 'artifacts'
 node --test tools/collect-artifacts.test.mjs
+node --test tools/verify-ui-e2e-audit.test.mjs
 node tools/collect-artifacts.mjs --check-layout "$artifactRoot"
 ```
 
@@ -133,7 +166,9 @@ guvernează ghidurile menținute, vizibilitatea surselor și paritatea edițiilo
 nu înlocuiește această selecție explicită a uneltei.
 
 Fixture-urile publicației acoperă și inventare malformate, proiecte duplicate,
-HTML-uri suplimentare, fișiere orfane, dovezi modificate/lipsă, căi nesigure,
+HTML-uri nedeclarate, fișiere orfane, dovezi modificate/lipsă, căi nesigure,
 legături și directoare vechi de istoric/construcție/temporare. Verificările care
 resping structura păstrează fișierele și marcajele lor temporale. Aceste controale
 nu adaugă scenarii E2E de produs sau funcționalități la execuție.
+Controalele UI păstrate resping în plus motoarele, rulările, reviziile și
+referințele la dovezi nealiniate, păstrând rezultatele originale de eșec/omitere.

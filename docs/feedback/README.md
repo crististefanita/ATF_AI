@@ -13,6 +13,7 @@ jurnale și rapoarte în zona externă; copiile selectate și verificate pot fi 
 |---|---|---|---:|---:|---|---|
 | G-014 | Păstrează eșecul de control al schimbărilor J1 separat de consistența Atlas și de succesul catalogului | Responsabilul schimbărilor J1; observație externă | 84 | 68 | TODO | [Sursa exactă și înregistrările necesare](Atlas_Depth_And_Assessment.md#g-014) |
 | F-011 | Păstrează observabilă curățarea urmăririi interacțiunilor când închiderea motorului UI aruncă o excepție | Responsabilul închiderii UI din Core | 82 | 66 | TODO | [Lipsa observată în surse și criteriul de componentă absent](Behavior_And_Negative_Cases.md#f-011) |
+| R-001 | Păstrează principiile vii și publică dovezi auditabile ale testelor UI păstrate pentru ambii furnizori de browser | Raportarea acțiunilor/validărilor UI și guvernanța artefactelor | 90 | 56 | IN PROGRESS | [Inventarul păstrat și acceptanța auditului](Retained_UI_Auditability.md#r-001) |
 
 Registrul este rezervat guvernanței, stabilității și documentației framework-ului.
 Înregistrările despre îmbunătățirea fluxurilor de produs sunt excluse din această listă.
@@ -67,6 +68,7 @@ Componentele păstrate ale evaluărilor inițiale:
 | A-002 | 85 / 80 / 85 | 70 / 55 / 70 | Testele structurale necesitau mutații ale parcurgerii și verificări generice de componentă dincolo de prezența câmpurilor |
 | F-011 | 85 / 80 / 75 | 70 / 40 / 85 | Ordinea apelurilor poate omite curățarea urmăririi interacțiunilor când închiderea motorului eșuează; nicio execuție de componentă nu demonstrează o scurgere de stare |
 | D-008 | 90 / 90 / 90 | 60 / 45 / 70 | Copia live păstrează 44 de colecții de rapoarte și 14 capturi Atlas fără selecție curentă limitată sau verificare a structurii publicației |
+| R-001 | 90 / 90 / 90 | 60 / 40 / 65 | Metodele de produs păstrate nu au dovezi native selectate pentru fiecare motor; validarea înregistrării și detaliile câmpurilor sensibile necesită controale explicite de audit |
 
 Locațiile dovezilor istorice folosesc `${ATF_WORK_ROOT}/...`, cu spațiul extern de lucru
 selectat conform ghidului [Dezvoltare](../Development.md).

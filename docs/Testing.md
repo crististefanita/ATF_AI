@@ -27,9 +27,12 @@ determinism, assertions, documentation and governance of existing checks;
 do not add application journeys during this phase. Use desktop browsers for
 browser checks. Emulators are outside the requested execution scope.
 
-Select only original native test proof and source/verification receipts for the
+Select original native test proof and source/verification receipts for the
 checkout's ignored artifacts/reports/current tree after external validation.
 Its README/index describe actual selections, captured revisions and verdicts.
+The explicit retained-UI role can also publish one original audited Extent
+reader per browser engine with its native XML, executed-source manifest and
+audit proof. Other full report sites remain external.
 Complete runs and failures remain in external history. Publish one selected
 Atlas HTML per project under artifacts/atlas/current and run the
 [dedicated consistency check](../artifacts/atlas/README.md#verification) before
@@ -202,6 +205,48 @@ These journeys can create users, orders or invoices. A missing credential,
 unavailable service or unexecuted journey does not establish application
 acceptance. The active acceptance gaps remain in
 [feedback](feedback/README.md).
+
+## Retained product UI audit
+
+The existing registration, authenticated-account and profile checks use the
+same test methods for both providers. They are distinct from framework-ui and
+framework-browser, which select framework contracts and browser fixtures.
+Neither maintained framework suite silently opts into the public application.
+
+| Existing owner | Methods | Observed contract |
+|---|---:|---|
+| [RegistrationTests](../atf-tests/src/test/java/com/ai/atf/ui/RegistrationTests.java) | 6 | Successful registration and required-field, email, duplicate, password and phone rejection |
+| [AccountAuthenticatedAreaTests](../atf-tests/src/test/java/com/ai/ui/tests/AccountAuthenticatedAreaTests.java) | 5 | Authenticated account, profile, favorites, invoices and messages navigation |
+| [ProfileContactAddressMemoryTests](../atf-tests/src/test/java/com/ai/ui/tests/ProfileContactAddressMemoryTests.java) | 5 | Registered contact and address values remain observable in the profile |
+
+Use a separate disposable validation copy and output history for each command.
+Prepare browser binaries using the sections above. The explicit URL below is
+the configured testing demo; replace it with the intended deployment when
+appropriate. These retained methods create synthetic customers. They do not
+create invoices or change admin orders, and they do not delete their customers.
+Browser teardown closes sessions; it is not application-data cleanup.
+
+```powershell
+mvn -B -ntp -pl atf-tests -am "-Dtest=RegistrationTests,AccountAuthenticatedAreaTests,ProfileContactAddressMemoryTests" "-Dsurefire.failIfNoSpecifiedTests=false" "-Dui.engine=playwright" "-Dbase.url=https://practicesoftwaretesting.com" "-Dreporting.engine=extent" "-Dreports.timestamp.enabled=false" "-Dui.screenshots.enabled=true" "-Dui.screenshots.on.failure.only=false" "-Dui.screenshots.capture.final.state=true" test
+mvn -B -ntp -pl atf-tests -am "-Dtest=RegistrationTests,AccountAuthenticatedAreaTests,ProfileContactAddressMemoryTests" "-Dsurefire.failIfNoSpecifiedTests=false" "-Dui.engine=selenium" "-Dbase.url=https://practicesoftwaretesting.com" "-Dreporting.engine=extent" "-Dreports.timestamp.enabled=false" "-Dui.screenshots.enabled=true" "-Dui.screenshots.on.failure.only=false" "-Dui.screenshots.capture.final.state=true" test
+```
+
+For each engine, retain original Surefire XML, source hashes, command, URL,
+browser identity and ExtentReport.html. Reconcile the exact class/method subjects
+and statuses with the report nodes. An action PASS establishes action completion;
+the separate validation step must state expected/actual observations before
+business PASS. Preserve FAIL and SKIP outcomes and distinguish missing or
+unreached validation from a successful negative scenario.
+
+The [living principles](Living_Architecture_UI_API_doc_v1_0.md#retained-principles)
+define the source responsibilities. The
+[report publication contract](../artifacts/reports/README.md#retained-ui-report-publication)
+defines the per-engine reader and proof boundary. Audit consistency does not
+establish a test execution, application-data cleanup or exhaustive coverage.
+
+```powershell
+node --test tools/verify-ui-e2e-audit.test.mjs tools/collect-artifacts.test.mjs
+```
 
 ## Explicit configuration
 

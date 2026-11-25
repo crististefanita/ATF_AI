@@ -55,6 +55,15 @@ Scenariile aplicației rămân selecții explicite de clase. Au nevoie de URL-ur
 conturi configurate și pot crea date. Rezultatele locale de framework nu demonstrează
 acceptanța pe un site public.
 
+[Selecția UI păstrată](../docs/Testing.md#retained-product-ui-audit) rulează
+aceleași metode de înregistrare, cont și profil o dată prin fiecare furnizor de
+browser. Metodele testelor de produs compun servicii/componente și validări;
+acțiunile consemnează finalizarea tehnică, iar validările consemnează dovezile de
+afaceri așteptate/observate și un verdict final. Un scenariu negativ de aplicație
+trece numai când criteriul său de respingere este îndeplinit. Consultă
+[principiile vii](../docs/Living_Architecture_UI_API_doc_v1_0.md#retained-principles)
+pentru responsabilitățile menținute și limita explicită privind curățarea datelor.
+
 <a id="evidence-and-maintenance"></a>
 ## Dovezi și mentenanță
 

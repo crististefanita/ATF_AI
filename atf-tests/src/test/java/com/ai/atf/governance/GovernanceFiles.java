@@ -293,6 +293,10 @@ final class GovernanceFiles {
                 "The declared README edition or its source/translation identity is inconsistent.",
                 "Restore the exact en/ro policy or reconcile the reported pair; preserve code, commands, links, anchors, topology and non-README source, then run the explicit peer check.",
                 "docs/governance/Readme_Editions.md", documentation);
+        help(result, "DOC-LIVING-PRINCIPLES",
+                "A retained living-architecture principle, real owner/check route or declared proof limit drifted.",
+                "Restore LD-01 through LD-12 exactly once, resolve the real source/check owners, retain MAINTAINED/PARTIAL boundaries and keep cleanup PARTIAL until independent account-deletion evidence exists; regenerate the paired HTML.",
+                "docs/Living_Architecture_UI_API_doc_v1_0.md#retained-principles", documentation);
         help(result, "DOC-FEEDBACK DOC-FEEDBACK-PRIORITY DOC-FEEDBACK-QUALITY DOC-FEEDBACK-SCHEMA DOC-LIFECYCLE",
                 "Feedback ownership, assessment or evidence lifecycle no longer matches its declared scope.",
                 "Correct the specific row/owner/state and retain baseline scores and original failures; close only demonstrated criteria and keep stable usage at its canonical owner.",

@@ -4,7 +4,6 @@ import com.ai.core.support.contract.ids.AtfContractNarrativeIds;
 import com.ai.core.support.contract.AtfContractSuiteRef;
 import com.ai.core.support.contract.AtfContractRef;
 import com.ai.core.reporting.listener.TestListener;
-import com.ai.core.reporting.StepLogger;
 import com.ai.ui.core.runtime.BaseTestUI;
 import com.ai.ui.support.actions.UIActions;
 import com.ai.ui.support.factory.UserDataFactory;
@@ -13,7 +12,6 @@ import com.ai.ui.support.pages.RegisterPage;
 import com.ai.ui.support.service.RegistrationService;
 import com.ai.ui.support.validation.RegistrationValidation;
 import org.testng.annotations.Listeners;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 @AtfContractSuiteRef(AtfContractNarrativeIds.Suite.REGISTRATION_TESTS_SUITE)
@@ -23,12 +21,6 @@ public class RegistrationTests extends BaseTestUI {
 
     private final RegistrationService service = new RegistrationService();
     private final RegistrationValidation validation = new RegistrationValidation();
-
-    @BeforeMethod
-    public void before() {
-        StepLogger.startStep("Registration preconditions");
-        StepLogger.pass("Ready");
-    }
 
     @Test(
             description = "Positive: successful registration redirects to login",
