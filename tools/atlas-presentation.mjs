@@ -23,9 +23,11 @@ export function presentationTable(headers,rows){
 }
 
 const inline=text=>{
-  // Authored HTML and resource URLs stay inert. This is a documented Markdown subset.
-  return text.split(/(`[^`\n]+`)/g).map((part,index)=>index%2===1
-    ?'<code>'+escape(part.slice(1,-1))+'</code>':escape(part).replace(/\*\*([^*\n]+)\*\*/g,'<strong>$1</strong>')).join('');
+  // Protect code before emphasis, using a marker that cannot collide with authored input.
+  const tokens=[];let prefix='\u0000ATLAS_CODE_';while(text.includes(prefix))prefix+='_';
+  const protectedText=text.replace(/`([^`\n]+)`/g,(_,code)=>{tokens.push('<code>'+escape(code)+'</code>');return prefix+(tokens.length-1)+'\u0000';});
+  return escape(protectedText).replace(/\*\*([^*\n]+)\*\*/g,'<strong>$1</strong>')
+    .replace(new RegExp(prefix+'(\\d+)\u0000','g'),(_,index)=>tokens[Number(index)]);
 };
 const splitRow=line=>line.trim().replace(/^\|/,'').replace(/\|$/,'').split(/(?<!\\)\|/).map(cell=>cell.trim().replaceAll('\\|','|'));
 const separator=line=>/^\s*\|?\s*:?-{3,}:?\s*(?:\|\s*:?-{3,}:?\s*)+\|?\s*$/.test(line);
@@ -88,7 +90,7 @@ export function reviewAtlasLayout(metrics){
       if(cell.clipped)findings.push('Table '+table.index+' row '+rowIndex+' column '+column+' clips or hides content.');
       if(cell.font<13)findings.push('Table '+table.index+' uses text smaller than 13 CSS px.');
       const prose=cell.text.length>100&&cell.text.trim().split(/\s+/).length>12;
-      if(prose&&cell.width<180&&cell.lines>=6&&row.some(other=>other.width>cell.width*1.8&&other.text.length<60&&other.lines<=3))findings.push('Table '+table.index+' row '+rowIndex+' column '+column+' starves long prose while a short cell receives much more width.');
+      if(prose&&cell.width<180&&cell.lines>=6&&row.some(other=>other.width>cell.width*1.8&&other.lines<=3))findings.push('Table '+table.index+' row '+rowIndex+' column '+column+' starves long prose while a cell with few lines receives much more width.');
     }
   }
   return {status:findings.length?'REPAIR_REQUIRED':'PASSED',findings,scope:'MEASURED_RENDERED_TABLE_READABILITY_SIGNALS; HUMAN_SEMANTIC_AND_VISUAL_REVIEW_REQUIRED'};

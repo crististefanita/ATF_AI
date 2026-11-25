@@ -39,7 +39,7 @@ heuristics support reading; they do not establish semantic truth or perfect desi
 
 The native layout probe measures visible cell width, line count, font and
 clipping. It signals long prose below 180 CSS px with at least six lines when a
-short adjacent cell receives over 1.8 times its width. It also rejects document
+neighboring cell with at most three lines receives over 1.8 times its width. It also rejects document
 overflow, hidden cell text, type below 13 CSS px and inaccessible table scrolling.
 Review measured failures with ATLAS-PRESENTATION, the owning contract and its
 repair hint. Preserve all content while repairing widths or choosing case records.
