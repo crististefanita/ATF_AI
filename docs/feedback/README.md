@@ -11,7 +11,6 @@ the caller-selected local archive following the [report guide](../../artifacts/r
 |---|---|---|---:|---:|---|---|
 | G-014 | Retain the J1 change-control failure separately from Atlas consistency and scoped catalog success | J1 test-change owner; external observation | 84 | 68 | TODO | [Exact source and required control records](Atlas_Depth_And_Assessment.md#g-014) |
 | F-011 | Keep interaction-tracker cleanup observable when UI engine shutdown throws | Core UI base teardown owner | 82 | 66 | TODO | [Source-only cleanup gap and missing component oracle](Behavior_And_Negative_Cases.md#f-011) |
-| R-001 | Preserve living principles and publish auditable retained UI evidence for both browser providers | UI action/validation reporting and artifact governance | 90 | 56 | IN PROGRESS | [Retained inventory and audit acceptance](Retained_UI_Auditability.md#r-001) |
 
 The register is reserved for framework governance, stability and documentation.
 Product-flow improvement records are excluded from this backlog.
@@ -76,6 +75,7 @@ normalizing their presentation does not claim a fresh execution.
 
 | ID | Delivered behavior | Verification |
 |---|---|---|
+| R-001 | Living principles, semantic expected/actual validation, bounded credential masking and native evidence for the same retained methods | Playwright 16/16 and Selenium 16/16 PASS; EN/RO local selections and 181 Node cases passed; original failed attempts preserved; [evidence](Retained_UI_Auditability.md#r-001) |
 | F-002 | Startup uses maintained suites and explicit runtime configuration | 304 local cases; aggregate profile produced Extent and Allure artifacts |
 | F-003 | Retired generation/audit code, prompts and historical reports are removed from main | 100 browser cases; source and packaged JAR contain no retired components |
 | F-006 | Retained regressions call current helpers and use maintained suite paths | 304 local cases and 11 Allure cases passed |
