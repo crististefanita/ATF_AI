@@ -310,8 +310,9 @@ revizuite; nu este o notă globală a framework-ului sau a completitudinii seman
 | Revizia diagramelor | Patru înregistrări desktop și 46 observații de diagrame; controalele de suprapunere, resursele offline, navigarea și secțiunile pliabile trec |
 | Identitatea capturii | Se schimbă numai renderVersion; analiza, sursa, documentele, cunoștințele, afirmațiile și dovezile native originale rămân exacte |
 
-Cititorul original AI a afișat două dovezi direcționate la 60 CSS px cu 45/71 linii, lângă o coloană de criterii la 670 CSS px cu trei linii; a reprodus spațiu insuficient pentru
-proză la ambele lățimi; cititorul original J1 depășea și pagina la 900 CSS px.
+La ambele lățimi, cititorul original AI a alocat 60 CSS px pentru două dovezi
+direcționate, producând 45/71 linii. Coloana alăturată de criterii, de 670 CSS px,
+folosea trei linii. Cititorul original J1 depășea și pagina la 900 CSS px.
 Cititorii reparați trec semnalele finite de aranjare. Au fost inspectate capturile
 fișelor de caz, tabelelor sursă, legendelor și prezentării generale; revizia vizuală
 are un domeniu delimitat.
