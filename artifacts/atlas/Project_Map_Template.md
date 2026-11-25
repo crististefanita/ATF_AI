@@ -9,7 +9,9 @@ open-questions.md, source-index.json and analysis.json as auditable inputs in on
 new run directory. The reader deliverable is exactly one complete HTML for one
 selected project: delivery/atlas.html. No other HTML may appear below delivery/.
 Keep intermediate HTML, Markdown, manifests and audit/render outputs outside
-that reader directory. A multi-page index is not the final understanding report.
+that reader directory. The delivery directory contains exactly one ordinary file,
+atlas.html; non-HTML sidecars and nested files are also rejected. A multi-page
+index is not the final understanding report.
 See the [complete report contract](../../atf-atlas/Report_Contract.md).
 
 analysis.json schemaVersion 1 pins projectId/revision, sourceIndexSha256,
@@ -149,13 +151,19 @@ For an EXECUTED behavior/oracle claim, add executionSubjects:
   "evidenceId": "actual-retained-run",
   "testClass": "actual.retained.ClassName",
   "testName": "actual retained case name",
-  "sourcePath": "relative/existing-oracle.ext"
+  "sourcePath": "relative/existing-oracle.ext",
+  "sourceRefIndices": [0]
 }
 ```
 
 Use the exact retained XML classname/name; an absent classname is the empty
 string. For flat Node TAP, use the exact testName and empty/omitted testClass.
-sourcePath must already be quoted in that claim. Bind each evidence ID. Missing,
+sourcePath must already be quoted in that claim. The example selects zero-based
+entry 0 in the oracle claim's sourceRefs, not a source line number or a testcase
+position. Replace it with the actual matching fragments. EXECUTED case oracles
+require these indices on each subject and a retained subject for every selected
+oracleRefIndices entry; a file hash or suite total cannot supply that binding.
+Bind each evidence ID. Missing,
 ambiguous, duplicated, skipped or TODO subjects do not establish execution.
 Preserve failures and original provenance. Review the assertion's semantics
 separately; a testcase identity alone does not prove every prose clause.

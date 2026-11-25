@@ -1,8 +1,8 @@
 # Atlas evidence and local report publication
 
-Baseline: `e82c9a734c03480be7f7fd14330a370b4bd3d2d3`. The owner now explicitly
-selects the live ATF_AI artifacts directory for generated report copies and
-Atlas analyses. Builds remain isolated below the external work root. Preserve
+Baseline: `e82c9a734c03480be7f7fd14330a370b4bd3d2d3`. At this recorded checkpoint,
+the owner explicitly selected the live ATF_AI artifacts directory for generated
+report copies and Atlas analyses. Builds remain isolated below the external work root. Preserve
 existing source changes in J1; generated maps remain outside its maintained
 docs/lib perimeter. No E2E journey, emulator or Java runtime feature is added.
 
@@ -11,9 +11,9 @@ docs/lib perimeter. No E2E journey, emulator or Java runtime feature is added.
 - Owner: artifacts guides, testing documentation and local archive publication.
 - Priority: 85, from impact/risk/urgency 90/80/80.
 - Baseline quality: 58, from correctness/verification/clarity 70/45/55.
-- Observation: completed reports exist in external staging, while the requested
-  live artifacts area contains only source guides. Its current wording also
-  discourages any generated report copy in the live checkout.
+- Baseline observation: completed reports existed in external staging, while the
+  requested live artifacts area contained only source guides. Its wording then
+  discouraged any generated report copy in the live checkout.
 - Acceptance: retain isolated builds, explicitly support caller-selected live
   archive copies, preserve source-relative assets and SHA-256, provide a local
   report index and current testing READMEs. Preserve failed/old evidence and
@@ -22,11 +22,13 @@ docs/lib perimeter. No E2E journey, emulator or Java runtime feature is added.
 - State: VERIFIED for selected completed archive publication.
 - Evidence: the initial publication copied 19 completed bundles and 3,660 retained files into the
   selected ignored local reports area and rehashed against their original
-  manifests. The generated index and testing README distinguish fresh results,
+  manifests. The generated index and testing README distinguished fresh results,
   failed attempts and retained history. Source-relative report assets remain
-  together. See `artifacts/reports/runs/index.html` in the selected checkout.
-  Later verification receipts have separate bundles; the generated index records
-  current totals without rewriting this checkpoint's original counts.
+  together. That checkpoint used artifacts/reports/runs/index.html in the selected
+  checkout; the complete historical layout is now preserved externally. The
+  [current selection and history owner](../../artifacts/reports/README.md#current-selection-and-history)
+  describes today's reader publication. Later receipts retain their own bundles
+  and counts without rewriting this checkpoint's original results.
 
 ## G-009 — verify generated Atlas against its actual target
 

@@ -66,10 +66,15 @@ and compatible live state.
    acceptance as appropriate. [Testing](Testing.md) owns the commands.
 5. Preserve failed observations and inspect artifacts. Review the source and
    documentation diff, then commit the verified checkpoint on main.
-6. Recheck live for concurrent changes. Fetch and merge using `--ff-only`.
-   Stop on drift and reconcile without discarding another change.
-7. Push the verified checkpoint and compare development, live and remote commit
-   identities.
+6. Reconcile and validate the Romanian README edition against the chosen main
+   checkpoint using the [edition workflow](governance/Readme_Editions.md#synchronization-and-review).
+   Recheck both source branches, remote refs and live for concurrent changes.
+   Publish the verified main and main_RO checkpoints with normal fast-forward
+   pushes. Stop on drift and reconcile without discarding another change.
+7. In each synchronization checkout, fetch the published ref and merge its
+   matching origin branch using `--ff-only`. Compare development, live and remote
+   commit identities for that branch. A successful push alone does not update
+   a separate live checkout.
 
 Git synchronization returns tracked source and maintained documentation to live.
 Build output, downloaded browser binaries, caches and intermediate logs remain

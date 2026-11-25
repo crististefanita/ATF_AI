@@ -50,3 +50,34 @@ and scoped closure evidence.
 A written policy is not evidence of an automated guard. Keep manual review
 criteria identifiable; record a missing check as a gap rather than claiming
 that a green suite proves the whole policy.
+
+## Best practices for a documentation review
+
+| Review layer | Concrete question | Completion evidence |
+|---|---|---|
+| Source facts | Does this option, default, command or dependency exist at its stated owner? | POM/resource/API inspection and the owned factual check |
+| Document structure | Can the reader follow one title, logical headings, typed examples and balanced disclosures? | Existing documentation guard with deliberate failing controls |
+| Translation | Does each Romanian paragraph retain conditions, negations, technical literals and proof limits? | Complete paired human review plus protected-fact, link, example and topology checks |
+| Diagrams | What do arrows mean, and does their visible rendering match the source? | Adjacent legend, source/POM comparison and inspection of each changed rendering |
+| Closure | Which exact observation changed, and what still remains unknown? | Source commits, actual selected results and scoped feedback |
+
+```mermaid
+flowchart TB
+    Claim["Documented claim"] --> Guard["Automated source and structure checks"]
+    Claim --> Review["Human meaning and ownership review"]
+    Review --> Render["Inspect changed diagram rendering"]
+    Guard --> Evidence["Actual scoped evidence"]
+    Render --> Evidence
+    Evidence --> Closure["Owner guide and feedback"]
+```
+
+Arrows separate automated checks from semantic and visual review. Both paths
+contribute evidence; neither path alone certifies a translation or complete
+runtime behavior. Follow the [review procedure](Code_And_Documentation_Policy.md#apply-the-documentation-review-in-practice)
+and [edition contract](Readme_Editions.md) before synchronization.
+
+The supported style checks apply to all maintained Markdown. README-only rules
+still own module orientation and consumer examples. Literal code stays English
+in both editions, and historical observations retain their captured source and
+selection. The [failure guide](Failure_Diagnostics.md) explains the emitted
+location, rule, repair hint, owner and recheck command.

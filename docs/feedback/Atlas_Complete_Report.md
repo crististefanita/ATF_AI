@@ -1,7 +1,7 @@
 # Complete Atlas delivery, knowledge and governance
 
-Baseline: `c06fc31f4d4a28e64eaf257adf6e4a21509d2d49`. The current task reopens the
-presentation and understanding scope of Atlas. Earlier G-009 evidence remains
+Baseline: `c06fc31f4d4a28e64eaf257adf6e4a21509d2d49`. This recorded review reopened
+the presentation and understanding scope of Atlas. Earlier G-009 evidence remains
 valid for declared source/artifact consistency; it did not establish a complete
 standalone understanding report. Keep that distinction rather than retroactively
 rescoring or relabeling the earlier checks.
@@ -18,11 +18,14 @@ services. Current canonical documentation and authored code/comments are English
 - Owner: Atlas report contract, canonical CSS, publisher and generated delivery.
 - Priority: 94, from impact/risk/urgency 95/90/95.
 - Baseline quality: 47, from correctness/verification/clarity 50/35/55.
-- Observation: the latest publication has separate overview, project-map,
-  architecture, testing and limits HTML pages. A per-project index cannot serve
-  as the requested one-file understanding artifact. The replacement layout also
-  omitted the dedicated archived visual system and emphasizes module topology
-  over existing behavior, objects, outcomes and test oracles.
+- Baseline observation: the publication then had separate overview, project-map,
+  architecture, testing and limits HTML pages. Its per-project index did not
+  satisfy the requested one-file understanding artifact. That layout also
+  omitted the dedicated archived visual system and emphasized module topology
+  over existing behavior, objects, outcomes and test oracles. The
+  [current reader publication owner](../../artifacts/atlas/README.md#reader-delivery-and-knowledge)
+  describes the delivered single-file contract; these observations retain their
+  original baseline scope.
 - Consequence: a copied page loses information or navigation dependencies, and a
   dependency diagram may look like a sufficient explanation of tested behavior.
 - Correction: maintain a dedicated CSS asset, embed its canonical UTF-8 LF

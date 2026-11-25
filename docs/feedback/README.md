@@ -11,6 +11,7 @@ the caller-selected local archive following the [report guide](../../artifacts/r
 |---|---|---|---:|---:|---|---|
 | G-014 | Retain the J1 change-control failure separately from Atlas consistency and scoped catalog success | J1 test-change owner; external observation | 84 | 68 | TODO | [Exact source and required control records](Atlas_Depth_And_Assessment.md#g-014) |
 | F-011 | Keep interaction-tracker cleanup observable when UI engine shutdown throws | Core UI base teardown owner | 82 | 66 | TODO | [Source-only cleanup gap and missing component oracle](Behavior_And_Negative_Cases.md#f-011) |
+| D-009 | Protect all maintained Markdown and complete semantic README parity with owned repair hints | Documentation governance and edition owners | 85 | 78 | IN PROGRESS | [Counterexamples and complete review acceptance](Documentation_And_Translation_Review.md#d-009) |
 
 The register is reserved for framework governance, stability and documentation.
 Product-flow improvement records are excluded from this backlog.
@@ -64,6 +65,7 @@ Retained baseline component scores:
 | F-011 | 85 / 80 / 75 | 70 / 40 / 85 | Source ordering may skip interaction-tracker cleanup on engine quit failure; no component execution establishes a runtime leak |
 | D-008 | 90 / 90 / 90 | 60 / 45 / 70 | Live holds 44 report collections and 14 Atlas captures without a bounded current selection or publication-layout guard |
 | R-001 | 90 / 90 / 90 | 60 / 40 / 65 | Retained product methods lack selected native per-engine evidence; registration validation and sensitive typing details need explicit audit controls |
+| D-009 | 90 / 80 / 80 | 85 / 65 / 80 | Supported structure is not enforced across all Markdown; inline code/numeric parity counterexamples and semantic qualifier drift need owned controls |
 
 Historical evidence locators use `${ATF_WORK_ROOT}/...`, with the external
 workspace selected as described in [Development](../Development.md).
