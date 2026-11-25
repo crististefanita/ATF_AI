@@ -457,13 +457,15 @@ public class DocumentationGovernanceTest {
         String canonical = Files.readString(root.resolve("docs/Living_Architecture_UI_API_doc_v1_0.html"));
         String example = livingPrincipleHtmlRow(canonical, "LD-01").replace("<td>MAINTAINED</td>", "<td>UNSUPPORTED_EXAMPLE_STATE</td>")
                 .replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;");
-        String heading = "<h3 id=\"retained-principles\">Retained principles and auditable UI execution</h3>";
-        String changed = canonical.replace(heading, heading + "<pre><code>" + example + "</code></pre>");
-        Assert.assertNotEquals(changed, canonical, "The positive control must add the escaped example");
+        Matcher heading = Pattern.compile("(?is)<h3\\b(?=[^>]*\\sid\\s*=\\s*[\"']retained-principles[\"'])[^>]*>.*?</h3\\s*>").matcher(canonical);
+        Assert.assertTrue(heading.find(), "The source-bound principle section must have its stable heading ID in either edition.");
+        String changed = canonical.substring(0, heading.end()) + "<pre><code>" + example + "</code></pre>"
+                + canonical.substring(heading.end());
+        Assert.assertFalse(changed.equals(canonical), "The positive control must add the escaped example at the actual section.");
         assertValid(MarkdownDocumentationRules.validateRetainedLivingProjection(root, markdown, changed));
         String inlineCode = canonical.replace("ACCOUNT_DELETION_NOT_IMPLEMENTED",
                 "<code>ACCOUNT_DELETION_NOT_IMPLEMENTED</code>");
-        Assert.assertNotEquals(inlineCode, canonical, "The inline-code control must format the actual cleanup marker");
+        Assert.assertFalse(inlineCode.equals(canonical), "The inline-code control must format the actual cleanup marker.");
         assertValid(MarkdownDocumentationRules.validateRetainedLivingProjection(root, markdown, inlineCode));
     }
 

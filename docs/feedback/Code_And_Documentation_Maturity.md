@@ -115,3 +115,17 @@ reactors. The existing ignored current publication remains at its captured scope
   dense strategy prose, default-open commands and fake tags inside literals.
 - Final execution and complete review are recorded here after validation; an
   IN PROGRESS item is not closed by a prepared command or source-only inspection.
+
+## Retained first complete execution
+
+The first complete default reactor selection passes in English. Its atf-tests
+module records 678 passed cases. The Romanian run records 677 passed cases and
+one failed positive documentation control; no case is skipped. The failing
+control searches an English HTML heading before inserting an escaped example,
+so it performs no mutation against the fully translated Romanian heading.
+
+The existing test now locates the stable retained-principles section ID, inserts
+the same literal example and preserves the same projection assertion. Boolean
+precondition assertions avoid dumping the complete HTML when insertion fails.
+Both original native runs remain unchanged under their local-01 locators. A new
+complete local-02 execution for both editions must pass before closure.
