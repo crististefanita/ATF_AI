@@ -10,8 +10,12 @@ The [HTML companion](Living_Architecture_UI_API_doc_v1_0.html) presents the same
 sections with collapsible panels and static diagrams. This Markdown document
 owns the content; the HTML metadata records its source filename and normalized
 SHA-256. Update both together. [Architecture](Architecture.md) owns the concise
-module map, [Testing](Testing.md) owns commands, and [feedback](feedback/README.md)
-owns unresolved criteria. This guide records no fresh application acceptance.
+module map, [Testing](Testing.md) owns strategy, the
+[command cookbook](Testing_Commands.md) owns execution recipes, and
+[feedback](feedback/README.md) owns unresolved criteria. This guide records no fresh application acceptance.
+
+Wide HTML diagrams retain their native label size. Scroll inside the figure
+to inspect a wide sequence; the surrounding page remains readable.
 
 The [maintained browser matrix](Testing.md#selenium-pinned-manager-route) owns
 the Selenium/browser/driver/CDP pins and portable binary preparation. Project
@@ -645,11 +649,16 @@ service descriptors. atf-tests holds verification sources and no production
 framework API. Current consumption replaces the historical monolithic
 coordinate as described in [consumer migration](../README.md#consumer-migration).
 
+<details>
+<summary>Run 7) Delivery artifacts and execution commands</summary>
+
 ```powershell
 mvn -B -ntp verify
 mvn -B -ntp -Pbrowser test
 mvn -B -ntp -Paggregate test
 ```
+
+</details>
 
 Run those commands only from a prepared disposable validation copy. Browser
 installation, explicit Allure selection, class filters, caches and output

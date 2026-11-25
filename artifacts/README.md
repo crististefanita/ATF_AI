@@ -58,6 +58,7 @@ A clean source checkout may contain only the four tracked guides/template.
 A populated publication has one publication.json inventory binding every
 current payload and generated README/index to its relative path, byte count and
 SHA-256. Atlas records identify their project and captured source revision.
+
 The optional retained-UI selection owns exactly one native Extent reader and
 three proof files per engine. Its manifest binds the engine, run ID, source
 revision and XML/source/audit references; it is not a generic HTML exception.

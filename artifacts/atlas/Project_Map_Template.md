@@ -14,18 +14,20 @@ atlas.html; non-HTML sidecars and nested files are also rejected. A multi-page
 index is not the final understanding report.
 See the [complete report contract](../../atf-atlas/Report_Contract.md).
 
-analysis.json schemaVersion 1 pins projectId/revision, sourceIndexSha256,
-documents with hashes, claims and evidence. Every declared document must exist.
-The source index schemaVersion 1 identifies the same project/revision and records
-each captured path, SHA-256 and role; distinguish reviewed files from state-only
-captures. The checker verifies captured paths, not unindexed semantic scope.
-Use UNVERSIONED when the source has no Git metadata. Record the actual language,
-build system, absence of tests and inspected scope; do not copy ATF defaults into
-another project. The same delivery contract applies to knowledge-assisted intake.
-Use sourceDocuments to list complete maintained target documents that the reader
-needs for this scope. Every entry is target-relative and bound to the source
-index. Include the actual README, architecture, testing and relevant usage/contract
-owners instead of offering partial excerpts or navigation to separate HTML pages.
+Bind the intake to its actual source and complete documents:
+
+- analysis.json schemaVersion 1 pins projectId/revision, sourceIndexSha256,
+  documents with hashes, claims and evidence. Every declared document must exist.
+- The source index schemaVersion 1 identifies the same project/revision and records
+  each captured path, SHA-256 and role. Distinguish reviewed files from state-only
+  captures; the checker verifies captured paths, not unindexed semantic scope.
+- Use UNVERSIONED when Git metadata is absent. Record the actual language, build
+  system, missing tests and inspected scope; do not copy another project's defaults.
+- The same delivery contract applies to knowledge-assisted intake.
+- sourceDocuments lists complete maintained target documents needed for this scope.
+  Every entry is target-relative and source-index-bound. Include the actual README,
+  architecture, testing and usage/contract owners, without partial excerpts or
+  navigation to separate HTML pages.
 
 ## Target and proof boundary
 
@@ -46,14 +48,15 @@ claim ID/statement must appear in project-map.md. Do not replace a reference wit
 a keyword count or a path copied from another project.
 
 Execution evidence declares its projectId, artifact-relative path, SHA-256,
-selection, original source identity and status. An EXECUTED claim references
-Surefire XML or flat Node TAP evidence, its observed tests/failures/errors/skipped counters and a
-sourceManifest whose manifest maps project-relative paths to hashes. The evidence
-sourceIdentity is the SHA-256 of that preserved source manifest. Both the claim's
-implementation and governance references must match the executed source bytes.
-Historical HTML/reports remain historical; do not relabel them as a fresh run.
-An EXECUTED claim also declares verdict PASSED or FAILED, matching its referenced
-testcase outcomes. Counter-only headers do not establish an executed selection.
+selection, original source identity and status.
+
+- An EXECUTED claim references Surefire XML or flat Node TAP, observed
+  tests/failures/errors/skipped counters and a sourceManifest mapping relative paths
+  to hashes. sourceIdentity is the SHA-256 of that preserved manifest.
+- Implementation and governance references must match executed source bytes.
+- Historical HTML/reports remain historical; do not relabel them as a fresh run.
+- The EXECUTED verdict is PASSED or FAILED and matches referenced testcase outcomes.
+  Counter-only headers do not establish an executed selection.
 
 Default source binding is exact. If publication changes only text line endings,
 declare sourceNormalization CRLF_LF, retain each live raw sha256 plus a computed
@@ -156,17 +159,18 @@ For an EXECUTED behavior/oracle claim, add executionSubjects:
 }
 ```
 
-Use the exact retained XML classname/name; an absent classname is the empty
-string. For flat Node TAP, use the exact testName and empty/omitted testClass.
-sourcePath must already be quoted in that claim. The example selects zero-based
-entry 0 in the oracle claim's sourceRefs, not a source line number or a testcase
-position. Replace it with the actual matching fragments. EXECUTED case oracles
-require these indices on each subject and a retained subject for every selected
-oracleRefIndices entry; a file hash or suite total cannot supply that binding.
-Bind each evidence ID. Missing,
-ambiguous, duplicated, skipped or TODO subjects do not establish execution.
-Preserve failures and original provenance. Review the assertion's semantics
-separately; a testcase identity alone does not prove every prose clause.
+Bind exact subjects and selected source fragments:
+
+- Use the retained XML classname/name; an absent classname is the empty string.
+  Flat Node TAP uses exact testName and empty/omitted testClass.
+- sourcePath must already be quoted in the claim. The example selects zero-based
+  entry 0 in its sourceRefs, not a source line or testcase position; replace it
+  with the actual matching fragments.
+- Every EXECUTED case-oracle subject declares these indices, and retained subjects
+  cover every selected oracleRefIndices entry. A file hash or suite total is insufficient.
+- Bind every evidence ID. Missing, ambiguous, duplicate, skipped or TODO subjects
+  do not establish execution; preserve failures and original provenance.
+- Review assertion semantics separately. Testcase identity does not prove every prose clause.
 
 ## Behavior case witnesses
 
@@ -219,14 +223,17 @@ negativeScope REVIEWED or PARTIAL. A negative source claim alone is insufficient
 ## Optional evidence-bound assessment
 
 If requested, add analysis.assessment with method EVIDENCE_BOUND_REVIEW, reviewer,
-scope, limits and groups. Each group declares id, label, scope, limits and axes.
-Use separate project-quality and atlas-quality groups. Every axis declares id,
-label, correctness, verification, clarity, score, weight, claimIds, evidenceIds,
-reason and limits. Numeric fields are integers 1–100. score is the rounded
-40/30/30 weighted review of correctness/verification/clarity. Axis weights sum to
-100 per group, whose score is the rounded weighted mean. Cite actual reviewed
-claims and retained evidence IDs; an honest source-only review may have empty
-evidenceIds. Without an assessment, retain NOT_ASSESSED.
+scope, limits and groups. Without an assessment, retain NOT_ASSESSED.
+
+- Each group declares id, label, scope, limits and axes. Keep project-quality and
+  atlas-quality groups separate.
+- Every axis declares id, label, correctness, verification, clarity, score,
+  weight, claimIds, evidenceIds, reason and limits.
+- Numeric fields are integers 1–100. score is the rounded 40/30/30 weighted review
+  of correctness/verification/clarity. Axis weights sum to 100 per group, whose
+  score is the rounded weighted mean.
+- Cite reviewed claims and retained evidence IDs. An honest source-only review
+  may have empty evidenceIds.
 
 Do not confuse these quality axes with feedback urgency, test pass percentages,
 code coverage or automatic semantic completeness. State limitations and explain

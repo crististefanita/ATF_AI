@@ -140,9 +140,14 @@ meaning. Findings belong to [behavior feedback](../docs/feedback/Behavior_And_Ne
 
 Run from an isolated reactor copy, following [Development](../docs/Development.md):
 
+<details>
+<summary>Run Verification commands</summary>
+
 ```powershell
 mvn -B -ntp -pl atf-tests -am "-Dtest=DocumentationGovernanceTest,FrameworkArchitectureGovernanceTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
 ```
+
+</details>
 
 Run the optional Atlas maintenance checks from the reactor root:
 

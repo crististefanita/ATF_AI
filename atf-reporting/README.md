@@ -42,11 +42,16 @@ Ordinary reporting does not depend on historical evidence or calibration files.
 
 From an isolated reactor copy:
 
+<details>
+<summary>Run Verification commands</summary>
+
 ```powershell
 mvn -B -ntp -pl atf-reporting -am test
 mvn -B -ntp -pl atf-tests -am "-Datf.test.suite=src/test/resources/suites/framework-reporting.xml" test
 mvn -B -ntp -Paggregate test
 ```
+
+</details>
 
 Native checks protect module integration; cross-module regressions protect
 lifecycle and presentation behavior. [Testing](../docs/Testing.md) also defines

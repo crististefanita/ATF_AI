@@ -1,116 +1,100 @@
 # Framework testing
 
+This guide owns test selection, proof limits and evidence review. Use the
+[command cookbook](Testing_Commands.md) for runnable examples. Its recipes are
+collapsed by default so setup commands do not obscure the testing strategy.
+
 ## Run location and scope
 
-Run every Maven command below from the reactor root of a disposable validation
-copy, following [Development](Development.md). Do not build in the development
-or live checkout. Keep Maven/browser caches and each run's evidence outside
-those source checkouts.
+Run Maven from the reactor root of a disposable validation copy, following
+[Development](Development.md). Keep builds, Maven/browser caches and complete
+run evidence outside the development and live source checkouts.
+
+The current maintenance scope keeps the existing E2E inventory. Improve the
+determinism, assertions, documentation and governance of existing checks.
+Use desktop browsers; do not add application journeys or use emulators.
 
 ## Choose the proof boundary
 
-| Change or question | Existing selection | What to inspect |
+| Change or question | Existing selection | Required observation |
 |---|---|---|
-| A library's own contract | Native module checks with its dependencies | Actual selected classes and assertions |
-| Cross-module behavior or governance | Default local suite | Observable local outcomes and useful negative fixtures |
+| A library's own contract | Native module checks with its dependencies | The selected classes and their assertions ran |
+| Cross-module behavior or governance | Default local suite | Local outcomes and meaningful negative controls |
 | Real browser actions, responses or screenshots | Browser profile | Both selected adapters, cleanup and complete artifacts |
-| Extent/Allure publication | Aggregate profile and the native Allure subset | Executed outcomes plus generated report data/rendering |
-| An application journey | Explicit concrete test selection | Intended deployment, identities, persisted state and cleanup |
+| Extent/Allure publication | Native Allure subset and aggregate profile | Actual outcomes and the generated report data/rendering |
+| An existing application journey | Explicit concrete class selection | Intended deployment, identities, persisted state and cleanup limits |
 
-Use the smallest selection that exposes the changed boundary, then run the
-relevant complete suite before closure. A source guard proves its supported
-inspection rule; local fixtures and browser pages do not establish controlled
-application acceptance.
+Use the smallest selection that exposes the changed boundary. Before closing
+feedback, run the relevant complete suite and inspect its actual results.
 
-The current maintenance scope retains the existing E2E inventory. Improve
-determinism, assertions, documentation and governance of existing checks;
-do not add application journeys during this phase. Use desktop browsers for
-browser checks. Emulators are outside the requested execution scope.
+```mermaid
+flowchart TB
+    Question["Changed contract or review question"] --> Selection["Choose existing checks for that boundary"]
+    Selection --> Execute["Execute in a disposable validation copy"]
+    Execute --> Observe["Inspect native outcomes and artifacts"]
+    Observe --> Claim["State the observed result and proof limits"]
+    Claim --> Retain["Retain source, selection and evidence"]
+```
 
-Select original native test proof and source/verification receipts for the
-checkout's ignored artifacts/reports/current tree after external validation.
-Its README/index describe actual selections, captured revisions and verdicts.
-The explicit retained-UI role can also publish one original audited Extent
-reader per browser engine with its native XML, executed-source manifest and
-audit proof. Other full report sites remain external.
-Complete runs and failures remain in external history. Publish one selected
-Atlas HTML per project under artifacts/atlas/current and run the
-[dedicated consistency check](../artifacts/atlas/README.md#verification) before
-claiming that generated documentation matches captured live source and evidence.
-Use the [publication layout check](../artifacts/README.md#verification) before
-replacing the current selection. A retained capture is not automatically the
-latest HEAD, and publication does not execute its original tests again.
+Solid arrows show the review sequence, not runtime calls or module dependencies.
+
+- Retain the observed PASS, FAIL and SKIP outcomes.
+- A source guard proves only its supported inspection rule. Local fixtures and
+  browser pages do not establish controlled application acceptance.
+- Publication and consistency checks do not rerun tests or broaden their proof boundary.
 
 ## Local baseline
 
-```powershell
-mvn -B -ntp test
-```
+The default root selection runs native library checks and
+[framework-local.xml](../atf-tests/src/test/resources/suites/framework-local.xml)
+in atf-tests, including governance.
 
-The root command runs native library checks and the
-[framework-local suite](../atf-tests/src/test/resources/suites/framework-local.xml)
-in atf-tests, including governance. Local regressions use fixtures and doubles
-for configuration, API execution, UI delegation and reporting. They exclude
-browser-dependent cases, intentional failure fixtures and live application
-journeys. A successful compile or a skipped suite is not execution evidence.
+- Local fixtures and doubles cover configuration, API execution, UI delegation
+  and reporting.
+- Browser-dependent cases, intentional failure fixtures and live application
+  journeys are excluded.
+- A successful compile or a skipped suite is not execution evidence.
+
+Use the [local baseline recipe](Testing_Commands.md#local-baseline).
 
 ## Selective checks
 
-Use `-pl atf-tests -am` to build the test module and its library dependencies.
-Suite paths below are relative to the atf-tests module:
-
-```powershell
-mvn -B -ntp -pl atf-tests -am "-Datf.test.suite=src/test/resources/suites/framework-ui.xml" test
-mvn -B -ntp -pl atf-tests -am "-Datf.test.suite=src/test/resources/suites/framework-api.xml" test
-mvn -B -ntp -pl atf-tests -am "-Dtest=InvoiceEvidenceContractTest,RegistrationSubmissionContractTest,ConfigManagerFileContractTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
-```
-
-The class-filter flag lets upstream modules continue when the requested class
-exists only in atf-tests. Check that the selected downstream tests actually ran.
-Use the [API](../atf-tests/src/test/resources/suites/framework-api.xml),
-[UI](../atf-tests/src/test/resources/suites/framework-ui.xml) or
-[reporting](../atf-tests/src/test/resources/suites/framework-reporting.xml) suite
-for a maintained subset. These subsets do not replace the complete default
+The maintained [API](../atf-tests/src/test/resources/suites/framework-api.xml),
+[UI](../atf-tests/src/test/resources/suites/framework-ui.xml) and
+[reporting](../atf-tests/src/test/resources/suites/framework-reporting.xml)
+subsets answer focused questions. They do not replace the complete default
 governance run.
 
-The API subset selects BaseTestAPIContractTest and
-ApiCoreExecutionArchitectureContractTest. It checks framework setup, write
-readiness, retry budgets, call ordering and failure propagation with local
-fixtures and doubles. It does not call the GoRest service. The existing
-[PositiveUserTests](../atf-tests/src/test/java/com/ai/api/tests/PositiveUserTests.java)
-contains two opt-in GoRest write journeys; both require auth.token. An empty
-token causes the shared setup to skip them, which is not passing API application
-acceptance. Record these two execution scopes separately.
+| API scope | Existing owner | What its outcome establishes |
+|---|---|---|
+| Framework-local API contracts | BaseTestAPIContractTest and ApiCoreExecutionArchitectureContractTest | Setup, write readiness, budgets, call ordering and failure propagation with local fixtures/doubles; no GoRest request |
+| Opt-in API application journeys | [PositiveUserTests](../atf-tests/src/test/java/com/ai/api/tests/PositiveUserTests.java) | Two existing GoRest writes, only when executed with an explicit `auth.token`; empty-token setup SKIP is not application acceptance |
 
-A library's native checks can be selected with its module and dependencies,
-for example `mvn -B -ntp -pl atf-core -am test`. That selection does not run
+The module/dependency selection builds upstream libraries. A class filter can
+allow upstream modules with no matching class to continue; verify that the
+requested downstream tests actually ran. A library-only run does not execute
 the cross-module regressions in atf-tests.
+
+See the [selective recipes](Testing_Commands.md#selective-checks).
 
 ## Browser preparation and checks
 
-Use the portable work-root/cache variables from
-[Development](Development.md#working-roles), then enter the validation copy's
-reactor root. Keep browser acquisition separate from acceptance evidence.
+Prepare both browser runtimes before accepting browser behavior. Use the
+portable work-root/cache inputs in [Development](Development.md#working-roles).
+Acquiring a browser binary is separate from executing an acceptance check.
 
 ### Playwright runtime
 
-Install the Chromium revision selected by the pinned Playwright Java SDK.
-The SDK uses its bundled Node runtime. Prepare local Maven artifacts before
-invoking the adapter's CLI:
+The pinned Playwright Java SDK selects its Chromium revision and uses its
+bundled Node runtime. `PLAYWRIGHT_BROWSERS_PATH` can select the external cache.
+Preparation skips test execution; `PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD` controls
+bootstrap downloads, not browser actions.
 
-```powershell
-$env:PLAYWRIGHT_BROWSERS_PATH = Join-Path $workRoot 'cache/playwright'
-mvn -B -ntp "-Dmaven.repo.local=$mavenCache" -pl atf-playwright -am "-DskipTests" install
-mvn -B -ntp "-Dmaven.repo.local=$mavenCache" -f atf-playwright/pom.xml org.codehaus.mojo:exec-maven-plugin:3.5.0:java "-Dexec.mainClass=com.microsoft.playwright.CLI" "-Dexec.args=install chromium"
-$env:PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = '1'
-```
-
-The preparation command skips execution and is not acceptance evidence.
-The Playwright skip flag affects bootstrap downloads, not browser actions.
+Use the [Playwright preparation recipe](Testing_Commands.md#playwright-runtime).
 
 ### Selenium pinned Manager route
 
-Use the versions selected by the [parent POM](../pom.xml) and browser contract:
+The [parent POM](../pom.xml) and browser contract select this matrix:
 
 | Component | Selected version |
 |---|---|
@@ -119,191 +103,103 @@ Use the versions selected by the [parent POM](../pom.xml) and browser contract:
 | ChromeDriver | 158.0.8127.88 |
 | Required typed CDP | 158 |
 
-The [Selenium release](https://www.selenium.dev/downloads/) supplies the Java SDK;
-the [Chrome for Testing manifest](https://googlechromelabs.github.io/chrome-for-testing/158.0.8127.88.json)
-supplies platform-specific browser/driver downloads. Obtain the exact Chrome
-binary for the host OS and set the caller-provided ATF_CHROME_BINARY to that
-existing executable. The following setup resolves that input without assuming
-a workstation path or operating-system cache layout.
+- Select an existing host-specific Chrome executable through `ATF_CHROME_BINARY`.
+- An explicit `webdriver.chrome.driver` or usable ATF-cached driver takes priority
+  over Manager. Use an empty or nonexistent ATF fallback cache for the Manager route.
+- Keep the separate Manager cache/configuration aligned with the matrix;
+  conflicting `se-config.toml` settings can override environment inputs.
+- Retain actual browser, driver, selected binary and typed CDP evidence.
 
-The existing factory gives an explicit webdriver.chrome.driver or an ATF-cached
-driver priority over Selenium Manager. Leave that JVM property unset, including
-in inherited JVM options, and use an empty or nonexistent ATF fallback cache.
-The separate Selenium Manager cache holds its downloaded assets. Its configuration
-must agree with these pins; a conflicting se-config.toml can override environment
-settings, as described in [Selenium Manager configuration](https://www.selenium.dev/documentation/selenium_manager/#configuration).
-
-```powershell
-$seleniumCache = Join-Path $workRoot 'cache/selenium'
-$fallbackCache = Join-Path $workRoot 'cache/selenium-fallback-empty'
-if (Test-Path -LiteralPath $fallbackCache) {
-    if (@(Get-ChildItem -LiteralPath $fallbackCache -Force).Count -gt 0) {
-        throw 'Use an empty ATF fallback cache to exercise Selenium Manager.'
-    }
-}
-$env:SE_BROWSER_PATH = (Resolve-Path -LiteralPath $env:ATF_CHROME_BINARY -ErrorAction Stop).Path
-$env:SE_DRIVER_VERSION = '158.0.8127.88'
-$env:SE_CACHE_PATH = $seleniumCache
-$env:SE_SKIP_DRIVER_IN_PATH = 'true'
-$env:SE_SKIP_BROWSER_IN_PATH = 'true'
-$env:SE_AVOID_STATS = 'true'
-Remove-Item Env:SE_OFFLINE -ErrorAction SilentlyContinue
-mvn -B -ntp "-Dmaven.repo.local=$mavenCache" -pl atf-tests -am "-Datf.selenium.cache.root=$fallbackCache" "-Dtest=SeleniumPlaywrightLocatorParityContractTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
-```
-
-That existing parity class runs both adapters; ui.engine does not reduce its data
-providers to one engine. With downloads permitted, the invocation warms the real
-Manager route and executes local locator/network contracts. Retain the actual
-browser, driver, selected binary and typed CDP evidence. It does not establish
-an application journey or replace the complete browser selection.
+The existing locator/network parity class exercises both adapters. `ui.engine`
+does not restrict its data providers to one engine. Use the
+[Manager preparation and parity recipe](Testing_Commands.md#selenium-pinned-manager-route).
 
 ### Complete browser selection
 
-After Maven dependencies and both browser runtimes are prepared, retain the same
-environment and fallback-cache argument for offline acceptance:
-
-```powershell
-$env:SE_OFFLINE = 'true'
-mvn -B -ntp -o "-Dmaven.repo.local=$mavenCache" "-Datf.selenium.cache.root=$fallbackCache" -Pbrowser test
-```
-
-SE_OFFLINE controls Selenium Manager network access; Maven's `-o` controls Maven
-artifact resolution. Enable them only after the required assets are cached.
 The browser profile selects
 [framework-browser.xml](../atf-tests/src/test/resources/suites/framework-browser.xml)
-only in atf-tests; native library checks remain part of the reactor run.
-The suite uses local pages to cover engine parity, screenshots, window/zoom
-behavior and reporting interactions.
+only in atf-tests. Native library checks remain part of the reactor run. Local
+pages cover engine parity, screenshots, window/zoom behavior and reporting.
 
-Preserve complete screenshots when inspecting browser evidence. A version change
-requires a fresh matrix check and browser run, with results recorded in feedback.
+- `SE_OFFLINE` controls Manager network access; Maven's offline flag controls Maven
+  artifact resolution. Enable them after caching the required assets.
+- Preserve complete screenshots. A version change requires a fresh matrix check
+  and browser run, recorded in feedback.
+
+Use the [complete browser recipe](Testing_Commands.md#complete-browser-selection).
 
 ## Reporting acceptance
 
-The native Allure subset and aggregate publication are explicit:
-
-```powershell
-mvn -B -ntp -pl atf-tests -am "-Datf.test.suite=src/test/resources/suites/framework-allure.xml" "-Dreporting.engine=allure" test
-mvn -B -ntp -Paggregate test
-```
-
-The [Allure suite](../atf-tests/src/test/resources/suites/framework-allure.xml)
-checks the native integration. The
+The [native Allure subset](../atf-tests/src/test/resources/suites/framework-allure.xml)
+checks native integration. The
 [aggregate suite](../atf-tests/src/test/resources/suites/framework-aggregate.xml)
-collects executed cases and publishes both Extent and Allure evidence.
-Inspect the generated artifacts as well as the TestNG outcome: verify counts,
-statuses, timing, attachments and declared output paths.
+collects executed cases and publishes both Extent and Allure.
+
+Inspect counts, statuses, timing, attachments and declared output paths as well
+as the TestNG result. Use the [reporting recipes](Testing_Commands.md#reporting-acceptance).
 
 ## Application journeys
 
-Product support and opt-in application classes live in atf-tests. Configure
-`base.url` and `base.url.api` for the intended environment. API writes require
-an explicit `auth.token`. Select a concrete class with `-Dtest` and the same
-upstream no-match flag shown above.
+Product support and opt-in application classes belong to atf-tests. Select a
+concrete existing class and configure the intended `base.url`/`base.url.api`;
+API writes also need an explicit `auth.token`.
 
-These journeys can create users, orders or invoices. A missing credential,
-unavailable service or unexecuted journey does not establish application
-acceptance. The active acceptance gaps remain in
-[feedback](feedback/README.md).
+These journeys can create users, orders or invoices. Missing credentials,
+unavailable services and unexecuted journeys do not establish acceptance.
+
+- Record framework gaps in [feedback](feedback/README.md), preserving scope.
+- Check the [application selection prerequisites](Testing_Commands.md#application-journeys).
 
 <a id="existing-product-e2e-audit"></a>
 ## Retained product UI audit
 
-The existing registration, authenticated-account and profile checks use the
-same test methods for both providers. They are distinct from framework-ui and
-framework-browser, which select framework contracts and browser fixtures.
-Neither maintained framework suite silently opts into the public application.
+The same existing methods run through either provider. They are separate from
+framework-ui and framework-browser; those suites do not silently opt into the
+public application.
 
 | Existing owner | Methods | Observed contract |
 |---|---:|---|
-| [RegistrationTests](../atf-tests/src/test/java/com/ai/atf/ui/RegistrationTests.java) | 6 | Successful registration and required-field, email, duplicate, password and phone rejection |
+| [RegistrationTests](../atf-tests/src/test/java/com/ai/atf/ui/RegistrationTests.java) | 6 | Registration plus required-field, email, duplicate, password and phone rejection |
 | [AccountAuthenticatedAreaTests](../atf-tests/src/test/java/com/ai/ui/tests/AccountAuthenticatedAreaTests.java) | 5 | Authenticated account, profile, favorites, invoices and messages navigation |
-| [ProfileContactAddressMemoryTests](../atf-tests/src/test/java/com/ai/ui/tests/ProfileContactAddressMemoryTests.java) | 5 | Registered contact and address values remain observable in the profile |
+| [ProfileContactAddressMemoryTests](../atf-tests/src/test/java/com/ai/ui/tests/ProfileContactAddressMemoryTests.java) | 5 | Registered contact/address values remain observable in the profile |
 
-Use a separate disposable validation copy and output history for each command.
-Prepare browser binaries using the sections above. The explicit URL below is
-the configured testing demo; replace it with the intended deployment when
-appropriate. These retained methods create synthetic customers. They do not
-create invoices or change admin orders, and they do not delete their customers.
-Browser teardown closes sessions; it is not application-data cleanup.
+Use a separate validation copy and output history per engine. The configured
+demo selection creates synthetic customers; it does not create invoices,
+change admin orders or delete those customers. Browser teardown closes sessions,
+not application data.
 
-```powershell
-mvn -B -ntp -pl atf-tests -am "-Dtest=RegistrationTests,AccountAuthenticatedAreaTests,ProfileContactAddressMemoryTests" "-Dsurefire.failIfNoSpecifiedTests=false" "-Dui.engine=playwright" "-Dbase.url=https://practicesoftwaretesting.com" "-Dreporting.engine=extent" "-Dreports.timestamp.enabled=false" "-Dui.screenshots.enabled=true" "-Dui.screenshots.on.failure.only=false" "-Dui.screenshots.capture.final.state=true" test
-mvn -B -ntp -pl atf-tests -am "-Dtest=RegistrationTests,AccountAuthenticatedAreaTests,ProfileContactAddressMemoryTests" "-Dsurefire.failIfNoSpecifiedTests=false" "-Dui.engine=selenium" "-Dbase.url=https://practicesoftwaretesting.com" "-Dreporting.engine=extent" "-Dreports.timestamp.enabled=false" "-Dui.screenshots.enabled=true" "-Dui.screenshots.on.failure.only=false" "-Dui.screenshots.capture.final.state=true" test
-```
-
-For each engine, retain original Surefire XML, source hashes, command, URL,
-browser identity and ExtentReport.html. Reconcile the exact class/method subjects
-and statuses with the report nodes. An action PASS establishes action completion;
-the separate validation step must state expected/actual observations before
-business PASS. Preserve FAIL and SKIP outcomes and distinguish missing or
-unreached validation from a successful negative scenario.
+- Action PASS means technical completion. Business PASS needs a separate
+  validation with expected/actual observations.
+- A negative scenario passes when its rejection oracle succeeds. Missing or
+  unreached validation is not that success.
+- Preserve original FAIL/SKIP outcomes, exact class/method identities, source
+  hashes, command, URL, browser identity and native report evidence.
 
 The [living principles](Living_Architecture_UI_API_doc_v1_0.md#retained-principles)
-define the source responsibilities. The
-[report publication contract](../artifacts/reports/README.md#retained-ui-report-publication)
-defines the per-engine reader and proof boundary. Audit consistency does not
-establish a test execution, application-data cleanup or exhaustive coverage.
-
-```powershell
-node --test tools/verify-ui-e2e-audit.test.mjs tools/collect-artifacts.test.mjs
-```
-
-The command above executes the maintenance controls. To recheck one already
-published native reader without launching browsers or changing its evidence,
-select its existing four-file engine directory from the reactor root:
-
-```powershell
-$engine = 'playwright'
-$auditRoot = Join-Path (Get-Location).Path "artifacts/reports/current/e2e/$engine"
-node tools/verify-ui-e2e-audit.mjs --source "$auditRoot/source.json" --xml "$auditRoot/native.xml" --html "$auditRoot/ExtentReport.html" --capture "$auditRoot/audit.json"
-```
-
-Choose selenium for the other published engine. These files are publication
-prerequisites and are absent in a source-only checkout. audit.json is the
-preserved native DOM capture, not the consistency result printed by this command.
-The checker reads the original files and writes its verdict to standard output;
-preserve a new receipt outside source when recording that recheck. A PASSED
-consistency result retains the original native PASS, FAIL and SKIP outcomes.
+own source responsibilities; the
+[publication contract](../artifacts/reports/README.md#retained-ui-report-publication)
+owns the per-engine reader. The
+[retained UI recipes](Testing_Commands.md#retained-product-ui-audit) separate
+execution, maintenance controls and an existing reader's consistency recheck.
+Consistency does not establish fresh execution, data cleanup or exhaustive coverage.
 
 ## Explicit configuration
 
 [ConfigManager](../atf-core/src/main/java/com/ai/core/support/config/ConfigManager.java)
-loads the classpath framework.properties resource by default. An explicit file
-replaces that resource; it must provide the settings needed by the selected
-consumer. Individual JVM properties still take precedence.
+loads classpath `framework.properties` by default. An explicit consumer file
+replaces that resource and must supply the selected consumer's settings.
+Individual JVM properties still take precedence.
 
-For a consumer-supplied file at config/local.properties in the validation copy,
-or an existing file selected through ATF_CONFIG_FILE, resolve the path once at
-the reactor root before Maven enters individual modules:
+Resolve an existing file once at the reactor root, before Maven enters modules.
+The [configuration recipe](Testing_Commands.md#explicit-configuration) accepts
+`ATF_CONFIG_FILE` or the consumer's `config/local.properties`.
 
-```powershell
-$projectRoot = (Get-Location).Path
-$configInput = if ($env:ATF_CONFIG_FILE) {
-    $env:ATF_CONFIG_FILE
-} else {
-    Join-Path $projectRoot 'config/local.properties'
-}
-$configPath = (Resolve-Path -LiteralPath $configInput -ErrorAction Stop).Path
-mvn -B -ntp "-Dframework.properties=$configPath" test
-```
-
-This file is an explicit consumer prerequisite, not a bundled repository file.
-Resolution fails before Maven if it does not exist. Passing the resolved path
-avoids relying on each forked test process having the same working directory.
+- The consumer supplies the file; resolution fails before Maven if it is absent.
+- Passing the resolved path avoids forked-process working-directory assumptions.
 
 ## Output and evidence
 
-The [artifact archive](../artifacts/reports/README.md) owns report classification,
-copy integrity and the explicit maintenance-tool checks. Run its Node selection
-when changing the collector; Java governance checks do not execute that CLI.
-
-The `atf.build.directory` override relocates Maven compile output for atf-tests
-only. `surefire.reportsDirectory` selects that module's execution results.
-Upstream library targets and runtime report destinations are configured
-separately; these properties do not relocate every artifact in the reactor.
-
-Under the default configuration, paths are relative to the validation copy:
+Default paths are relative to the disposable validation copy:
 
 | Output | Location |
 |---|---|
@@ -313,11 +209,23 @@ Under the default configuration, paths are relative to the validation copy:
 | Allure raw results | atf-tests/target/allure-results |
 | Aggregate publication | atf-tests/target/atf-core-aggregate-report |
 
-The aggregate directory retains its compatibility name. Runtime properties can
-redirect report output. Preserve a fresh copy or unique result directories for
-each acceptance run so a focused rerun cannot overwrite earlier XML.
+The aggregate directory retains its compatibility name; runtime properties can
+redirect reporting. `atf.build.directory` and `surefire.reportsDirectory` affect
+atf-tests only, without relocating every reactor artifact.
+See [output details](Testing_Commands.md#output-and-evidence).
 
-Record the source checkpoint, exact command, selected suite, counts and external
-artifact paths in feedback. Distinguish historical baseline evidence, newly
-executed checks, skipped cases and unexecuted checks. A copied report or a
-renamed directory is not a new run.
+| Evidence role | Retention boundary | Required review |
+|---|---|---|
+| Complete runs and failures | External immutable run history | Source checkpoint, exact command/selection, counts and original artifacts |
+| Selected native proof and receipts | Ignored artifacts/reports/current | Captured revision, actual verdict and [publication layout](../artifacts/README.md#verification) |
+| Retained UI reader | One original audited Extent reader per engine, with native XML/source/audit proof | Exact subjects/statuses and the [report archive contract](../artifacts/reports/README.md) |
+| Selected Atlas reader | One HTML per project in artifacts/atlas/current | [Atlas consistency check](../artifacts/atlas/README.md#verification) against captured source/evidence |
+
+- Keep each run separate so a focused rerun cannot overwrite earlier XML.
+- Record its source, command, selected suite, counts and external evidence
+  locations in feedback.
+- Distinguish historical, newly executed, skipped and unexecuted checks.
+- A retained capture is not automatically latest HEAD; copying or publishing
+  it is not a new run.
+- Java governance does not execute the artifact collector's CLI. Run the archive's
+  explicit Node selection when changing that tool.

@@ -1,9 +1,13 @@
 package com.ai.atf.governance;
 
+import com.sun.source.tree.AssignmentTree;
 import com.sun.source.tree.ClassTree;
 import com.sun.source.tree.CompilationUnitTree;
+import com.sun.source.tree.ExpressionTree;
+import com.sun.source.tree.LiteralTree;
 import com.sun.source.tree.MethodTree;
 import com.sun.source.tree.ModifiersTree;
+import com.sun.source.tree.ParenthesizedTree;
 import com.sun.source.tree.Tree;
 import com.sun.source.util.JavacTask;
 import org.w3c.dom.Element;
@@ -198,12 +202,28 @@ final class FrameworkArchitectureRules {
                     if (declaration.getKind() != Tree.Kind.CLASS) continue;
                     ClassTree type = (ClassTree) declaration;
                     if (type.getModifiers().getFlags().contains(Modifier.ABSTRACT)) continue;
-                    boolean ownsTest = testAnnotation(type.getModifiers(), imported);
+                    boolean visibleImport = imported && unit.getTypeDecls().stream().noneMatch(FrameworkArchitectureRules::declaresTestType)
+                            && type.getMembers().stream().noneMatch(FrameworkArchitectureRules::declaresTestType);
+                    boolean ownsTest = testAnnotation(type.getModifiers(), visibleImport);
                     for (Tree member : type.getMembers()) {
-                        if (member instanceof MethodTree && testAnnotation(((MethodTree) member).getModifiers(), imported)) ownsTest = true;
+                        if (member instanceof MethodTree && testAnnotation(((MethodTree) member).getModifiers(), visibleImport)) ownsTest = true;
                     }
-                    if (ownsTest) executable.add(namespace.isEmpty() ? type.getSimpleName().toString()
-                            : namespace + '.' + type.getSimpleName());
+                    if (ownsTest) {
+                        String name = namespace.isEmpty() ? type.getSimpleName().toString()
+                                : namespace + '.' + type.getSimpleName();
+                        executable.add(name);
+                        if (!SUITE_EXEMPTIONS.containsKey(name)) {
+                            String location = GovernanceFiles.relative(root, Path.of(unit.getSourceFile().toUri()));
+                            validateTestEnabled(type.getModifiers(), visibleImport, location, name, violations);
+                            for (Tree member : type.getMembers()) {
+                                if (member instanceof MethodTree) {
+                                    MethodTree method = (MethodTree) member;
+                                    validateTestEnabled(method.getModifiers(), visibleImport, location,
+                                            name + '#' + method.getName(), violations);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -215,6 +235,30 @@ final class FrameworkArchitectureRules {
     private static boolean testAnnotation(ModifiersTree modifiers, boolean imported) {
         return modifiers.getAnnotations().stream().anyMatch(value -> value.getAnnotationType().toString().equals("org.testng.annotations.Test")
                 || imported && value.getAnnotationType().toString().equals("Test"));
+    }
+
+    private static boolean declaresTestType(Tree declaration) {
+        return declaration instanceof ClassTree && ((ClassTree) declaration).getSimpleName().contentEquals("Test");
+    }
+
+    /** Maintained selection stays explicit; parse-only inspection does not resolve external constant values. */
+    private static void validateTestEnabled(ModifiersTree modifiers, boolean imported, String location,
+                                            String owner, List<String> violations) {
+        for (com.sun.source.tree.AnnotationTree annotation : modifiers.getAnnotations()) {
+            String name = annotation.getAnnotationType().toString();
+            if (!name.equals("org.testng.annotations.Test") && !(imported && name.equals("Test"))) continue;
+            for (ExpressionTree argument : annotation.getArguments()) {
+                if (!(argument instanceof AssignmentTree)) continue;
+                AssignmentTree assignment = (AssignmentTree) argument;
+                if (!assignment.getVariable().toString().equals("enabled")) continue;
+                ExpressionTree enabled = assignment.getExpression();
+                while (enabled instanceof ParenthesizedTree) enabled = ((ParenthesizedTree) enabled).getExpression();
+                if (!(enabled instanceof LiteralTree) || !Boolean.TRUE.equals(((LiteralTree) enabled).getValue())) {
+                    violations.add(location + ": SUITE-DISABLED " + owner
+                            + " must omit enabled or explicitly use true; observed enabled=" + assignment.getExpression());
+                }
+            }
+        }
     }
 
     static List<String> validate(Path root) throws Exception {

@@ -433,6 +433,61 @@ public class FrameworkArchitectureGovernanceTest {
         }
     }
 
+    @DataProvider(name = "disabledMaintainedTests")
+    public Object[][] disabledMaintainedTests() {
+        String type = "com.ai.atf.fixture.SuiteProbeTest";
+        return new Object[][] {
+                {"@org.testng.annotations.Test(enabled = false) public class SuiteProbeTest { public void runs(){} }", type},
+                {"public class SuiteProbeTest { @org.testng.annotations.Test(enabled = false) public void runs(){} }", type + "#runs"},
+                {"import org.testng.annotations.Test; public class SuiteProbeTest { @Test(enabled = (false)) public void runs(){} }", type + "#runs"},
+                {"import org.testng.annotations.*; public class SuiteProbeTest { @Test(enabled = !true) public void runs(){} }", type + "#runs"},
+                {"public class SuiteProbeTest { static final boolean ACTIVE = false; "
+                        + "@org.testng.annotations.Test(enabled = ACTIVE) public void runs(){} }", type + "#runs"},
+                {"public class SuiteProbeTest { static final boolean ACTIVE = true; "
+                        + "@org.testng.annotations.Test(enabled = ACTIVE) public void runs(){} }", type + "#runs"},
+                {"public class SuiteProbeTest { @org.testng.annotations.Test(enabled = fal" + "\\u0073" + "e) public void runs(){} }", type + "#runs"}
+        };
+    }
+
+    @Test(dataProvider = "disabledMaintainedTests")
+    public void maintainedSourceTestsCannotHideBehindDisabledOrIndirectFlags(String declaration, String owner) throws Exception {
+        try (GovernanceFiles.Fixture fixture = suiteFixture()) {
+            String path = "atf-tests/src/test/java/com/ai/atf/fixture/SuiteProbeTest.java";
+            fixture.write(path, "package com.ai.atf.fixture; " + declaration);
+            List<String> findings = FrameworkArchitectureRules.validateSuites(fixture.root);
+            Assert.assertEquals(findings.size(), 1, GovernanceFiles.problems(findings));
+            assertFinding(findings, "SUITE-DISABLED " + owner + " must omit enabled or explicitly use true");
+
+            // Repair the maintained test itself; do not change suite selections or add an exemption.
+            fixture.write(path, "package com.ai.atf.fixture; public class SuiteProbeTest { "
+                    + "@org.testng.annotations.Test(enabled = (true)) public void runs(){} }");
+            assertValid(FrameworkArchitectureRules.validateSuites(fixture.root));
+        }
+    }
+
+    @Test
+    public void enabledSourceTestsIgnoreExamplesOtherAnnotationsAndReviewedManualFixtures() throws Exception {
+        try (GovernanceFiles.Fixture fixture = suiteFixture()) {
+            fixture.write("atf-tests/src/test/java/com/ai/atf/fixture/SuiteProbeTest.java",
+                    "package com.ai.atf.fixture; import org.testng.annotations.Test; public class SuiteProbeTest { "
+                            + "// @Test(enabled = false) is an example only.\n"
+                            + "String example = \"@Test(enabled = false)\"; "
+                            + "@interface OtherTest { boolean enabled() default true; } "
+                            + "@OtherTest(enabled = false) @Test(enabled = (true), description = \"enabled=false\") public void runs(){} "
+                            + "public static class NestedFixture { @Test(enabled = false) public void nested(){} } }");
+            fixture.write("atf-tests/src/test/java/com/ai/api/tests/PositiveUserTests.java",
+                    "package com.ai.api.tests; @org.testng.annotations.Test(enabled = false) "
+                            + "public class PositiveUserTests { public void manualOnly(){} }");
+            assertValid(FrameworkArchitectureRules.validateSuites(fixture.root));
+            fixture.write("atf-tests/src/test/java/com/ai/atf/fixture/SuiteProbeTest.java",
+                    "package com.ai.atf.fixture; import org.testng.annotations.*; public class SuiteProbeTest { "
+                            + "@interface Test { boolean enabled() default true; } "
+                            + "@Test(enabled = false) public void unrelatedAnnotation(){} "
+                            + "@org.testng.annotations.Test public void runs(){} }");
+            assertValid(FrameworkArchitectureRules.validateSuites(fixture.root));
+        }
+    }
+
     @Test
     public void suiteInventoryRejectsAnUnselectedRegression() throws Exception {
         try (GovernanceFiles.Fixture fixture = suiteFixture()) {

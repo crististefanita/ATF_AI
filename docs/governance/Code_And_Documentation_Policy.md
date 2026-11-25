@@ -51,6 +51,9 @@ does not establish the expected failure. Unknown findings remain unclassified.
   identify the failed operation and preserve useful diagnostics.
 - Restore changed properties, engine state and listeners in cleanup that also
   runs after failure. Do not convert an unexpected exception into a passing test.
+- Maintained TestNG source annotations must omit `enabled` or use literal `true`
+  (parentheses are allowed). Disabled or indirect flags fail source governance;
+  reviewed nested/manual fixtures retain their explicit boundary.
 - Keep meaningful existing test classes reachable through the maintained suite
   selections. Distinguish deliberate opt-in application tests, fixtures and
   environment probes from accidentally omitted regressions.
@@ -74,12 +77,12 @@ vendor-SDK ownership checks continue to apply independently of import style.
 
 ### English source and comments
 
-Requirement ENG-001: authored identifiers, comments/Javadoc and framework/test messages MUST be written in English.
+Requirement ENG-001: `authored identifiers, comments/Javadoc and framework/test messages MUST be written in English.`
 
 English documentation is canonical on main. The main_RO documentation edition
-translates README.md prose and diagram labels only, as declared by the
+translates all maintained documentation prose and explanatory diagram labels, as declared by the
 [README edition contract](Readme_Editions.md). That explicit exception does not
-change the source/comment requirement or exempt other documents.
+change the English source/comment requirement.
 
 Preserve external payloads, proper names and
 deliberate localization/negative fixtures as data; do not silently translate an
@@ -89,7 +92,7 @@ Existing source governance inspects lexical code, comment and literal regions
 separately, after Java Unicode translation. It rejects known Romanian markers
 in authored names/comments/messages. This deterministic policy complements human
 English review; a finite vocabulary is not a universal language detector.
-The three exact language-policy fixture files have documented literal-data
+The exact language-policy fixture files have documented literal-data
 ownership for their literal regions, while their identifiers and comments
 remain governed. This is reviewed policy/fixture data, not permission to add
 non-English authored diagnostics in those files. Unused data
@@ -103,9 +106,14 @@ including repository inspection and deliberate failing comment/name/message case
 also protects this mandatory requirement, README diagrams and compilable consumer
 examples. From an isolated reactor copy:
 
+<details>
+<summary>Run English source and comments commands</summary>
+
 ```powershell
 mvn -B -ntp -pl atf-tests -am "-Dtest=JavaSourceScannerTest,DocumentationGovernanceTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
 ```
+
+</details>
 
 ### Visibility and execution
 
@@ -280,3 +288,41 @@ ATF_AI's documented execution contracts rather than claiming a verbatim old rule
 contracts. Adapt those principles to this repository's five modules, TestNG
 and ownership. J0 workspace catalogs, consumer rules and language aliases are
 not ATF_AI contracts.
+## Reader-oriented guides
+
+Requirement DOC-READ-001: keep the reader's decision visible before implementation
+or execution detail. Testing.md owns strategy and evidence; the linked
+[command cookbook](../Testing_Commands.md) owns reproducible recipes.
+
+| Reader task | Preferred structure | What must remain explicit |
+|---|---|---|
+| Choose between selections or options | Comparison table | Preconditions and the proof each choice supplies |
+| Follow ordered work or lifecycle | Numbered steps or a diagram | Direction, actors, branches and an adjacent legend |
+| Inspect parallel checks or constraints | Bullets | Independent conditions without hiding exceptions |
+| Copy execution commands | Closed details with a descriptive summary | Purpose, prerequisites and expected evidence |
+| Understand one reason or consequence | Short connected prose | Conditions, negations and limits |
+
+Canonical retrieval excerpts remain quoted English policy literals in both editions;
+translate their surrounding explanation. These are choices based on content,
+not diagram/table/bullet quotas. A diagram
+explains real relationships; its legend states arrow meaning, ownership and
+omissions. Do not hide a prerequisite in a disclosure merely to shorten a page.
+
+The source guard measures logical prose blocks across physical wraps. Strategy
+orientation in Testing.md permits at most 3 sentences and 100 visible words per
+paragraph. Detailed operational references use the 100-word paragraph bound;
+all inspected prose uses a 45-word sentence bound. These are review triggers,
+not readability scores or proof that shorter text is correct.
+
+Lists, tables, literal code and disclosure content have distinct reading roles.
+Historical issue prose retains its evidence form; feedback/README remains an
+operational guide. Their source facts, links, code and translation remain
+subject to the other guards. Review prose inside disclosures manually as part
+of the complete document review.
+
+Requirement DOC-RUN-001: runnable Maven shell fences in maintained documentation
+MUST sit inside balanced details without any open attribute. Give the summary
+the actual selection or purpose. Keep strategy and proof limits visible; inline
+diagnostic rechecks remain directly readable. Literal text/code fixtures are
+not runnable shell recipes. The guard inspects real tags outside fences/comments
+and recognizes Maven/wrapper invocations, not a keyword in prose.

@@ -1,15 +1,21 @@
 # Complete Atlas report contract
 
+Canonical retrieval excerpts appear as inline technical literals. Keep their
+exact English text in every documentation edition; translate the surrounding
+explanations while preserving the cited requirement and its proof limits.
+
 ## Purpose and ownership
 
 ATLAS-REPORT-001 applies to ordinary and knowledge-assisted Atlas authoring.
-Each invocation publishes exactly one complete understanding HTML for exactly one selected project.
-The selected project may use any language or build system, or have no tests or Git metadata.
-Its reader delivery directory is `delivery/` under the new analysis run, and its
-only HTML is `delivery/atlas.html`, counting all descendants. Combining separate
-target identities, such as AI and J1, or adding an extra HTML in that directory
-violates the delivery contract. Select a monorepo and its scope explicitly when
-that monorepo itself is the target; do not import facts from an unrelated project.
+`Each invocation publishes exactly one complete understanding HTML for exactly one selected project.`
+`The selected project may use any language or build system, or have no tests or Git metadata.`
+Its reader delivery directory is `delivery/` under the new analysis run.
+
+- Its only HTML is `delivery/atlas.html`, counting all descendants.
+- Combining separate target identities, such as AI and J1, or adding another HTML
+  in that directory violates the delivery contract.
+- Select a monorepo and its scope explicitly when that monorepo is the target;
+  do not import facts from an unrelated project.
 
 The delivery directory contains exactly one ordinary file: atlas.html. This is a
 single-file contract, so non-HTML sidecars, nested files and symbolic links are
@@ -54,7 +60,7 @@ The overview remains open; readers can expand other sections without JavaScript.
 Diagrams are inline SVG generated from declared nodes and edges. No stylesheet,
 font, image, script, iframe, fetch, import or navigation sidecar is needed. Raw
 external source paths are displayed as text with their identity, not invented
-links. The final document is English; code and comments remain English.
+links. `The final document is English; code and comments remain English.`
 
 ## Source, evidence and behavior
 
@@ -62,32 +68,33 @@ The [intake](../artifacts/atlas/README.md) and exact source/quote/evidence check
 still apply. The complete report embeds the captured state and explicitly
 distinguishes source review from execution. Related governance is not complete
 coverage of each clause. Unsupported checks remain NOT_MAPPED. A failed retained
-execution stays FAILED even if consistency verification passes. Later edits
+`execution stays FAILED even if consistency verification passes.` Later edits
 require a new capture; the report records its original source identity.
 
 The analysis contract retains schemaVersion 1 and supplies behaviorFlows and
-dependencyGraphs. Each behavior has id, title, actor, intent, object, operation,
-outcome, testOracle, oracleStatus, oracleClaimId, limits, claimIds and graph.
-oracleStatus is SOURCE_REVIEWED, EXECUTED or NOT_FOUND. For an observed oracle,
-oracleClaimId identifies a separate source-reviewed or executed claim from an
-actual existing test. NOT_FOUND references an explicit UNKNOWN oracle claim;
-testOracle records the searched scope and gap, without inventing a test or run.
-Its graph has BEHAVIOR kind, nodes with id/label/x/y/kind and edges with
-from/to/label/claimId. Dependency graphs have id, title, DEPENDENCY kind, nodes
-with id/label/x/y/kind and the same declared edge shape. Dependency node kinds are
-MODULE, COMPONENT, SERVICE or BOUNDARY. A layout coordinate
-is presentation data, not an observation of execution.
+dependencyGraphs.
+
+| Declaration | Required fields and meaning |
+|---|---|
+| Behavior | id, title, actor, intent, object, operation, outcome, testOracle, oracleStatus, oracleClaimId, limits, claimIds and graph |
+| Observed oracle | oracleStatus is SOURCE_REVIEWED or EXECUTED; oracleClaimId identifies a separate claim from an actual existing test |
+| Missing oracle | oracleStatus is NOT_FOUND with an explicit UNKNOWN oracle claim; testOracle states the searched scope and gap without inventing a test/run |
+| Behavior graph | BEHAVIOR kind; nodes with id/label/x/y/kind and edges with from/to/label/claimId |
+| Dependency graph | id, title, DEPENDENCY kind, the same declared node/edge fields; node kinds MODULE, COMPONENT, SERVICE or BOUNDARY |
+
+Layout coordinates are presentation data, not execution observations.
 
 Each edge and flow claim resolves to a SOURCE_REVIEWED or EXECUTED analysis claim;
 source and oracle claims include exact fragments. The reviewer verifies semantic
 correspondence. Tooling checks declared
-identity and structure; it cannot infer that prose is true from matching words.
-A single-component dependency map may contain one node and zero edges, with a
-limitation explaining the absence of declared dependencies. A behavior graph may
-also contain one supported state and no transition when graph.limits explains
-the inspected scope. Complete reporting includes those disclosed gaps rather
-than invented flow steps. Missing tests, Git metadata or build declarations are
-explicit observations, not reasons to copy ATF defaults into another project.
+`identity and structure; it cannot infer that prose is true from matching words.`
+
+- A single-component dependency map may contain one node and zero edges when
+  its limitation explains the absence of declared dependencies.
+- A behavior graph may contain one supported state and no transition when
+  graph.limits explains the inspected scope.
+- Report disclosed gaps instead of inventing flow steps. Missing tests, Git
+  metadata or build declarations do not authorize copying another project's defaults.
 
 An optional sourceDocuments list selects complete maintained documents by
 target-relative path. Each selected document is bound to the source index and
@@ -97,7 +104,7 @@ scope. For ATF_AI, the essential living architecture can be included from its
 maintained source. Do not substitute another project's documentation or treat
 an unreviewed document as proof of execution.
 
-No score is inferred from passing checks. If no rubric and assessment are
+`No score is inferred from passing checks.` If no rubric and assessment are
 supplied, display NOT_ASSESSED. Feedback scores retain their own declared scope.
 
 ## Knowledge and archived provenance
@@ -160,7 +167,7 @@ renderVersion 1 artifacts remain historical records of their original contract;
 preserve their pinned renderer and original bytes rather than silently upgrading
 their meaning or overwriting their delivery.
 
-A full source inventory is not a declaration of complete semantic understanding.
+`A full source inventory is not a declaration of complete semantic understanding.`
 The understanding object declares scope PROJECT or SELECTED, a nonempty
 scopeStatement, inventoryClaimIds and units. Inventory claims resolve to actual
 reviewed build, package, entry or ownership declarations. PROJECT means that the
@@ -207,23 +214,22 @@ whether the exact source supports the stated transition.
 
 ## Exact execution subjects
 
-An executed behavior or oracle claim requires executionSubjects bound to retained testcase identities and outcomes.
+`An executed behavior or oracle claim requires executionSubjects bound to retained testcase identities and outcomes.`
 
 Each execution subject declares evidenceId, testClass, testName and sourcePath.
-evidenceId belongs to that claim's evidenceIds; sourcePath is one of that claim's
-already quoted source/governance paths. Every referenced execution evidence ID
-has at least one subject. XML subjects match an exact classname and name;
-testClass is the exact empty string if the retained XML has no classname. Flat
-Node TAP subjects match an exact test name, with testClass empty or omitted.
-The case must occur exactly once and have an executed PASSED or FAILED outcome.
-Duplicate, missing, ambiguous, skipped and TODO subjects fail. XML predefined and
-numeric entities are decoded locally; no external entity resolution is allowed.
-Only actual testcase children on a valid suite path establish XML identities.
-Processing instructions, comments, CDATA and output-container text cannot invent
-testcases or failure outcomes. Malformed structure, entities and illegal XML
-characters fail with the same constructive evidence diagnostic.
-An observed HTML doctype inside inert CDATA/output remains valid payload;
-actual XML document type/entity declarations remain prohibited.
+
+- evidenceId belongs to the claim's evidenceIds, and sourcePath is already quoted
+  by that claim. Every referenced execution evidence ID has at least one subject.
+- XML subjects match exact classname/name; missing classname means testClass is
+  the empty string. Flat Node TAP matches exact testName with empty/omitted testClass.
+- The case occurs exactly once with executed PASSED or FAILED outcome. Duplicate,
+  missing, ambiguous, skipped and TODO subjects fail.
+- Decode predefined/numeric XML entities locally; prohibit external entity
+  resolution and actual XML document type/entity declarations.
+- Only actual testcase children on a valid suite path establish XML identities.
+  Instructions, comments, CDATA and output-container text cannot invent testcases
+  or failures; malformed structure/entities/characters retain the evidence diagnostic.
+- An observed HTML doctype inside inert CDATA/output remains valid payload.
 
 The selected subjects' original outcomes determine the claim verdict. A suite
 failure outside the selected cases cannot substitute for an oracle failure,
@@ -248,7 +254,7 @@ quote. See the [copyable subject shape](../artifacts/atlas/Project_Map_Template.
 
 ## Evidence-bound review axes
 
-An assessment is a scoped authored review, not a test pass rate or an automatic score.
+`An assessment is a scoped authored review, not a test pass rate or an automatic score.`
 
 analysis.assessment is optional. Without it, the report remains NOT_ASSESSED.
 When supplied, method is EVIDENCE_BOUND_REVIEW and reviewer, scope, limits and
@@ -257,13 +263,16 @@ axes. Keep project quality and Atlas quality in separate groups: a strong
 publisher cannot certify the selected project's runtime or its unexecuted tests.
 
 Each axis declares a unique id, label, correctness, verification, clarity, score,
-weight, claimIds, evidenceIds, reason and limits. Numeric inputs, score and weight
-are integers from 1 to 100. score is the rounded sum of 0.40 × correctness,
-0.30 × verification and 0.30 × clarity. Axis weights sum to 100 within each group; the group score is
-the rounded weighted mean. A declared group score must match that calculation.
-Each axis cites existing reviewed claims; execution references, when present,
-resolve to retained evidence and retain its real outcome and age. An empty
-evidenceIds list is honest when no execution supports the scoped judgment.
+weight, claimIds, evidenceIds, reason and limits.
+
+- Numeric inputs, score and weight are integers from 1 to 100.
+- score is the rounded sum of 0.40 × correctness, 0.30 × verification and
+  0.30 × clarity.
+- Axis weights sum to 100 within each group. Its declared score must match the
+  rounded weighted mean.
+- Each axis cites existing reviewed claims. Execution references resolve to
+  retained evidence and keep its actual outcome and age.
+- evidenceIds may be empty when no execution supports the scoped judgment.
 
 Suitable project axes include contract correctness, existing-test quality,
 governance, maintenance/ownership, documentation and configuration portability.
@@ -291,16 +300,17 @@ declares caseAnalysis schemaVersion 1. Earlier renderVersion 1/2 captures retain
 their original bytes, pinned renderer and proof scope; they are not certified
 retroactively under this case contract.
 
-Every declared behavior outcome has a source-bound case witness reachable from its entry.
-caseAnalysis declares entryNodeId, pathScope, negativeScope and cases. Behavior
-edges have stable unique id values as well as from, to, label and claimId.
-entryNodeId selects any valid behavior node: INTENT, ACTION, DECISION, STATE or
-OUTCOME. Actor and intent are declared separately by the flow; do not invent an
-intent node when the observed operation starts at an action or state. A bounded
-single OUTCOME remains valid with an explicit oracle gap. Every behavior node is reachable from entry
-and can reach an OUTCOME. An unreachable observation, disconnected operation or
-closed cycle without outcome escape fails. Dependency graphs remain separate;
-disconnected declared modules do not require an invented common runtime entry.
+`Every declared behavior outcome has a source-bound case witness reachable from its entry.`
+
+- caseAnalysis declares entryNodeId, pathScope, negativeScope and cases. Behavior
+  edges have stable unique id values plus from, to, label and claimId.
+- entryNodeId selects any valid INTENT, ACTION, DECISION, STATE or OUTCOME node.
+  Actor and intent belong to the flow; do not invent an intent node when the
+  observed operation starts at an action or state.
+- A bounded single OUTCOME is valid with an explicit oracle gap. Every behavior
+  node is reachable from entry and can reach an OUTCOME.
+- Unreachable observations, disconnected operations and trapped cycles fail.
+  Dependency graphs remain separate; disconnected modules need no invented common entry.
 
 pathScope is REPRESENTATIVE or ALL_DECLARED_EDGES. REPRESENTATIVE declares
 selected existing cases and remaining limits. ALL_DECLARED_EDGES requires their
@@ -328,40 +338,39 @@ terminal state when source and assertions justify their different observations.
 Case kind and assertion meaning are reviewed declarations, never inferred from
 filenames, labels or assertion keywords.
 
-Reviewed/executed oracle claims are local to the flow. oracleRefIndices select
-actual oracle source fragments, preserving their exact path, line range and
-quote. An oracle fragment cannot overlap any selected implementation source
-range in the same file, including a smaller slice or a range extended by another
-line. A nonoverlapping fragment in the same file remains valid. An
-implementation-only alias cannot stand in for an independent existing test.
-Live and portable gates also use the verified source index to identify equal
-full-file content across different paths. Overlapping ranges cannot become an
-independent oracle through case variants, hardlinks or identical file copies.
-Explicit CRLF/LF identity may apply only under the declared text policy; published
-library artifacts remain byte-exact. Paths are never globally lowercased, so
-case-distinct files with different content retain their separate identity.
-Direct metadata-only case analysis reports DECLARED_PATHS_ONLY; complete live
-and portable publication supply caller-verified source content identities.
-NOT_FOUND instead references an UNKNOWN oracle claim and oracleGap with
-searchedClaimIds and explanation. Preserve actual reviewed search evidence; do
-not invent a test or run. Source-reviewed cases retain their scope; executed
-oracles also satisfy the retained execution-subject contract. For an EXECUTED
-case oracle, each executionSubjects entry declares nonempty unique
-sourceRefIndices into that oracle's sourceRefs, whose paths match sourcePath.
-Every case-selected oracleRefIndices entry must be covered by actual retained
-subjects. Source indices do not replace the independent XML/TAP testcase identity
-and outcome check; both gates apply.
+Reviewed/executed oracle claims are local to the flow. Apply each source and
+execution boundary explicitly:
 
-Negative observations are explicit reviewed cases or an evidence-backed search gap, never inferred from a happy-path diagram.
-negativeScope records status REVIEWED, PARTIAL, UNKNOWN or NOT_APPLICABLE,
-nonempty reviewed flow-local claimIds and explanation. REVIEWED requires a
-negative case witness; NOT_APPLICABLE cannot coexist with one. It distinguishes
-reviewed negative cases from a searched
-absence or an unreviewed area. A negative source claim elsewhere in the report
-does not certify a positive-only graph. Explain actual rejection, validation,
-timeout, cleanup or boundary behavior when already present in source. Do not
-invent an application case to satisfy a numerical minimum. The reviewer still
-checks the source meaning of each condition, transition and assertion.
+- Source fragments: oracleRefIndices selects exact oracle paths, line ranges and
+  quotes. A fragment cannot overlap any selected implementation range in the same
+  file, even with smaller or extended slices. Nonoverlapping same-file fragments
+  remain valid; an implementation-only alias cannot replace an independent test.
+- Content identity: live and portable gates use the verified source index to
+  identify equal files across paths. Case variants, hardlinks and identical
+  copies cannot turn overlapping ranges into an independent oracle. CRLF/LF
+  identity requires the declared policy; published library artifacts stay byte-exact.
+- Path scope: paths are never globally lowercased, so case-distinct files with
+  different content retain separate identities. Metadata-only analysis reports
+  DECLARED_PATHS_ONLY; live/portable publication supplies verified content identities.
+- Missing oracle: NOT_FOUND references an UNKNOWN oracle claim and oracleGap with
+  searchedClaimIds/explanation. Preserve reviewed search evidence without inventing
+  a test or run. Source-reviewed cases retain their actual scope.
+- Executed oracle: the retained execution-subject contract also applies. Every
+  executionSubjects entry has nonempty unique sourceRefIndices into that oracle's
+  sourceRefs with paths matching sourcePath. Actual retained subjects cover every
+  case-selected oracleRefIndices entry; independent XML/TAP identity/outcome
+  checks still apply alongside source indices.
+
+`Negative observations are explicit reviewed cases or an evidence-backed search gap, never inferred from a happy-path diagram.`
+
+- negativeScope records REVIEWED, PARTIAL, UNKNOWN or NOT_APPLICABLE, nonempty
+  reviewed flow-local claimIds and an explanation.
+- REVIEWED needs a negative case witness; NOT_APPLICABLE cannot coexist with one.
+  Distinguish reviewed cases, searched absence and unreviewed areas.
+- A negative claim elsewhere cannot certify a positive-only graph. Explain actual
+  rejection, validation, timeout, cleanup or boundary behavior already in source.
+- Do not invent application cases for a numerical minimum. The reviewer still
+  checks the source meaning of every condition, transition and assertion.
 
 A unit's REVIEWED failure facet needs at least one NEGATIVE case in an owned
 flow whose negativeScope is REVIEWED or PARTIAL. A reviewed negative source

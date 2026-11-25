@@ -8,6 +8,7 @@
         <classes>
             <class name="com.ai.atf.governance.FrameworkArchitectureGovernanceTest"/>
             <class name="com.ai.atf.governance.DocumentationGovernanceTest"/>
+            <class name="com.ai.atf.governance.DocumentationReadabilityRulesTest"/>
             <class name="com.ai.atf.governance.JavaSourceScannerTest"/>
             <class name="com.ai.atf.core.reporting.adapters.ExtentAdapterDirectoryContractTest"/>
             <class name="com.ai.atf.core.reporting.adapters.ExtentAdapterTest"/>

@@ -59,8 +59,8 @@ independent of these explanatory fields.
 | Suite wiring and inventory | [Existing-test quality](Code_And_Documentation_Policy.md#existing-test-quality) | Restore the affected existing regression and supported selection |
 | Markdown structure, route or diagram | [Documentation and rendering](#documentation-and-rendering) | Repair the real target, syntax or explanatory legend |
 | Examples, commands and defaults | [Testing](../Testing.md) | Align examples with actual public APIs and declarations |
-| README editions | [Edition contract](Readme_Editions.md) | Preserve code, links, anchors, commands, topology and non-README identity |
-| Inline code or numeric translation facts | [Protected README facts](Readme_Editions.md#existing-executable-checks) | Use the reported item ordinal to compare canonical code spans and corresponding numeric table rows; retain human semantic review |
+| Documentation editions | [Edition contract](Readme_Editions.md) | Preserve code, links, anchors, commands, topology and identical non-document source |
+| Inline code or numeric translation facts | [Protected documentation facts](Readme_Editions.md#existing-executable-checks) | Use the reported item ordinal to compare canonical code spans and corresponding numeric table rows; retain human semantic review |
 | Living architecture pair | [Essential source](../Living_Architecture_UI_API_doc_v1_0.md) | Synchronize HTML/Markdown, source digest and navigation |
 | Feedback state and lifecycle | [Feedback rubric](../feedback/README.md) | Retain baseline assessments and close only proven criteria |
 | English source/prose and data exceptions | [English requirement](Code_And_Documentation_Policy.md#english-source-and-comments) | Translate authored text and keep reviewed external data exact |
@@ -91,7 +91,7 @@ Render changed diagrams and inspect labels, arrows and overflow; a source guard
 does not render Mermaid or certify appearance. Preserve an approved root map
 unless an observed mismatch requires a scoped correction.
 
-For README translations use the explicit peer input in
+For documentation translations use the explicit peer input in
 [README editions](Readme_Editions.md#synchronization-and-review). A local edition
 check alone does not establish cross-branch identity.
 
@@ -120,12 +120,25 @@ formatter does not convert every exception into a classified result.
 
 From an isolated reactor copy, run the existing owners:
 
+<details>
+<summary>Run Verification and feedback commands</summary>
+
 ```powershell
-mvn -B -ntp -pl atf-tests -am "-Dtest=FrameworkArchitectureGovernanceTest,DocumentationGovernanceTest,JavaSourceScannerTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
+mvn -B -ntp -pl atf-tests -am "-Dtest=FrameworkArchitectureGovernanceTest,DocumentationGovernanceTest,DocumentationReadabilityRulesTest,JavaSourceScannerTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
 ```
+
+</details>
 
 These guards verify supported source/documentation contracts and diagnostic
 controls. Runtime regression outcomes remain separate evidence. Record the exact
 selection, original failure, investigated cause, correction, successful recheck
 and proof limit in [feedback](../feedback/README.md). Preserve original reports
 through the [report archive](../../artifacts/reports/README.md).
+
+Readability findings explain whether to split a decision, compare alternatives in
+a table, use parallel bullets or draw a real flow with a legend. Command
+disclosure failures require closed details, a descriptive summary and visible
+prerequisites. Translation findings distinguish a supported language signal,
+unchanged source prose, technical drift and stale full-text review; follow the
+[whole-document review](Readme_Editions.md#whole-document-review) before renewing
+the paired hashes. A corrected hash alone is not a semantic repair.

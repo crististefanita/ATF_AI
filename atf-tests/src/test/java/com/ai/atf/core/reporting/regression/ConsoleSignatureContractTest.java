@@ -24,6 +24,7 @@ import org.testng.annotations.Test;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
@@ -134,7 +135,7 @@ public class ConsoleSignatureContractTest {
                 "API payload bodies must remain available in the structured report code block.");
     }
 
-    @Test
+    @Test(timeOut = 10_000)
     public void console_test_sink_is_thread_scoped_for_parallel_contract_safety() throws Exception {
         List<String> mainThreadConsole = new ArrayList<>();
         List<String> workerThreadConsole = new ArrayList<>();
@@ -152,15 +153,31 @@ public class ConsoleSignatureContractTest {
             }
         }, "console-sink-contract-worker");
 
+        worker.setDaemon(true);
         worker.start();
-        worker.join();
-        ConsoleLogger.console("main-only");
+        try {
+            try {
+                worker.join(TimeUnit.SECONDS.toMillis(5));
+            } finally {
+                if (worker.isAlive()) {
+                    worker.interrupt();
+                    worker.join(TimeUnit.SECONDS.toMillis(1));
+                }
+            }
 
-        Assert.assertNull(workerFailure.get(), "Worker thread console capture must not fail.");
-        Assert.assertEquals(workerThreadConsole, List.of("worker-only"),
-                "Worker thread must capture only its own console messages.");
-        Assert.assertEquals(mainThreadConsole, List.of("main-only"),
-                "Main thread capture must not receive worker thread messages.");
+            Assert.assertFalse(worker.isAlive(), "Console worker must terminate after its bounded wait and cleanup.");
+            if (workerFailure.get() != null) {
+                throw new AssertionError("Worker thread console capture failed.", workerFailure.get());
+            }
+            ConsoleLogger.console("main-only");
+
+            Assert.assertEquals(workerThreadConsole, List.of("worker-only"),
+                    "Worker thread must capture only its own console messages.");
+            Assert.assertEquals(mainThreadConsole, List.of("main-only"),
+                    "Main thread capture must not receive worker thread messages.");
+        } finally {
+            ConsoleLogger.resetSinkForTests();
+        }
     }
 
     @Test

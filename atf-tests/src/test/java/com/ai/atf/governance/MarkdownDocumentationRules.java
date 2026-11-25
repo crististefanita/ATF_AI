@@ -64,7 +64,7 @@ final class MarkdownDocumentationRules {
         Map<String, Set<String>> execution = executionInventory(root);
         Set<Path> diagramDocuments = new HashSet<>();
         List<String> required = new ArrayList<>(List.of("README.md", "docs/README.md", "docs/Architecture.md",
-                "docs/Testing.md", "docs/Development.md", "docs/feedback/README.md",
+                "docs/Testing.md", "docs/Testing_Commands.md", "docs/Development.md", "docs/feedback/README.md",
                 "docs/governance/README.md", "docs/governance/Code_And_Documentation_Policy.md", "docs/governance/Failure_Diagnostics.md",
                 "atf-atlas/README.md", "atf-atlas/Coverage_Map.md", LIVING + ".md", LIVING + ".html"));
         for (String module : GovernanceFiles.MODULES) required.add(module + "/README.md");
@@ -86,7 +86,7 @@ final class MarkdownDocumentationRules {
                 violations.add(GovernanceFiles.relative(root, file) + ":1 DOC-AGENT-CONTROL keep project rules in owner documentation, not agent instruction files");
             }
             List<String> lines = Files.readAllLines(file);
-            boolean english = !file.getFileName().toString().equals("README.md") || !edition.equals("ro");
+            boolean english = !edition.equals("ro");
             List<String> visible = withoutFences(lines, root, file, violations, diagramDocuments, english);
             List<String> proseLines = withoutInlineCode(visible);
             validateLinks(root, file, proseLines, violations);
@@ -236,7 +236,7 @@ final class MarkdownDocumentationRules {
             }
             if (relative.equals(EDITION)) continue;
             Path en = english.get(relative), ro = romanian.get(relative);
-            if (en.getFileName().toString().equals("README.md")) {
+            if (relative.endsWith(".md")) {
                 List<String> enLines = Files.readAllLines(en), roLines = Files.readAllLines(ro);
                 if (!readmeContract(enLines).equals(readmeContract(roLines))) {
                     violations.add(relative + ": DOC-EDITION-PARITY preserve structure, commands, links and diagram topology");
@@ -252,6 +252,8 @@ final class MarkdownDocumentationRules {
                 if (!anchors(roLines).containsAll(anchors(enLines))) {
                     violations.add(relative + ": DOC-EDITION-ANCHOR retain English heading anchors as compatibility aliases");
                 }
+            } else if (relative.equals(LIVING + ".html")) {
+                violations.addAll(DocumentationTranslationRules.validateHtmlParity(en, ro));
             } else {
                 byte[] enBytes = Files.readAllBytes(en), roBytes = Files.readAllBytes(ro);
                 if (!java.util.Arrays.equals(enBytes, roBytes)) {
@@ -260,7 +262,7 @@ final class MarkdownDocumentationRules {
                             || relative.contains("/META-INF/services/");
                     if (!text || !Files.readString(en).replace("\r\n", "\n")
                             .equals(Files.readString(ro).replace("\r\n", "\n"))) {
-                        violations.add(relative + ": DOC-EDITION-CONTENT only README translations and the edition setting may differ");
+                        violations.add(relative + ": DOC-EDITION-CONTENT only maintained documentation translations and the edition setting may differ");
                     }
                 }
             }
@@ -808,8 +810,9 @@ final class MarkdownDocumentationRules {
         if (!Files.isRegularFile(markdown) || !Files.isRegularFile(htmlFile)) return;
         String canonical = Files.readString(markdown).replace("\r\n", "\n");
         String html = Files.readString(htmlFile);
-        if (!html.matches("(?is).*<html\\b[^>]*\\blang=[\"']en[\"'].*")) {
-            violations.add(LIVING + ".html:1 DOC-PAIR maintain an English HTML document");
+        String edition = readmeEdition(root, new ArrayList<>());
+        if (!html.matches("(?is).*<html\\b[^>]*\\blang=[\"']" + edition + "[\"'].*")) {
+            violations.add(LIVING + ".html:1 DOC-PAIR HTML language must match the declared documentation edition");
         }
         if (!meta(html, "atf-source").equals(markdown.getFileName().toString())
                 || !meta(html, "atf-source-sha256").equals(sha256(canonical))) {
@@ -1072,8 +1075,7 @@ final class MarkdownDocumentationRules {
     /** Keeps line numbers stable; executable Mermaid labels remain visible for language checks. */
     private static List<String> withoutFences(List<String> lines, Path root, Path file, List<String> violations,
                                                Set<Path> diagramDocuments) {
-        boolean english = !file.getFileName().toString().equals("README.md")
-                || !readmeEdition(root, new ArrayList<>()).equals("ro");
+        boolean english = !readmeEdition(root, new ArrayList<>()).equals("ro");
         return withoutFences(lines, root, file, violations, diagramDocuments, english);
     }
 
@@ -1202,7 +1204,7 @@ final class MarkdownDocumentationRules {
     }
 
     /** Code spans may use any matching backtick run and may cross a line boundary. */
-    private static List<String> withoutInlineCode(List<String> lines) {
+    static List<String> withoutInlineCode(List<String> lines) {
         String source = String.join("\n", lines);
         StringBuilder visible = new StringBuilder(source);
         for (int[] span : inlineCodeRanges(source)) {

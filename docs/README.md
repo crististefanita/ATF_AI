@@ -9,6 +9,7 @@ owner guides keep the detailed contract, and feedback keeps reproducible gaps.
 |---|---|
 | What is ATF, and which library do I need? | [Root overview](../README.md) |
 | Who owns an API, provider or dependency boundary? | [Architecture](Architecture.md) |
+| Where are runnable recipes without obscuring strategy? | [Collapsed command cookbook](Testing_Commands.md) |
 | Which existing checks establish the behavior I changed? | [Testing](Testing.md) and [Atlas coverage map](../atf-atlas/Coverage_Map.md) |
 | Where should edits, validation copies, caches and evidence live? | [Development](Development.md) |
 | How should code, tests, READMEs and diagrams be reviewed? | [Governance policies](governance/README.md) |

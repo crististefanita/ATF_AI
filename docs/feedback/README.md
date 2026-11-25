@@ -10,6 +10,9 @@ the caller-selected local archive following the [report guide](../../artifacts/r
 | ID | Finding | Owner | Priority (1-100) | Quality (1-100) | Status | Closure evidence |
 |---|---|---|---:|---:|---|---|
 | G-014 | Retain the J1 change-control failure separately from Atlas consistency and scoped catalog success | J1 test-change owner; external observation | 84 | 68 | TODO | [Exact source and required control records](Atlas_Depth_And_Assessment.md#g-014) |
+| G-017 | Reject source-disabled maintained tests and bound the existing console worker | Existing suite/console owners | 84 | 76 | IN PROGRESS | [Counterexamples and repair scope](Code_And_Documentation_Maturity.md#g-017) |
+| D-010 | Keep strategy readable and translate all maintained documents with whole-text review | Documentation and edition owners | 88 | 68 | IN PROGRESS | [Language baseline and explicit proof limits](Code_And_Documentation_Maturity.md#d-010) |
+| G-016 | Review loss of an existing regression method within a still-selected class | Test-maintenance owner | 75 | 69 | TODO | [Source-only gap and bounded acceptance](Code_And_Documentation_Maturity.md#g-016) |
 | F-011 | Keep interaction-tracker cleanup observable when UI engine shutdown throws | Core UI base teardown owner | 82 | 66 | TODO | [Source-only cleanup gap and missing component oracle](Behavior_And_Negative_Cases.md#f-011) |
 
 The register is reserved for framework governance, stability and documentation.
@@ -40,6 +43,7 @@ according to the relevant axis. Round to the nearest integer, with halves
 rounded upward. State the scope, observations and component
 scores in the linked item. A closed item retains its baseline assessment there;
 historical verified records do not receive invented retrospective scores.
+
 Review scores when evidence or scope changes, not simply when test counts grow.
 The existing documentation governance validates the two distinct columns,
 integer range and actionable owner/status/evidence fields.
@@ -48,6 +52,9 @@ Retained baseline component scores:
 
 | ID | Impact / risk / urgency | Correctness / verification / clarity | Evidence scope |
 |---|---|---|---|
+| G-017 | 90 / 80 / 75 | 80 / 65 / 80 | Source-disabled selected tests and one unbounded console worker |
+| D-010 | 90 / 85 / 85 | 65 / 60 / 80 | English non-README documentation remains in the declared Romanian edition |
+| G-016 | 80 / 70 / 70 | 75 / 50 / 80 | A method removal can preserve class selection; source-only observation |
 | G-006 | 90 / 80 / 75 | 85 / 65 / 80 | Missing structural and edition checks in the reviewed baseline |
 | F-008 | 90 / 70 / 75 | 70 / 70 / 75 | Real local network probes pass; SDK/browser/typed-CDP selection was misaligned |
 | G-005 | 85 / 80 / 75 | 70 / 40 / 55 | Runtime roots are resolved dynamically, but authored instructions contain machine-specific paths |

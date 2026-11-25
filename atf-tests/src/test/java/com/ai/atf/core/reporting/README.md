@@ -26,11 +26,16 @@ behavior rather than duplicate implementation tokens.
 
 Run from an isolated reactor copy:
 
+<details>
+<summary>Run Execution commands</summary>
+
 ```powershell
 mvn -B -ntp -pl atf-tests -am "-Datf.test.suite=src/test/resources/suites/framework-reporting.xml" test
 mvn -B -ntp -pl atf-tests -am "-Datf.test.suite=src/test/resources/suites/framework-allure.xml" "-Dreporting.engine=allure" test
 mvn -B -ntp -Paggregate test
 ```
+
+</details>
 
 Browser rendering and screenshot checks use the explicit browser profile after
 preparation. [Testing](../../../../../../../../../docs/Testing.md) owns setup and artifact

@@ -185,7 +185,7 @@ final class GovernanceFiles {
             message.append("  mvn -B -ntp -pl atf-tests -am \"-Dtest=").append(selection)
                     .append("\" \"-Dsurefire.failIfNoSpecifiedTests=false\" test\n");
         }
-        message.append("For paired README edits, repeat with the explicit peer input described in docs/governance/Readme_Editions.md.\n")
+        message.append("For paired documentation edits, repeat with the explicit peer input described in docs/governance/Readme_Editions.md.\n")
                 .append("A suggested correction is not an observed root cause or a passing verification.");
         return message.toString();
     }
@@ -221,6 +221,26 @@ final class GovernanceFiles {
         String documentation = "DocumentationGovernanceTest";
         String policy = "docs/governance/Code_And_Documentation_Policy.md";
         String structure = "docs/Architecture.md";
+        help(result, "SUITE-DISABLED",
+                "A maintained TestNG source annotation can suppress an existing regression.",
+                "Remove enabled indirection or disabling from the reported maintained annotation; omit enabled or use literal true. Preserve reviewed manual fixtures and run the selected owner.",
+                policy + "#existing-test-quality", architecture);
+        help(result, "DOC-PROSE-DENSE DOC-PROSE-SENTENCE",
+                "Visible orientation prose combines too many decisions or observations in one reading unit.",
+                "Separate decisions into short paragraphs; use bullets for parallel checks, a table for alternatives, or a diagram with an adjacent legend for a real flow. Preserve prerequisites and proof limits; changing line wrapping does not repair density.",
+                policy + "#reader-oriented-guides", "DocumentationReadabilityRulesTest");
+        help(result, "DOC-COMMAND-DISCLOSURE",
+                "A runnable Maven example is exposed or its disclosure opens by default without useful orientation.",
+                "Keep essential strategy visible and place the shell command in balanced details without an open attribute. Give its summary the actual selection or purpose; retain prerequisites and expected proof outside it.",
+                policy + "#reader-oriented-guides", "DocumentationReadabilityRulesTest");
+        help(result, "DOC-EDITION-LANGUAGE DOC-EDITION-UNTRANSLATED",
+                "A Romanian documentation edition lacks a supported Romanian signal or retains meaningful unchanged English prose.",
+                "Retrieve the canonical policy and read the complete EN/RO pair; translate the whole passage while preserving commands, facts, conditions and legends. Recheck with the explicit peer and record full-text review; a marker alone is not semantic proof.",
+                "docs/governance/Readme_Editions.md#whole-document-review", documentation);
+        help(result, "DOC-TRANSLATION-REVIEW DOC-TRANSLATION-STALE",
+                "The full-document bilingual review declaration is missing, incomplete or bound to different content.",
+                "Review the complete source and translation using the documented retrieval context, repair meaning and refresh only reviewed EN/RO digests. Keep every maintained document in the shared review inventory; do not stamp an unread file.",
+                "docs/governance/Readme_Editions.md#whole-document-review", documentation);
         help(result, "MODULES ARTIFACT PARENT-COORDINATE PARENT-PACKAGING MODULE-COORDINATE MISSING-MODULE",
                 "The declared five-module reactor and its coordinates disagree with the maintained contract.",
                 "Restore the existing parent/module declarations and compare the reported expected and observed values; do not add a module to silence the guard.",
@@ -294,8 +314,8 @@ final class GovernanceFiles {
                 "Reconcile both formats, source digest, real headings and local navigation; retain the essential document in both formats without adding executable scripts.",
                 "docs/Living_Architecture_UI_API_doc_v1_0.md", documentation);
         help(result, "DOC-EDITION DOC-EDITION-ANCHOR DOC-EDITION-CONTENT DOC-EDITION-INVENTORY DOC-EDITION-PAIR DOC-EDITION-PARITY DOC-EDITION-FACTS",
-                "The declared README edition or its source/translation identity is inconsistent.",
-                "Restore the exact en/ro policy or reconcile the reported pair; compare the reported protected-item ordinal and preserve fenced/inline code, numeric table facts, commands, links, anchors, topology and non-README source, then run the explicit peer check. Review prose meaning separately.",
+                "The declared documentation edition or its source/translation identity is inconsistent.",
+                "Restore the exact en/ro policy or reconcile the reported pair; compare the reported protected-item ordinal and preserve fenced/inline code, numeric table facts, commands, links, anchors, topology and non-document source, then run the explicit peer check. Review prose meaning separately.",
                 "docs/governance/Readme_Editions.md", documentation);
         help(result, "DOC-LIVING-PRINCIPLES",
                 "A retained living-architecture principle, real owner/check route or declared proof limit drifted.",

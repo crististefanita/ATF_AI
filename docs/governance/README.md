@@ -16,7 +16,7 @@ documentation and governance; it is not a sixth Maven module.
 |---|---|
 | How should code, existing tests and documentation be reviewed? | [Code and documentation policy](Code_And_Documentation_Policy.md) |
 | How do I understand a failure and verify its correction? | [Failure diagnostics and exact negative controls](Failure_Diagnostics.md) |
-| How are English and Romanian READMEs kept equivalent? | [README editions](Readme_Editions.md) |
+| How are English and Romanian documents kept equivalent? | [Documentation editions](Readme_Editions.md) |
 | Which module owns the changed contract? | [Architecture](../Architecture.md) and its linked module guide |
 | Which existing tests protect it? | [Atlas coverage map](../../atf-atlas/Coverage_Map.md) and [Testing](../Testing.md) |
 | What remains unresolved, and what would close it? | [Feedback](../feedback/README.md) |
@@ -44,6 +44,8 @@ and scoped closure evidence.
 |---|---|---|
 | Architecture | [Architecture rules](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureRules.java) and [existing fixtures](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureGovernanceTest.java) | Module/provider boundaries, source visibility and supported execution-ownership rules |
 | Documentation | [Markdown rules](../../atf-tests/src/test/java/com/ai/atf/governance/MarkdownDocumentationRules.java) and [existing fixtures](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationGovernanceTest.java) | Links, declared build/default facts, lifecycle, paired architecture and compilable consumer examples |
+| Readability | [Reader-oriented rules and component cases](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationReadabilityRulesTest.java) | Strategy paragraph decisions, bounded reference prose and closed Maven recipes |
+| Edition review | [Translation controls](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationTranslationRules.java) | Supported Romanian signals, unchanged English blocks and complete review-digest freshness |
 | Source inspection | [Java scanner fixtures](../../atf-tests/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java) | Supported lexical regions, English known-marker policy and exact data exceptions |
 | Behavior | Tests linked by the [coverage map](../../atf-atlas/Coverage_Map.md) | Their explicit observed outcomes and fixture scope |
 

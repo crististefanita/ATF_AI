@@ -96,11 +96,16 @@ action/assertion code also works with the [Selenium configuration](../atf-seleni
 
 From an isolated reactor copy:
 
+<details>
+<summary>Run Verification commands</summary>
+
 ```powershell
 mvn -B -ntp -pl atf-playwright -am test
 mvn -B -ntp -pl atf-tests -am "-Dtest=SeleniumPlaywrightLocatorParityContractTest,UiEngineScreenshotSmokeTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
 mvn -B -ntp -pl atf-tests -am -Pbrowser test
 ```
+
+</details>
 
 The first command runs native provider/Core checks without starting a browser.
 The second selects existing local locator, real network-response and screenshot

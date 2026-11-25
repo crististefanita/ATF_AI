@@ -17,9 +17,14 @@ or public application mutation was used in this verification.
 Use the cache/work-root preparation in [Development](../Development.md), then
 run from the disposable reactor root:
 
+<details>
+<summary>Run Executed selection and result commands</summary>
+
 ```powershell
 mvn -B -ntp "-Dmaven.repo.local=$mavenCache" -pl atf-tests -am "-Datf.test.suite=src/test/resources/suites/framework-api.xml" test
 ```
+
+</details>
 
 | Executed owner | Cases | Failures | Errors | Skipped | Proof boundary |
 |---|---:|---:|---:|---:|---|

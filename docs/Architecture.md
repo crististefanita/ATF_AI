@@ -53,13 +53,14 @@ do not declare a vendor reporting listener.
 
 ```mermaid
 sequenceDiagram
-    participant Test as Test and product fixture
-    participant Core as Core lifecycle and steps
-    participant Registry as UI provider registry
-    participant Adapter as Selected browser provider
-    participant Browser as Browser and application
-    participant Listener as Reporting TestNG listener
-    participant Reports as Reporting backend
+    %%{init: {"sequence":{"width":80,"actorMargin":16,"messageMargin":22,"diagramMarginX":8,"diagramMarginY":8,"wrap":true,"mirrorActors":false}}}%%
+    participant Test as Test
+    participant Core as Core
+    participant Registry as UI registry
+    participant Adapter as UI provider
+    participant Browser as Browser
+    participant Listener as TestNG listener
+    participant Reports as Reports
     Test->>Core: Start test and request UI session
     Core->>Registry: Resolve configured engine
     Registry->>Adapter: Create neutral engine
@@ -74,7 +75,19 @@ sequenceDiagram
     Listener->>Reports: Finish and flush execution
 ```
 
-The sequence shows responsibility boundaries, not every TestNG callback.
+Solid arrows show directed calls or publication; the dotted arrow returns an
+observed state. The sequence maps responsibility boundaries, not every TestNG callback.
+
+| Actor ID | Actual responsibility |
+|---|---|
+| `Test` | Consumer test and product fixture |
+| `Core` | Core lifecycle and steps |
+| `Registry` | UiEngineRegistry resolves the configured UiEngineProvider |
+| `Adapter` | Selected installed UIEngine provider and its browser adapter |
+| `Browser` | Browser session and target application |
+| `Listener` | ReportingTestListener supplied by atf-reporting |
+| `Reports` | ReportingBackend supplied by atf-reporting |
+
 The reporting listener and backend are supplied by atf-reporting. API-only
 execution uses the Core API runtime without a browser session.
 

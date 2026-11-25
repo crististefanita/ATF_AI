@@ -40,7 +40,7 @@ portable provenance notation, not a literal PowerShell path.
 ## Checkpoint workflow
 
 ```mermaid
-flowchart LR
+flowchart TB
     Inspect["Inspect and assign owner"] --> Edit["Edit development checkout"]
     Edit --> Stage["Snapshot source"]
     Stage --> Validate["Checks and artifact review"]
@@ -66,7 +66,7 @@ and compatible live state.
    acceptance as appropriate. [Testing](Testing.md) owns the commands.
 5. Preserve failed observations and inspect artifacts. Review the source and
    documentation diff, then commit the verified checkpoint on main.
-6. Reconcile and validate the Romanian README edition against the chosen main
+6. Reconcile and validate the Romanian documentation edition against the chosen main
    checkpoint using the [edition workflow](governance/Readme_Editions.md#synchronization-and-review).
    Recheck both source branches, remote refs and live for concurrent changes.
    Publish the verified main and main_RO checkpoints with normal fast-forward
@@ -77,20 +77,22 @@ and compatible live state.
    a separate live checkout.
 
 Git synchronization returns tracked source and maintained documentation to live.
-Build output, downloaded browser binaries, caches and intermediate logs remain
-in external validation/evidence directories. At the owner's explicit selection,
-publish a minimal selected proof set, one audited retained-UI Extent reader per
-browser engine, and one Atlas HTML per project into the
-live checkout's ignored artifacts/reports/current and artifacts/atlas/current
-trees through the
-[artifact publication contract](../artifacts/README.md). Those copies remain
-local data, separate from Git synchronization and build execution.
-Full runs, failed attempts, temporary render controls and prior Atlas captures
-remain together in external immutable history. The publication inventory records
-captured source identities; selecting a snapshot does not make it the latest HEAD.
-Do not run simultaneous builds in the same directory, stop
-unrelated processes, overwrite previous evidence, use `reset --hard` or use
-`git clean` for synchronization.
+Keep each output role separate:
+
+- Build output, downloaded browser binaries, caches and intermediate logs remain
+  in external validation/evidence directories.
+- At the owner's explicit selection, publish a minimal selected proof set,
+  one audited retained-UI Extent reader per engine and one Atlas HTML per project
+  into live's ignored artifacts/reports/current and artifacts/atlas/current trees.
+  Follow the [artifact publication contract](../artifacts/README.md); these copies
+  remain local data, separate from Git synchronization and build execution.
+- Full runs, failed attempts, temporary render controls and prior Atlas captures
+  remain together in external immutable history.
+- The publication inventory records captured source identities; selecting a
+  snapshot does not make it the latest HEAD.
+
+Do not run simultaneous builds in the same directory, stop unrelated processes,
+overwrite previous evidence, use `reset --hard` or use `git clean` for synchronization.
 
 ## Module and documentation changes
 

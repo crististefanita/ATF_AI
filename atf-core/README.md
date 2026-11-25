@@ -49,10 +49,15 @@ Browser and report implementations are supplied by their modules.
 
 From an isolated reactor copy:
 
+<details>
+<summary>Run Verification commands</summary>
+
 ```powershell
 mvn -B -ntp -pl atf-core -am test
 mvn -B -ntp -pl atf-tests -am "-Dtest=ConfigManagerFileContractTest,BaseTestAPIContractTest,BaseTestUIContractTest,StepLoggerContractTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
 ```
+
+</details>
 
 The first command runs native Core checks; the second selects cross-module
 regressions. [Testing](../docs/Testing.md) owns complete local, browser and

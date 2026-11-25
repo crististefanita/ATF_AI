@@ -60,7 +60,7 @@ Configuration setup evidence is not an extra application test case. Missing or
 unreached evidence must remain explicit rather than receiving a fabricated PASS.
 
 ```mermaid
-flowchart LR
+flowchart TB
     Methods["Same retained methods"] --> Actions["UIActions and observed actions"]
     Actions --> Validation["Expected versus actual business oracle"]
     Validation --> Listener["Original TestNG outcome and screenshot"]

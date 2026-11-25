@@ -35,12 +35,17 @@ with the maintained selection. A repair hint is not proof of a root cause.
 
 From an isolated reactor copy:
 
+<details>
+<summary>Run Execution commands</summary>
+
 ```powershell
 mvn -B -ntp test
 mvn -B -ntp -pl atf-tests -am test
 mvn -B -ntp -Pbrowser test
 mvn -B -ntp -Paggregate test
 ```
+
+</details>
 
 The default selects framework-local, including governance. The browser profile
 selects framework-browser only in this module. The aggregate profile executes

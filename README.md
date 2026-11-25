@@ -99,11 +99,16 @@ Use JDK 17+ and Maven; compilation targets Java 11. Prepare a disposable
 validation copy as described in [Development](docs/Development.md), then run
 from its reactor root:
 
+<details>
+<summary>Run Start commands</summary>
+
 ```powershell
 mvn -B -ntp test
 mvn -B -ntp -Pbrowser test
 mvn -B -ntp -Paggregate test
 ```
+
+</details>
 
 The default runs native module checks and local framework/governance regressions.
 The browser profile selects local browser fixtures in atf-tests and requires
@@ -184,13 +189,13 @@ framework API by documentation governance.
 ## Language and review contract
 
 The main branch is the English edition. The main_RO branch provides every
-README at the same project path in Romanian. Executable examples, source and
+maintained Markdown and the Living HTML at the same project paths in Romanian. Executable examples, source and
 comments remain in English in both editions; [edition governance](docs/governance/Readme_Editions.md)
-protects the hierarchy, links and source identity.
+protects hierarchy, links, technical facts and source-bound whole-text review.
 
 Source identifiers, comments, log text and assertion/diagnostic messages
 **MUST be written in English** in both branches. Documentation and diagram
-labels are English on main, with the declared README exception on main_RO. Literal
+labels are English on main, with the declared complete documentation edition on main_RO. Literal
 external product data and deliberately invalid test fixtures retain the text
 needed by their contract. Follow the
 [code/documentation policy](docs/governance/Code_And_Documentation_Policy.md)

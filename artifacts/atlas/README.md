@@ -153,11 +153,13 @@ layout. Absent tests, Git metadata or declared dependencies remain explicit.
 The publisher embeds canonical CSS, inline SVG, all declared Markdown,
 source/analysis data and original declared XML/TAP/provenance payloads. Internal
 navigation and native disclosure remain usable when the HTML is copied alone.
+
 Select additional maintained target documents through sourceDocuments, bound to
 the source index, so entry guides, architecture, testing and usage details remain
 fully available in that one artifact. The understand command is an alias for
 publish; both consume a source-reviewed intake and apply mandatory knowledge,
 rather than automatically inferring a project through a language model.
+
 Policy retrieval returns cited contract records with a corpus digest; mandatory
 requirements still apply to an unrelated query. The selected source and existing
 oracles, rather than a retrieved policy fragment, establish project facts.
@@ -192,7 +194,9 @@ changed quotes/ranges, missing governance mappings, escaping paths and execution
 claims tied to another project or different source bytes. EXECUTED claims require
 preserved Surefire XML or flat Node TAP outcomes, counters/verdict and the original source manifest; HTML or
 a historical/skipped result alone is insufficient. A failed execution remains a
-failed execution even when its evidence passes consistency checks. The complete
+failed execution even when its evidence passes consistency checks.
+
+The complete
 report guard also rejects missing sections, changed canonical CSS, unsupported
 behavior/graph/oracle references, external dependencies, mixed target identity
 and an extra HTML in the reader directory. Failures preserve their rule ID,
