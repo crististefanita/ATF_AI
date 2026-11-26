@@ -245,7 +245,8 @@ trece testul numai când respingerea așteptată este observată independent. Un
 neașteptat de browser, acțiune, aserțiune sau configurație își păstrează rezultatul
 real eșuat sau omis; consemnarea metadatelor contractului nu îl poate certifica.
 
-[Responsabilul guvernanței documentației](../atf-tests/src/test/java/com/ai/atf/governance/DocumentationGovernanceTest.java)
+Responsabilul guvernanței principiilor living
+[LivingPrinciplesGovernanceTest](../atf-tests/src/test/java/com/ai/atf/governance/LivingPrinciplesGovernanceTest.java)
 verifică cele douăsprezece ID-uri, căile reale către surse/verificări și stările
 delimitate. Principiile absente sau duplicate și promovarea lacunei declarate de
 curățare sunt eșecuri de diagnostic. Aceste controale structurale nu stabilesc

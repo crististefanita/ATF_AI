@@ -290,7 +290,7 @@ Referința este revizia din 2026-11-26 la 14daf233e8039049cf6d8ba2db7421fb48c4c5
 | Axă | Pondere | Inițial | Curent | Dovezi și limite rămase |
 |---|---:|---:|---:|---|
 | Arhitectură și responsabilități | 15 | 92 | 92 | Aceleași cinci module; fără clase de execuție sau funcționalități de produs noi |
-| Mentenabilitate | 10 | 88 | 89 | Cititor comun de așteptare; utilitarul mare de documentație încă amestecă responsabilități |
+| Mentenabilitate | 10 | 88 | 91 | Cititor comun de așteptare; șase responsabili tematici pentru testele de documentație sunt înregistrați în ambele suite |
 | Configurație | 10 | 82 | 93 | Booleeni stricți, așteptări limitate și validare a motorului independentă de limbă |
 | Ciclul de viață la eșec | 10 | 84 | 94 | Identitatea exactă a cauzei, curățare în finally și eliberarea resurselor dobândite |
 | Guvernanța codului/testelor | 15 | 91 | 94 | Selecția claselor plus identități de metode fixate prin AST; constatări la eliminare/adăugare controlată |
@@ -298,7 +298,7 @@ Referința este revizia din 2026-11-26 la 14daf233e8039049cf6d8ba2db7421fb48c4c5
 | Documentație și ediții | 15 | 94 | 94 | Contracte EN/RO menținute, diagrame și formate Living pereche |
 | Feedback și proveniență | 10 | 93 | 95 | Notele inițiale și livrate pentru G-016 rămân distincte; dovezi pereche și limite consemnate |
 
-Maturitatea ponderată crește de la 89.75 la 92.90, rotunjită de la 90 la 93.
+Maturitatea ponderată crește de la 89.75 la 93.10, rotunjită de la 90 la 93.
 Niciun rezultat nu este procent de acoperire sau garanție completă a execuției.
 
 <a id="same-axis-atf_ai-and-atf-j1-review"></a>
@@ -313,23 +313,85 @@ au fost executate sau reevaluate în această corecție.
 | Axă | Pondere | ATF_AI | atf-j1 | Diferență |
 |---|---:|---:|---:|---:|
 | Arhitectură și responsabilități | 15 | 92 | 94 | -2 |
-| Mentenabilitate | 10 | 89 | 90 | -1 |
+| Mentenabilitate | 10 | 91 | 90 | +1 |
 | Configurație | 10 | 93 | 90 | +3 |
 | Ciclul de viață la eșec | 10 | 94 | 93 | +1 |
 | Guvernanța codului/testelor | 15 | 94 | 89 | +5 |
 | Stabilitate demonstrată | 15 | 92 | 80 | +12 |
 | Documentație și ediții | 15 | 94 | 91 | +3 |
 | Feedback și proveniență | 10 | 95 | 87 | +8 |
-| **Notă ponderată** | **100** | **92.90** | **89.10** | **+3.80** |
+| **Notă ponderată** | **100** | **93.10** | **89.10** | **+4.00** |
 
-ATF_AI conduce această comparație delimitată pe șase din opt axe după închiderea
-G-016. atf-j1 păstrează un avantaj de două puncte la arhitectură și un punct la
-mentenabilitate. Diferențele de guvernanță și stabilitate reflectă sursele și
+ATF_AI conduce această comparație delimitată pe șapte din opt axe după închiderea
+G-018; mentenabilitatea este cu un punct mai mare. atf-j1 păstrează un avantaj de două
+puncte la arhitectură. Diferențele de guvernanță și stabilitate reflectă sursele și
 dovezile capturate, nu o afirmație că testele J1 au fost rerulate aici.
 
 Controlul G-016 pentru pierderea identităților metodelor este acum verificat în
-limita declarată a sursei. Prioritatea chirurgicală următoare este reducerea
-responsabilităților amestecate în utilitarul de guvernanță a documentației, de
-1293 de linii, păstrând controalele negative și indicațiile de remediere.
-Aceasta este o observație de mentenabilitate, nu o execuție eșuată. Nu este
-necesar niciun scenariu de produs nou. G-014 rămâne un TODO extern deținut de J1.
+limita declarată a sursei. G-018 de mai jos închide următoarea constatare de
+mentenabilitate înregistrată. Nu este necesar niciun scenariu de produs nou.
+G-014 rămâne un TODO extern deținut de J1.
+
+<a id="g-018"></a>
+<a id="g-018-focused-documentation-test-owners-with-explicit-suite-registration"></a>
+## G-018: Responsabili tematici pentru testele de documentație, înregistrați explicit
+
+Stare: VERIFICAT. Responsabil: guvernanța testelor de documentație ATF_AI.
+Prioritate 70; calitate inițială 62. Intrări pentru prioritate: impact 70,
+expunere 75, urgență 60. Intrări pentru calitate: corectitudine 75, verificare
+45, claritate 60. Versiunea inițială avea o singură clasă
+`DocumentationGovernanceTest` de 1.297 de linii, care amesteca șase domenii
+distincte de revizuire, configurarea fixture-urilor și selectorul Maven public.
+Aceasta era o problemă de mentenanță a testelor; niciun comportament de produs
+nu eșuase.
+
+Metodele existente sunt acum organizate în șase clase TestNG cu responsabilități
+clare: README-ul rădăcină, edițiile engleză/română, principiile living, structura
+Markdown, feedback-ul și publicarea HTML/configurația. `DocumentationGovernanceTest`
+verifică responsabilii diagnosticelor; nu generează implicit teste. Fiecare
+responsabil tematic apare exact o dată în ambele suite menținute, iar selecțiile
+Maven documentate îi enumeră explicit. Fixture-urile și aserțiunile comune au un
+singur responsabil la nivelul pachetului. Inventarul revizuit conține în
+continuare 573 de metode executabile; 60 de identități ale metodelor de
+documentație au fost reașezate la noii responsabili, fără metode adăugate sau
+eliminate.
+
+În revizia pe aceleași axe, aceste dovezi cresc cu un punct mentenabilitatea
+ATF_AI, de la 90 la 91: cele șase domenii de revizuire au acum responsabili
+separați și intrări explicite în suite, iar toate cele 573 de metode existente
+rămân inventariate. Aceasta nu afirmă o acoperire mai largă a produsului.
+
+```mermaid
+flowchart LR
+    Selection["Selecție Maven explicită"] --> Root["README rădăcină"]
+    Selection --> Editions["Ediții EN / RO"]
+    Selection --> Living["Principii living"]
+    Selection --> Structure["Contracte Markdown"]
+    Selection --> Feedback["Reguli feedback"]
+    Selection --> Publication["HTML și comenzi"]
+    Local["Suite locale și agregate"] --> Root
+    Local --> Editions
+    Local --> Living
+    Local --> Structure
+    Local --> Feedback
+    Local --> Publication
+    Root -. folosește .-> Fixtures["Fixture-uri și aserțiuni comune"]
+    Editions -. folosește .-> Fixtures
+    Living -. folosește .-> Fixtures
+    Structure -. folosește .-> Fixtures
+    Feedback -. folosește .-> Fixtures
+    Publication -. folosește .-> Fixtures
+```
+
+Săgețile continue arată selecțiile Maven sau ale suitei; cele punctate arată
+utilizarea fixture-urilor comune. Comenzile de reverificare diagnostică enumeră
+direct aceiași responsabili. Nu s-au adăugat metode E2E, emulatoare,
+funcționalități runtime sau metode de test noi.
+
+Calitate livrată: 92 (corectitudine 94 / verificare 90 / claritate 92).
+Selecția pereche de documentație, lizibilitate și limbă a surselor a trecut
+205/205 cazuri pentru fiecare ediție. Verificările exacte ale suitei și ale
+inventarului de metode au trecut 2/2 pentru fiecare ediție. Aceste rezultate
+validează responsabilii testelor, selecțiile explicite și păstrarea metodelor;
+nu pretind o acoperire mai bună a produsului și nu afirmă că testele atf-j1 au
+fost executate.

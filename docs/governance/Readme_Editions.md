@@ -61,9 +61,13 @@ Publicarea urmează stării sursă validate și nu stabilește singură calitate
 <a id="existing-executable-checks"></a>
 ## Verificările executabile existente
 
-DocumentationGovernanceTest protejează legăturile, structura, exemplele,
-valorile implicite, comenzile, ancorele, topologia și datele tehnice ale fiecărui
-Markdown întreținut. Perechea Living verifică suplimentar limba, ordinea
+Responsabilii expliciți ai testelor de documentație protejează legăturile,
+structura, exemplele, valorile implicite, comenzile, ancorele, topologia și
+datele tehnice ale fiecărui Markdown întreținut. README-ul rădăcină, edițiile
+bilingve, principiile Living, structura Markdown, feedback-ul și publicarea sunt
+clase TestNG separate, listate în suitele locale și agregate.
+`DocumentationGovernanceTest` verifică responsabilii diagnosticelor și selecțiile
+lor de reverificare. Perechea Living verifică suplimentar limba, ordinea
 secțiunilor, digestul sursei și rândurile principiilor. Sursa din afara documentației trebuie să rămână identică între ediții.
 
 Din rădăcina unui reactor temporar, selectează un instantaneu pereche existent:
@@ -73,7 +77,7 @@ Din rădăcina unui reactor temporar, selectează un instantaneu pereche existen
 
 ```powershell
 $peerRoot = (Resolve-Path -LiteralPath $env:ATF_DOCS_PEER_ROOT -ErrorAction Stop).Path
-mvn -B -ntp -pl atf-tests -am "-Dtest=DocumentationGovernanceTest,DocumentationReadabilityRulesTest" "-Dsurefire.failIfNoSpecifiedTests=false" "-Datf.docs.peer.root=$peerRoot" test
+mvn -B -ntp -pl atf-tests -am "-Dtest=DocumentationGovernanceTest,DocumentationRootGovernanceTest,DocumentationEditionGovernanceTest,LivingPrinciplesGovernanceTest,DocumentationStructureGovernanceTest,FeedbackGovernanceTest,DocumentationPublicationGovernanceTest,DocumentationReadabilityRulesTest" "-Dsurefire.failIfNoSpecifiedTests=false" "-Datf.docs.peer.root=$peerRoot" test
 ```
 
 </details>

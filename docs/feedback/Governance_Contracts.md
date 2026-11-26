@@ -75,7 +75,7 @@ Sunt execuții QA separate, nu cazuri suplimentare ale reactorului.
 
 - Responsabil:
   [regulile de documentație](../../atf-tests/src/test/java/com/ai/atf/governance/MarkdownDocumentationRules.java)
-  și [regresiile de documentație](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationGovernanceTest.java)
+  și [responsabilii tematici ai testelor de documentație](../../docs/governance/README.md)
   existente, ghidurile stabile și perechea canonică Living Architecture Markdown/HTML.
 - Observație originală: comenzile Maven din blocuri nu erau legate de selecții reale de profiluri/module/suite/teste,
   iar o valoare implicită documentată schimbată putea rămâne verde după simpla

@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 /** Pins executable TestNG method identities independently of the selected class list. */
 final class TestMethodInventoryRules {
     static final String INVENTORY = "atf-tests/src/test/resources/governance/test-method-inventory.txt";
-    private static final String INVENTORY_SHA256 = "a65450be017cdbe488b5935a826326ed3c64aeaba283a0a584a7a73676c7c44e";
+    private static final String INVENTORY_SHA256 = "cfc8aa00fabec0dcc22d72a50be1ef440c294897b212120c6265b4726b2d11f4";
 
     private TestMethodInventoryRules() { }
 

@@ -19,7 +19,9 @@ public class JavaSourceScannerTest {
     private static final String GOVERNANCE_PATH = "atf-tests/src/test/java/com/ai/atf/governance/";
     private static final Map<String, String> LANGUAGE_DATA_OWNERS = Map.of(
             GOVERNANCE_PATH + "MarkdownDocumentationRules.java", "Known language-policy vocabulary",
-            GOVERNANCE_PATH + "DocumentationGovernanceTest.java", "Deliberate non-English documentation and localized-data fixtures",
+            GOVERNANCE_PATH + "DocumentationEditionGovernanceTest.java", "Deliberate Romanian translation examples and localized-data fixtures",
+            GOVERNANCE_PATH + "DocumentationStructureGovernanceTest.java", "Deliberate Romanian translation and literal-data fixtures",
+            GOVERNANCE_PATH + "FeedbackGovernanceTest.java", "Deliberate Romanian feedback-schema labels",
             GOVERNANCE_PATH + "JavaSourceScannerTest.java", "Code-language vocabulary and deliberate failing fixtures");
 
     @Test

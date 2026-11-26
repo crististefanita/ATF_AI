@@ -26,8 +26,8 @@ cinci module descrise în [Arhitectură](../docs/Architecture.md).
 
 Responsabilul documentației framework-ului menține harta; responsabilii sursei și
 testelor fiecărei capabilități răspund în continuare pentru contract și acceptanță.
-[Guvernanța documentației](../atf-tests/src/test/java/com/ai/atf/governance/DocumentationGovernanceTest.java)
-existentă protejează documentația menținută.
+[indexul de guvernanță](../docs/governance/README.md) trimite documentele
+menținute la responsabilii lor dedicați și explică înregistrarea în suite.
 
 ```mermaid
 flowchart TB
@@ -165,7 +165,7 @@ Rulează dintr-o copie izolată a reactorului, conform ghidului [Dezvoltare](../
 <summary>Rulează comenzile: Verificare</summary>
 
 ```powershell
-mvn -B -ntp -pl atf-tests -am "-Dtest=DocumentationGovernanceTest,FrameworkArchitectureGovernanceTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
+mvn -B -ntp -pl atf-tests -am "-Dtest=FrameworkArchitectureGovernanceTest,DocumentationGovernanceTest,DocumentationRootGovernanceTest,DocumentationEditionGovernanceTest,LivingPrinciplesGovernanceTest,DocumentationStructureGovernanceTest,FeedbackGovernanceTest,DocumentationPublicationGovernanceTest,DocumentationReadabilityRulesTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
 ```
 
 </details>

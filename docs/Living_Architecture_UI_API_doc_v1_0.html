@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="atf-source" content="Living_Architecture_UI_API_doc_v1_0.md">
-<meta name="atf-source-sha256" content="d8d37d066875d2ca6fccb3ad43ddbaac0802a5fa4dec12d6e96ebd87163975c3">
+<meta name="atf-source-sha256" content="533bd66d334401e4d8bca23bfa7dbe9b0fb6701c4330df8904b3c965d8384462">
 <title>Arhitectură vie (UI + API)</title>
 <style>
   :root {
@@ -317,7 +317,7 @@ console.details.enabled=true</code></pre>
 </tbody></table></div>
 <p>Pentru fiecare scenariu UI selectat, pasul acțiunii consemnează intenția, locatorul și intrarea raportabilă; valorile etichetate ca parolă/secret sunt reprezentate prin <code class="inline">[REDACTED]</code>, în timp ce valoarea originală ajunge în browser. Această clasificare delimitată nu inspectează câmpuri arbitrare ale aplicației și nu curăță textul excepțiilor SDK. Revizuirea finală a artefactelor trebuie să verifice dovezile generate efectiv pentru valori sensibile neintenționate.</p>
 <p>Pasul validării declară așteptarea, citește valoarea observată și deține aserțiunea și verdictul final PASS/FAIL. Comportamentul negativ așteptat al aplicației poate trece testul numai când respingerea așteptată este observată independent. Un eșec neașteptat de browser, acțiune, aserțiune sau configurație își păstrează rezultatul real eșuat sau omis; consemnarea metadatelor contractului nu îl poate certifica.</p>
-<p><a href="../atf-tests/src/test/java/com/ai/atf/governance/DocumentationGovernanceTest.java">Responsabilul guvernanței documentației</a> verifică cele douăsprezece ID-uri, căile reale către surse/verificări și stările delimitate. Principiile absente sau duplicate și promovarea lacunei declarate de curățare sunt eșecuri de diagnostic. Aceste controale structurale nu stabilesc completitudinea semantică și nu înlocuiesc acceptanța nativă a produsului.</p>
+<p>Responsabilul guvernanței principiilor living <a href="../atf-tests/src/test/java/com/ai/atf/governance/LivingPrinciplesGovernanceTest.java">LivingPrinciplesGovernanceTest</a> verifică cele douăsprezece ID-uri, căile reale către surse/verificări și stările delimitate. Principiile absente sau duplicate și promovarea lacunei declarate de curățare sunt eșecuri de diagnostic. Aceste controale structurale nu stabilesc completitudinea semantică și nu înlocuiesc acceptanța nativă a produsului.</p>
 <a id="configuration-and-reporting-boundaries"></a><h3 id="configuration-boundary">Limitele configurației și raportării</h3>
 <p>Validarea UI respinge booleenii malformați și așteptările din afara intervalului <code class="inline">1..2147483</code> secunde întregi înaintea achiziției furnizorului. Cele șase opțiuni UI folosesc un cititor comun de booleeni; WaitUtils folosește cititorul validat de așteptare. Precedența cheii canonice și a celei vechi și valorile implicite valide rămân neschimbate. Vezi <a href="../atf-core/README.md#validated-ui-configuration-and-cleanup">contractul Core</a>.</p>
 <ul>

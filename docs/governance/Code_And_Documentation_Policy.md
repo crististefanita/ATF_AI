@@ -124,15 +124,16 @@ a responsabilului.
 Responsabilul executabil este
 [JavaSourceScannerTest](../../atf-tests/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java),
 inclusiv inspecția depozitului și cazurile de comentarii/nume/mesaje cu eșec intenționat.
-[DocumentationGovernanceTest](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationGovernanceTest.java)
-protejează și cerința obligatorie, diagramele README și exemplele compilabile
-ale consumatorilor. Dintr-o copie izolată a reactorului:
+Responsabilii testelor de documentație protejează și cerința obligatorie,
+diagramele README și exemplele compilabile ale consumatorilor. Clasele sunt
+enumerate explicit în suitele locale și agregate. Dintr-o copie izolată a
+reactorului:
 
 <details>
 <summary>Rulează comenzile pentru sursă și comentarii în engleză</summary>
 
 ```powershell
-mvn -B -ntp -pl atf-tests -am "-Dtest=JavaSourceScannerTest,DocumentationGovernanceTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
+mvn -B -ntp -pl atf-tests -am "-Dtest=JavaSourceScannerTest,DocumentationGovernanceTest,DocumentationRootGovernanceTest,DocumentationEditionGovernanceTest,LivingPrinciplesGovernanceTest,DocumentationStructureGovernanceTest,FeedbackGovernanceTest,DocumentationPublicationGovernanceTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
 ```
 
 </details>

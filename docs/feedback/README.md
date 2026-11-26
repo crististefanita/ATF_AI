@@ -75,6 +75,7 @@ Componentele păstrate ale evaluărilor inițiale:
 | D-008 | 90 / 90 / 90 | 60 / 45 / 70 | Live păstrează 44 rapoarte și 14 capturi Atlas fără selecție limitată sau control de structură |
 | R-001 | 90 / 90 / 90 | 60 / 40 / 65 | Metodele UI nu au dovezi native per motor; lipsesc controale pentru înregistrare și date sensibile |
 | D-009 | 90 / 80 / 80 | 85 / 65 / 80 | Structura Markdown, paritatea codului/valorilor și sensul calificărilor nu aveau controale dedicate |
+| G-018 | 70 / 75 / 60 | 75 / 45 / 60 | O clasă de teste de documentație de 1297 de linii amesteca șase domenii, selectorul și fixture-urile |
 
 Locațiile dovezilor istorice folosesc `${ATF_WORK_ROOT}/...`, cu spațiul extern de lucru
 selectat conform ghidului [Dezvoltare](../Development.md).
@@ -92,6 +93,7 @@ normalizarea prezentării nu reprezintă o nouă execuție.
 | F-013 | Achiziția parțială este curățată fără mascarea cauzei originale; calitate livrată 93 (94/92/93) | Cele 16 cazuri Playwright și 12 Selenium existente pentru furnizori; [dovezi](Code_And_Documentation_Maturity.md#f-013) |
 | D-011 | Diagrame Atlas semantice, legende, coloane limitate și echilibru nativ; calitate 93 (94/92/92) | 203/203 Node per ediție, EN 315/315 și RO 315/315 guvernanță; [dovezi și limite](Atlas_Depth_And_Assessment.md#d-011) |
 | G-017 | Testele selectate dezactivate și firul nelimitat al consolei sunt respinse; calitate 93 (94/92/92) | local-02 EN 690/690 și RO 690/690; eșecul original păstrat; [dovezi](Code_And_Documentation_Maturity.md#g-017) |
+| G-018 | Șase responsabili tematici sunt înregistrați explicit în ambele suite; calitate 92 (94/90/92) | EN/RO documentație/sursă 205/205; suite și inventar 2/2; 573 metode, 60 de responsabili mutați; [dovezi](Code_And_Documentation_Maturity.md#g-018) |
 | D-010 | Strategia, comenzile pliabile și cele 51 de revizuiri sunt guvernate; calitate 92 (94/90/92) | Controale pereche, 182 Node per ediție și 32 înregistrări desktop/56 SVG/98 capturi; [dovezi și limite](Code_And_Documentation_Maturity.md#d-010) |
 | D-009 | Markdown-ul, faptele README și sensul românesc au verificări distincte | 250 guvernanță/ediție, 182 Node, revizie semantică a 21 perechi README și diagrame inspectate; [dovezi](Documentation_And_Translation_Review.md#d-009) |
 | R-001 | Așteptat/observat semantic, mascarea credențialelor și dovezi native pentru aceleași metode | Playwright/Selenium 16/16; verificări EN/RO și 181 Node; eșecurile păstrate; [dovezi](Retained_UI_Auditability.md#r-001) |
