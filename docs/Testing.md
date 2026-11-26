@@ -49,6 +49,12 @@ The default root selection runs native library checks and
 [framework-local.xml](../atf-tests/src/test/resources/suites/framework-local.xml)
 in atf-tests, including governance.
 
+Governance also pins the identities of executable TestNG methods, so keeping a
+class selected cannot hide a removed method. Review its finding and update the
+source inventory only with an intentional, reviewed test change; this source
+check does not claim that a test executed. See the
+[code and documentation policy](governance/Code_And_Documentation_Policy.md#existing-test-quality).
+
 - Local fixtures and doubles cover configuration, API execution, UI delegation
   and reporting.
 - Browser-dependent cases, intentional failure fixtures and live application

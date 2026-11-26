@@ -10,7 +10,6 @@ the caller-selected local archive following the [report guide](../../artifacts/r
 | ID | Finding | Owner | Priority (1-100) | Quality (1-100) | Status | Closure evidence |
 |---|---|---|---:|---:|---|---|
 | G-014 | Retain the J1 change-control failure separately from Atlas consistency and scoped catalog success | J1 test-change owner; external observation | 84 | 68 | TODO | [Exact source and required control records](Atlas_Depth_And_Assessment.md#g-014) |
-| G-016 | Review loss of an existing regression method within a still-selected class | Test-maintenance owner | 75 | 69 | TODO | [Source-only gap and bounded acceptance](Code_And_Documentation_Maturity.md#g-016) |
 
 The register is reserved for framework governance, stability and documentation.
 Product-flow improvement records are excluded from this backlog.
@@ -115,6 +114,7 @@ normalizing their presentation does not claim a fresh execution.
 | D-003 | Governed artifact documentation, classified archives and reusable Atlas intake | 8 filesystem/CLI checks; archived and rehashed reports; 21 README translations and applied Atlas example; [evidence](Code_Stability_And_Artifacts.md#d-003--governed-artifacts-and-reusable-atlas-intake) |
 | G-008 | Constructive failures retain original evidence, ownership and verifiable repair guidance | 550 passed in each edition, including 211 governance cases; owner routes and recheck selections resolve; [evidence](Actionable_Governance_Diagnostics.md#g-008--constructive-governance-failures) |
 | T-006 | Negative controls distinguish emitted rule identity from prefixes and payload mentions | 17 focused invocations and both complete selections passed; [evidence](Actionable_Governance_Diagnostics.md#t-006--exact-rule-identity-in-negative-governance-fixtures) |
+| G-016 | Existing class governance now protects reviewed TestNG method identities, with actionable removal/addition findings; delivered quality 94 (95/94/94) | FrameworkArchitectureGovernanceTest 114/114 passed; controlled removal and unregistered replacement; [evidence and limits](Code_And_Documentation_Maturity.md#g-016) |
 | D-005 | One complete reader HTML per project embeds dedicated CSS, behavior, source and evidence | 66 maintenance checks and isolated offline rendering for AI/J1 at two desktop widths with ten sections; [evidence](Atlas_Complete_Report.md#d-005--one-complete-understanding-artifact-per-target) |
 | G-010 | Complete report governance retains identity, outcomes, isolation and constructive repair routes | Deep-bundle, oracle, JSON, library-boundary and deliberate presentation controls passed; [evidence](Atlas_Complete_Report.md#g-010--constructive-governance-for-the-complete-atlas-contract) |
 | K-001 | Local cited retrieval preserves every mandatory requirement and the selected target scope | 14 records, 12 mandatory policies, 12 knowledge checks and three verified archived Git blobs; [evidence](Atlas_Complete_Report.md#k-001--cited-knowledge-retrieval-with-mandatory-policy) |

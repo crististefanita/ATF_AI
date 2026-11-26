@@ -66,6 +66,25 @@ A library's native checks can be selected with its module and dependencies,
 for example `mvn -B -ntp -pl atf-core -am test`. That selection does not run
 the cross-module regressions in atf-tests.
 
+## Test method inventory
+
+The source guard compares executable TestNG method identities with a reviewed,
+sorted baseline. If an intentional test addition, rename or retirement changes
+the inventory, inspect every reported signature and its proof before updating
+the list. Update the digest constant in `TestMethodInventoryRules` with the
+SHA-256 printed by the second command below, then rerun the focused owner. A
+digest change alone does not review or approve the test change.
+
+<details>
+<summary>Review and recheck the existing TestNG method inventory</summary>
+
+```powershell
+mvn -B -ntp "-Dsurefire.failIfNoSpecifiedTests=false" "-Dtest=FrameworkArchitectureGovernanceTest" test
+(Get-FileHash -LiteralPath atf-tests/src/test/resources/governance/test-method-inventory.txt -Algorithm SHA256).Hash.ToLowerInvariant()
+```
+
+</details>
+
 This component selection injects collaborator failures and starts no browser.
 It retains the original failure and observes independent cleanup state. Run the
 complete local selection as well before closing feedback.

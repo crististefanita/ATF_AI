@@ -57,6 +57,19 @@ does not establish the expected failure. Unknown findings remain unclassified.
 - Keep meaningful existing test classes reachable through the maintained suite
   selections. Distinguish deliberate opt-in application tests, fixtures and
   environment probes from accidentally omitted regressions.
+- Preserve the sorted executable TestNG method identities in
+  [test-method-inventory.txt](../../atf-tests/src/test/resources/governance/test-method-inventory.txt).
+  The AST guard records each declaring type, method name and parameter types,
+  independently of the suite's class selection.
+- `TEST-METHOD-REMOVED` identifies a pinned method missing from source;
+  `TEST-METHOD-UNREGISTERED` identifies a source method missing from the reviewed
+  inventory. Both findings route to the existing framework governance test and
+  include a repair hint.
+- For an intentional method addition, rename or retirement, review the signature
+  delta and affected proof, then update the sorted inventory and its SHA-256 pin
+  in `TestMethodInventoryRules`. This is a source-level identity baseline, not
+  proof that the method ran or that a Git change was approved. Review the paired
+  inventory and digest changes with the owning test.
 - A source guard checks architecture or policy. Label that scope separately
   from runtime execution and controlled application acceptance.
 

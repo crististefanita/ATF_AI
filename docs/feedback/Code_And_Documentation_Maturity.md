@@ -75,17 +75,28 @@ documentation. It adds no product journey, runtime feature or emulator.
 
 - Owner: test-maintenance policy and the changed test's module owner.
 - Priority: 75; impact/risk/urgency 80/70/70.
-- Quality: 69; correctness/verification/clarity 75/50/80.
-- Observation: removing one method from a still-selected class can leave the
-  class inventory unchanged. This iteration does not introduce a Git-based
-  test-change gate or claim method-deletion protection.
+- Baseline quality: 69; correctness/verification/clarity 75/50/80.
+- Delivered quality: 94; correctness/verification/clarity 95/94/94.
+- Observation: the suite inventory protected class selection, but not the
+  identity of a method removed from a still-selected class.
 - J0 reference: TestChangeGovernanceTest and GitTestChanges separate the immutable
   base, exact changed path, reviewer rationale and verification proof. Preserve
   that principle without copying consumer catalogs or inventing approval prompts.
-- Acceptance: a future bounded control must reproduce a real method deletion,
-  distinguish fixtures/refactors from lost proof, cover committed and local
-  changes, reject stale/foreign control entries and expose an owned repair hint.
-- State: TODO. Source inspection is evidence of the gap, not an executed mutation.
+- Correction: the existing framework governance owner now compares an AST-derived,
+  sorted inventory of executable TestNG identities (declaring type, method and
+  parameter types) with a SHA-256-pinned baseline. `TEST-METHOD-REMOVED` and
+  `TEST-METHOD-UNREGISTERED` retain actionable signatures and route to the owner.
+- Acceptance: its controlled negative fixture removes one method while the
+  class remains present, adds an unregistered replacement, and checks both
+  findings and the repair hint. The maintained inventory matches current test
+  source. `FrameworkArchitectureGovernanceTest` passed 114/114 in the focused
+  reactor selection on 2026-11-26.
+- Limit: the baseline detects identity drift but is not a Git change classifier,
+  approval gate, proof of method-body quality or evidence that each method ran.
+  Intentional changes require explicit review of the signature delta, inventory
+  and digest alongside the owning regression.
+- State: VERIFIED within this source-governance boundary. The original baseline
+  score remains recorded separately in the feedback register.
 
 ## Comparable source-review scores
 
@@ -255,18 +266,43 @@ the 2026-11-26 source review at 14daf233e8039049cf6d8ba2db7421fb48c4c5be.
 | Maintainability | 10 | 88 | 89 | Shared wait reader; the large documentation helper still mixes concerns |
 | Configuration | 10 | 82 | 93 | Strict booleans, bounded waits and locale-independent engine validation |
 | Failure lifecycle | 10 | 84 | 94 | Exact primary identity, finally cleanup and acquired-resource rollback |
-| Code/test governance | 15 | 91 | 91 | Existing controls pass; G-016 method-deletion protection remains open |
-| Demonstrated test stability | 15 | 90 | 91 | Complete paired local selections pass; no fresh product execution |
+| Code/test governance | 15 | 91 | 94 | Existing class selection plus AST-pinned method identities; controlled removal/addition findings |
+| Demonstrated test stability | 15 | 90 | 92 | Focused owner 114/114 plus paired full local selections; no new product execution |
 | Documentation and editions | 15 | 94 | 94 | Maintained EN/RO contracts, diagrams and paired Living formats |
-| Feedback and provenance | 10 | 93 | 94 | Preserved negative baseline, bounded closures and source-bound receipts |
+| Feedback and provenance | 10 | 93 | 95 | G-016 baseline and delivered quality remain separate; paired evidence and limits recorded |
 
-Weighted maturity increases from 89.75 to 92.20, rounded from 90 to 92.
-The prior read-only J1 comparison remains 89.10, rounded 89, at its captured
-dirty-tree scope; J1 was not changed, rebuilt or freshly regraded in this repair.
+Weighted maturity increases from 89.75 to 92.90, rounded from 90 to 93.
 Neither result is a coverage percentage or a complete-runtime guarantee.
 
-The next surgical priorities are G-016's explicit method-loss controls and
-separating documentation-rule responsibilities while preserving their negative
-controls and repair hints. The existing documentation helper has 1293 lines;
-this is a maintainability observation, not a failing execution. Neither priority
-requires a new product journey. G-014 remains an external J1-owned TODO.
+## Same-axis ATF_AI and atf-j1 review
+
+These 1–100 judgments use the same eight axes and weights. ATF_AI reflects this
+paired source review. The atf-j1 reference is the committed source at
+`4e3cac10061c95ea2b9b32cc18a6d4add1007a1e`; its separate dirty workspace was
+left unchanged and excluded from the scored source. J1 was not freshly executed
+or regraded in this repair.
+
+| Axis | Weight | ATF_AI | atf-j1 | Difference |
+|---|---:|---:|---:|---:|
+| Architecture and ownership | 15 | 92 | 94 | -2 |
+| Maintainability | 10 | 89 | 90 | -1 |
+| Configuration | 10 | 93 | 90 | +3 |
+| Failure lifecycle | 10 | 94 | 93 | +1 |
+| Code/test governance | 15 | 94 | 89 | +5 |
+| Demonstrated test stability | 15 | 92 | 80 | +12 |
+| Documentation and editions | 15 | 94 | 91 | +3 |
+| Feedback and provenance | 10 | 95 | 87 | +8 |
+| **Weighted score** | **100** | **92.90** | **89.10** | **+3.80** |
+
+ATF_AI leads this scoped comparison in six of eight axes after closing G-016.
+atf-j1 retains a two-point advantage in architecture and a one-point advantage
+in maintainability. The governance and test-stability differences reflect the
+captured source evidence and execution receipts, not a claim that the J1 tests
+were rerun here.
+
+G-016's method-identity loss control is now verified within its stated source
+boundary. The next surgical priority is to reduce responsibility mixing in the
+1293-line documentation governance helper while preserving its negative
+controls and repair hints. This is a maintainability observation, not a failing
+execution. No new product journey is required. G-014 remains an external
+J1-owned TODO.
