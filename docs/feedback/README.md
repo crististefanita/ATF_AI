@@ -16,33 +16,36 @@ jurnale și rapoarte în zona externă; copiile selectate și verificate pot fi 
 Registrul este rezervat guvernanței, stabilității și documentației framework-ului.
 Înregistrările despre îmbunătățirea fluxurilor de produs sunt excluse din această listă.
 
+Rândurile istorice de verificare descriu reviziile capturate. Raportarea curentă folosește exclusiv Extent; vezi [R-002](Code_And_Documentation_Maturity.md#r-002).
+
 <a id="current-maintenance-scope"></a>
 ## Limitele mentenanței curente
 
-Prioritizează maturitatea, stabilitatea, arhitectura lizibilă, documentația în engleză
-cu diagrame, guvernanța și calitatea verificărilor existente. Păstrează inventarul
-E2E curent; nu adăuga scenarii de aplicație în această etapă. Folosește browsere desktop
-pentru verificările păstrate și nu utiliza emulatoare.
-Notele trebuie să urmeze dovezile și criteriile de mai jos. Eliminarea unei cerințe
-din aria lucrării nu reprezintă o îmbunătățire de calitate sau un test reușit.
+Prioritizează maturitatea, stabilitatea, arhitectura lizibilă, documentația în engleză cu diagrame, guvernanța și calitatea verificărilor existente.
+
+- Păstrează inventarul E2E curent; nu adăuga scenarii de aplicație în această etapă.
+- Folosește browsere desktop pentru verificările păstrate și nu utiliza emulatoare.
+- Notele trebuie să urmeze dovezile și criteriile de mai jos.
+- Eliminarea unei cerințe din aria lucrării nu reprezintă o îmbunătățire de calitate sau un test reușit.
 
 <a id="assessment-rubric-and-evidence-locations"></a>
 ## Criterii de evaluare și locațiile dovezilor
 
-Cele două note răspund unor întrebări diferite. Prioritatea crește odată cu urgența
-remedierii; calitatea crește odată cu soliditatea zonei afectate.
-Ambele sunt numere întregi între 1 și 100. Reprezintă evaluări bazate pe dovezi,
-nu procente de acoperire a testelor sau probabilități.
+Cele două note răspund unor întrebări diferite.
+
+- Prioritatea crește odată cu urgența remedierii; calitatea crește odată cu soliditatea zonei afectate.
+- Ambele sunt numere întregi între 1 și 100.
+- Reprezintă evaluări bazate pe dovezi, nu procente de acoperire a testelor sau probabilități.
 
 - Prioritate = rotunjire(0.50 × impact + 0.30 × expunere/risc + 0.20 × urgență).
 - Calitate = rotunjire(0.40 × corectitudine + 0.30 × verificare + 0.30 × claritate).
 
-Fiecare componentă folosește aceeași scară 1–100. Folosește 1–39 pentru slab/scăzut,
-40–69 pentru parțial/moderat, 70–89 pentru solid/ridicat și 90–100 pentru riguros
-demonstrat/critic, în funcție de axa relevantă. Rotunjește la cel mai apropiat întreg,
-cu jumătățile în sus. Precizează aria, observațiile și componentele notei în
-înregistrarea indicată. Un element închis își păstrează acolo evaluarea inițială;
-înregistrările istorice verificate nu primesc note retrospective inventate.
+Fiecare componentă folosește aceeași scară 1–100.
+
+- Folosește 1–39 pentru slab/scăzut, 40–69 pentru parțial/moderat, 70–89 pentru solid/ridicat și 90–100 pentru riguros demonstrat/critic, în funcție de axa relevantă.
+- Rotunjește la cel mai apropiat întreg, cu jumătățile în sus.
+- Precizează aria, observațiile și componentele notei în înregistrarea indicată.
+- Un element închis își păstrează acolo evaluarea inițială; înregistrările istorice verificate nu primesc note retrospective inventate.
 
 Revizuiește notele când se schimbă dovezile sau aria, nu doar când crește numărul testelor.
 Guvernanța existentă a documentației validează cele două coloane distincte,
@@ -77,6 +80,8 @@ Componentele păstrate ale evaluărilor inițiale:
 | D-009 | 90 / 80 / 80 | 85 / 65 / 80 | Structura Markdown, paritatea codului/valorilor și sensul calificărilor nu aveau controale dedicate |
 | G-018 | 70 / 75 / 60 | 75 / 45 / 60 | O clasă de teste de documentație de 1297 de linii amesteca șase domenii, selectorul și fixture-urile |
 | D-012 | 90 / 80 / 75 | 70 / 40 / 75 | Strategia folosea un flux vertical și nu compara limitele de proiectare API/Playwright/Selenium |
+| D-013 | 85 / 85 / 75 | 75 / 45 / 75 | Fluxuri verticale, limite ale legendelor lipsă/deschise și decizii de ansamblu dense |
+| R-002 | 90 / 80 / 75 | 60 / 60 / 60 | Allure suportat anterior nu corespunde domeniului nou restrâns exclusiv la Extent |
 
 Locațiile dovezilor istorice folosesc `${ATF_WORK_ROOT}/...`, cu spațiul extern de lucru
 selectat conform ghidului [Dezvoltare](../Development.md).
@@ -89,6 +94,8 @@ normalizarea prezentării nu reprezintă o nouă execuție.
 
 | ID | Comportament livrat | Verificare |
 |---|---|---|
+| D-013 | Reguli comune de prezentare în 50 de perechi; calitate 93 (94/92/94) | Perechi 736/736; câte 203 Node; randare desktop; [dovezi și limite](Code_And_Documentation_Maturity.md#d-013) |
+| R-002 | Raportare menținută exclusiv prin Extent, cu respingere și recuperare explicite; calitate 93 (95/92/92) | Cititori agregați pereche și 15 componente desktop; [dovezi](Code_And_Documentation_Maturity.md#r-002) |
 | D-012 | Hărți strategice orizontale și limite API/Playwright/Selenium comparabile; calitate 93 (94/92/94) | EN/RO 209/209; diagrame/tabele native desktop; [dovezi și limite](Code_And_Documentation_Maturity.md#d-012) |
 | F-011 | Închiderea curăță starea după succes, RuntimeException și Error; calitate livrată 94 (95/92/94) | Reactoare complete EN/RO, selecție focalizată 69/69 și referință negativă păstrată; [dovezi](Behavior_And_Negative_Cases.md#f-011) |
 | F-012 | Limite stricte comune pentru configurația UI și așteptare; calitate livrată 94 (95/93/94) | Contracte pozitive/negative de componentă și acceptanță completă pereche; [dovezi](Code_And_Documentation_Maturity.md#f-012) |
@@ -137,14 +144,12 @@ normalizarea prezentării nu reprezintă o nouă execuție.
 | A-002 | Algoritmii puri de parcurgere, componentele de publicare și dovezile de componentă API păstrează limite distincte | 138 verificări Node și cinci invocări adăugate în clasa existentă de contracte API trecute; XML/TAP originale păstrate; [dovezi](Behavior_And_Negative_Cases.md#a-002) |
 | D-008 | Publicația curentă de artefacte este limitată, iar istoricul complet și imuabil rămâne în afara proiectului live | 26 fișiere generate curente, două documente Atlas neschimbate, 20 verificări de componentă și 211/211 verificări Java de guvernanță; [dovezi](Artifact_Publication_And_History.md#d-008) |
 
-Criteriile de acceptanță pentru browser desktop și dovezile corecțiilor explicit istorice sunt în
-[mentenanța framework-ului](Framework_Maintenance.md). Contractele de închidere și
-dovezile execuțiilor sunt în [contractele executabile aprofundate](Governance_Contracts.md)
-și [compatibilitatea browserelor și portabilitate](Browser_Compatibility_And_Portability.md).
-[Revizuirea anterioară de guvernanță](Governance_Review.md) își păstrează aria originală.
-F-008 este verificat pentru matricea Windows înregistrată; altă platformă sau versiune necesită
-dovezi noi de acceptanță. [Înregistrarea verificării API](API_Verification.md)
-distinge regresiile API ale framework-ului de scenariile GoRest de scriere existente.
+Criteriile de acceptanță pentru browser desktop și dovezile corecțiilor explicit istorice sunt în [mentenanța framework-ului](Framework_Maintenance.md).
+
+- Contractele de închidere și dovezile execuțiilor sunt în [contractele executabile aprofundate](Governance_Contracts.md) și [compatibilitatea browserelor și portabilitate](Browser_Compatibility_And_Portability.md).
+- [Revizuirea anterioară de guvernanță](Governance_Review.md) își păstrează aria originală.
+- F-008 este verificat pentru matricea Windows înregistrată; altă platformă sau versiune necesită dovezi noi de acceptanță.
+- [Înregistrarea verificării API](API_Verification.md) distinge regresiile API ale framework-ului de scenariile GoRest de scriere existente.
 
 <a id="recording-and-closing-feedback"></a>
 ## Înregistrarea și închiderea feedback-ului

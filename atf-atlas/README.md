@@ -14,12 +14,12 @@ Pentru alt proiect sau limbaj, folosește separat
 Această hartă rămâne specifică framework-ului ATF; analiza generată aparține
 rădăcinii de artefacte selectate.
 
-Această zonă de documentație gestionează [contractul raportului complet](Report_Contract.md),
-[baza de cunoștințe](Knowledge_Base.md) și [CSS-ul dedicat](assets/atlas.css).
-Uneltele opționale de mentenanță verifică și publică analiza revizuită. Ele nu
-execută teste de produs și nu oferă servicii Java de execuție. HTML-ul generat
-aparține rădăcinii de artefacte selectate. Reactorul Maven rămâne format din cele
-cinci module descrise în [Arhitectură](../docs/Architecture.md).
+Această zonă de documentație gestionează [contractul raportului complet](Report_Contract.md), [baza de cunoștințe](Knowledge_Base.md) și [CSS-ul dedicat](assets/atlas.css).
+
+- Uneltele opționale de mentenanță verifică și publică analiza revizuită.
+- Ele nu execută teste de produs și nu oferă servicii Java de execuție.
+- HTML-ul generat aparține rădăcinii de artefacte selectate.
+- Reactorul Maven rămâne format din cele cinci module descrise în [Arhitectură](../docs/Architecture.md).
 
 <a id="ownership"></a>
 ## Responsabilități
@@ -30,19 +30,19 @@ testelor fiecărei capabilități răspund în continuare pentru contract și ac
 menținute la responsabilii lor dedicați și explică înregistrarea în suite.
 
 ```mermaid
-flowchart TB
-    Atlas["Limite Atlas"] -. urmărește .-> Tests["atf-tests"]
-    Tests -. verifică .-> Core["atf-core"]
-    Tests -. verifică .-> PW["atf-playwright"]
-    Tests -. verifică .-> SE["atf-selenium"]
-    Tests -. verifică .-> Reports["atf-reporting"]
-    PW -->|depinde de| Core
-    SE -->|depinde de| Core
-    Reports -->|depinde de| Core
+flowchart LR
+    Atlas["Atlas"] -. urmărește .-> Tests["Teste framework"]
+    Tests -. verifică .-> Runtime["Patru biblioteci"]
+    Providers["Adaptoare browser și raportare"] -->|depind de| Core["Core"]
 ```
+
+<details>
+<summary>Legendă: relații și limita dovezii</summary>
 
 Săgețile continue sunt dependențe între biblioteci. Cele punctate reprezintă
 trasabilitatea documentației sau utilizarea în teste; Atlas nu introduce dependențe Maven.
+
+</details>
 
 <a id="traceability-contract"></a>
 ## Contract de trasabilitate
@@ -59,59 +59,53 @@ răspunsul final observat, păstrat neschimbat. Explică acest contract și crit
 său de verificare separat de o săgeată de dependență Core. Citirea testului nu
 demonstrează o execuție nouă.
 
-Contractul Atlas în engleză, arhivat la
-`main_mcp:docs/prompts/html_EN/atlas/business-test-atlas-reference.html`, fundamentează
-această abordare pornind de la sursă. Regulile sale vizuale dedicate, secțiunile pliabile,
-trasabilitatea comportamentului și limitele auditului sunt adaptate prin contractul curent.
-Punctele de intrare arhivate pentru execuție și notele automate rămân retrase.
-`ATF_Context_Atlas.md` din J0 oferă modelul complementar de lectură: subiect,
-responsabil, contract, sursă și apelant.
+Contractul Atlas în engleză, arhivat la `main_mcp:docs/prompts/html_EN/atlas/business-test-atlas-reference.html`, fundamentează această abordare pornind de la sursă.
+
+- Regulile sale vizuale dedicate, secțiunile pliabile, trasabilitatea comportamentului și limitele auditului sunt adaptate prin contractul curent.
+- Punctele de intrare arhivate pentru execuție și notele automate rămân retrase.
+- `ATF_Context_Atlas.md` din J0 oferă modelul complementar de lectură: subiect, responsabil, contract, sursă și apelant.
 
 <a id="complete-understanding-report"></a>
 ## Raport complet de înțelegere
 
-Fiecare invocare, inclusiv redactarea asistată de cunoștințe, livrează exact un
-HTML complet de înțelegere pentru exact un proiect selectat, indiferent de limbaj
-sau sistemul de construcție. Artefactul pentru cititor este `delivery/atlas.html`
-într-o analiză nouă. Include contextul, comportamentul existent susținut și
-criteriul său de verificare ori lipsa explicită a acestuia, afirmațiile,
-fragmentele sursă, arhitectura, auditul guvernanței, cerințele recuperate,
-limitele dovezilor și toate intrările declarate. Markdown, manifestele,
-jurnalele și HTML-urile anterioare rămân în afara acelui folder. Un HTML
-suplimentar sub delivery/ sau combinarea unor identități distincte de țintă
-încalcă acest contract.
+Fiecare invocare, inclusiv redactarea asistată de cunoștințe, livrează exact un HTML complet de înțelegere pentru exact un proiect selectat, indiferent de limbaj sau sistemul de construcție.
 
-Stilul canonic este menținut separat și încorporat în raport, împreună cu SVG
-și navigare internă. Copierea doar a HTML-ului trebuie să păstreze documentul
-complet offline. Absența testelor, metadatelor Git sau dependențelor rămâne
-explicită, împreună cu aria și limitele sursei. Recuperarea oferă politici citate
-responsabilului care verifică sursele; nu demonstrează execuție sau înțelegere semantică completă.
+- Artefactul pentru cititor este `delivery/atlas.html` într-o analiză nouă.
+- Include contextul, comportamentul existent susținut și criteriul său de verificare ori lipsa explicită a acestuia, afirmațiile, fragmentele sursă, arhitectura, auditul guvernanței, cerințele recuperate, limitele dovezilor și toate intrările declarate.
+- Markdown, manifestele, jurnalele și HTML-urile anterioare rămân în afara acelui folder.
+- Un HTML suplimentar sub delivery/ sau combinarea unor identități distincte de țintă încalcă acest contract.
+
+Stilul canonic este menținut separat și încorporat în raport, împreună cu SVG și navigare internă.
+
+- Copierea doar a HTML-ului trebuie să păstreze documentul complet offline.
+- Absența testelor, metadatelor Git sau dependențelor rămâne explicită, împreună cu aria și limitele sursei.
+- Recuperarea oferă politici citate responsabilului care verifică sursele; nu demonstrează execuție sau înțelegere semantică completă.
 
 Versiunea 4 guvernează și structura lecturii și echilibrul măsurat al tabelelor.
-Explicațiile primesc spațiu, comparațiile dense au derulare locală, dovezile lungi
-de caz devin fișe verticale complete și fiecare graf declarat are o legendă
-alăturată. [Contractul de prezentare](Report_Contract.md#reader-presentation-and-render-review)
-separă verificările de componentă, măsurătorile desktop native și revizia vizuală
-umană. Cititorii istorici și dovezile lor capturate rămân imuabile.
+
+- Explicațiile primesc spațiu, comparațiile dense au derulare locală, dovezile lungi de caz devin fișe verticale complete și fiecare graf declarat are o legendă alăturată.
+- [Contractul de prezentare](Report_Contract.md#reader-presentation-and-render-review) separă verificările de componentă, măsurătorile desktop native și revizia vizuală umană.
+- Cititorii istorici și dovezile lor capturate rămân imuabile.
 
 <a id="review-breadth-and-quality-axes"></a>
 ## Aria revizuirii și axele de calitate
 
-Capturile noi declară aria revizuirii PROJECT sau SELECTED, unitățile reale de
-analiză cu responsabilitate asupra surselor și șapte perspective de lectură susținute de dovezi: scop,
-structură, comportament, date, configurație, eșec și verificare. REVIEWED,
-PARTIAL, UNKNOWN și NOT_APPLICABLE fac vizibilă lectura rămasă. Un fișier capturat
-pentru identitate nu este automat revizuit. Arhitectura declarată, componentele
-responsabile ale unităților și fluxurile existente se referă reciproc.
+Capturile noi declară aria revizuirii PROJECT sau SELECTED, unitățile reale de analiză cu responsabilitate asupra surselor și șapte perspective de lectură susținute de dovezi: scop, structură, comportament, date, configurație, eșec și verificare.
+
+- REVIEWED, PARTIAL, UNKNOWN și NOT_APPLICABLE fac vizibilă lectura rămasă.
+- Un fișier capturat pentru identitate nu este automat revizuit.
+- Arhitectura declarată, componentele responsabile ale unităților și fluxurile existente se referă reciproc.
 
 ```mermaid
-flowchart TB
-    Inventory["Inventarul surselor și responsabililor reali"] --> Units["Unități și arie declarate pentru revizuire"]
-    Units --> Facets["Șapte perspective cu dovezi sau limite"]
-    Facets --> Behavior["Comportament existent și criteriul de verificare"]
-    Behavior --> Cases["Cazul exact păstrat când există execuție"]
-    Cases --> Reader["Un HTML complet cu guvernanță"]
+flowchart LR
+    Inventory["Sursă și scop"] --> Facets["Șapte fațete"]
+    Facets --> Behavior["Comportament și oracol"]
+    Behavior --> Cases["Subiecte de test păstrate"]
+    Cases --> Reader["Un HTML complet"]
 ```
+
+<details>
+<summary>Legendă: relații și limita dovezii</summary>
 
 Săgețile descriu revizuirea și asamblarea dovezilor. Sunt separate de diagrama
 dependențelor de execuție de mai sus. Un proiect simplu nu necesită module sau
@@ -119,35 +113,35 @@ teste inventate. Comportamentul verificat din surse păstrează acel statut; un
 comportament sau criteriu executat necesită identitatea exactă a cazului păstrat,
 sursa responsabilă citată și rezultatul său.
 
-Evaluările opționale 1–100 declară responsabilul revizuirii, aria, justificarea,
-limitele, afirmațiile sursă și dovezile păstrate. Calitatea proiectului și calitatea
-Atlas au grupuri și axe ponderate separate. Criteriile și câmpurile verificabile
-aparțin [contractului raportului](Report_Contract.md); observațiile curente și
-dovezile de închidere aparțin
-[feedback-ului despre profunzime](../docs/feedback/Atlas_Depth_And_Assessment.md).
-Nicio verificare automată și niciun inventar al surselor nu stabilesc înțelegerea
-semantică completă sau o notă automată de calitate.
+</details>
+
+Evaluările opționale 1–100 declară responsabilul revizuirii, aria, justificarea, limitele, afirmațiile sursă și dovezile păstrate.
+
+- Calitatea proiectului și calitatea Atlas au grupuri și axe ponderate separate.
+- Criteriile și câmpurile verificabile aparțin [contractului raportului](Report_Contract.md); observațiile curente și dovezile de închidere aparțin [feedback-ului despre profunzime](../docs/feedback/Atlas_Depth_And_Assessment.md).
+- Nicio verificare automată și niciun inventar al surselor nu stabilesc înțelegerea semantică completă sau o notă automată de calitate.
 
 <a id="behavior-cases-and-negative-scope"></a>
 ## Cazuri de comportament și limitele analizei negative
 
-Capturile noi renderVersion 4 explică situațiile pozitive și negative existente,
-cu precondiții, declanșatori, observații așteptate și fragmentele exacte ale
-criteriilor din surse. Fiecare flux declară intrarea, ID-uri stabile ale săgeților,
-parcursuri continue și aria revizuirii negative. Fiecare rezultat are un caz
-martor; toate nodurile sunt accesibile de la intrare și pot ajunge la un rezultat.
-Buclele finite susținute rămân valide. Comportamentul negativ lipsă sau nerevizuit
-rămâne explicit, fără teste inventate sau sens dedus din numele cazului.
+Capturile noi renderVersion 4 explică situațiile pozitive și negative existente, cu precondiții, declanșatori, observații așteptate și fragmentele exacte ale criteriilor din surse.
+
+- Fiecare flux declară intrarea, ID-uri stabile ale săgeților, parcursuri continue și aria revizuirii negative.
+- Fiecare rezultat are un caz martor; toate nodurile sunt accesibile de la intrare și pot ajunge la un rezultat.
+- Buclele finite susținute rămân valide.
+- Comportamentul negativ lipsă sau nerevizuit rămâne explicit, fără teste inventate sau sens dedus din numele cazului.
 
 ```mermaid
-flowchart TB
-    Entry["Intrare și precondiție reale"] --> Trigger["Operație sau intrare existentă"]
-    Trigger --> Positive["Observație pozitivă susținută"]
-    Trigger --> Negative["Respingere susținută sau lipsă explicită după căutare"]
-    Positive --> Oracle["Fragment exact de verificare și limitele dovezii"]
+flowchart LR
+    Entry["Intrare și declanșator"] --> Positive["Observație pozitivă"]
+    Entry --> Negative["Respingere sau lipsă"]
+    Positive --> Oracle["Oracol existent"]
     Negative --> Oracle
-    Oracle --> Case["Caz legat de sursă și parcurs limitat"]
+    Oracle --> Case["Caz și traseu demonstrat"]
 ```
+
+<details>
+<summary>Legendă: relații și limita dovezii</summary>
 
 Săgețile arată întrebările despre dovezi la redactare, nu ramuri de execuție
 inventate. [Contractul cazurilor](Report_Contract.md#behavior-cases-and-negative-observations)
@@ -155,6 +149,8 @@ deține câmpurile. Invariantele grafului, mutațiile metamorfice și verificăr
 componentă ale publicării îmbunătățesc coerența declarată. Revizuirea umană
 verifică în continuare sensul sursei. Constatările aparțin
 [feedback-ului despre comportament](../docs/feedback/Behavior_And_Negative_Cases.md).
+
+</details>
 
 <a id="verification"></a>
 ## Verificare

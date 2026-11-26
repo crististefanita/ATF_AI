@@ -40,14 +40,6 @@ contracts:
     liveBoundary: false
     owner: Extent reporting contracts
     purpose: Extent shell, runtime audit, and HTML evidence invariants.
-  - id: core.contract-profile.allure
-    kind: profile
-    name: ALLURE_CONTRACT
-    recommendedEngine: allure
-    pureFramework: true
-    liveBoundary: false
-    owner: Allure reporting contracts
-    purpose: Allure evidence and presentation invariants.
   - id: core.contract-profile.ui-support
     kind: profile
     name: UI_SUPPORT_CONTRACT
@@ -78,7 +70,7 @@ contracts:
     kind: area
     name: REPORTING_ADAPTER
     owner: ATF reporting adapters
-    purpose: Extent and Allure adapter surface behavior.
+    purpose: Extent adapter surface behavior.
   - id: core.contract-area.reporting-lifecycle
     kind: area
     name: REPORTING_LIFECYCLE

@@ -6,16 +6,6 @@ package com.ai.core.support.contract.ids.narrative;
 public class AtfUiReportingContractNarrativeContractIds {
     protected AtfUiReportingContractNarrativeContractIds() {
     }
-    public static final String ALLURE_PRESENTATION_CLASS =
-            "core.contract-narrative.allure-presentation-class";
-    public static final String ALLURE_PRESENTATION_NO_ROOT_PARAMETERS =
-            "core.contract-narrative.allure-presentation-no-root-parameters";
-    public static final String ALLURE_PRESENTATION_CLEAN_TEST_NAME =
-            "core.contract-narrative.allure-presentation-clean-test-name";
-    public static final String ALLURE_PRESENTATION_CONTRACT_STEPS =
-            "core.contract-narrative.allure-presentation-contract-steps";
-    public static final String ALLURE_PRESENTATION_BUFFERED_STEPS =
-            "core.contract-narrative.allure-presentation-buffered-steps";
     public static final String BASE_UI_RUNTIME_CLASS =
             "core.contract-narrative.base-ui-runtime-class";
     public static final String BASE_UI_RUNTIME_LISTENER_BOUNDARY =
@@ -44,10 +34,6 @@ public class AtfUiReportingContractNarrativeContractIds {
             "core.contract-narrative.ui-window-size-resolver-class";
     public static final String UI_WINDOW_SIZE_RESOLVER_MATRIX =
             "core.contract-narrative.ui-window-size-resolver-matrix";
-    public static final String ALLURE_RESULTS_CLEANUP_CLASS =
-            "core.contract-narrative.allure-results-cleanup-class";
-    public static final String ALLURE_RESULTS_CLEANUP_ENGINE_MATRIX =
-            "core.contract-narrative.allure-results-cleanup-engine-matrix";
     public static final String EXPECTED_FAILURE_STYLE_CLASS =
             "core.contract-narrative.expected-failure-style-class";
     public static final String EXPECTED_FAILURE_STYLE_SHARED_NARRATIVE =

@@ -121,7 +121,7 @@ final class DocumentationReadabilityRules {
         String relative = root.relativize(file).toString().replace('\\', '/');
         boolean inspectProse = !relative.startsWith("docs/feedback/") || relative.equals("docs/feedback/README.md");
         // The strategy owner is a rapid decision guide; detailed contracts retain concise multi-sentence explanations.
-        boolean orientation = relative.equals("docs/Testing.md");
+        boolean orientation = relative.equals("docs/Testing.md") || file.getFileName().toString().equalsIgnoreCase("README.md");
         Deque<Disclosure> disclosures = new ArrayDeque<>();
         Paragraph paragraph = new Paragraph();
         String fence = null;
@@ -199,7 +199,7 @@ final class DocumentationReadabilityRules {
         if (orientation && sentences.size() > MAX_ORIENTATION_SENTENCES || count > MAX_PARAGRAPH_WORDS) {
             findings.add(relative + ":" + paragraph.start + " DOC-PROSE-DENSE observed " + sentences.size()
                     + " sentences and " + count + " visible words; "
-                    + (orientation ? "the testing strategy allows at most " + MAX_ORIENTATION_SENTENCES + " sentences and " : "guide paragraphs allow at most ")
+                    + (orientation ? "README orientation and the testing strategy allow at most " + MAX_ORIENTATION_SENTENCES + " sentences and " : "guide paragraphs allow at most ")
                     + MAX_PARAGRAPH_WORDS + " words; separate decisions into bullets, comparisons into a table, or relationships into a diagram with a legend; keep secondary rationale in closed details");
         }
         int longest = sentences.stream().mapToInt(DocumentationReadabilityRules::words).max().orElse(0);
@@ -251,7 +251,7 @@ final class DocumentationReadabilityRules {
         return matched;
     }
 
-    private static boolean hasOpenAttribute(String attributes) {
+    static boolean hasOpenAttribute(String attributes) {
         Matcher attribute = ATTRIBUTE.matcher(attributes);
         while (attribute.find()) if (attribute.group(1).equalsIgnoreCase("open")) return true;
         return false;

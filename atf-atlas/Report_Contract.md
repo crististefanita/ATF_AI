@@ -14,15 +14,20 @@ aceleași principii de lectură ca documentația menținută. Explică scopul ș
 comparații și diagrame pentru relații susținute. Nu adăuga diagrame decorative sau cote.
 
 ```mermaid
-flowchart TB
-    Source["Surse revizuite și dovezi originale"] --> Structure["Structură semantică de lectură"]
-    Structure --> Layout["Tabele adaptate conținutului și legende alăturate"]
-    Layout --> Measure["Măsurare desktop nativă și revizie vizuală"]
-    Measure --> Reader["Un singur HTML complet offline"]
+flowchart LR
+    Source["Sursă și dovezi"] --> Structure["Secțiuni de lectură"]
+    Structure --> Layout["Tabele și legende"]
+    Layout --> Measure["Revizie desktop"]
+    Measure --> Reader["Un HTML offline"]
 ```
+
+<details>
+<summary>Legendă: relații și limita dovezii</summary>
 
 Săgețile descriu revizia publicării, nu comportamentul aplicației. Identitățile
 surselor și execuțiilor originale rămân neschimbate de o actualizare a prezentării.
+
+</details>
 
 | Element pentru cititor | Prezentare cerută | Limita verificării |
 |---|---|---|
@@ -150,7 +155,7 @@ dependencyGraphs.
 |---|---|
 | Comportament | id, title, actor, intent, object, operation, outcome, testOracle, oracleStatus, oracleClaimId, limits, claimIds și graph |
 | Criteriu observat | oracleStatus este SOURCE_REVIEWED sau EXECUTED; oracleClaimId identifică o afirmație separată dintr-un test existent real |
-| Criteriu absent | oracleStatus este NOT_FOUND cu afirmație de criteriu UNKNOWN explicită; testOracle declară domeniul căutat și lacuna fără a inventa test/rulare |
+| Criteriu absent | oracleStatus NOT_FOUND, afirmație de oracol UNKNOWN; testOracle declară domeniul căutat și lacuna, fără execuție inventată |
 | Graf comportamental | kind BEHAVIOR; noduri cu id/label/x/y/kind și muchii cu from/to/label/claimId |
 | Graf de dependențe | id, title, kind DEPENDENCY, aceleași câmpuri declarate pentru noduri/muchii; tipuri de nod MODULE, COMPONENT, SERVICE sau BOUNDARY |
 

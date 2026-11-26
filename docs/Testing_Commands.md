@@ -219,22 +219,22 @@ consemnate în feedback.
 <a id="reporting-acceptance"></a>
 ## Acceptanța raportării
 
-Subsetul Allure nativ și publicarea agregată sunt explicite:
+Contractele Extent menținute și publicarea agregată sunt explicite:
 
 <details>
-<summary>Rulează verificările Allure native și acceptanța raportării agregate</summary>
+<summary>Rulează verificările Extent și acceptanța raportării agregate</summary>
 
 ```powershell
-mvn -B -ntp -pl atf-tests -am "-Datf.test.suite=src/test/resources/suites/framework-allure.xml" "-Dreporting.engine=allure" test
+mvn -B -ntp -pl atf-tests -am "-Datf.test.suite=src/test/resources/suites/framework-reporting.xml" "-Dreporting.engine=extent" test
 mvn -B -ntp -Paggregate test
 ```
 
 </details>
 
-[Suita Allure](../atf-tests/src/test/resources/suites/framework-allure.xml)
-verifică integrarea nativă.
+[Suita raportării](../atf-tests/src/test/resources/suites/framework-reporting.xml)
+verifică integrarea Extent.
 [Suita agregată](../atf-tests/src/test/resources/suites/framework-aggregate.xml)
-colectează cazuri executate și publică dovezi Extent și Allure. Inspectează
+colectează cazuri executate și publică dovezi Extent. Inspectează
 artefactele generate împreună cu rezultatul TestNG: verifică numărătorile, stările,
 temporizarea, atașamentele și căile declarate ale rezultatelor.
 
@@ -378,7 +378,6 @@ execuție sunt configurate separat; aceste proprietăți nu mută fiecare artefa
 | Rezultate Surefire/TestNG | target/surefire-reports al fiecărui modul testat |
 | Rezultate între module | atf-tests/target/surefire-reports |
 | Rapoarte Extent | atf-tests/target/reports |
-| Rezultate brute Allure | atf-tests/target/allure-results |
 | Publicare agregată | atf-tests/target/atf-core-aggregate-report |
 
 Directorul agregat păstrează numele de compatibilitate. Proprietățile de execuție

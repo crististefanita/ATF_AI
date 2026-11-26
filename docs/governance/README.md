@@ -28,7 +28,7 @@ documentație și guvernanță; nu este un al șaselea modul Maven.
 | Cum sunt separate rapoartele generate de sursele menținute? | [Artefacte](../../artifacts/README.md) și [arhiva rapoartelor](../../artifacts/reports/README.md) |
 
 ```mermaid
-flowchart TB
+flowchart LR
     Source["Surse, POM și teste"] --> Owner["Contract responsabil"]
     Owner --> Check["Verificare sau revizuire"]
     Check --> Evidence["Dovezi observate"]
@@ -36,10 +36,15 @@ flowchart TB
     Check -. lacună reproductibilă .-> Source
 ```
 
+<details>
+<summary>Legendă: relații și limita dovezii</summary>
+
 Fluxul leagă o afirmație factuală de responsabilul și dovada sa. O verificare eșuată
 revine la sursa sau documentul responsabil; nu autorizează slăbirea verificării.
 Regulile stabile rămân în ghidul responsabilului, iar feedback-ul înregistrează lacunele
 rămase și dovezile de închidere la limitele declarate.
+
+</details>
 
 <a id="existing-executable-surface"></a>
 ## Verificările executabile existente
@@ -49,6 +54,7 @@ rămase și dovezile de închidere la limitele declarate.
 | Arhitectură | [Regulile de arhitectură](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureRules.java) și [fixture-urile existente](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureGovernanceTest.java) | Limitele modulelor și furnizorilor, vizibilitatea surselor și regulile susținute de responsabilitate a execuției |
 | Documentație | [Regulile Markdown](../../atf-tests/src/test/java/com/ai/atf/governance/MarkdownDocumentationRules.java) și [testele README](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationRootGovernanceTest.java) | README, ediții, Living, structură, feedback și publicare au responsabili separați; ambele suite îi înscriu |
 | Lizibilitate | [Reguli pentru cititor și cazuri de componentă](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationReadabilityRulesTest.java) | Decizii în paragrafele strategiei, proză de referință limitată și rețete Maven pliate |
+| Prezentare | [Regulile diagramelor](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationPresentationRules.java) | Fluxuri orizontale, legende adiacente pliate și revizie desktop a geometriei |
 | Revizia edițiilor | [Controale de traducere](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationTranslationRules.java) | Semnale românești acceptate, blocuri englezești neschimbate și actualitatea amprentelor reviziei complete |
 | Inspecția surselor | [Fixture-urile scanerului Java](../../atf-tests/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java) | Regiuni lexicale susținute, politica markerilor cunoscuți pentru engleză și excepțiile exacte pentru date |
 | Comportament | Testele indicate de [harta de acoperire](../../atf-atlas/Coverage_Map.md) | Rezultatele observate explicite și limitele fixture-urilor |
@@ -69,27 +75,29 @@ că o suită verde demonstrează întreaga politică.
 | Închiderea | Ce observație exactă s-a schimbat și ce rămâne necunoscut? | Commit-urile surselor, rezultatele selecțiilor efectiv executate și feedback cu limite explicite |
 
 ```mermaid
-flowchart TB
-    Claim["Afirmație documentată"] --> Guard["Verificări automate ale surselor și structurii"]
-    Claim --> Review["Revizuirea umană a sensului și responsabilității"]
-    Review --> Render["Inspecția redării diagramelor modificate"]
-    Guard --> Evidence["Dovezi reale cu limite explicite"]
+flowchart LR
+    Claim["Afirmație documentată"] --> Guard["Controlul sursei"]
+    Claim --> Review["Revizia sensului"]
+    Review --> Render["Revizie desktop"]
+    Guard --> Evidence["Dovadă delimitată"]
     Render --> Evidence
-    Evidence --> Closure["Ghid responsabil și feedback"]
+    Evidence --> Closure["Ghid și feedback"]
 ```
+
+<details>
+<summary>Legendă: relații și limita dovezii</summary>
 
 Săgețile disting verificările automate de revizuirea semantică și vizuală. Ambele
 trasee contribuie cu dovezi; niciunul nu certifică singur o traducere sau întregul
 comportament de execuție. Urmează [procedura de revizuire](Code_And_Documentation_Policy.md#apply-the-documentation-review-in-practice)
 și [contractul edițiilor](Readme_Editions.md) înainte de sincronizare.
 
+</details>
+
 Verificările de stil susținute se aplică tuturor documentelor Markdown menținute.
-Regulile specifice README-urilor păstrează rădăcina axată pe orientarea modulelor
-și a execuției, impun diagrame separate pentru dependențe și flux și trimit
-exemplele către responsabilii Playwright/Selenium.
-README-urile modulelor/pachetelor dețin contractele și verificările locale.
-Limita pentru celulele de tabel semnalează proza densă; nu înlocuiește revizuirea
-la lățimea randată. Codul literal rămâne în engleză în ambele ediții, iar
-observațiile istorice își păstrează sursa și selecția capturate.
-[Ghidul eșecurilor](Failure_Diagnostics.md) explică locația emisă, regula,
-indicația de remediere, responsabilul și comanda de reverificare.
+
+- Regulile specifice README-urilor păstrează rădăcina axată pe orientarea modulelor și a execuției, impun diagrame separate pentru dependențe și flux și trimit exemplele către responsabilii Playwright/Selenium.
+- README-urile modulelor/pachetelor dețin contractele și verificările locale.
+- Limita pentru celulele de tabel semnalează proza densă; nu înlocuiește revizuirea la lățimea randată.
+- Codul literal rămâne în engleză în ambele ediții, iar observațiile istorice își păstrează sursa și selecția capturate.
+- [Ghidul eșecurilor](Failure_Diagnostics.md) explică locația emisă, regula, indicația de remediere, responsabilul și comanda de reverificare.

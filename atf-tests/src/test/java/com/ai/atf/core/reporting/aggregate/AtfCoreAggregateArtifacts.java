@@ -11,7 +11,6 @@ public final class AtfCoreAggregateArtifacts {
     public static final String ATF_TEST_PACKAGE = AtfSourcePaths.ATF_ROOT_PACKAGE;
     public static final String TESTNG_SWEEP_LABEL = ATF_TEST_PACKAGE + " TestNG sweep";
     public static final String EXTENT_ARTIFACT_DIR = AggregateReportFiles.EXTENT_ARTIFACT_DIR;
-    public static final String ALLURE_RESULTS_DIR = AggregateReportFiles.ALLURE_RESULTS_DIR;
     public static final String EXTENT_REPORT_FILE = AggregateReportFiles.EXTENT_REPORT_FILE;
     public static final Path DEFAULT_EXTENT_RUNTIME_ROOT =
             AtfSourcePaths.TARGET_ROOT.resolve("atf-core-aggregate-report-extent");
@@ -39,7 +38,4 @@ public final class AtfCoreAggregateArtifacts {
         return AggregateReportFiles.extentReport(runtimeRoot);
     }
 
-    public static Path allureResults(Path runtimeRoot) {
-        return AggregateReportFiles.allureResults(runtimeRoot);
-    }
 }

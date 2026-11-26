@@ -23,6 +23,8 @@ import com.ai.atf.core.reporting.adapters.audit.ExtentRuntimeOverviewTables;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.Assert;
+import com.aventstack.extentreports.ExtentTest;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -395,5 +397,29 @@ public class ExtentAdapterTest {
             next = text.indexOf(needle, next + needle.length());
         }
         return matches;
+    }
+
+    @Test
+    public void extent_does_not_log_empty_payload_code_blocks() throws Exception {
+        config.setConfig(ReportingConfigKeys.REPORTING_ENGINE, ReportingConfigKeys.ENGINE_EXTENT);
+
+        ExtentAdapter adapter = ExtentAdapter.getInstance();
+        adapter.startTest("empty-payload-extent", "contract");
+        adapter.startStep("api step");
+        adapter.logCodeBlock("");
+        adapter.pass("");
+
+        ExtentTest extentTest = currentExtentTest(adapter);
+        Assert.assertNotNull(extentTest, "Expected active Extent test context");
+
+        com.aventstack.extentreports.model.Test model = extentTest.getModel();
+        Assert.assertEquals(model.getChildren().size(), 1, "Expected a single step node");
+        Assert.assertTrue(
+                model.getChildren().get(0).getLogs().isEmpty(),
+                "Extent must not log an empty payload as a code block"
+        );
+
+        adapter.endTest(TestStatus.PASS);
+        adapter.flush();
     }
 }

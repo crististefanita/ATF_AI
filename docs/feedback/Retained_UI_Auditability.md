@@ -68,16 +68,20 @@ Dovada pregătirii configurației nu este un caz suplimentar de test de aplicaț
 Dovada lipsă sau neatinsă trebuie să rămână explicită, fără a primi un PASS inventat.
 
 ```mermaid
-flowchart TB
-    Methods["Aceleași metode păstrate"] --> Actions["UIActions și acțiuni observate"]
-    Actions --> Validation["Oracol de afaceri așteptat versus observat"]
-    Validation --> Listener["Rezultat TestNG original și captură"]
-    Listener --> Reader["Cititor Extent nativ per motor"]
-    Reader --> Audit["Reconciliere audit XML, sursă și DOM"]
+flowchart LR
+    Methods["Metode păstrate"] --> Actions["Acțiuni și validare"]
+    Actions --> Listener["Rezultat și captură"]
+    Listener --> Reader["Cititor per motor"]
+    Reader --> Audit["Audit XML și sursă"]
 ```
+
+<details>
+<summary>Legendă: relații și limita dovezii</summary>
 
 Săgețile arată responsabilitatea dovezilor. Consecvența auditului este
 separată de succesul execuției și de acoperirea semantică exhaustivă.
+
+</details>
 
 <a id="living-principles-and-explicit-limits"></a>
 ## Principii vii și limite explicite

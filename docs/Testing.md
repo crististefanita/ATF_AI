@@ -54,7 +54,7 @@ Acestea sunt niveluri distincte de dovadă, chiar când protejează aceeași abs
 | Contractul unei biblioteci | Modulul responsabil și dependențele | Aserțiunile selectate și responsabilitatea resurselor |
 | Configurație sau comportament între module | Suita locală implicită | Rezultate locale și controale negative relevante |
 | Interacțiune sau răspuns UI real | Profilul browser | Ambele adaptoare, stare/răspuns real și curățare |
-| Integrarea și publicarea rapoartelor | Subsetul Allure nativ și profilul agregat | Rezultate, atașamente și cititor generat |
+| Integrarea și publicarea rapoartelor | Subsetul raportării și profilul agregat | Rezultate, atașamente și cititor generat |
 | Comportament existent al aplicației | Clasă concretă explicită | Mediul țintă, identități și stare persistentă |
 
 ```mermaid
@@ -141,9 +141,9 @@ aplicației publice. Păstrați capturile complete și eșecurile originale.
 <a id="reporting-acceptance"></a>
 ## Acceptanța raportării
 
-[Subsetul Allure nativ](../atf-tests/src/test/resources/suites/framework-allure.xml)
+[Subsetul raportării](../atf-tests/src/test/resources/suites/framework-reporting.xml)
 verifică integrarea; [suita agregată](../atf-tests/src/test/resources/suites/framework-aggregate.xml)
-colectează cazurile executate și publică Extent și Allure.
+colectează cazurile executate și publică Extent.
 Revizuiți numerele, stările, duratele și atașamentele față de rezultatele native
 folosind [rețetele raportării](Testing_Commands.md#reporting-acceptance).
 

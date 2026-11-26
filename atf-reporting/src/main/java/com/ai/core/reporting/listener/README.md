@@ -11,12 +11,11 @@ publică rezultatele și atașamentele de execuție.
 <a id="entry-points"></a>
 ## Puncte de intrare
 
-[ReportingTestListener](ReportingTestListener.java) coordonează colaboratorii ciclului
-de viață și ai execuției. Fațada de compatibilitate
-[TestListener](../../../../../../../../../atf-core/src/main/java/com/ai/core/reporting/listener/TestListener.java)
-din Core transmite evenimentele TestNG prin SPI-ul de raportare. Modulul de raportare
-gestionează ascultătorul concret și înregistrarea serviciului Allure nativ. Clasele de bază
-Core nu declară un ascultător al unui furnizor.
+[ReportingTestListener](ReportingTestListener.java) coordonează colaboratorii ciclului de viață și ai execuției.
+
+- Fațada de compatibilitate [TestListener](../../../../../../../../../atf-core/src/main/java/com/ai/core/reporting/listener/TestListener.java) din Core transmite evenimentele TestNG prin SPI-ul de raportare.
+- Modulul de raportare gestionează ascultătorul concret și publicarea Extent.
+- Clasele de bază Core nu declară un ascultător al unui furnizor.
 
 Ascultătorul trebuie să păstreze identitatea testului responsabil pe parcursul inițializării,
 eșecului testului, închiderii și capturii finale. Eșecurile de diagnostic nu trebuie

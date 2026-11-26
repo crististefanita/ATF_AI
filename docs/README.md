@@ -27,7 +27,7 @@ ghidurile responsabililor păstrează contractele detaliate, iar feedback-ul des
 | Contracte neutre, configurație, ciclu UI și execuție API | [atf-core](../atf-core/README.md) |
 | Implementarea Playwright | [atf-playwright](../atf-playwright/README.md) |
 | Implementarea Selenium | [atf-selenium](../atf-selenium/README.md) |
-| Extent, Allure și ciclul raportării | [atf-reporting](../atf-reporting/README.md) |
+| Raportare Extent și ciclu de viață | [atf-reporting](../atf-reporting/README.md) |
 | Guvernanță, verificări de framework și fixture-uri de produs | [atf-tests](../atf-tests/README.md) |
 
 Documentele responsabililor descriu contractele curente. Înregistrările de feedback păstrează
@@ -37,8 +37,8 @@ limitele originale ale execuției.
 <a id="documentation-boundaries"></a>
 ## Limitele documentației
 
-[Politica pentru cod și documentație](governance/Code_And_Documentation_Policy.md)
-definește regulile de revizuire. README-urile modulelor descriu utilizarea și verificarea;
-ghidurile pachetelor explică responsabilitățile locale. [Atlasul](../atf-atlas/README.md) separat
-leagă capabilitățile de sursele și testele existente și de limitele dovezilor. Trimite către
-acești responsabili în loc să copiezi contractele într-un alt ghid.
+[Politica pentru cod și documentație](governance/Code_And_Documentation_Policy.md) definește regulile de revizuire.
+
+- README-urile modulelor descriu utilizarea și verificarea; ghidurile pachetelor explică responsabilitățile locale.
+- [Atlasul](../atf-atlas/README.md) separat leagă capabilitățile de sursele și testele existente și de limitele dovezilor.
+- Trimite către acești responsabili în loc să copiezi contractele într-un alt ghid.

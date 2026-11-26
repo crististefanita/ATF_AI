@@ -16,18 +16,21 @@ validatorii existenți și codurile constatărilor. Mesajele și comentariile
 rămân în engleză în ambele ediții. Acesta este suport de test existent, fără serviciu runtime sau modul de reguli.
 
 ```mermaid
-flowchart TB
-    Finding["Constatare observată"] --> Owner["Regulă și responsabil"]
-    Owner --> Cause["Reproduce și inspectează"]
-    Cause --> Repair["Repară sursa"]
-    Repair --> Recheck["Reverifică contractul"]
-    Recheck --> Feedback["Actualizează feedback-ul delimitat"]
-    Recheck -. încă eșuează .-> Cause
+flowchart LR
+    Finding["Constatare și responsabil"] --> Cause["Reproduceți și inspectați"]
+    Cause --> Repair["Corectați și reverificați"]
+    Repair --> Feedback["Feedback delimitat"]
+    Repair -. încă eșuează .-> Cause
 ```
+
+<details>
+<summary>Legendă: relații și limita dovezii</summary>
 
 Săgețile arată o corecție bazată pe dovada observată. O reverificare eșuată
 revine la investigare; o remediere sugerată devine verificată numai prin
 inspecție și execuție. Feedback-ul închide numai criteriile de acceptanță demonstrate.
+
+</details>
 
 <a id="message-structure"></a>
 ## Structura mesajului
@@ -65,7 +68,7 @@ Dovada originală este independentă de aceste câmpuri explicative.
 | Structură Markdown, rută sau diagramă | [Documentație și randare](#documentation-and-rendering) | Repară ținta reală, sintaxa sau legenda explicativă |
 | Exemple, comenzi și valori implicite | [Testare](../Testing.md) | Aliniază exemplele la API-urile publice și declarațiile reale |
 | Edițiile documentației | [Contractul edițiilor](Readme_Editions.md) | Păstrează codul, legăturile, ancorele, comenzile, topologia și identitatea sursei din afara documentației |
-| Cod inline sau date numerice traduse | [Datele protejate ale documentației](Readme_Editions.md#existing-executable-checks) | Folosește poziția raportată pentru a compara codul inline canonic și rândurile numerice corespunzătoare; păstrează revizuirea semantică umană |
+| Cod inline sau date numerice traduse | [Datele protejate ale documentației](Readme_Editions.md#existing-executable-checks) | Compară codul sau rândul numeric raportat cu sursa canonică; păstrează revizia semantică |
 | Perechea arhitecturii vii | [Sursa esențială](../Living_Architecture_UI_API_doc_v1_0.md) | Sincronizează HTML/Markdown, digestul sursei și navigarea |
 | Starea și ciclul feedback-ului | [Grila feedback-ului](../feedback/README.md) | Păstrează evaluările inițiale și închide numai criteriile dovedite |
 | Sursă/proză engleză și excepții de date | [Cerința engleză](Code_And_Documentation_Policy.md#english-source-and-comments) | Traduce textul propriu și păstrează exacte datele externe revizuite |

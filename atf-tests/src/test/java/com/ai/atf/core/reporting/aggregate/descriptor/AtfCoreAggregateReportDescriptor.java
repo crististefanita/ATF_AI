@@ -24,9 +24,6 @@ public final class AtfCoreAggregateReportDescriptor {
                                 + "@AtfContractSuite metadata."
                 )
                 .addRunCommand(AtfCoreAggregateRunCommands.aggregateEngine(AtfCoreAggregateEngine.EXTENT))
-                .addRunCommand(AtfCoreAggregateRunCommands.aggregateEngine(AtfCoreAggregateEngine.ALLURE))
-                .addRunCommand(AtfCoreAggregateRunCommands.aggregateEngine(AtfCoreAggregateEngine.BOTH))
-                .addRunCommand(AtfCoreAggregateRunCommands.allureProfile())
                 .build();
     }
 }

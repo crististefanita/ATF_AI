@@ -5,6 +5,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.List;
 import java.util.ServiceLoader;
@@ -643,6 +644,27 @@ public class FrameworkArchitectureGovernanceTest {
             List<String> failures = FrameworkArchitectureRules.validate(fixture.root);
             assertFinding(failures, "CORE-SDK");
             assertFinding(failures, "SDK-OWNERSHIP");
+            fixture.write("atf-core/pom.xml", modulePom("atf-core", ""));
+            Files.delete(fixture.root.resolve("atf-core/src/main/java/com/ai/core/Sample.java"));
+            Path reportingPom = fixture.root.resolve("atf-reporting/pom.xml");
+            String original = Files.readString(reportingPom);
+            fixture.write("atf-reporting/pom.xml", original.replace("</dependencies>",
+                    "<dependency><groupId>io.qameta.allure</groupId><artifactId>allure-testng</artifactId></dependency></dependencies>"));
+            fixture.write("atf-reporting/src/main/java/com/ai/core/reporting/RetiredReporter.java",
+                    "package com.ai.core.reporting; import io.qameta.allure.Allure; class RetiredReporter {}\n");
+            List<String> retired = FrameworkArchitectureRules.validate(fixture.root);
+            assertFinding(retired, "RETIRED-REPORTING");
+            assertFinding(retired, "SDK-OWNERSHIP");
+            fixture.write("atf-reporting/pom.xml", original);
+            Files.delete(fixture.root.resolve("atf-reporting/src/main/java/com/ai/core/reporting/RetiredReporter.java"));
+            Path parentPom = fixture.root.resolve("pom.xml");
+            String originalParent = Files.readString(parentPom);
+            fixture.write("pom.xml", originalParent.replace("</project>",
+                    "<dependencyManagement><dependencies><dependency><groupId>io.qameta.allure</groupId>"
+                            + "<artifactId>allure-java-commons</artifactId></dependency></dependencies></dependencyManagement></project>"));
+            assertFinding(FrameworkArchitectureRules.validate(fixture.root), "RETIRED-REPORTING");
+            fixture.write("pom.xml", originalParent);
+            assertValid(FrameworkArchitectureRules.validate(fixture.root));
         }
     }
 

@@ -75,7 +75,7 @@
       <id>aggregate</id>
       <properties>
         <atf.test.suite>src/test/resources/suites/framework-aggregate.xml</atf.test.suite>
-        <atf.core.aggregate.report.engine>both</atf.core.aggregate.report.engine>
+        <atf.core.aggregate.report.engine>extent</atf.core.aggregate.report.engine>
       </properties>
       <build>
         <plugins>

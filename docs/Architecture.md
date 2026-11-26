@@ -20,8 +20,13 @@ flowchart LR
     Tests -. verifică .-> Reports
 ```
 
+<details>
+<summary>Legendă: relații și limita dovezii</summary>
+
 Săgețile continue arată dependențele bibliotecilor; cele punctate arată utilizarea
 pentru verificare. Core nu depinde de o implementare de browser sau de raportare.
+
+</details>
 
 | Modul | Responsabilitatea surselor |
 |---|---|
@@ -51,7 +56,7 @@ prin ServiceLoader. Fațada de compatibilitate
 [TestListener](../atf-core/src/main/java/com/ai/core/reporting/listener/TestListener.java)
 din Core transmite evenimentele TestNG către
 [ReportingTestListener](../atf-reporting/src/main/java/com/ai/core/reporting/listener/ReportingTestListener.java)
-concret al implementării. Integrarea serviciului Allure nativ aparține atf-reporting;
+concret al implementării. Integrarea Extent aparține atf-reporting;
 clasele de bază Core nu declară un ascultător de raportare al unui furnizor.
 
 ```mermaid
@@ -78,8 +83,13 @@ sequenceDiagram
     Listener->>Reports: Finalizează și scrie complet execuția
 ```
 
+<details>
+<summary>Legendă: relații și limita dovezii</summary>
+
 Săgețile continue arată apeluri sau publicări direcționate; cea punctată întoarce
 o stare observată. Secvența arată limitele responsabilităților, fără să enumere fiecare apel TestNG.
+
+</details>
 
 | ID actor | Responsabilitate reală |
 |---|---|
@@ -125,7 +135,7 @@ rezultatul observat; o eroare de formular nu declanșează implicit un client î
 ## Raportare și dovezi
 
 [atf-reporting](../atf-reporting/README.md) transformă operațiile neutre de raportare
-în Extent și Allure. Registrele de execuție leagă capturile și atașamentele stării
+în Extent. Registrele de execuție leagă capturile și atașamentele stării
 finale de testul corect. Generatoarele agregate păstrează rezultatele executate,
 numărătorile, temporizarea și dovezile de execuție cu un descriptor gestionat de apelant.
 

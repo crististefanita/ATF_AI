@@ -12,7 +12,7 @@ pașii din consolă și delegarea sesiunilor.
 ## Puncte de intrare
 
 - [Suport Core](support/README.md): primitive de configurație, metadate, YAML și HTML.
-- [ReportLogger](reporting/ReportLogger.java): operații de raportare independente de Extent și Allure.
+- [ReportLogger](reporting/ReportLogger.java): operații de raportare independente de Extent.
 - [StepLogger](reporting/StepLogger.java): domenii ale pașilor, ieșire în consolă și delegare către rapoarte.
 
 Implementările de raportare, ascultătorii TestNG și publicarea se află în

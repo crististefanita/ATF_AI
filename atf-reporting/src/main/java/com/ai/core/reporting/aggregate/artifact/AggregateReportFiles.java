@@ -12,9 +12,6 @@ import java.util.Comparator;
 
 public final class AggregateReportFiles {
     public static final String EXTENT_ARTIFACT_DIR = "extent";
-    public static final String ALLURE_RESULTS_DIR = "allure-results";
-    public static final String ALLURE_HTML_REPORT_DIR = "allure-report";
-    public static final String ALLURE_HTML_INDEX_FILE = "index.html";
     public static final String EXTENT_REPORT_FILE = "ATFCoreAggregateExtentReport.html";
     public static final String MANIFEST_FILE = "README.md";
 
@@ -25,17 +22,8 @@ public final class AggregateReportFiles {
         return root.resolve(EXTENT_ARTIFACT_DIR).resolve(EXTENT_REPORT_FILE);
     }
 
-    public static Path allureResults(Path root) {
-        return root.resolve(ALLURE_RESULTS_DIR);
-    }
 
-    public static Path allureHtmlReport(Path root) {
-        return root.resolve(ALLURE_HTML_REPORT_DIR);
-    }
 
-    public static String allureHtmlIndexRelativePath() {
-        return ALLURE_HTML_REPORT_DIR + "/" + ALLURE_HTML_INDEX_FILE;
-    }
 
     public static String extentReportRelativePath() {
         return EXTENT_ARTIFACT_DIR + "/" + EXTENT_REPORT_FILE;

@@ -3,37 +3,16 @@ package com.ai.atf.core.reporting.config;
 import java.util.Locale;
 
 public enum AtfCoreAggregateEngine {
-    EXTENT,
-    ALLURE,
-    BOTH,
-    NONE;
+    EXTENT, NONE;
 
-    public boolean extentEnabled() {
-        return this == EXTENT || this == BOTH;
-    }
-
-    public boolean allureEnabled() {
-        return this == ALLURE || this == BOTH;
-    }
-
-    public String configValue() {
-        return name().toLowerCase(Locale.ROOT);
-    }
+    public boolean extentEnabled() { return this == EXTENT; }
+    public String configValue() { return name().toLowerCase(Locale.ROOT); }
 
     public static AtfCoreAggregateEngine parse(String raw) {
-        if (raw == null || raw.isBlank()) {
-            return BOTH;
-        }
+        if (raw == null || raw.isBlank()) return EXTENT;
         String normalized = raw.trim().toLowerCase(Locale.ROOT);
-        if (EXTENT.configValue().equals(normalized)) {
-            return EXTENT;
-        }
-        if (ALLURE.configValue().equals(normalized)) {
-            return ALLURE;
-        }
-        if (NONE.configValue().equals(normalized) || "off".equals(normalized) || "false".equals(normalized)) {
-            return NONE;
-        }
-        return BOTH;
+        if ("extent".equals(normalized)) return EXTENT;
+        if ("none".equals(normalized) || "off".equals(normalized) || "false".equals(normalized)) return NONE;
+        throw new IllegalArgumentException("atf.core.aggregate.report.engine supports extent or none; observed: " + raw);
     }
 }

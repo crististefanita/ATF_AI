@@ -85,7 +85,7 @@ public class BaseTestAPIContractTest {
         Assert.assertNotNull(beforeClass, "baseSetup must be @BeforeClass");
         Assert.assertTrue(beforeClass.alwaysRun(), "baseSetup must always run");
 
-        AtfContractSteps.observed("@Listeners contains the Core TestListener facade; Allure is discovered through SPI | baseSetup=@BeforeClass(alwaysRun=true)");
+        AtfContractSteps.observed("@Listeners contains the Core TestListener facade; Extent is reached through the facade | baseSetup=@BeforeClass(alwaysRun=true)");
         AtfContractSteps.verdict(
                 "API tests inherit reporting and runtime readiness from one deterministic base hook.",
                 contract.repairHint()

@@ -20,7 +20,7 @@ creează [motorul](src/main/java/com/ai/ui/core/engine/selenium/SeleniumEngine.j
 deleagă crearea ChromeDriver către fabrica de drivere a adaptorului.
 
 ```mermaid
-flowchart TB
+flowchart LR
     Lifecycle["Ciclu de viață UI Core"] --> Factory["UIEngineFactory"]
     Factory -. ServiceLoader .-> Provider["SeleniumProvider"]
     Provider --> Engine["SeleniumEngine"]
@@ -28,11 +28,16 @@ flowchart TB
     Engine --> Session["Sesiune Chrome"]
 ```
 
+<details>
+<summary>Legendă: relații și limita dovezii</summary>
+
 Nodul ciclului de viață reprezintă BaseTestUI/DriverManager; sesiunea Chrome aparține
 SeleniumBrowserSession și fabricii sale de drivere. Săgețile continue arată crearea
 sau delegarea; cea punctată arată descoperirea furnizorului. Consumatorii folosesc
 UIEngine/UIActions din Core și aleg `ui.engine=selenium`.
 WebDriver și celelalte tipuri ale SDK-ului Selenium rămân în acest adaptor.
+
+</details>
 
 <a id="dependencies-and-configuration"></a>
 ## Dependențe și configurație
@@ -127,14 +132,12 @@ mvn -B -ntp -pl atf-tests -am -Pbrowser test
 </details>
 
 Prima comandă rulează verificările native ale furnizorului și Core fără a porni Chrome.
-A doua selectează regresiile existente pentru locatori locali, răspunsuri reale de rețea
-și capturi. Fixture-urile selectate verifică **atât Selenium, cât și Playwright**;
-`ui.engine=selenium` nu limitează aceste cazuri parametrizate de paritate la un singur
-motor. Ultima comandă selectează suita menținută de browser. Urmează
-[pregătirea browserelor](../docs/Testing.md#browser-preparation-and-checks).
-[Contractele interne](../atf-tests/src/test/java/com/ai/atf/ui/component/engine/SeleniumEngineInternalContractTest.java)
-și [paritatea locatorilor](../atf-tests/src/test/java/com/ai/atf/ui/component/parity/SeleniumPlaywrightLocatorParityContractTest.java)
-protejează rezolvarea driverului și comportamentul comun.
+
+- A doua selectează regresiile existente pentru locatori locali, răspunsuri reale de rețea și capturi.
+- Fixture-urile selectate verifică **atât Selenium, cât și Playwright**; `ui.engine=selenium` nu limitează aceste cazuri parametrizate de paritate la un singur motor.
+- Ultima comandă selectează suita menținută de browser.
+- Urmează [pregătirea browserelor](../docs/Testing.md#browser-preparation-and-checks).
+- [Contractele interne](../atf-tests/src/test/java/com/ai/atf/ui/component/engine/SeleniumEngineInternalContractTest.java) și [paritatea locatorilor](../atf-tests/src/test/java/com/ai/atf/ui/component/parity/SeleniumPlaywrightLocatorParityContractTest.java) protejează rezolvarea driverului și comportamentul comun.
 
 | Comportament | Sursă executabilă existentă |
 |---|---|

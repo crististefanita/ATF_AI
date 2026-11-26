@@ -52,18 +52,23 @@ sau emulatoare. G-014 și F-011 își păstrează domeniile deschise independent
   rămân în afara acestei închideri.
 
 ```mermaid
-flowchart TB
-    Source["Surse existente și rezultate finalizate"] --> History["Instantaneu extern imuabil"]
-    History --> Choice["Selecție curentă explicită"]
+flowchart LR
+    Source["Ieșiri încheiate"] --> History["Copie externă"]
+    History --> Choice["Selecție curentă"]
     Choice --> Atlas["Un HTML per proiect"]
-    Choice --> Proof["Dovadă nativă originală și identitatea sursei"]
-    Atlas --> Guard["Verificări de manifest, structură și legături"]
+    Choice --> Proof["Dovadă nativă și sursă"]
+    Atlas --> Guard["Controale de publicare"]
     Proof --> Guard
 ```
+
+<details>
+<summary>Legendă: relații și limita dovezii</summary>
 
 Săgețile indică păstrarea și publicarea. Nu reprezintă un flux nou de
 produs sau o nouă execuție a testelor păstrate. O selecție istorică eșuată rămâne
 eșuată după relocare.
+
+</details>
 
 <a id="recovery-and-future-updates"></a>
 ## Recuperare și actualizări viitoare

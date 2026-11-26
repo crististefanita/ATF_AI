@@ -12,7 +12,7 @@ comun pentru selectori, temporizare și zoom.
 ## Compoziție
 
 ```mermaid
-flowchart TB
+flowchart LR
     Runtime["Ciclu de viață UI Core"] --> Factory["UIEngineFactory"]
     Factory --> Registry["UiEngineRegistry"]
     Registry --> SPI["UiEngineProvider"]
@@ -20,8 +20,13 @@ flowchart TB
     SPI -. furnizor de serviciu .-> SE["atf-selenium"]
 ```
 
+<details>
+<summary>Legendă: relații și limita dovezii</summary>
+
 Săgețile continue arată apelurile Core. Cele punctate identifică implementările
 furnizorilor descoperite prin ServiceLoader; nu sunt dependențe ale modulului Core.
+
+</details>
 
 | Contract | Responsabilitate |
 |---|---|

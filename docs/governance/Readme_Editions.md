@@ -34,18 +34,22 @@ nu permite mesaje Java, comentarii de cod sau exemple executabile în română.
 ## Sincronizare și revizuire
 
 ```mermaid
-flowchart TB
-    Main["Sursa în engleză"] --> Freeze["Fixează revizia sursă"]
-    Freeze --> Translate["Traduce toate documentele întreținute"]
-    Translate --> Review["Recuperează contextul și revizuiește perechile EN/RO complete"]
-    Review --> Check["Verifică ambele ediții și randează schimbările"]
-    Check --> Publish["Sincronizează ramurile"]
-    Check -. derivă .-> Translate
+flowchart LR
+    Freeze["Reper englez"] --> Translate["Traduceți perechile complete"]
+    Translate --> Review["Sens și randare"]
+    Review --> Check["Verificări pereche"]
+    Check --> Publish["Sincronizați ramurile"]
+    Check -. divergență .-> Translate
 ```
+
+<details>
+<summary>Legendă: relații și limita dovezii</summary>
 
 Săgețile continue arată ordinea livrării; săgeata întreruptă întoarce deriva
 observată la responsabil. Verificările urmează revizuirii textelor complete.
 Publicarea urmează stării sursă validate și nu stabilește singură calitatea semantică.
+
+</details>
 
 1. Folosește copii separate main și main_RO sub rădăcina de lucru selectată
    de apelant. Păstrează schimbările concurente și referința arhivei locale.

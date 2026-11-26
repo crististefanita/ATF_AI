@@ -20,8 +20,6 @@ import com.ai.core.reporting.StepLogger;
 import com.ai.core.reporting.spi.ReportingLifecycleListener;
 import com.ai.core.reporting.attachment.FinalStateAttachmentRegistry;
 import com.ai.core.reporting.attachment.FailureAttachmentRegistry;
-import com.ai.core.reporting.internal.ReportingEngineCleanup;
-import com.ai.core.reporting.internal.ReportingPaths;
 import org.testng.IInvokedMethod;
 import org.testng.ISuite;
 import org.testng.ITestResult;
@@ -52,7 +50,6 @@ public final class ReportingTestListener implements ReportingLifecycleListener {
     @Override
     public void onStart(ISuite suite) {
         LifecycleCommandRunner.executeAll(List.of(
-                LifecycleCommand.named("allureResults.ensureDirectory", ReportingPaths::ensureAllureResultsDirectory),
                 LifecycleCommand.named("reporting.beginSuite", ReportingManager::beginSuite),
                 LifecycleCommand.named("context.clear", context::clear),
                 LifecycleCommand.named("buffers.clear", buffers::clear),
@@ -76,7 +73,6 @@ public final class ReportingTestListener implements ReportingLifecycleListener {
     @Override
     public void beforeInvocation(IInvokedMethod method, ITestResult tr) {
         if (isReportingDisabled(method, tr)) return;
-        ReportingPaths.ensureAllureResultsDirectory();
         session.invocationController().beforeInvocation(method);
     }
 
@@ -90,13 +86,11 @@ public final class ReportingTestListener implements ReportingLifecycleListener {
             contractNarration.afterTestInvocation(tr);
         }
         session.invocationController().afterInvocation(method, tr);
-        ReportingPaths.ensureAllureResultsDirectory();
     }
 
     @Override
     public void onTestStart(ITestResult result) {
         if (isReportingDisabled(result)) return;
-        ReportingPaths.ensureAllureResultsDirectory();
         StepLogger.clear();
         FailureAttachmentRegistry.onTestStart();
 
@@ -170,11 +164,6 @@ public final class ReportingTestListener implements ReportingLifecycleListener {
         } catch (Throwable shutdownPublishFailure) {
             // JVM shutdown can run after Surefire has already torn down the test classloader.
             // At this point diagnostics themselves may be unavailable, so shutdown must stay best-effort.
-        }
-        try {
-            ReportingEngineCleanup.onShutdown();
-        } catch (Throwable shutdownCleanupFailure) {
-            // Same best-effort boundary as above: never turn shutdown cleanup into a provider failure.
         }
     }
 

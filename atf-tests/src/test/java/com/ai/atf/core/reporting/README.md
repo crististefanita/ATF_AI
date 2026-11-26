@@ -6,7 +6,7 @@
 
 Aceste verificări din [atf-tests](../../../../../../../../README.md) protejează contractele
 de raportare Core și [implementarea de raportare](../../../../../../../../../atf-reporting/README.md):
-ciclu de viață, pași, redare Extent, rezultate Allure, atașamente, audit de execuție
+ciclu de viață, pași, redare Extent, atașamente, audit de execuție
 și publicare agregată.
 
 <a id="test-ownership"></a>
@@ -35,7 +35,7 @@ Rulează dintr-o copie izolată a reactorului:
 
 ```powershell
 mvn -B -ntp -pl atf-tests -am "-Datf.test.suite=src/test/resources/suites/framework-reporting.xml" test
-mvn -B -ntp -pl atf-tests -am "-Datf.test.suite=src/test/resources/suites/framework-allure.xml" "-Dreporting.engine=allure" test
+mvn -B -ntp -pl atf-tests -am "-Datf.test.suite=src/test/resources/suites/framework-reporting.xml" "-Dreporting.engine=extent" test
 mvn -B -ntp -Paggregate test
 ```
 

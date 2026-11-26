@@ -363,30 +363,19 @@ rămân inventariate. Aceasta nu afirmă o acoperire mai largă a produsului.
 
 ```mermaid
 flowchart LR
-    Selection["Selecție Maven explicită"] --> Root["README rădăcină"]
-    Selection --> Editions["Ediții EN / RO"]
-    Selection --> Living["Principii living"]
-    Selection --> Structure["Contracte Markdown"]
-    Selection --> Feedback["Reguli feedback"]
-    Selection --> Publication["HTML și comenzi"]
-    Local["Suite locale și agregate"] --> Root
-    Local --> Editions
-    Local --> Living
-    Local --> Structure
-    Local --> Feedback
-    Local --> Publication
-    Root -. folosește .-> Fixtures["Fixture-uri și aserțiuni comune"]
-    Editions -. folosește .-> Fixtures
-    Living -. folosește .-> Fixtures
-    Structure -. folosește .-> Fixtures
-    Feedback -. folosește .-> Fixtures
-    Publication -. folosește .-> Fixtures
+    Selection["Maven și suite"] --> Owners["Șase responsabili tematici"]
+    Owners -. folosește .-> Fixtures["Fixture-uri comune"]
 ```
+
+<details>
+<summary>Legendă: relații și limita dovezii</summary>
 
 Săgețile continue arată selecțiile Maven sau ale suitei; cele punctate arată
 utilizarea fixture-urilor comune. Comenzile de reverificare diagnostică enumeră
 direct aceiași responsabili. Nu s-au adăugat metode E2E, emulatoare,
 funcționalități runtime sau metode de test noi.
+
+</details>
 
 Calitate livrată: 92 (corectitudine 94 / verificare 90 / claritate 92).
 Selecția pereche de documentație, lizibilitate și limbă a surselor a trecut
@@ -462,3 +451,144 @@ diferențele, jurnalele și XML-ul rămân la
 `${ATF_WORK_ROOT}/reviews/testing-strategy-20261126/closure-02` și
 `${ATF_WORK_ROOT}/validation/testing-strategy-20261126-en-02` /
 `${ATF_WORK_ROOT}/validation/testing-strategy-20261126-ro-02`.
+
+<a id="d-013"></a>
+<a id="d-013-shared-presentation-governance-across-the-document-inventory"></a>
+<a id="d-013-shared-presentation-governance-across-the-document-inventory"></a>
+## D-013: Guvernanță comună a prezentării pentru inventarul documentelor
+
+Stare: VERIFICAT. Responsabil: guvernanța prezentării/lizibilității documentației.
+Prioritate 83 (impact 85 / expunere 85 / urgență 75).
+Calitate inițială 66 (corectitudine 75 / verificare 45 / claritate 75).
+
+Revizia acoperă toate cele 50 de documente Markdown întreținute și ambele proiecții
+HTML Living, folosind responsabilii J0 pentru diagrame/proză/structură/stil/legături
+la commitul `96f50e5f277771ca9dfac3b7c959b47188afd0b0`. Cele două modificări locale
+J0 de feedback rămân neatinse. Practicile sunt adaptate contractelor și TestNG-ului
+acestui depozit.
+
+Proba inițială păstrată raportează 55 de constatări: fluxuri verticale și lipsa
+legendelor adiacente închise. Referința conține toate cele 50 de perechi EN/RO la
+`${ATF_WORK_ROOT}/reviews/documentation-presentation-20261126/baseline`;
+observațiile originale sunt în baseline-findings.log lângă acel director.
+
+- Fiecare diagramă existentă primește o legendă adiacentă explicată și pliată.
+  Fluxurile secvențiale și de responsabilitate se citesc orizontal; secvențele își păstrează sensul.
+- Fluxurile de ansamblu lungi grupează operațiile înrudite. Raportarea și testele
+  primesc hărți concise; ghidurile mici păstrează listele/tabelele scurte existente.
+- Deciziile README dense devin o propoziție introductivă și verificări paralele.
+  Literalii, condițiile, legăturile, comenzile și cronologia dovezilor se păstrează.
+- Proza tabelelor normative primește limitele existente de 140 de caractere/22 de
+  cuvinte; feedback-ul istoric păstrează forma tabelelor cu dovezi capturate.
+- Rândurile principiilor Living păstrează legăturile sursă/test, stările și limitele
+  explicite ale curățării. Proiecțiile HTML păstrează CSS-ul și metadatele sursei.
+- Trei metode de componentă verifică legende defecte, orientare verticală, exemple
+  literale fictive, densitatea celulelor normative și corecțiile cu indicații și responsabil.
+  Inventarul revizuit crește de la 575 la 578 de metode; nu se adaugă E2E.
+
+Acceptanța cere selecția completă pereche de documentație/sursă, controalele exacte
+pentru suite/inventarul metodelor și revizie nativă desktop la 1440/900 CSS px.
+Controalele sursei stabilesc structura susținută; revizorul verifică sensul,
+proporțiile coloanelor și etichetele randate. Nici dimensiunea sursei, nici un
+control trecut nu dovedesc lizibilitate universală sau acceptanța aplicației.
+
+
+Calitate livrată 93 (corectitudine 94 / verificare 92 / claritate 94).
+Selecția documentară inițială a trecut 212/212 în EN și 210/212 în RO; cele două
+eșecuri RO au expus celule Living dense. Dovezile originale rămân în
+documentation-presentation-20261126/acceptance-01. Rândurile corectate păstrează
+responsabilitatea UIActions, distincția așteptărilor Selenium/Playwright și limita
+verdictului WaitUtils; două schimburi deliberate între rânduri protejează aceste
+asocieri. Revizuirea manuală a verificat și negațiile față de sursa activă,
+dincolo de potrivirea numelor responsabililor.
+
+- Controlul comun al direcției acoperă direcțiile explicite ale subgrafurilor și
+  antetele fluxurilor. Exemplele comentate/literale și sensul secvențelor rămân date.
+- Randarea nativă render-04 a revizuit toate cele 50 de perechi și ambele proiecții
+  HTML: 204 înregistrări de pagină și 176 de observații de diagramă la 1440/900
+  CSS px. Nu s-au găsit depășiri de pagină, etichete SVG tăiate sau suprapuneri
+  măsurate; nu au apărut erori de pagină sau cereri externe. Figurile de referință
+  late păstrează derularea locală documentată.
+- Render-05 adaugă 8 înregistrări/32 de observații de diagramă după corectarea
+  finală a formulării README-ului testelor și inspectează direct figurile/tabelele HTML Living.
+- Acceptance-04 trece aceleași 72 de clase locale prin suita agregată: 699/699 de
+  cazuri între module și 37/37 de cazuri native ale bibliotecilor în fiecare ediție.
+  Selecția finală de închidere leagă registrul actualizat și revizuirea textului integral.
+
+Dovezile sunt sub ${ATF_WORK_ROOT}/reviews/documentation-presentation-20261126
+și ${ATF_WORK_ROOT}/reviews/extent-only-20261126. Retragerea ulterioară R-002 aduce
+inventarul revizuit la 561. Geometria și controalele finite de sursă susțin această
+evaluare limitată a prezentării; nu certifică orice randare posibilă, traducerea
+semantică sau rezultatul aplicației.
+
+<a id="r-002"></a>
+<a id="r-002-extent-only-maintained-reporting-scope"></a>
+## R-002: Raportare întreținută exclusiv prin Extent
+
+Stare: VERIFICAT. Responsabil: raportare/runtime și guvernanța framework-ului.
+Prioritate 84 (impact 90 / expunere 80 / urgență 75).
+Calitate inițială 60 (corectitudine 60 / verificare 60 / claritate 60).
+
+Utilizatorul a restrâns domeniul întreținut la Extent. Allure era suportat în
+versiunea inițială capturată și în main_mcp; această decizie de domeniu nu
+demonstrează un defect Allure. Dovezile istorice descriu sursa înregistrată atunci.
+
+- Eliminăm dependențele SDK Allure, adaptorul, curățarea ciclului de viață, suita
+  activă și comenzile de publicare. Configurația raportării acceptă extent;
+  valorile retrase allure, both și cele necunoscute produc eroare cu proprietatea
+  și valoarea observată.
+- Păstrăm explicite setările de dezactivare a agregării. Modelul agregat folosește
+  tipul neutru de stare existent, fără SDK de furnizor pentru colectarea testelor.
+- Actualizăm descrierile contractelor active și ambele ediții documentare,
+  inclusiv proiecțiile HTML Living. Eliminăm profilurile, grupurile și ID-urile
+  descrierilor retrase.
+- Păstrăm aserțiunea Extent existentă pentru payload gol, mutând-o din clasa mixtă
+  retrasă în ExtentAdapterTest.
+- Fixăm inventarul revizuit la 561 de metode: 578 după D-013, minus 17 identități
+  Allure retrase. Un contract de comandă este redenumit și o metodă Extent este
+  mutată; aceste schimbări sunt revizuite separat de eliminări. Cele 16 metode
+  E2E de produs rămân identice. Nu folosim trasee de aplicație noi sau emulatoare.
+- Respingem dependențele retrase în gestionarea dependențelor și profilurile
+  rădăcinii/modulelor. Mutațiile arhitecturale existente verifică diagnosticarea
+  cu responsabil clar și reparațiile efective.
+
+Colectorul generic de artefacte recunoaște în continuare date Allure istorice sau
+externe. Clasificarea formatului nu activează un motor de raportare. Rapoartele
+capturate nu sunt reetichetate ca dovezi Extent curente. Compilarea din compile-01
+a reușit; singură, această dovadă nu validează execuția sau raportul.
+
+Acceptanța cere reactoare locale pereche, publicarea agregată existentă,
+verificările componentei de mentenanță și randarea nativă a documentelor. Sursa
+inițială, eliminările revizuite, patch-urile și dovezile rămân sub
+${ATF_WORK_ROOT}/reviews/extent-only-20261126.
+
+Calitate livrată 93 (corectitudine 95 / verificare 92 / claritate 92).
+Nota inițială măsoară alinierea cu domeniul nou restrâns, nu corectitudinea
+istorică Allure. Acceptance-01 a expus un import Path lipsă; acceptance-02 nu are
+dovadă de finalizare și este exclusă din acceptanță.
+
+Ambele reactoare implicite complete din acceptance-03 au trecut 37 de cazuri
+native ale bibliotecilor și 697/699 de cazuri între module. Eșecurile au identificat
+un element tradus în plus/aliasuri de titlu lipsă și aserțiunea veche care cerea
+exclusiv majuscule în diagnosticul enumului. Corecția restabilește structura EN/RO
+și verifică proprietatea, valoarea invalidă originală, absența unui cache fals și
+recuperarea reușită pe Extent pentru valori necunoscute, allure și both. Niciun
+eșec original nu este reetichetat drept PASS.
+
+Acceptance-04 execută aceleași 72 de clase locale cu publicare agregată: 736/736
+de cazuri native per ediție, inclusiv 699/699 în atf-tests. Ambii cititori Extent
+generați trec inspectorul existent de publicabilitate agregată și afișează 699 de
+cazuri, în acord cu suita nativă și manifestul agregat. Căile claselor de execuție
+nu conțin SDK-ul retras. Dovada reconcilierii native/publicării și jurnalul
+inspecției cititorului rămân lângă suprapunerile exacte de sursă și XML-ul original.
+
+Cele trei clase componente existente pentru capturi/zoom trec 15/15 cazuri în
+browsere desktop Selenium și Playwright reale în browser-01. Intrările fixate
+pentru browser, driver, SDK și cache offline sunt înregistrate acolo. Fixture-urile
+locale nu dovedesc acceptanța E2E a produsului. Toate cele 203 cazuri Node de
+mentenanță trec per ediție; sursele instrumentelor rămân identice în încercările ulterioare.
+
+Regăsirea politicilor Atlas a contribuit limite citate pentru comportament,
+dovezi, trasabilitate și note. Este context lexical determinist de politici, fără
+pretenție de regăsire semantică și fără publicare Atlas nouă. Selecția finală de
+închidere verifică ambele ediții documentare, diagnosticarea constructivă și inventarul revizuit.

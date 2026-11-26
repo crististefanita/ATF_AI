@@ -18,15 +18,15 @@ domeniul lor declarat; nu se adaugă scenarii de produs/E2E sau emulatoare.
 ## Domeniu și succesiune
 
 ```mermaid
-flowchart TB
-    Reproduce["Păstrarea contraexemplelor reale"] --> Contract["Declararea remedierii delimitate și a responsabilului"]
-    Contract --> Negative["Adăugarea controalelor negative de guvernanță relevante"]
-    Negative --> Review["Revizuirea surselor reale pe fațetele responsabililor"]
-    Review --> Capture["Capturarea surselor noi și a dovezilor păstrate"]
-    Capture --> Deliver["Publicarea și inspectarea unui HTML per proiect"]
-    Deliver --> Assess["Explicarea axelor separate pentru proiect și Atlas"]
-    Assess --> Close["Închiderea numai cu verificările finalizate"]
+flowchart LR
+    Reproduce["Păstrați contraexemplul"] --> Repair["Responsabil și control negativ"]
+    Repair --> Inspect["Sursă și dovezi"]
+    Inspect --> Deliver["Publicați și inspectați"]
+    Deliver --> Close["Evaluați și închideți"]
 ```
+
+<details>
+<summary>Legendă: relații și limita dovezii</summary>
 
 Săgețile arată succesiunea reviziei. Un control mecanic trecut verifică structura
 și proveniența declarate; revizorul verifică în continuare sensul de la sursă la proză.
@@ -34,6 +34,8 @@ Feedback-ul rămâne IN PROGRESS până când verificările sale declarate se fi
 calitatea folosesc grilele separate din [registru](README.md); niciuna nu reprezintă o
 rată de trecere a testelor. Calitatea inițială rămâne păstrată când calitatea livrată este
 înregistrată ulterior.
+
+</details>
 
 <a id="g-012"></a>
 <a id="g-012-exact-execution-local-graph-and-knowledge-trace"></a>

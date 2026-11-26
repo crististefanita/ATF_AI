@@ -102,7 +102,7 @@ final class MarkdownDocumentationRules {
                 }
             }
             validateReadmeStyle(root, file, proseLines, violations);
-            validateReadmeTableReadability(root, file, visible, violations);
+            validateTableReadability(root, file, visible, violations);
             validateMarkdownHeadings(root, file, proseLines, violations);
             String relative = GovernanceFiles.relative(root, file);
             if (relative.equals("README.md")) validateRootReadme(root, file, visible, lines, violations);
@@ -276,16 +276,17 @@ final class MarkdownDocumentationRules {
     }
 
     /** Short prose cells keep Markdown tables scannable; the bound is a review signal, not a renderer guarantee. */
-    private static void validateReadmeTableReadability(Path root, Path file, List<String> lines,
+    private static void validateTableReadability(Path root, Path file, List<String> lines,
                                                        List<String> violations) {
-        if (!file.getFileName().toString().equalsIgnoreCase("README.md")) return;
+        if (GovernanceFiles.relative(root, file).startsWith("docs/feedback/")
+                && !file.getFileName().toString().equalsIgnoreCase("README.md")) return;
         for (int index = 0; index + 1 < lines.size(); index++) {
             if (!isTableRow(lines.get(index)) || !isTableSeparator(lines.get(index + 1))) continue;
             int columns = tableCells(lines.get(index)).size();
             for (int row = index + 2; row < lines.size() && isTableRow(lines.get(row)); row++) {
                 List<String> cells = tableCells(lines.get(row));
                 if (cells.size() != columns) {
-                    violations.add(location(root, file, row) + "DOC-TABLE-SHAPE keep each README row aligned with its declared columns");
+                    violations.add(location(root, file, row) + "DOC-TABLE-SHAPE keep each Markdown row aligned with its declared columns");
                     continue;
                 }
                 for (int column = 0; column < cells.size(); column++) {
@@ -1058,6 +1059,16 @@ final class MarkdownDocumentationRules {
                 continue;
             }
             if (cells[2].isBlank() || cells[6].isBlank()) findings.add(prefix + "requires an intent and explicit proof boundary");
+            if (id.equals("LD-02") && !cells[2].contains("UIActions")) {
+                findings.add(prefix + "preserve the UIActions interaction owner");
+            }
+            if (id.equals("LD-03") && (!cells[2].contains("Selenium") || !cells[2].contains("Playwright"))) {
+                findings.add(prefix + "preserve the Selenium/Playwright wait distinction");
+            }
+            if (id.equals("LD-04") && (!cells[2].contains("WaitUtils")
+                    || !cells[6].contains("WaitUtils") || !cells[6].contains("FAIL"))) {
+                findings.add(prefix + "preserve WaitUtils observation and enclosing verdict ownership");
+            }
             String state = cells[5].strip();
             if (!Set.of("MAINTAINED", "PARTIAL").contains(state)) {
                 findings.add(prefix + "unsupported state " + state + "; source/check routes cannot infer execution or complete coverage");

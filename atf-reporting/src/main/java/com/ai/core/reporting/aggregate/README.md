@@ -26,7 +26,7 @@ din rapoarte istorice.
 
 Rulează `mvn -B -ntp -Paggregate test` dintr-o copie izolată a reactorului. Profilul
 selectează suita menținută de agregare din atf-tests și publică atât Extent,
-cât și Allure. Locația implicită a rezultatului agregat este
+HTML. Locația implicită a rezultatului agregat este
 atf-tests/target/atf-core-aggregate-report.
 
 Verifică numărătorile, stările, temporizările și atașamentele generate. Comenzile complete,

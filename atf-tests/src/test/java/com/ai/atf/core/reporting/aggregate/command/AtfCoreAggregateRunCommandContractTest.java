@@ -18,53 +18,33 @@ import org.testng.annotations.Test;
 @Test(groups = AtfTestGroups.EXTENT_ONLY)
 public class AtfCoreAggregateRunCommandContractTest {
     @Test
-    public void aggregate_core_run_commands_skip_allure_testng_spi_listener() {
-        String skipProperty = AtfCoreAggregateRunCommands.skipAllureSpiListenerProperty();
-        String resetTestFilter = AtfCoreAggregateRunCommands.resetSurefireTestFilterProperty();
-
-        assertCoreAggregateCommandIsIsolated(AtfCoreAggregateEngine.EXTENT, skipProperty, resetTestFilter);
-        assertCoreAggregateCommandIsIsolated(AtfCoreAggregateEngine.ALLURE, skipProperty, resetTestFilter);
-        assertCoreAggregateCommandIsIsolated(AtfCoreAggregateEngine.BOTH, skipProperty, resetTestFilter);
-        Assert.assertFalse(
-                AtfCoreAggregateRunCommands.allureProfile().contains(skipProperty),
-                "The dedicated framework-allure.xml profile must remain free to run with Allure's listener."
-        );
-        Assert.assertTrue(
-                AtfCoreAggregateRunCommands.allureProfile().contains(resetTestFilter),
-                "The dedicated framework-allure.xml profile must also reset -Dtest so it cannot inherit "
-                        + "a stale Surefire subset from a previous focused run."
-        );
+    public void aggregate_extent_commands_reset_filters_and_reject_retired_engines() {
+        String command = AtfCoreAggregateRunCommands.aggregateEngine(AtfCoreAggregateEngine.EXTENT);
+        Assert.assertTrue(command.startsWith("mvn -pl atf-tests -am test"));
+        Assert.assertTrue(command.contains("-Datf.core.aggregate.report.enabled=true"));
+        Assert.assertTrue(command.contains(AtfCoreAggregateRunCommands.resetSurefireTestFilterProperty()),
+                "The complete Extent sweep must reset stale Surefire class/method filters.");
+        Assert.assertTrue(command.contains("-Datf.core.aggregate.report.engine=extent"));
+        Assert.assertEquals(AtfCoreAggregateEngine.parse(null), AtfCoreAggregateEngine.EXTENT);
+        Assert.assertEquals(AtfCoreAggregateEngine.parse("off"), AtfCoreAggregateEngine.NONE);
+        Assert.assertEquals(com.ai.core.reporting.internal.ReportingEngine.from(" ExTeNt "),
+                com.ai.core.reporting.internal.ReportingEngine.EXTENT);
+        for (String missing : new String[]{null, "", "  "}) {
+            Assert.expectThrows(IllegalArgumentException.class,
+                    () -> com.ai.core.reporting.internal.ReportingEngine.from(missing));
+        }
+        for (String retired : new String[]{"allure", "both", "unknown"}) {
+            Assert.expectThrows(IllegalArgumentException.class, () -> AtfCoreAggregateEngine.parse(retired));
+            IllegalArgumentException invalid = Assert.expectThrows(IllegalArgumentException.class,
+                    () -> com.ai.core.reporting.internal.ReportingEngine.from(retired));
+            Assert.assertTrue(invalid.getMessage().contains("reporting.engine"));
+            Assert.assertTrue(invalid.getMessage().contains(retired));
+        }
     }
 
     @Test
     public void advertisedSuiteCommandsResolveToMaintainedFiles() {
         Assert.assertTrue(java.nio.file.Files.isRegularFile(AtfSourcePaths.projectPath("atf-tests").resolve(
                 AtfCoreAggregateRunCommands.CORE_SUITE_XML)));
-        Assert.assertTrue(java.nio.file.Files.isRegularFile(AtfSourcePaths.projectPath("atf-tests").resolve(
-                AtfCoreAggregateRunCommands.ALLURE_SUITE_XML)));
-    }
-
-    private static void assertCoreAggregateCommandIsIsolated(
-            AtfCoreAggregateEngine engine,
-            String skipProperty,
-            String resetTestFilter
-    ) {
-        String command = AtfCoreAggregateRunCommands.aggregateEngine(engine);
-        Assert.assertTrue(command.startsWith("mvn -pl atf-tests -am test"),
-                "Aggregate commands must select the verification module and build its runtime dependencies.");
-        Assert.assertTrue(command.contains("-Datf.core.aggregate.report.enabled=true"),
-                "An advertised aggregate command must enable publication as well as select the suite.");
-        Assert.assertTrue(
-                command.contains(skipProperty),
-                "Core aggregate command for " + engine
-                        + " must skip the Allure TestNG SPI listener; aggregate Allure evidence is written by "
-                        + "AtfCoreAggregateReportListener, not by auto-attaching AllureTestNg to the core sweep."
-        );
-        Assert.assertTrue(
-                command.contains(resetTestFilter),
-                "Core aggregate command for " + engine
-                        + " must reset -Dtest so stale Surefire method/class filters cannot turn the full sweep "
-                        + "into a misleading green subset."
-        );
     }
 }

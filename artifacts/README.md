@@ -4,10 +4,11 @@
 <a id="overview"></a>
 ## Prezentare generală
 
-Această zonă prezintă rapoartele curente selectate și artefactele de înțelegere a
-proiectelor. Rulările complete, eșecurile, intrările de analiză și investigațiile
-temporare aparțin istoricului extern. Ghidurile și șabloanele menținute sunt surse;
-publicațiile generate sunt dovezi. Construiește și colectează din copii izolate de validare.
+Această zonă prezintă rapoartele curente selectate și artefactele de înțelegere a proiectelor.
+
+- Rulările complete, eșecurile, intrările de analiză și investigațiile temporare aparțin istoricului extern.
+- Ghidurile și șabloanele menținute sunt surse; publicațiile generate sunt dovezi.
+- Construiește și colectează din copii izolate de validare.
 
 | Necesitate | Responsabil | Rezultat produs |
 |---|---|---|
@@ -16,24 +17,31 @@ publicațiile generate sunt dovezi. Construiește și colectează din copii izol
 | Înțelegerea comportamentului ATF existent și a limitelor dovezilor | [Atlasul framework-ului](../atf-atlas/README.md) | Trasabilitate între surse, teste și contracte |
 
 ```mermaid
-flowchart TB
-    Source["Validarea externă a surselor și rezultate"] --> Collect["Istoric extern imuabil"]
-    Collect --> Catalog["Selectarea și verificarea dovezilor curente"]
-    Catalog --> Review["Dovezi minime din rapoartele curente"]
-    Catalog --> Atlas["Un HTML curent pentru fiecare proiect selectat"]
+flowchart LR
+    Source["Ieșiri validate"] --> Collect["Istorie externă"]
+    Collect --> Catalog["Selecție curentă"]
+    Catalog --> Review["Dovadă nativă"]
+    Catalog --> Atlas["Un HTML per proiect"]
 ```
+
+<details>
+<summary>Legendă: relații și limita dovezii</summary>
 
 Săgețile arată păstrarea și selecția explicită. Colectarea, mutarea și verificările
 publicației nu execută teste și nu certifică rezultatele lor. Un raport de test
 eșuat rămâne eșuat după colectare.
 
+</details>
+
 <a id="ownership"></a>
 ## Responsabilități
 
-Ghidul rapoartelor gestionează colectarea imuabilă. Atlas gestionează protocolul
-reutilizabil și șablonul hărții. Guvernanța surselor protejează aceste fișiere
-urmărite și traducerile README-urilor lor. Datele curente generate sunt ignorate
-de Git. Un director artifacts dintr-un arbore propriu de surse/resurse rămâne guvernat.
+Ghidul rapoartelor gestionează colectarea imuabilă.
+
+- Atlas gestionează protocolul reutilizabil și șablonul hărții.
+- Guvernanța surselor protejează aceste fișiere urmărite și traducerile README-urilor lor.
+- Datele curente generate sunt ignorate de Git.
+- Un director artifacts dintr-un arbore propriu de surse/resurse rămâne guvernat.
 
 ```text
 artifacts/
@@ -62,11 +70,11 @@ O publicație completată are un inventar publication.json care leagă fiecare
 fișier curent și fiecare README/index generat de calea relativă, dimensiune și
 SHA-256. Înregistrările Atlas identifică proiectul și revizia sursei capturate.
 
-Selecția UI păstrată, opțională, gestionează exact un document Extent nativ și
-trei fișiere de dovezi pentru fiecare motor. Manifestul său leagă motorul,
-ID-ul rulării, revizia sursei și referințele XML/sursă/audit; nu este o excepție HTML generică.
-Curent înseamnă selectat pentru cititori; o captură mai veche nu devine cel mai
-recent Git HEAD. Identitatea originală a surselor și limitele execuției rămân vizibile.
+Selecția UI păstrată, opțională, gestionează exact un document Extent nativ și trei fișiere de dovezi pentru fiecare motor.
+
+- Manifestul său leagă motorul, ID-ul rulării, revizia sursei și referințele XML/sursă/audit; nu este o excepție HTML generică.
+- Curent înseamnă selectat pentru cititori; o captură mai veche nu devine cel mai recent Git HEAD.
+- Identitatea originală a surselor și limitele execuției rămân vizibile.
 
 <a id="publication-lifecycle"></a>
 ## Ciclul de viață al publicației
@@ -85,12 +93,12 @@ recent Git HEAD. Identitatea originală a surselor și limitele execuției răm�
 5. Validează staging-ul, arhivează selecția anterioară și înlocuiește setul curent
    ca întreg. Reverifică hash-urile și legăturile înainte de a consemna finalizarea în feedback.
 
-Punctele de intrare live sunt artifacts/atlas/current/index.html și
-artifacts/reports/current/index.html. Structurile brute atlas/runs și reports/runs
-aparțin analizei/istoricului extern, nu publicației live. Directoarele temporare,
-de construcție, versiuni publicate și investigații rămân în afara perimetrului publicației.
-Un JAR/ZIP este dovadă de construcție până când un proces autorizat separat îl
-califică drept versiune publicată. Colectarea însăși nu creează niciodată o versiune publicată.
+Punctele de intrare live sunt artifacts/atlas/current/index.html și artifacts/reports/current/index.html.
+
+- Structurile brute atlas/runs și reports/runs aparțin analizei/istoricului extern, nu publicației live.
+- Directoarele temporare, de construcție, versiuni publicate și investigații rămân în afara perimetrului publicației.
+- Un JAR/ZIP este dovadă de construcție până când un proces autorizat separat îl califică drept versiune publicată.
+- Colectarea însăși nu creează niciodată o versiune publicată.
 
 Păstrarea urmează rolul: un Atlas selectat pentru fiecare proiect, o selecție
 explicită de dovezi curente și istoricul original intact în exterior. Nu există
@@ -113,10 +121,9 @@ structura curentă completă și respinge istoricul vechi live, fișierele orfan
 proiectele duplicate, HTML-urile nedeclarate, fișierele modificate ori lipsă,
 legăturile și căile care ies din perimetru. Nu mută și nu șterge niciodată dovezi.
 
-Folosește [ghidul de testare](../docs/Testing.md) pentru selecțiile Java/de guvernanță și
-[verificările colectorului](reports/README.md#verification) pentru comportamentul sistemului de fișiere.
-Folosește [verificatorul de consistență Atlas](atlas/README.md#verification) pentru
-hărțile generate. Guvernanța surselor protejează aceste ghiduri, iar verificatorul
-separat leagă analiza generată de octeții surselor și de dovezile executate declarate.
-Inspectează împreună manifestul, rezultatele originale, resursele și dovezile. O categorie
-goală, un raport copiat sau o inspecție Atlas a surselor nu reprezintă o nouă rulare de teste.
+Folosește [ghidul de testare](../docs/Testing.md) pentru selecțiile Java/de guvernanță și [verificările colectorului](reports/README.md#verification) pentru comportamentul sistemului de fișiere.
+
+- Folosește [verificatorul de consistență Atlas](atlas/README.md#verification) pentru hărțile generate.
+- Guvernanța surselor protejează aceste ghiduri, iar verificatorul separat leagă analiza generată de octeții surselor și de dovezile executate declarate.
+- Inspectează împreună manifestul, rezultatele originale, resursele și dovezile.
+- O categorie goală, un raport copiat sau o inspecție Atlas a surselor nu reprezintă o nouă rulare de teste.

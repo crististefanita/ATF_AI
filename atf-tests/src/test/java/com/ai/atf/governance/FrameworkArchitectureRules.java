@@ -39,7 +39,7 @@ final class FrameworkArchitectureRules {
     static final String REPORTING_SPI = "com.ai.core.reporting.spi.ReportingBackend";
     static final List<String> MAINTAINED_SUITES = List.of(
             "framework-local.xml", "framework-aggregate.xml", "framework-browser.xml",
-            "framework-allure.xml", "framework-api.xml", "framework-ui.xml", "framework-reporting.xml");
+            "framework-api.xml", "framework-ui.xml", "framework-reporting.xml");
     // Exact manual-only exclusions: additions and removals require an explicit policy review.
     static final Map<String, String> SUITE_EXEMPTIONS = Map.ofEntries(
             Map.entry("com.ai.api.tests.PositiveUserTests", "manual live API writes"),
@@ -153,10 +153,10 @@ final class FrameworkArchitectureRules {
             if (!executable.contains(type)) violations.add("SUITE-EXEMPTION-STALE remove or correct absent executable test: " + type);
         }
         Set<String> primary = new LinkedHashSet<>();
-        for (String name : List.of("framework-local.xml", "framework-browser.xml", "framework-allure.xml")) primary.addAll(selections.get(name));
+        for (String name : List.of("framework-local.xml", "framework-browser.xml")) primary.addAll(selections.get(name));
         for (String type : executable) {
             if (!SUITE_EXEMPTIONS.containsKey(type) && !primary.contains(type)) {
-                violations.add("SUITE-OMISSION " + type + " must belong to local, browser or Allure acceptance");
+                violations.add("SUITE-OMISSION " + type + " must belong to local or browser acceptance");
             }
             if (type.startsWith("com.ai.atf.governance.") && !selections.get("framework-local.xml").contains(type)) {
                 violations.add("SUITE-GOVERNANCE " + type + " must execute in the default local gate");
@@ -264,6 +264,7 @@ final class FrameworkArchitectureRules {
     static List<String> validate(Path root) throws Exception {
         List<String> violations = new ArrayList<>();
         Element parent = GovernanceFiles.pom(root.resolve("pom.xml"));
+        validateReportingScope(parent, "pom.xml", violations);
         if (!"com.ai".equals(GovernanceFiles.text(parent, "groupId", ""))) {
             violations.add("pom.xml: PARENT-COORDINATE expected groupId com.ai");
         }
@@ -304,6 +305,7 @@ final class FrameworkArchitectureRules {
 
     private static void validatePom(String module, Element pom, Set<String> productionEdges, List<String> violations) {
         String location = module + "/pom.xml: ";
+        validateReportingScope(pom, module + "/pom.xml", violations);
         if (!module.equals(GovernanceFiles.text(pom, "artifactId", ""))) {
             violations.add(location + "ARTIFACT expected " + module);
         }
@@ -448,7 +450,7 @@ final class FrameworkArchitectureRules {
         for (String sdk : SDKS) {
             boolean allowed = source.module.equals("atf-playwright") && sdk.equals("com.microsoft.playwright")
                     || source.module.equals("atf-selenium") && sdk.equals("org.openqa.selenium")
-                    || source.module.equals("atf-reporting") && (sdk.startsWith("com.aventstack") || sdk.startsWith("io.qameta"));
+                    || source.module.equals("atf-reporting") && sdk.startsWith("com.aventstack");
             if (!allowed && JavaSourceScanner.containsCodeNamespace(source.code, sdk)) {
                 violations.add(location + "SDK-OWNERSHIP " + sdk + " is outside " + source.module);
             }
@@ -503,6 +505,17 @@ final class FrameworkArchitectureRules {
             } catch (java.io.IOException failure) {
                 throw new IllegalStateException("Cannot read source for type ownership: " + source.file, failure);
             }
+        }
+    }
+
+    private static void validateReportingScope(Element pom, String location, List<String> findings) {
+        var dependencies = pom.getElementsByTagName("dependency");
+        for (int index = 0; index < dependencies.getLength(); index++) {
+            Element dependency = (Element) dependencies.item(index);
+            String group = GovernanceFiles.text(dependency, "groupId", "");
+            if (group.startsWith("io.qameta.allure")) findings.add(location
+                    + ": RETIRED-REPORTING Extent is the maintained backend; remove the retired dependency "
+                    + group + ':' + GovernanceFiles.text(dependency, "artifactId", ""));
         }
     }
 

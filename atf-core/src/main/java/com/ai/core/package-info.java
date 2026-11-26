@@ -14,8 +14,8 @@
  *     active {@link com.ai.core.reporting.ReportLogger} adapter.</li>
  * </ol>
  *
- * <p>Core patterns used here: Facade for step logging, Adapter for Extent and
- * Allure, Composite for mirrored reporting, Listener for TestNG lifecycle, and
+ * <p>Core patterns used here: Facade for step logging, Adapter for Extent,
+ * Composite for mirrored reporting, Listener for TestNG lifecycle, and
  * small controller classes under {@code listener.internal} for lifecycle state.</p>
  */
 package com.ai.core;

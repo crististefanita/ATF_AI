@@ -6,7 +6,7 @@ ATF rulează teste API REST și UI în browser, scrise în Java. Cele cinci modu
 <a id="the-design-in-one-view"></a>
 ## Designul într-o singură imagine
 
-Un test consumator declară ce observă. Core deține contractele API/UI comune și ciclul de viață. Adaptoarele implementează contractul UI; raportarea este opțională. Testele depozitului protejează aceste limite.
+Un test consumator declară ce observă. Core deține contractele API/UI comune și ciclul de viață; adaptoarele implementează contractul UI, iar raportarea este opțională. Testele depozitului protejează aceste limite.
 
 | Modul | Responsabilitate |
 |---|---|
@@ -27,7 +27,12 @@ flowchart LR
     Tests -. verifică .-> Reporting
 ```
 
+<details>
+<summary>Legendă: relații și limita dovezii</summary>
+
 Săgețile continue indică dependențe între biblioteci; cele punctate indică verificarea în teste. Core nu expune tipuri din SDK-urile Playwright, Selenium sau de raportare. [Atlas](atf-atlas/README.md) este exclusiv documentație, în afara Maven, și leagă sursele de teste și limitele dovezilor.
+
+</details>
 
 <a id="how-a-check-runs"></a>
 ## Cum rulează o verificare
@@ -35,30 +40,27 @@ Săgețile continue indică dependențe între biblioteci; cele punctate indică
 Alege API REST când nu este necesar un browser. Alege UI când verificările folosesc un furnizor de browser prin acțiunile comune Core. Raportarea poate publica ciclul de viață TestNG printr-un backend opțional.
 
 ```mermaid
-flowchart TB
+flowchart LR
     Runner["TestNG"] --> Test["Test consumator"]
-    Test --> Route{"Contract"}
-    Route -->|"API REST"| Api["BaseTestAPI"]
-    Api --> Client["ApiClient / ApiActions"]
-    Client --> Service["API REST țintă"]
-    Route -->|"UI în browser"| Ui["BaseTestUI + UIActions"]
-    Ui --> Factory["UIEngineFactory"]
-    Factory -->|"ui.engine=playwright"| Playwright["Furnizor Playwright"]
-    Factory -->|"ui.engine=selenium"| Selenium["Furnizor Selenium"]
-    Playwright --> Browser["Sesiune browser deținută"]
-    Selenium --> Browser
-    Runner -. apeluri de ciclu de viață .-> Listener["TestListener din Core"]
-    Listener -. backend SPI opțional .-> Reporting["atf-reporting"]
+    Test --> Route["API sau UI"]
+    Route --> Api["Execuție API"]
+    Route --> Ui["Furnizor UI"]
+    Runner -. ciclu de viață .-> Reporting["Backend raportare"]
 ```
 
+<details>
+<summary>Legendă: relații și limita dovezii</summary>
+
 Săgețile continue arată calea contractului ales. Cele punctate arată raportarea opțională a ciclului de viață TestNG. Calea API nu pornește un browser; furnizorul UI se alege înainte de inițializare. Paginile și aserțiunile produsului aparțin consumatorului. [Arhitectura](docs/Architecture.md) explică detaliile contractelor.
+
+</details>
 
 <a id="how-to-choose-a-consumer-route"></a>
 ## Cum alegi calea consumatorului
 
 - **API REST:** adaugă `atf-core`; baza și clientul API nu necesită un furnizor de browser.
 - **UI în browser:** adaugă un adaptor și setează `ui.engine` înaintea inițializării TestNG. Folosește exemplul concret [Playwright](atf-playwright/README.md#consumer-example) sau [Selenium](atf-selenium/README.md#consumer-example).
-- **Rapoarte Extent sau Allure:** adaugă `atf-reporting` când consumatorul are nevoie de aceste formate de publicare.
+- **Rapoarte Extent:** adaugă `atf-reporting` când consumatorul are nevoie de raportare HTML.
 
 Exemplele consumatorului se află în ghidurile furnizorilor. Această pagină rădăcină rămâne axată pe alcătuirea framework-ului și următoarea decizie a cititorului.
 
@@ -79,7 +81,11 @@ mvn -B -ntp -Paggregate test
 
 </details>
 
-Selecția implicită rulează verificări native ale modulelor și regresiile existente de framework și guvernanță. Profilul browser selectează fixture-uri locale și necesită binare pregătite; profilul aggregate publică și dovezi Extent și Allure. [Testare](docs/Testing.md) descrie precondițiile, comenzile selective și limitele dovezilor. Scenariile existente ale produsului rămân opționale; acest ghid nu adaugă scenarii.
+Selecția implicită rulează verificări native ale modulelor și regresiile existente de framework și guvernanță.
+
+- Profilul browser selectează fixture-uri locale și necesită binare pregătite; profilul aggregate publică și dovezi Extent.
+- [Testare](docs/Testing.md) descrie precondițiile, comenzile selective și limitele dovezilor.
+- Scenariile existente ale produsului rămân opționale; acest ghid nu adaugă scenarii.
 
 <a id="configuration"></a>
 <a id="consumer-migration"></a>

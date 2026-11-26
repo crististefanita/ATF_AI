@@ -4,7 +4,6 @@ import com.ai.core.support.contract.AtfContract;
 import com.ai.core.support.contract.AtfContractSuite;
 import com.ai.core.reporting.aggregate.AggregateExtentReportWriter;
 import com.ai.core.reporting.aggregate.AggregateStatus;
-import io.qameta.allure.model.Status;
 import org.testng.ISuite;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
@@ -42,32 +41,9 @@ public final class AtfCoreAggregateCase implements AggregateExtentReportWriter.C
     private final String throwableMessage;
     private final String stackTrace;
 
-    public AtfCoreAggregateCase(
-            String suiteName,
-            String contextName,
-            String className,
-            String methodName,
-            String parameters,
-            String suiteProfile,
-            String capability,
-            String purpose,
-            String area,
-            String owner,
-            String expected,
-            String observed,
-            String repairHint,
-            Status status,
-            long startMillis,
-            long endMillis,
-            String throwableMessage,
-            String stackTrace
-    ) {
-        this(suiteName, contextName, className, methodName, parameters, suiteProfile, capability, purpose,
-                area, owner, expected, observed, repairHint, aggregateStatus(status), startMillis, endMillis,
-                throwableMessage, stackTrace);
-    }
 
-    public static AtfCoreAggregateCase from(ISuite suite, ITestContext context, ITestResult result, Status status) {
+
+    public static AtfCoreAggregateCase from(ISuite suite, ITestContext context, ITestResult result, AggregateStatus status) {
         return fromResult(
                 suite.getName(),
                 context.getName(),
@@ -76,7 +52,7 @@ public final class AtfCoreAggregateCase implements AggregateExtentReportWriter.C
         );
     }
 
-    public static AtfCoreAggregateCase from(ITestResult result, Status status) {
+    public static AtfCoreAggregateCase from(ITestResult result, AggregateStatus status) {
         ITestContext context = result.getTestContext();
         ISuite suite = context == null ? null : context.getSuite();
         String suiteName = suite == null ? "runtime-listener" : suite.getName();
@@ -88,7 +64,7 @@ public final class AtfCoreAggregateCase implements AggregateExtentReportWriter.C
             String suiteName,
             String contextName,
             ITestResult result,
-            Status status
+            AggregateStatus status
     ) {
         String className = result.getMethod().getRealClass().getName();
         String methodName = result.getMethod().getMethodName();
@@ -109,7 +85,7 @@ public final class AtfCoreAggregateCase implements AggregateExtentReportWriter.C
                 atfContract == null ? "" : atfContract.expected(),
                 atfContract == null ? "" : atfContract.observed(),
                 atfContract == null ? "" : atfContract.repairHint(),
-                aggregateStatus(status),
+                status,
                 result.getStartMillis(),
                 result.getEndMillis(),
                 throwable == null ? "" : String.valueOf(throwable.getMessage()),
@@ -167,15 +143,6 @@ public final class AtfCoreAggregateCase implements AggregateExtentReportWriter.C
         return parts.toString();
     }
 
-    private static AggregateStatus aggregateStatus(Status status) {
-        if (status == Status.PASSED) {
-            return AggregateStatus.PASSED;
-        }
-        if (status == Status.SKIPPED) {
-            return AggregateStatus.SKIPPED;
-        }
-        return AggregateStatus.FAILED;
-    }
 
     private static String stackTrace(Throwable throwable) {
         if (throwable == null) {

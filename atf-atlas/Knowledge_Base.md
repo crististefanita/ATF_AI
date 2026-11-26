@@ -21,20 +21,22 @@ Regăsirea lexicală nu promite recuperare semantică sau între limbi; foloseș
 contractul obligatoriu și inspectează explicit subiectele omise.
 
 ```mermaid
-flowchart TB
-    Archive["Cerințe arhivate revizuite"] --> Knowledge["Înregistrări citate ale contractului"]
-    Query["Întrebarea cititorului și domeniul țintei"] --> Retrieval["Regăsire locală deterministă"]
-    Knowledge --> Retrieval
-    Retrieval --> Author["Revizor ancorat în sursă"]
-    Source["Sursa reală și criteriile existente"] --> Author
-    Author --> Analysis["Afirmații, comportament și dovezi"]
-    Analysis --> Checks["Guvernanță și revizuire desktop"]
-    Checks --> Report["O țintă, un atlas.html complet"]
+flowchart LR
+    Knowledge["Politici citate"] --> Retrieval["Regăsire locală"]
+    Query["Întrebarea cititorului"] --> Retrieval
+    Retrieval --> Author["Revizie de sursă"]
+    Source["Cod și oracole reale"] --> Author
+    Author --> Report["HTML guvernat"]
 ```
+
+<details>
+<summary>Legendă: relații și limita dovezii</summary>
 
 Săgețile arată utilizarea cunoștințelor și validarea. Regăsirea oferă context de
 politică, niciodată dovezi de execuție. O cerință veche citată nu poate certifica
 actualul cod al proiectului.
+
+</details>
 
 <a id="adaptation-rules"></a>
 ## Reguli de adaptare
@@ -85,20 +87,23 @@ numai cu sursă/fără teste rămân valide cu lacuna declarată. KB-ASSESSMENT 
 descrie axe de revizuire umană cu domeniu explicit; absența evaluării rămâne NOT_ASSESSED.
 
 ```mermaid
-flowchart TB
-    Target["Capturează ținta reală și domeniul revizuirii"] --> Receipt["Verifică dovada completă a politicii canonice"]
-    Receipt --> Units["Enumeră unitățile responsabile reale"]
-    Units --> Facets["Revizuiește șapte fațete și declară lacunele"]
-    Facets --> Trace["Leagă sursa, fluxul, criteriul și cazul păstrat"]
-    Trace --> Review["Revizuiește sensul și justificarea scorului delimitat"]
-    Review --> Deliver["Verifică un HTML offline complet"]
+flowchart LR
+    Scope["Țintă și regăsire"] --> Units["Unități și fațete"]
+    Units --> Trace["Comportament și oracol"]
+    Trace --> Review["Sens și dovezi"]
+    Review --> Deliver["Un HTML offline"]
 ```
+
+<details>
+<summary>Legendă: relații și limita dovezii</summary>
 
 Săgețile arată porți succesive de revizuire, nu apeluri de execuție. Un eșec păstrează
 dovada observată și calea delimitată de remediere. Repară declarația sau corespondența
 cu sursa absentă, apoi rerulează controlul înainte de selecția completă. Creșterea
 numărului de fișiere, fluxuri sau a scorului lexical nu stabilește o înțelegere
 mai profundă. Fațetele PARTIAL/UNKNOWN oneste rămân rezultate utile.
+
+</details>
 
 Dovada regăsirii se verifică integral față de regăsirea canonică, inclusiv înregistrările
 opționale, ordinea/clasarea, citările și identitatea sursei. Pachetul final păstrează

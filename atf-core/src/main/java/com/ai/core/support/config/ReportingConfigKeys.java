@@ -11,7 +11,6 @@ public final class ReportingConfigKeys {
 
     public static final String DEFAULT_REPORTS_DIR       = "target/reports";
     public static final String ENGINE_EXTENT             = "extent";
-    public static final String ENGINE_ALLURE             = "allure";
     public static final String TIMESTAMP_ENABLED         = "true";
     public static final String TIMESTAMP_DISABLED        = "false";
 

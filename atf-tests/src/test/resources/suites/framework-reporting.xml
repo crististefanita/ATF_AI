@@ -6,9 +6,6 @@
             <class name="com.ai.atf.core.reporting.adapters.ExtentAdapterDirectoryContractTest"/>
             <class name="com.ai.atf.core.reporting.adapters.ExtentAdapterTest"/>
             <class name="com.ai.atf.core.reporting.adapters.ExtentHtmlPatchPipelineContractTest"/>
-            <class name="com.ai.atf.core.reporting.adapters.allure.AllurePresentationContractTest"/>
-            <class name="com.ai.atf.core.reporting.adapters.allure.AllureResultsCleanupTest"/>
-            <class name="com.ai.atf.core.reporting.adapters.allure.EmptyPayloadAttachmentContractTest"/>
             <class name="com.ai.atf.core.reporting.adapters.css.ExtentSparkCollapsePolicyComponentTest"/>
             <class name="com.ai.atf.core.reporting.adapters.css.ExtentSparkFailureTriageCssComponentTest"/>
             <class name="com.ai.atf.core.reporting.adapters.css.ExtentSparkRuntimeAuditCssComponentTest"/>
@@ -19,7 +16,6 @@
             <class name="com.ai.atf.core.reporting.adapters.visual.ExtentSparkStatusDropdownVisualReportTest"/>
             <class name="com.ai.atf.core.reporting.aggregate.AggregateExtentTestDisplayContractTest"/>
             <class name="com.ai.atf.core.reporting.aggregate.AtfCoreAggregateExtentContractTest"/>
-            <class name="com.ai.atf.core.reporting.aggregate.allure.AtfCoreAggregateAllureContractTest"/>
             <class name="com.ai.atf.core.reporting.aggregate.command.AtfCoreAggregateRunCommandContractTest"/>
             <class name="com.ai.atf.core.reporting.aggregate.design.AggregateExtentWriterDesignContractTest"/>
             <class name="com.ai.atf.core.reporting.aggregate.parallel.AggregateParallelCollectionContractTest"/>

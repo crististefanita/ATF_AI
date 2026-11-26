@@ -154,6 +154,13 @@ testele reale de întrerupere; nu demonstrează orice cale posibilă de control.
 Contractul intenționat executor/future al unui API nu justifică o interdicție
 textuală globală sau o excepție nouă nerevizuită.
 
+<a id="reporting-scope"></a>
+### Domeniul raportării
+
+Extent este implementarea menținută a raportării. Opțiunea runtime reporting.engine acceptă extent; publicarea agregată acceptă extent sau dezactivare explicită. Dependențele Allure retrase, furnizorii, suitele active și rețetele nu pot reveni printr-o valoare implicită.
+
+Controalele dependențelor/sursei și contractele comenzilor resping integrarea retrasă și valorile nesusținute ale motorului. Colectorii generici pot păstra formate istorice sau externe; aceasta nu reactivează raportarea framework-ului. Dovezile istorice își păstrează sursa, numerele și verdictele originale.
+
 <a id="maintainability-and-exceptions"></a>
 ## Mentenabilitate și excepții
 
@@ -210,20 +217,26 @@ configurația și inițializarea furnizorului.
 Plasează harta dependențelor sub secțiunea despre design și diagrama execuției
 API/UI sub secțiunea despre rularea verificării; guvernanța confirmă ambele poziții.
 
-Folosește o diagramă pentru o întrebare: direcția dependențelor, flux runtime
-sau ordinea ciclului de viață. Preferă diagrame de flux compacte stânga–dreapta
-pentru hărți noi de relații; treci la aranjament vertical când etichetele ar
-deveni ilizibile într-o fereastră îngustă. Folosește secvențe când ordinea
-contează. Pune imediat după diagramă o legendă scurtă care definește sensul
-săgeților, responsabilitatea și detaliile omise. Diagramele explică POM-ul
-sau implementarea; nu înlocuiesc niciuna dintre aceste surse.
+Cerința DOC-PRESENT-001: folosește o diagramă pentru o întrebare: dependență,
+flux de execuție sau ciclu de viață. Fluxurile întreținute, inclusiv direcțiile explicite ale subgrafurilor, folosesc citire compactă
+`LR`; diagramele de secvență, stare și clase își păstrează direcția semantică.
+Simplifică etichetele sau separă întrebarea înainte de lărgirea diagramei. O hartă
+verticală propusă necesită cerință cu responsabil, motiv și criteriu de acceptanță revizuit.
+
+Cerința DOC-PRESENT-002: imediat după fiecare bloc Mermaid, pune un singur
+`<details>` echilibrat, fără atribut open. Sumarul descriptiv Legendă introduce
+explicația săgeților, responsabilităților, ramurilor și omisiunilor. Păstrează
+scopul și precondițiile esențiale vizibile înaintea diagramei. Exemplele literale
+și diagramele comentate sunt date; o legendă nevidă nu dovedește că explicația
+corespunde sursei. Inspectează randarea reală.
+Diagramele explică POM-ul sau implementarea; nu înlocuiesc aceste surse.
 
 Folosește titluri Markdown semantice, tabele minimale, blocuri de cod tipizate
 și etichete concise. Pune detaliile secundare în ghidul responsabil sau
 într-un bloc `<details>` numit. Păstrează stilizarea rendererului în afara
 Markdown-ului, fără fonturi locale sau CSS încorporat.
 
-Cerința DOC-TABLE-001: fiecare celulă de proză dintr-un tabel README întreținut
+Cerința DOC-TABLE-001: fiecare celulă de proză dintr-un tabel Markdown normativ întreținut
 TREBUIE să aibă cel mult 140 de caractere vizibile și 22 de cuvinte. Folosește
 tabelele pentru corespondențe și comparații scurte; mută explicațiile în proza
 alăturată sau într-un responsabil legat și separă tabelele care răspund la
@@ -231,6 +244,13 @@ alăturată sau într-un responsabil legat și separă tabelele care răspund la
 garanție de randare sau lizibilitate. Inspectează tabelul modificat la lățimea
 sa randată reală. Păstrează distincte câmpuri precum Prioritate și Calitate,
 chiar dacă formatul compact cere formulări mai atente.
+
+Tabelele feedback-ului istoric își păstrează forma dovezii capturate; indexul
+activ rămâne guvernat. Ghidurile scurte de pachet pot folosi liste sau tabele,
+fără cotă artificială de diagrame. Limitele tabelelor nu stabilesc echilibrul
+coloanelor: inspectează împărțirea textului, tăierea și proporțiile la 1440 și
+900 CSS px într-un browser desktop; păstrează tabelele de referință legitim late
+într-o zonă cu derulare locală.
 
 Cerința DOC-REVIEW-001: fiecare document Markdown întreținut TREBUIE să aibă
 un H1, să înceapă ierarhia titlurilor de la H1 și să coboare cel mult un nivel
@@ -252,6 +272,8 @@ Fiecare diagramă are o explicație adiacentă a săgeților, responsabilități
 și omisiunilor. Revizuirea umană compară explicația cu responsabilitatea
 codului/POM-ului și randarea reală. Păstrează o diagramă corectă și aprobată
 în locul schimbării geometriei sale doar pentru un stil vizual preferat.
+
+Controalele living LD-02/LD-03/LD-04 păstrează responsabilitatea UIActions, distincția așteptărilor Selenium/Playwright și limitele verdictului WaitUtils. Contraexemplele schimbă aceste roluri între rânduri. Numele sunt semnale limitate de consistență; revizuiește condițiile și negațiile față de sursă.
 
 <a id="apply-the-documentation-review-in-practice"></a>
 ### Aplică revizuirea documentației în practică
@@ -331,12 +353,55 @@ lucru sau skills active.
 
 | Sursă arhivată | Decizie | Principiu păstrat |
 |---|---|---|
-| `src/main/resources/skills/codequality/contracts/code-quality.yml` | Adaptează | Datorie cu responsabil, criterii explicite de reparare și eliminarea excepțiilor învechite; nu copia bugete vechi, rădăcini sursă sau permisiuni istorice |
-| `src/main/java/com/ai/skills/codequality/README.md` | Adaptează | Coeziunea, compatibilitatea Java și responsabilitatea dependențelor aparțin revizuirii și testelor existente de guvernanță |
-| `src/main/java/com/ai/skills/atlas/rules/scoring/AtlasScoreEvidenceTraceRule.java` și `AtlasScoreOverallCalculationRule.java` din acel pachet | Adaptează | Notele revizuirii necesită axe declarate, dovezi și calcul reproductibil; numărarea cuvintelor-cheie nu este un oracol |
-| `src/main/java/com/ai/skills/atlas/rules/scoring/limits/AtlasSuiteCompletenessSeparationRule.java` | Adoptă principiul | Succesul suitei și acoperirea produsului sunt afirmații diferite, cu dovezi separate de acceptanță |
-| `src/test/java/com/ai/skills/codequality/tests/AtfCodeQualityAssertionDensityContractTest.java` | Respinge ca oracol de calitate | Densitatea indiciilor de aserțiune nu poate înlocui inspecția aserțiunilor și a cazurilor negative semnificative |
-| `src/main/java/com/ai/core/skills` și `src/main/java/com/ai/skills` | Nu restaura | Refolosește regulile utile ca documentație/guvernanță fără registrul, fațadele sau stiva runtime retrase |
+| Politica pentru cod | Adaptează | Datorie cu responsabil, criterii de reparare și eliminarea excepțiilor învechite; bugetele, rădăcinile și permisiunile vechi rămân arhivate |
+| README pentru cod | Adaptează | Coeziunea, compatibilitatea Java și responsabilitatea dependențelor aparțin revizuirii și testelor existente de guvernanță |
+| Scoruri cu dovezi | Adaptează | Notele revizuirii necesită axe declarate, dovezi și calcul reproductibil; numărarea cuvintelor-cheie nu este un oracol |
+| Limita completitudinii | Adoptă principiul | Succesul suitei și acoperirea produsului sunt afirmații diferite, cu dovezi separate de acceptanță |
+| Testul densității aserțiunilor | Respinge ca oracol de calitate | Densitatea indiciilor de aserțiune nu poate înlocui inspecția aserțiunilor și a cazurilor negative semnificative |
+| Pachete de execuție retrase | Nu restaura | Refolosește regulile utile ca documentație/guvernanță fără registrul, fațadele sau stiva runtime retrase |
+
+<details>
+<summary>Căi arhivate și proveniența exactă a regulilor</summary>
+
+Politica pentru cod:
+
+```text
+src/main/resources/skills/codequality/contracts/code-quality.yml
+```
+
+README pentru cod:
+
+```text
+src/main/java/com/ai/skills/codequality/README.md
+```
+
+Scoruri cu dovezi:
+
+```text
+src/main/java/com/ai/skills/atlas/rules/scoring/AtlasScoreEvidenceTraceRule.java
+AtlasScoreOverallCalculationRule.java
+```
+
+Limita completitudinii:
+
+```text
+src/main/java/com/ai/skills/atlas/rules/scoring/limits/AtlasSuiteCompletenessSeparationRule.java
+```
+
+Testul densității aserțiunilor:
+
+```text
+src/test/java/com/ai/skills/codequality/tests/AtfCodeQualityAssertionDensityContractTest.java
+```
+
+Pachete de execuție retrase:
+
+```text
+src/main/java/com/ai/core/skills
+src/main/java/com/ai/skills
+```
+
+</details>
 
 Referințele J0 susțin aceeași separare: `AtfPackageCohesionGovernanceTest`
 folosește inventare revizuite și respinge excepțiile învechite;
@@ -391,7 +456,7 @@ reale; legenda sa precizează sensul săgeților, responsabilitatea și omisiuni
 Nu ascunde o precondiție într-un bloc pliabil doar pentru scurtarea paginii.
 
 Controlul de sursă măsoară blocurile logice de proză dincolo de împărțirea
-fizică pe linii. Orientarea strategică din Testing.md permite cel mult
+fizică pe linii. Orientarea README-urilor și Testing.md permite cel mult
 3 propoziții și 100 de cuvinte vizibile per paragraf. Referințele operaționale
 detaliate folosesc limita de paragraf de 100 de cuvinte; toată proza inspectată
 folosește limita de 45 de cuvinte per propoziție. Acestea sunt declanșatoare

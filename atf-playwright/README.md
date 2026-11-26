@@ -20,7 +20,7 @@ creează [motorul](src/main/java/com/ai/ui/core/engine/playwright/PlaywrightEngi
 gestionează crearea și închiderea browserului, contextului și paginii Playwright.
 
 ```mermaid
-flowchart TB
+flowchart LR
     Lifecycle["Ciclu de viață UI Core"] --> Factory["UIEngineFactory"]
     Factory -. ServiceLoader .-> Provider["PlaywrightProvider"]
     Provider --> Engine["PlaywrightEngine"]
@@ -28,10 +28,15 @@ flowchart TB
     Engine --> Session["Sesiune browser și pagină"]
 ```
 
+<details>
+<summary>Legendă: relații și limita dovezii</summary>
+
 Nodul ciclului de viață reprezintă BaseTestUI/DriverManager. Săgețile continue arată
 crearea sau delegarea; săgeata punctată arată descoperirea furnizorului. Consumatorii
 folosesc UIEngine/UIActions din Core și aleg `ui.engine=playwright`.
 Tipurile SDK-ului Playwright rămân în acest adaptor.
+
+</details>
 
 <a id="dependencies-and-configuration"></a>
 ## Dependențe și configurație
@@ -41,10 +46,11 @@ Tipurile SDK-ului Playwright rămân în acest adaptor.
 | [atf-core](../atf-core/README.md) | API UI neutru, SPI pentru furnizori, configurație și metadate de execuție |
 | SDK Playwright pentru Java | Implementarea browserului și revizia fixată a acestuia |
 
-[Valorile implicite Core](../atf-core/src/main/resources/framework.properties) selectează
-Playwright cu execuție fără interfață vizibilă. Cheile UI comune controlează dimensiunea ferestrei,
-zoomul, așteptările și capturile. PLAYWRIGHT_BROWSERS_PATH poate selecta un cache
-extern pentru browsere. Pentru pregătirea menținută, folosește Node inclus în SDK.
+[Valorile implicite Core](../atf-core/src/main/resources/framework.properties) selectează Playwright cu execuție fără interfață vizibilă.
+
+- Cheile UI comune controlează dimensiunea ferestrei, zoomul, așteptările și capturile.
+- PLAYWRIGHT_BROWSERS_PATH poate selecta un cache extern pentru browsere.
+- Pentru pregătirea menținută, folosește Node inclus în SDK.
 
 <a id="consumer-example"></a>
 ## Exemplu pentru consumator
@@ -127,11 +133,11 @@ mvn -B -ntp -pl atf-tests -am -Pbrowser test
 </details>
 
 Prima comandă rulează verificările native ale furnizorului și Core fără a porni browserul.
-A doua selectează regresiile existente pentru locatori locali, răspunsuri reale de rețea
-și capturi. Fixture-urile verifică **atât Playwright, cât și Selenium**; setarea
-`ui.engine=playwright` nu transformă selecțiile de paritate într-o rulare cu un singur motor.
-Ultima comandă selectează suita menținută de browser. Urmează mai întâi
-[pregătirea browserelor](../docs/Testing.md#browser-preparation-and-checks).
+
+- A doua selectează regresiile existente pentru locatori locali, răspunsuri reale de rețea și capturi.
+- Fixture-urile verifică **atât Playwright, cât și Selenium**; setarea `ui.engine=playwright` nu transformă selecțiile de paritate într-o rulare cu un singur motor.
+- Ultima comandă selectează suita menținută de browser.
+- Urmează mai întâi [pregătirea browserelor](../docs/Testing.md#browser-preparation-and-checks).
 
 | Comportament | Sursă executabilă existentă |
 |---|---|

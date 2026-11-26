@@ -70,9 +70,9 @@ public final class AtfCoreAggregateReportListenerHarness {
         ((java.util.List<?>) field.get(null)).clear();
     }
 
-    public static void recordRuntimeCase(ITestResult result, io.qameta.allure.model.Status status) throws Exception {
+    public static void recordRuntimeCase(ITestResult result, com.ai.core.reporting.aggregate.AggregateStatus status) throws Exception {
         Method method = AtfCoreAggregateReportListener.class
-                .getDeclaredMethod("recordRuntimeCase", ITestResult.class, io.qameta.allure.model.Status.class);
+                .getDeclaredMethod("recordRuntimeCase", ITestResult.class, com.ai.core.reporting.aggregate.AggregateStatus.class);
         method.setAccessible(true);
         method.invoke(null, result, status);
     }

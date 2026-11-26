@@ -74,8 +74,8 @@ contracts:
     kind: contract
     area: API_LIFECYCLE
     owner: BaseTestAPI listener and setup contract
-    expected: BaseTestAPI registers the Core TestListener facade and keeps API runtime setup in @BeforeClass(alwaysRun=true). Allure is discovered through its native TestNG service when atf-reporting is present.
-    observed: The test verifies @Listeners(TestListener.class) and baseSetup() lifecycle metadata without a direct Allure annotation in Core.
+    expected: BaseTestAPI registers the Core TestListener facade and keeps API runtime setup in @BeforeClass(alwaysRun=true). The facade delegates to the Extent-backed reporting listener when atf-reporting is present.
+    observed: The test verifies @Listeners(TestListener.class) and baseSetup() lifecycle metadata without a vendor-specific annotation in Core.
     repairHint: Keep the Core TestListener annotation and class-level baseSetup lifecycle; provide report implementations through atf-reporting.
   - id: core.contract-narrative.base-api-auth-readiness
     kind: contract
@@ -145,7 +145,7 @@ contracts:
     profile: EXTENT_CONTRACT
     area: REPORTING_ADAPTER
     capability: Reporting adapter contract
-    purpose: Validate Extent/Allure adapter behavior and artifact hygiene.
+    purpose: Validate Extent adapter behavior and artifact hygiene.
     reportHint: Repair adapter output, cleanup, or attachment serialization.
   - id: core.contract-narrative.extent-adapter-class
     kind: contract
@@ -165,9 +165,9 @@ contracts:
     kind: contract
     area: REPORTING_ADAPTER
     owner: framework.properties
-    expected: The default Extent HTML artifact is generated under target/reports, not under the Allure artifact folder.
+    expected: The default Extent HTML artifact is generated under target/reports.
     observed: The test reads atf-core/src/main/resources/framework.properties and checks the canonical reports.dir value.
-    repairHint: Keep reports.dir=target/reports for Extent. Allure results belong under the dedicated Allure result directory.
+    repairHint: Keep reports.dir=target/reports for the Extent HTML output.
   - id: core.contract-narrative.extent-adapter-fixture-sandbox
     kind: contract
     area: REPORTING_ADAPTER
@@ -271,8 +271,8 @@ contracts:
     area: WINDOW_CONFIG
     owner: UIWindowSizeResolver + SeleniumEngine + PlaywrightEngine + reporting adapters
     expected: Configured page zoom is normalized, applied in Selenium and Playwright headless mode, and published as auditable report metadata.
-    observed: The contract opens real Selenium and Playwright pages at configured zoom=60, expects resolved zoom=67, then inspects Extent and Allure artifacts.
-    repairHint: Expose configured/resolved zoom, engine, and headless mode through StepLogger so Extent and Allure carry the runtime contract.
+    observed: The contract opens real Selenium and Playwright pages at configured zoom=60, expects resolved zoom=67, then inspects Extent artifacts.
+    repairHint: Expose configured/resolved zoom, engine, and headless mode through StepLogger so Extent carries the runtime contract.
   - id: core.contract-narrative.ui-zoom-runtime-playwright-document
     kind: contract
     area: WINDOW_CONFIG
@@ -294,55 +294,6 @@ contracts:
     expected: Extent reports expose configured zoom, resolved zoom, UI engine, and headless mode as searchable runtime evidence.
     observed: The test generates local Extent reports for zoomed Selenium and Playwright headless flows and searches the produced HTML.
     repairHint: Publish zoom runtime metadata through StepLogger before or during UIEngine.open(...), then flush Extent.
-  - id: core.contract-narrative.ui-zoom-runtime-allure-metadata
-    kind: contract
-    area: REPORTING_ADAPTER
-    owner: AllureAdapter + UI runtime metadata
-    expected: Allure result JSON exposes configured zoom, resolved zoom, UI engine, and headless mode as searchable runtime evidence.
-    observed: The test generates a local Allure result for a zoomed Playwright headless flow and searches the produced JSON payloads.
-    repairHint: Publish zoom runtime metadata as StepLogger details so Allure step parameters carry the runtime contract.
-  - id: core.contract-narrative.allure-presentation-suite
-    kind: suite
-    profile: ALLURE_CONTRACT
-    area: REPORTING_ADAPTER
-    capability: Allure presentation contract
-    purpose: Validate that Allure remains readable when StepLogger publishes rich UI details.
-    reportHint: Repair AllureAdapter detail routing if UI details leak into top-level parameters.
-  - id: core.contract-narrative.allure-presentation-class
-    kind: contract
-    area: REPORTING_ADAPTER
-    owner: AllureAdapter
-    expected: Step details are nested under Allure steps, while the test-level parameter panel stays clean.
-    observed: The tests generate local Allure result JSON and inspect top-level parameters, step parameters, and test name.
-    repairHint: Do not publish StepLogger detail lines as test-level Allure parameters; keep them on the active step.
-  - id: core.contract-narrative.allure-presentation-no-root-parameters
-    kind: contract
-    area: REPORTING_ADAPTER
-    owner: AllureAdapter
-    expected: UI details such as locator/value/text are not promoted to top-level Allure test parameters.
-    observed: The generated Allure result is parsed and root.parameters is inspected.
-    repairHint: Remove test-level parameter publication from AllureAdapter.logDetail(...).
-  - id: core.contract-narrative.allure-presentation-clean-test-name
-    kind: contract
-    area: REPORTING_ADAPTER
-    owner: AllureAdapter
-    expected: The Allure test name remains short and readable; detailed evidence stays in collapsible steps.
-    observed: The generated Allure result is parsed for name and step-level parameters.
-    repairHint: Keep evidence in StepResult.parameters and attachments, not in the test list summary.
-  - id: core.contract-narrative.allure-presentation-contract-steps
-    kind: contract
-    area: REPORTING_ADAPTER
-    owner: AllureAdapter
-    expected: Contract diagnostics are visible as Allure steps, not only as TestNG parameters.
-    observed: The generated Allure result is parsed for Expected / Observed / Cold verdict step nodes.
-    repairHint: Route contract diagnostics through StepLogger.startStep/logDetail/pass so Allure users can inspect them in Execution.
-  - id: core.contract-narrative.allure-presentation-buffered-steps
-    kind: contract
-    area: REPORTING_ADAPTER
-    owner: AllureAdapter + AllureStepBuffer
-    expected: Steps logged before Allure exposes a current test case are buffered and then published as normal execution steps.
-    observed: The generated Allure result is parsed for a pre-case buffered step and its step-level parameter.
-    repairHint: Keep pre-case StepLogger events inside AllureStepBuffer and flush them when the Allure lifecycle becomes active.
   - id: core.contract-narrative.base-ui-runtime-suite
     kind: suite
     profile: UI_SUPPORT_CONTRACT
@@ -361,7 +312,7 @@ contracts:
     kind: contract
     area: UI_SUPPORT
     owner: BaseTestUI listener contract
-    expected: BaseTestUI registers the Core TestListener facade while atf-reporting owns reporting lifecycle behavior. Allure is discovered through its native TestNG service.
+    expected: BaseTestUI registers the Core TestListener facade while atf-reporting owns reporting lifecycle behavior. The Core facade delegates to the Extent-backed reporting listener.
     observed: The test verifies @Listeners(TestListener.class) and confirms that BaseTestUI does not directly orchestrate ReportingManager or StepLogger.
     repairHint: Keep @Listeners(TestListener.class) on BaseTestUI and provide concrete reporting through atf-reporting.
   - id: core.contract-narrative.base-ui-runtime-lifecycle
@@ -483,27 +434,6 @@ contracts:
     expected: Every resolver branch returns a complete semantic window configuration; the pedagogic read is default, custom, invalid fallback, controlled override.
     observed: The declarative support matrix exercises explicit size, fullscreen, invalid values, missing system size, and zoom normalization.
     repairHint: Repair the resolver branch named by the failing matrix case; do not special-case tests.
-  - id: core.contract-narrative.allure-results-cleanup-suite
-    kind: suite
-    profile: ALLURE_CONTRACT
-    area: REPORTING_ADAPTER
-    capability: Reporting adapter cleanup contract
-    purpose: Validate Extent/Allure adapter cleanup behavior and artifact hygiene.
-    reportHint: Repair adapter output, cleanup, or attachment serialization.
-  - id: core.contract-narrative.allure-results-cleanup-class
-    kind: contract
-    area: REPORTING_ADAPTER
-    owner: ReportingEngineCleanup
-    expected: Extent runs remove stale Allure results, while Allure runs preserve their own result directory.
-    observed: Each matrix row sets reporting.engine, runs shutdown cleanup, and inspects the configured Allure results directory.
-    repairHint: Check ReportingEngineCleanup engine branching and ReportingPaths.allureResultsDirectory().
-  - id: core.contract-narrative.allure-results-cleanup-engine-matrix
-    kind: contract
-    area: REPORTING_ADAPTER
-    owner: ReportingEngineCleanup
-    expected: Cleanup behavior follows the selected reporting engine, not stale folders left by previous runs.
-    observed: The cleanup matrix verifies the final existence state of the configured Allure results directory.
-    repairHint: If this fails, isolate Extent cleanup from Allure preservation and reset reporting.engine per test.
   - id: core.contract-narrative.expected-failure-style-suite
     kind: suite
     profile: CORE_CONTRACT
@@ -946,34 +876,6 @@ contracts:
     capability: 'Aggregate Extent test display'
     purpose: 'Keep aggregate report test details organized like the standard Extent runtime drill-down.'
     reportHint: 'Run when changing AggregateExtentReportWriter node layout or Extent collapse behavior.'
-  - id: core.contract-narrative.atf-core-aggregate-allure-contract-test-aggregate-allure-result-keeps-failed-cold-verdict-visible
-    kind: contract
-    area: REPORTING_ADAPTER
-    owner: 'AtfCoreAggregateReportListener'
-    expected: 'A failed aggregate case keeps the failed status and exposes a failed Cold framework verdict step.'
-    observed: 'The generated Allure TestResult is inspected for status, statusDetails, and verdict step state.'
-    repairHint: 'Keep failures visible in Allure while still publishing repair guidance.'
-  - id: core.contract-narrative.atf-core-aggregate-allure-contract-test-aggregate-allure-result-exposes-contract-diagnostics-as-steps
-    kind: contract
-    area: REPORTING_ADAPTER
-    owner: 'AtfCoreAggregateReportListener'
-    expected: 'A passed aggregate case has visible Expected framework contract, Observed framework result, and Cold framework verdict steps.'
-    observed: 'The generated Allure TestResult is inspected before it is written to disk.'
-    repairHint: 'Populate TestResult.steps with readable contract diagnostics.'
-  - id: core.contract-narrative.atf-core-aggregate-allure-contract-test-class
-    kind: contract
-    area: REPORTING_ADAPTER
-    owner: 'AtfCoreAggregateReportListener'
-    expected: 'Every aggregate Allure result publishes contract diagnostics as visible Execution steps.'
-    observed: 'The test builds synthetic aggregate cases and inspects the generated Allure TestResult model.'
-    repairHint: 'Do not hide expected/observed/verdict diagnostics only as top-level Allure parameters.'
-  - id: core.contract-narrative.atf-core-aggregate-allure-contract-test-suite
-    kind: suite
-    profile: ALLURE_CONTRACT
-    area: REPORTING_ADAPTER
-    capability: 'ATF core aggregate Allure contract'
-    purpose: 'Validate that the final aggregate Allure report remains readable, not just statistically green.'
-    reportHint: 'Repair AtfCoreAggregateReportListener so aggregate Allure nodes expose Expected, Observed, and Cold verdict steps.'
   - id: core.contract-narrative.atf-core-aggregate-extent-contract-test-class
     kind: contract
     area: REPORTING_ADAPTER
@@ -1282,34 +1184,6 @@ contracts:
     capability: 'Reporting lifecycle contract'
     purpose: 'Validate listener, StepLogger, and reporting lifecycle behavior.'
     reportHint: 'Repair listener lifecycle, StepLogger routing, or report-state cleanup.'
-  - id: core.contract-narrative.allure-screenshot-artifact-smoke-test-class
-    kind: contract
-    area: SCREENSHOT
-    owner: 'AllureAdapter + UiScreenshotFailureHandler'
-    expected: 'Allure receives exactly one final screenshot and one failure screenshot for simulated UI flows.'
-    observed: 'The smoke test writes Allure result artifacts and counts screenshot attachments by title and PNG files.'
-    repairHint: 'Ensure simulated UI flows mark UI interaction before listener success/failure callbacks.'
-  - id: core.contract-narrative.allure-screenshot-artifact-smoke-test-suite
-    kind: suite
-    profile: ALLURE_CONTRACT
-    area: SCREENSHOT
-    capability: 'Screenshot evidence contract'
-    purpose: 'Validate Allure screenshot evidence without requiring Extent visual-layout parity.'
-    reportHint: 'Repair screenshot policy, attachment routing, or reporting adapter publication.'
-  - id: core.contract-narrative.allure-ui-zoom-artifact-smoke-test-class
-    kind: contract
-    area: SCREENSHOT
-    owner: 'AllureAdapter + real UI engine'
-    expected: 'Allure screenshot artifacts reflect the configured browser zoom and remain real PNG evidence.'
-    observed: 'The smoke test runs a UI flow twice with different zoom values and compares the persisted PNG artifacts.'
-    repairHint: 'Ensure the UI flow marks interaction, captures final state, and writes PNG attachments to allure.results.directory.'
-  - id: core.contract-narrative.allure-ui-zoom-artifact-smoke-test-suite
-    kind: suite
-    profile: ALLURE_CONTRACT
-    area: SCREENSHOT
-    capability: 'Screenshot evidence contract'
-    purpose: 'Validate Allure screenshot evidence without requiring Extent visual-layout parity.'
-    reportHint: 'Repair screenshot policy, attachment routing, or reporting adapter publication.'
   - id: core.contract-narrative.extent-screenshot-artifact-smoke-test-class
     kind: contract
     area: SCREENSHOT
@@ -1366,20 +1240,6 @@ contracts:
     capability: 'Screenshot evidence contract'
     purpose: 'Validate real UI engine screenshot evidence under supported runtime policies.'
     reportHint: 'Repair screenshot policy, attachment routing, or reporting adapter publication.'
-  - id: core.contract-narrative.empty-payload-attachment-contract-test-class
-    kind: contract
-    area: REPORTING_ADAPTER
-    owner: 'AllureAdapter + ExtentAdapter'
-    expected: 'Empty code blocks and empty attachments are ignored so reports do not contain fake evidence.'
-    observed: 'The tests inspect Allure result files and Extent model children after empty payload logging.'
-    repairHint: 'Check adapter guards before publishing attachments, code blocks, and step payloads.'
-  - id: core.contract-narrative.empty-payload-attachment-contract-test-suite
-    kind: suite
-    profile: REPORTING_CONTRACT
-    area: REPORTING_ADAPTER
-    capability: 'Reporting adapter contract'
-    purpose: 'Validate Extent/Allure adapter behavior and artifact hygiene.'
-    reportHint: 'Repair adapter output, cleanup, or attachment serialization.'
   - id: core.contract-narrative.extent-spark-collapse-policy-component-test-class
     kind: contract
     area: REPORTING_ADAPTER

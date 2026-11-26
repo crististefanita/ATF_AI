@@ -18,14 +18,6 @@
       <artifactId>atf-core</artifactId>
     </dependency>
     <dependency>
-      <groupId>io.qameta.allure</groupId>
-      <artifactId>allure-java-commons</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.qameta.allure</groupId>
-      <artifactId>allure-testng</artifactId>
-    </dependency>
-    <dependency>
       <groupId>com.aventstack</groupId>
       <artifactId>extentreports</artifactId>
     </dependency>

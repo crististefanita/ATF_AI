@@ -15,17 +15,21 @@ de o sondă defectă. Octeții sursă identici și o publicare reușită dovedes
 declarată; nu dovedesc automat coerența comportamentului sau adevărul prozei.
 
 ```mermaid
-flowchart TB
-    Source["Surse existente și oracol real"] --> Case["Condiție, declanșator și observație așteptată"]
-    Case --> Walk["Calea orientată a cazului și fragmentele de oracol selectate"]
-    Walk --> Guard["Accesibilitate și invariante delimitate ale grafului"]
-    Guard --> Component["Dovadă generică de componentă a publicatorului"]
-    Component --> Reader["Un HTML complet pentru cititor, legat de surse"]
+flowchart LR
+    Source["Sursă și oracol"] --> Case["Condiție și traseu"]
+    Case --> Guard["Invariante de graf"]
+    Guard --> Component["Dovada publicării"]
+    Component --> Reader["Un HTML complet"]
 ```
+
+<details>
+<summary>Legendă: relații și limita dovezii</summary>
 
 Săgețile arată asamblarea dovezilor și verificările de întreținere. Nu introduc un
 flux nou de produs. Revizia umană rămâne responsabilă pentru a stabili dacă fiecare caz
 descrie implementarea și aserțiunea efective.
+
+</details>
 
 <a id="g-015"></a>
 <a id="g-015-reachable-outcomes-and-exact-caseoracle-bindings"></a>

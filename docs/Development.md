@@ -43,19 +43,22 @@ este o notație portabilă de proveniență, nu o cale PowerShell literală.
 ## Fluxul punctelor de control
 
 ```mermaid
-flowchart TB
-    Inspect["Inspectează și atribuie responsabilul"] --> Edit["Modifică checkout-ul de dezvoltare"]
-    Edit --> Stage["Creează instantaneul sursei"]
-    Stage --> Validate["Verificări și inspecția artefactelor"]
-    Validate --> Commit["Înregistrează punctul verificat"]
-    Commit --> Sync["Reverifică și sincronizează"]
-    Validate -. eșec .-> Edit
-    Sync -. divergență concurentă .-> Stage
+flowchart LR
+    Edit["Inspectați și editați"] --> Stage["Fixați sursa"]
+    Stage --> Verify["Verificări și revizie"]
+    Verify --> Sync["Commit și sincronizare"]
+    Verify -. eșec .-> Edit
+    Sync -. divergență .-> Stage
 ```
+
+<details>
+<summary>Legendă: relații și limita dovezii</summary>
 
 Săgețile arată succesiunea punctelor de control. Revenirea punctată necesită corecție
 sau reconciliere și validare repetată; sincronizarea urmează revizuirii sursei și
 confirmării unei stări live compatibile.
+
+</details>
 
 1. Inspectează bazele Git și modificările în așteptare din dezvoltare și live.
    Consemnează lacuna observată și un criteriu de acceptanță verificabil în

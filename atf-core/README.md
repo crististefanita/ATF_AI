@@ -4,7 +4,7 @@
 ## Prezentare generală
 
 Core oferă contracte reutilizabile de execuție UI și API fără dependențe de SDK-urile
-Selenium, Playwright, Extent sau Allure. Coordonatele sunt
+Selenium, Playwright, Extent. Coordonatele sunt
 `com.ai:atf-core:1.0.0`; compilarea Java 11 este moștenită de la
 [atf-parent](../pom.xml).
 
@@ -29,12 +29,12 @@ Core; paginile produsului, serviciile, fluxurile și aserțiunile de afaceri apa
 <a id="dependencies-and-extension"></a>
 ## Dependențe și extensie
 
-Core nu depinde de alt modul ATF. Consumatorii adaugă un adaptor de browser
-pentru execuție UI și atf-reporting pentru publicare Extent/Allure.
-Java ServiceLoader descoperă implementările UiEngineProvider și ReportingBackend.
-Semnăturile publice Core rămân independente de tipurile SDK-urilor furnizorilor.
-Fațada neutră de compatibilitate [TestListener](src/main/java/com/ai/core/reporting/listener/TestListener.java)
-transmite evenimentele de ciclu de viață către implementarea selectată.
+Core nu depinde de alt modul ATF.
+
+- Consumatorii adaugă un adaptor de browser pentru execuție UI și atf-reporting pentru publicare Extent.
+- Java ServiceLoader descoperă implementările UiEngineProvider și ReportingBackend.
+- Semnăturile publice Core rămân independente de tipurile SDK-urilor furnizorilor.
+- Fațada neutră de compatibilitate [TestListener](src/main/java/com/ai/core/reporting/listener/TestListener.java) transmite evenimentele de ciclu de viață către implementarea selectată.
 
 Consultă [Arhitectură](../docs/Architecture.md) pentru compoziția furnizorilor și
 secvența de execuție.
@@ -43,11 +43,10 @@ secvența de execuție.
 ## Configurație
 
 [framework.properties](src/main/resources/framework.properties) furnizează valorile implicite.
-Proprietățile JVM suprascriu chei individuale; `framework.properties` poate selecta
-un fișier explicit. Printre valorile implicite importante se numără `ui.engine=playwright`,
-`ui.headless=true`, `ui.wait.timeout.seconds=20`,
-`api.wait.timeout.seconds=10` și `reporting.engine=extent`.
-Implementările de browser și raportare sunt furnizate de modulele lor.
+
+- Proprietățile JVM suprascriu chei individuale; `framework.properties` poate selecta un fișier explicit.
+- Printre valorile implicite importante se numără `ui.engine=playwright`, `ui.headless=true`, `ui.wait.timeout.seconds=20`, `api.wait.timeout.seconds=10` și `reporting.engine=extent`.
+- Implementările de browser și raportare sunt furnizate de modulele lor.
 
 <a id="validated-ui-configuration-and-cleanup"></a>
 ## Configurație UI validată și curățare
@@ -64,26 +63,31 @@ fallback-ul vechi pentru așteptare își păstrează precedența existentă.
 | Motor | `playwright`, `selenium` sau aliasul vechi `default` | Normalizează cu `Locale.ROOT` și respinge numele necunoscute înaintea achiziției |
 | Așteptare veche | `explicit.wait.seconds` când lipsește `ui.wait.timeout.seconds` | Aplică același interval și numește cheia selectată în diagnostic |
 
-Limita pentru booleeni acoperă headless, detaliile consolei, metadatele runtime și
-cele trei opțiuni de captură. Tratarea capturilor reutilizează același cititor.
-WaitUtils reutilizează cititorul validat de secunde; suprasarcinile cu Duration
-explicit își păstrează contractul separat. Normalizarea acceptată a zoom-ului rămâne neschimbată.
+Limita pentru booleeni acoperă headless, detaliile consolei, metadatele runtime și cele trei opțiuni de captură.
+
+- Tratarea capturilor reutilizează același cititor.
+- WaitUtils reutilizează cititorul validat de secunde; suprasarcinile cu Duration explicit își păstrează contractul separat.
+- Normalizarea acceptată a zoom-ului rămâne neschimbată.
 
 ```mermaid
-flowchart TB
-    Config["Rezolvarea și validarea opțiunilor UI"] --> Acquire["Achiziția resurselor furnizorului"]
-    Acquire --> Ready["Folosirea sesiunii deținute"]
-    Acquire -->|eșec| Rollback["Eliberarea în ordine inversă a resurselor achiziționate"]
-    Ready --> Close["Închiderea sesiunii deținute"]
-    Close --> Clear["Curățarea stării independente în finally"]
-    Rollback --> Cause["Păstrarea cauzei primare și a cauzelor distincte de curățare"]
-    Clear --> Cause
+flowchart LR
+    Config["Validați opțiunile"] --> Acquire["Dobândiți sesiunea"]
+    Acquire --> Ready["Folosiți sesiunea"]
+    Acquire -->|eșec| Rollback["Eliberați părțile dobândite"]
+    Ready --> Close["Închideți și curățați"]
+    Rollback --> Cause["Păstrați cauza originală"]
+    Close --> Cause
 ```
+
+<details>
+<summary>Legendă: relații și limita dovezii</summary>
 
 Săgețile descriu responsabilitatea lifecycle-ului. Validarea precede alocarea.
 Rollback-ul eliberează numai resursele achiziționate; închiderea la nivel de clasă
 curăță starea interacțiunilor chiar dacă motorul aruncă o excepție. Excepția
 originală rămâne primară, iar eșecurile distincte de curățare rămân dovezi suprimate.
+
+</details>
 
 [Contractele existente pentru opțiuni UI](../atf-tests/src/test/java/com/ai/atf/ui/component/UiEngineRuntimeOptionsContractTest.java),
 [așteptare](../atf-tests/src/test/java/com/ai/atf/ui/component/WaitUtilsContractTest.java)
