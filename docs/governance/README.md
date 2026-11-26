@@ -43,7 +43,7 @@ and scoped closure evidence.
 | Owner | Current guard surface | What its result establishes |
 |---|---|---|
 | Architecture | [Architecture rules](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureRules.java) and [existing fixtures](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureGovernanceTest.java) | Module/provider boundaries, source visibility and supported execution-ownership rules |
-| Documentation | [Markdown rules](../../atf-tests/src/test/java/com/ai/atf/governance/MarkdownDocumentationRules.java) and [existing fixtures](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationGovernanceTest.java) | Links, declared build/default facts, lifecycle, paired architecture and compilable consumer examples |
+| Documentation | [Markdown rules](../../atf-tests/src/test/java/com/ai/atf/governance/MarkdownDocumentationRules.java) and [existing fixtures](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationGovernanceTest.java) | Links, build/default facts, root diagram placement, README routes and table density, paired architecture and adapter examples |
 | Readability | [Reader-oriented rules and component cases](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationReadabilityRulesTest.java) | Strategy paragraph decisions, bounded reference prose and closed Maven recipes |
 | Edition review | [Translation controls](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationTranslationRules.java) | Supported Romanian signals, unchanged English blocks and complete review-digest freshness |
 | Source inspection | [Java scanner fixtures](../../atf-tests/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java) | Supported lexical regions, English known-marker policy and exact data exceptions |
@@ -79,7 +79,11 @@ runtime behavior. Follow the [review procedure](Code_And_Documentation_Policy.md
 and [edition contract](Readme_Editions.md) before synchronization.
 
 The supported style checks apply to all maintained Markdown. README-only rules
-still own module orientation and consumer examples. Literal code stays English
-in both editions, and historical observations retain their captured source and
-selection. The [failure guide](Failure_Diagnostics.md) explains the emitted
-location, rule, repair hint, owner and recheck command.
+keep the root focused on module/runtime orientation, require separate
+dependency and execution diagrams, and route detailed consumer examples to
+their Playwright/Selenium owners. Module and package READMEs own
+their specific contracts and local verification. Table-cell limits flag dense
+prose for restructuring; they do not replace review at the rendered width.
+Literal code stays English in both editions, and historical observations retain
+their captured source and selection. The [failure guide](Failure_Diagnostics.md)
+explains the emitted location, rule, repair hint, owner and recheck command.

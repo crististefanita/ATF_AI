@@ -57,20 +57,20 @@ Retained baseline component scores:
 | G-005 | 85 / 80 / 75 | 70 / 40 / 55 | Runtime roots are resolved dynamically, but authored instructions contain machine-specific paths |
 | D-001 | 65 / 40 / 50 | 90 / 80 / 65 | Existing API examples compile; navigation, diagram legends and review guidance need refinement |
 | T-004 | 75 / 60 / 70 | 85 / 65 / 60 | Whole-method timeouts can mask assertions while waiting for browser-process cleanup |
-| G-012 | 95 / 90 / 90 | 65 / 55 / 60 | Matching source hashes admitted an unrelated executed testcase; optional receipt and local graph associations were incomplete |
+| G-012 | 95 / 90 / 90 | 65 / 55 / 60 | Source hashes accepted an unrelated test; receipt and graph associations were missing |
 | G-013 | 90 / 85 / 85 | 65 / 55 / 60 | Indexed files and a narrow flow set lacked a structured owner/facet review declaration |
 | D-006 | 90 / 80 / 85 | 65 / 60 / 55 | Existing complete HTML delivery still explained only selected AI/J1 behavior |
 | A-001 | 85 / 75 / 80 | 60 / 45 / 50 | Requested project/Atlas axes lacked a shared evidence-bound assessment record |
-| G-014 | 85 / 85 / 80 | 65 / 50 / 90 | The captured dirty J1 tree lacks eligible controls for two governance test changes; the existing guard correctly fails |
-| G-015 | 95 / 90 / 90 | 65 / 55 / 65 | Valid endpoint identities admitted reversed outcome paths, orphan observations and an implementation-only oracle alias |
-| D-007 | 90 / 80 / 85 | 65 / 55 / 55 | Source-backed negative claims did not have explicit behavior case paths or selected assertion witnesses |
-| A-002 | 85 / 80 / 85 | 70 / 55 / 70 | Existing structural tests needed traversal mutations and generic publisher component proof beyond field presence |
-| F-011 | 85 / 80 / 75 | 70 / 40 / 85 | Source ordering may skip interaction-tracker cleanup on engine quit failure; no component execution establishes a runtime leak |
+| G-014 | 85 / 85 / 80 | 65 / 50 / 90 | Dirty J1 lacks eligible controls for two governance test changes; its guard correctly fails |
+| G-015 | 95 / 90 / 90 | 65 / 55 / 65 | Valid endpoints admitted reversed outcomes, orphan observations and an implementation-only oracle |
+| D-007 | 90 / 80 / 85 | 65 / 55 / 55 | Source-backed negative claims lacked explicit behavior paths and selected assertion witnesses |
+| A-002 | 85 / 80 / 85 | 70 / 55 / 70 | Structural checks lacked traversal mutations and publisher proof beyond field presence |
+| F-011 | 85 / 80 / 75 | 70 / 40 / 85 | Source order may skip tracker cleanup after engine-quit failure; runtime leak not demonstrated |
 | F-012 | 90 / 85 / 80 | 75 / 60 / 75 | Malformed UI booleans and unbounded configured waits; duplicated parsing |
 | F-013 | 85 / 80 / 75 | 65 / 50 / 80 | Partial startup lacks rollback and nested close failures may mask the first cause |
-| D-008 | 90 / 90 / 90 | 60 / 45 / 70 | Live holds 44 report collections and 14 Atlas captures without a bounded current selection or publication-layout guard |
-| R-001 | 90 / 90 / 90 | 60 / 40 / 65 | Retained product methods lack selected native per-engine evidence; registration validation and sensitive typing details need explicit audit controls |
-| D-009 | 90 / 80 / 80 | 85 / 65 / 80 | Supported structure is not enforced across all Markdown; inline code/numeric parity counterexamples and semantic qualifier drift need owned controls |
+| D-008 | 90 / 90 / 90 | 60 / 45 / 70 | Live has 44 report and 14 Atlas captures without a bounded selection or layout guard |
+| R-001 | 90 / 90 / 90 | 60 / 40 / 65 | Retained UI methods lack per-engine native proof; registration and sensitive-input audits need controls |
+| D-009 | 90 / 80 / 80 | 85 / 65 / 80 | Markdown structure, code/numeric parity and meaning drift lacked owned controls |
 
 Historical evidence locators use `${ATF_WORK_ROOT}/...`, with the external
 workspace selected as described in [Development](../Development.md).
@@ -86,10 +86,10 @@ normalizing their presentation does not claim a fresh execution.
 | F-012 | Shared strict UI configuration and wait boundaries; delivered quality 94 (95/93/94) | Positive/negative component contracts and complete paired acceptance; [evidence](Code_And_Documentation_Maturity.md#f-012) |
 | F-013 | Partial acquisition rolls back without masking the original cause; delivered quality 93 (94/92/93) | Existing Playwright 16 and Selenium 12 provider cases; [evidence](Code_And_Documentation_Maturity.md#f-013) |
 | D-011 | Atlas semantic blocks, adjacent legends, bounded columns and native table balance; delivered quality 93 (94/92/92) | 203/203 Node per edition, EN 315/315 and RO 315/315 existing governance; [evidence and limits](Atlas_Depth_And_Assessment.md#d-011) |
-| G-017 | Source-disabled maintained tests are rejected and the existing console worker is bounded; delivered quality 93 (94/92/92) | Final local-02 EN/RO 690/690 and 690/690; original failed attempt retained; [evidence](Code_And_Documentation_Maturity.md#g-017) |
+| G-017 | Disabled selected tests and an unbounded console worker are now rejected; quality 93 (94/92/92) | Final local-02 EN/RO 690/690 and 690/690; original failed attempt retained; [evidence](Code_And_Documentation_Maturity.md#g-017) |
 | D-010 | Strategy, closed command recipes and all 51 document reviews are governed; delivered quality 92 (94/90/92) | Paired native controls, 182 captured Node cases per edition and 32 desktop records/56 SVG/98 captures; [evidence and limits](Code_And_Documentation_Maturity.md#d-010) |
-| D-009 | All maintained Markdown has structural/editorial guards; README technical facts and complete Romanian meaning receive distinct checks and review | 250 governance cases per edition, 182 Node cases, semantic review of all 21 README pairs and inspected changed diagrams; [evidence](Documentation_And_Translation_Review.md#d-009) |
-| R-001 | Living principles, semantic expected/actual validation, bounded credential masking and native evidence for the same retained methods | Playwright 16/16 and Selenium 16/16 PASS; EN/RO local selections and 181 Node cases passed; original failed attempts preserved; [evidence](Retained_UI_Auditability.md#r-001) |
+| D-009 | All Markdown has structural/editorial guards; README facts and Romanian meaning are checked separately | 250 governance cases per edition, 182 Node cases, semantic review of all 21 README pairs and inspected changed diagrams; [evidence](Documentation_And_Translation_Review.md#d-009) |
+| R-001 | Living principles, expected/actual checks, credential masking and native proof for the same retained methods | Playwright/Selenium 16/16 each; paired EN/RO runs and 181 Node cases; failed attempts preserved; [evidence](Retained_UI_Auditability.md#r-001) |
 | F-002 | Startup uses maintained suites and explicit runtime configuration | 304 local cases; aggregate profile produced Extent and Allure artifacts |
 | F-003 | Retired generation/audit code, prompts and historical reports are removed from main | 100 browser cases; source and packaged JAR contain no retired components |
 | F-006 | Retained regressions call current helpers and use maintained suite paths | 304 local cases and 11 Allure cases passed |
@@ -106,15 +106,15 @@ normalizing their presentation does not claim a fresh execution.
 | T-003 | Input-value success regression keeps its exact two-read oracle with a usable scheduling budget | 474 local and 474 aggregate checks passed after the fixture-only correction; [evidence](Governance_Contracts.md#t-003) |
 | F-008 | The selected Selenium/Chrome/driver matrix uses exact typed CDP v158 and the configured executable through Manager | 120 browser/native checks passed, including 2 positive and 4 negative real response probes; [evidence](Browser_Compatibility_And_Portability.md#f-008) |
 | G-005 | Project guidance and bounded source/configuration guards support relocatable paths and explicit runtime roots | Relocated local and aggregate selections each passed 514 checks; [evidence](Browser_Compatibility_And_Portability.md#g-005) |
-| D-001 | Reader-question navigation, canonical review guidance and legible README diagrams preserve the public examples | 5 actual Mermaid diagrams inspected at desktop/mobile widths; 3 unchanged Java examples compiled by governance; [evidence](Browser_Compatibility_And_Portability.md#d-001) |
+| D-001 | Root routes API/UI readers to owner guides; module ownership and diagrams stay distinct | Two root diagram positions, routes and table density are governed; both adapter examples compile; [evidence](Browser_Compatibility_And_Portability.md#d-001) |
 | T-004 | Network matching keeps its own deadlines while the fixture separately bounds setup and cleanup | All 6 bodies and cleanups completed in the accepted 120-check browser run; [evidence](Browser_Compatibility_And_Portability.md#t-004) |
-| G-006 | Semantic README structure, declared English/Romanian editions and exact cross-edition source/contract parity are governed | Both editions passed 526 local checks, including 187 governance cases; 18 README pairs and rendered diagrams reviewed; [evidence](Maturity_And_Readme_Editions.md#g-006--readme-governance-and-romanian-edition) |
+| G-006 | README structure, EN/RO edition parity and technical facts are governed | Both editions passed 526 local checks, including 187 governance cases; 18 README pairs and rendered diagrams reviewed; [evidence](Maturity_And_Readme_Editions.md#g-006--readme-governance-and-romanian-edition) |
 | G-007 | Explicit Java imports preserve existing implementations | 17 identical implementation trees; normal/static wildcard controls and complete accepted selections; [evidence](Code_Stability_And_Artifacts.md#g-007--explicit-java-import-ownership) |
 | T-005 | Existing worker-limit regression uses bounded rendezvous and actual results | 20 consecutive invocations and local/aggregate selections passed; [evidence](Code_Stability_And_Artifacts.md#t-005--deterministic-worker-limit-regression) |
 | D-003 | Governed artifact documentation, classified archives and reusable Atlas intake | 8 filesystem/CLI checks; archived and rehashed reports; 21 README translations and applied Atlas example; [evidence](Code_Stability_And_Artifacts.md#d-003--governed-artifacts-and-reusable-atlas-intake) |
 | G-008 | Constructive failures retain original evidence, ownership and verifiable repair guidance | 550 passed in each edition, including 211 governance cases; owner routes and recheck selections resolve; [evidence](Actionable_Governance_Diagnostics.md#g-008--constructive-governance-failures) |
 | T-006 | Negative controls distinguish emitted rule identity from prefixes and payload mentions | 17 focused invocations and both complete selections passed; [evidence](Actionable_Governance_Diagnostics.md#t-006--exact-rule-identity-in-negative-governance-fixtures) |
-| G-016 | Existing class governance now protects reviewed TestNG method identities, with actionable removal/addition findings; delivered quality 94 (95/94/94) | Focused owner 114/114, paired local reactors 742/742, Node 203/203 per edition; [evidence and limits](Code_And_Documentation_Maturity.md#g-016) |
+| G-016 | Test method identities have reviewed removal/addition diagnostics; quality 94 (95/94/94) | Focused owner 114/114, paired local reactors 742/742, Node 203/203 per edition; [evidence and limits](Code_And_Documentation_Maturity.md#g-016) |
 | D-005 | One complete reader HTML per project embeds dedicated CSS, behavior, source and evidence | 66 maintenance checks and isolated offline rendering for AI/J1 at two desktop widths with ten sections; [evidence](Atlas_Complete_Report.md#d-005--one-complete-understanding-artifact-per-target) |
 | G-010 | Complete report governance retains identity, outcomes, isolation and constructive repair routes | Deep-bundle, oracle, JSON, library-boundary and deliberate presentation controls passed; [evidence](Atlas_Complete_Report.md#g-010--constructive-governance-for-the-complete-atlas-contract) |
 | K-001 | Local cited retrieval preserves every mandatory requirement and the selected target scope | 14 records, 12 mandatory policies, 12 knowledge checks and three verified archived Git blobs; [evidence](Atlas_Complete_Report.md#k-001--cited-knowledge-retrieval-with-mandatory-policy) |

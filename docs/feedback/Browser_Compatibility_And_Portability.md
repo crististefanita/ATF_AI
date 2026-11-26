@@ -163,7 +163,7 @@ Primary references supporting the selected matrix and setup:
 - Acceptance: documentation/source governance passes; links and mandatory
   sections/examples resolve; diagrams are rendered and checked for legibility.
   README content matches the five-module reactor and documentation-only Atlas.
-- Delivered: the root and owner indexes route readers by question; code/docs
+- Original closure evidence: the root and owner indexes routed readers by question; code/docs
   review has one canonical policy. The three complete Java examples are unchanged
   and compile through existing documentation governance. Actual Mermaid 11.4.1
   rendered all five README diagrams at 1440 and 520 px; the minimum rendered label
@@ -177,6 +177,19 @@ Primary references supporting the selected matrix and setup:
 - Status: VERIFIED by the accepted governance-containing runs and actual visual
   inspection. The local responsive viewer does not prove every Markdown host's
   rendering; finite language markers still require human English review.
+
+Follow-up review: the root now explains API/UI routes as a framework map,
+keeps the five-module summary to two columns, and sends provider examples to the
+Playwright/Selenium owner guides. Governance requires the dependency map and
+API/UI execution diagram in their respective sections, and negative fixtures
+cover missing routes, misplaced examples, missing diagrams, dense table cells
+and misaligned rows. Both existing adapter examples remain compile-checked.
+Verification on 2026-11-26: the documentation/readability selection passed
+176/176 in each edition with explicit peer roots; the reviewed test-method
+inventory check passed 1/1 in both. No product E2E, browser profile or emulator
+was run. The 140-character/22-word limit is a triage signal; the changed root
+tables were not re-rendered, and deterministic checks do not replace review in
+the target Markdown host.
 
 <a id="t-004"></a>
 ## T-004: Bound browser fixture lifetime separately from network matching

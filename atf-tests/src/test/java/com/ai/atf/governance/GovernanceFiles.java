@@ -301,6 +301,14 @@ final class GovernanceFiles {
                 "Markdown structure or a diagram no longer explains the owned contract in its supported form.",
                 "Repair the reported fence/section/disclosure, diagram declaration or adjacent legend, then render the affected diagram and preserve its actual responsibilities.",
                 "docs/governance/Failure_Diagnostics.md#documentation-and-rendering", documentation);
+        help(result, "DOC-TABLE-LONG-CELL DOC-TABLE-SHAPE",
+                "A README table cell is too dense for scanning or a row no longer matches its declared columns.",
+                "Keep explanatory cells within 140 visible characters and 22 words, move detail into nearby prose or a linked owner, and recheck the rendered table; align every row with its header.",
+                policy + "#reader-orientation-and-diagrams", documentation);
+        help(result, "DOC-README-DIAGRAM DOC-README-MODULE-TABLE DOC-README-ROUTE DOC-README-EXAMPLE-PLACEMENT",
+                "The root README no longer serves as a compact map to module owners, consumer routes and detailed guides.",
+                "Restore the two-column five-module map, dependency diagram under the design section and API/UI flow under check execution; restore required reader routes and section anchors, and keep compilable examples in the Playwright/Selenium owner guides.",
+                "README.md#the-design-in-one-view", documentation);
         help(result, "DOC-TITLE DOC-HEADING DOC-FENCE DOC-FENCE-LANGUAGE DOC-README-DETAILS DOC-README-STYLE DOC-EDITORIAL",
                 "Maintained Markdown has invalid structure, presentation markup or unresolved editorial artifacts.",
                 "Keep one H1, descend one heading level at a time, label fenced examples, balance details/summary and repair the actual prose or diagram label; literal code remains data. Recheck the affected document and review its rendering and translation meaning.",

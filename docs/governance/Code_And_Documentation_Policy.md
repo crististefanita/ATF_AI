@@ -184,6 +184,15 @@ produces, how it is verified and where the reader should continue. Use a short
 question-to-owner table when several entry points are useful. The root explains
 composition; module and package guides explain their own contracts.
 
+The root README is the framework's route map: explain the separation between
+contracts, providers, reporting and verification; summarize the five Maven
+modules; show how API and UI checks enter the framework; then route the reader
+to the owner guide. Keep its module summary to two columns. Put compilable
+Playwright/Selenium consumer examples in their adapter READMEs, where provider
+configuration and setup are visible beside the example.
+Place the dependency map under the design section and the API/UI execution map
+under the check-run section; governance verifies both diagram locations.
+
 Use one diagram for one question: dependency direction, runtime flow or lifecycle
 order. Prefer compact left-to-right flowcharts for new relationship maps; switch
 to a vertical layout when labels would become unreadable at a narrow viewport.
@@ -194,6 +203,14 @@ Diagrams explain the POM or implementation; they do not replace either source.
 Use semantic Markdown headings, minimal tables, typed code fences and concise
 labels. Place secondary detail in its owner guide or a named `<details>` block.
 Keep renderer styling out of Markdown rather than embedding local fonts or CSS.
+
+Requirement DOC-TABLE-001: each prose cell in a maintained README table MUST
+stay within 140 visible characters and 22 words. Keep tables for short mappings
+and comparisons; move explanations to nearby prose or a linked owner, and split
+a table when its rows answer different questions. The bound is a deterministic
+review prompt, not a rendering or readability guarantee. Inspect each changed
+table at its actual rendered width. Preserve distinct fields such as Priority
+and Quality even when a compact layout requires more deliberate wording.
 
 Requirement DOC-REVIEW-001: every maintained Markdown document MUST have one H1,
 begin its heading hierarchy at H1 and descend by at most one level at a time.
@@ -255,9 +272,10 @@ Literal examples are examples, not evidence that a behavior exists.
 Executable Maven examples use selections that resolve against their actual
 POM/reactor. Configuration blocks explicitly marked `properties defaults`
 describe checked source defaults; override examples do not claim to be defaults.
-Complete public consumer examples marked `java compile` in the root and browser
-adapter READMEs compile against the current public API with Java 11 and annotation
-processing disabled. Ordinary partial/literal examples are not executed as tests.
+Complete public consumer examples marked `java compile` in the browser adapter
+READMEs compile against the current public API with Java 11 and annotation
+processing disabled. The root README routes readers to those provider examples;
+ordinary partial/literal examples are not executed as tests.
 
 ### Contracts, gaps and execution evidence
 

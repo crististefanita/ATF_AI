@@ -1,106 +1,70 @@
 # ATF — UI and API test automation
 
-Java framework for UI and REST API testing, organized as five Maven modules.
-The parent is `com.ai:atf-parent:1.0.0`; libraries target Java 11.
+ATF runs REST API and browser UI tests in Java. Five Maven modules separate shared contracts, browser adapters, reporting, and verification. The parent is `com.ai:atf-parent:1.0.0`; compiled libraries target Java 11.
 
-## At a glance
+## The design in one view
 
-| Module | Owns | Reader's question |
-|---|---|---|
-| [atf-core](atf-core/README.md) | Neutral UI/API contracts, configuration, lifecycle, steps and reporting SPI | What can a consumer reuse without vendor SDKs? |
-| [atf-playwright](atf-playwright/README.md) | Playwright provider and browser implementation | How does the shared UI contract run through Playwright? |
-| [atf-selenium](atf-selenium/README.md) | Selenium provider and browser implementation | How does the shared UI contract run through Selenium? |
-| [atf-reporting](atf-reporting/README.md) | TestNG reporting lifecycle, Extent, Allure and aggregate publication | How are outcomes and attachments published? |
-| [atf-tests](atf-tests/README.md) | Governance, regressions, product support and opt-in application journeys | What verifies the framework and its boundaries? |
+A consumer test states what it observes. Core owns shared API/UI contracts and lifecycle. Browser adapters implement the UI contract; reporting is optional. Repository tests protect these boundaries.
+
+| Module | Responsibility |
+|---|---|
+| [atf-core](atf-core/README.md) | Neutral API/UI contracts, configuration, lifecycle and reporting SPI |
+| [atf-playwright](atf-playwright/README.md) | Playwright implementation of the UI contract |
+| [atf-selenium](atf-selenium/README.md) | Selenium implementation of the UI contract |
+| [atf-reporting](atf-reporting/README.md) | TestNG reporting adapters and aggregate publication |
+| [atf-tests](atf-tests/README.md) | Existing framework regressions, governance and selected product checks |
 
 ```mermaid
 flowchart LR
-    Tests["atf-tests"] -. test use .-> Core["atf-core"]
-    Tests -. test use .-> PW["atf-playwright"]
-    Tests -. test use .-> SE["atf-selenium"]
-    Tests -. test use .-> Reports["atf-reporting"]
-    PW --> Core
-    SE --> Core
-    Reports --> Core
+    PW["atf-playwright"] --> Core["atf-core"]
+    SE["atf-selenium"] --> Core
+    Reporting["atf-reporting"] --> Core
+    Tests["atf-tests"] -. verifies .-> Core
+    Tests -. verifies .-> PW
+    Tests -. verifies .-> SE
+    Tests -. verifies .-> Reporting
 ```
 
-Solid arrows mean library dependency; dotted arrows mean test-scoped use.
-Core exposes no Selenium, Playwright, Extent or Allure SDK types.
-The [architecture guide](docs/Architecture.md) owns the dependency and source
-boundaries; module READMEs own their public entry points and local checks.
+Solid arrows mark library dependencies; dotted arrows mark test verification. Core exposes no Playwright, Selenium or reporting SDK types. [Atlas](atf-atlas/README.md) is documentation-only, outside Maven, and maps source to tests and their evidence limits.
 
-The separate [atf-atlas](atf-atlas/README.md) documentation area maps existing
-capabilities, contracts, tests and proof boundaries. It is outside the Maven
-reactor and introduces no runtime implementation.
+## How a check runs
 
-## Execution architecture
-
-[BaseTestUI](atf-core/src/main/java/com/ai/ui/core/runtime/BaseTestUI.java)
-owns class-scoped setup/teardown through the thread-owned DriverManager.
-[UIEngineFactory](atf-core/src/main/java/com/ai/ui/core/engine/UIEngineFactory.java)
-loads typed options and selects an installed
-[UiEngineProvider](atf-core/src/main/java/com/ai/ui/core/engine/UiEngineProvider.java).
-Application tests use the same
-[UIActions](atf-core/src/main/java/com/ai/ui/support/actions/UIActions.java)
-surface with either adapter.
+Choose REST API when no browser is needed. Choose UI when checks use a browser provider through Core's shared actions. Reporting can publish TestNG lifecycle evidence through an optional backend.
 
 ```mermaid
 flowchart TB
-    Test["Consumer test"] --> Core["Core lifecycle and UIActions"]
-    Core --> Engine["UIEngine provider"]
-    Engine --> Browser["Browser session"]
-    Core -. steps and outcomes .-> Reports["Optional reporting"]
+    Runner["TestNG"] --> Test["Consumer test"]
+    Test --> Route{"Contract"}
+    Route -->|"REST API"| Api["BaseTestAPI"]
+    Api --> Client["ApiClient / ApiActions"]
+    Client --> Service["Target REST API"]
+    Route -->|"Browser UI"| Ui["BaseTestUI + UIActions"]
+    Ui --> Factory["UIEngineFactory"]
+    Factory -->|"ui.engine=playwright"| Playwright["Playwright provider"]
+    Factory -->|"ui.engine=selenium"| Selenium["Selenium provider"]
+    Playwright --> Browser["Owned browser session"]
+    Selenium --> Browser
+    Runner -. lifecycle callbacks .-> Listener["Core TestListener"]
+    Listener -. optional SPI backend .-> Reporting["atf-reporting"]
 ```
 
-Solid arrows show UI execution; the factory selects the provider through Java
-SPI. The dotted arrow shows reporting through Core's neutral facades and TestNG
-listener. API-only
-tests use [BaseTestAPI](atf-core/src/main/java/com/ai/api/core/BaseTestAPI.java)
-without a UI session. The dependency map above and this runtime flow answer
-different questions.
+Solid arrows show the active contract path. Dotted arrows show optional TestNG lifecycle reporting. The API path has no browser session; the UI provider is selected before setup. Product pages and assertions stay with the consumer. [Architecture](docs/Architecture.md) explains the contracts in depth.
+
+## How to choose a consumer route
+
+- **REST API:** add `atf-core`; the API base and client do not require a browser provider.
+- **Browser UI:** add one adapter and set `ui.engine` before TestNG setup. Use the concrete [Playwright](atf-playwright/README.md#consumer-example) or [Selenium](atf-selenium/README.md#consumer-example) example.
+- **Extent or Allure reports:** add `atf-reporting` when the consumer needs those publication formats.
+
+The consumer examples live with their provider guides. This root page stays focused on framework composition and the reader's next decision.
+
+<a id="start"></a>
+## Build and verify
+
+Use JDK 17+ and Maven; output targets Java 11. Prepare an isolated validation copy with [Development](docs/Development.md), then run from its reactor root.
 
 <details>
-<summary>UI session and reporting lifecycle</summary>
-
-```mermaid
-sequenceDiagram
-    %%{init: {"sequence":{"width":80,"actorMargin":16,"messageMargin":22,"diagramMarginX":8,"diagramMarginY":8,"wrap":true,"mirrorActors":false}}}%%
-    participant Runner as TestNG
-    participant Test as Test
-    participant Session as UI session
-    participant Reporting as Reports
-    Runner->>Reporting: Suite start
-    Runner->>Session: BeforeClass setup
-    Runner->>Test: Invoke test
-    Test->>Session: UIActions
-    Session-->>Test: Observed state
-    Runner->>Reporting: Test outcome
-    Runner->>Session: AfterClass teardown
-    Runner->>Reporting: Suite finish and flush
-```
-
-The diagram shows responsibility boundaries, not the complete TestNG callback
-order. UI session combines BaseTestUI/DriverManager, the selected engine and its
-browser: BeforeClass creates that owned session and AfterClass quits it. The
-factory/provider and browser boundaries are detailed in
-[Architecture](docs/Architecture.md#provider-composition). Reports means the Core
-listener and optional backend; Core can operate without a reporting implementation.
-
-</details>
-
-See the
-[Playwright](atf-playwright/README.md#consumer-example) and
-[Selenium](atf-selenium/README.md#consumer-example) guides for provider-specific
-configuration and concrete repository checks.
-
-## Start
-
-Use JDK 17+ and Maven; compilation targets Java 11. Prepare a disposable
-validation copy as described in [Development](docs/Development.md), then run
-from its reactor root:
-
-<details>
-<summary>Run Start commands</summary>
+<summary>Run the default, browser and aggregate selections</summary>
 
 ```powershell
 mvn -B -ntp test
@@ -110,110 +74,28 @@ mvn -B -ntp -Paggregate test
 
 </details>
 
-The default runs native module checks and local framework/governance regressions.
-The browser profile selects local browser fixtures in atf-tests and requires
-prepared browser binaries. The aggregate profile also publishes Extent and
-Allure evidence. [Testing](docs/Testing.md) owns setup, selective commands and
-output locations.
+Default runs native module checks and existing framework/governance regressions. Browser selects local fixtures and requires prepared binaries; aggregate also publishes Extent and Allure. [Testing](docs/Testing.md) lists prerequisites, selective commands and evidence limits. Existing product journeys remain opt-in; this guide adds none.
 
-For the retained application journeys, use the explicit
-[Playwright/Selenium E2E selection](docs/Testing.md#retained-product-ui-audit).
-The same scenarios exercise either provider; framework browser checks have a
-different proof boundary. The [living principles](docs/Living_Architecture_UI_API_doc_v1_0.md#retained-principles)
-map action, wait, validation, lifecycle and audit responsibilities to their owners.
+<a id="configuration"></a>
+<a id="consumer-migration"></a>
+## Configure and migrate
 
-## Consumer migration
+[framework.properties](atf-core/src/main/resources/framework.properties) supplies classpath defaults; individual JVM properties override them. The JVM property `framework.properties` can point to an existing consumer-owned file. Set `ui.engine` and `reporting.engine`; [Core configuration](atf-core/README.md#configuration) lists the options.
 
-For an existing consumer, replace `com.ai:test-framework` with
-`com.ai:atf-core:1.0.0`, the required browser adapter and optionally
-`com.ai:atf-reporting:1.0.0`. Both adapter coordinates use the same group and
-version. Core can run API flows without a browser or report implementation.
-The parent coordinates the build; atf-tests holds repository verification and
-application fixtures rather than a production framework API.
+Replace historical `com.ai:test-framework` with `com.ai:atf-core:1.0.0`, any required browser adapter and optional `com.ai:atf-reporting:1.0.0`. API flows need no browser or reporting module. `atf-tests` holds repository checks and product fixtures; it is not a consumer runtime API.
 
-## Configuration
+## Documentation and language
 
-[framework.properties](atf-core/src/main/resources/framework.properties)
-supplies classpath defaults. JVM properties override individual settings.
-The `framework.properties` JVM setting can select an existing consumer-supplied
-file instead of that resource. [Testing](docs/Testing.md#explicit-configuration)
-shows how to resolve its path once before Maven enters individual modules.
-Select an installed UI provider with `ui.engine` and a report format with
-`reporting.engine`.
+`main` is English; `main_RO` provides maintained documentation in Romanian at the same paths. Source, comments, diagnostics and runnable examples stay in English. See the [edition contract](docs/governance/Readme_Editions.md) and [code/documentation policy](docs/governance/Code_And_Documentation_Policy.md).
 
-Application journeys are explicit selections in atf-tests. Configure the intended
-environment and credentials before running them; they can create application
-data. No API write token is bundled.
+## Read by task
 
-## Shared UI example
-
-This is an illustrative consumer test, not an additional test class in this
-repository. Add Core and the chosen adapter to the consumer classpath; add
-atf-reporting when published Extent/Allure evidence is required. Set `ui.engine`
-before TestNG starts. The page is a local data fixture and makes no application
-or network request.
-
-```java compile
-import com.ai.ui.core.runtime.BaseTestUI;
-import com.ai.ui.core.runtime.DriverManager;
-import com.ai.ui.support.actions.UIActions;
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-
-public class SharedUiExampleTest extends BaseTestUI {
-    @Test
-    public void displaysTheEnteredName() {
-        String html = "<!doctype html><html lang='en'><body>"
-                + "<label for='name'>Name</label><input id='name'>"
-                + "<button id='show' onclick=\"document.getElementById('result').textContent="
-                + "document.getElementById('name').value\">Show name</button>"
-                + "<p id='result' aria-live='polite'></p></body></html>";
-        String page = "data:text/html;charset=UTF-8,"
-                + URLEncoder.encode(html, StandardCharsets.UTF_8).replace("+", "%20");
-        DriverManager.getEngine().open(page);
-        UIActions.type("#name", "Name input", "Reader");
-        UIActions.click("#show", "Show name");
-        Assert.assertEquals(UIActions.getText("#result", "Displayed name"), "Reader");
-    }
-}
-```
-
-The inherited hooks create and close the engine. The test asserts the value
-observed from the page; it does not construct a successful result from input.
-The complete `java compile` examples are checked against the current public
-framework API by documentation governance.
-
-## Language and review contract
-
-The main branch is the English edition. The main_RO branch provides every
-maintained Markdown and the Living HTML at the same project paths in Romanian. Executable examples, source and
-comments remain in English in both editions; [edition governance](docs/governance/Readme_Editions.md)
-protects hierarchy, links, technical facts and source-bound whole-text review.
-
-Source identifiers, comments, log text and assertion/diagnostic messages
-**MUST be written in English** in both branches. Documentation and diagram
-labels are English on main, with the declared complete documentation edition on main_RO. Literal
-external product data and deliberately invalid test fixtures retain the text
-needed by their contract. Follow the
-[code/documentation policy](docs/governance/Code_And_Documentation_Policy.md)
-and its [source scanner regression cases](atf-tests/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java).
-
-## Continue by question
-
-| Question | Owning guide |
+| Need | Continue with |
 |---|---|
-| How do modules and providers fit together? | [Architecture](docs/Architecture.md) |
-| Which checks should I run, and what do they prove? | [Testing](docs/Testing.md) |
-| How do I edit, validate and synchronize safely? | [Development](docs/Development.md) |
-| What makes code, tests and documentation reviewable? | [Governance](docs/governance/README.md) |
-| Where are lifecycle and UI/API design contracts explained in depth? | Living architecture in [Markdown](docs/Living_Architecture_UI_API_doc_v1_0.md) and [HTML](docs/Living_Architecture_UI_API_doc_v1_0.html) |
-| Which existing tests protect a capability, and what remains unproven? | [Atlas coverage map](atf-atlas/Coverage_Map.md) and [feedback](docs/feedback/README.md) |
-| Where is the complete reading map? | [Documentation index](docs/README.md) |
-| Where are reports preserved, and how can Atlas inspect another project? | [Artifacts and project intake](artifacts/README.md) |
-
-Development uses main. The live checkout receives verified checkpoints; the
-previous implementation remains on main_mcp. Run evidence belongs outside the
-source checkout and retains its source and execution scope in feedback.
+| Understand module and provider boundaries | [Architecture](docs/Architecture.md) |
+| Select checks and interpret their proof | [Testing](docs/Testing.md) |
+| Configure a consumer browser | [Playwright](atf-playwright/README.md) · [Selenium](atf-selenium/README.md) |
+| Review a code, test or documentation change | [Governance](docs/governance/README.md) · [Failure hints](docs/governance/Failure_Diagnostics.md) |
+| Understand detailed UI/API lifecycle contracts | Living architecture in [Markdown](docs/Living_Architecture_UI_API_doc_v1_0.md) · [HTML](docs/Living_Architecture_UI_API_doc_v1_0.html) |
+| Trace capabilities or preserve reports | [Atlas coverage map](atf-atlas/Coverage_Map.md) · [Artifacts](artifacts/README.md) |
+| Browse the complete documentation map | [Documentation index](docs/README.md) |

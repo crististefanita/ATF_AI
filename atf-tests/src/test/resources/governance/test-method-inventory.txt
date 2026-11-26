@@ -1,5 +1,5 @@
-# Reviewed executable TestNG method identities for atf-tests/src/test/java.
 # Keep this sorted inventory exact; intentional additions or removals require code and owner review.
+# Reviewed executable TestNG method identities for atf-tests/src/test/java.
 # Syntax: fully.qualified.Class#method(parameterType,...).
 com.ai.api.tests.PositiveUserTests#create_user_success()
 com.ai.api.tests.PositiveUserTests#create_wait_and_delete_user()
@@ -395,10 +395,12 @@ com.ai.atf.governance.DocumentationGovernanceTest#projectGovernanceCannotReintro
 com.ai.atf.governance.DocumentationGovernanceTest#protectedFactsPermitTranslatedLabelsReflowAndEquivalentCodeSpanDelimiters()
 com.ai.atf.governance.DocumentationGovernanceTest#readmeEditionParityRejectsIndependentDriftAtEachBoundary()
 com.ai.atf.governance.DocumentationGovernanceTest#readmeLanguagePolicyRejectsMissingUnsupportedOrMalformedValues(String)
+com.ai.atf.governance.DocumentationGovernanceTest#readmeTableCellsRejectDenseProseAndAcceptAConciseRepair()
 com.ai.atf.governance.DocumentationGovernanceTest#readmeTechnicalFactsRejectTranslationDriftWithOwnedDiagnostics(String,String)
 com.ai.atf.governance.DocumentationGovernanceTest#readmesRejectPresentationMarkupBrokenDisclosureAndUnexplainedDiagrams(String,String)
 com.ai.atf.governance.DocumentationGovernanceTest#retainedLivingPrinciplesHaveConcreteOwnersAndBoundedEvidence()
 com.ai.atf.governance.DocumentationGovernanceTest#romanianEditionTranslatesAllMaintainedMarkdownWhileSourceExamplesStayEnglish()
+com.ai.atf.governance.DocumentationGovernanceTest#rootReadmeStaysAnOrientationMapAndRoutesConsumerExamplesToTheirOwners()
 com.ai.atf.governance.DocumentationGovernanceTest#stableOwnerGuidesRejectExecutionReceiptsAndReviewScorecards(String)
 com.ai.atf.governance.DocumentationGovernanceTest#validatorAcceptsDuplicateHeadingAnchorsExplicitAnchorsAndEncodedPaths()
 com.ai.atf.governance.DocumentationGovernanceTest#validatorAcceptsReferenceLinksAndIgnoresLinksInsideCodeSpans()

@@ -48,7 +48,7 @@ final class MarkdownDocumentationRules {
             "^(?:flowchart\\b|graph\\b|sequenceDiagram\\b|classDiagram\\b|stateDiagram(?:-v2)?\\b|"
                     + "erDiagram\\b|gantt\\b|journey\\b|mindmap\\b|timeline\\b|quadrantChart\\b|pie\\b).*");
     private static final String LIVING = "docs/Living_Architecture_UI_API_doc_v1_0";
-    private static final List<String> EXAMPLE_READMES = List.of("README.md", "atf-playwright/README.md", "atf-selenium/README.md");
+    private static final List<String> EXAMPLE_READMES = List.of("atf-playwright/README.md", "atf-selenium/README.md");
     private static final Pattern FEEDBACK_ID = Pattern.compile("[A-Z]+-\\d{3}");
     private static final String EDITION = "docs/governance/readme-edition.properties";
     private static final List<String> ARTIFACT_GUIDES = List.of(
@@ -102,8 +102,10 @@ final class MarkdownDocumentationRules {
                 }
             }
             validateReadmeStyle(root, file, proseLines, violations);
+            validateReadmeTableReadability(root, file, visible, violations);
             validateMarkdownHeadings(root, file, proseLines, violations);
             String relative = GovernanceFiles.relative(root, file);
+            if (relative.equals("README.md")) validateRootReadme(root, file, visible, lines, violations);
             if (EXAMPLE_READMES.contains(relative)) {
                 if (compilationExamples(lines).stream().noneMatch(example -> !example.isBlank())) {
                     violations.add(relative + ":1 DOC-README-EXAMPLE include a complete public consumer example marked java compile");
@@ -160,7 +162,12 @@ final class MarkdownDocumentationRules {
     }
 
     private static String canonicalReadmeLine(String line) {
-        return line.replace("## Prezentare generală", "## Overview")
+        return line.replace("## Designul într-o singură imagine", "## The design in one view")
+                .replace("## Cum rulează o verificare", "## How a check runs")
+                .replace("## Cum alegi calea consumatorului", "## How to choose a consumer route")
+                .replace("## Construiește și verifică", "## Build and verify")
+                .replace("## Citește în funcție de sarcină", "## Read by task")
+                .replace("## Prezentare generală", "## Overview")
                 .replace("## Responsabilități", "## Ownership").replace("## Verificare", "## Verification")
                 .replace("## Execuție", "## Execution").replace("## TODO-uri active", "## Active TODOs")
                 .replace("## Corecții verificate", "## Verified corrections")
@@ -170,6 +177,173 @@ final class MarkdownDocumentationRules {
                 .replace("Impact / risc / urgență", "Impact / risk / urgency")
                 .replace("Corectitudine / verificare / claritate", "Correctness / verification / clarity")
                 .replace("Limitele dovezilor", "Evidence scope");
+    }
+
+    private static void validateRootReadme(Path root, Path file, List<String> visible, List<String> source,
+                                           List<String> violations) {
+        Set<String> requiredSections = Set.of("the-design-in-one-view", "how-a-check-runs",
+                "how-to-choose-a-consumer-route", "build-and-verify", "read-by-task");
+        Set<String> foundSections = anchors(visible);
+        for (String section : requiredSections) {
+            if (!foundSections.contains(section)) {
+                violations.add(location(root, file, 0) + "DOC-README-ROUTE keep the root guide's orientation, execution, consumer-choice, verification and reading-map sections");
+                break;
+            }
+        }
+
+        String document = String.join("\n", visible).replace('\\', '/');
+        for (String route : List.of("atf-playwright/README.md#consumer-example",
+                "atf-selenium/README.md#consumer-example", "docs/Architecture.md", "docs/Testing.md")) {
+            if (!document.contains(route)) {
+                violations.add(location(root, file, 0) + "DOC-README-ROUTE route detailed provider examples and verification to their owner guides; missing " + route);
+            }
+        }
+        if (!compilationExamples(source).isEmpty()) {
+            violations.add(location(root, file, 0) + "DOC-README-EXAMPLE-PLACEMENT keep compilable provider examples in their adapter READMEs; use the root guide for orientation and routes");
+        }
+
+        List<String> expectedModules = GovernanceFiles.MODULES.stream()
+                .map(module -> "[" + module + "](" + module + "/README.md)").collect(Collectors.toList());
+        boolean moduleTable = false;
+        for (int index = 0; index + 1 < visible.size(); index++) {
+            List<String> header = tableCells(visible.get(index)).stream()
+                    .map(MarkdownDocumentationRules::canonicalModuleHeader)
+                    .map(String::strip).collect(Collectors.toList());
+            if (!header.equals(List.of("Module", "Responsibility"))
+                    || !isTableSeparator(visible.get(index + 1))) continue;
+            List<String> rows = new ArrayList<>();
+            int row = index + 2;
+            while (row < visible.size() && isTableRow(visible.get(row))) {
+                List<String> cells = tableCells(visible.get(row));
+                if (cells.size() == 2) rows.add(cells.get(0).strip());
+                else rows.add("");
+                row++;
+            }
+            if (rows.equals(expectedModules)) {
+                moduleTable = true;
+                break;
+            }
+        }
+        if (!moduleTable) {
+            violations.add(location(root, file, 0) + "DOC-README-MODULE-TABLE summarize the five Maven module owners in a two-column Module/Responsibility table");
+        }
+
+        Set<String> diagramSections = rootDiagramSections(source);
+        for (String required : List.of("the-design-in-one-view", "how-a-check-runs")) {
+            if (!diagramSections.contains(required)) {
+                violations.add(location(root, file, 0) + "DOC-README-DIAGRAM keep the module dependency map under the design section and the API/UI execution flow under the check-run section");
+            }
+        }
+    }
+
+    private static Set<String> rootDiagramSections(List<String> source) {
+        Set<String> found = new HashSet<>();
+        String section = "";
+        String fence = null;
+        Pattern levelTwo = Pattern.compile("^ {0,3}##\\s+(.+?)\\s*#*\\s*$");
+        for (String line : source) {
+            Matcher marker = FENCE.matcher(line);
+            if (fence == null) {
+                Matcher heading = levelTwo.matcher(canonicalReadmeLine(line));
+                if (heading.matches()) section = headingSlug(heading.group(1));
+                if (marker.matches()) {
+                    if (marker.group(2).strip().equals("mermaid")
+                            && Set.of("the-design-in-one-view", "how-a-check-runs").contains(section)) {
+                        found.add(section);
+                    }
+                    fence = marker.group(1);
+                }
+            } else if (marker.matches() && marker.group(1).charAt(0) == fence.charAt(0)
+                    && marker.group(1).length() >= fence.length() && marker.group(2).isBlank()) {
+                fence = null;
+            }
+        }
+        return found;
+    }
+
+    private static String headingSlug(String heading) {
+        return heading.toLowerCase(Locale.ROOT)
+                .replaceAll("\\[([^]]+)]\\([^)]+\\)", "$1")
+                .replaceAll("<[^>]+>", "").replaceAll("[^\\p{L}\\p{N} _-]", "")
+                .strip().replace(' ', '-');
+    }
+
+    private static String canonicalModuleHeader(String value) {
+        String header = value.strip();
+        if (header.equalsIgnoreCase("Modul")) return "Module";
+        if (header.equalsIgnoreCase("Responsabilitate")) return "Responsibility";
+        return header;
+    }
+
+    /** Short prose cells keep Markdown tables scannable; the bound is a review signal, not a renderer guarantee. */
+    private static void validateReadmeTableReadability(Path root, Path file, List<String> lines,
+                                                       List<String> violations) {
+        if (!file.getFileName().toString().equalsIgnoreCase("README.md")) return;
+        for (int index = 0; index + 1 < lines.size(); index++) {
+            if (!isTableRow(lines.get(index)) || !isTableSeparator(lines.get(index + 1))) continue;
+            int columns = tableCells(lines.get(index)).size();
+            for (int row = index + 2; row < lines.size() && isTableRow(lines.get(row)); row++) {
+                List<String> cells = tableCells(lines.get(row));
+                if (cells.size() != columns) {
+                    violations.add(location(root, file, row) + "DOC-TABLE-SHAPE keep each README row aligned with its declared columns");
+                    continue;
+                }
+                for (int column = 0; column < cells.size(); column++) {
+                    String prose = visibleProse(cells.get(column)).replaceAll("\\[([^]]+)]", "$1")
+                            .replaceAll("\\s+", " ").strip();
+                    int words = prose.isEmpty() ? 0 : prose.split("\\s+").length;
+                    if (prose.length() > 140 || words > 22) {
+                        violations.add(location(root, file, row) + "DOC-TABLE-LONG-CELL column " + (column + 1)
+                                + " has " + prose.length() + " visible characters and " + words
+                                + " words; move explanation to nearby prose or split the table");
+                    }
+                }
+            }
+        }
+    }
+
+    private static boolean isTableRow(String line) {
+        return line.strip().startsWith("|") && tableCells(line).size() >= 2;
+    }
+
+    private static boolean isTableSeparator(String line) {
+        if (!line.strip().startsWith("|")) return false;
+        List<String> cells = tableCells(line);
+        return cells.size() >= 2 && cells.stream().allMatch(cell -> cell.strip().matches(":?-{3,}:?"));
+    }
+
+    private static List<String> tableCells(String line) {
+        List<String> cells = new ArrayList<>();
+        StringBuilder cell = new StringBuilder();
+        int codeDelimiter = 0;
+        for (int index = 0; index < line.length(); index++) {
+            char value = line.charAt(index);
+            if (value == '\\' && index + 1 < line.length() && line.charAt(index + 1) == '|') {
+                cell.append('|');
+                index++;
+                continue;
+            }
+            if (value == '`') {
+                int end = index + 1;
+                while (end < line.length() && line.charAt(end) == '`') end++;
+                int run = end - index;
+                if (codeDelimiter == 0) codeDelimiter = run;
+                else if (run == codeDelimiter) codeDelimiter = 0;
+                cell.append(line, index, end);
+                index = end - 1;
+                continue;
+            }
+            if (value == '|' && codeDelimiter == 0) {
+                cells.add(cell.toString());
+                cell.setLength(0);
+            } else cell.append(value);
+        }
+        cells.add(cell.toString());
+        if (!cells.isEmpty() && cells.get(0).isBlank() && line.stripLeading().startsWith("|")) cells.remove(0);
+        if (!cells.isEmpty() && cells.get(cells.size() - 1).isBlank() && line.stripTrailing().endsWith("|")) {
+            cells.remove(cells.size() - 1);
+        }
+        return cells;
     }
 
     private static void validateReadmeStyle(Path root, Path file, List<String> lines, List<String> violations) {
