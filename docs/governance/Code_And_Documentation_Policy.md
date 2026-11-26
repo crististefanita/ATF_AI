@@ -325,6 +325,25 @@ Requirement DOC-READ-001: keep the reader's decision visible before implementati
 or execution detail. Testing.md owns strategy and evidence; the linked
 [command cookbook](../Testing_Commands.md) owns reproducible recipes.
 
+Requirement DOC-STRATEGY-001: Testing.md uses compact `flowchart LR` diagrams
+for its execution paths and review sequence. Keep one question per diagram and
+an adjacent legend explaining branches, arrow meaning and omitted responsibilities.
+This explicit strategy requirement does not change approved diagrams in other
+owners; a grouped architecture map can have a different semantic direction.
+
+Requirement DOC-STRATEGY-002: under the stable test-design-contracts anchor,
+compare API, Playwright and Selenium exactly once in a four-column table: lane,
+linked design owner, observable oracle and proof limit. Lane identifiers remain
+identical in both editions. Keep this comparison outside details. The guard checks this supported table shape and
+presence of ownership/observation/limit fields; it cannot certify their meaning.
+Review every claim against the executor, providers, selected suites and assertions.
+
+Keep version matrices, cache resolution and configuration precedence in the
+command cookbook. The strategy explains why a selection supplies a particular
+proof and links to those operations. The readability component cases reject
+vertical flows, missing or duplicate lanes and incomplete comparison rows,
+then exercise the actual repair with owned diagnostics.
+
 | Reader task | Preferred structure | What must remain explicit |
 |---|---|---|
 | Choose between selections or options | Comparison table | Preconditions and the proof each choice supplies |

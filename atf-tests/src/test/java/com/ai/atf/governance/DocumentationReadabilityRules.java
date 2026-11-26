@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 import java.util.Locale;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -34,6 +36,84 @@ final class DocumentationReadabilityRules {
             "powershell", "pwsh", "bash", "sh", "shell", "console", "cmd", "bat", "zsh");
 
     private DocumentationReadabilityRules() { }
+
+    /** Strategy-specific presentation checks; source truth and semantic review remain separate obligations. */
+    static List<String> validateTestingStrategy(List<String> lines) {
+        List<String> findings = new ArrayList<>();
+        String relative = "docs/Testing.md";
+        String fence = null;
+        boolean mermaid = false;
+        boolean commentOpen = false;
+        boolean matrix = false;
+        boolean matrixHeadingSeen = false;
+        int detailsDepth = 0;
+        int flowcharts = 0;
+        Map<String, Integer> lanes = new LinkedHashMap<>();
+        for (String lane : List.of("API", "Playwright", "Selenium")) lanes.put(lane, 0);
+        for (int index = 0; index < lines.size(); index++) {
+            String line = lines.get(index).strip();
+            Matcher marker = FENCE.matcher(line);
+            if (fence != null) {
+                if (marker.matches() && marker.group(1).charAt(0) == fence.charAt(0)
+                        && marker.group(1).length() >= fence.length() && marker.group(2).isBlank()) {
+                    fence = null;
+                } else if (mermaid && !line.startsWith("%%")) {
+                    Matcher direction = Pattern.compile("^(?:flowchart|graph)\\s+(LR|RL|TB|TD|BT)\\b").matcher(line);
+                    if (direction.find()) {
+                        flowcharts++;
+                        if (!direction.group(1).equals("LR")) findings.add(relative + ":" + (index + 1)
+                                + " DOC-STRATEGY-FLOW observed " + direction.group(1)
+                                + "; use flowchart LR for the strategy's sequential or provider map; shorten labels and explain arrows in the adjacent legend");
+                    } else if (Pattern.compile("^direction\\s+(?:TB|TD|BT|RL)\\b").matcher(line).find()) {
+                        findings.add(relative + ":" + (index + 1)
+                                + " DOC-STRATEGY-FLOW a nested direction reverses the horizontal strategy map; keep its flow LR");
+                    }
+                }
+                continue;
+            }
+            CommentLine visible = withoutComments(line, commentOpen);
+            commentOpen = visible.open();
+            line = visible.text().strip();
+            marker = FENCE.matcher(line);
+            if (marker.matches()) {
+                fence = marker.group(1);
+                mermaid = marker.group(2).strip().equals("mermaid") && detailsDepth == 0;
+                continue;
+            }
+            Matcher tags = TAG.matcher(withoutCodeSpans(line));
+            boolean disclosureTag = false;
+            while (tags.find()) {
+                if (!tags.group(2).equalsIgnoreCase("details")) continue;
+                disclosureTag = true;
+                detailsDepth = tags.group(1).isEmpty() ? detailsDepth + 1 : Math.max(0, detailsDepth - 1);
+            }
+            if (disclosureTag || detailsDepth > 0) continue;
+            if (line.equals("<a id=\"test-design-contracts\"></a>")) {
+                matrix = true;
+                matrixHeadingSeen = false;
+            } else if (line.startsWith("## ") && matrix) {
+                if (matrixHeadingSeen) matrix = false;
+                else matrixHeadingSeen = true;
+            } else if (matrix && line.startsWith("|")) {
+                String[] cells = line.split("\\|", -1);
+                String lane = cells.length > 1 ? cells[1].strip() : "";
+                if (!lanes.containsKey(lane)) continue;
+                lanes.put(lane, lanes.get(lane) + 1);
+                // Four corresponding columns keep source ownership, observable oracle and proof limit together.
+                if (cells.length != 6 || !cells[2].matches(".*\\[[^]]+][(][^)]+[)].*")
+                        || cells[3].isBlank() || cells[4].isBlank()) {
+                    findings.add(relative + ":" + (index + 1) + " DOC-STRATEGY-LANES " + lane
+                            + " needs four columns: lane, linked design owner, observable oracle, proof limit; names in unrelated prose do not supply this comparison");
+                }
+            }
+        }
+        if (flowcharts == 0) findings.add(relative + ":1 DOC-STRATEGY-FLOW include a horizontal Mermaid strategy flow with an adjacent legend");
+        for (Map.Entry<String, Integer> lane : lanes.entrySet()) {
+            if (lane.getValue() != 1) findings.add(relative + ":1 DOC-STRATEGY-LANES observed " + lane.getValue()
+                    + " rows for " + lane.getKey() + "; under test-design-contracts compare API, Playwright and Selenium exactly once with linked design owner, observable oracle and proof limit");
+        }
+        return findings;
+    }
 
     /** Prose covers maintained operational guides except historical issue records; command checks cover both. */
     static List<String> validate(Path root, Path file, List<String> originalLines) {

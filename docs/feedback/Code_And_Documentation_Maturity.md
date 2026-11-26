@@ -372,3 +372,65 @@ The paired documentation, readability and source-language selection passed
 checks passed 2/2 per edition. This validates test ownership, explicit
 selection and method preservation; it does not claim improved product coverage
 or establish atf-j1 execution evidence.
+
+<a id="d-012"></a>
+## D-012: Testing strategy with comparable transport boundaries
+
+Status: VERIFIED. Owner: documentation readability governance and Testing.md.
+Priority 84 (impact 90 / exposure 80 / urgency 75).
+Baseline quality 63 (correctness 70 / verification 40 / clarity 75).
+
+The review uses J0 commit `96f50e5f277771ca9dfac3b7c959b47188afd0b0`,
+its documentation best practices and the existing diagram/prose/structure/style
+and link governance owners. J0's two uncommitted feedback files were left untouched.
+The principles are adapted to this project's TestNG checks and source ownership.
+
+| J0 principle | ATF_AI adoption | Review boundary |
+|---|---|---|
+| One diagram, one question | Separate execution paths from the review sequence | No mixed dependency/evidence arrows |
+| Compact LR flow and immediate legend | Explicit strategy direction rule and adjacent legends | Other approved owners keep their own layout |
+| Decisions before setup | API/Playwright/Selenium comparison with linked owners | Version/cache/configuration details stay in the cookbook |
+| Prose, structure, style and links | Existing all-document controls plus strategy-specific mutations | Source shape cannot certify semantic truth |
+| Actionable governance failure | Observed path, meaning, repair, owner and runnable recheck | A proposed fix is not execution proof |
+
+The initial isolated readability run executed 30 cases: 29 passed and one
+failed as expected. Its four findings identify the TB diagram at line 31 and
+missing API/Playwright/Selenium comparison rows. The original log and native
+XML remain under `${ATF_WORK_ROOT}/reviews/testing-strategy-baseline-20261126.log`
+and `${ATF_WORK_ROOT}/validation/testing-strategy-review-20261126-baseline`.
+
+Two new component methods protect vertical/reversed/nested direction mutations,
+commented and literal diagram decoys, missing/duplicate lanes, missing ownership,
+missing oracle/limit fields and the actual repairs. The reviewed inventory now
+contains 575 executable methods; the existing E2E inventory is unchanged.
+
+Atlas policy retrieval contributed KB-TRACE, KB-EVIDENCE, KB-SEMANTICS and
+KB-SCORES: inspect actual source/assertions, preserve proof boundaries and do
+not infer semantic quality from matching words or passing guards. This was
+policy retrieval and source review, not a new Atlas HTML publication or test execution.
+
+Acceptance requires paired documentation/source checks, the exact suite and
+method-inventory controls, full EN/RO review and native desktop inspection of
+the two changed diagrams and comparison tables. No product journey or emulator
+is part of this acceptance.
+
+Delivered quality 93 (correctness 94 / verification 92 / clarity 94). The paired
+documentation/source selection and two exact architecture controls passed
+209/209 cases per edition in acceptance-01. The final closure selection binds
+the last literal/disclosure controls and this closure text in closure-02.
+The two new method identities raise the reviewed inventory from 573 to 575.
+
+Native desktop review produced four EN/RO records at 1440 and 900 CSS px, with
+eight diagram observations and comparison-table captures. The original metrics
+show zero page overflow, clipped labels, node overlaps or label/node overlaps;
+no page errors or external requests were observed. Screenshots were inspected
+for horizontal reading and proportionate columns. The evidence is under
+`${ATF_WORK_ROOT}/reviews/testing-strategy-20261126/render-01`.
+
+The strategy now separates request execution, UI provider parity, reporting and
+application proof; setup stays in the existing cookbook. This scoped editorial
+assessment does not regrade unrelated project axes or claim new API/browser
+application execution. The final source snapshots, patches, logs and XML remain
+under `${ATF_WORK_ROOT}/reviews/testing-strategy-20261126/closure-02` and
+`${ATF_WORK_ROOT}/validation/testing-strategy-20261126-en-02` /
+`${ATF_WORK_ROOT}/validation/testing-strategy-20261126-ro-02`.

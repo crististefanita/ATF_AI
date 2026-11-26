@@ -72,6 +72,7 @@ Retained baseline component scores:
 | R-001 | 90 / 90 / 90 | 60 / 40 / 65 | Retained UI methods lack per-engine native proof; registration and sensitive-input audits need controls |
 | D-009 | 90 / 80 / 80 | 85 / 65 / 80 | Markdown structure, code/numeric parity and meaning drift lacked owned controls |
 | G-018 | 70 / 75 / 60 | 75 / 45 / 60 | One 1297-line documentation test class mixed six review domains and selector/fixture ownership |
+| D-012 | 90 / 80 / 75 | 70 / 40 / 75 | Testing strategy used a vertical flow and lacked comparable API/Playwright/Selenium design boundaries |
 
 Historical evidence locators use `${ATF_WORK_ROOT}/...`, with the external
 workspace selected as described in [Development](../Development.md).
@@ -83,6 +84,7 @@ normalizing their presentation does not claim a fresh execution.
 
 | ID | Delivered behavior | Verification |
 |---|---|---|
+| D-012 | Horizontal strategy maps and comparable API/Playwright/Selenium boundaries; quality 93 (94/92/94) | EN/RO 209/209; native desktop diagrams/tables; [evidence and limits](Code_And_Documentation_Maturity.md#d-012) |
 | F-011 | Teardown clears interaction state after success, RuntimeException and Error; delivered quality 94 (95/92/94) | Complete EN/RO local reactors, focused 69/69 and preserved negative baseline; [evidence](Behavior_And_Negative_Cases.md#f-011) |
 | F-012 | Shared strict UI configuration and wait boundaries; delivered quality 94 (95/93/94) | Positive/negative component contracts and complete paired acceptance; [evidence](Code_And_Documentation_Maturity.md#f-012) |
 | F-013 | Partial acquisition rolls back without masking the original cause; delivered quality 93 (94/92/93) | Existing Playwright 16 and Selenium 12 provider cases; [evidence](Code_And_Documentation_Maturity.md#f-013) |
