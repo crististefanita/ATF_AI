@@ -78,7 +78,7 @@ selectate și rezultatele native reale au roluri distincte. Cititoarele generate
 E2E/Atlas curente își păstrează reviziile capturate și octeții originali;
 acest document nu le redenumește drept execuții ale unor schimbări ulterioare de documentație.
 
-G-014 și F-011 își păstrează TODO-urile independente. Obligația LD-11 de
+F-011 este verificat în înregistrarea de componentă legată; G-014 rămâne o observație externă capturată. Obligația LD-11 de
 curățare a datelor aplicației rămâne PARTIAL. Revizuirea nu adaugă în feedback îmbunătățiri ale fluxurilor E2E.
 
 <a id="verified-review-and-execution"></a>

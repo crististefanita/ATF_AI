@@ -9,14 +9,29 @@ jurnale și rapoarte în zona externă; copiile selectate și verificate pot fi 
 <a id="active-todos"></a>
 ## TODO-uri active
 
+Nu mai există sarcini de implementare ATF_AI acceptate după reconcilierea din 2026-11-26. Aceasta este o decizie de domeniu revizuită, nu o afirmație că nu există defecte nedescoperite.
+
+<!-- feedback:empty -->
+
+Revizuirea curentă: [sursa live, documentația, Atlas/RAG și atributele framework-ului](Code_And_Documentation_Maturity.md#current-assessment).
+
 | ID | Constatare | Responsabil | Prioritate (1-100) | Calitate (1-100) | Stare | Dovada închiderii |
 |---|---|---|---:|---:|---|---|
-| G-014 | Separă eșecul controlului schimbărilor J1 de consistența Atlas și reușita catalogului | Responsabilul schimbărilor testelor J1; observație externă | 84 | 68 | TODO | [Sursa exactă și înregistrările de control necesare](Atlas_Depth_And_Assessment.md#g-014) |
 
 Registrul este rezervat guvernanței, stabilității și documentației framework-ului.
 Înregistrările despre îmbunătățirea fluxurilor de produs sunt excluse din această listă.
 
 Rândurile istorice de verificare descriu reviziile capturate. Raportarea curentă folosește exclusiv Extent; vezi [R-002](Code_And_Documentation_Maturity.md#r-002).
+
+<details>
+<summary>Decizii de domeniu și observații externe păstrate</summary>
+
+- [G-014](Atlas_Depth_And_Assessment.md#g-014) păstrează un eșec J1 capturat. Este o observație externă, fără verdict J1 curent sau obligație de implementare ATF_AI.
+- [F-011](Behavior_And_Negative_Cases.md#f-011) este verificat; reperele vechi nu redeschid corecția de componentă finalizată.
+- [LD-11](../Living_Architecture_UI_API_doc_v1_0.md#retained-principles) declară în continuare lipsa ștergerii datelor aplicației. Rămâne o limită PARTIAL a dovezii, în afara implementării E2E noi.
+- [R-002](Code_And_Documentation_Maturity.md#r-002) retrage integrarea Allure. Dovezile istorice și clasificarea generică a arhivelor își păstrează identitățile originale.
+
+</details>
 
 <a id="current-maintenance-scope"></a>
 ## Limitele mentenanței curente
@@ -53,6 +68,9 @@ intervalul întreg și câmpurile acționabile pentru responsabil, stare și dov
 
 Componentele păstrate ale evaluărilor inițiale:
 
+<details>
+<summary>Note inițiale istorice și lacunele originale</summary>
+
 | ID | Impact / risc / urgență | Corectitudine / verificare / claritate | Limitele dovezilor |
 |---|---|---|---|
 | D-011 | 90 / 85 / 85 | 65 / 45 / 60 | Lățimi HTML generice, blocuri sursă literale și absența verificării lizibilității măsurate |
@@ -80,8 +98,12 @@ Componentele păstrate ale evaluărilor inițiale:
 | D-009 | 90 / 80 / 80 | 85 / 65 / 80 | Structura Markdown, paritatea codului/valorilor și sensul calificărilor nu aveau controale dedicate |
 | G-018 | 70 / 75 / 60 | 75 / 45 / 60 | O clasă de teste de documentație de 1297 de linii amesteca șase domenii, selectorul și fixture-urile |
 | D-012 | 90 / 80 / 75 | 70 / 40 / 75 | Strategia folosea un flux vertical și nu compara limitele de proiectare API/Playwright/Selenium |
+| G-020 | 75 / 70 / 75 | 70 / 70 / 85 | Amprenta brută CRLF respingea conținutul identic al metodelor după checkout cu LF |
+| G-019 | 80 / 85 / 70 | 75 / 65 / 75 | Un element extern și texte de închidere vechi confundau domeniul activ; declararea golirii nu era controlată |
 | D-013 | 85 / 85 / 75 | 75 / 45 / 75 | Fluxuri verticale, limite ale legendelor lipsă/deschise și decizii de ansamblu dense |
 | R-002 | 90 / 80 / 75 | 60 / 60 / 60 | Allure suportat anterior nu corespunde domeniului nou restrâns exclusiv la Extent |
+
+</details>
 
 Locațiile dovezilor istorice folosesc `${ATF_WORK_ROOT}/...`, cu spațiul extern de lucru
 selectat conform ghidului [Dezvoltare](../Development.md).
@@ -92,8 +114,13 @@ normalizarea prezentării nu reprezintă o nouă execuție.
 <a id="verified-corrections"></a>
 ## Corecții verificate
 
+<details>
+<summary>Corecții verificate și dovezi de execuție capturate</summary>
+
 | ID | Comportament livrat | Verificare |
 |---|---|---|
+| G-020 | Sigiliu canonic al inventarului, echivalent LF/CRLF; calitate 94 (95/94/93) | Proba metodei existente și închiderea nativă finală; [dovezi](Code_And_Documentation_Maturity.md#g-020) |
+| G-019 | Ciclu de viață reconciliat și contract explicit fără sarcini; calitate 94 (95/93/94) | Dovezi native/Node pereche, contraexemple și reparații efective; [dovezi](Code_And_Documentation_Maturity.md#g-019) |
 | D-013 | Reguli comune de prezentare în 50 de perechi; calitate 93 (94/92/94) | Perechi 736/736; câte 203 Node; randare desktop; [dovezi și limite](Code_And_Documentation_Maturity.md#d-013) |
 | R-002 | Raportare menținută exclusiv prin Extent, cu respingere și recuperare explicite; calitate 93 (95/92/92) | Cititori agregați pereche și 15 componente desktop; [dovezi](Code_And_Documentation_Maturity.md#r-002) |
 | D-012 | Hărți strategice orizontale și limite API/Playwright/Selenium comparabile; calitate 93 (94/92/94) | EN/RO 209/209; diagrame/tabele native desktop; [dovezi și limite](Code_And_Documentation_Maturity.md#d-012) |
@@ -144,6 +171,8 @@ normalizarea prezentării nu reprezintă o nouă execuție.
 | A-002 | Algoritmii puri de parcurgere, componentele de publicare și dovezile de componentă API păstrează limite distincte | 138 verificări Node și cinci invocări adăugate în clasa existentă de contracte API trecute; XML/TAP originale păstrate; [dovezi](Behavior_And_Negative_Cases.md#a-002) |
 | D-008 | Publicația curentă de artefacte este limitată, iar istoricul complet și imuabil rămâne în afara proiectului live | 26 fișiere generate curente, două documente Atlas neschimbate, 20 verificări de componentă și 211/211 verificări Java de guvernanță; [dovezi](Artifact_Publication_And_History.md#d-008) |
 
+</details>
+
 Criteriile de acceptanță pentru browser desktop și dovezile corecțiilor explicit istorice sunt în [mentenanța framework-ului](Framework_Maintenance.md).
 
 - Contractele de închidere și dovezile execuțiilor sunt în [contractele executabile aprofundate](Governance_Contracts.md) și [compatibilitatea browserelor și portabilitate](Browser_Compatibility_And_Portability.md).
@@ -162,3 +191,12 @@ Criteriile de acceptanță pentru browser desktop și dovezile corecțiilor expl
    comanda exactă și locația externă a dovezilor.
 5. Mută comportamentul stabil în documentația responsabilului și păstrează registrul
    concentrat pe lacune active și înregistrări concise de închidere.
+
+6. Dacă nu mai există lucrări acceptate, păstrează antetul tabelului și o singură
+   declarație de golire în TODO-uri active. Marcajul trebuie să fie în afara exemplelor
+   delimitate; rândurile active și declarația de golire nu pot coexista. Separă observațiile
+   externe, domeniul retras și dovezile verificate de lucrările de implementare.
+
+Declarația citită automat este `<!-- feedback:empty -->`. Gol înseamnă că
+nu este înregistrat un element de implementare acceptat; nu certifică un cod fără
+defecte, finalizarea lucrului extern sau implementarea unui principiu Living PARTIAL.

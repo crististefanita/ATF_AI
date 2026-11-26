@@ -330,7 +330,7 @@ dovezile capturate, nu o afirmație că testele J1 au fost rerulate aici.
 Controlul G-016 pentru pierderea identităților metodelor este acum verificat în
 limita declarată a sursei. G-018 de mai jos închide următoarea constatare de
 mentenabilitate înregistrată. Nu este necesar niciun scenariu de produs nou.
-G-014 rămâne un TODO extern deținut de J1.
+G-014 păstrează o observație externă J1, în afara registrului activ de implementare ATF_AI.
 
 <a id="g-018"></a>
 <a id="g-018-focused-documentation-test-owners-with-explicit-suite-registration"></a>
@@ -592,3 +592,152 @@ Regăsirea politicilor Atlas a contribuit limite citate pentru comportament,
 dovezi, trasabilitate și note. Este context lexical determinist de politici, fără
 pretenție de regăsire semantică și fără publicare Atlas nouă. Selecția finală de
 închidere verifică ambele ediții documentare, diagnosticarea constructivă și inventarul revizuit.
+
+<a id="g-019"></a>
+<a id="g-019-feedback-reconciliation-without-artificial-implementation-work"></a>
+## G-019: Reconcilierea feedback-ului fără lucrări de implementare artificiale
+
+Stare: VERIFICAT. Responsabil: guvernanța feedback-ului/documentației.
+Prioritate 80 (impact 80 / expunere 85 / urgență 70).
+Calitate inițială 72 (corectitudine 75 / verificare 65 / claritate 75).
+
+Reperul sursei este 0e7495353b414c592c404a1731facbadfb8b894d. Revizuirea acoperă
+toate cele 18 documente de feedback din ambele ediții. Registrul activ conținea
+o observație externă J1; trei înregistrări ulterioare foloseau încă formulări TODO
+la prezent pentru F-011, deși închiderea componentei era legată. Un al patrulea
+rezumat de publicare descria și el lacuna rezolvată ca deschisă independent.
+
+- F-011 rămâne verificat; observațiile anterioare de eșec/doar din sursă își păstrează
+  sursa și numerele înregistrate, cu legături explicite spre corecția ulterioară.
+- G-014 devine EXTERNAL_OBSERVATION în afara registrului de implementare ATF_AI.
+  Eșecul J1 capturat nu este reparat sau promovat prin această curățare.
+- LD-11 rămâne PARTIAL: ștergerea datelor aplicației lipsește. Nu se adaugă trasee
+  de produs noi, emulatoare, acceptanță invoice/admin sau implementarea curățării.
+- Allure rămâne retras prin R-002. Tratarea generică a arhivelor istorice rămâne
+  distinctă de o implementare activă a raportării.
+- Tabelele istorice inițiale și verificate devin blocuri pliate denumite.
+  Indexul activ păstrează vizibile schema, domeniul curent și traseele dovezilor.
+
+Fixture-ul inițial accepta atât un registru gol nedeclarat, cât și unul populat
+care se declara gol. Observațiile originale rămân în
+`${ATF_WORK_ROOT}/reviews/feedback-reconciliation-20261126/baseline-empty-register.log`.
+Metoda componentă existentă de feedback verifică acum ambele refuzuri, un marcaj
+într-un exemplu delimitat, unul în afara TODO-urilor active, declarații duplicate
+și reparațiile efective. Un registru gol cere un singur marcaj separat
+`<!-- feedback:empty -->` și păstrează antetul tabelului. Nu certifică surse
+fără defecte sau finalizarea lucrului extern.
+
+J4 la a4dfc3dfdbc0a91fe566c4665417bab6c2290479 a oferit calibrare doar prin citire:
+FeedbackIndexRules și zeroThroughNineOpenItemsCanCompleteWithoutFillingAQuota
+admit starea fără elemente deschise. Acest depozit își păstrează schema proprie
+cu șapte coloane, Prioritate/Calitate separate și responsabilii TestNG. Nu se
+pretind execuții sau comparații de note J4; domeniile sale mai largi Android/release
+sunt în afara acestei evaluări.
+
+Acceptanța cere guvernanță pereche a documentației/sursei, reactoarele locale
+existente, componentele Node întreținute și revizuirea randării indexului schimbat.
+Java runtime, POM-urile, algoritmii RAG și inventarul revizuit de 561 de metode
+rămân identice. Extinderea unei metode componente existente nu adaugă metode E2E.
+
+Calitate livrată 94 (corectitudine 95 / verificare 93 / claritate 94).
+Prima încercare de acceptanță a eșuat la compilarea testelor deoarece noul
+diagnostic omitea argumentul selecției de reverificare. Jurnalul original este
+păstrat; argumentul este reparat fără schimbarea unei aserțiuni sau implementări
+runtime. Acceptance-02 trece 736/736 de cazuri per ediție: 37 native ale modulelor
+și 699 între module, fără eșecuri, erori sau omiteri. Toate cele 203 cazuri Node
+componente întreținute trec per ediție în acceptance-01; sursele instrumentelor
+sunt identice în suprapunerea finală. Proba curentă de paritate completă EN/RO trece.
+
+Selecția finală de închidere leagă registrul finalizat și evaluarea de mai jos.
+Suprapunerile exacte de sursă, comenzile, XML/TAP nativ, observațiile inițiale și
+citările sursei J4 rămân sub `${ATF_WORK_ROOT}/reviews/feedback-reconciliation-20261126`.
+Dovezile existente pentru cele 15 cazuri desktop reale de capturi/zoom și cititorul
+agregat cu 699 de cazuri din R-002 se leagă în continuare de runtime-ul identic;
+sunt execuții anterioare păstrate, nu rulări browser/E2E noi ale acestei revizii.
+
+
+<a id="g-020"></a>
+<a id="g-020-line-ending-independent-executable-method-seal"></a>
+## G-020: Sigiliul metodelor executabile independent de finalurile de linie
+
+Stare: VERIFICAT pentru limita componentei responsabile. Responsabil: guvernanța inventarului testelor.
+Prioritate 74 (impact 75 / expunere 70 / urgență 75).
+Calitate inițială 75 (corectitudine 70 / verificare 70 / claritate 85).
+Calitate livrată 94 (corectitudine 95 / verificare 94 / claritate 93).
+
+Sigiliul anterior calcula amprenta octeților bruți ai inventarului. Reproducerea
+exactă la nivel de sursă arată aceleași 561 de identități acceptate cu CRLF și
+respinse cu LF. Rezultatul depinde de conversia la checkout, inclusiv de setări
+Git Windows legitime; nu presupune un defect runtime pe alt sistem de operare.
+
+- Normalizează doar CRLF la LF în amprenta UTF-8 și fixează SHA-256 canonic
+  rezultat. Fișierul inventarului, identitățile și ordinea metodelor nu se schimbă.
+- Metoda existentă a responsabilului inventarului acceptă ambele variante, respinge
+  metadate și spații finale schimbate și păstrează controalele metodelor eliminate/neînregistrate.
+- Proba directă a metodei responsabile trece. Selecția nativă finală include întregul
+  responsabil al guvernanței arhitecturii, responsabilii documentației și scannerul.
+- Nu se schimbă implementări runtime, dependențe sau teste de produs. Aceasta este
+  dovadă de guvernanță independentă de checkout, nu acceptanță runtime Linux/macOS.
+
+Reproducerea originală pe octeți este în line-ending-baseline.json; execuția efectivă
+a metodei responsabile este în line-ending-owner-method.log sub rădăcina reviziei
+G-019. Reactoarele existente cu 736 de cazuri preced această corecție finală în
+două fișiere de guvernanță; închiderea nativă finală califică responsabilii schimbați,
+fără să redenumească sursa veche drept o execuție completă nouă.
+
+<a id="current-assessment"></a>
+<a id="current-atf-ai-assessment"></a>
+## Evaluarea curentă ATF AI
+
+Revizuit la 2026-11-26 față de reperul runtime live
+0e7495353b414c592c404a1731facbadfb8b894d și suprapunerea revizuită de guvernanță/
+documentație. Notele acoperă domeniul suportat HTTP, UI desktop, Extent și Atlas.
+Responsabilii runtime critici au fost inspectați direct; controalele statice ale
+întregii surse și execuția reprezentativă sunt niveluri distincte de dovadă. Aceasta
+este o evaluare redactată, nu procent automat de acoperire sau certificat universal de corectitudine.
+
+C înseamnă corectitudine, V verificare și Cl claritate. Fiecare intrare și rezultat
+folosește 1-100. Aplică formula reproductibilă a registrului:
+`round(0.40 × C + 0.30 × V + 0.30 × Cl)`. Axele separate nu primesc o notă globală inventată.
+
+| Axă | C / V / Cl | Calitate (1-100) |
+|---|---|---:|
+| Cod și arhitectură | 94 / 93 / 92 | 93 |
+| Documentație și ediții | 94 / 93 / 94 | 94 |
+| Atlas și RAG | 90 / 94 / 89 | 91 |
+| Ciclul de viață al feedback-ului | 95 / 93 / 94 | 94 |
+| Guvernanța codului și testelor | 95 / 94 / 93 | 94 |
+| Stabilitatea testelor existente | 93 / 94 / 90 | 92 |
+| Configurație și tratarea erorilor | 93 / 94 / 90 | 92 |
+| Auditabilitate și raportare | 94 / 94 / 92 | 93 |
+| Mentenabilitate | 92 / 92 / 91 | 92 |
+| Dovezi de portabilitate | 88 / 86 / 92 | 89 |
+| Extensibilitatea furnizorilor | 92 / 90 / 92 | 91 |
+
+<details>
+<summary>Responsabilii surselor, verificarea și limitele fiecărei axe</summary>
+
+- **Cod și arhitectură:** [Registru](../../atf-core/src/main/java/com/ai/ui/core/engine/UiEngineRegistry.java). Responsabilități neutre ale modulelor, descoperirea furnizorilor și căile actuale de eșec. API-ul framework-ului și revizuirea sursei; nu o demonstrație exhaustivă a corectitudinii.
+- **Documentație și ediții:** [Politica documentelor](../governance/Code_And_Documentation_Policy.md). 50 de perechi Markdown întreținute, HTML Living, controale de compilare, limbă și prezentare. Controale finite și randări revizuite; traducerea semantică necesită în continuare revizuire.
+- **Atlas și RAG:** [Regăsire și proveniență](../../tools/atlas-knowledge.mjs). Regăsire citată, dovezi exacte, oracole independente, căi negative și livrare într-un HTML. Context lexical de politici; redactarea și completitudinea semantică nu sunt certificate automat.
+- **Ciclul de viață al feedback-ului:** [Controale de feedback](../../atf-tests/src/test/java/com/ai/atf/governance/FeedbackGovernanceTest.java). 18 înregistrări bilingve reconciliate; stare goală explicită, închidere istorică și domeniu extern. Zero sarcini acceptate nu înseamnă zero defecte sau finalizarea implementării externe.
+- **Guvernanța codului și testelor:** [Arhitectură și inventare](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureGovernanceTest.java). Indicații cu responsabil, contraexemple, suite exacte și inventar revizuit de 561 de metode. Invariantele de politici/sursă completează revizuirea; potrivirea unui simbol nu este dovadă semantică.
+- **Stabilitatea testelor existente:** [Contractele existente de jurnalizare](../../atf-tests/src/test/java/com/ai/atf/core/reporting/regression/StepLoggerContractTest.java). Comportament delimitat al lucrătorilor/HTTP, observații independente și selecții native finalizate. Execuție la un moment dat, nu o rată măsurată a instabilității CI pe termen lung.
+- **Configurație și tratarea erorilor:** [Opțiuni UI](../../atf-core/src/main/java/com/ai/core/support/config/UiRuntimeOptions.java). Setări UI tipizate, limite ale reîncercării, închidere și revenire după achiziție parțială. Acreditările apelantului, starea mediului și erorile arbitrare ale furnizorului rămân separate.
+- **Auditabilitate și raportare:** [Inspector Extent](../../atf-reporting/src/main/java/com/ai/core/reporting/adapters/extent/inspection/ExtentPublishedOverviewInspector.java). Ciclu de viață Extent, pași așteptat/observat, XML original și cititori agregați inspectați. Capturile originale își păstrează sursa; mascarea nu curăță orice jurnal arbitrar.
+- **Mentenabilitate:** [Reguli de responsabilitate a sursei](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureRules.java). Responsabili focalizați, fixture-uri reutilizabile, dependențe explicite și ghiduri introductive concise. Cataloagele ample și configurația globală procesului cer în continuare revizuire coordonată.
+- **Dovezi de portabilitate:** [Matrice și relocare înregistrate](Browser_Compatibility_And_Portability.md). Căi relative proiectului, rădăcini alese de apelant și matricea desktop browser/CDP înregistrată. Dovezile actuale vizează Windows; alte combinații OS/browser necesită dovezi proprii.
+- **Extensibilitatea furnizorilor:** [Contractul furnizorului](../../atf-core/src/main/java/com/ai/ui/core/engine/UiEngineProvider.java). Limite SPI Core și implementări separate Playwright, Selenium și Extent. Un furnizor suplimentar cere acceptanța contractului/parității; nu există garanție universală de extensie.
+
+</details>
+
+Revizuirea regăsirii validează 19 înregistrări de cunoștințe, 16 politici obligatorii
+și trei obiecte arhivate fixate. Domeniul declarat este context lexical determinist
+de politici; regăsirea semantică rămâne NOT_CLAIMED. Aceste verificări nu implică o
+generare Atlas nouă sau acceptanța aplicației. Dimensiunea sursei și numărul testelor
+identifică domeniul; intrările declarate ale revizuirii determină aceste note.
+
+Tabelele comparative AI/J1 și cititorii Atlas publicați își păstrează reperele și
+notele originale. J4 este o referință de guvernanță a feedback-ului doar prin citire,
+nu un concurent proaspăt executat sau notat. Nota mai mică a portabilității reflectă
+matricea Windows înregistrată, nu un defect runtime observat între platforme.

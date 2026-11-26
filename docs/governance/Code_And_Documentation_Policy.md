@@ -76,6 +76,9 @@ așteptat. Constatările necunoscute rămân neclasificate.
   Aceasta este o bază de identități la nivel de sursă, nu o dovadă că metoda s-a
   executat sau că o schimbare Git a fost aprobată. Revizuiește inventarul și
   amprenta împreună cu testul responsabil.
+- Sigiliul metodelor executabile folosește UTF-8 cu CRLF normalizat la LF. Conversia
+  Git la checkout trebuie să păstreze amprenta; metadatele, spațiile și conținutul
+  metodelor rămân protejate. Revizuiește sigiliul canonic cu responsabilul existent.
 - Un control de sursă verifică arhitectura sau politica. Etichetează acel
   domeniu separat de execuția runtime și acceptanța controlată a aplicației.
 
@@ -475,3 +478,5 @@ limitele dovezilor; reverificările de diagnostic inline rămân direct lizibile
 Cazurile literale de text/cod nu sunt rețete shell executabile. Controlul
 inspectează taguri reale în afara blocurilor/comentariilor și recunoaște
 invocări Maven/wrapper, nu un cuvânt-cheie din proză.
+
+Reconcilierea feedback-ului urmează [responsabilul ciclului de viață](../feedback/README.md#recording-and-closing-feedback): un registru activ gol cere o declarație explicită, iar domeniul închis, extern sau retras își păstrează limitele reale ale dovezii. Un exemplu delimitat nu poate declara lista goală.

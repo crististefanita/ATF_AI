@@ -184,7 +184,8 @@ rată de trecere a testelor. Calitatea inițială rămâne păstrată când cali
 
 <a id="g-014"></a>
 <a id="g-014-current-j1-change-control-compliance-stays-open"></a>
-## G-014: Conformitatea curentă J1 privind controlul schimbărilor rămâne deschisă
+<a id="g-014-captured-external-j1-change-control-observation"></a>
+## G-014: Observație externă capturată despre controlul schimbărilor J1
 
 - Responsabil: responsabilul schimbărilor de teste J1. Aceasta este o observație asupra unui proiect extern, nu o
   corecție de execuție ATF_AI sau o autorizare de a edita lucrul concurent J1.
@@ -199,20 +200,21 @@ rată de trecere a testelor. Calitatea inițială rămâne păstrată când cali
   governance/release/ConsumerEvidenceCatalogGovernanceTest.java nu au controale
   ACTIVE/VERIFIED eligibile pentru acea bază exactă și acele căi.
 - Interpretare: J1 documentează cerința în ghidul său de testare și implementează
-  controlul. Modificările curente nu o satisfac. Cele șase teste ale noului catalog
+  controlul. Modificările capturate nu o satisfăceau. Cele șase teste ale noului catalog
   au trecut; acel rezultat delimitat nu transformă întreaga suită în PASSED. La revizie,
   hash-urile brute ale surselor capturate corespundeau încă J1 live. Schimbările ulterioare necesită o
   captură nouă; un commit singur nu poate identifica un arbore cu modificări locale.
-- Acțiune necesară: responsabilul J1 înregistrează testChanges structurate și justificate pentru
+- Cale externă de închidere, dacă responsabilul o reia: responsabilul J1 înregistrează testChanges structurate și justificate pentru
   cele două căi exacte și baza exactă, incluzând motivul, dovada și expirarea, apoi rulează
   selecția existentă de guvernanță cu un nou ID imuabil de rulare. Nu slăbiți
   regula, nu inventați aprobare retrospectivă și nu modificați XML-ul original eșuat.
 - Dovezi: `${ATF_WORK_ROOT}/runs/j1-atlas-depth-governance-01.log`, manifestul său original
   de surse și XML-ul; clasificarea sub
   `${ATF_WORK_ROOT}/reviews/20261125-atlas-depth/j1-governance-failure-01.md`.
-  Noul Atlas J1 încorporează eșecul original și comparația sa cu sursele capturate.
-- Stare: TODO. Această revizie nu a schimbat nicio sursă J1 sau înregistrare de control. Această
-  constatare rămâne deschisă independent de verificările finalizate ale livrării Atlas.
+  Atlasul J1 capturat încorporează eșecul original și comparația sa cu sursele capturate.
+- Stare: EXTERNAL_OBSERVATION. Eșecul J1 înregistrat este istoric; pregătirea J1
+  curentă nu a fost reevaluată. Nicio sursă/înregistrare de control J1 nu este schimbată
+  sau declarată reparată. G-014 este scos din lucrările active de implementare ATF_AI.
 
 <a id="verification-and-closure-route"></a>
 ## Calea de verificare și închidere
@@ -270,8 +272,8 @@ Cele două rulări originale AI de guvernanță attempt01 au eșuat fiecare la o
 împărțirea lui `schemaVersion 1` înainte de `1. Declare` a creat accidental un
 element de listă ordonată în engleză. Corectarea paragrafului a restaurat structura
 de traducere declarată; ambele selecții attempt02 au trecut toate cele 211 cazuri. Rapoartele lor
-eșuate rămân imuabile alături de rezultatele reparate. G-014 rămâne
-TODO pentru înregistrările J1 de control al schimbărilor, cu responsabilitate independentă.
+eșuate rămân imuabile alături de rezultatele reparate. G-014 își păstrează domeniul
+extern J1 capturat; nu este o sarcină ATF_AI activă.
 
 ## D-011
 

@@ -7,7 +7,7 @@ aceasta nu rerulează și nu redenumește dovezile anterioare de produs/Atlas.
 
 Referință inițială: reperul sursă `6232c00`. Această revizie modifică instrumentele de întreținere,
 guvernanța și documentația. Nu adaugă funcționalități de execuție, scenarii E2E de produs
-sau emulatoare. G-014 și F-011 își păstrează domeniile deschise independente.
+sau emulatoare. G-014 aparține domeniului extern J1 capturat; F-011 este acum verificat.
 
 <a id="d-008"></a>
 <a id="d-008-separate-selected-current-artifacts-from-execution-history"></a>
@@ -125,7 +125,7 @@ observațiile de randare și dependențele relative rămân împreună în afara
 
 Aceste note reprezintă o evaluare redactată a organizării livrate și a
 dovezilor sale. Nu implică acoperire completă la execuție, calificarea livrării sau o
-notă de maturitate actualizată pentru vreunul dintre proiectele capturate. G-014 și F-011 rămân TODO.
+notă de maturitate actualizată pentru vreunul dintre proiectele capturate. La acel reper F-011 era deschis; închiderea curentă este legată mai sus. G-014 este o observație externă păstrată.
 
 Prima verificare finală a documentației a respins un rezumat al livrării D-008 introdus
 în tabelul numeric al referinței inițiale din ambele ediții (DOC-FEEDBACK-SCHEMA). Jurnalul său

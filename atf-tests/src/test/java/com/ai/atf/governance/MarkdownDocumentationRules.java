@@ -883,6 +883,8 @@ final class MarkdownDocumentationRules {
         boolean hasVerified = false;
         boolean hasActiveHeader = false;
         boolean baseline = false;
+        int activeRows = 0;
+        int emptyDeclarations = 0;
         Set<String> baselineIds = new HashSet<>();
         for (int index = 0; index < lines.size(); index++) {
             String line = canonicalReadmeLine(lines.get(index).strip());
@@ -918,6 +920,7 @@ final class MarkdownDocumentationRules {
                 hasActive |= active;
                 hasVerified |= verified;
             }
+            if (active && line.equals("<!-- feedback:empty -->")) emptyDeclarations++;
             if (!line.startsWith("|") || (!active && !verified)) continue;
             String[] cells = line.split("\\|", -1);
             if (cells.length < 3) continue;
@@ -935,6 +938,7 @@ final class MarkdownDocumentationRules {
                 }
                 continue;
             }
+            if (active) activeRows++;
             String id = cells[1].strip();
             if (!seen.add(id)) violations.add(location(root, register, index) + "DOC-FEEDBACK duplicate ID " + id);
             int expected = active ? 9 : 5;
@@ -964,6 +968,9 @@ final class MarkdownDocumentationRules {
             if (verified && Pattern.compile("(?i)\\b(?:TODO|pending|unexecuted)\\b").matcher(cells[3]).find()) {
                 violations.add(location(root, register, index) + "DOC-FEEDBACK verified item has pending closure evidence: " + id);
             }
+        }
+        if (hasActive && ((activeRows == 0 && emptyDeclarations != 1) || (activeRows > 0 && emptyDeclarations != 0))) {
+            violations.add("docs/feedback/README.md:1 DOC-FEEDBACK-EMPTY an empty active register needs exactly one standalone <!-- feedback:empty --> outside fences; a populated register cannot declare itself empty");
         }
         if (!hasActive || !hasVerified) violations.add("docs/feedback/README.md:1 DOC-FEEDBACK retain active and verified lifecycle sections");
         if (hasActive && !hasActiveHeader) violations.add("docs/feedback/README.md:1 DOC-FEEDBACK-SCHEMA retain the active register header with separate Priority and Quality columns");

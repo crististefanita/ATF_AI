@@ -104,7 +104,7 @@ mesaje arbitrare ale excepțiilor furnizorului sau jurnale fără legătură ale
 apelantului. Artefactele native necesită propria revizuire; o eroare trebuie
 să-și păstreze identitatea tehnică originală și rezultatul real.
 
-G-014 și F-011 își păstrează domeniile TODO independente. Capturile istorice
+F-011 este verificat în înregistrarea de componentă legată; G-014 este o observație externă păstrată. Capturile istorice
 Atlas păstrează reviziile sursă capturate; această lucrare nu le regenerează
 tacit înțelegerea proiectului și nu reinterpretează rezultatele testelor anterioare.
 
