@@ -225,3 +225,10 @@ separate. Selecția focalizată dovedește doar contractele selectate și nu în
 reactorul local complet. Nu se adaugă clase E2E, parcursuri de produs sau emulatoare.
 Secțiunile istorice de acceptanță de mai sus își păstrează sursa și numerele capturate;
 lucrarea curentă F-011 înlocuiește rezumatul anterior privind starea deschisă.
+
+Prima selecție completă local-01 păstrează 703 de cazuri atf-tests per ediție,
+cu 702 trecute și un eșec al fixture-ului invoice. Configurația acelui fixture
+folosea zero; acum folosește o secundă validă. Cele trei controale negative existente
+verifică și mesajul exact al rândului lipsă, astfel încât un eșec anterior de
+configurație/navigare să nu satisfacă aserțiunea. Verificările de factură rămân
+componente controlate, fără browser sau parcurs de produs.
