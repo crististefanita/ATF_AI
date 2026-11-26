@@ -89,8 +89,19 @@ documentation. It adds no product journey, runtime feature or emulator.
 - Acceptance: its controlled negative fixture removes one method while the
   class remains present, adds an unregistered replacement, and checks both
   findings and the repair hint. The maintained inventory matches current test
-  source. `FrameworkArchitectureGovernanceTest` passed 114/114 in the focused
-  reactor selection on 2026-11-26.
+  source.
+
+| Proof | English | Romanian | Boundary |
+|---|---:|---:|---|
+| `FrameworkArchitectureGovernanceTest` | 114/114 PASS | 114/114 PASS | Includes real-source inventory validation and controlled method removal/addition findings |
+| Complete default local reactor | 742/742 PASS | 742/742 PASS | 705 atf-tests plus 37 library checks; zero failures, errors or skips |
+| Existing Node maintenance suite | 203/203 PASS | 203/203 PASS | Governance/component tools; no browser or application journey |
+| Paired document review | 51/51 current | 51/51 current | Source-grounded EN/RO digest review with semantic checks on changed pairs |
+
+External receipts: `${ATF_WORK_ROOT}/reviews/20261126-method-governance/`.
+The first full English run correctly rejected five stale document digests; after
+reviewing the changed pairs and refreshing their records, both complete local
+reactors passed. No E2E selection or emulator was used.
 - Limit: the baseline detects identity drift but is not a Git change classifier,
   approval gate, proof of method-body quality or evidence that each method ran.
   Intentional changes require explicit review of the signature delta, inventory
