@@ -445,3 +445,5 @@ not runnable shell recipes. The guard inspects real tags outside fences/comments
 and recognizes Maven/wrapper invocations, not a keyword in prose.
 
 Feedback reconciliation follows the [lifecycle owner](../feedback/README.md#recording-and-closing-feedback): an empty active register needs an explicit declaration, while closed, external and withdrawn scope retain their actual proof boundaries. A fenced example cannot declare the backlog empty.
+
+Source inventories prune excluded generated directories before inspecting descendants. The same ownership policy must retain output-like names under owned source/resource roots. Resolve the canonical root once per scan, preserve its escape boundary and qualify relative, spaced and Unicode roots. Directory observations test traversal scope without scheduler-dependent timing thresholds.

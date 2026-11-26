@@ -86,6 +86,11 @@ without opting into browser-dependent or application classes.
   action or calling the same helper twice is insufficient proof.
 - Test negative controls and the real repair. Preserve the original failure.
 
+Qualify test infrastructure separately: retain owned sources when pruning generated
+output, repeat original lifecycle assertions and record the exact checkout/encoding.
+A local repeat is bounded evidence, not a long-term CI rate; see
+[T-007](feedback/Code_And_Documentation_Maturity.md#t-007).
+
 The [method inventory policy](governance/Code_And_Documentation_Policy.md#existing-test-quality)
 protects reviewed test identities; it does not establish execution.
 See the [local baseline recipe](Testing_Commands.md#local-baseline).

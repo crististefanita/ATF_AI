@@ -7,14 +7,14 @@ the caller-selected local archive following the [report guide](../../artifacts/r
 
 ## Active TODOs
 
-No accepted ATF_AI implementation task remains after the 2026-11-26 reconciliation. This is a reviewed scope decision, not a claim that no undiscovered defect exists.
-
-<!-- feedback:empty -->
+No accepted active items remain in the current scope. Verified records retain their evidence boundaries and baseline scores below.
 
 Current review: [live source, documentation, Atlas/RAG and framework attributes](Code_And_Documentation_Maturity.md#current-assessment).
 
 | ID | Finding | Owner | Priority (1-100) | Quality (1-100) | Status | Closure evidence |
 |---|---|---|---:|---:|---|---|
+
+<!-- feedback:empty -->
 
 The register is reserved for framework governance, stability and documentation.
 Product-flow improvement records are excluded from this backlog.
@@ -94,6 +94,9 @@ Retained baseline component scores:
 | D-009 | 90 / 80 / 80 | 85 / 65 / 80 | Markdown structure, code/numeric parity and meaning drift lacked owned controls |
 | G-018 | 70 / 75 / 60 | 75 / 45 / 60 | One 1297-line documentation test class mixed six review domains and selector/fixture ownership |
 | D-012 | 90 / 80 / 75 | 70 / 40 / 75 | Testing strategy used a vertical flow and lacked comparable API/Playwright/Selenium design boundaries |
+| G-021 | 85 / 80 / 75 | 90 / 94 / 89 | Loader/retrieval admitted array IDs and digests before the separate archived-provenance guard |
+| G-022 | 85 / 85 / 75 | 88 / 86 / 92 | Generated descendants were traversed before filtering; current Unicode/space-path acceptance was absent |
+| T-007 | 75 / 65 / 65 | 93 / 94 / 90 | Bounded source-bound native repeats of retained component oracles were absent |
 | G-020 | 75 / 70 / 75 | 70 / 70 / 85 | A raw CRLF inventory digest rejected identical method content after an LF checkout |
 | G-019 | 80 / 85 / 70 | 75 / 65 / 75 | An external item and stale closure text confused the active scope; empty-state intent lacked a guard |
 | D-013 | 85 / 85 / 75 | 75 / 45 / 75 | Vertical flows, open/missing legend boundaries and dense overview decisions |
@@ -114,6 +117,9 @@ normalizing their presentation does not claim a fresh execution.
 
 | ID | Delivered behavior | Verification |
 |---|---|---|
+| G-021 | Strict JSON IDs/digests, quality 93 (93/95/92) | 205 Node per edition, malformed inputs/repairs and identical valid receipt; [evidence](Code_And_Documentation_Maturity.md#g-021) |
+| G-022 | Prune before traversal and Windows relocation, quality 92 (91/92/94) | 736 native per edition in Unicode/space LF/CRLF paths and final closure; [limits](Code_And_Documentation_Maturity.md#g-022) |
+| T-007 | Bounded repeatability of retained components, quality 94 (94/95/93) | 120/120 native outcomes, no skips/configuration errors; [evidence](Code_And_Documentation_Maturity.md#t-007) |
 | G-020 | Canonical LF/CRLF-equivalent inventory seal; quality 94 (95/94/93) | Existing owner-method probe and final native closure; [evidence](Code_And_Documentation_Maturity.md#g-020) |
 | G-019 | Reconciled lifecycle and explicit zero-task contract; quality 94 (95/93/94) | Paired native/Node receipts, negative controls and actual repairs; [evidence](Code_And_Documentation_Maturity.md#g-019) |
 | D-013 | Shared presentation rules across 50 pairs; quality 93 (94/92/94) | Paired 736/736; 203 Node each; desktop rendering; [evidence and limits](Code_And_Documentation_Maturity.md#d-013) |

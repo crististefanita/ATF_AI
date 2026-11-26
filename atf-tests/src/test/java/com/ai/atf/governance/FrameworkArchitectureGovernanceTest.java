@@ -145,7 +145,20 @@ public class FrameworkArchitectureGovernanceTest {
             fixture.write(nestedOwned, "# Maintained contract\n");
             String nestedRunsOwned = "docs/artifacts/reports/runs/contract.md";
             fixture.write(nestedRunsOwned, "# Maintained run contract\n");
-            List<java.nio.file.Path> files = GovernanceFiles.files(fixture.root, "");
+            fixture.write("artifacts/reports/current/e2e/deep/report.json", "{}");
+            fixture.write("target/ignored/deep/Generated.java", "class Generated {}\n");
+            fixture.write(".git/ignored/deep/Generated.java", "class Generated {}\n");
+            fixture.write(".tmp/ignored/deep/Generated.java", "class Generated {}\n");
+            fixture.write("atf-core/src/main/resources/target/owned/contract.json", "{}");
+            List<Path> visited = new java.util.ArrayList<>();
+            List<java.nio.file.Path> files = GovernanceFiles.files(fixture.root, "", visited::add);
+            for (String excluded : List.of("target/ignored", ".git/ignored", ".tmp/ignored", "artifacts/reports/current/e2e")) {
+                Assert.assertFalse(visited.stream().anyMatch(path -> path.startsWith(fixture.root.resolve(excluded))),
+                        "Excluded generated descendants must not be traversed: " + excluded);
+            }
+            Assert.assertTrue(visited.contains(fixture.root.resolve("atf-core/src/main/resources/target/owned")),
+                    "Output-like names within owned resources must remain traversed.");
+
             Assert.assertTrue(files.contains(fixture.root.resolve("artifacts/README.md")));
             Assert.assertTrue(files.contains(fixture.root.resolve("artifacts/atlas/Project_Map_Template.md")));
             Assert.assertTrue(files.contains(fixture.root.resolve(owned)), "Owned source resources cannot be hidden by an output path name.");
@@ -160,6 +173,19 @@ public class FrameworkArchitectureGovernanceTest {
             Assert.assertFalse(files.contains(fixture.root.resolve("artifacts/publication.json")));
             assertFinding(MarkdownDocumentationRules.validate(fixture.root), "artifacts/README.md:3 DOC-LINK");
             assertValid(GovernanceFiles.validatePortablePaths(fixture.root));
+        }
+        try (GovernanceFiles.Fixture fixture = new GovernanceFiles.Fixture(Files.createDirectories(Path.of("target")))) {
+            String prefix = "workspace \u03a9 with spaces/";
+            fixture.write(prefix + "atf-core/src/main/java/com/ai/core/Sample.java", "package com.ai.core; class Sample {}\n");
+            fixture.write(prefix + "target/ignored/deep/Generated.java", "class Generated {}\n");
+            Path relocated = fixture.root.resolve(prefix);
+            Path relative = Path.of("").toAbsolutePath().normalize().relativize(relocated);
+            List<Path> absoluteFiles = GovernanceFiles.files(relocated, ".java");
+            List<Path> relativeFiles = GovernanceFiles.files(relative, ".java");
+            Assert.assertEquals(absoluteFiles.size(), 1);
+            Assert.assertEquals(relativeFiles.stream().map(path -> path.toAbsolutePath().normalize()).collect(java.util.stream.Collectors.toList()), absoluteFiles,
+                    "Relative roots, spaces and Unicode must preserve the same owned inventory.");
+            Assert.assertEquals(Files.readString(absoluteFiles.get(0)), "package com.ai.core; class Sample {}\n");
         }
     }
 

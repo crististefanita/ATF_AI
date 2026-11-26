@@ -643,11 +643,95 @@ root. Existing 736-case reactors predate this final two-file governance repair;
 the final native closure qualifies the changed owners rather than relabelling
 the older source capture as a new complete execution.
 
+
+<a id="g-021"></a>
+## G-021: Strict JSON identities before Atlas retrieval
+
+Status: VERIFIED for the loader/retrieval input boundary. Owner: framework/Atlas governance.
+Priority 82 (impact 85 / exposure 80 / urgency 75).
+Baseline quality 91 (correctness 90 / verification 94 / clarity 89).
+Delivered quality 93 (correctness 93 / verification 95 / clarity 92).
+
+The baseline accepted array IDs, duplicate array identities and an array archive
+digest in loader/retrieval. Full archive provenance was a separate later guard;
+its protection is not relabelled as a complete-pipeline defect.
+
+- Require string IDs before syntax/uniqueness checks and string archive digests
+  before digest checks. Valid corpus, ranking and receipts remain unchanged.
+- Two Node component cases exercise actual malformed JSON, owned diagnostic hints
+  and repaired files. The maintained Node selection passes 205/205 per edition.
+- The valid retrieval receipt is exactly equal before/after; the three pinned
+  archived blobs still verify. Semantic recall remains NOT_CLAIMED.
+
+<a id="g-022"></a>
+## G-022: Owned-source traversal and relocated checkout qualification
+
+Status: VERIFIED for owned-source traversal and Windows relocation. Owner: source governance.
+Priority 83 (impact 85 / exposure 85 / urgency 75).
+Baseline quality 89 (correctness 88 / verification 86 / clarity 92).
+Delivered quality 92 (correctness 91 / verification 92 / clarity 94).
+
+The old walker enumerated generated descendants before filtering and resolved the
+root repeatedly. It now prunes excluded directories before descending and resolves
+one canonical root per scan. Owned sources with output-like names remain governed.
+
+- Extend the existing architecture-owner method: observe visited directories,
+  exclude generated descendants and retain owned resources. No timing threshold
+  substitutes for the traversal oracle.
+- Compare absolute/relative roots with spaces and Unicode. Fresh Windows LF/CRLF
+  checkouts pass 736/736 native cases per edition, with zero failures/errors/skips.
+- A controlled UTF-8 launcher preserves relocated Java/Maven paths and the paired
+  documentation property. This qualifies that launcher; it does not certify every
+  shell wrapper, Linux/macOS or a new browser matrix.
+
+<a id="t-007"></a>
+## T-007: Bounded repeatability of existing component oracles
+
+Status: VERIFIED for the selected local component methods. Owner: component-test governance.
+Priority 70 (impact 75 / exposure 65 / urgency 65).
+Baseline quality 92 (correctness 93 / verification 94 / clarity 90).
+Delivered quality 94 (correctness 94 / verification 95 / clarity 93).
+
+Two independent JVMs repeat three retained methods 20 times each. Native TestNG
+reports show 60/60 per edition, 120/120 total, with zero skips, failed assertions
+or configuration errors. Original assertions and lifecycle hooks remain active.
+
+| Retained subject | Observed contract | Proof boundary |
+|---|---|---|
+| Thread delegation | Delegates and step depth stay isolated | Selected parallel threads |
+| Repeated cleanup | Delegate and open depth are cleared | Actual lifecycle/reset methods |
+| Collection workers | Heavy work is limited while other work overlaps | Retained scheduler fixture |
+
+This bounded repeat is not a measured long-term CI flake rate. No product E2E is
+added or run; the reviewed 561-method Java inventory and runtime libraries remain
+unchanged. Two added Node component cases bring the maintained Node total to 205.
+
+<details>
+<summary>Reproduction, source binding and excluded attempts for G-021/G-022/T-007</summary>
+
+- Source checkpoint: fad9c29abb9ec5a7ae68b5e002907a6c054c0f86, with exact per-edition
+  overlays and raw/canonical file hashes. Final feedback/documents are bound by
+  the subsequent paired native closure, not retroactively by earlier logs.
+- Evidence root: `${ATF_WORK_ROOT}/reviews/rag-portability-stability-20261126`.
+  README.md records commands, host/toolchain, source identity and scope.
+- acceptance-06 contains the completed 736-case reactors against acceptance-05
+  source snapshots. repeatability-02 retains the actual 120 native results;
+  node-final retains 205 Node cases per edition against final tool sources.
+- acceptance-01/02 did not reach the native suite because of external launcher
+  quoting/encoding. acceptance-03/04 were interrupted/overlapped; acceptance-05
+  has no completion receipt. All are excluded from native acceptance. The first
+  repeatability launcher failed class loading; repeatability-02 uses a reviewed
+  manifest classpath. Original logs remain available.
+- The final closure includes the entire architecture owner, documentation owners
+  and scanner. No assertion, skip or original native XML is rewritten.
+
+</details>
+
 <a id="current-assessment"></a>
 ## Current ATF AI assessment
 
 Reviewed on 2026-11-26 against the live runtime checkpoint
-0e7495353b414c592c404a1731facbadfb8b894d and the reviewed governance/documentation
+fad9c29abb9ec5a7ae68b5e002907a6c054c0f86 and the reviewed governance/documentation
 overlay. Ratings cover the supported HTTP, desktop UI, Extent and Atlas scope.
 Critical runtime owners were inspected directly; all-source static controls and
 representative execution are distinct proof levels. This is an authored review,
@@ -661,14 +745,14 @@ C means correctness, V verification and Cl clarity. Each input and result uses
 |---|---|---:|
 | Code and architecture | 94 / 93 / 92 | 93 |
 | Documentation and editions | 94 / 93 / 94 | 94 |
-| Atlas and RAG | 90 / 94 / 89 | 91 |
+| Atlas and RAG | 93 / 95 / 92 | 93 |
 | Feedback lifecycle | 95 / 93 / 94 | 94 |
 | Code and test governance | 95 / 94 / 93 | 94 |
-| Existing-test stability | 93 / 94 / 90 | 92 |
+| Existing-test stability | 94 / 95 / 93 | 94 |
 | Configuration and failure handling | 93 / 94 / 90 | 92 |
 | Auditability and reporting | 94 / 94 / 92 | 93 |
 | Maintainability | 92 / 92 / 91 | 92 |
-| Portability evidence | 88 / 86 / 92 | 89 |
+| Portability evidence | 91 / 92 / 94 | 92 |
 | Provider extensibility | 92 / 90 / 92 | 91 |
 
 <details>
