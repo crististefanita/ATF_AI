@@ -162,3 +162,52 @@ precondition assertions avoid dumping the complete HTML when insertion fails.
 Both original native runs remain unchanged under their local-01 locators. The
 accepted local-02 runs recorded in the acceptance evidence preserve that earlier
 failure and establish their own separately captured source and outcomes.
+
+
+<a id="f-012"></a>
+## F-012: Strict UI options and a shared configured wait
+
+- Owner: Core typed UI configuration and wait helpers.
+- Priority: 87, from impact/risk/urgency 90/85/80.
+- Baseline quality: 71, from correctness/verification/clarity 75/60/75.
+- Observation: malformed UI boolean text silently became false; zero, negative
+  or millisecond-overflowing waits were accepted. Locale-dependent engine casing
+  and duplicated wait parsing weakened the configuration boundary.
+- Correction: the existing ConfigManager and UiRuntimeOptions own strict boolean
+  and configured-wait readers. Both session options and WaitUtils use them.
+  Unknown engines fail before acquisition. Existing defaults, override precedence,
+  explicit Duration overloads and supported zoom normalization remain unchanged.
+- Existing oracles cover six boolean keys, malformed values, both wait keys,
+  canonical precedence, lower/upper bounds and Turkish default locale. Errors
+  identify the actual key and value; wait rejection precedes condition polling.
+- Stable contract: [Core configuration and cleanup](../../atf-core/README.md#validated-ui-configuration-and-cleanup).
+- State: IN PROGRESS. Focused 69/69 passed; complete paired acceptance is pending.
+
+<a id="f-013"></a>
+## F-013: Roll back partial UI session acquisition
+
+- Owner: existing Playwright and Selenium session/provider classes.
+- Priority: 82, from impact/risk/urgency 85/80/75.
+- Baseline quality: 65, from correctness/verification/clarity 65/50/80.
+- Observation: constructor failure after resource acquisition lacked an owned
+  rollback path. Nested Playwright close failures could also replace the first
+  failure. This starting observation is source-backed, not a process-leak claim.
+- Correction: release acquired resources in reverse ownership order, preserve
+  the original RuntimeException or Error and retain distinct suppressed cleanup
+  causes. Persistent Playwright contexts own browser shutdown; temporary profiles
+  are removed. A Selenium factory failure has no acquired driver to quit.
+- Existing provider component classes inject stage failures without launching a
+  browser: Playwright has 16 cases and Selenium has 12 cases, including positive
+  acquisition, cleanup order, primary identity and self-suppression controls.
+- Stable contracts: [Playwright](../../atf-playwright/README.md#acquisition-failure-and-cleanup)
+  and [Selenium](../../atf-selenium/README.md#acquisition-failure-and-cleanup).
+- State: IN PROGRESS. Focused 69/69 passed; complete paired acceptance is pending.
+
+## Current UI maintenance evidence
+
+The external root is `${ATF_WORK_ROOT}/reviews/20261126-ui-lifecycle-config`.
+The baseline source, original failing native XML and focused Maven run remain
+separate. The focused selection proves only the selected owned contracts; it
+does not replace the complete local reactor. No E2E class, product journey or
+emulator is added. Historical acceptance sections above retain their captured
+source and counts; current F-011 work supersedes its earlier open-state summary.

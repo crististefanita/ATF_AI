@@ -57,6 +57,12 @@ in atf-tests, including governance.
 
 Use the [local baseline recipe](Testing_Commands.md#local-baseline).
 
+Existing local UI checks now include failure-safe class teardown, strict UI
+boolean/wait/engine validation and acquisition rollback for both providers.
+Injected resource collaborators observe ownership and exception identity without
+starting browsers. Keep those component results separate from the existing
+browser and application selections.
+
 ## Selective checks
 
 The maintained [API](../atf-tests/src/test/resources/suites/framework-api.xml),

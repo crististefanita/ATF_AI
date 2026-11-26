@@ -66,6 +66,20 @@ A library's native checks can be selected with its module and dependencies,
 for example `mvn -B -ntp -pl atf-core -am test`. That selection does not run
 the cross-module regressions in atf-tests.
 
+This component selection injects collaborator failures and starts no browser.
+It retains the original failure and observes independent cleanup state. Run the
+complete local selection as well before closing feedback.
+
+<details>
+<summary>Recheck existing UI lifecycle, configuration and adapter rollback contracts</summary>
+
+```powershell
+mvn -B -ntp "-Dsurefire.failIfNoSpecifiedTests=false" "-Dtest=BaseTestUIContractTest,UiEngineRuntimeOptionsContractTest,WaitUtilsContractTest" test
+mvn -B -ntp -pl atf-playwright,atf-selenium -am test
+```
+
+</details>
+
 ## Browser preparation and checks
 
 Use the portable work-root/cache variables from

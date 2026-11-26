@@ -92,6 +92,19 @@ BaseTestUI owns the class-scoped session hooks. Set the engine before setup,
 rather than changing it after a test method has started. The same consumer
 action/assertion code also works with the [Selenium configuration](../atf-selenium/README.md#consumer-example).
 
+## Acquisition failure and cleanup
+
+If launch, context/page creation or window setup fails, release only acquired
+resources in reverse order. A persistent context owns its browser; close the
+context and Playwright, then remove the temporary profile. Preserve the original
+failure and retain distinct cleanup causes as suppressed exceptions.
+
+The existing [provider test](src/test/java/com/ai/ui/core/engine/playwright/PlaywrightProviderTest.java)
+uses a package-local acquisition seam to exercise success, RuntimeException,
+Error and cleanup failures without browser launch. Normal close preserves its
+first failure while still closing later resources. Real process termination
+retains its separate native-browser proof boundary.
+
 ## Verification
 
 From an isolated reactor copy:

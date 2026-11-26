@@ -93,6 +93,18 @@ The inherited hooks create and close the thread-owned browser session. The
 action/assertion code is shared with the [Playwright example](../atf-playwright/README.md#consumer-example);
 the installed provider and the pre-setup `ui.engine` setting select the adapter.
 
+## Acquisition failure and cleanup
+
+After a driver is acquired, any timeout/window/startup-handle failure closes that
+exact driver. A factory failure supplies no driver to close. Preserve the
+original RuntimeException or Error and attach a distinct quit failure as
+suppressed evidence; a failure cannot suppress itself.
+
+The existing [provider test](src/test/java/com/ai/ui/core/engine/selenium/SeleniumProviderTest.java)
+injects the factory and driver collaborators without starting Chrome. Success
+still uses and closes the same owned driver. Real browser/driver compatibility
+retains its separate native acceptance boundary.
+
 ## Verification
 
 From an isolated reactor copy:

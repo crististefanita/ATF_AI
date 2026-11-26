@@ -126,27 +126,26 @@ describes the actual implementation and assertion.
 - Owner: Core UI base teardown and thread-owned interaction state.
 - Priority: 82, from impact/risk/urgency 85/80/75.
 - Baseline quality: 66, from correctness/verification/clarity 70/40/85.
-- Observation: source review of
-  [BaseTestUI](../../atf-core/src/main/java/com/ai/ui/core/runtime/BaseTestUI.java)
-  shows that tearDown calls DriverManager.quitEngine before
-  UiInteractionTracker.clear. A quit exception can bypass that later clear call.
-  [DriverManager](../../atf-core/src/main/java/com/ai/ui/core/runtime/DriverManager.java)
-  removes its ENGINE reference in finally, which is a separate cleanup contract.
-  The existing
-  [BaseTestUIContractTest](../../atf-tests/src/test/java/com/ai/atf/core/support/base/BaseTestUIContractTest.java)
-  checks lifecycle hooks/source ownership rather than this failure observation.
-- Proof limit: this is a source-supported control-flow gap. No component execution
-  in this review reproduces retained tracker state or establishes a runtime leak.
-  Passing architecture or Atlas checks cannot promote that missing observation
-  into a verified teardown guarantee.
-- Required next evidence: a bounded pure component oracle that independently
-  observes interaction-tracker state and engine ownership when quit throws,
-  while preserving the original exception. It belongs to the existing UI base
-  lifecycle contract, not a new product/E2E journey or emulator.
-- Current action: retain the gap and exact source/oracle limits in the Atlas.
-  This phase makes no Core Java runtime correction and does not close the item.
-- State: OPEN source-review gap; TODO in the active register. A future bounded
-  component observation and an authorized correction are needed before closure.
+- Historical observation: BaseTestUI called engine shutdown before clearing the
+  interaction tracker. The original review was source-only; DriverManager's
+  independent finally already removed its engine reference.
+- Reproduction: the existing lifecycle contract now observes success,
+  RuntimeException and Error. Both failure rows fail against the previous runtime:
+  the engine is removed but interaction state remains. The unchanged original
+  exception is independently asserted. The retained combined baseline records
+  25 cases, 7 passed and 18 failed across lifecycle and configuration contracts.
+- Correction: [BaseTestUI](../../atf-core/src/main/java/com/ai/ui/core/runtime/BaseTestUI.java)
+  clears interaction state in finally. The existing
+  [lifecycle contract](../../atf-tests/src/test/java/com/ai/atf/core/support/base/BaseTestUIContractTest.java)
+  verifies exact failure identity, engine removal, cleared interaction state and
+  repeated teardown without a second quit.
+- Current evidence: the focused reactor selection passed 69/69 cases. Complete
+  EN/RO local reactor, documentation and maintenance checks remain required.
+- Proof limit: controlled component observations establish these owned cleanup
+  paths. They do not establish browser-process or live-site acceptance. Existing
+  Atlas captures retain their original source-only finding and source identity.
+- State: IN PROGRESS pending complete paired acceptance. Evidence is retained at
+  `${ATF_WORK_ROOT}/reviews/20261126-ui-lifecycle-config`.
 
 ## Verification and closure
 

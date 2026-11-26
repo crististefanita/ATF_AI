@@ -239,6 +239,13 @@ replace native product acceptance.
 <a id="configuration-boundary"></a>
 ### Configuration and reporting boundaries
 
+UI runtime validation rejects malformed boolean values and waits outside
+`1..2147483` whole seconds before provider acquisition. The six UI flags share
+one boolean reader; WaitUtils shares the validated wait reader. Canonical and
+legacy wait precedence and valid defaults remain unchanged. See the
+[Core configuration contract](../atf-core/README.md#validated-ui-configuration-and-cleanup).
+
+
 - MUST keep one Core configuration loader and use its typed option owners.
 - MUST route semantic execution reporting through StepLogger/ReportLogger.
 - MUST keep Extent/Allure SDK imports inside atf-reporting and browser SDK imports
@@ -443,6 +450,13 @@ are recorded separately from the business outcome.
 <a id="ui-screenshots"></a>
 ### UI lifecycle, failure screenshots and final state
 
+Class teardown clears interaction state in `finally` after every engine shutdown
+outcome. Provider acquisition failures release only acquired resources in reverse
+order, preserving the primary failure and distinct suppressed cleanup causes.
+The existing base/provider component tests exercise these error paths without
+starting browsers; native browser and product acceptance remain separate.
+
+
 ```mermaid
 sequenceDiagram
     participant TestNG
@@ -457,7 +471,8 @@ sequenceDiagram
     Listener->>Capture: request failure or final-state evidence
     Capture->>Driver: capture only with active engine and logger
     TestNG->>Base: after class, always run
-    Base->>Driver: attempt engine quit, then clear interaction state
+    Base->>Driver: attempt engine quit
+    Base->>Base: finally clear interaction state
 ```
 
 BaseTestUI initializes/quits the engine once per class with always-run teardown.
@@ -466,13 +481,14 @@ the UI attachment handler. ScreenshotManager attaches at most once per invocatio
 after a successful capture/attachment; without an active engine/logger it does
 not manufacture evidence.
 
-The final diagram arrow describes the teardown call order. DriverManager removes
-its engine reference in finally if engine quit throws; BaseTestUI's later
-interaction-tracker clear can then be bypassed. The source-supported
-[F-011 cleanup gap](feedback/Behavior_And_Negative_Cases.md#f-011)
-remains open; always-run scheduling does not prove that every cleanup operation
-completes. This framework-state limit is separate from LD-11's application-data
-cleanup obligation.
+The final diagram arrow attempts shutdown; the note identifies independent
+cleanup in finally. DriverManager removes its engine reference and BaseTestUI
+clears interaction state even when quit throws. The existing
+[F-011 component oracle](feedback/Behavior_And_Negative_Cases.md#f-011)
+checks success, RuntimeException and Error, exact cause identity and repeated
+teardown. Always-run scheduling alone does not establish these guarantees. This
+framework-state contract is separate from LD-11's application-data cleanup
+obligation and from browser-process acceptance.
 
 Failure capture is configuration-dependent. Eligible success can also capture
 the final UI state when screenshots are enabled, failure-only mode is disabled

@@ -45,6 +45,47 @@ explicit file. Important defaults include `ui.engine=playwright`,
 `api.wait.timeout.seconds=10` and `reporting.engine=extent`.
 Browser and report implementations are supplied by their modules.
 
+## Validated UI configuration and cleanup
+
+UI options are validated before provider acquisition. Core owns the shared
+boolean and wait readers; adapters receive the validated values. JVM overrides,
+classpath or explicit-file defaults and the legacy wait fallback retain their
+existing precedence.
+
+| Input | Accepted values | Failure boundary |
+|---|---|---|
+| UI booleans | Trimmed, case-insensitive `true` or `false`; blank retains the owning fallback | Invalid text identifies its actual key and value |
+| Configured wait | `1..2147483` whole seconds | Reject zero, negative, malformed and millisecond-overflowing values |
+| Engine | `playwright`, `selenium` or legacy `default` | Normalize with `Locale.ROOT` and reject unknown names before acquisition |
+| Legacy wait | `explicit.wait.seconds` when `ui.wait.timeout.seconds` is absent | Apply the same range and name the selected key in diagnostics |
+
+The boolean boundary covers headless, console details, runtime metadata and the
+three screenshot flags. Screenshot handling reuses the same boolean reader.
+WaitUtils reuses the validated seconds reader; explicit Duration overloads keep
+their separate existing contract. Supported zoom normalization remains unchanged.
+
+```mermaid
+flowchart TB
+    Config["Resolve and validate UI options"] --> Acquire["Acquire provider resources"]
+    Acquire --> Ready["Use the owned session"]
+    Acquire -->|failure| Rollback["Release acquired resources in reverse order"]
+    Ready --> Close["Close the owned session"]
+    Close --> Clear["Clear independent interaction state in finally"]
+    Rollback --> Cause["Preserve primary and distinct cleanup causes"]
+    Clear --> Cause
+```
+
+Arrows describe lifecycle ownership. Validation precedes allocation. Acquisition
+rollback releases only acquired resources; class teardown clears interaction
+state even when engine shutdown throws. The original exception remains primary,
+and distinct cleanup failures remain suppressed evidence.
+
+The existing [UI option contracts](../atf-tests/src/test/java/com/ai/atf/ui/component/UiEngineRuntimeOptionsContractTest.java),
+[wait contracts](../atf-tests/src/test/java/com/ai/atf/ui/component/WaitUtilsContractTest.java)
+and [base lifecycle contracts](../atf-tests/src/test/java/com/ai/atf/core/support/base/BaseTestUIContractTest.java)
+exercise these boundaries without starting a browser. Native adapter provider
+tests inject acquisition failures; they do not establish live-site acceptance.
+
 ## Verification
 
 From an isolated reactor copy:
@@ -54,7 +95,7 @@ From an isolated reactor copy:
 
 ```powershell
 mvn -B -ntp -pl atf-core -am test
-mvn -B -ntp -pl atf-tests -am "-Dtest=ConfigManagerFileContractTest,BaseTestAPIContractTest,BaseTestUIContractTest,StepLoggerContractTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
+mvn -B -ntp -pl atf-tests -am "-Dtest=ConfigManagerFileContractTest,BaseTestAPIContractTest,BaseTestUIContractTest,UiEngineRuntimeOptionsContractTest,WaitUtilsContractTest,StepLoggerContractTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
 ```
 
 </details>

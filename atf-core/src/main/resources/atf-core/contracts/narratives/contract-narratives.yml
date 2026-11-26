@@ -368,9 +368,9 @@ contracts:
     kind: contract
     area: UI_SUPPORT
     owner: BaseTestUI lifecycle contract
-    expected: BaseTestUI exposes exactly the framework lifecycle hooks needed for UI engine init and cleanup.
-    observed: The test verifies setUp() is @BeforeClass(alwaysRun=true) and tearDown() is @AfterClass(alwaysRun=true).
-    repairHint: Keep UI engine lifecycle in class-level setup/teardown so test methods stay business/action oriented.
+    expected: Class-scoped UI teardown clears engine and interaction state after success, runtime failure or error, while preserving the exact shutdown failure.
+    observed: The existing lifecycle test verifies alwaysRun hooks, injects each controlled quit outcome, compares owned state and repeats teardown without closing the removed engine again.
+    repairHint: Keep class-level lifecycle hooks and put independent tracker cleanup in finally; preserve the original failure and the engine removal contract.
   - id: core.contract-narrative.ui-engine-action-parity-suite
     kind: suite
     profile: UI_SUPPORT_CONTRACT
@@ -565,8 +565,8 @@ contracts:
     area: UI_ENGINE
     owner: UiRuntimeOptions
     expected: Invalid wait timeout values fail before browser startup with a clear runtime config error.
-    observed: The sandbox sets a non-integer timeout and the loader throws IllegalStateException.
-    repairHint: Validate runtime options before constructing SeleniumDriver or Playwright browser instances.
+    observed: The sandbox rejects malformed, nonpositive and millisecond-overflowing timeout values before engine construction; valid boundaries and the legacy fallback retain their own contracts.
+    repairHint: Share the validated seconds reader with WaitUtils, identify the actual canonical or legacy key and retain positive timeout bounds before acquiring browser resources.
   - id: core.contract-narrative.ui-engine-capability-suite
     kind: suite
     profile: UI_SUPPORT_CONTRACT

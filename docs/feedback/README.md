@@ -11,7 +11,9 @@ the caller-selected local archive following the [report guide](../../artifacts/r
 |---|---|---|---:|---:|---|---|
 | G-014 | Retain the J1 change-control failure separately from Atlas consistency and scoped catalog success | J1 test-change owner; external observation | 84 | 68 | TODO | [Exact source and required control records](Atlas_Depth_And_Assessment.md#g-014) |
 | G-016 | Review loss of an existing regression method within a still-selected class | Test-maintenance owner | 75 | 69 | TODO | [Source-only gap and bounded acceptance](Code_And_Documentation_Maturity.md#g-016) |
-| F-011 | Keep interaction-tracker cleanup observable when UI engine shutdown throws | Core UI base teardown owner | 82 | 66 | TODO | [Source-only cleanup gap and missing component oracle](Behavior_And_Negative_Cases.md#f-011) |
+| F-011 | Keep interaction-tracker cleanup observable when UI engine shutdown throws | Core UI base teardown owner | 82 | 66 | IN PROGRESS | [Source-only cleanup gap and missing component oracle](Behavior_And_Negative_Cases.md#f-011) |
+| F-012 | Reject malformed UI options before resource acquisition | Core configuration and wait owners | 87 | 71 | IN PROGRESS | [Shared readers and negative cases](Code_And_Documentation_Maturity.md#f-012) |
+| F-013 | Roll back partial UI session acquisition and preserve the first failure | Browser adapter session owners | 82 | 65 | IN PROGRESS | [Owned rollback and component cases](Code_And_Documentation_Maturity.md#f-013) |
 
 The register is reserved for framework governance, stability and documentation.
 Product-flow improvement records are excluded from this backlog.
@@ -68,6 +70,8 @@ Retained baseline component scores:
 | D-007 | 90 / 80 / 85 | 65 / 55 / 55 | Source-backed negative claims did not have explicit behavior case paths or selected assertion witnesses |
 | A-002 | 85 / 80 / 85 | 70 / 55 / 70 | Existing structural tests needed traversal mutations and generic publisher component proof beyond field presence |
 | F-011 | 85 / 80 / 75 | 70 / 40 / 85 | Source ordering may skip interaction-tracker cleanup on engine quit failure; no component execution establishes a runtime leak |
+| F-012 | 90 / 85 / 80 | 75 / 60 / 75 | Malformed UI booleans and unbounded configured waits; duplicated parsing |
+| F-013 | 85 / 80 / 75 | 65 / 50 / 80 | Partial startup lacks rollback and nested close failures may mask the first cause |
 | D-008 | 90 / 90 / 90 | 60 / 45 / 70 | Live holds 44 report collections and 14 Atlas captures without a bounded current selection or publication-layout guard |
 | R-001 | 90 / 90 / 90 | 60 / 40 / 65 | Retained product methods lack selected native per-engine evidence; registration validation and sensitive typing details need explicit audit controls |
 | D-009 | 90 / 80 / 80 | 85 / 65 / 80 | Supported structure is not enforced across all Markdown; inline code/numeric parity counterexamples and semantic qualifier drift need owned controls |

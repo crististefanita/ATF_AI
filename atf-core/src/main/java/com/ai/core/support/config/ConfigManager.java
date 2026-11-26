@@ -38,6 +38,14 @@ public final class ConfigManager {
         return value;
     }
 
+    public static boolean getBoolean(String key, boolean defaultValue) {
+        String value = get(key, Boolean.toString(defaultValue));
+        if ("true".equalsIgnoreCase(value)) return true;
+        if ("false".equalsIgnoreCase(value)) return false;
+        throw new IllegalStateException("Invalid boolean config key: " + key + "=" + value
+                + "; expected true or false");
+    }
+
     public static void set(String key, String value) {
         if (value == null) {
             properties().remove(key);
