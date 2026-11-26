@@ -62,6 +62,20 @@ așteptat. Constatările necunoscute rămân neclasificate.
 - Păstrează clasele semnificative de test existente accesibile prin selecțiile
   de suite întreținute. Distinge testele explicite de aplicație, cazurile
   controlate și probele de mediu de regresiile omise accidental.
+- Păstrează identitățile ordonate ale metodelor TestNG executabile în
+  [test-method-inventory.txt](../../atf-tests/src/test/resources/governance/test-method-inventory.txt).
+  Controlul AST înregistrează tipul declarant, numele metodei și tipurile
+  parametrilor, independent de selecția claselor din suită.
+- `TEST-METHOD-REMOVED` identifică o metodă fixată care lipsește din sursă;
+  `TEST-METHOD-UNREGISTERED` identifică o metodă din sursă absentă din inventarul
+  revizuit. Ambele constatări trimit la testul existent de guvernanță și includ
+  un indiciu de remediere.
+- Pentru adăugarea, redenumirea sau retragerea intenționată a unei metode,
+  revizuiește diferența de semnături și dovada afectată, apoi actualizează
+  inventarul ordonat și amprenta SHA-256 din `TestMethodInventoryRules`.
+  Aceasta este o bază de identități la nivel de sursă, nu o dovadă că metoda s-a
+  executat sau că o schimbare Git a fost aprobată. Revizuiește inventarul și
+  amprenta împreună cu testul responsabil.
 - Un control de sursă verifică arhitectura sau politica. Etichetează acel
   domeniu separat de execuția runtime și acceptanța controlată a aplicației.
 

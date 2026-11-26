@@ -21,6 +21,7 @@ public class FrameworkArchitectureGovernanceTest {
                 {"DOC-EDITION/README.md:12 DOC-LINK missing target", "DOC-EDITION", false},
                 {"SUITE-OMISSION com.ai.Sample is absent", "SUITE-OMISSION", true},
                 {"pom.xml [profile: checked]: CORE-SDK concrete library", "CORE-SDK", true},
+                {"atf-tests/src/test/resources/governance/test-method-inventory.txt: TEST-METHOD-REMOVED Sample#retained()", "TEST-METHOD-REMOVED", true},
                 {"README.md:12 DOC-LINK missing target", "README.md:12 DOC-LINK", true},
                 {"README.md:21 DOC-LINK missing target", "README.md:12 DOC-LINK", false},
                 {"README.md:12 DOC-LINK missing first target", "DOC-LINK missing second", false}
@@ -48,15 +49,19 @@ public class FrameworkArchitectureGovernanceTest {
     public void diagnosticsPreserveAllEvidenceAndDeduplicateOnlyRecheckCommands() {
         String first = "atf-core/pom.xml [profile: checked]: CORE-SDK concrete dependency";
         String second = "README.md:18 DOC-LINK missing-target.md\ncompiler or producer continuation";
-        String report = GovernanceFiles.problems(List.of(first, second, first));
-        Assert.assertTrue(report.startsWith("Governance failed with 3 finding(s)."));
+        String third = "atf-tests/src/test/resources/governance/test-method-inventory.txt: TEST-METHOD-REMOVED com.ai.Sample#retained()";
+        String report = GovernanceFiles.problems(List.of(first, second, third, first));
+        Assert.assertTrue(report.startsWith("Governance failed with 4 finding(s)."));
         Assert.assertTrue(report.contains("1) Observed: " + first));
         Assert.assertTrue(report.contains("2) Observed: " + second));
-        Assert.assertTrue(report.contains("3) Observed: " + first));
+        Assert.assertTrue(report.contains("3) Observed: " + third));
+        Assert.assertTrue(report.contains("4) Observed: " + first));
         Assert.assertEquals(report.split(Pattern.quote("-Dtest=FrameworkArchitectureGovernanceTest"), -1).length - 1, 1);
         Assert.assertEquals(report.split(Pattern.quote("-Dtest=DocumentationGovernanceTest"), -1).length - 1, 1);
         Assert.assertTrue(report.contains("Failure meaning: A concrete SDK"));
         Assert.assertTrue(report.contains("Owner: docs/Architecture.md#provider-composition"));
+        Assert.assertTrue(report.contains("Confirm the deletion was intentional"));
+        Assert.assertTrue(report.contains("Owner: docs/governance/Code_And_Documentation_Policy.md#existing-test-quality"));
         Assert.assertTrue(report.contains("Repair hint: Correct the source-relative destination"));
         Assert.assertFalse(report.contains("README.md:1 "), "Do not invent a source line to fill an unknown location.");
         Assert.assertEquals(GovernanceFiles.problems(List.of()), "No governance findings supplied.");
@@ -550,6 +555,38 @@ public class FrameworkArchitectureGovernanceTest {
             assertFinding(failures, "SUITE-MISSING");
             assertFinding(failures, "SUITE-EMPTY");
             assertFinding(failures, "SUITE-UNDECLARED");
+        }
+    }
+
+    @Test
+    public void executableTestMethodsMatchTheReviewedInventoryAndDetectLossOrUnregisteredChanges() throws Exception {
+        List<String> maintained = TestMethodInventoryRules.validate(GovernanceFiles.root());
+        assertValid(maintained);
+        try (GovernanceFiles.Fixture fixture = new GovernanceFiles.Fixture()) {
+            String path = "atf-tests/src/test/java/com/ai/atf/fixture/SampleTest.java";
+            fixture.write(path, "package com.ai.atf.fixture; import org.testng.annotations.Test; "
+                    + "class SampleTest { @Test public void preserved() {} "
+                    + "@Test public void overloaded(String value) {} @Test public void overloaded(int value) {} }");
+            List<String> sourceErrors = new java.util.ArrayList<>();
+            Set<String> baseline = TestMethodInventoryRules.inventory(
+                    fixture.root.resolve("atf-tests/src/test/java"), sourceErrors);
+            assertValid(sourceErrors);
+            Assert.assertTrue(baseline.contains("com.ai.atf.fixture.SampleTest#overloaded(String)"));
+            Assert.assertTrue(baseline.contains("com.ai.atf.fixture.SampleTest#overloaded(int)"));
+
+            fixture.write(path, "package com.ai.atf.fixture; import org.testng.annotations.Test; "
+                    + "class SampleTest { @Test public void overloaded(String value) {} "
+                    + "@Test public void overloaded(int value) {} @Test public void replacement() {} }");
+            Set<String> current = TestMethodInventoryRules.inventory(
+                    fixture.root.resolve("atf-tests/src/test/java"), sourceErrors);
+            List<String> findings = TestMethodInventoryRules.compare(new java.util.ArrayList<>(baseline), current);
+            assertFinding(findings, "TEST-METHOD-REMOVED");
+            assertFinding(findings, "TEST-METHOD-UNREGISTERED");
+            String report = GovernanceFiles.problems(findings);
+            Assert.assertTrue(report.contains("preserved()"));
+            Assert.assertTrue(report.contains("replacement()"));
+            Assert.assertTrue(report.contains("Confirm the deletion was intentional"));
+            Assert.assertTrue(report.contains("Repair hint:"));
         }
     }
 

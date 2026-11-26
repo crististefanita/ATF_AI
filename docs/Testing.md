@@ -53,6 +53,12 @@ Selecția implicită din rădăcină rulează verificările native ale bibliotec
 [framework-local.xml](../atf-tests/src/test/resources/suites/framework-local.xml)
 în atf-tests, inclusiv guvernanța.
 
+Guvernanța fixează și identitățile metodelor TestNG executabile, astfel încât
+selecția clasei să nu ascundă eliminarea unei metode. Revizuiește constatarea și
+actualizează inventarul sursei numai odată cu o schimbare de test intenționată și
+revizuită; acest control de sursă nu afirmă că testul s-a executat. Vezi
+[politica pentru cod și documentație](governance/Code_And_Documentation_Policy.md#existing-test-quality).
+
 - Fixture-urile și dublurile locale acoperă configurația, execuția API, delegarea
   UI și raportarea.
 - Sunt excluse cazurile dependente de browser, fixture-urile de eșec intenționat

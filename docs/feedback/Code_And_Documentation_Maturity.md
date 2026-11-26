@@ -79,17 +79,29 @@ documentația. Nu adaugă fluxuri de produs, funcționalități runtime sau emul
 
 - Responsabil: politica de mentenanță a testelor și modulul testului modificat.
 - Prioritate: 75; impact/risc/urgență 80/70/70.
-- Calitate: 69; corectitudine/verificare/claritate 75/50/80.
-- Observație: eliminarea unei metode dintr-o clasă încă selectată poate lăsa
-  inventarul claselor neschimbat. Iterația nu introduce o poartă Git pentru
-  schimbarea testelor și nu pretinde protecția eliminării metodelor.
+- Calitatea inițială: 69; corectitudine/verificare/claritate 75/50/80.
+- Calitatea livrată: 94; corectitudine/verificare/claritate 95/94/94.
+- Observație: inventarul suitelor proteja selecția claselor, dar nu și
+  identitatea unei metode eliminate dintr-o clasă încă selectată.
 - Referință J0: TestChangeGovernanceTest și GitTestChanges separă baza imuabilă,
   calea exactă modificată, raționamentul revizorului și dovada verificării. Păstrează
   principiul fără a copia cataloage de consumatori sau a inventa cereri de aprobare.
-- Acceptanță: un control limitat viitor trebuie să reproducă eliminarea reală a unei metode,
-  să distingă fixture-urile/refactorizările de pierderea dovezii, să acopere schimbările
-  comise și locale, să respingă intrări expirate/străine și să ofere un indiciu de remediere.
-- Stare: TODO. Inspecția surselor dovedește lacuna, nu o mutație executată.
+- Corecție: responsabilul existent de guvernanță a framework-ului compară acum
+  un inventar ordonat al identităților TestNG executabile, extras din AST (tip
+  declarant, metodă și tipuri de parametri), cu o bază fixată prin SHA-256.
+  `TEST-METHOD-REMOVED` și `TEST-METHOD-UNREGISTERED` păstrează semnături
+  acționabile și trimit la responsabilul canonic.
+- Acceptanță: fixture-ul negativ controlat elimină o metodă păstrând clasa,
+  adaugă o înlocuitoare neînregistrată și verifică ambele constatări și indiciul
+  de remediere. Inventarul menținut corespunde sursei curente de teste.
+  `FrameworkArchitectureGovernanceTest` a trecut 114/114 în selecția focalizată
+  a reactorului, la 2026-11-26.
+- Limită: baza detectează deriva identităților, dar nu clasifică schimbările Git,
+  nu este o poartă de aprobare, nu dovedește calitatea corpului metodei și nici
+  executarea fiecărei metode. Schimbările intenționate cer revizuirea explicită
+  a diferenței de semnături, inventarului și amprentei împreună cu regresia responsabilă.
+- Stare: VERIFICAT în limitele declarate ale guvernanței sursei. Nota inițială
+  rămâne înregistrată separat în registrul de feedback.
 
 <a id="comparable-source-review-scores"></a>
 ## Note comparabile ale reviziei surselor
@@ -271,20 +283,42 @@ Referința este revizia din 2026-11-26 la 14daf233e8039049cf6d8ba2db7421fb48c4c5
 | Mentenabilitate | 10 | 88 | 89 | Cititor comun de așteptare; utilitarul mare de documentație încă amestecă responsabilități |
 | Configurație | 10 | 82 | 93 | Booleeni stricți, așteptări limitate și validare a motorului independentă de limbă |
 | Ciclul de viață la eșec | 10 | 84 | 94 | Identitatea exactă a cauzei, curățare în finally și eliberarea resurselor dobândite |
-| Guvernanța codului/testelor | 15 | 91 | 91 | Controalele existente trec; protecția G-016 împotriva ștergerii metodelor rămâne deschisă |
-| Stabilitate demonstrată | 15 | 90 | 91 | Selecțiile locale complete pereche trec; fără execuție nouă de produs |
+| Guvernanța codului/testelor | 15 | 91 | 94 | Selecția claselor plus identități de metode fixate prin AST; constatări la eliminare/adăugare controlată |
+| Stabilitate demonstrată | 15 | 90 | 92 | Responsabil focalizat 114/114 și selecții locale complete pereche; fără execuție nouă de produs |
 | Documentație și ediții | 15 | 94 | 94 | Contracte EN/RO menținute, diagrame și formate Living pereche |
-| Feedback și proveniență | 10 | 93 | 94 | Referință negativă păstrată, închideri delimitate și confirmări asociate sursei |
+| Feedback și proveniență | 10 | 93 | 95 | Notele inițiale și livrate pentru G-016 rămân distincte; dovezi pereche și limite consemnate |
 
-Maturitatea ponderată crește de la 89.75 la 92.20, rotunjită de la 90 la 92.
-Comparația anterioară J1 în citire rămâne 89.10, rotunjită 89, în aria arborelui
-capturat cu modificări locale; J1 nu a fost modificat, recompilat sau reevaluat
-prin această corecție. Niciun rezultat nu este procent de acoperire sau garanție
-completă a execuției.
+Maturitatea ponderată crește de la 89.75 la 92.90, rotunjită de la 90 la 93.
+Niciun rezultat nu este procent de acoperire sau garanție completă a execuției.
 
-Prioritățile chirurgicale următoare sunt controalele explicite G-016 pentru
-pierderea metodelor și separarea responsabilităților regulilor de documentație,
-păstrând controalele negative și indicațiile de remediere. Utilitarul existent
-de documentație are 1293 de linii; este o observație de mentenabilitate, nu o
-execuție eșuată. Nicio prioritate nu cere scenarii de produs noi. G-014 rămâne
-un TODO extern deținut de J1.
+## Revizie ATF_AI și atf-j1 pe aceleași axe
+
+Aceste judecăți 1–100 folosesc aceleași opt axe și ponderi. ATF_AI reflectă
+revizia pereche curentă a surselor. Referința atf-j1 este sursa comisă la
+`4e3cac10061c95ea2b9b32cc18a6d4add1007a1e`; spațiul său de lucru separat, cu
+modificări, a rămas nemodificat și a fost exclus din nota sursei. Testele J1 nu
+au fost executate sau reevaluate în această corecție.
+
+| Axă | Pondere | ATF_AI | atf-j1 | Diferență |
+|---|---:|---:|---:|---:|
+| Arhitectură și responsabilități | 15 | 92 | 94 | -2 |
+| Mentenabilitate | 10 | 89 | 90 | -1 |
+| Configurație | 10 | 93 | 90 | +3 |
+| Ciclul de viață la eșec | 10 | 94 | 93 | +1 |
+| Guvernanța codului/testelor | 15 | 94 | 89 | +5 |
+| Stabilitate demonstrată | 15 | 92 | 80 | +12 |
+| Documentație și ediții | 15 | 94 | 91 | +3 |
+| Feedback și proveniență | 10 | 95 | 87 | +8 |
+| **Notă ponderată** | **100** | **92.90** | **89.10** | **+3.80** |
+
+ATF_AI conduce această comparație delimitată pe șase din opt axe după închiderea
+G-016. atf-j1 păstrează un avantaj de două puncte la arhitectură și un punct la
+mentenabilitate. Diferențele de guvernanță și stabilitate reflectă sursele și
+dovezile capturate, nu o afirmație că testele J1 au fost rerulate aici.
+
+Controlul G-016 pentru pierderea identităților metodelor este acum verificat în
+limita declarată a sursei. Prioritatea chirurgicală următoare este reducerea
+responsabilităților amestecate în utilitarul de guvernanță a documentației, de
+1293 de linii, păstrând controalele negative și indicațiile de remediere.
+Aceasta este o observație de mentenabilitate, nu o execuție eșuată. Nu este
+necesar niciun scenariu de produs nou. G-014 rămâne un TODO extern deținut de J1.

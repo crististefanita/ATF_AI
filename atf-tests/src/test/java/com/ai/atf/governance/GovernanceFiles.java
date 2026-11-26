@@ -225,6 +225,10 @@ final class GovernanceFiles {
                 "A maintained TestNG source annotation can suppress an existing regression.",
                 "Remove enabled indirection or disabling from the reported maintained annotation; omit enabled or use literal true. Preserve reviewed manual fixtures and run the selected owner.",
                 policy + "#existing-test-quality", architecture);
+        help(result, "TEST-METHOD-INVENTORY TEST-METHOD-SOURCE TEST-METHOD-REMOVED TEST-METHOD-UNREGISTERED",
+                "The reviewed executable TestNG method inventory is missing, malformed or differs from current test source.",
+                "Inspect each reported signature and source path. Confirm the deletion was intentional and preserves the required proof; then update the sorted inventory and its pinned digest with the owning test change. Additions also require an explicit inventory update so a later deletion cannot pass unnoticed.",
+                policy + "#existing-test-quality", architecture);
         help(result, "DOC-PROSE-DENSE DOC-PROSE-SENTENCE",
                 "Visible orientation prose combines too many decisions or observations in one reading unit.",
                 "Separate decisions into short paragraphs; use bullets for parallel checks, a table for alternatives, or a diagram with an adjacent legend for a real flow. Preserve prerequisites and proof limits; changing line wrapping does not repair density.",

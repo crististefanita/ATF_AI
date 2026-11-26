@@ -69,6 +69,27 @@ Verificările native ale unei biblioteci pot fi selectate prin modul și depende
 de exemplu `mvn -B -ntp -pl atf-core -am test`. Selecția nu rulează regresiile
 între module din atf-tests.
 
+<a id="test-method-inventory"></a>
+## Inventarul metodelor de test
+
+Controlul sursei compară identitățile metodelor TestNG executabile cu o bază
+ordonată și revizuită. Dacă adăugarea, redenumirea sau retragerea intenționată a
+unui test schimbă inventarul, inspectează fiecare semnătură raportată și dovada
+sa înainte de actualizarea listei. Actualizează constanta amprentei din
+`TestMethodInventoryRules` cu SHA-256 afișat de a doua comandă, apoi reexecută
+responsabilul focalizat. Schimbarea amprentei singură nu revizuiește și nu aprobă
+schimbarea testului.
+
+<details>
+<summary>Revizuiește și verifică inventarul existent de metode TestNG</summary>
+
+```powershell
+mvn -B -ntp "-Dsurefire.failIfNoSpecifiedTests=false" "-Dtest=FrameworkArchitectureGovernanceTest" test
+(Get-FileHash -LiteralPath atf-tests/src/test/resources/governance/test-method-inventory.txt -Algorithm SHA256).Hash.ToLowerInvariant()
+```
+
+</details>
+
 Această selecție de componentă injectează eșecuri ale colaboratorilor și nu
 pornește browsere. Păstrează eroarea originală și observă independent starea
 curățării. Rulează și selecția locală completă înaintea închiderii feedback-ului.

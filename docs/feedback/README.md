@@ -12,7 +12,6 @@ jurnale și rapoarte în zona externă; copiile selectate și verificate pot fi 
 | ID | Constatare | Responsabil | Prioritate (1-100) | Calitate (1-100) | Stare | Dovada închiderii |
 |---|---|---|---:|---:|---|---|
 | G-014 | Păstrează eșecul de control al schimbărilor J1 separat de consistența Atlas și de rezultatul reușit al catalogului în aria verificată | Responsabilul schimbărilor testelor J1; observație externă | 84 | 68 | TODO | [Sursa exactă și înregistrările de control necesare](Atlas_Depth_And_Assessment.md#g-014) |
-| G-016 | Revizuiește pierderea unei metode de regresie existente dintr-o clasă încă selectată | Responsabilul mentenanței testelor | 75 | 69 | TODO | [Lacuna observată în surse și acceptanța limitată](Code_And_Documentation_Maturity.md#g-016) |
 
 Registrul este rezervat guvernanței, stabilității și documentației framework-ului.
 Înregistrările despre îmbunătățirea fluxurilor de produs sunt excluse din această listă.
@@ -120,6 +119,7 @@ normalizarea prezentării nu reprezintă o nouă execuție.
 | D-003 | Documentație guvernată pentru artefacte, arhive clasificate și protocol Atlas reutilizabil | 8 verificări de fișiere/CLI; rapoarte arhivate și revalidate prin hash; 21 de README-uri traduse și exemplu Atlas; [dovezi](Code_Stability_And_Artifacts.md#d-003--governed-artifacts-and-reusable-atlas-intake) |
 | G-008 | Mesaje constructive cu dovezi originale, responsabil și remediere verificabilă | 550 de cazuri trecute în fiecare ediție, inclusiv 211 de guvernanță; destinațiile și selecțiile indicate există; [dovezi](Actionable_Governance_Diagnostics.md#g-008--constructive-governance-failures) |
 | T-006 | Controalele negative disting regula emisă de prefixe și mențiuni în date | 17 invocări focalizate și ambele selecții complete au trecut; [dovezi](Actionable_Governance_Diagnostics.md#t-006--exact-rule-identity-in-negative-governance-fixtures) |
+| G-016 | Guvernanța claselor existente protejează acum și identitățile TestNG revizuite, cu constatări acționabile la eliminare/adăugare; calitate livrată 94 (95/94/94) | FrameworkArchitectureGovernanceTest 114/114 trecut; eliminare controlată și înlocuitoare neînregistrată; [dovezi și limite](Code_And_Documentation_Maturity.md#g-016) |
 | D-005 | Un HTML complet pentru fiecare proiect încorporează CSS dedicat, comportament, surse și dovezi | 66 de verificări de mentenanță și redare offline izolată pentru AI/J1 la două lățimi desktop, cu zece secțiuni; [dovezi](Atlas_Complete_Report.md#d-005--one-complete-understanding-artifact-per-target) |
 | G-010 | Guvernanța raportului complet păstrează identitatea, rezultatele, izolarea și remedierea constructivă | Au trecut controalele pentru pachetul complet, criteriu, JSON, biblioteci și prezentare coruptă deliberat; [dovezi](Atlas_Complete_Report.md#g-010--constructive-governance-for-the-complete-atlas-contract) |
 | K-001 | Recuperarea locală citată păstrează toate cerințele obligatorii și aria țintei alese | 14 înregistrări, 12 politici obligatorii, 12 verificări ale cunoștințelor și trei obiecte Git arhivate verificate; [dovezi](Atlas_Complete_Report.md#k-001--cited-knowledge-retrieval-with-mandatory-policy) |
