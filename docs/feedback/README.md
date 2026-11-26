@@ -13,9 +13,6 @@ jurnale și rapoarte în zona externă; copiile selectate și verificate pot fi 
 |---|---|---|---:|---:|---|---|
 | G-014 | Păstrează eșecul de control al schimbărilor J1 separat de consistența Atlas și de rezultatul reușit al catalogului în aria verificată | Responsabilul schimbărilor testelor J1; observație externă | 84 | 68 | TODO | [Sursa exactă și înregistrările de control necesare](Atlas_Depth_And_Assessment.md#g-014) |
 | G-016 | Revizuiește pierderea unei metode de regresie existente dintr-o clasă încă selectată | Responsabilul mentenanței testelor | 75 | 69 | TODO | [Lacuna observată în surse și acceptanța limitată](Code_And_Documentation_Maturity.md#g-016) |
-| F-011 | Păstrează observabilă curățarea urmăririi interacțiunilor când închiderea motorului UI aruncă o excepție | Responsabilul închiderii UI din Core | 82 | 66 | IN PROGRESS | [Lipsa observată în surse și criteriul de componentă absent](Behavior_And_Negative_Cases.md#f-011) |
-| F-012 | Respinge opțiunile UI malformate înaintea alocării resurselor | Responsabilii configurației și așteptărilor Core | 87 | 71 | IN PROGRESS | [Cititori comuni și cazuri negative](Code_And_Documentation_Maturity.md#f-012) |
-| F-013 | Curăță achiziția parțială a sesiunii UI și păstrează prima eroare | Responsabilii sesiunilor adaptoarelor browser | 82 | 65 | IN PROGRESS | [Curățare deținută și cazuri de componentă](Code_And_Documentation_Maturity.md#f-013) |
 
 Registrul este rezervat guvernanței, stabilității și documentației framework-ului.
 Înregistrările despre îmbunătățirea fluxurilor de produs sunt excluse din această listă.
@@ -91,6 +88,9 @@ normalizarea prezentării nu reprezintă o nouă execuție.
 
 | ID | Comportament livrat | Verificare |
 |---|---|---|
+| F-011 | Închiderea curăță starea după succes, RuntimeException și Error; calitate livrată 94 (95/92/94) | Reactoare complete EN/RO, selecție focalizată 69/69 și referință negativă păstrată; [dovezi](Behavior_And_Negative_Cases.md#f-011) |
+| F-012 | Limite stricte comune pentru configurația UI și așteptare; calitate livrată 94 (95/93/94) | Contracte pozitive/negative de componentă și acceptanță completă pereche; [dovezi](Code_And_Documentation_Maturity.md#f-012) |
+| F-013 | Achiziția parțială este curățată fără mascarea cauzei originale; calitate livrată 93 (94/92/93) | Cele 16 cazuri Playwright și 12 Selenium existente pentru furnizori; [dovezi](Code_And_Documentation_Maturity.md#f-013) |
 | D-011 | Blocuri semantice Atlas, legende alăturate, coloane limitate și echilibru nativ al tabelelor; calitate livrată 93 (94/92/92) | 203/203 Node per ediție, EN 315/315 și RO 315/315 guvernanță existentă; [dovezi și limite](Atlas_Depth_And_Assessment.md#d-011) |
 | G-017 | Testele menținute dezactivate în sursă sunt respinse, iar firul existent al consolei este limitat; calitate livrată 93 (94/92/92) | local-02 final EN/RO 690/690 și 690/690; încercarea eșuată originală rămâne păstrată; [dovezi](Code_And_Documentation_Maturity.md#g-017) |
 | D-010 | Strategia, rețetele de comenzi pliate și toate cele 51 de revizuiri documentare sunt guvernate; calitate livrată 92 (94/90/92) | Controale native între ediții, 182 de cazuri Node capturate per ediție și 32 de înregistrări desktop/56 SVG/98 de capturi; [dovezi și limite](Code_And_Documentation_Maturity.md#d-010) |

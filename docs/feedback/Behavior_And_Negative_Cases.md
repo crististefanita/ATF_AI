@@ -143,14 +143,15 @@ descrie implementarea și aserțiunea efective.
   curăță starea interacțiunilor în finally. [Contractul existent](../../atf-tests/src/test/java/com/ai/atf/core/support/base/BaseTestUIContractTest.java)
   verifică identitatea exactă a erorii, eliminarea motorului, starea curățată și
   repetarea închiderii fără un al doilea apel quit.
-- Dovezi curente: selecția focalizată a reactorului a trecut 69/69 de cazuri.
-  Reactorul local complet EN/RO, documentația și verificările de mentenanță sunt
-  încă necesare.
+- Dovezi curente: reactoarele complete implicite EN/RO au trecut fiecare 740/740, inclusiv 703 de cazuri atf-tests și 315 de guvernanță per ediție. Selecția focalizată a trecut 69/69; Node a trecut 203/203 per ediție. Verificarea documentelor pereche și revizia vizuală desktop au trecut.
+- Calitate livrată: 94; corectitudine/verificare/claritate 95/92/94.
 - Limita dovezii: observațiile controlate de componentă stabilesc aceste căi de
   curățare. Nu stabilesc acceptanța proceselor de browser sau a site-ului real.
   Capturile Atlas existente își păstrează constatarea și sursa originale.
-- Stare: IN PROGRESS până la acceptanța completă a ambelor ediții. Dovezile sunt în
+- Stare: VERIFIED pentru contractul de componentă al închiderii. Eșecurile
+  inițiale și identitățile surselor Atlas capturate rămân păstrate. Dovezile sunt în
   `${ATF_WORK_ROOT}/reviews/20261126-ui-lifecycle-config`.
+
 
 <a id="verification-and-closure"></a>
 ## Verificare și închidere
@@ -203,8 +204,9 @@ referințele complete la afirmații, ponderile și limitările sunt încorporate
 | Livrare offline și structura pentru cititor | 91 | 91 |
 | Grup ponderat | 91 | 90 |
 
-G-014 rămâne TODO pentru controalele schimbărilor deținute de J1. F-011 rămâne o lacună
-de curățare UI susținută doar de surse: nicio dovadă de componentă nu stabilește o scurgere a urmăritorului sau o remediere finalizată.
+În captura Atlas originală, G-014 era TODO, iar F-011 era o lacună UI susținută
+doar de surse, fără dovezi de componentă. Închiderea curentă F-011 este mai sus;
+dovezile Atlas anterioare își păstrează aria și sursa originale.
 Cazurile martor reprezentative expun lacunele muchiilor declarate și nu pot stabili
 acoperire exhaustivă a ramurilor, adevărul prozei sau capacitatea semantică de recuperare RAG. Corpusul de politici
 conține 19 înregistrări, 16 obligatorii; fragmentele citate exacte și înregistrările canonice

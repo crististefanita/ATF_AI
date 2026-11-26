@@ -1,6 +1,10 @@
 <a id="bounded-publication-and-immutable-external-history"></a>
 # Publicare delimitată și istoric extern imuabil
 
+Arie istorică: F-011 era deschis în această revizie capturată. Corecția ulterioară
+a componentei și acceptanța curentă sunt în [F-011](Behavior_And_Negative_Cases.md#f-011);
+aceasta nu rerulează și nu redenumește dovezile anterioare de produs/Atlas.
+
 Referință inițială: reperul sursă `6232c00`. Această revizie modifică instrumentele de întreținere,
 guvernanța și documentația. Nu adaugă funcționalități de execuție, scenarii E2E de produs
 sau emulatoare. G-014 și F-011 își păstrează domeniile deschise independente.

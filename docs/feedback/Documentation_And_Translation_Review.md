@@ -1,6 +1,10 @@
 <a id="documentation-contracts-and-semantic-translation-review"></a>
 # Contractele documentației și revizuirea semantică a traducerilor
 
+Arie istorică: F-011 era deschis în această revizie capturată. Corecția ulterioară
+a componentei și acceptanța curentă sunt în [F-011](Behavior_And_Negative_Cases.md#f-011);
+aceasta nu rerulează și nu redenumește dovezile anterioare de produs/Atlas.
+
 Bază: engleză `fd5cf47f403bd01d00dbb1a40f17d9a37496e843` și română
 `b62d4e9dd3690b25f7ea9de16b84867cb88c561d`. Referința J0 doar pentru citire este
 `96f50e5f277771ca9dfac3b7c959b47188afd0b0`, inclusiv cele două schimbări locale

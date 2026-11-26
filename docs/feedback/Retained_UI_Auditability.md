@@ -1,6 +1,10 @@
 <a id="retained-ui-execution-and-auditable-report-evidence"></a>
 # Execuția UI păstrată și dovezi de raportare auditabile
 
+Arie istorică: F-011 era deschis în această revizie capturată. Corecția ulterioară
+a componentei și acceptanța curentă sunt în [F-011](Behavior_And_Negative_Cases.md#f-011);
+aceasta nu rerulează și nu redenumește dovezile anterioare de produs/Atlas.
+
 Bază: revizia sursă main `fe2940f`. Referință: revizia `main_mcp` păstrată local
 `70a7279c2a9560d39e6bd2554cd2f96a88626692`, inclusiv HTML-ul arhitecturii vii.
 Acest domeniu păstrează metodele existente de produs și îmbunătățește raportarea,

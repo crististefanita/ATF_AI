@@ -110,7 +110,8 @@ Diagnosticele și limitele existente sunt evaluate independent de numărul teste
 AI îmbunătățește selecția executabilă și un responsabil al concurenței limitate.
 J0 păstrează controale mai puternice ale schimbărilor și agregării ciclului de viață;
 AI păstrează observații emise mai bune, distincția cauză/remediere și reverificări exacte.
-F-011 rămâne deschis. Notele mari cer dovezi mai puternice, nu afirmații mai largi nesusținute.
+F-011 era deschis în acea comparație; închiderea curentă urmează mai jos. Notele
+mari cer dovezi mai puternice, nu afirmații mai largi nesusținute.
 
 <a id="acceptance-evidence"></a>
 ## Dovezi de acceptanță
@@ -152,7 +153,7 @@ izolate separate. Publicația curentă ignorată existentă își păstrează ar
   sau accesibilitatea universală.
 - Baza inițială netradusă și prima execuție completă rămân păstrate mai jos.
   Nu s-au adăugat scenarii E2E, emulatoare sau funcționalități runtime. G-016, G-014
-  și F-011 rămân TODO; sincronizarea se dovedește separat prin identitățile reale ale
+  și F-011 erau TODO atunci; sincronizarea era dovedită prin identitățile reale ale
   ramurilor, remote și live după verificarea închiderii exclusiv documentare.
 
 <a id="retained-first-complete-execution"></a>
@@ -192,7 +193,7 @@ anterior și stabilesc sursele și rezultatele proprii capturate separat.
   implicită. Erorile identifică cheia și valoarea reale; respingerea așteptării
   precede evaluarea repetată a condiției.
 - Contract stabil: [configurația și curățarea Core](../../atf-core/README.md#validated-ui-configuration-and-cleanup).
-- Stare: IN PROGRESS. Selecția focalizată a trecut 69/69; acceptanța completă a ambelor ediții este în așteptare.
+- Stare: VERIFIED pentru limita de configurație a componentei. Calitate livrată: 94; corectitudine/verificare/claritate 95/93/94. Dovezile complete pentru ambele ediții urmează mai jos.
 
 <a id="f-013"></a>
 <a id="f-013-roll-back-partial-ui-session-acquisition"></a>
@@ -214,7 +215,7 @@ anterior și stabilesc sursele și rezultatele proprii capturate separat.
   ordinea curățării, identitatea cauzei și controale împotriva auto-suprimării.
 - Contracte stabile: [Playwright](../../atf-playwright/README.md#acquisition-failure-and-cleanup)
   și [Selenium](../../atf-selenium/README.md#acquisition-failure-and-cleanup).
-- Stare: IN PROGRESS. Selecția focalizată a trecut 69/69; acceptanța completă a ambelor ediții este în așteptare.
+- Stare: VERIFIED pentru căile de componentă ale achiziției și curățării. Calitate livrată: 93; corectitudine/verificare/claritate 94/92/93. Dovezile complete pentru ambele ediții urmează mai jos.
 
 <a id="current-ui-maintenance-evidence"></a>
 ## Dovezile curente pentru mentenanța UI
@@ -232,3 +233,58 @@ folosea zero; acum folosește o secundă validă. Cele trei controale negative e
 verifică și mesajul exact al rândului lipsă, astfel încât un eșec anterior de
 configurație/navigare să nu satisfacă aserțiunea. Verificările de factură rămân
 componente controlate, fără browser sau parcurs de produs.
+
+
+<a id="ui-repair-acceptance-and-current-review-scores"></a>
+## Acceptanța corecțiilor UI și notele reviziei curente
+
+Reactoarele locale implicite complete au trecut 740/740 în fiecare ediție,
+inclusiv 703 de cazuri atf-tests, 37 de bibliotecă și 315 de guvernanță.
+Cele 29 de cazuri API locale existente au trecut în fiecare ediție. Fiecare
+execuție are zero eșecuri, erori sau cazuri omise. Aceasta este acceptanța
+framework-ului/componentelor; scrierile GoRest, E2E de produs și emulatoarele sunt
+în afara acestei execuții.
+
+| Dovadă | Rezultat | Sursă asociată sau locație păstrată |
+|---|---|---|
+| Reactor implicit englez | 740/740 PASS | 6a90e248e09e3b553f77bd8cb5764a6f9b427614 |
+| Reactor implicit român | 740/740 PASS | 10d8974f69530c370932643a8227b73a9999decc |
+| UI/configurație/furnizori focalizați | 69/69 PASS | modules-code-documentation-ui-lifecycle-focused-01 |
+| Mentenanță Node | 203/203 PASS per ediție | en-node-01 și ro-node-01 |
+| Referință negativă originală | 7 trecute, 18 eșuate; rezultat așteptat | baseline/native/testng-results.xml |
+
+Manifestele complete, XML-ul nativ, jurnalele încheiate și native-summary.json
+rămân în rădăcina externă a reviziei. Sursa/POM/resursele sunt fixate independent
+de închiderea ulterioară a feedback-ului. Verificările finale de documentație și
+guvernanță pereche asociază textul închiderii. Revizia nativă desktop acoperă
+perechile Core/Living schimbate la 1440/900 CSS px, cu 8 înregistrări și 32 de
+observații de diagramă. Derularea conținută a figurilor Living late este
+intenționată. Este randare de fișiere, nu acceptanță de procese sau de aplicație.
+
+Judecățile următoare de la 1–100 folosesc aceleași axe și ponderi ca în comparația
+live anterioară. Ponderile însumează 100; numerele testelor nu determină notele.
+Referința este revizia din 2026-11-26 la 14daf233e8039049cf6d8ba2db7421fb48c4c5be.
+
+| Axă | Pondere | Inițial | Curent | Dovezi și limite rămase |
+|---|---:|---:|---:|---|
+| Arhitectură și responsabilități | 15 | 92 | 92 | Aceleași cinci module; fără clase de execuție sau funcționalități de produs noi |
+| Mentenabilitate | 10 | 88 | 89 | Cititor comun de așteptare; utilitarul mare de documentație încă amestecă responsabilități |
+| Configurație | 10 | 82 | 93 | Booleeni stricți, așteptări limitate și validare a motorului independentă de limbă |
+| Ciclul de viață la eșec | 10 | 84 | 94 | Identitatea exactă a cauzei, curățare în finally și eliberarea resurselor dobândite |
+| Guvernanța codului/testelor | 15 | 91 | 91 | Controalele existente trec; protecția G-016 împotriva ștergerii metodelor rămâne deschisă |
+| Stabilitate demonstrată | 15 | 90 | 91 | Selecțiile locale complete pereche trec; fără execuție nouă de produs |
+| Documentație și ediții | 15 | 94 | 94 | Contracte EN/RO menținute, diagrame și formate Living pereche |
+| Feedback și proveniență | 10 | 93 | 94 | Referință negativă păstrată, închideri delimitate și confirmări asociate sursei |
+
+Maturitatea ponderată crește de la 89.75 la 92.20, rotunjită de la 90 la 92.
+Comparația anterioară J1 în citire rămâne 89.10, rotunjită 89, în aria arborelui
+capturat cu modificări locale; J1 nu a fost modificat, recompilat sau reevaluat
+prin această corecție. Niciun rezultat nu este procent de acoperire sau garanție
+completă a execuției.
+
+Prioritățile chirurgicale următoare sunt controalele explicite G-016 pentru
+pierderea metodelor și separarea responsabilităților regulilor de documentație,
+păstrând controalele negative și indicațiile de remediere. Utilitarul existent
+de documentație are 1293 de linii; este o observație de mentenabilitate, nu o
+execuție eșuată. Nicio prioritate nu cere scenarii de produs noi. G-014 rămâne
+un TODO extern deținut de J1.
