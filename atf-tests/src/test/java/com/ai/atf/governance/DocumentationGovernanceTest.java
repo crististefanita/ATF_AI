@@ -107,6 +107,55 @@ public class DocumentationGovernanceTest {
     }
 
     @Test
+    public void rootReadmeStaysAnOrientationMapAndRoutesConsumerExamplesToTheirOwners() throws Exception {
+        Path source = GovernanceFiles.root();
+        assertValid(MarkdownDocumentationRules.validate(source));
+        try (GovernanceFiles.Fixture fixture = documentation()) {
+            String original = Files.readString(fixture.root.resolve("README.md"));
+            fixture.write("README.md", original.replace("atf-playwright/README.md#consumer-example",
+                    "atf-playwright/README.md#missing-example"));
+            List<String> findings = MarkdownDocumentationRules.validate(fixture.root);
+            assertFinding(findings, "DOC-README-ROUTE");
+            String report = GovernanceFiles.problems(findings);
+            Assert.assertTrue(report.contains("Owner: README.md#the-design-in-one-view"));
+            Assert.assertTrue(report.contains("Repair hint: Restore the two-column five-module map, dependency diagram under the design section"));
+
+            fixture.write("README.md", original.replaceFirst(Pattern.quote(diagram()), ""));
+            assertFinding(MarkdownDocumentationRules.validate(fixture.root), "DOC-README-DIAGRAM");
+
+            fixture.write("README.md", original + "\n```java compile\npublic class RootExample {}\n```\n");
+            assertFinding(MarkdownDocumentationRules.validate(fixture.root), "DOC-README-EXAMPLE-PLACEMENT");
+
+            fixture.write("README.md", original.replace("| Module | Responsibility |", "| Module | Responsibility | Detail |"));
+            findings = MarkdownDocumentationRules.validate(fixture.root);
+            assertFinding(findings, "DOC-README-MODULE-TABLE");
+            assertFinding(findings, "DOC-TABLE-SHAPE");
+            fixture.write("README.md", original);
+            assertValid(MarkdownDocumentationRules.validate(fixture.root));
+        }
+    }
+
+    @Test
+    public void readmeTableCellsRejectDenseProseAndAcceptAConciseRepair() throws Exception {
+        try (GovernanceFiles.Fixture fixture = documentation()) {
+            String original = Files.readString(fixture.root.resolve("README.md"));
+            String longCell = "explanatory detail ".repeat(12).strip();
+            String table = "\n| Field | Explanation |\n|---|---|\n| boundary | " + longCell + " |\n";
+            fixture.write("README.md", original + table);
+            List<String> findings = MarkdownDocumentationRules.validate(fixture.root);
+            assertFinding(findings, "DOC-TABLE-LONG-CELL");
+            String report = GovernanceFiles.problems(findings);
+            Assert.assertTrue(report.contains("Observed: README.md:"));
+            Assert.assertTrue(report.contains("Repair hint: Keep explanatory cells within 140 visible characters and 22 words"));
+            Assert.assertTrue(report.contains("Owner: docs/governance/Code_And_Documentation_Policy.md#reader-orientation-and-diagrams"));
+
+            fixture.write("README.md", original + "\n| Field | Explanation |\n|---|---|\n| boundary | The input is checked before use. |\n"
+                    + "| literal | `#left|right` |\n");
+            assertValid(MarkdownDocumentationRules.validate(fixture.root));
+        }
+    }
+
+    @Test
     public void completeDocumentationEditionHasCurrentWholeTextReviewAndLanguageSignals() throws Exception {
         Path root = GovernanceFiles.root();
         assertValid(DocumentationTranslationRules.validateLanguage(root));
@@ -513,7 +562,7 @@ public class DocumentationGovernanceTest {
             assertValid(MarkdownDocumentationRules.validate(fixture.root));
             append(fixture, "docs/Testing.md", "\nPentru verificare.\n");
             assertValid(MarkdownDocumentationRules.validate(fixture.root));
-            append(fixture, "README.md", "\n```java compile\n// Pentru verificare.\npublic class Example {}\n```\n");
+            append(fixture, "atf-playwright/README.md", "\n```java compile\n// Pentru verificare.\npublic class Example {}\n```\n");
             assertFinding(MarkdownDocumentationRules.validateCompilableExamples(fixture.root), "DOC-CODE-LANGUAGE");
         }
     }
@@ -559,13 +608,15 @@ public class DocumentationGovernanceTest {
             String original = Files.readString(romanian.root.resolve(path));
             romanian.write(path, original.replace("Core[Core]", "Core[Principal]").replace("|provides|", "|oferă|"));
             assertValid(MarkdownDocumentationRules.validateReadmeParity(english.root, romanian.root));
-            romanian.write(path, original.replace("## Overview", "## Prezentare generală"));
+            romanian.write(path, original.replace("## The design in one view", "## Designul într-o singură imagine"));
             assertFinding(MarkdownDocumentationRules.validateReadmeParity(english.root, romanian.root), "DOC-EDITION-ANCHOR");
             romanian.write(path, original.replace("-->", "-.->"));
             assertFinding(MarkdownDocumentationRules.validateReadmeParity(english.root, romanian.root), "DOC-EDITION-PARITY");
-            romanian.write(path, original.replace("docs/Architecture.md#runtime", "docs/Testing.md"));
+            romanian.write(path, original.replace("docs/Architecture.md", "docs/Testing.md"));
             assertFinding(MarkdownDocumentationRules.validateReadmeParity(english.root, romanian.root), "DOC-EDITION-PARITY");
-            romanian.write(path, original.replace("System.getProperty", "System.clearProperty"));
+            String provider = "atf-playwright/README.md";
+            romanian.write(provider, Files.readString(romanian.root.resolve(provider))
+                    .replace("System.getProperty", "System.clearProperty"));
             assertFinding(MarkdownDocumentationRules.validateReadmeParity(english.root, romanian.root), "DOC-EDITION-PARITY");
             romanian.write(path, original);
             romanian.write("pom.xml", Files.readString(romanian.root.resolve("pom.xml")).replace("1.0.0", "9.0.0"));
@@ -796,7 +847,7 @@ public class DocumentationGovernanceTest {
             append(fixture, "README.md", "\n[Outside](../outside.md)\n[Invalid](docs/%XX.md)\n");
             List<String> failures = MarkdownDocumentationRules.validate(fixture.root);
             assertFinding(failures, "DOC-MISSING");
-            Assert.assertEquals(failures.stream().filter(failure -> failure.contains("DOC-LINK")).count(), 2L,
+            Assert.assertEquals(failures.stream().filter(failure -> failure.contains("DOC-LINK")).count(), 3L,
                     GovernanceFiles.problems(failures));
             fixture.write("atf-selenium/README.md", "# atf-selenium\n\n```java compile\npublic class BrokenExample { void run(){ missingApi(); } }\n```\n");
             fixture.write("atf-playwright/README.md", "# atf-playwright\n\n````markdown\n```java compile\npublic class LiteralExample { void run(){ missingApi(); } }\n```\n````\n");
@@ -1149,8 +1200,23 @@ public class DocumentationGovernanceTest {
         fixture.write("atf-atlas/Knowledge_Base.md", "# Atlas knowledge\n\nCited requirements support a source-grounded reviewer.\n");
         fixture.write("atf-atlas/assets/atlas.css", ":root { color-scheme: light; }\n");
         fixture.write("atf-atlas/knowledge/atlas-contracts.json", "{\"schemaVersion\":1}\n");
-        fixture.write("README.md", "# ATF\n\ncom.ai:atf-parent:1.0.0 targets Java 11.\n\n## Overview\n\n" + String.join(", ", GovernanceFiles.MODULES)
-                + "\n\n[Architecture](docs/Architecture.md#runtime)\n\n" + diagram());
+        String moduleTable = "| Module | Responsibility |\n|---|---|\n"
+                + GovernanceFiles.MODULES.stream()
+                .map(module -> "| [" + module + "](" + module + "/README.md) | Existing module owner. |\n")
+                .collect(java.util.stream.Collectors.joining());
+        fixture.write("README.md", "# ATF\n\ncom.ai:atf-parent:1.0.0 targets Java 11.\n\n"
+                + "## The design in one view\n\n" + moduleTable + "\n" + diagram()
+                + "\n## How a check runs\n\nAPI and UI contracts select their current framework owners.\n\n" + diagram()
+                + "\n## How to choose a consumer route\n\n"
+                + "[Playwright](atf-playwright/README.md#consumer-example)\n\n"
+                + "[Selenium](atf-selenium/README.md#consumer-example)\n\n"
+                + "[Architecture](docs/Architecture.md)\n\n[Testing](docs/Testing.md)\n\n"
+                + "<a id=\"start\"></a>\n## Build and verify\n\nRun current checks in the documented staging copy.\n\n"
+                + "<a id=\"consumer-migration\"></a>\n## Configure and migrate\n\nUse the declared module coordinates.\n\n"
+                + "## Read by task\n\n[Governance](docs/governance/README.md)\n\n"
+                + "[Failure hints](docs/governance/Failure_Diagnostics.md)\n\n"
+                + "[Coverage](atf-atlas/Coverage_Map.md)\n\n[Artifacts](artifacts/README.md)\n\n"
+                + "[Documentation index](docs/README.md)\n");
         fixture.write("docs/Architecture.md", "# Architecture\n\n## Runtime\n\n" + diagram());
         fixture.write("docs/Testing.md", "# Testing\n\nRun the maintained suites in staging.\n");
         fixture.write("docs/Testing_Commands.md", "# Testing commands\n\nSelect a maintained recipe.\n");
@@ -1177,13 +1243,19 @@ public class DocumentationGovernanceTest {
                 + "| G-002 | Preserved ownership | Negative fixture passed |\n");
         fixture.write("docs/governance/README.md", "# Governance\n\n[Policy](Code_And_Documentation_Policy.md)\n");
         fixture.write("docs/governance/Code_And_Documentation_Policy.md", "# Code and documentation policy\n\nAuthored identifiers, comments and messages MUST be written in English.\n");
+        fixture.write("docs/governance/Readme_Editions.md", "# Documentation editions\n\nEnglish and Romanian documentation editions use the same project routes.\n");
         fixture.write("docs/governance/Failure_Diagnostics.md", "# Governance failure diagnostics\n\nPreserve observed findings, owned repair hints and verification.\n");
         fixture.write("atf-atlas/Coverage_Map.md", "# Coverage map\n\n[Contracts](../atf-core/README.md)\n");
         for (String module : java.util.stream.Stream.concat(GovernanceFiles.MODULES.stream(), java.util.stream.Stream.of("atf-atlas"))
                 .collect(java.util.stream.Collectors.toList())) {
-            fixture.write(module + "/README.md", "# " + module + "\n\n## Overview\n\nModule scope.\n\n## Ownership\n\nOwn the contracts.\n\n## Verification\n\nRun the maintained checks.\n");
+            String sections = module.equals("atf-core") ? "\n## Configuration\n\nUse the declared classpath defaults.\n" : "";
+            if (module.equals("atf-playwright") || module.equals("atf-selenium")) {
+                sections += "\n## Consumer example\n\nUse this provider's documented configuration.\n";
+            }
+            fixture.write(module + "/README.md", "# " + module + "\n\n## Overview\n\nModule scope.\n\n## Ownership\n\nOwn the contracts.\n"
+                    + sections + "\n## Verification\n\nRun the maintained checks.\n");
         }
-        for (String readme : List.of("README.md", "atf-playwright/README.md", "atf-selenium/README.md")) {
+        for (String readme : List.of("atf-playwright/README.md", "atf-selenium/README.md")) {
             append(fixture, readme, "\n" + diagram()
                     + "\n```java compile\npublic class ConsumerExample { public void run() { System.getProperty(\"fixture\"); } }\n```\n");
         }

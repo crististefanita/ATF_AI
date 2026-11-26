@@ -47,7 +47,7 @@ rămase și dovezile de închidere la limitele declarate.
 | Responsabil | Suprafața verificată în prezent | Ce demonstrează rezultatul |
 |---|---|---|
 | Arhitectură | [Regulile de arhitectură](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureRules.java) și [fixture-urile existente](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureGovernanceTest.java) | Limitele modulelor și furnizorilor, vizibilitatea surselor și regulile susținute de responsabilitate a execuției |
-| Documentație | [Regulile Markdown](../../atf-tests/src/test/java/com/ai/atf/governance/MarkdownDocumentationRules.java) și [fixture-urile existente](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationGovernanceTest.java) | Legături, fapte declarate despre construcție și valori implicite, ciclu de viață, arhitectură în ambele formate și exemple compilabile |
+| Documentație | [Regulile Markdown](../../atf-tests/src/test/java/com/ai/atf/governance/MarkdownDocumentationRules.java) și [fixture-urile existente](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationGovernanceTest.java) | Legături, fapte de compilare, poziția diagramelor rădăcinii, rute README și densitatea tabelelor, arhitectură pereche și exemple de adaptor |
 | Lizibilitate | [Reguli pentru cititor și cazuri de componentă](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationReadabilityRulesTest.java) | Decizii în paragrafele strategiei, proză de referință limitată și rețete Maven pliate |
 | Revizia edițiilor | [Controale de traducere](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationTranslationRules.java) | Semnale românești acceptate, blocuri englezești neschimbate și actualitatea amprentelor reviziei complete |
 | Inspecția surselor | [Fixture-urile scanerului Java](../../atf-tests/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java) | Regiuni lexicale susținute, politica markerilor cunoscuți pentru engleză și excepțiile exacte pentru date |
@@ -84,8 +84,12 @@ comportament de execuție. Urmează [procedura de revizuire](Code_And_Documentat
 și [contractul edițiilor](Readme_Editions.md) înainte de sincronizare.
 
 Verificările de stil susținute se aplică tuturor documentelor Markdown menținute.
-Regulile specifice README-urilor gestionează în continuare prezentarea modulelor
-și exemplele pentru consumatori. Codul literal rămâne în engleză în ambele ediții,
-iar observațiile istorice își păstrează sursa și selecția capturate.
+Regulile specifice README-urilor păstrează rădăcina axată pe orientarea modulelor
+și a execuției, impun diagrame separate pentru dependențe și flux și trimit
+exemplele către responsabilii Playwright/Selenium.
+README-urile modulelor/pachetelor dețin contractele și verificările locale.
+Limita pentru celulele de tabel semnalează proza densă; nu înlocuiește revizuirea
+la lățimea randată. Codul literal rămâne în engleză în ambele ediții, iar
+observațiile istorice își păstrează sursa și selecția capturate.
 [Ghidul eșecurilor](Failure_Diagnostics.md) explică locația emisă, regula,
 indicația de remediere, responsabilul și comanda de reverificare.

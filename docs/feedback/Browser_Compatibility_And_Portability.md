@@ -168,7 +168,7 @@ Referințe primare care susțin matricea și configurarea selectate:
 - Acceptanță: guvernanța documentației/surselor trece; legăturile și secțiunile/exemplele
   obligatorii se rezolvă; diagramele sunt randate și verificate pentru lizibilitate.
   Conținutul README corespunde reactorului cu cinci module și Atlas-ului exclusiv de documentație.
-- Livrat: indicii din rădăcină și ai responsabililor îndrumă cititorii după întrebare; revizia codului/documentației
+- Dovezi de închidere inițială: indicii din rădăcină și ai responsabililor îndrumau cititorii după întrebare; revizia codului/documentației
   are o singură politică canonică. Cele trei exemple Java complete sunt neschimbate
   și se compilează prin guvernanța existentă a documentației. Mermaid 11.4.1 efectiv
   a randat toate cele cinci diagrame README la 1440 și 520 px; înălțimea minimă a etichetelor
@@ -182,6 +182,20 @@ Referințe primare care susțin matricea și configurarea selectate:
 - Stare: VERIFIED prin rulările acceptate care includ guvernanță și prin inspecția vizuală
   efectivă. Vizualizatorul local adaptiv nu dovedește randarea pe fiecare gazdă Markdown;
   markerii lingvistici finiți necesită în continuare revizie umană în engleză.
+
+Revizie ulterioară: README-ul rădăcină explică traseele API/UI ca hartă a
+framework-ului, păstrează rezumatul celor cinci module în două coloane și
+trimite exemplele către ghidurile Playwright/Selenium. Guvernanța impune harta
+dependențelor și diagrama de execuție API/UI în secțiunile lor și include
+fixture-uri negative pentru rute lipsă, exemple plasate greșit, diagrame lipsă,
+celule dense și rânduri nealiniate. Ambele exemple existente ale adaptoarelor
+rămân verificate prin compilare. Verificarea din 2026-11-26: selecția de
+guvernanță/lizibilitate a trecut cu 176/176 în fiecare ediție, folosind rădăcini
+peer explicite; inventarul revizuit al metodelor de test a trecut cu 1/1 în
+ambele. Nu s-a rulat E2E de produs, profil de browser sau emulator. Limita de
+140 caractere/22 de cuvinte este doar un semnal de triere; tabelele rădăcinii
+modificate nu au fost randate din nou, iar verificările deterministe nu înlocuiesc
+revizia în rendererul Markdown țintă.
 
 <a id="t-004"></a>
 <a id="t-004-bound-browser-fixture-lifetime-separately-from-network-matching"></a>

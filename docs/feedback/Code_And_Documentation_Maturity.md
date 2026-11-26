@@ -301,6 +301,7 @@ Referința este revizia din 2026-11-26 la 14daf233e8039049cf6d8ba2db7421fb48c4c5
 Maturitatea ponderată crește de la 89.75 la 92.90, rotunjită de la 90 la 93.
 Niciun rezultat nu este procent de acoperire sau garanție completă a execuției.
 
+<a id="same-axis-atf_ai-and-atf-j1-review"></a>
 ## Revizie ATF_AI și atf-j1 pe aceleași axe
 
 Aceste judecăți 1–100 folosesc aceleași opt axe și ponderi. ATF_AI reflectă

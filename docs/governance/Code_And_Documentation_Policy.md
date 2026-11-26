@@ -200,6 +200,15 @@ produce, cum se verifică și unde trebuie să continue cititorul. Folosește un
 tabel scurt întrebare–responsabil când există mai multe intrări utile.
 Rădăcina explică alcătuirea; ghidurile modulelor și pachetelor explică propriile contracte.
 
+README-ul rădăcină este harta de orientare a framework-ului: explică separarea
+dintre contracte, furnizori, raportare și verificare; rezumă cele cinci module
+Maven; arată traseele verificărilor API/UI; apoi trimite cititorul la ghidul
+responsabil. Rezumatul modulelor are două coloane. Exemplele compilabile pentru
+consumatori Playwright/Selenium stau în README-urile adaptoarelor, lângă
+configurația și inițializarea furnizorului.
+Plasează harta dependențelor sub secțiunea despre design și diagrama execuției
+API/UI sub secțiunea despre rularea verificării; guvernanța confirmă ambele poziții.
+
 Folosește o diagramă pentru o întrebare: direcția dependențelor, flux runtime
 sau ordinea ciclului de viață. Preferă diagrame de flux compacte stânga–dreapta
 pentru hărți noi de relații; treci la aranjament vertical când etichetele ar
@@ -212,6 +221,15 @@ Folosește titluri Markdown semantice, tabele minimale, blocuri de cod tipizate
 și etichete concise. Pune detaliile secundare în ghidul responsabil sau
 într-un bloc `<details>` numit. Păstrează stilizarea rendererului în afara
 Markdown-ului, fără fonturi locale sau CSS încorporat.
+
+Cerința DOC-TABLE-001: fiecare celulă de proză dintr-un tabel README întreținut
+TREBUIE să aibă cel mult 140 de caractere vizibile și 22 de cuvinte. Folosește
+tabelele pentru corespondențe și comparații scurte; mută explicațiile în proza
+alăturată sau într-un responsabil legat și separă tabelele care răspund la
+întrebări diferite. Limita este un semnal determinist de revizuire, nu o
+garanție de randare sau lizibilitate. Inspectează tabelul modificat la lățimea
+sa randată reală. Păstrează distincte câmpuri precum Prioritate și Calitate,
+chiar dacă formatul compact cere formulări mai atente.
 
 Cerința DOC-REVIEW-001: fiecare document Markdown întreținut TREBUIE să aibă
 un H1, să înceapă ierarhia titlurilor de la H1 și să coboare cel mult un nivel
@@ -280,9 +298,10 @@ Exemplele Maven executabile folosesc selecții care se rezolvă față de POM-ul
 reactorul real. Blocurile de configurare marcate explicit `properties defaults`
 descriu valori implicite verificate ale sursei; exemplele de suprascriere nu
 pretind valori implicite. Exemplele publice complete ale consumatorilor,
-marcate `java compile` în README-urile rădăcină și ale adaptoarelor de browser,
-se compilează față de API-ul public curent cu Java 11 și procesarea anotărilor
-dezactivată. Exemplele obișnuite parțiale/literale nu sunt executate ca teste.
+marcate `java compile` în README-urile adaptoarelor de browser, se compilează
+față de API-ul public curent cu Java 11 și procesarea anotărilor dezactivată.
+README-ul rădăcină trimite cititorul la exemplele furnizorilor; exemplele
+obișnuite parțiale/literale nu sunt executate ca teste.
 
 <a id="contracts-gaps-and-execution-evidence"></a>
 ### Contracte, lacune și dovezi de execuție
