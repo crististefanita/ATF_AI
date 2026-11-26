@@ -91,6 +91,11 @@ selectarea implicită a claselor dependente de browser sau de aplicație.
   dintr-o acțiune ori apelarea de două ori a aceluiași helper nu sunt dovezi suficiente.
 - Verificați controalele negative și corecția reală. Păstrați eșecul original.
 
+Calificați separat infrastructura testelor: păstrați sursele deținute când excludeți
+rezultatele generate, repetați aserțiunile originale de ciclu de viață și înregistrați
+checkout-ul/codarea exacte. Repetarea locală oferă dovadă delimitată, nu o rată CI
+pe termen lung; vezi [T-007](feedback/Code_And_Documentation_Maturity.md#t-007).
+
 [Politica inventarului metodelor](governance/Code_And_Documentation_Policy.md#existing-test-quality)
 protejează identitățile revizuite ale testelor; nu dovedește execuția.
 Consultați [rețeta referinței locale](Testing_Commands.md#local-baseline).

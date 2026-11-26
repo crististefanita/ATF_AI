@@ -685,12 +685,100 @@ G-019. Reactoarele existente cu 736 de cazuri preced această corecție finală 
 două fișiere de guvernanță; închiderea nativă finală califică responsabilii schimbați,
 fără să redenumească sursa veche drept o execuție completă nouă.
 
+
+<a id="g-021"></a>
+<a id="g-021-strict-json-identities-before-atlas-retrieval"></a>
+## G-021: Identități JSON stricte înainte de regăsirea Atlas
+
+Stare: VERIFIED pentru limita intrării la încărcare/regăsire. Responsabil: guvernanța framework-ului/Atlas.
+Prioritate 82 (impact 85 / expunere 80 / urgență 75).
+Calitate inițială 91 (corectitudine 90 / verificare 94 / claritate 89).
+Calitate livrată 93 (corectitudine 93 / verificare 95 / claritate 92).
+
+Inițial, încărcarea/regăsirea accepta ID-uri de tip tablou, identități duplicate în
+tablouri și o amprentă arhivată de tip tablou. Proveniența arhivată completă era un
+control ulterior separat; protecția sa nu este prezentată drept defect al întregului flux.
+
+- Cere ID-uri de tip șir înainte de sintaxă/unicitate și amprente arhivate de tip
+  șir înainte de validare. Corpusul valid, ordonarea și dovezile rămân neschimbate.
+- Două cazuri componente Node exercită JSON incorect real, indicații cu responsabil
+  și fișiere reparate. Selecția Node întreținută trece 205/205 pentru fiecare ediție.
+- Dovada validă de regăsire este exact egală înainte/după; cele trei obiecte
+  arhivate fixate se verifică în continuare. Regăsirea semantică rămâne NOT_CLAIMED.
+
+<a id="g-022"></a>
+<a id="g-022-owned-source-traversal-and-relocated-checkout-qualification"></a>
+## G-022: Parcurgerea surselor deținute și calificarea checkout-ului relocat
+
+Stare: VERIFIED pentru parcurgerea surselor deținute și relocarea Windows. Responsabil: guvernanța sursei.
+Prioritate 83 (impact 85 / expunere 85 / urgență 75).
+Calitate inițială 89 (corectitudine 88 / verificare 86 / claritate 92).
+Calitate livrată 92 (corectitudine 91 / verificare 92 / claritate 94).
+
+Parcurgerea veche enumera descendenții generați înainte de filtrare și rezolva
+repetat rădăcina. Acum exclude directoarele înainte de coborâre și rezolvă o singură
+rădăcină canonică per scanare. Sursele deținute cu nume de rezultate rămân guvernate.
+
+- Extinde metoda existentă a responsabilului arhitecturii: observă directoarele
+  vizitate, exclude descendenții generați și păstrează resursele deținute. Niciun
+  prag de timp nu înlocuiește oracolul parcurgerii.
+- Compară rădăcini absolute/relative cu spații și Unicode. Checkout-uri Windows
+  LF/CRLF proaspete trec 736/736 cazuri native per ediție, fără eșecuri/erori/omiteri.
+- Un lansator UTF-8 controlat păstrează căile Java/Maven relocate și proprietatea
+  documentației pereche. Este calificat acel lansator; nu orice script shell,
+  Linux/macOS sau o matrice nouă de browsere.
+
+<a id="t-007"></a>
+<a id="t-007-bounded-repeatability-of-existing-component-oracles"></a>
+## T-007: Repetabilitatea delimitată a oracolelor componente existente
+
+Stare: VERIFIED pentru metodele componente locale selectate. Responsabil: guvernanța testelor componente.
+Prioritate 70 (impact 75 / expunere 65 / urgență 65).
+Calitate inițială 92 (corectitudine 93 / verificare 94 / claritate 90).
+Calitate livrată 94 (corectitudine 94 / verificare 95 / claritate 93).
+
+Două JVM-uri independente repetă trei metode păstrate de câte 20 de ori. Rapoartele
+native TestNG arată 60/60 per ediție, 120/120 în total, fără omiteri, aserțiuni eșuate
+sau erori de configurație. Aserțiunile originale și ciclul de viață rămân active.
+
+| Subiect păstrat | Contract observat | Limita dovezii |
+|---|---|---|
+| Delegare pe fire | Delegații și adâncimea pașilor rămân izolați | Firele paralele selectate |
+| Curățare repetată | Delegatul și adâncimea deschisă sunt eliminate | Metodele efective de ciclu de viață/resetare |
+| Lucrători de colecții | Lucrul greu este limitat, iar restul se suprapune | Fixture-ul planificatorului păstrat |
+
+Această repetare delimitată nu măsoară instabilitatea CI pe termen lung. Nu se
+adaugă sau rulează E2E de produs; inventarul Java revizuit de 561 de metode și
+bibliotecile runtime rămân neschimbate. Două cazuri componente Node adăugate duc
+totalul Node întreținut la 205.
+
+<details>
+<summary>Reproducere, legarea sursei și încercări excluse pentru G-021/G-022/T-007</summary>
+
+- Reperul sursei: fad9c29abb9ec5a7ae68b5e002907a6c054c0f86, cu suprapuneri exacte
+  per ediție și amprente brute/canonice. Feedback-ul/documentele finale sunt legate
+  de închiderea nativă pereche ulterioară, nu retroactiv de jurnalele anterioare.
+- Rădăcina dovezilor: `${ATF_WORK_ROOT}/reviews/rag-portability-stability-20261126`.
+  README.md înregistrează comenzile, gazda/uneltele, identitatea sursei și domeniul.
+- acceptance-06 conține reactoarele finalizate cu 736 de cazuri față de capturile
+  sursei acceptance-05. repeatability-02 păstrează cele 120 de rezultate native;
+  node-final păstrează 205 cazuri Node per ediție față de uneltele finale.
+- acceptance-01/02 nu au ajuns la suita nativă din cauza citării/codării lansatorului
+  extern. acceptance-03/04 au fost întrerupte/suprapuse; acceptance-05 nu are dovadă
+  de finalizare. Toate sunt excluse din acceptanța nativă. Primul lansator de
+  repetabilitate a eșuat la încărcarea claselor; repeatability-02 folosește o cale
+  de clase din manifest revizuită. Jurnalele originale rămân disponibile.
+- Închiderea finală include întregul responsabil al arhitecturii, responsabilii
+  documentației și scannerul. Nicio aserțiune, omitere sau XML nativ nu este rescrisă.
+
+</details>
+
 <a id="current-assessment"></a>
 <a id="current-atf-ai-assessment"></a>
 ## Evaluarea curentă ATF AI
 
 Revizuit la 2026-11-26 față de reperul runtime live
-0e7495353b414c592c404a1731facbadfb8b894d și suprapunerea revizuită de guvernanță/
+fad9c29abb9ec5a7ae68b5e002907a6c054c0f86 și suprapunerea revizuită de guvernanță/
 documentație. Notele acoperă domeniul suportat HTTP, UI desktop, Extent și Atlas.
 Responsabilii runtime critici au fost inspectați direct; controalele statice ale
 întregii surse și execuția reprezentativă sunt niveluri distincte de dovadă. Aceasta
@@ -704,14 +792,14 @@ folosește 1-100. Aplică formula reproductibilă a registrului:
 |---|---|---:|
 | Cod și arhitectură | 94 / 93 / 92 | 93 |
 | Documentație și ediții | 94 / 93 / 94 | 94 |
-| Atlas și RAG | 90 / 94 / 89 | 91 |
+| Atlas și RAG | 93 / 95 / 92 | 93 |
 | Ciclul de viață al feedback-ului | 95 / 93 / 94 | 94 |
 | Guvernanța codului și testelor | 95 / 94 / 93 | 94 |
-| Stabilitatea testelor existente | 93 / 94 / 90 | 92 |
+| Stabilitatea testelor existente | 94 / 95 / 93 | 94 |
 | Configurație și tratarea erorilor | 93 / 94 / 90 | 92 |
 | Auditabilitate și raportare | 94 / 94 / 92 | 93 |
 | Mentenabilitate | 92 / 92 / 91 | 92 |
-| Dovezi de portabilitate | 88 / 86 / 92 | 89 |
+| Dovezi de portabilitate | 91 / 92 / 94 | 92 |
 | Extensibilitatea furnizorilor | 92 / 90 / 92 | 91 |
 
 <details>

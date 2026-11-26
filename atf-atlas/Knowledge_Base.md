@@ -150,3 +150,5 @@ completitudinea semantică.
 despre stil nu înlocuiește cerințele actuale și nu demonstrează lizibilitatea
 vizuală. Publicarea nouă folosește versiunea 4; regulile păstrate ale versiunii 3
 pentru cazuri și accesibilitate continuă să se aplice.
+
+ID-urile cunoștințelor și valorile SHA-256 arhivate sunt șiruri JSON. Tablourile sau obiectele convertibile la text potrivit trebuie respinse înaintea clasării sau construirii dovezii; duplicatele sunt verificate pe șiruri validate. Aceasta este guvernanța tipurilor de intrare, separată de verificarea octeților arhivați reali și revizuirea semantică a sursei.

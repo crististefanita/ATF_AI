@@ -45,7 +45,7 @@ export function validateAtlasKnowledge(knowledge,{root=defaultRoot}={}){
   try{sourceRoot=fs.realpathSync(root);}catch(error){throw new AtlasGovernanceError('ATLAS-KNOWLEDGE','Knowledge project root is unavailable: '+error.message);}
   const ids=new Set();
   for(const record of knowledge.records){
-    need(record&&/^KB-[A-Z0-9]+(?:-[A-Z0-9]+)*$/.test(record.id||'')&&!ids.has(record.id),'Knowledge IDs must be valid and unique');ids.add(record.id);
+    need(record&&typeof record.id==='string'&&/^KB-[A-Z0-9]+(?:-[A-Z0-9]+)*$/.test(record.id||'')&&!ids.has(record.id),'Knowledge IDs must be valid unique strings');ids.add(record.id);
     need(nonempty(record.title)&&nonempty(record.requirement)&&typeof record.mandatory==='boolean','Knowledge record needs title, requirement and mandatory status: '+record.id);
     need(Array.isArray(record.topics)&&record.topics.length>0&&record.topics.every(nonempty)&&new Set(record.topics).size===record.topics.length,'Knowledge topics must be nonempty and unique: '+record.id);
     need(Array.isArray(record.sources)&&record.sources.length>0,'Knowledge citations are required: '+record.id);
@@ -53,7 +53,7 @@ export function validateAtlasKnowledge(knowledge,{root=defaultRoot}={}){
       need(citation&&['ARCHIVE','CURRENT_CONTRACT'].includes(citation.kind),'Unsupported knowledge citation kind: '+record.id);
       relativeFile(citation.path);need(nonempty(citation.quote)&&citation.quote.trim().length>=20,'Knowledge citation needs a useful exact excerpt: '+record.id);
       if(citation.kind==='ARCHIVE'){
-        need(citation.revision===archiveRevision&&/^[a-f0-9]{64}$/.test(citation.sha256||''),'Archived citation needs its pinned revision and raw blob digest: '+record.id);
+        need(citation.revision===archiveRevision&&typeof citation.sha256==='string'&&/^[a-f0-9]{64}$/.test(citation.sha256),'Archived citation needs its pinned revision and a string raw blob digest: '+record.id);
       }else{
         need(citation.path==='atf-atlas/Report_Contract.md','Current decisions belong to the canonical report contract: '+record.id);
         const source=normalized(ownedRead(sourceRoot,citation.path));

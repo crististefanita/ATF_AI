@@ -9,14 +9,14 @@ jurnale și rapoarte în zona externă; copiile selectate și verificate pot fi 
 <a id="active-todos"></a>
 ## TODO-uri active
 
-Nu mai există sarcini de implementare ATF_AI acceptate după reconcilierea din 2026-11-26. Aceasta este o decizie de domeniu revizuită, nu o afirmație că nu există defecte nedescoperite.
-
-<!-- feedback:empty -->
+Nu există elemente active acceptate în domeniul curent. Înregistrările verificate rămân mai jos, cu limitele dovezilor și notele inițiale.
 
 Revizuirea curentă: [sursa live, documentația, Atlas/RAG și atributele framework-ului](Code_And_Documentation_Maturity.md#current-assessment).
 
 | ID | Constatare | Responsabil | Prioritate (1-100) | Calitate (1-100) | Stare | Dovada închiderii |
 |---|---|---|---:|---:|---|---|
+
+<!-- feedback:empty -->
 
 Registrul este rezervat guvernanței, stabilității și documentației framework-ului.
 Înregistrările despre îmbunătățirea fluxurilor de produs sunt excluse din această listă.
@@ -98,6 +98,9 @@ Componentele păstrate ale evaluărilor inițiale:
 | D-009 | 90 / 80 / 80 | 85 / 65 / 80 | Structura Markdown, paritatea codului/valorilor și sensul calificărilor nu aveau controale dedicate |
 | G-018 | 70 / 75 / 60 | 75 / 45 / 60 | O clasă de teste de documentație de 1297 de linii amesteca șase domenii, selectorul și fixture-urile |
 | D-012 | 90 / 80 / 75 | 70 / 40 / 75 | Strategia folosea un flux vertical și nu compara limitele de proiectare API/Playwright/Selenium |
+| G-021 | 85 / 80 / 75 | 90 / 94 / 89 | Încărcarea/regăsirea accepta ID-uri și amprente de tip tablou înainte de controlul separat al provenienței arhivate |
+| G-022 | 85 / 85 / 75 | 88 / 86 / 92 | Descendenții generați erau parcurși înainte de filtrare; lipsea acceptanța actuală în căi Unicode/spații |
+| T-007 | 75 / 65 / 65 | 93 / 94 / 90 | Lipseau repetări native delimitate și legate de sursă ale oracolelor componente păstrate |
 | G-020 | 75 / 70 / 75 | 70 / 70 / 85 | Amprenta brută CRLF respingea conținutul identic al metodelor după checkout cu LF |
 | G-019 | 80 / 85 / 70 | 75 / 65 / 75 | Un element extern și texte de închidere vechi confundau domeniul activ; declararea golirii nu era controlată |
 | D-013 | 85 / 85 / 75 | 75 / 45 / 75 | Fluxuri verticale, limite ale legendelor lipsă/deschise și decizii de ansamblu dense |
@@ -119,6 +122,9 @@ normalizarea prezentării nu reprezintă o nouă execuție.
 
 | ID | Comportament livrat | Verificare |
 |---|---|---|
+| G-021 | ID-uri/amprente JSON stricte, calitate 93 (93/95/92) | 205 Node per ediție, contraexemple/reparații și dovadă validă identică; [dovezi](Code_And_Documentation_Maturity.md#g-021) |
+| G-022 | Excludere înainte de parcurgere și relocare Windows, calitate 92 (91/92/94) | 736 native per ediție în căi Unicode/spații LF/CRLF și închidere finală; [limite](Code_And_Documentation_Maturity.md#g-022) |
+| T-007 | Repetabilitate delimitată a componentelor păstrate, calitate 94 (94/95/93) | 120/120 rezultate native, fără omiteri/erori de configurație; [dovezi](Code_And_Documentation_Maturity.md#t-007) |
 | G-020 | Sigiliu canonic al inventarului, echivalent LF/CRLF; calitate 94 (95/94/93) | Proba metodei existente și închiderea nativă finală; [dovezi](Code_And_Documentation_Maturity.md#g-020) |
 | G-019 | Ciclu de viață reconciliat și contract explicit fără sarcini; calitate 94 (95/93/94) | Dovezi native/Node pereche, contraexemple și reparații efective; [dovezi](Code_And_Documentation_Maturity.md#g-019) |
 | D-013 | Reguli comune de prezentare în 50 de perechi; calitate 93 (94/92/94) | Perechi 736/736; câte 203 Node; randare desktop; [dovezi și limite](Code_And_Documentation_Maturity.md#d-013) |

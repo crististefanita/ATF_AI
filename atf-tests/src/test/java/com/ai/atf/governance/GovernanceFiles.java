@@ -6,6 +6,10 @@ import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.FileVisitResult;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.function.Consumer;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -52,19 +56,41 @@ final class GovernanceFiles {
     }
 
     static List<Path> files(Path root, String suffix) throws IOException {
+        return files(root, suffix, directory -> { });
+    }
+
+    /** The observer exposes visited directory boundaries for deterministic traversal controls. */
+    static List<Path> files(Path root, String suffix, Consumer<Path> directoryObserver) throws IOException {
         if (!Files.exists(root)) return List.of();
-        Path absolute = root.toAbsolutePath().normalize();
-        try (Stream<Path> paths = Files.walk(root)) {
-            return paths.filter(Files::isRegularFile)
-                    .filter(path -> path.toString().endsWith(suffix))
-                    .filter(path -> included(root, path)).filter(path -> {
-                        try {
-                            return path.toRealPath().startsWith(absolute.toRealPath());
-                        } catch (IOException error) {
-                            throw new IllegalStateException("Unreadable source: " + path, error);
-                        }
-                    }).sorted().collect(Collectors.toList());
-        }
+        Path canonicalRoot = root.toRealPath();
+        List<Path> selected = new ArrayList<>();
+        Files.walkFileTree(root, new SimpleFileVisitor<Path>() {
+            @Override
+            public FileVisitResult preVisitDirectory(Path directory, BasicFileAttributes attributes) {
+                directoryObserver.accept(directory);
+                return included(root, directory) ? FileVisitResult.CONTINUE : FileVisitResult.SKIP_SUBTREE;
+            }
+
+            @Override
+            public FileVisitResult visitFile(Path file, BasicFileAttributes attributes) {
+                if (!included(root, file) || !file.toString().endsWith(suffix) || !Files.isRegularFile(file)) {
+                    return FileVisitResult.CONTINUE;
+                }
+                try {
+                    if (file.toRealPath().startsWith(canonicalRoot)) selected.add(file);
+                } catch (IOException error) {
+                    throw new IllegalStateException("Unreadable source: " + file, error);
+                }
+                return FileVisitResult.CONTINUE;
+            }
+
+            @Override
+            public FileVisitResult visitFileFailed(Path file, IOException failure) throws IOException {
+                if (included(root, file)) throw failure;
+                return FileVisitResult.CONTINUE;
+            }
+        });
+        return selected.stream().sorted().collect(Collectors.toList());
     }
 
     /** Project text remains relocatable, including code fences and historical feedback receipts. */
@@ -394,6 +420,10 @@ final class GovernanceFiles {
 
         Fixture() throws IOException {
             root = Files.createTempDirectory("atf-governance-").toAbsolutePath().normalize();
+        }
+
+        Fixture(Path parent) throws IOException {
+            root = Files.createTempDirectory(parent, "atf-governance-").toAbsolutePath().normalize();
         }
 
         void write(String path, String source) throws IOException {

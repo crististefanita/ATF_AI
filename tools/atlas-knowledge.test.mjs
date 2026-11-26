@@ -111,3 +111,27 @@ test('changed loaded payload, malformed JSON and invalid retrieval requests reta
   const selected=fixture(t);fs.writeFileSync(path.join(selected,'atf-atlas/knowledge/atlas-contracts.json'),'{invalid');expectKnowledgeFailure(()=>loadAtlasKnowledge({root:selected}));
   for(const options of [{query:''},{query:'valid',limit:-1},{query:'valid',limit:1.5},{query:'x'.repeat(4097)}])expectKnowledgeFailure(()=>retrieveAtlasKnowledge(options));
 });
+
+test('coercible JSON identifiers cannot enter retrieval or conceal duplicate identities',t=>{
+  for(const duplicate of [false,true]){
+    const selected=fixture(t),corpus=raw(),record=corpus.records.find(item=>!item.mandatory);
+    const original=record.id;record.id=[original];if(duplicate)corpus.records.push(structuredClone(record));
+    const file=path.join(selected,'atf-atlas/knowledge/atlas-contracts.json');fs.writeFileSync(file,JSON.stringify(corpus));
+    expectKnowledgeFailure(()=>loadAtlasKnowledge({root:selected}));
+    expectKnowledgeFailure(()=>retrieveAtlasKnowledge({root:selected,query:'graph arrowheads labels'}));
+    record.id=original;if(duplicate)corpus.records.pop();fs.writeFileSync(file,JSON.stringify(corpus));
+    assert.equal(validateAtlasKnowledge(loadAtlasKnowledge({root:selected}),{root:selected}).status,'PASSED');
+    assert.ok(retrieveAtlasKnowledge({root:selected,query:'graph arrowheads labels'}).selectedIds.every(id=>typeof id==='string'));
+  }
+});
+
+test('archive digests must be strings before retrieval, with an actual repaired corpus accepted',t=>{
+  const selected=fixture(t),corpus=raw(),citation=corpus.records.flatMap(record=>record.sources).find(source=>source.kind==='ARCHIVE');
+  const original=citation.sha256;citation.sha256=[original];
+  const file=path.join(selected,'atf-atlas/knowledge/atlas-contracts.json');fs.writeFileSync(file,JSON.stringify(corpus));
+  expectKnowledgeFailure(()=>loadAtlasKnowledge({root:selected}));
+  expectKnowledgeFailure(()=>retrieveAtlasKnowledge({root:selected,query:'complete reader'}));
+  citation.sha256=original;fs.writeFileSync(file,JSON.stringify(corpus));
+  assert.equal(validateAtlasKnowledge(loadAtlasKnowledge({root:selected}),{root:selected}).status,'PASSED');
+  assert.ok(retrieveAtlasKnowledge({root:selected,query:'complete reader'}).mandatoryIds.every(id=>typeof id==='string'));
+});
