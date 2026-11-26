@@ -94,8 +94,18 @@ documentația. Nu adaugă fluxuri de produs, funcționalități runtime sau emul
 - Acceptanță: fixture-ul negativ controlat elimină o metodă păstrând clasa,
   adaugă o înlocuitoare neînregistrată și verifică ambele constatări și indiciul
   de remediere. Inventarul menținut corespunde sursei curente de teste.
-  `FrameworkArchitectureGovernanceTest` a trecut 114/114 în selecția focalizată
-  a reactorului, la 2026-11-26.
+
+| Dovadă | Engleză | Română | Limită |
+|---|---:|---:|---|
+| `FrameworkArchitectureGovernanceTest` | 114/114 PASS | 114/114 PASS | Include validarea inventarului real și constatări controlate la eliminarea/adăugarea metodelor |
+| Reactor local implicit complet | 742/742 PASS | 742/742 PASS | 705 verificări atf-tests și 37 de bibliotecă; zero eșecuri, erori sau omisiuni |
+| Suita existentă de mentenanță Node | 203/203 PASS | 203/203 PASS | Instrumente de guvernanță/componente; fără browser sau parcurs de aplicație |
+| Revizia documentelor pereche | 51/51 actuale | 51/51 actuale | Revizie EN/RO cu amprente ancorate în sursă și verificări semantice pe perechile schimbate |
+
+Dovezi externe: `${ATF_WORK_ROOT}/reviews/20261126-method-governance/`.
+Prima rulare completă în engleză a respins corect cinci amprente de documente
+învechite; după revizuirea perechilor modificate și actualizarea registrului,
+ambele reactoare locale complete au trecut. Nu s-a folosit selecție E2E sau emulator.
 - Limită: baza detectează deriva identităților, dar nu clasifică schimbările Git,
   nu este o poartă de aprobare, nu dovedește calitatea corpului metodei și nici
   executarea fiecărei metode. Schimbările intenționate cer revizuirea explicită
