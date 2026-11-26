@@ -76,6 +76,7 @@ Componentele păstrate ale evaluărilor inițiale:
 | R-001 | 90 / 90 / 90 | 60 / 40 / 65 | Metodele UI nu au dovezi native per motor; lipsesc controale pentru înregistrare și date sensibile |
 | D-009 | 90 / 80 / 80 | 85 / 65 / 80 | Structura Markdown, paritatea codului/valorilor și sensul calificărilor nu aveau controale dedicate |
 | G-018 | 70 / 75 / 60 | 75 / 45 / 60 | O clasă de teste de documentație de 1297 de linii amesteca șase domenii, selectorul și fixture-urile |
+| D-012 | 90 / 80 / 75 | 70 / 40 / 75 | Strategia folosea un flux vertical și nu compara limitele de proiectare API/Playwright/Selenium |
 
 Locațiile dovezilor istorice folosesc `${ATF_WORK_ROOT}/...`, cu spațiul extern de lucru
 selectat conform ghidului [Dezvoltare](../Development.md).
@@ -88,6 +89,7 @@ normalizarea prezentării nu reprezintă o nouă execuție.
 
 | ID | Comportament livrat | Verificare |
 |---|---|---|
+| D-012 | Hărți strategice orizontale și limite API/Playwright/Selenium comparabile; calitate 93 (94/92/94) | EN/RO 209/209; diagrame/tabele native desktop; [dovezi și limite](Code_And_Documentation_Maturity.md#d-012) |
 | F-011 | Închiderea curăță starea după succes, RuntimeException și Error; calitate livrată 94 (95/92/94) | Reactoare complete EN/RO, selecție focalizată 69/69 și referință negativă păstrată; [dovezi](Behavior_And_Negative_Cases.md#f-011) |
 | F-012 | Limite stricte comune pentru configurația UI și așteptare; calitate livrată 94 (95/93/94) | Contracte pozitive/negative de componentă și acceptanță completă pereche; [dovezi](Code_And_Documentation_Maturity.md#f-012) |
 | F-013 | Achiziția parțială este curățată fără mascarea cauzei originale; calitate livrată 93 (94/92/93) | Cele 16 cazuri Playwright și 12 Selenium existente pentru furnizori; [dovezi](Code_And_Documentation_Maturity.md#f-013) |

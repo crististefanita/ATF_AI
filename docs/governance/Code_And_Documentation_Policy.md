@@ -356,6 +356,26 @@ Cerința DOC-READ-001: păstrează vizibilă decizia cititorului înaintea detal
 de implementare sau execuție. Testing.md deține strategia și dovezile;
 [ghidul de comenzi](../Testing_Commands.md) legat deține rețetele reproductibile.
 
+Cerința DOC-STRATEGY-001: Testing.md folosește diagrame compacte `flowchart LR`
+pentru căile de execuție și secvența reviziei. Păstrează o întrebare per diagramă
+și o legendă adiacentă care explică ramurile, sensul săgeților și responsabilitățile
+omise. Cerința explicită pentru strategie nu schimbă diagramele aprobate ale altor
+responsabili; o hartă arhitecturală grupată poate avea altă direcție semantică.
+
+Cerința DOC-STRATEGY-002: sub ancora stabilă test-design-contracts, compară API,
+Playwright și Selenium exact o dată într-un tabel cu patru coloane: direcție,
+responsabil de proiectare cu legătură, oracol observabil și limita dovezii.
+Identificatorii direcțiilor rămân identici în ambele ediții. Păstrează comparația în afara details. Controlul verifică
+forma susținută a tabelului și prezența câmpurilor de responsabilitate/observație/limită;
+nu poate certifica sensul lor. Revizuiește fiecare afirmație față de executor,
+furnizori, suitele selectate și aserțiuni.
+
+Păstrează matricele de versiuni, rezolvarea cache-ului și precedența configurației
+în ghidul comenzilor. Strategia explică de ce o selecție oferă o anumită dovadă
+și trimite la acele operații. Cazurile de componentă pentru lizibilitate resping
+fluxuri verticale, direcții lipsă sau duplicate și comparații incomplete, apoi
+exersează corecția reală cu diagnostice care au responsabil.
+
 | Sarcina cititorului | Structură preferată | Ce trebuie să rămână explicit |
 |---|---|---|
 | Alegerea între selecții sau opțiuni | Tabel comparativ | Precondițiile și dovada oferită de fiecare alegere |

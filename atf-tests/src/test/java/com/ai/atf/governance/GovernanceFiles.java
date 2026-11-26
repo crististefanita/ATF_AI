@@ -240,6 +240,10 @@ final class GovernanceFiles {
                 "A runnable Maven example is exposed or its disclosure opens by default without useful orientation.",
                 "Keep essential strategy visible and place the shell command in balanced details without an open attribute. Give its summary the actual selection or purpose; retain prerequisites and expected proof outside it.",
                 policy + "#reader-oriented-guides", "DocumentationReadabilityRulesTest");
+        help(result, "DOC-STRATEGY-FLOW DOC-STRATEGY-LANES",
+                "The testing strategy loses horizontal flow or a comparable API, Playwright or Selenium proof boundary.",
+                "Use compact flowchart LR maps with an adjacent legend. Under test-design-contracts restore one four-column row per lane: linked design owner, observable oracle and proof limit. Move setup details to Testing_Commands.md; inspect the actual suite and assertion before writing the claim.",
+                policy + "#reader-oriented-guides", "DocumentationReadabilityRulesTest");
         help(result, "DOC-EDITION-LANGUAGE DOC-EDITION-UNTRANSLATED",
                 "A Romanian documentation edition lacks a supported Romanian signal or retains meaningful unchanged English prose.",
                 "Retrieve the canonical policy and read the complete EN/RO pair; translate the whole passage while preserving commands, facts, conditions and legends. Recheck with the explicit peer and record full-text review; a marker alone is not semantic proof.",

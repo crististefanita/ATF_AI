@@ -20,7 +20,67 @@ public class DocumentationReadabilityRulesTest {
         for (Path file : GovernanceFiles.files(root, ".md")) {
             findings.addAll(DocumentationReadabilityRules.validate(root, file, Files.readAllLines(file)));
         }
+        findings.addAll(DocumentationReadabilityRules.validateTestingStrategy(Files.readAllLines(root.resolve("docs/Testing.md"))));
         Assert.assertTrue(findings.isEmpty(), GovernanceFiles.problems(findings));
+    }
+
+    @Test
+    public void strategyFlowRejectsVerticalDirectionsAndLiteralDecoysWithActionableRepairs() {
+        String valid = strategy();
+        Assert.assertTrue(strategyFindings(valid).isEmpty());
+        for (String direction : List.of("TB", "TD", "BT", "RL")) {
+            String invalid = valid.replace("flowchart LR", "flowchart " + direction);
+            List<String> findings = strategyFindings(invalid);
+            assertFinding(findings, "DOC-STRATEGY-FLOW", "observed " + direction);
+            String report = GovernanceFiles.problems(findings);
+            Assert.assertTrue(report.contains("Repair hint:"));
+            Assert.assertTrue(report.contains("Owner: docs/governance/Code_And_Documentation_Policy.md#reader-oriented-guides"));
+            Assert.assertTrue(strategyFindings(invalid.replace("flowchart " + direction, "flowchart LR")).isEmpty());
+        }
+        assertFinding(strategyFindings(valid.replace("flowchart LR", "graph TB")), "DOC-STRATEGY-FLOW", "observed TB");
+        assertFinding(strategyFindings(valid.replace("flowchart LR", "flowchart LR\nsubgraph Group\ndirection TB\nend")),
+                "DOC-STRATEGY-FLOW", "nested direction");
+        String literal = valid.replace("```mermaid", "````text\n```mermaid").replace("```\n\nArrows", "```\n````\n\nArrows");
+        assertFinding(strategyFindings(literal), "DOC-STRATEGY-FLOW", "include a horizontal");
+        String commented = valid.replace("```mermaid", "<!--\n```mermaid").replace("```\n\nArrows", "```\n-->\n\nArrows");
+        assertFinding(strategyFindings(commented), "DOC-STRATEGY-FLOW", "include a horizontal");
+        Assert.assertTrue(strategyFindings(valid.replace("flowchart LR", "%% initialization and direction TB are comments\nflowchart LR")).isEmpty());
+        Assert.assertTrue(strategyFindings("```text\n<!-- literal data\n```\n\n" + valid).isEmpty(),
+                "Comment-like payload inside a literal fence cannot hide the real following strategy.");
+    }
+
+    @Test
+    public void strategyComparesEachTransportOwnerOracleAndLimitInsteadOfCountingNames() {
+        String valid = strategy();
+        String row = "| Playwright | [Provider](provider.java) | Observe page response | Local page only |\n";
+        String absent = valid.replace(row, "") + "\nPlaywright is mentioned in unrelated prose.\n";
+        assertFinding(strategyFindings(absent), "DOC-STRATEGY-LANES", "0 rows for Playwright");
+        assertFinding(strategyFindings(valid.replace(row, row + row)), "DOC-STRATEGY-LANES", "2 rows for Playwright");
+        for (String invalid : List.of(valid.replace("[Provider](provider.java)", "Provider"),
+                valid.replace("Observe page response", ""), valid.replace("Local page only", ""),
+                valid.replace("Observe page response |", "Observe page response | Extra |"))) {
+            assertFinding(strategyFindings(invalid), "DOC-STRATEGY-LANES", "four columns");
+        }
+        String wrongSection = valid.replace("<a id=\"test-design-contracts\"></a>", "")
+                + "\n<a id=\"test-design-contracts\"></a>\n## Design\n";
+        assertFinding(strategyFindings(wrongSection), "DOC-STRATEGY-LANES", "0 rows for API");
+        String hidden = valid.replace("<a id=\"test-design-contracts\"></a>",
+                "<details><summary>Secondary reference</summary>\n<a id=\"test-design-contracts\"></a>") + "\n</details>";
+        assertFinding(strategyFindings(hidden), "DOC-STRATEGY-LANES", "0 rows for API");
+        Assert.assertTrue(strategyFindings(valid).isEmpty(), "Restoring the complete comparison clears the findings.");
+    }
+
+    private static List<String> strategyFindings(String document) {
+        return DocumentationReadabilityRules.validateTestingStrategy(List.of(document.split("\\n", -1)));
+    }
+
+    private static String strategy() {
+        return "# Testing\n\n```mermaid\nflowchart LR\nA[Contract] --> B[Oracle]\n```\n\nArrows show the review sequence.\n\n"
+                + "<a id=\"test-design-contracts\"></a>\n## Design contracts\n\n"
+                + "| Lane | Design owner | Observable oracle | Proof limit |\n|---|---|---|---|\n"
+                + "| API | [Executor](executor.java) | Observe request ordering | Local fixture only |\n"
+                + "| Playwright | [Provider](provider.java) | Observe page response | Local page only |\n"
+                + "| Selenium | [Driver](driver.java) | Observe driver response | Selected driver only |\n";
     }
 
     @Test

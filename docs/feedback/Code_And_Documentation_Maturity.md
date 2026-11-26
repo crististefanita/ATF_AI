@@ -395,3 +395,70 @@ inventarului de metode au trecut 2/2 pentru fiecare ediție. Aceste rezultate
 validează responsabilii testelor, selecțiile explicite și păstrarea metodelor;
 nu pretind o acoperire mai bună a produsului și nu afirmă că testele atf-j1 au
 fost executate.
+
+<a id="d-012"></a>
+<a id="d-012-testing-strategy-with-comparable-transport-boundaries"></a>
+## D-012: Strategie de testare cu limite comparabile pentru transporturi
+
+Stare: VERIFICAT. Responsabil: guvernanța lizibilității documentației și Testing.md.
+Prioritate 84 (impact 90 / expunere 80 / urgență 75).
+Calitate inițială 63 (corectitudine 70 / verificare 40 / claritate 75).
+
+Revizia folosește commitul J0 `96f50e5f277771ca9dfac3b7c959b47188afd0b0`,
+bunele practici de documentație și responsabilii existenți pentru guvernanța
+diagramelor/prozei/structurii/stilului și legăturilor. Cele două fișiere J0 de
+feedback cu modificări necomise au rămas neatinse. Principiile sunt adaptate
+verificărilor TestNG și responsabilității sursei acestui proiect.
+
+| Principiu J0 | Adoptare ATF_AI | Limita reviziei |
+|---|---|---|
+| O diagramă, o întrebare | Căile de execuție separate de secvența reviziei | Fără săgeți amestecate de dependență/dovadă |
+| Flux LR compact și legendă imediată | Regulă explicită pentru direcția strategiei și legende adiacente | Ceilalți responsabili aprobați își păstrează aranjarea |
+| Decizii înainte de pregătire | Comparație API/Playwright/Selenium cu legături spre responsabili | Detaliile de versiuni/cache/configurație rămân în ghidul comenzilor |
+| Proză, structură, stil și legături | Controale existente pentru toate documentele și mutații specifice strategiei | Forma sursei nu poate certifica adevărul semantic |
+| Eșec de guvernanță acționabil | Cale observată, sens, corecție, responsabil și reverificare executabilă | O corecție propusă nu este dovadă de execuție |
+
+Rularea inițială izolată a lizibilității a executat 30 de cazuri: 29 au trecut și
+unul a eșuat conform așteptării. Cele patru constatări identifică diagrama TB la
+linia 31 și lipsa rândurilor comparative API/Playwright/Selenium. Jurnalul original
+și XML-ul nativ rămân la `${ATF_WORK_ROOT}/reviews/testing-strategy-baseline-20261126.log`
+și `${ATF_WORK_ROOT}/validation/testing-strategy-review-20261126-baseline`.
+
+Două metode noi de componentă protejează mutațiile de direcție verticală/inversată/
+imbricată, diagramele fictive din comentarii și literali, direcțiile lipsă/duplicate,
+lipsa responsabilității, a oracolului/limitei și corecțiile reale. Inventarul revizuit
+conține acum 575 de metode executabile; inventarul E2E existent este neschimbat.
+
+Regăsirea politicilor Atlas a contribuit cu KB-TRACE, KB-EVIDENCE, KB-SEMANTICS și
+KB-SCORES: inspectați sursa/aserțiunile reale, păstrați limitele dovezilor și nu
+deduceți calitatea semantică din cuvinte potrivite sau controale trecute. Aceasta
+a fost regăsire de politici și revizie de sursă, nu publicarea unui HTML Atlas nou
+sau execuția testelor.
+
+Acceptanța necesită verificări pereche de documentație/sursă, controalele exacte
+pentru suite și inventarul metodelor, revizie EN/RO completă și inspecție nativă
+desktop a celor două diagrame schimbate și a tabelelor comparative. Niciun scenariu
+de produs sau emulator nu face parte din această acceptanță.
+
+Calitate livrată 93 (corectitudine 94 / verificare 92 / claritate 94). Selecția
+pereche de documentație/sursă și două controale arhitecturale exacte au trecut
+209/209 de cazuri per ediție în acceptance-01. Selecția finală de închidere leagă
+ultimele controale pentru literali/details și acest text în closure-02.
+Cele două identități noi cresc inventarul revizuit de la 573 la 575 de metode.
+
+Revizia nativă desktop a produs patru înregistrări EN/RO la 1440 și 900 CSS px,
+cu opt observații de diagramă și capturi ale tabelelor comparative. Măsurătorile
+originale arată zero depășiri ale paginii, etichete tăiate, suprapuneri între
+noduri sau între etichete/noduri; nu s-au observat erori de pagină sau cereri
+externe. Capturile au fost inspectate pentru citire orizontală și coloane
+proporționate. Dovezile sunt la
+`${ATF_WORK_ROOT}/reviews/testing-strategy-20261126/render-01`.
+
+Strategia separă acum execuția cererilor, paritatea furnizorilor UI, raportarea
+și dovezile aplicației; pregătirea rămâne în ghidul comenzilor existent. Această
+evaluare editorială delimitată nu reevaluează axele fără legătură ale proiectului
+și nu afirmă o nouă execuție API/browser a aplicației. Copiile finale ale sursei,
+diferențele, jurnalele și XML-ul rămân la
+`${ATF_WORK_ROOT}/reviews/testing-strategy-20261126/closure-02` și
+`${ATF_WORK_ROOT}/validation/testing-strategy-20261126-en-02` /
+`${ATF_WORK_ROOT}/validation/testing-strategy-20261126-ro-02`.
