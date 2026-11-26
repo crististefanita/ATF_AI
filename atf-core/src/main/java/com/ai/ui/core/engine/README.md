@@ -9,7 +9,7 @@ timing and zoom vocabulary.
 ## Composition
 
 ```mermaid
-flowchart TB
+flowchart LR
     Runtime["Core UI lifecycle"] --> Factory["UIEngineFactory"]
     Factory --> Registry["UiEngineRegistry"]
     Registry --> SPI["UiEngineProvider"]
@@ -17,8 +17,13 @@ flowchart TB
     SPI -. service provider .-> SE["atf-selenium"]
 ```
 
+<details>
+<summary>Legend: relationships and proof boundary</summary>
+
 Solid arrows show Core calls. Dotted arrows identify provider implementations
 discovered through ServiceLoader; they are not Core module dependencies.
+
+</details>
 
 | Contract | Responsibility |
 |---|---|

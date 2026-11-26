@@ -25,7 +25,7 @@ documentation and governance; it is not a sixth Maven module.
 | How are generated reports separated from maintained sources? | [Artifacts](../../artifacts/README.md) and [report archive](../../artifacts/reports/README.md) |
 
 ```mermaid
-flowchart TB
+flowchart LR
     Source["Source, POM and tests"] --> Owner["Owning contract"]
     Owner --> Check["Check or review"]
     Check --> Evidence["Observed evidence"]
@@ -33,10 +33,15 @@ flowchart TB
     Check -. reproducible gap .-> Source
 ```
 
+<details>
+<summary>Legend: relationships and proof boundary</summary>
+
 The flow connects a factual claim to its owner and proof. A failed check returns
 to the responsible source or document; it does not authorize weakening the check.
 Stable rules stay in their owner guide, while feedback records remaining gaps
 and scoped closure evidence.
+
+</details>
 
 ## Existing executable surface
 
@@ -45,6 +50,7 @@ and scoped closure evidence.
 | Architecture | [Architecture rules](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureRules.java) and [existing fixtures](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureGovernanceTest.java) | Module/provider boundaries, source visibility and supported execution-ownership rules |
 | Documentation | [Markdown rules](../../atf-tests/src/test/java/com/ai/atf/governance/MarkdownDocumentationRules.java) and [root tests](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationRootGovernanceTest.java) | README, editions, Living, structure, feedback and publication have separate owners; both suites register each |
 | Readability | [Reader-oriented rules and component cases](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationReadabilityRulesTest.java) | Strategy paragraph decisions, bounded reference prose and closed Maven recipes |
+| Presentation | [Diagram rules](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationPresentationRules.java) | Horizontal flows, adjacent closed legends and desktop geometry review |
 | Edition review | [Translation controls](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationTranslationRules.java) | Supported Romanian signals, unchanged English blocks and complete review-digest freshness |
 | Source inspection | [Java scanner fixtures](../../atf-tests/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java) | Supported lexical regions, English known-marker policy and exact data exceptions |
 | Behavior | Tests linked by the [coverage map](../../atf-atlas/Coverage_Map.md) | Their explicit observed outcomes and fixture scope |
@@ -64,26 +70,29 @@ that a green suite proves the whole policy.
 | Closure | Which exact observation changed, and what still remains unknown? | Source commits, actual selected results and scoped feedback |
 
 ```mermaid
-flowchart TB
-    Claim["Documented claim"] --> Guard["Automated source and structure checks"]
-    Claim --> Review["Human meaning and ownership review"]
-    Review --> Render["Inspect changed diagram rendering"]
-    Guard --> Evidence["Actual scoped evidence"]
+flowchart LR
+    Claim["Documented claim"] --> Guard["Source guard"]
+    Claim --> Review["Meaning review"]
+    Review --> Render["Desktop review"]
+    Guard --> Evidence["Scoped proof"]
     Render --> Evidence
-    Evidence --> Closure["Owner guide and feedback"]
+    Evidence --> Closure["Guide and feedback"]
 ```
+
+<details>
+<summary>Legend: relationships and proof boundary</summary>
 
 Arrows separate automated checks from semantic and visual review. Both paths
 contribute evidence; neither path alone certifies a translation or complete
 runtime behavior. Follow the [review procedure](Code_And_Documentation_Policy.md#apply-the-documentation-review-in-practice)
 and [edition contract](Readme_Editions.md) before synchronization.
 
-The supported style checks apply to all maintained Markdown. README-only rules
-keep the root focused on module/runtime orientation, require separate
-dependency and execution diagrams, and route detailed consumer examples to
-their Playwright/Selenium owners. Module and package READMEs own
-their specific contracts and local verification. Table-cell limits flag dense
-prose for restructuring; they do not replace review at the rendered width.
-Literal code stays English in both editions, and historical observations retain
-their captured source and selection. The [failure guide](Failure_Diagnostics.md)
-explains the emitted location, rule, repair hint, owner and recheck command.
+</details>
+
+The supported style checks apply to all maintained Markdown.
+
+- README-only rules keep the root focused on module/runtime orientation, require separate dependency and execution diagrams, and route detailed consumer examples to their Playwright/Selenium owners.
+- Module and package READMEs own their specific contracts and local verification.
+- Table-cell limits flag dense prose for restructuring; they do not replace review at the rendered width.
+- Literal code stays English in both editions, and historical observations retain their captured source and selection.
+- The [failure guide](Failure_Diagnostics.md) explains the emitted location, rule, repair hint, owner and recheck command.

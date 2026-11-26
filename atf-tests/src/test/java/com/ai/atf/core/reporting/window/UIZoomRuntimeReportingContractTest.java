@@ -17,15 +17,10 @@ import com.ai.core.reporting.ReportLogger;
 import com.ai.core.reporting.ReportingManager;
 import com.ai.core.reporting.StepLogger;
 import com.ai.core.reporting.adapters.ExtentAdapter;
-import com.ai.core.reporting.internal.ReportingPaths;
 import com.ai.core.reporting.step.StepScope;
 import com.ai.ui.core.engine.UIEngine;
 import com.ai.ui.core.engine.UIEngineFactory;
 import com.ai.ui.core.engine.window.UIWindowSizeResolver;
-import io.qameta.allure.Allure;
-import io.qameta.allure.AllureLifecycle;
-import io.qameta.allure.FileSystemResultsWriter;
-import io.qameta.allure.model.Status;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterClass;
@@ -58,7 +53,6 @@ public class UIZoomRuntimeReportingContractTest {
     private static final String HEADLESS                   = Boolean.TRUE.toString();
 
     private AtfRuntimeConfigSandbox config;
-    private AllureLifecycle previousAllureLifecycle;
     private Path extentZoomReportsDir;
 
     @AfterMethod
@@ -66,9 +60,6 @@ public class UIZoomRuntimeReportingContractTest {
         if (config != null) {
             config.close();
             config = null;
-        }
-        if (previousAllureLifecycle != null) {
-            Allure.setLifecycle(previousAllureLifecycle);
         }
 
         ReportingManager.reset();
@@ -216,37 +207,6 @@ public class UIZoomRuntimeReportingContractTest {
         deleteRecursively(reportsDir);
     }
 
-    @Test(groups = AtfTestGroups.ALLURE_ONLY)
-    @AtfContractRef(AtfContractNarrativeIds.Contract.UI_ZOOM_RUNTIME_ALLURE_METADATA)
-    public void allure_result_exposes_zoom_runtime_metadata() throws Exception {
-        configureZoomedHeadless(UiEngineType.PLAYWRIGHT.configValue());
-
-        Path resultsDir = prepareDirectory(Files.createTempDirectory("atf-allure-zoom-contract-"));
-        try {
-            ensureSandbox()
-                    .setConfigAndSystemProperty(ReportingConfigKeys.REPORTING_ENGINE, ReportingConfigKeys.ENGINE_ALLURE)
-                    .setSystemProperty(ReportingPaths.ALLURE_RESULTS_DIRECTORY_PROPERTY, resultsDir.toString());
-            previousAllureLifecycle = Allure.getLifecycle();
-            Allure.setLifecycle(new AllureLifecycle(new FileSystemResultsWriter(resultsDir)));
-
-            String uuid = UUID.randomUUID().toString();
-            Allure.getLifecycle().scheduleTestCase(
-                    new io.qameta.allure.model.TestResult()
-                            .setUuid(uuid)
-                            .setName("allureZoomRuntimeMetadata")
-            );
-            Allure.getLifecycle().startTestCase(uuid);
-            generateReportBackedZoomedFlow("allureZoomRuntimeMetadata");
-            Allure.getLifecycle().updateTestCase(uuid, testResult -> testResult.setStatus(Status.PASSED));
-            Allure.getLifecycle().stopTestCase(uuid);
-            Allure.getLifecycle().writeTestCase(uuid);
-
-            String resultPayload = readAllTextFiles(resultsDir).toLowerCase(Locale.ROOT);
-            assertZoomMetadata(resultPayload, "Allure result", resultsDir, UiEngineType.PLAYWRIGHT.configValue());
-        } finally {
-            deleteRecursively(resultsDir);
-        }
-    }
 
     private void generateReportBackedZoomedFlow(String testName) throws Exception {
         ReportingManager.reset();

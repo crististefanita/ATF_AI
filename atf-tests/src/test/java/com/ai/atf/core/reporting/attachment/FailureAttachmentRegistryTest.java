@@ -7,7 +7,6 @@ import org.testng.annotations.Listeners;
 
 import com.ai.core.reporting.listener.TestListener;
 import com.ai.core.reporting.ReportingManager;
-import com.ai.core.reporting.adapters.AllureAdapter;
 import com.ai.core.reporting.adapters.ExtentAdapter;
 import com.ai.core.reporting.attachment.FailureAttachmentHandler;
 import com.ai.core.reporting.attachment.FailureAttachmentRegistry;
@@ -105,16 +104,10 @@ public class FailureAttachmentRegistryTest {
         Assert.assertEquals(handler.calls, 1);
     }
 
-    @Test
-    public void registry_dispatches_failure_with_allure_logger_installed() {
-        ReportingManager.setLoggerForTests(AllureAdapter.getInstance());
-        FailureAttachmentRegistry.onTestFailure(new RuntimeException("boom"));
-        Assert.assertEquals(handler.calls, 1);
-    }
 
     @Test
     public void multiple_failures_trigger_multiple_attachments() {
-        ReportingManager.setLoggerForTests(AllureAdapter.getInstance());
+        ReportingManager.setLoggerForTests(ExtentAdapter.getInstance());
 
         FailureAttachmentRegistry.onTestFailure(new RuntimeException("boom1"));
         FailureAttachmentRegistry.onTestFailure(new RuntimeException("boom2"));
@@ -144,7 +137,7 @@ public class FailureAttachmentRegistryTest {
     @Test
     public void attachments_are_not_triggered_for_expected_exceptions() {
 
-        ReportingManager.setLoggerForTests(AllureAdapter.getInstance());
+        ReportingManager.setLoggerForTests(ExtentAdapter.getInstance());
 
         XmlSuite suite = new XmlSuite();
         suite.setName("suite");

@@ -24,7 +24,7 @@ owner guides keep the detailed contract, and feedback keeps reproducible gaps.
 | Neutral contracts, configuration, UI lifecycle and API execution | [atf-core](../atf-core/README.md) |
 | Playwright implementation | [atf-playwright](../atf-playwright/README.md) |
 | Selenium implementation | [atf-selenium](../atf-selenium/README.md) |
-| Extent, Allure and reporting lifecycle | [atf-reporting](../atf-reporting/README.md) |
+| Extent reporting lifecycle | [atf-reporting](../atf-reporting/README.md) |
 | Governance, framework checks and product fixtures | [atf-tests](../atf-tests/README.md) |
 
 Owner documents describe current contracts. Feedback records retain source
@@ -33,8 +33,8 @@ original execution scope.
 
 ## Documentation boundaries
 
-The [code and documentation policy](governance/Code_And_Documentation_Policy.md)
-owns review rules. Module READMEs describe use and verification; package guides
-explain local responsibilities. The separate [Atlas](../atf-atlas/README.md)
-connects capabilities to existing source/tests and their proof limits. Link to
-these owners rather than copying their contracts into another guide.
+The [code and documentation policy](governance/Code_And_Documentation_Policy.md) owns review rules.
+
+- Module READMEs describe use and verification; package guides explain local responsibilities.
+- The separate [Atlas](../atf-atlas/README.md) connects capabilities to existing source/tests and their proof limits.
+- Link to these owners rather than copying their contracts into another guide.

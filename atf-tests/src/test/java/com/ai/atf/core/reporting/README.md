@@ -4,7 +4,7 @@
 
 These [atf-tests](../../../../../../../../README.md) checks protect the Core
 reporting contracts and [reporting implementation](../../../../../../../../../atf-reporting/README.md):
-lifecycle, steps, Extent rendering, Allure results, attachments, runtime audit
+lifecycle, steps, Extent rendering, attachments, runtime audit
 and aggregate publication.
 
 ## Test ownership
@@ -31,7 +31,7 @@ Run from an isolated reactor copy:
 
 ```powershell
 mvn -B -ntp -pl atf-tests -am "-Datf.test.suite=src/test/resources/suites/framework-reporting.xml" test
-mvn -B -ntp -pl atf-tests -am "-Datf.test.suite=src/test/resources/suites/framework-allure.xml" "-Dreporting.engine=allure" test
+mvn -B -ntp -pl atf-tests -am "-Datf.test.suite=src/test/resources/suites/framework-reporting.xml" "-Dreporting.engine=extent" test
 mvn -B -ntp -Paggregate test
 ```
 

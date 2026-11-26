@@ -244,6 +244,14 @@ final class GovernanceFiles {
                 "The testing strategy loses horizontal flow or a comparable API, Playwright or Selenium proof boundary.",
                 "Use compact flowchart LR maps with an adjacent legend. Under test-design-contracts restore one four-column row per lane: linked design owner, observable oracle and proof limit. Move setup details to Testing_Commands.md; inspect the actual suite and assertion before writing the claim.",
                 policy + "#reader-oriented-guides", "DocumentationReadabilityRulesTest");
+        help(result, "DOC-DIAGRAM-ORIENTATION DOC-DIAGRAM-DISCLOSURE",
+                "A maintained diagram loses the agreed horizontal reading or its immediately adjacent explained legend.",
+                "Reduce the diagram to one question and use a compact LR flow. Put one balanced details block immediately after the fence, without open, with a descriptive Legend summary and the arrow meaning, actors and omitted detail. Keep sequence/state/class semantics and verify rendered geometry; a short source label is not visual proof.",
+                policy + "#reader-orientation-and-diagrams", "DocumentationReadabilityRulesTest");
+        help(result, "RETIRED-REPORTING",
+                "A dependency restores a reporting backend outside the maintained Extent scope.",
+                "Remove the retired SDK from direct, profile and managed dependencies. Keep reporting.engine=extent and the Extent aggregate selection; recheck dependency and executable-source ownership. Historical evidence remains historical.",
+                policy + "#reporting-scope", architecture);
         help(result, "DOC-EDITION-LANGUAGE DOC-EDITION-UNTRANSLATED",
                 "A Romanian documentation edition lacks a supported Romanian signal or retains meaningful unchanged English prose.",
                 "Retrieve the canonical policy and read the complete EN/RO pair; translate the whole passage while preserving commands, facts, conditions and legends. Recheck with the explicit peer and record full-text review; a marker alone is not semantic proof.",
@@ -309,7 +317,7 @@ final class GovernanceFiles {
                 "Repair the reported fence/section/disclosure, diagram declaration or adjacent legend, then render the affected diagram and preserve its actual responsibilities.",
                 "docs/governance/Failure_Diagnostics.md#documentation-and-rendering", documentation);
         help(result, "DOC-TABLE-LONG-CELL DOC-TABLE-SHAPE",
-                "A README table cell is too dense for scanning or a row no longer matches its declared columns.",
+                "A normative Markdown table cell is too dense for scanning or a row no longer matches its declared columns.",
                 "Keep explanatory cells within 140 visible characters and 22 words, move detail into nearby prose or a linked owner, and recheck the rendered table; align every row with its header.",
                 policy + "#reader-orientation-and-diagrams", documentation);
         help(result, "DOC-README-DIAGRAM DOC-README-MODULE-TABLE DOC-README-ROUTE DOC-README-EXAMPLE-PLACEMENT",
@@ -338,7 +346,7 @@ final class GovernanceFiles {
                 "docs/governance/Readme_Editions.md", documentation);
         help(result, "DOC-LIVING-PRINCIPLES",
                 "A retained living-architecture principle, real owner/check route or declared proof limit drifted.",
-                "Restore LD-01 through LD-12 exactly once, resolve the real source/check owners, retain MAINTAINED/PARTIAL boundaries and keep cleanup PARTIAL until independent account-deletion evidence exists; regenerate the paired HTML.",
+                "Restore LD-01 through LD-12 exactly once and resolve the real source/check owners. Keep LD-02 UIActions ownership, LD-03 Selenium/Playwright waits and LD-04 WaitUtils/FAIL limits in their own rows; inspect the source conditions, not just matching names. Retain MAINTAINED/PARTIAL boundaries and keep cleanup PARTIAL until independent account-deletion evidence exists; synchronize the paired HTML.",
                 "docs/Living_Architecture_UI_API_doc_v1_0.md#retained-principles", documentation);
         help(result, "DOC-FEEDBACK DOC-FEEDBACK-PRIORITY DOC-FEEDBACK-QUALITY DOC-FEEDBACK-SCHEMA DOC-LIFECYCLE",
                 "Feedback ownership, assessment or evidence lifecycle no longer matches its declared scope.",

@@ -8,11 +8,11 @@ contracts.
 
 Core owns ReportLogger, TestStatus, StepLogger and ReportingBackend. This module
 supplies the backend through ServiceLoader and owns vendor-specific types and
-native Allure TestNG integration.
+Extent lifecycle publication.
 
 ## Entry points
 
-- [Adapters](adapters/README.md): Extent and Allure translation.
+- [Adapters](adapters/README.md): Extent translation.
 - [Listener](listener/README.md): TestNG lifecycle, reporting sessions and outcomes.
 - [Aggregate reporting](aggregate/README.md): combined executed-case publication.
 
@@ -22,6 +22,6 @@ observed browser state. Ordinary execution requires no historical reports.
 ## Verification
 
 The maintained reporting suite exercises local lifecycle and presentation
-contracts. Native Allure, aggregate publication and real-browser attachments
+contracts. Extent aggregate publication and real-browser attachments
 have explicit acceptance selections in
 [Testing](../../../../../../../../docs/Testing.md).

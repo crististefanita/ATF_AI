@@ -18,8 +18,13 @@ flowchart LR
     Tests -. verifies .-> Reports
 ```
 
+<details>
+<summary>Legend: relationships and proof boundary</summary>
+
 Solid arrows show library dependencies; dotted arrows show verification use.
 There is no dependency from Core to a browser or report implementation.
+
+</details>
 
 | Module | Source ownership |
 |---|---|
@@ -48,7 +53,7 @@ through ServiceLoader. Core's compatibility
 [TestListener](../atf-core/src/main/java/com/ai/core/reporting/listener/TestListener.java)
 forwards TestNG events to the backend's concrete
 [ReportingTestListener](../atf-reporting/src/main/java/com/ai/core/reporting/listener/ReportingTestListener.java).
-Native Allure service integration belongs to atf-reporting; Core base classes
+Extent integration belongs to atf-reporting; Core base classes
 do not declare a vendor reporting listener.
 
 ```mermaid
@@ -75,8 +80,13 @@ sequenceDiagram
     Listener->>Reports: Finish and flush execution
 ```
 
+<details>
+<summary>Legend: relationships and proof boundary</summary>
+
 Solid arrows show directed calls or publication; the dotted arrow returns an
 observed state. The sequence maps responsibility boundaries, not every TestNG callback.
+
+</details>
 
 | Actor ID | Actual responsibility |
 |---|---|
@@ -119,7 +129,7 @@ a form error does not trigger an implicit replacement customer.
 ## Reporting and evidence
 
 [atf-reporting](../atf-reporting/README.md) translates neutral report operations
-into Extent and Allure. Runtime registries connect screenshots and final-state
+into Extent. Runtime registries connect screenshots and final-state
 attachments to the correct test. Aggregate writers preserve executed outcomes,
 counts, timing and runtime evidence with a caller-owned descriptor.
 

@@ -24,7 +24,7 @@ public final class AtfCoreAggregateConfig {
 
     public static final Path DEFAULT_ROOT_PATH = AtfSourcePaths.TARGET_ROOT.resolve("atf-core-aggregate-report");
     public static final String DEFAULT_ROOT = AtfSourcePaths.unixPath(DEFAULT_ROOT_PATH);
-    public static final String DEFAULT_ENGINE = "both";
+    public static final String DEFAULT_ENGINE = "extent";
     public static final String DEFAULT_CLEAN = "true";
     public static final String DEFAULT_DISABLED = "false";
 

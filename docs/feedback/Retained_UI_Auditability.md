@@ -64,16 +64,20 @@ Configuration setup evidence is not an extra application test case. Missing or
 unreached evidence must remain explicit rather than receiving a fabricated PASS.
 
 ```mermaid
-flowchart TB
-    Methods["Same retained methods"] --> Actions["UIActions and observed actions"]
-    Actions --> Validation["Expected versus actual business oracle"]
-    Validation --> Listener["Original TestNG outcome and screenshot"]
-    Listener --> Reader["Native Extent reader per engine"]
-    Reader --> Audit["XML, source and DOM audit reconciliation"]
+flowchart LR
+    Methods["Retained methods"] --> Actions["Actions and validation"]
+    Actions --> Listener["Outcome and screenshot"]
+    Listener --> Reader["Reader per engine"]
+    Reader --> Audit["XML and source audit"]
 ```
+
+<details>
+<summary>Legend: relationships and proof boundary</summary>
 
 Arrows show evidence responsibility. Audit consistency is separate from
 execution success and from exhaustive semantic coverage.
+
+</details>
 
 ## Living principles and explicit limits
 

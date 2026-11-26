@@ -4,7 +4,7 @@ ATF runs REST API and browser UI tests in Java. Five Maven modules separate shar
 
 ## The design in one view
 
-A consumer test states what it observes. Core owns shared API/UI contracts and lifecycle. Browser adapters implement the UI contract; reporting is optional. Repository tests protect these boundaries.
+A consumer test states what it observes. Core owns shared API/UI contracts and lifecycle; browser adapters implement the UI contract and reporting is optional. Repository tests protect these boundaries.
 
 | Module | Responsibility |
 |---|---|
@@ -25,36 +25,38 @@ flowchart LR
     Tests -. verifies .-> Reporting
 ```
 
+<details>
+<summary>Legend: relationships and proof boundary</summary>
+
 Solid arrows mark library dependencies; dotted arrows mark test verification. Core exposes no Playwright, Selenium or reporting SDK types. [Atlas](atf-atlas/README.md) is documentation-only, outside Maven, and maps source to tests and their evidence limits.
+
+</details>
 
 ## How a check runs
 
 Choose REST API when no browser is needed. Choose UI when checks use a browser provider through Core's shared actions. Reporting can publish TestNG lifecycle evidence through an optional backend.
 
 ```mermaid
-flowchart TB
+flowchart LR
     Runner["TestNG"] --> Test["Consumer test"]
-    Test --> Route{"Contract"}
-    Route -->|"REST API"| Api["BaseTestAPI"]
-    Api --> Client["ApiClient / ApiActions"]
-    Client --> Service["Target REST API"]
-    Route -->|"Browser UI"| Ui["BaseTestUI + UIActions"]
-    Ui --> Factory["UIEngineFactory"]
-    Factory -->|"ui.engine=playwright"| Playwright["Playwright provider"]
-    Factory -->|"ui.engine=selenium"| Selenium["Selenium provider"]
-    Playwright --> Browser["Owned browser session"]
-    Selenium --> Browser
-    Runner -. lifecycle callbacks .-> Listener["Core TestListener"]
-    Listener -. optional SPI backend .-> Reporting["atf-reporting"]
+    Test --> Route["API or UI"]
+    Route --> Api["API runtime"]
+    Route --> Ui["UI provider"]
+    Runner -. lifecycle .-> Reporting["Report backend"]
 ```
 
+<details>
+<summary>Legend: relationships and proof boundary</summary>
+
 Solid arrows show the active contract path. Dotted arrows show optional TestNG lifecycle reporting. The API path has no browser session; the UI provider is selected before setup. Product pages and assertions stay with the consumer. [Architecture](docs/Architecture.md) explains the contracts in depth.
+
+</details>
 
 ## How to choose a consumer route
 
 - **REST API:** add `atf-core`; the API base and client do not require a browser provider.
 - **Browser UI:** add one adapter and set `ui.engine` before TestNG setup. Use the concrete [Playwright](atf-playwright/README.md#consumer-example) or [Selenium](atf-selenium/README.md#consumer-example) example.
-- **Extent or Allure reports:** add `atf-reporting` when the consumer needs those publication formats.
+- **Extent reports:** add `atf-reporting` when the consumer needs HTML reporting.
 
 The consumer examples live with their provider guides. This root page stays focused on framework composition and the reader's next decision.
 
@@ -74,7 +76,11 @@ mvn -B -ntp -Paggregate test
 
 </details>
 
-Default runs native module checks and existing framework/governance regressions. Browser selects local fixtures and requires prepared binaries; aggregate also publishes Extent and Allure. [Testing](docs/Testing.md) lists prerequisites, selective commands and evidence limits. Existing product journeys remain opt-in; this guide adds none.
+Default runs native module checks and existing framework/governance regressions.
+
+- Browser selects local fixtures and requires prepared binaries; aggregate also publishes Extent.
+- [Testing](docs/Testing.md) lists prerequisites, selective commands and evidence limits.
+- Existing product journeys remain opt-in; this guide adds none.
 
 <a id="configuration"></a>
 <a id="consumer-migration"></a>

@@ -93,7 +93,6 @@ public class FinalUiScreenshotContractTest {
                 {UiEngineType.PLAYWRIGHT.configValue(), ReportingConfigKeys.ENGINE_EXTENT, false, true, false, false},
                 {UiEngineType.PLAYWRIGHT.configValue(), ReportingConfigKeys.ENGINE_EXTENT, true, false, false, false},
                 {UiEngineType.PLAYWRIGHT.configValue(), ReportingConfigKeys.ENGINE_EXTENT, true, true, true, false},
-                {UiEngineType.SELENIUM.configValue(), ReportingConfigKeys.ENGINE_ALLURE, true, true, false, true},
                 {UiEngineType.SELENIUM.configValue(), ReportingConfigKeys.ENGINE_EXTENT, true, true, false, true}
         };
     }

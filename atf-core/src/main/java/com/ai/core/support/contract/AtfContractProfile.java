@@ -9,7 +9,6 @@ public enum AtfContractProfile {
     LIVE_API_SMOKE_CONTRACT,
     REPORTING_CONTRACT,
     EXTENT_CONTRACT,
-    ALLURE_CONTRACT,
     UI_SUPPORT_CONTRACT,
     UI_PRODUCT_SMOKE_CONTRACT;
 
@@ -23,10 +22,6 @@ public enum AtfContractProfile {
 
     public boolean isLiveBoundary() {
         return spec().liveBoundary();
-    }
-
-    public boolean isAllureOnly() {
-        return "allure".equals(recommendedEngine());
     }
 
     public boolean isExtentRecommended() {

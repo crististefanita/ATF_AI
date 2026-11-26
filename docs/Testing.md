@@ -50,7 +50,7 @@ These are distinct proof levels, even when they protect the same abstraction.
 | One library contract | Owning module and dependencies | Selected assertions and resource ownership |
 | Configuration or cross-module behavior | Default local suite | Local outcomes and meaningful negative controls |
 | Real UI interaction or response | Browser profile | Both adapters, actual state/response and cleanup |
-| Report integration and publication | Native Allure subset and aggregate profile | Outcomes, attachments and generated reader |
+| Report integration and publication | Reporting subset and aggregate profile | Outcomes, attachments and generated reader |
 | Existing application behavior | Explicit concrete class | Target deployment, identities and persisted state |
 
 ```mermaid
@@ -130,9 +130,9 @@ application acceptance. Preserve complete screenshots and original failures.
 
 ## Reporting acceptance
 
-The [native Allure subset](../atf-tests/src/test/resources/suites/framework-allure.xml)
+The [reporting subset](../atf-tests/src/test/resources/suites/framework-reporting.xml)
 checks integration; the [aggregate suite](../atf-tests/src/test/resources/suites/framework-aggregate.xml)
-collects executed cases and publishes Extent and Allure.
+collects executed cases and publishes Extent.
 Review counts, statuses, timing and attachments against native results using the
 [reporting recipes](Testing_Commands.md#reporting-acceptance).
 

@@ -18,19 +18,21 @@ retrieval has no promised cross-language or semantic recall; use the mandatory
 contract and inspect missed topics explicitly.
 
 ```mermaid
-flowchart TB
-    Archive["Reviewed archived requirements"] --> Knowledge["Cited contract records"]
-    Query["Reader question and target scope"] --> Retrieval["Deterministic local retrieval"]
-    Knowledge --> Retrieval
-    Retrieval --> Author["Source-grounded reviewer"]
-    Source["Actual source and existing oracles"] --> Author
-    Author --> Analysis["Claims, behavior and evidence"]
-    Analysis --> Checks["Governance and desktop review"]
-    Checks --> Report["One target, one complete atlas.html"]
+flowchart LR
+    Knowledge["Cited policy"] --> Retrieval["Local retrieval"]
+    Query["Reader question"] --> Retrieval
+    Retrieval --> Author["Source review"]
+    Source["Actual code and oracles"] --> Author
+    Author --> Report["Governed HTML"]
 ```
+
+<details>
+<summary>Legend: relationships and proof boundary</summary>
 
 Arrows show knowledge use and validation. Retrieval is policy context, never
 execution evidence. A cited old requirement cannot certify today's project code.
+
+</details>
 
 ## Adaptation rules
 
@@ -78,20 +80,23 @@ projects remain valid with a disclosed gap. Optional KB-ASSESSMENT describes
 scoped human review axes; absence of an assessment remains NOT_ASSESSED.
 
 ```mermaid
-flowchart TB
-    Target["Capture actual target and review scope"] --> Receipt["Verify complete canonical policy receipt"]
-    Receipt --> Units["Enumerate actual owner units"]
-    Units --> Facets["Review seven facets and declare gaps"]
-    Facets --> Trace["Bind source, flow, oracle and retained case"]
-    Trace --> Review["Review semantics and scoped score rationale"]
-    Review --> Deliver["Verify one complete offline HTML"]
+flowchart LR
+    Scope["Target and receipt"] --> Units["Units and facets"]
+    Units --> Trace["Behavior and oracle"]
+    Trace --> Review["Meaning and evidence"]
+    Review --> Deliver["One offline HTML"]
 ```
+
+<details>
+<summary>Legend: relationships and proof boundary</summary>
 
 Arrows show successive review gates, not runtime calls. A failure keeps its
 observed evidence and bounded repair route. Repair the missing declaration or
 source correspondence, then rerun that control before the full selection.
 Increasing file counts, flow counts or a lexical score does not establish deeper
 understanding. Honest PARTIAL/UNKNOWN facets remain useful output.
+
+</details>
 
 The retrieval receipt is checked in full against canonical retrieval, including
 optional records, order/ranking, citations and source identity. The final bundle

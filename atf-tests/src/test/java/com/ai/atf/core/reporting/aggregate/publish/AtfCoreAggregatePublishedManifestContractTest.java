@@ -73,11 +73,7 @@ public class AtfCoreAggregatePublishedManifestContractTest {
         assertTimingFieldIsPublishable(manifest, "published", "Cumulative test duration");
         assertSlowestFieldIsPublishable(manifest, "published", "Slowest test");
         assertSlowestFieldIsPublishable(manifest, "published", "Slowest class/group");
-        Assert.assertTrue(
-                manifest.contains(com.ai.atf.core.reporting.aggregate.AtfCoreAggregateRunCommands
-                        .skipAllureSpiListenerProperty()),
-                "Published aggregate manifest must preserve the canonical Extent command that skips the Allure TestNG "
-                        + "SPI listener. Otherwise the documented command can reproduce provider-level Allure failures."
-        );
+        Assert.assertTrue(manifest.contains(com.ai.atf.core.reporting.aggregate.AtfCoreAggregateRunCommands.resetSurefireTestFilterProperty()),
+                "Published Extent commands must reset stale class/method filters before the complete aggregate sweep.");
     }
 }

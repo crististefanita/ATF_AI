@@ -16,15 +16,15 @@ their declared scope; no product/E2E scenario or emulator is added.
 ## Scope and sequence
 
 ```mermaid
-flowchart TB
-    Reproduce["Preserve actual counterexamples"] --> Contract["Declare bounded repair and owner"]
-    Contract --> Negative["Add meaningful negative governance controls"]
-    Negative --> Review["Review actual source across owner facets"]
-    Review --> Capture["Capture fresh source and retained evidence"]
-    Capture --> Deliver["Publish and inspect one HTML per project"]
-    Deliver --> Assess["Explain separate project and Atlas axes"]
-    Assess --> Close["Close only with completed gates"]
+flowchart LR
+    Reproduce["Preserve counterexample"] --> Repair["Owner and negative control"]
+    Repair --> Inspect["Source and evidence"]
+    Inspect --> Deliver["Publish and inspect"]
+    Deliver --> Close["Assess and close"]
 ```
+
+<details>
+<summary>Legend: relationships and proof boundary</summary>
 
 Arrows show the review sequence. A passing mechanical gate verifies its declared
 structure and provenance; the reviewer still checks the source-to-prose meaning.
@@ -32,6 +32,8 @@ Feedback remains IN PROGRESS until its stated gates complete. Priority and
 quality use the separate rubrics in the [register](README.md); neither is a
 test pass rate. Baseline quality remains preserved when delivered quality is
 later recorded.
+
+</details>
 
 <a id="g-012"></a>
 ## G-012: Exact execution, local graph and knowledge trace

@@ -40,19 +40,22 @@ portable provenance notation, not a literal PowerShell path.
 ## Checkpoint workflow
 
 ```mermaid
-flowchart TB
-    Inspect["Inspect and assign owner"] --> Edit["Edit development checkout"]
-    Edit --> Stage["Snapshot source"]
-    Stage --> Validate["Checks and artifact review"]
-    Validate --> Commit["Commit verified checkpoint"]
-    Commit --> Sync["Recheck and synchronize"]
-    Validate -. failure .-> Edit
-    Sync -. concurrent drift .-> Stage
+flowchart LR
+    Edit["Inspect and edit"] --> Stage["Snapshot source"]
+    Stage --> Verify["Checks and review"]
+    Verify --> Sync["Commit and synchronize"]
+    Verify -. failure .-> Edit
+    Sync -. drift .-> Stage
 ```
+
+<details>
+<summary>Legend: relationships and proof boundary</summary>
 
 Arrows show the checkpoint sequence. Dotted returns require correction or
 reconciliation and renewed validation; synchronization follows a source review
 and compatible live state.
+
+</details>
 
 1. Inspect the development and live Git bases and pending changes. Record the
    observed gap and a checkable acceptance criterion in

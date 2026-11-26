@@ -50,18 +50,23 @@ or emulator. G-014 and F-011 retain their independent open scopes.
   findings remain outside this closure.
 
 ```mermaid
-flowchart TB
-    Source["Existing source and completed outputs"] --> History["External immutable snapshot"]
-    History --> Choice["Explicit current selection"]
-    Choice --> Atlas["One HTML per project"]
-    Choice --> Proof["Original native proof and source identity"]
-    Atlas --> Guard["Manifest, shape and link checks"]
+flowchart LR
+    Source["Completed outputs"] --> History["External snapshot"]
+    History --> Choice["Current selection"]
+    Choice --> Atlas["One project HTML"]
+    Choice --> Proof["Native proof and source"]
+    Atlas --> Guard["Publication checks"]
     Proof --> Guard
 ```
+
+<details>
+<summary>Legend: relationships and proof boundary</summary>
 
 Arrows show preservation and publication. They do not represent a new product
 flow or a new execution of retained tests. A historical failed selection remains
 failed after relocation.
+
+</details>
 
 ## Recovery and future updates
 

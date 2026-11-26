@@ -3,7 +3,6 @@ package com.ai.core.reporting.aggregate.artifact;
 import com.ai.core.reporting.aggregate.AggregateExtentReportWriter;
 import com.ai.core.reporting.aggregate.AggregateReportDescriptor;
 import com.ai.core.reporting.aggregate.model.AggregateTimingSummary;
-import com.ai.core.reporting.internal.ReportingPaths;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -20,58 +19,52 @@ public final class AggregateManifestWriter {
             Path root,
             String engineName,
             boolean extentEnabled,
-            boolean allureEnabled,
             AggregateExtentReportWriter.SummaryRecord summary
     ) {
-        write(root, engineName, extentEnabled, allureEnabled, AggregateReportDescriptor.defaults(), summary);
+        write(root, engineName, extentEnabled, AggregateReportDescriptor.defaults(), summary);
     }
 
     public static void write(
             Path root,
             String engineName,
             boolean extentEnabled,
-            boolean allureEnabled,
             AggregateExtentReportWriter.SummaryRecord summary,
             List<? extends AggregateExtentReportWriter.CaseRecord> cases
     ) {
-        write(root, engineName, extentEnabled, allureEnabled, AggregateReportDescriptor.defaults(), summary, cases);
+        write(root, engineName, extentEnabled, AggregateReportDescriptor.defaults(), summary, cases);
     }
 
     public static void write(
             Path root,
             String engineName,
             boolean extentEnabled,
-            boolean allureEnabled,
             AggregateReportDescriptor descriptor,
             AggregateExtentReportWriter.SummaryRecord summary
     ) {
-        write(root, engineName, extentEnabled, allureEnabled, descriptor, summary, AggregateTimingSummary.empty());
+        write(root, engineName, extentEnabled, descriptor, summary, AggregateTimingSummary.empty());
     }
 
     public static void write(
             Path root,
             String engineName,
             boolean extentEnabled,
-            boolean allureEnabled,
             AggregateReportDescriptor descriptor,
             AggregateExtentReportWriter.SummaryRecord summary,
             List<? extends AggregateExtentReportWriter.CaseRecord> cases
     ) {
-        write(root, engineName, extentEnabled, allureEnabled, descriptor, summary, AggregateTimingSummary.from(cases));
+        write(root, engineName, extentEnabled, descriptor, summary, AggregateTimingSummary.from(cases));
     }
 
     private static void write(
             Path root,
             String engineName,
             boolean extentEnabled,
-            boolean allureEnabled,
             AggregateReportDescriptor descriptor,
             AggregateExtentReportWriter.SummaryRecord summary,
             AggregateTimingSummary timing
     ) {
         Path manifest = root.resolve(AggregateReportFiles.MANIFEST_FILE);
         AggregateReportFiles.createParent(manifest);
-        Path allureResults = AggregateReportFiles.allureResults(root);
 
         List<String> lines = new ArrayList<>();
         lines.add("# " + descriptor.testTitle());
@@ -94,29 +87,12 @@ public final class AggregateManifestWriter {
         if (extentEnabled) {
             lines.add("| Extent final artifact | `" + AggregateReportFiles.extentReportRelativePath() + "` |");
         }
-        if (allureEnabled) {
-            lines.add("| Allure raw results | `" + AggregateReportFiles.ALLURE_RESULTS_DIR + "/` |");
-            lines.add("| Allure HTML render target | `" + AggregateReportFiles.allureHtmlIndexRelativePath()
-                    + "` after running `mvn allure:report` with this folder's results path |");
-        }
         if (!descriptor.runCommands().isEmpty()) {
             lines.add("");
             lines.add("Run with:");
             lines.add("");
             lines.add("```bash");
             lines.addAll(descriptor.runCommands());
-            lines.add("```");
-        }
-        if (allureEnabled) {
-            lines.add("");
-            lines.add("Render Allure HTML from the aggregate raw results:");
-            lines.add("");
-            lines.add("```powershell");
-            lines.add("$root=(Resolve-Path '" + commandPath(root) + "').Path");
-            lines.add("$results=(Resolve-Path '" + commandPath(allureResults) + "').Path");
-            lines.add("$report=(Join-Path $root '" + AggregateReportFiles.ALLURE_HTML_REPORT_DIR + "')");
-            lines.add("mvn allure:report \"-D" + ReportingPaths.ALLURE_RESULTS_DIRECTORY_PROPERTY
-                    + "=$results\" \"-Dallure.report.directory=$report\"");
             lines.add("```");
         }
 
@@ -127,7 +103,4 @@ public final class AggregateManifestWriter {
         }
     }
 
-    private static String commandPath(Path path) {
-        return path.normalize().toString().replace('\\', '/');
-    }
 }

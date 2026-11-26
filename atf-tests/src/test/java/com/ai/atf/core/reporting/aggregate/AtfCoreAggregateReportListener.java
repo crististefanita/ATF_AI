@@ -23,7 +23,7 @@ import com.ai.core.reporting.aggregate.model.AggregateRuntimeAuditSnapshot;
 import com.ai.core.reporting.aggregate.model.AggregateRuntimeCase;
 import com.ai.core.reporting.aggregate.model.AggregateRuntimeSummary;
 import com.ai.core.reporting.aggregate.model.AggregateTimingSummary;
-import io.qameta.allure.model.Status;
+import com.ai.core.reporting.aggregate.AggregateStatus;
 import org.testng.IReporter;
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
@@ -93,17 +93,17 @@ public final class AtfCoreAggregateReportListener implements IReporter, ISuiteLi
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        recordRuntimeCase(result, Status.PASSED);
+        recordRuntimeCase(result, AggregateStatus.PASSED);
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        recordRuntimeCase(result, Status.FAILED);
+        recordRuntimeCase(result, AggregateStatus.FAILED);
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
-        recordRuntimeCase(result, Status.SKIPPED);
+        recordRuntimeCase(result, AggregateStatus.SKIPPED);
     }
 
     @Override
@@ -240,7 +240,7 @@ public final class AtfCoreAggregateReportListener implements IReporter, ISuiteLi
         return AtfCoreAggregateRuntimeLedger.snapshot(RUNTIME_CASES);
     }
 
-    private static void recordRuntimeCase(ITestResult result, Status status) {
+    private static void recordRuntimeCase(ITestResult result, AggregateStatus status) {
         AtfCoreAggregateRuntimeLedger.record(RUNTIME_CASES, RUNTIME_AGGREGATE_CASES, result, status);
     }
 

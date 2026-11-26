@@ -12,15 +12,20 @@ before detail; use lists for parallel observations, tables for comparisons and
 diagrams for supported relationships. Do not add decorative diagrams or quotas.
 
 ```mermaid
-flowchart TB
-    Source["Reviewed source and original evidence"] --> Structure["Semantic reading structure"]
-    Structure --> Layout["Content-aware tables and adjacent legends"]
-    Layout --> Measure["Native desktop measurement and visual review"]
-    Measure --> Reader["One complete offline HTML"]
+flowchart LR
+    Source["Source and evidence"] --> Structure["Reader sections"]
+    Structure --> Layout["Tables and legends"]
+    Layout --> Measure["Desktop review"]
+    Measure --> Reader["One offline HTML"]
 ```
+
+<details>
+<summary>Legend: relationships and proof boundary</summary>
 
 Arrows describe publication review, not application behavior. The original source
 and execution identities remain unchanged by a presentation refresh.
+
+</details>
 
 | Reader element | Required presentation | Verification boundary |
 |---|---|---|
@@ -138,7 +143,7 @@ dependencyGraphs.
 |---|---|
 | Behavior | id, title, actor, intent, object, operation, outcome, testOracle, oracleStatus, oracleClaimId, limits, claimIds and graph |
 | Observed oracle | oracleStatus is SOURCE_REVIEWED or EXECUTED; oracleClaimId identifies a separate claim from an actual existing test |
-| Missing oracle | oracleStatus is NOT_FOUND with an explicit UNKNOWN oracle claim; testOracle states the searched scope and gap without inventing a test/run |
+| Missing oracle | oracleStatus NOT_FOUND, oracle claim UNKNOWN; testOracle states the searched scope and gap without inventing execution |
 | Behavior graph | BEHAVIOR kind; nodes with id/label/x/y/kind and edges with from/to/label/claimId |
 | Dependency graph | id, title, DEPENDENCY kind, the same declared node/edge fields; node kinds MODULE, COMPONENT, SERVICE or BOUNDARY |
 

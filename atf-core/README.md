@@ -3,7 +3,7 @@
 ## Overview
 
 Core provides reusable UI and API execution contracts without Selenium,
-Playwright, Extent or Allure SDK dependencies. Its coordinates are
+Playwright, Extent SDK dependencies. Its coordinates are
 `com.ai:atf-core:1.0.0`; it inherits Java 11 compilation from
 [atf-parent](../pom.xml).
 
@@ -26,12 +26,12 @@ Core; product pages, services, workflows and business assertions belong to
 
 ## Dependencies and extension
 
-Core has no dependency on another ATF module. Consumers add a browser adapter
-for UI execution and atf-reporting for Extent/Allure publication.
-Java ServiceLoader discovers UiEngineProvider and ReportingBackend
-implementations. Public Core signatures remain independent of vendor SDK
-types. The neutral [TestListener](src/main/java/com/ai/core/reporting/listener/TestListener.java)
-compatibility facade forwards lifecycle events to the selected backend.
+Core has no dependency on another ATF module.
+
+- Consumers add a browser adapter for UI execution and atf-reporting for Extent publication.
+- Java ServiceLoader discovers UiEngineProvider and ReportingBackend implementations.
+- Public Core signatures remain independent of vendor SDK types.
+- The neutral [TestListener](src/main/java/com/ai/core/reporting/listener/TestListener.java) compatibility facade forwards lifecycle events to the selected backend.
 
 See [Architecture](../docs/Architecture.md) for provider composition and the
 runtime sequence.
@@ -39,11 +39,10 @@ runtime sequence.
 ## Configuration
 
 [framework.properties](src/main/resources/framework.properties) supplies defaults.
-JVM properties override individual keys; `framework.properties` can select an
-explicit file. Important defaults include `ui.engine=playwright`,
-`ui.headless=true`, `ui.wait.timeout.seconds=20`,
-`api.wait.timeout.seconds=10` and `reporting.engine=extent`.
-Browser and report implementations are supplied by their modules.
+
+- JVM properties override individual keys; `framework.properties` can select an explicit file.
+- Important defaults include `ui.engine=playwright`, `ui.headless=true`, `ui.wait.timeout.seconds=20`, `api.wait.timeout.seconds=10` and `reporting.engine=extent`.
+- Browser and report implementations are supplied by their modules.
 
 ## Validated UI configuration and cleanup
 
@@ -59,26 +58,31 @@ existing precedence.
 | Engine | `playwright`, `selenium` or legacy `default` | Normalize with `Locale.ROOT` and reject unknown names before acquisition |
 | Legacy wait | `explicit.wait.seconds` when `ui.wait.timeout.seconds` is absent | Apply the same range and name the selected key in diagnostics |
 
-The boolean boundary covers headless, console details, runtime metadata and the
-three screenshot flags. Screenshot handling reuses the same boolean reader.
-WaitUtils reuses the validated seconds reader; explicit Duration overloads keep
-their separate existing contract. Supported zoom normalization remains unchanged.
+The boolean boundary covers headless, console details, runtime metadata and the three screenshot flags.
+
+- Screenshot handling reuses the same boolean reader.
+- WaitUtils reuses the validated seconds reader; explicit Duration overloads keep their separate existing contract.
+- Supported zoom normalization remains unchanged.
 
 ```mermaid
-flowchart TB
-    Config["Resolve and validate UI options"] --> Acquire["Acquire provider resources"]
-    Acquire --> Ready["Use the owned session"]
-    Acquire -->|failure| Rollback["Release acquired resources in reverse order"]
-    Ready --> Close["Close the owned session"]
-    Close --> Clear["Clear independent interaction state in finally"]
-    Rollback --> Cause["Preserve primary and distinct cleanup causes"]
-    Clear --> Cause
+flowchart LR
+    Config["Validate options"] --> Acquire["Acquire session"]
+    Acquire --> Ready["Use session"]
+    Acquire -->|failure| Rollback["Release acquired parts"]
+    Ready --> Close["Close and clear state"]
+    Rollback --> Cause["Preserve original cause"]
+    Close --> Cause
 ```
+
+<details>
+<summary>Legend: relationships and proof boundary</summary>
 
 Arrows describe lifecycle ownership. Validation precedes allocation. Acquisition
 rollback releases only acquired resources; class teardown clears interaction
 state even when engine shutdown throws. The original exception remains primary,
 and distinct cleanup failures remain suppressed evidence.
+
+</details>
 
 The existing [UI option contracts](../atf-tests/src/test/java/com/ai/atf/ui/component/UiEngineRuntimeOptionsContractTest.java),
 [wait contracts](../atf-tests/src/test/java/com/ai/atf/ui/component/WaitUtilsContractTest.java)

@@ -18,7 +18,7 @@ the [browser session](src/main/java/com/ai/ui/core/engine/selenium/SeleniumBrows
 delegates ChromeDriver creation to the adapter's driver factory.
 
 ```mermaid
-flowchart TB
+flowchart LR
     Lifecycle["Core UI lifecycle"] --> Factory["UIEngineFactory"]
     Factory -. ServiceLoader .-> Provider["SeleniumProvider"]
     Provider --> Engine["SeleniumEngine"]
@@ -26,11 +26,16 @@ flowchart TB
     Engine --> Session["Chrome session"]
 ```
 
+<details>
+<summary>Legend: relationships and proof boundary</summary>
+
 The lifecycle node is BaseTestUI/DriverManager; Chrome session belongs to
 SeleniumBrowserSession and its driver factory. Solid arrows show creation or
 delegation; the dotted arrow shows provider discovery. Consumers use Core
 UIEngine/UIActions and choose `ui.engine=selenium`.
 WebDriver and other Selenium SDK types stay inside this adapter.
+
+</details>
 
 ## Dependencies and configuration
 
@@ -121,14 +126,12 @@ mvn -B -ntp -pl atf-tests -am -Pbrowser test
 </details>
 
 The first command runs native provider/Core checks without starting Chrome.
-The second selects existing local locator, real network-response and screenshot
-regressions. The selected fixtures exercise **both Selenium and Playwright**;
-`ui.engine=selenium` does not restrict those parameterized parity cases to one
-engine. The final command selects the maintained browser suite. Follow
-[browser preparation](../docs/Testing.md#browser-preparation-and-checks).
-[Internal contracts](../atf-tests/src/test/java/com/ai/atf/ui/component/engine/SeleniumEngineInternalContractTest.java)
-and [locator parity](../atf-tests/src/test/java/com/ai/atf/ui/component/parity/SeleniumPlaywrightLocatorParityContractTest.java)
-protect driver resolution and shared behavior.
+
+- The second selects existing local locator, real network-response and screenshot regressions.
+- The selected fixtures exercise **both Selenium and Playwright**; `ui.engine=selenium` does not restrict those parameterized parity cases to one engine.
+- The final command selects the maintained browser suite.
+- Follow [browser preparation](../docs/Testing.md#browser-preparation-and-checks).
+- [Internal contracts](../atf-tests/src/test/java/com/ai/atf/ui/component/engine/SeleniumEngineInternalContractTest.java) and [locator parity](../atf-tests/src/test/java/com/ai/atf/ui/component/parity/SeleniumPlaywrightLocatorParityContractTest.java) protect driver resolution and shared behavior.
 
 | Behavior | Existing executable source |
 |---|---|

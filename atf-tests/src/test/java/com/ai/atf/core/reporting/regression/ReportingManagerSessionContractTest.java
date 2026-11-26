@@ -150,20 +150,24 @@ public class ReportingManagerSessionContractTest {
 
     @Test
     public void invalidEngineFailsWithoutCachingABogusLoggerAndCanBeCorrected() {
-        ReportingManager.reset();
-        try (AtfRuntimeConfigSandbox settings = AtfRuntimeConfigSandbox.open()
-                .setSystemProperty(ReportingConfigKeys.REPORTING_ENGINE, "unrecognized-report-engine")
-                .setSystemProperty(ReportingConfigKeys.EXTENT_MIRROR_ENABLED, "false")) {
-            IllegalArgumentException failure = Assert.expectThrows(IllegalArgumentException.class, ReportingManager::getLogger);
-            Assert.assertTrue(failure.getMessage().contains("UNRECOGNIZED-REPORT-ENGINE"),
-                    "The invalid configured value must remain visible in the diagnostic.");
-            Assert.assertNull(ReportingManager.testLoggerForTests(), "No fake observer may hide an invalid engine.");
-            Assert.expectThrows(IllegalArgumentException.class, ReportingManager::tryGetLogger);
+        for (String invalidEngine : new String[]{"unrecognized-report-engine", "allure", "both"}) {
+            ReportingManager.reset();
+            try (AtfRuntimeConfigSandbox settings = AtfRuntimeConfigSandbox.open()
+                    .setSystemProperty(ReportingConfigKeys.REPORTING_ENGINE, invalidEngine)
+                    .setSystemProperty(ReportingConfigKeys.EXTENT_MIRROR_ENABLED, "false")) {
+                IllegalArgumentException failure = Assert.expectThrows(IllegalArgumentException.class, ReportingManager::getLogger);
+                Assert.assertTrue(failure.getMessage().contains(invalidEngine),
+                        "The original invalid configured value must remain visible in the diagnostic.");
+                Assert.assertTrue(failure.getMessage().contains(ReportingConfigKeys.REPORTING_ENGINE),
+                        "The diagnostic must identify the configuration property to repair.");
+                Assert.assertNull(ReportingManager.testLoggerForTests(), "No fake observer may hide an invalid engine.");
+                Assert.expectThrows(IllegalArgumentException.class, ReportingManager::tryGetLogger);
 
-            settings.setSystemProperty(ReportingConfigKeys.REPORTING_ENGINE, ReportingConfigKeys.ENGINE_EXTENT);
-            ReportLogger recovered = ReportingManager.getLogger();
-            Assert.assertNotNull(recovered, "Correcting configuration after a failed selection must allow a real logger.");
-            Assert.assertSame(ReportingManager.tryGetLogger(), recovered);
+                settings.setSystemProperty(ReportingConfigKeys.REPORTING_ENGINE, ReportingConfigKeys.ENGINE_EXTENT);
+                ReportLogger recovered = ReportingManager.getLogger();
+                Assert.assertNotNull(recovered, "Correcting configuration after a failed selection must allow a real logger.");
+                Assert.assertSame(ReportingManager.tryGetLogger(), recovered);
+            }
         }
     }
 

@@ -46,7 +46,9 @@ public class LivingPrinciplesGovernanceTest {
                 {"fenced-row", "missing LD-12"},
                 {"duplicate-section", "require one retained-principles anchor"},
                 {"missing-intent", "requires an intent and explicit proof boundary"},
-                {"wrong-columns", "requires six declared table columns"}
+                {"wrong-columns", "requires six declared table columns"},
+                {"wait-intent-swapped", "preserve the Selenium/Playwright wait distinction"},
+                {"wait-verdict-swapped", "preserve WaitUtils observation and enclosing verdict ownership"}
         };
     }
 
@@ -86,6 +88,18 @@ public class LivingPrinciplesGovernanceTest {
             case "wrong-columns": {
                 String[] cells = first.split("\\|", -1);
                 changed = canonical.replace(first, String.join("|", Arrays.copyOf(cells, cells.length - 1))); break;
+            }
+            case "wait-intent-swapped": {
+                String interaction = lines.stream().filter(line -> line.startsWith("| LD-02 |")).findFirst().orElseThrow();
+                String wait = lines.stream().filter(line -> line.startsWith("| LD-03 |")).findFirst().orElseThrow();
+                String[] cells = wait.split("\\|", -1); cells[2] = interaction.split("\\|", -1)[2];
+                changed = canonical.replace(wait, String.join("|", cells)); break;
+            }
+            case "wait-verdict-swapped": {
+                String wait = lines.stream().filter(line -> line.startsWith("| LD-03 |")).findFirst().orElseThrow();
+                String verdict = lines.stream().filter(line -> line.startsWith("| LD-04 |")).findFirst().orElseThrow();
+                String[] cells = verdict.split("\\|", -1); cells[6] = wait.split("\\|", -1)[6];
+                changed = canonical.replace(verdict, String.join("|", cells)); break;
             }
             default: throw new AssertionError("Unknown living principle mutation: " + mutation);
         }

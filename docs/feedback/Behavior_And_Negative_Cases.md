@@ -14,17 +14,21 @@ from a broken probe. Matching source bytes and a passing publisher prove declare
 consistency; they do not automatically prove coherent behavior or prose truth.
 
 ```mermaid
-flowchart TB
-    Source["Existing source and actual oracle"] --> Case["Condition, trigger and expected observation"]
-    Case --> Walk["Directed case path and selected oracle fragments"]
-    Walk --> Guard["Reachability and bounded graph invariants"]
-    Guard --> Component["Generic publisher component proof"]
-    Component --> Reader["One complete source-bound reader HTML"]
+flowchart LR
+    Source["Source and oracle"] --> Case["Condition and path"]
+    Case --> Guard["Graph invariants"]
+    Guard --> Component["Publisher proof"]
+    Component --> Reader["One complete HTML"]
 ```
+
+<details>
+<summary>Legend: relationships and proof boundary</summary>
 
 Arrows show evidence assembly and maintenance checks. They do not introduce a
 new product flow. Human review remains responsible for whether each case
 describes the actual implementation and assertion.
+
+</details>
 
 <a id="g-015"></a>
 ## G-015: Reachable outcomes and exact case/oracle bindings

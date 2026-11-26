@@ -62,12 +62,6 @@ public class AtfGeneratedContractNarrativeContractIds extends AtfUiReportingCont
             "core.contract-narrative.yaml-scalars-contract-test-class";
     public static final String AGGREGATE_EXTENT_TEST_DISPLAY_CONTRACT_TEST_CLASS =
             "core.contract-narrative.aggregate-extent-test-display-contract-test-class";
-    public static final String ATF_CORE_AGGREGATE_ALLURE_CONTRACT_TEST_AGGREGATE_ALLURE_RESULT_KEEPS_FAILED_COLD_VERDICT_VISIBLE =
-            "core.contract-narrative.atf-core-aggregate-allure-contract-test-aggregate-allure-result-keeps-failed-cold-verdict-visible";
-    public static final String ATF_CORE_AGGREGATE_ALLURE_CONTRACT_TEST_AGGREGATE_ALLURE_RESULT_EXPOSES_CONTRACT_DIAGNOSTICS_AS_STEPS =
-            "core.contract-narrative.atf-core-aggregate-allure-contract-test-aggregate-allure-result-exposes-contract-diagnostics-as-steps";
-    public static final String ATF_CORE_AGGREGATE_ALLURE_CONTRACT_TEST_CLASS =
-            "core.contract-narrative.atf-core-aggregate-allure-contract-test-class";
     public static final String ATF_CORE_AGGREGATE_EXTENT_CONTRACT_TEST_CLASS =
             "core.contract-narrative.atf-core-aggregate-extent-contract-test-class";
     public static final String EXTENT_SPARK_LISTENER_FIXTURE_CONTRACT_TEST_CLASS =
@@ -115,10 +109,6 @@ public class AtfGeneratedContractNarrativeContractIds extends AtfUiReportingCont
             "core.contract-narrative.runtime-audit-publisher-coordinator-contract-test-class";
     public static final String STEP_LOGGER_CONTRACT_TEST_CLASS =
             "core.contract-narrative.step-logger-contract-test-class";
-    public static final String ALLURE_SCREENSHOT_ARTIFACT_SMOKE_TEST_CLASS =
-            "core.contract-narrative.allure-screenshot-artifact-smoke-test-class";
-    public static final String ALLURE_UI_ZOOM_ARTIFACT_SMOKE_TEST_CLASS =
-            "core.contract-narrative.allure-ui-zoom-artifact-smoke-test-class";
     public static final String EXTENT_SCREENSHOT_ARTIFACT_SMOKE_TEST_CLASS =
             "core.contract-narrative.extent-screenshot-artifact-smoke-test-class";
     public static final String FINAL_UI_SCREENSHOT_CONTRACT_TEST_CLASS =
@@ -127,8 +117,6 @@ public class AtfGeneratedContractNarrativeContractIds extends AtfUiReportingCont
             "core.contract-narrative.ui-engine-browser-window-contract-smoke-test-class";
     public static final String UI_ENGINE_SCREENSHOT_SMOKE_TEST_CLASS =
             "core.contract-narrative.ui-engine-screenshot-smoke-test-class";
-    public static final String EMPTY_PAYLOAD_ATTACHMENT_CONTRACT_TEST_CLASS =
-            "core.contract-narrative.empty-payload-attachment-contract-test-class";
     public static final String EXTENT_SPARK_COLLAPSE_POLICY_COMPONENT_TEST_CLASS =
             "core.contract-narrative.extent-spark-collapse-policy-component-test-class";
     public static final String EXTENT_SPARK_FAILURE_TRIAGE_CSS_COMPONENT_TEST_CLASS =

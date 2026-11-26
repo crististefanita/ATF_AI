@@ -19,9 +19,67 @@ public class DocumentationReadabilityRulesTest {
         List<String> findings = new ArrayList<>();
         for (Path file : GovernanceFiles.files(root, ".md")) {
             findings.addAll(DocumentationReadabilityRules.validate(root, file, Files.readAllLines(file)));
+            findings.addAll(DocumentationPresentationRules.validate(GovernanceFiles.relative(root, file), Files.readAllLines(file)));
         }
         findings.addAll(DocumentationReadabilityRules.validateTestingStrategy(Files.readAllLines(root.resolve("docs/Testing.md"))));
         Assert.assertTrue(findings.isEmpty(), GovernanceFiles.problems(findings));
+    }
+
+    @Test
+    public void diagramsRequireAnAdjacentClosedExplainedLegendWithOwnedRepairHints() {
+        String graph = "# Guide\n\n```mermaid\nflowchart LR\nA --> B\n```\n\n";
+        String legend = "<details>\n<summary>Legend: ownership</summary>\n\nArrows show delegation; vendor details stay with the provider.\n\n</details>\n";
+        for (String broken : List.of("", "Unrelated text.\n\n" + legend,
+                legend.replace("<details>", "<details open>"), legend.replace("Legend: ownership", "More"),
+                legend.replace("Arrows show delegation; vendor details stay with the provider.", ""),
+                legend.replace("</details>", ""))) {
+            List<String> findings = DocumentationPresentationRules.validate("docs/Guide.md", List.of((graph + broken).split("\\n", -1)));
+            assertFinding(findings, "DOC-DIAGRAM-DISCLOSURE", "next block");
+            String report = GovernanceFiles.problems(findings);
+            Assert.assertTrue(report.contains("Repair hint:"));
+            Assert.assertTrue(report.contains("Owner: docs/governance/Code_And_Documentation_Policy.md#reader-orientation-and-diagrams"));
+        }
+        Assert.assertTrue(DocumentationPresentationRules.validate("docs/Guide.md", List.of((graph + legend).split("\\n", -1))).isEmpty());
+        Assert.assertTrue(DocumentationPresentationRules.validate("docs/Guide.md",
+                List.of((graph + legend.replace("<details>", "<details data-note=\"the word open is data\">")).split("\\n", -1))).isEmpty());
+    }
+
+    @Test
+    public void normativeTablesUseTheSameConciseProseBoundaryAsReadmes() throws Exception {
+        try (GovernanceFiles.Fixture fixture = DocumentationGovernanceFixtures.documentation()) {
+            String dense = "explanatory detail ".repeat(12).strip();
+            String original = "# Owner contract\n\n| Boundary | Meaning |\n|---|---|\n| ownership | " + dense + " |\n";
+            fixture.write("docs/Owner_Contract.md", original);
+            List<String> findings = MarkdownDocumentationRules.validate(fixture.root);
+            assertFinding(findings, "DOC-TABLE-LONG-CELL", "column 2");
+            String report = GovernanceFiles.problems(findings);
+            Assert.assertTrue(report.contains("Repair hint:"));
+            fixture.write("docs/Owner_Contract.md", original.replace(dense, "The caller owns the resource."));
+            DocumentationGovernanceFixtures.assertValid(MarkdownDocumentationRules.validate(fixture.root));
+        }
+    }
+
+    @Test
+    public void sharedPresentationRulesPreserveLiteralExamplesCommentsAndSequenceMeaning() {
+        String legend = "\n<details>\n<summary>Legend: call sequence</summary>\n\nArrows show calls.\n</details>\n";
+        for (String direction : List.of("TB", "TD", "BT", "RL")) {
+            String invalid = "```mermaid\nflowchart " + direction + "\nA --> B\n```\n" + legend;
+            List<String> findings = DocumentationPresentationRules.validate("README.md", List.of(invalid.split("\\n", -1)));
+            assertFinding(findings, "DOC-DIAGRAM-ORIENTATION", "observed " + direction);
+            String nested = invalid.replace("flowchart " + direction,
+                    "flowchart LR\nsubgraph Group\ndirection " + direction + "\nend");
+            assertFinding(DocumentationPresentationRules.validate("README.md", List.of(nested.split("\\n", -1))),
+                    "DOC-DIAGRAM-ORIENTATION", "nested direction");
+            Assert.assertTrue(DocumentationPresentationRules.validate("README.md",
+                    List.of(nested.replace("direction " + direction, "direction LR").split("\\n", -1))).isEmpty());
+            Assert.assertTrue(DocumentationPresentationRules.validate("README.md", List.of(invalid.replace("flowchart " + direction, "flowchart LR").split("\\n", -1))).isEmpty());
+        }
+        String example = "````text\n```mermaid\nflowchart TB\nA --> B\n```\n````\n<!--\n```mermaid\nflowchart TB\nA --> B\n```\n-->\n";
+        Assert.assertTrue(DocumentationPresentationRules.validate("docs/Guide.md", List.of(example.split("\\n", -1))).isEmpty());
+        String commented = "\n```mermaid\nflowchart LR\n%% direction TB is documentation\nA --> B\n```\n" + legend;
+        Assert.assertTrue(DocumentationPresentationRules.validate("README.md", List.of(commented.split("\\n", -1))).isEmpty());
+        String sequence = "```mermaid\nsequenceDiagram\nA->>B: Invoke\n```\n" + legend;
+        Assert.assertTrue(DocumentationPresentationRules.validate("docs/Guide.md", List.of(sequence.split("\\n", -1))).isEmpty());
     }
 
     @Test
@@ -113,7 +171,8 @@ public class DocumentationReadabilityRulesTest {
     public void theStrategyAndDetailedReferencesHaveDifferentReaderTasksButBothKeepWordBounds() {
         String conciseContract = "Select local checks. Inspect the outcomes. Preserve the evidence. Explain the limits.";
         assertFinding(validate("docs/Testing.md", "# Testing\n\n" + conciseContract), "DOC-PROSE-DENSE", "testing strategy");
-        for (String reference : List.of("docs/Testing_Commands.md", "docs/Architecture.md", "atf-core/README.md")) {
+        assertFinding(validate("atf-core/README.md", "# Reference\n\n" + conciseContract), "DOC-PROSE-DENSE", "README orientation");
+        for (String reference : List.of("docs/Testing_Commands.md", "docs/Architecture.md")) {
             Assert.assertTrue(validate(reference, "# Reference\n\n" + conciseContract).isEmpty());
             assertFinding(validate(reference, "# Reference\n\n" + sentence(34) + " " + sentence(34) + " " + sentence(33)), "DOC-PROSE-DENSE", "101 visible words");
         }

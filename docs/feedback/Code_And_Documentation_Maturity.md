@@ -342,29 +342,18 @@ claim broader product coverage.
 
 ```mermaid
 flowchart LR
-    Selection["Explicit Maven selection"] --> Root["Root README"]
-    Selection --> Editions["EN / RO editions"]
-    Selection --> Living["Living principles"]
-    Selection --> Structure["Markdown contracts"]
-    Selection --> Feedback["Feedback rules"]
-    Selection --> Publication["HTML and command rules"]
-    Local["Local and aggregate suites"] --> Root
-    Local --> Editions
-    Local --> Living
-    Local --> Structure
-    Local --> Feedback
-    Local --> Publication
-    Root -. uses .-> Fixtures["Shared fixtures and assertions"]
-    Editions -. uses .-> Fixtures
-    Living -. uses .-> Fixtures
-    Structure -. uses .-> Fixtures
-    Feedback -. uses .-> Fixtures
-    Publication -. uses .-> Fixtures
+    Selection["Maven and suites"] --> Owners["Six thematic owners"]
+    Owners -. uses .-> Fixtures["Shared fixtures"]
 ```
+
+<details>
+<summary>Legend: relationships and proof boundary</summary>
 
 Solid arrows show the explicit Maven or suite selection; dotted arrows show
 shared fixture use. Diagnostic recheck commands name the same owners directly.
 No E2E method, emulator, runtime feature or new test method was added.
+
+</details>
 
 Delivered quality: 92 (correctness 94 / verification 90 / clarity 92).
 The paired documentation, readability and source-language selection passed
@@ -434,3 +423,134 @@ application execution. The final source snapshots, patches, logs and XML remain
 under `${ATF_WORK_ROOT}/reviews/testing-strategy-20261126/closure-02` and
 `${ATF_WORK_ROOT}/validation/testing-strategy-20261126-en-02` /
 `${ATF_WORK_ROOT}/validation/testing-strategy-20261126-ro-02`.
+
+<a id="d-013"></a>
+## D-013: Shared presentation governance across the document inventory
+
+Status: VERIFIED. Owner: documentation presentation/readability governance.
+Priority 83 (impact 85 / exposure 85 / urgency 75).
+Baseline quality 66 (correctness 75 / verification 45 / clarity 75).
+
+The review covers all 50 maintained Markdown documents and both Living HTML
+projections, using J0's diagram/prose/structure/style/link owners at commit
+`96f50e5f277771ca9dfac3b7c959b47188afd0b0`. J0's two local feedback edits are
+untouched. Its practices are adapted to this repository's contracts and TestNG.
+
+The preserved initial presentation probe reports 55 findings: vertical flows
+and missing adjacent closed legends. The source baseline contains all 50 EN/RO
+pairs under `${ATF_WORK_ROOT}/reviews/documentation-presentation-20261126/baseline`;
+the original observations are in baseline-findings.log beside that directory.
+
+- Every existing diagram receives an adjacent explained closed legend. Sequential
+  and ownership flows read horizontally; sequence diagrams keep their semantics.
+- Long overview flows group related operations. Reporting and test ownership gain
+  concise maps; small package guides keep their existing short bullets/tables.
+- Dense README decisions become a lead sentence and parallel checks. Technical
+  literals, conditions, links, commands and evidence chronology remain intact.
+- Normative table prose receives the existing 140-character/22-word bounds;
+  historical feedback evidence keeps its captured table shape.
+- The Living principle rows retain all source/check routes, states and explicit
+  cleanup limits. Both HTML projections retain their CSS and source metadata.
+- Three component methods exercise broken legends, vertical orientation, literal
+  decoys, normative cell density and real repairs with owned diagnostic hints.
+  The reviewed method inventory increases from 575 to 578; no E2E is added.
+
+Acceptance requires the complete paired documentation/source selection, exact
+suite/method-inventory controls and native desktop review at 1440/900 CSS px.
+Source gates establish supported structure; the reviewer checks meaning,
+column proportions and rendered labels. Neither source size nor a green guard
+establishes universal readability or application acceptance.
+
+
+Delivered quality 93 (correctness 94 / verification 92 / clarity 94).
+The initial documentation selection passed 212/212 in EN and 210/212 in RO;
+the two RO failures exposed dense Living cells. Their original receipts remain
+in documentation-presentation-20261126/acceptance-01. The repaired rows preserve
+UIActions ownership, the Selenium/Playwright wait distinction and the WaitUtils
+verdict boundary; two deliberate row swaps protect these associations. Manual
+review also checked negations against live source, beyond matching owner names.
+
+- The shared direction check covers explicit nested subgraph directions as well
+  as flow headers. Commented/literal decoys and sequence semantics remain data.
+- Native render-04 reviewed all 50 pairs and both HTML projections: 204 page
+  records and 176 diagram observations at 1440/900 CSS px. No page overflow,
+  SVG label clipping or measured overlaps were found; no page errors or external
+  requests occurred. Wide reference figures retain documented local scrolling.
+- Targeted render-05 adds 8 records/32 diagram observations after the final test
+  README wording repair and inspects the Living HTML figures/tables directly.
+- Acceptance-04 passes the same 72 local classes through the aggregate suite:
+  699/699 cross-module cases plus 37/37 native library cases in each edition.
+  The final closure selection binds the updated register and full-text review.
+
+The evidence is under ${ATF_WORK_ROOT}/reviews/documentation-presentation-20261126
+and ${ATF_WORK_ROOT}/reviews/extent-only-20261126. The later R-002 retirement brings
+the reviewed inventory to 561. Geometry and finite source guards support this
+scoped presentation assessment; they do not certify every possible rendering,
+semantic translation or application outcome.
+
+<a id="r-002"></a>
+## R-002: Extent-only maintained reporting scope
+
+Status: VERIFIED. Owner: reporting/runtime and framework governance.
+Priority 84 (impact 90 / exposure 80 / urgency 75).
+Baseline quality 60 (correctness 60 / verification 60 / clarity 60).
+
+The user narrowed the maintained scope to Extent. Allure was supported in the
+captured baseline and in main_mcp; this scope decision does not establish an
+Allure defect. Historical receipts remain observations of their recorded source.
+
+- Remove the Allure SDK dependencies, adapter, lifecycle cleanup, active suite and
+  publication commands. Reporting configuration accepts extent; retired allure,
+  both and unknown values fail with the property name and observed value.
+- Keep aggregate disable settings explicit. The aggregate model uses the existing
+  neutral status type, without a vendor SDK dependency for test collection.
+- Update live contract narratives and both documentation editions, including the
+  Living HTML projections. Remove retired profiles, groups and narrative IDs.
+- Preserve the existing Extent empty-payload assertion by moving it from the
+  retired mixed adapter class into ExtentAdapterTest.
+- Pin the reviewed inventory at 561 methods: 578 after D-013, minus 17 retired
+  Allure identities. One command contract is renamed and one Extent method moves;
+  these changes are reviewed separately from removals. The 16 product E2E methods
+  are unchanged. No new application journey or emulator is used.
+- Reject retired dependencies in root/module dependency management and profiles.
+  Existing architecture mutations verify owned diagnostics and actual repairs.
+
+The generic artifact collector still recognizes historical/external Allure data.
+That format classification does not enable a reporting backend. Captured reports
+are not relabelled as current Extent proof. Compilation in compile-01 succeeded;
+that receipt alone does not establish runtime or report acceptance.
+
+Acceptance requires paired local reactors, the existing aggregate publication,
+maintenance component checks and native document rendering. Original source,
+reviewed removals, patches and receipts are retained under
+${ATF_WORK_ROOT}/reviews/extent-only-20261126.
+
+Delivered quality 93 (correctness 95 / verification 92 / clarity 92).
+The baseline score measures alignment with the newly narrowed scope, not the
+historical correctness of Allure. Acceptance-01 exposed a missing Path import;
+acceptance-02 has no completion receipt and is excluded from acceptance.
+
+Both complete default reactors in acceptance-03 passed 37 native library cases
+and 697/699 cross-module cases. The failures identified an extra translated
+bullet/missing heading aliases and the old uppercase-only enum diagnostic
+assertion. The repair restores EN/RO structure and checks the property, original
+invalid value, absent bogus cache and successful Extent recovery for unknown,
+allure and both settings. None of the original failures is relabelled as PASS.
+
+Acceptance-04 executes the same 72 local classes with aggregate publication:
+736/736 native cases per edition, including 699/699 in atf-tests. Both generated
+Extent readers pass the existing aggregate publishability inspector and display
+699 cases, matching the native suite and aggregate manifest. Runtime classpaths
+contain no retired SDK. The native/publication reconciliation receipt and reader
+inspection log remain beside the exact source overlays and original XML.
+
+The three existing screenshot/zoom component classes pass 15/15 cases against
+real Selenium and Playwright desktop browsers in browser-01. The pinned browser,
+driver, SDK and offline-cache inputs are recorded there. These local fixtures do
+not establish product E2E acceptance. All 203 Node maintenance cases pass per
+edition; their tool sources remain unchanged in the later attempts.
+
+Atlas policy retrieval contributed cited behavior, evidence, traceability and
+score boundaries. It is deterministic lexical policy context, with no semantic
+recall claim and no new Atlas publication. The final closure selection checks
+both documentation editions, constructive diagnostics and the reviewed inventory.

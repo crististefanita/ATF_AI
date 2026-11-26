@@ -14,18 +14,21 @@ validators and finding codes. Messages and comments remain English in both
 editions. This is existing test support, with no runtime service or rule module.
 
 ```mermaid
-flowchart TB
-    Finding["Observed finding"] --> Owner["Rule and owner"]
-    Owner --> Cause["Reproduce and inspect"]
-    Cause --> Repair["Repair the source"]
-    Repair --> Recheck["Recheck the contract"]
-    Recheck --> Feedback["Update scoped feedback"]
-    Recheck -. still fails .-> Cause
+flowchart LR
+    Finding["Finding and owner"] --> Cause["Reproduce and inspect"]
+    Cause --> Repair["Repair and recheck"]
+    Repair --> Feedback["Scoped feedback"]
+    Repair -. still fails .-> Cause
 ```
+
+<details>
+<summary>Legend: relationships and proof boundary</summary>
 
 Arrows show a correction based on observed evidence. A failed recheck returns to
 investigation; a suggested repair becomes verified only through inspection and
 execution. Feedback closes only the demonstrated acceptance criteria.
+
+</details>
 
 ## Message structure
 
@@ -60,7 +63,7 @@ independent of these explanatory fields.
 | Markdown structure, route or diagram | [Documentation and rendering](#documentation-and-rendering) | Repair the real target, syntax or explanatory legend |
 | Examples, commands and defaults | [Testing](../Testing.md) | Align examples with actual public APIs and declarations |
 | Documentation editions | [Edition contract](Readme_Editions.md) | Preserve code, links, anchors, commands, topology and identical non-document source |
-| Inline code or numeric translation facts | [Protected documentation facts](Readme_Editions.md#existing-executable-checks) | Use the reported item ordinal to compare canonical code spans and corresponding numeric table rows; retain human semantic review |
+| Inline code or numeric translation facts | [Protected documentation facts](Readme_Editions.md#existing-executable-checks) | Compare the reported code span or numeric row with its canonical source; retain semantic review |
 | Living architecture pair | [Essential source](../Living_Architecture_UI_API_doc_v1_0.md) | Synchronize HTML/Markdown, source digest and navigation |
 | Feedback state and lifecycle | [Feedback rubric](../feedback/README.md) | Retain baseline assessments and close only proven criteria |
 | English source/prose and data exceptions | [English requirement](Code_And_Documentation_Policy.md#english-source-and-comments) | Translate authored text and keep reviewed external data exact |

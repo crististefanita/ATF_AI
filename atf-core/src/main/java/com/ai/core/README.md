@@ -9,7 +9,7 @@ console steps and session delegation.
 ## Entry points
 
 - [Core support](support/README.md): configuration, metadata, YAML and HTML primitives.
-- [ReportLogger](reporting/ReportLogger.java): report operations independent of Extent and Allure.
+- [ReportLogger](reporting/ReportLogger.java): report operations independent of Extent.
 - [StepLogger](reporting/StepLogger.java): step scopes, console output and report delegation.
 
 Reporting implementations, TestNG listeners and publication live in

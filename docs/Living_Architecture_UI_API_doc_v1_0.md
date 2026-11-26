@@ -33,7 +33,7 @@ absolute runtime paths are resolved from those inputs when an API requires them.
 | CORE | Shared contracts, configuration and lifecycle | Browser and reporting vendor SDKs stay outside Core |
 | UI | Engine-neutral actions, waits, browser lifecycle and observations | Application pages and workflows stay in test support |
 | API | HTTP execution, response validation and application services | HTTP transport is distinct from business assertions |
-| REPORTING | Extent/Allure implementation and publication | Core exposes neutral reporting contracts and an optional backend SPI |
+| REPORTING | Extent implementation and publication | Core exposes neutral reporting contracts and an optional backend SPI |
 
 The interaction model remains `UIActions + WaitUtils + UIEngine` for UI,
 `Steps + Services + ApiActions/ApiClient + Validators` for API, and
@@ -55,7 +55,7 @@ root across modules; sharing a package prefix does not permit a reverse dependen
 | [atf-core](../atf-core/README.md) | Neutral `com.ai.core`, `com.ai.api.core`, neutral `com.ai.ui.core`, generic UI action/wait facades | UIEngine, UiEngineProvider, ConfigManager, StepLogger, ReportLogger, ReportingBackend |
 | [atf-playwright](../atf-playwright/README.md) | `com.ai.ui.core.engine.playwright` | Playwright implementation of UiEngineProvider |
 | [atf-selenium](../atf-selenium/README.md) | `com.ai.ui.core.engine.selenium` | Selenium implementation of UiEngineProvider |
-| [atf-reporting](../atf-reporting/README.md) | Reporting backend, concrete listeners, Extent/Allure adapters and aggregate writers | ReportingBackend and neutral ReportLogger operations |
+| [atf-reporting](../atf-reporting/README.md) | Reporting backend, concrete listeners, Extent adapters and aggregate writers | ReportingBackend and neutral ReportLogger operations |
 | [atf-tests](../atf-tests/README.md) | Cross-module integration/governance checks and product UI/API support under test sources | Verification and explicit application journeys |
 
 There are five Maven modules. Each browser adapter and Reporting depends on
@@ -149,12 +149,7 @@ anonymous/invalid-auth fixtures use the explicit request paths designed for them
 Normal authentication is centralized in ApiClient; special negative-auth helpers
 are test support, not a second production authentication mechanism.
 
-Core can execute without a Reporting backend. Installing atf-reporting enables
-its Extent/Allure implementation. The two report engines are selected by
-`reporting.engine` behind one ReportingBackend service and the neutral facade;
-invalid engine configuration is a diagnostic, not a
-documented universal NO-OP fallback. Report directories are relative to the
-executing validation module unless overridden.
+Core can execute without a reporting backend. Installing atf-reporting supplies Extent through the neutral ReportingBackend service. The supported setting is `reporting.engine=extent`; unsupported engines fail explicitly, and report paths remain relative to the executing validation module unless overridden.
 
 </details>
 
@@ -175,10 +170,15 @@ flowchart LR
     Tests --> Core
 ```
 
+<details>
+<summary>Legend: relationships and proof boundary</summary>
+
 Arrows mean dependency, not execution order. Core never loads a browser or
 reporting vendor class directly. Java service descriptors belong to their
 providers. atf-tests verifies composition; it is not a dependency of a library.
 The documentary Atlas is absent from this runtime graph by design.
+
+</details>
 
 <a id="canonical-rules"></a>
 ## 4) Canonical execution rules
@@ -202,20 +202,20 @@ covered, or that a public application accepted the scenario. `PARTIAL` exposes
 a known unfulfilled obligation. Execution evidence belongs to its exact source,
 selection, engine and native result in the [report publication](../artifacts/reports/README.md).
 
-| ID | Archived intent / current decision | Implementation owner | Existing checks | State | Proof boundary |
+| ID | Archived intent / current decision | Implementation | Existing checks | State | Proof boundary |
 |---|---|---|---|---|---|
 | LD-01 | Section 3, Config: one configuration owner; use required/optional typed access. | [ConfigManager](../atf-core/src/main/java/com/ai/core/support/config/ConfigManager.java) | [Configuration loading](../atf-tests/src/test/java/com/ai/atf/core/support/config/ConfigManagerFileContractTest.java) | MAINTAINED | Source-owned precedence and validation; caller credentials and environment availability remain separate. |
-| LD-02 | Section 3, UI interactions: application interactions use UIActions; vendor engines own capabilities rather than business decisions. | [UIActions](../atf-core/src/main/java/com/ai/ui/support/actions/UIActions.java) | [Engine delegation](../atf-tests/src/test/java/com/ai/atf/ui/component/UiEngineDelegationContractTest.java) | MAINTAINED | Technical engine tests may call the interface directly; application scenarios may not branch on vendor SDKs. |
-| LD-03 | Section 3, engine-dependent waits: Selenium requires explicit facade waits; Playwright supplies native auto-wait capability. | [UiActionWait](../atf-core/src/main/java/com/ai/ui/support/actions/UiActionWait.java) | [Action and input parity](../atf-tests/src/test/java/com/ai/atf/ui/component/UiEngineActionParityContractTest.java) | MAINTAINED | Both wait-capability paths are component contracts; native browser observations and product outcomes need their own execution. |
-| LD-04 | Section 3, Waits: WaitUtils observes bounded conditions and does not independently emit FAIL. | [WaitUtils](../atf-core/src/main/java/com/ai/ui/support/wait/WaitUtils.java) | [Bounded wait regressions](../atf-tests/src/test/java/com/ai/atf/ui/component/WaitUtilsContractTest.java) | MAINTAINED | The enclosing action or validation owns its terminal verdict; a polling timeout is not a successful observation. |
-| LD-05 | Section 3, Validation: reusable validations compare independent actual values with expected business conditions inside explicit Validate steps. | [Registration validation](../atf-tests/src/test/java/com/ai/ui/support/validation/RegistrationValidation.java) and [Profile validation](../atf-tests/src/test/java/com/ai/ui/support/validation/ProfileAccountValidation.java) | [Registration validation contracts](../atf-tests/src/test/java/com/ai/atf/ui/component/RegistrationValidationContractTest.java) | MAINTAINED | Expected/actual details and one terminal verdict explain the assertion; action completion alone does not establish business success. |
-| LD-06 | Section 4, Details and exceptions: the listener owns test lifecycle and preserves the actual failure outside an action step. | [ReportingTestListener](../atf-reporting/src/main/java/com/ai/core/reporting/listener/ReportingTestListener.java) and [BaseTestUI](../atf-core/src/main/java/com/ai/ui/core/runtime/BaseTestUI.java) | [Listener failures](../atf-tests/src/test/java/com/ai/atf/core/reporting/lifecycle/TestListenerFailureContractTest.java) | MAINTAINED | Class setup and teardown remain configuration evidence, not additional product tests; failure attribution must retain its original scope. |
-| LD-07 | Sections 3.5 and 4, step ownership: details require an active step; each owned step has one terminal verdict; nested depth is supported. | [StepLogger](../atf-core/src/main/java/com/ai/core/reporting/StepLogger.java) and [StepScope](../atf-core/src/main/java/com/ai/core/reporting/step/StepScope.java) | [Step lifecycle regressions](../atf-tests/src/test/java/com/ai/atf/core/reporting/regression/StepLoggerContractTest.java) | MAINTAINED | Nested actions must return to their validation scope; closing an unfinished scope is not an implicit PASS. |
-| LD-08 | Section 4, Stacktrace and screenshot: retain one failing-step trace and listener-owned test-level failure attachments. | [UI screenshot handler](../atf-core/src/main/java/com/ai/ui/core/reporting/UiScreenshotFailureHandler.java) and [Failure attachment registry](../atf-core/src/main/java/com/ai/core/reporting/attachment/FailureAttachmentRegistry.java) | [Failure attachment contracts](../atf-tests/src/test/java/com/ai/atf/core/reporting/attachment/FailureAttachmentRegistryTest.java) | MAINTAINED | Configured final-state capture is distinct from a failure screenshot; missing attachments do not convert a failure into success. |
-| LD-09 | Section 4, Extensibility and operations: application layers emit semantic evidence through the neutral facade; Reporting owns adapters and lifecycle. | [ReportingManager](../atf-core/src/main/java/com/ai/core/reporting/ReportingManager.java) and [DefaultReportingBackend](../atf-reporting/src/main/java/com/ai/core/reporting/DefaultReportingBackend.java) | [Reporting manager contracts](../atf-tests/src/test/java/com/ai/atf/core/reporting/regression/ReportingManagerSessionContractTest.java) | MAINTAINED | Backend absence, invalid configuration and adapter diagnostics have different contracts; no universal silent fallback is inferred. |
-| LD-10 | Section 5, Test data and independence: factories own unique product values; scenarios remain independent of method order and declare shared fixture lifecycle. | [UserDataFactory](../atf-tests/src/test/java/com/ai/ui/support/factory/UserDataFactory.java) and [ProfileAccountComponent](../atf-tests/src/test/java/com/ai/ui/support/component/ProfileAccountComponent.java) | [Registration submission contracts](../atf-tests/src/test/java/com/ai/atf/ui/component/RegistrationSubmissionContractTest.java) | MAINTAINED | Framework counterexamples may use literal malformed data; shared account/profile fixtures are class-scoped and their selected checks only read account state. |
-| LD-11 | Section 5, Test data: cleanup of created application data remains mandatory and must have its own observable contract. | [RegistrationService](../atf-tests/src/test/java/com/ai/ui/support/service/RegistrationService.java) and [ProfileAccountComponent](../atf-tests/src/test/java/com/ai/ui/support/component/ProfileAccountComponent.java) | [Registration submission contracts](../atf-tests/src/test/java/com/ai/atf/ui/component/RegistrationSubmissionContractTest.java) | PARTIAL | ACCOUNT_DELETION_NOT_IMPLEMENTED: retained public-demo tests create accounts and select no account-deletion operation. Submission checks do not prove cleanup. |
-| LD-12 | Sections 4 and 5, engine independence: select the same retained scenarios through configuration for Playwright and Selenium. | [UIEngineRegistry](../atf-core/src/main/java/com/ai/ui/core/engine/UiEngineRegistry.java) | [Registration scenarios](../atf-tests/src/test/java/com/ai/atf/ui/RegistrationTests.java), [Account scenarios](../atf-tests/src/test/java/com/ai/ui/tests/AccountAuthenticatedAreaTests.java) and [Profile scenarios](../atf-tests/src/test/java/com/ai/ui/tests/ProfileContactAddressMemoryTests.java) | MAINTAINED | SAME_RETAINED_SCENARIOS: the same 16 existing methods form both engine selections. Only native result identities and actual application observations establish their execution outcomes. |
+| LD-02 | Section 3: application interactions use UIActions; provider engines own capabilities, not business decisions. | [UIActions](../atf-core/src/main/java/com/ai/ui/support/actions/UIActions.java) | [Engine delegation](../atf-tests/src/test/java/com/ai/atf/ui/component/UiEngineDelegationContractTest.java) | MAINTAINED | Technical engine tests may call the interface directly; application scenarios may not branch on vendor SDKs. |
+| LD-03 | Section 3: Selenium uses facade waits; Playwright supplies native auto-wait capability. | [UiActionWait](../atf-core/src/main/java/com/ai/ui/support/actions/UiActionWait.java) | [Action and input parity](../atf-tests/src/test/java/com/ai/atf/ui/component/UiEngineActionParityContractTest.java) | MAINTAINED | Both wait paths have component contracts; native browser and product outcomes need separate execution. |
+| LD-04 | Section 3, Waits: WaitUtils observes bounded conditions and does not independently emit FAIL. | [WaitUtils](../atf-core/src/main/java/com/ai/ui/support/wait/WaitUtils.java) | [Bounded wait regressions](../atf-tests/src/test/java/com/ai/atf/ui/component/WaitUtilsContractTest.java) | MAINTAINED | WaitUtils does not emit FAIL; the enclosing action/validation owns the verdict. A polling timeout is not success. |
+| LD-05 | Section 3: validations compare independent actual values with expected business conditions in explicit Validate steps. | [Registration validation](../atf-tests/src/test/java/com/ai/ui/support/validation/RegistrationValidation.java) and [Profile validation](../atf-tests/src/test/java/com/ai/ui/support/validation/ProfileAccountValidation.java) | [Registration validation contracts](../atf-tests/src/test/java/com/ai/atf/ui/component/RegistrationValidationContractTest.java) | MAINTAINED | Expected/actual details and one terminal verdict explain the assertion; action completion alone does not establish business success. |
+| LD-06 | Section 4, Details and exceptions: the listener owns test lifecycle and preserves the actual failure outside an action step. | [Reporting listener](../atf-reporting/src/main/java/com/ai/core/reporting/listener/ReportingTestListener.java) and [BaseTestUI](../atf-core/src/main/java/com/ai/ui/core/runtime/BaseTestUI.java) | [Listener failures](../atf-tests/src/test/java/com/ai/atf/core/reporting/lifecycle/TestListenerFailureContractTest.java) | MAINTAINED | Class setup/teardown are configuration evidence, not product tests; preserve the original failure scope. |
+| LD-07 | Sections 3.5 and 4: details need an active step, one terminal verdict and supported nested depth. | [StepLogger](../atf-core/src/main/java/com/ai/core/reporting/StepLogger.java) and [StepScope](../atf-core/src/main/java/com/ai/core/reporting/step/StepScope.java) | [Step lifecycle regressions](../atf-tests/src/test/java/com/ai/atf/core/reporting/regression/StepLoggerContractTest.java) | MAINTAINED | Nested actions must return to their validation scope; closing an unfinished scope is not an implicit PASS. |
+| LD-08 | Section 4: one failing-step stacktrace and listener-owned failure attachments at test level. | [UI screenshot handler](../atf-core/src/main/java/com/ai/ui/core/reporting/UiScreenshotFailureHandler.java) and [Failure attachment registry](../atf-core/src/main/java/com/ai/core/reporting/attachment/FailureAttachmentRegistry.java) | [Failure attachment contracts](../atf-tests/src/test/java/com/ai/atf/core/reporting/attachment/FailureAttachmentRegistryTest.java) | MAINTAINED | Configured final-state capture is distinct from a failure screenshot; missing attachments do not convert a failure into success. |
+| LD-09 | Section 4: neutral evidence facade; Reporting owns adapters and lifecycle. | [ReportingManager](../atf-core/src/main/java/com/ai/core/reporting/ReportingManager.java) and [Default backend](../atf-reporting/src/main/java/com/ai/core/reporting/DefaultReportingBackend.java) | [Reporting manager contracts](../atf-tests/src/test/java/com/ai/atf/core/reporting/regression/ReportingManagerSessionContractTest.java) | MAINTAINED | Missing backend, invalid configuration and adapter diagnostics remain distinct; no universal silent fallback. |
+| LD-10 | Section 5: unique factory data, method-order independence and explicit shared-fixture lifecycle. | [UserDataFactory](../atf-tests/src/test/java/com/ai/ui/support/factory/UserDataFactory.java) and [Profile component](../atf-tests/src/test/java/com/ai/ui/support/component/ProfileAccountComponent.java) | [Registration submission contracts](../atf-tests/src/test/java/com/ai/atf/ui/component/RegistrationSubmissionContractTest.java) | MAINTAINED | Malformed-data counterexamples remain valid; class-scoped account/profile fixtures only read account state. |
+| LD-11 | Section 5, Test data: cleanup of created application data remains mandatory and must have its own observable contract. | [RegistrationService](../atf-tests/src/test/java/com/ai/ui/support/service/RegistrationService.java) and [Profile component](../atf-tests/src/test/java/com/ai/ui/support/component/ProfileAccountComponent.java) | [Registration submission contracts](../atf-tests/src/test/java/com/ai/atf/ui/component/RegistrationSubmissionContractTest.java) | PARTIAL | ACCOUNT_DELETION_NOT_IMPLEMENTED: demo tests create accounts without deletion; submission checks do not prove cleanup. |
+| LD-12 | Sections 4 and 5, engine independence: select the same retained scenarios through configuration for Playwright and Selenium. | [UIEngineRegistry](../atf-core/src/main/java/com/ai/ui/core/engine/UiEngineRegistry.java) | [Registration scenarios](../atf-tests/src/test/java/com/ai/atf/ui/RegistrationTests.java), [Account scenarios](../atf-tests/src/test/java/com/ai/ui/tests/AccountAuthenticatedAreaTests.java) and [Profile scenarios](../atf-tests/src/test/java/com/ai/ui/tests/ProfileContactAddressMemoryTests.java) | MAINTAINED | SAME_RETAINED_SCENARIOS: both engines select the same 16 methods; only native results and application observations prove execution. |
 
 For each selected UI scenario, the action step records intent, locator and the
 reportable input; password/secret-labelled values are represented by
@@ -248,7 +248,7 @@ legacy wait precedence and valid defaults remain unchanged. See the
 
 - MUST keep one Core configuration loader and use its typed option owners.
 - MUST route semantic execution reporting through StepLogger/ReportLogger.
-- MUST keep Extent/Allure SDK imports inside atf-reporting and browser SDK imports
+- MUST keep Extent SDK imports inside atf-reporting and browser SDK imports
   inside the corresponding adapter.
 - MUST NOT let a business step instantiate a reporting adapter or control test
   start/end/flush. Lifecycle ownership belongs to the listener/backend.
@@ -387,13 +387,18 @@ flowchart LR
     Actions --> Step["StepLogger"]
     Step --> Facade["ReportingManager"]
     Facade --> Logger["ReportLogger"]
-    Logger --> Backend["Extent or Allure"]
+    Logger --> Backend["Extent"]
 ```
+
+<details>
+<summary>Legend: relationships and proof boundary</summary>
 
 UIActions owns the action step, locator/value/wait detail and observed action
 outcome. The selected UIEngine performs browser work through its adapter.
 Reporting receives neutral events. Product code is insulated from the browser
 and reporting SDKs; technical adapter tests verify the lower-level boundary.
+
+</details>
 
 <a id="reporting-api-flow"></a>
 ### API calls and validations to semantic reporting
@@ -409,11 +414,16 @@ flowchart LR
     Facade --> Backend["ReportLogger and backend"]
 ```
 
+<details>
+<summary>Legend: relationships and proof boundary</summary>
+
 Call completion and business validation are distinct observations. A response
 arriving successfully does not prove its business content is correct. HTTP
 call steps retain request/status/response facts; validation steps explain their
 expectation and observed comparison. Cleanup/polling helpers have their own
 scope and must not be mistaken for complete application acceptance.
+
+</details>
 
 <a id="test-lifecycle"></a>
 ### TestNG lifecycle and failure ownership
@@ -424,22 +434,20 @@ sequenceDiagram
     participant Facade as Core TestListener
     participant Backend as Reporting backend
     participant Steps as StepLogger
-    participant Allure as Native Allure listener
     TestNG->>Facade: suite and test lifecycle callbacks
     Facade->>Backend: delegate through ReportingBackend
     Backend->>Steps: bind or clear invocation delegate
     Steps->>Backend: semantic step data
-    TestNG->>Allure: native TestNG service callbacks
     TestNG->>Facade: success, failure or skip
     Facade->>Backend: preserve actual outcome and finalize
 ```
 
-The Core TestListener is the stable facade. atf-reporting supplies
-ReportingTestListener through ReportingBackend and owns session/group/invocation
-state, attachments, flushing and runtime audit. BaseTestUI/BaseTestAPI declare
-the Core listener; they do not import AllureTestNg. Native Allure TestNG service
-discovery belongs to the Reporting dependency. Do not add the archived direct
-Allure listener annotation/order to Core or manually duplicate that provider.
+<details>
+<summary>Legend: relationships and proof boundary</summary>
+
+The Core TestListener is the stable facade. atf-reporting supplies ReportingTestListener through ReportingBackend and owns session/group/invocation state, attachments, flushing and runtime audit. BaseTestUI/BaseTestAPI declare the Core listener; vendor publication stays in the reporting module.
+
+</details>
 
 An exception outside an action step is handled at the test lifecycle boundary.
 Its existence must not be lost because no semantic step was open. Configuration
@@ -475,11 +483,16 @@ sequenceDiagram
     Base->>Base: finally clear interaction state
 ```
 
+<details>
+<summary>Legend: relationships and proof boundary</summary>
+
 BaseTestUI initializes/quits the engine once per class with always-run teardown.
 It does not orchestrate report sessions. Failure/final-state registries invoke
 the UI attachment handler. ScreenshotManager attaches at most once per invocation
 after a successful capture/attachment; without an active engine/logger it does
 not manufacture evidence.
+
+</details>
 
 The final diagram arrow attempts shutdown; the note identifies independent
 cleanup in finally. DriverManager removes its engine reference and BaseTestUI
@@ -515,11 +528,16 @@ sequenceDiagram
     TestNG->>Base: retain success, failure or skip
 ```
 
+<details>
+<summary>Legend: relationships and proof boundary</summary>
+
 BaseTestAPI is write-oriented: blank authentication causes its readiness skip.
 Core API execution is independent of UI initialization. Application factories
 own reusable models; services own relative endpoints; shared execution applies
 the configured retry policy; validators own assertions and schemas. Separate
 anonymous/invalid-auth paths remain explicit negative fixtures.
+
+</details>
 
 <a id="report-node-model"></a>
 ### Test and step node evidence model
@@ -533,6 +551,9 @@ flowchart LR
     Step --> Verdict["Step verdict and failure context"]
 ```
 
+<details>
+<summary>Legend: relationships and proof boundary</summary>
+
 The test node identifies the invocation and final status. Step nodes hold
 semantic details and relevant payload/failure context; screenshot evidence is
 associated with its test. Keep failures scannable and avoid publishing the same
@@ -540,14 +561,12 @@ business exception through unrelated nodes. Do not promise that every report
 kind has identical DOM or that every failure is exclusively represented by one
 specific HTML block: runtime, aggregate and synthetic report shapes differ.
 
+</details>
+
 <a id="reporting-engines"></a>
 ### Engines, adapters and fail-safety
 
-Extent and Allure implement ReportLogger behind the installed ReportingBackend.
-Extent manages its explicit report nodes and flush/finalization. Allure's native
-TestNG integration owns its test lifecycle while the adapter publishes semantic
-steps and structured evidence. Backend implementations and engine selection
-remain inside atf-reporting, reached through Core facades.
+Extent implements ReportLogger behind the installed ReportingBackend. It owns explicit report nodes, semantic steps, attachments and flush/finalization. Backend implementation and the supported engine selection remain in atf-reporting, reached through Core facades.
 
 Nonblocking diagnostics preserve optional publication/attachment problems
 without rewriting the original business outcome. This is not a guarantee that
@@ -647,7 +666,7 @@ shape assertions protect architecture; they do not replace runtime behavior.
 Do not convert a failure to a skip, loosen the expected value, delete the
 negative case or increase timeouts without a diagnosed cause and owner.
 
-Use the maintained local, browser, Allure and aggregate selections described
+Use the maintained local, browser and aggregate selections described
 in Testing. Scope results separately: native contracts, local fixtures,
 real-browser fixtures and controlled application journeys answer different
 questions. The current maintenance scope keeps the existing E2E inventory and
@@ -677,7 +696,7 @@ mvn -B -ntp -Paggregate test
 </details>
 
 Run those commands only from a prepared disposable validation copy. Browser
-installation, explicit Allure selection, class filters, caches and output
+installation, class filters, caches and output
 locations are documented in Testing. Keep evidence outside development/live
 sources. Record the actual selection, source checkpoint, statuses and artifacts;
 a skipped or copied run is not a successful execution.
@@ -689,11 +708,10 @@ a skipped or copied run is not a successful execution.
 |---|---|
 | One src tree, one POM and no Maven modules | Superseded by five owned Maven modules and test-scoped verification |
 | Every dependency must be runtime scoped | Runtime dependencies, compile-time annotations and test-only tools have distinct intentional scopes |
-| Core base classes directly declare AllureTestNg first | Core declares TestListener; Reporting owns native Allure service integration |
 | A new step cannot start inside an active step | Current StepExecutionContext supports nested depth; callers own their scope's completion |
 | Only FAIL can have a screenshot | Configured final-state success capture is also supported |
 | Every UI test must visit registration; every assertion/data value must use one product pattern | Product review rules are scoped; native/regression and intentional negative fixtures retain their own oracles |
-| CSS is the only selector form | Stable CSS and the shared semantic vocabulary remain preferred; the existing XPath bridge is allowed when that supported vocabulary cannot express the relationship |
+| CSS is the only selector form | Prefer stable CSS and shared semantic selectors; use the existing XPath bridge for relationships they cannot express |
 | Every unavailable/invalid reporter is silently NO-OP | Core can run without a backend; invalid required configuration/provider selection is still diagnosed |
 | A single 2560x1440 size describes every session | Explicit/system sizing takes precedence; this is the fallback, with supported zoom normalization |
 

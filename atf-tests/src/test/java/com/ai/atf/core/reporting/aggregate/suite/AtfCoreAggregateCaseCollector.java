@@ -1,7 +1,7 @@
 package com.ai.atf.core.reporting.aggregate.suite;
 
 import com.ai.atf.core.reporting.model.AtfCoreAggregateCase;
-import io.qameta.allure.model.Status;
+import com.ai.core.reporting.aggregate.AggregateStatus;
 import org.testng.ISuite;
 import org.testng.ISuiteResult;
 import org.testng.ITestContext;
@@ -36,11 +36,11 @@ public final class AtfCoreAggregateCaseCollector {
         for (ISuiteResult result : suite.getResults().values()) {
             ITestContext context = result.getTestContext();
             context.getPassedTests().getAllResults()
-                    .forEach(test -> cases.add(AtfCoreAggregateCase.from(suite, context, test, Status.PASSED)));
+                    .forEach(test -> cases.add(AtfCoreAggregateCase.from(suite, context, test, AggregateStatus.PASSED)));
             context.getFailedTests().getAllResults()
-                    .forEach(test -> cases.add(AtfCoreAggregateCase.from(suite, context, test, Status.FAILED)));
+                    .forEach(test -> cases.add(AtfCoreAggregateCase.from(suite, context, test, AggregateStatus.FAILED)));
             context.getSkippedTests().getAllResults()
-                    .forEach(test -> cases.add(AtfCoreAggregateCase.from(suite, context, test, Status.SKIPPED)));
+                    .forEach(test -> cases.add(AtfCoreAggregateCase.from(suite, context, test, AggregateStatus.SKIPPED)));
         }
     }
 }

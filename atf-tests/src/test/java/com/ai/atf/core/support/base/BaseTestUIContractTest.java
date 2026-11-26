@@ -64,7 +64,7 @@ public class BaseTestUIContractTest {
         Assert.assertFalse(source.contains("ReportingManager"), "BaseTestUI must not directly orchestrate ReportingManager");
         Assert.assertFalse(source.contains("StepLogger"), "BaseTestUI must not directly orchestrate StepLogger");
 
-        AtfContractSteps.observed("@Listeners contains the Core TestListener facade; Allure is discovered through SPI | no ReportingManager/StepLogger source coupling");
+        AtfContractSteps.observed("@Listeners contains the Core TestListener facade; Extent is reached through the facade | no ReportingManager/StepLogger source coupling");
         AtfContractSteps.verdict(
                 "BaseTestUI remains a thin UI lifecycle base class, not a hidden reporting controller.",
                 contract.repairHint()

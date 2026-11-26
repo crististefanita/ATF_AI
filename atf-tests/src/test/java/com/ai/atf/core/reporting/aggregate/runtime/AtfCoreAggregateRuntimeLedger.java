@@ -5,7 +5,6 @@ import com.ai.core.reporting.aggregate.AggregateStatus;
 import com.ai.core.reporting.aggregate.model.AggregateRuntimeAuditSnapshot;
 import com.ai.core.reporting.aggregate.model.AggregateRuntimeCase;
 import com.ai.core.reporting.listener.internal.runtime.publish.ExtentRuntimeAuditRegistry.RuntimeAuditInvocation;
-import io.qameta.allure.model.Status;
 import org.testng.ITestResult;
 
 import java.util.ArrayList;
@@ -27,7 +26,7 @@ public final class AtfCoreAggregateRuntimeLedger {
             List<AggregateRuntimeCase> runtimeCases,
             List<AtfCoreAggregateCase> aggregateCases,
             ITestResult result,
-            Status status
+            AggregateStatus status
     ) {
         if (result == null || result.getMethod() == null) {
             return;
@@ -107,11 +106,11 @@ public final class AtfCoreAggregateRuntimeLedger {
         return !methodName.startsWith(FAKE_METHOD_PREFIX);
     }
 
-    private static AggregateStatus aggregateStatus(Status status) {
-        if (status == Status.FAILED || status == Status.BROKEN) {
+    private static AggregateStatus aggregateStatus(AggregateStatus status) {
+        if (status == AggregateStatus.FAILED) {
             return AggregateStatus.FAILED;
         }
-        if (status == Status.SKIPPED) {
+        if (status == AggregateStatus.SKIPPED) {
             return AggregateStatus.SKIPPED;
         }
         return AggregateStatus.PASSED;

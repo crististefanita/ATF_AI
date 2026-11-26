@@ -3,9 +3,10 @@
 ## Overview
 
 This area presents selected current reports and project-understanding artifacts.
-Complete runs, failures, analysis inputs and temporary investigations belong in
-external history. Maintained guides/templates are source; generated publications
-are evidence. Build and collect from isolated validation copies.
+
+- Complete runs, failures, analysis inputs and temporary investigations belong in external history.
+- Maintained guides/templates are source; generated publications are evidence.
+- Build and collect from isolated validation copies.
 
 | Need | Owner | Produced result |
 |---|---|---|
@@ -14,23 +15,30 @@ are evidence. Build and collect from isolated validation copies.
 | Understand existing ATF behavior and proof limits | [Framework Atlas](../atf-atlas/README.md) | Source/test/contract traceability |
 
 ```mermaid
-flowchart TB
-    Source["External source validation and outputs"] --> Collect["Immutable external history"]
-    Collect --> Catalog["Select and verify current evidence"]
-    Catalog --> Review["Minimal current report proof"]
-    Catalog --> Atlas["One current HTML per selected project"]
+flowchart LR
+    Source["Validated outputs"] --> Collect["External history"]
+    Collect --> Catalog["Current selection"]
+    Catalog --> Review["Native proof"]
+    Catalog --> Atlas["One project HTML"]
 ```
+
+<details>
+<summary>Legend: relationships and proof boundary</summary>
 
 Arrows show preservation and explicit selection. Collection, relocation and
 publication checks do not execute tests or certify their outcomes. A failed
 test report remains failed after collection.
 
+</details>
+
 ## Ownership
 
-The reports guide owns immutable collection. Atlas owns the reusable intake and
-map template. Source governance protects these tracked files and their README
-translations. Generated current data is ignored by Git. An artifacts directory
-inside an owned source/resource tree remains governed.
+The reports guide owns immutable collection.
+
+- Atlas owns the reusable intake and map template.
+- Source governance protects these tracked files and their README translations.
+- Generated current data is ignored by Git.
+- An artifacts directory inside an owned source/resource tree remains governed.
 
 ```text
 artifacts/
@@ -59,11 +67,11 @@ A populated publication has one publication.json inventory binding every
 current payload and generated README/index to its relative path, byte count and
 SHA-256. Atlas records identify their project and captured source revision.
 
-The optional retained-UI selection owns exactly one native Extent reader and
-three proof files per engine. Its manifest binds the engine, run ID, source
-revision and XML/source/audit references; it is not a generic HTML exception.
-Current means selected for readers; an older capture does not become the latest
-Git HEAD. Original source identities and execution limits stay visible.
+The optional retained-UI selection owns exactly one native Extent reader and three proof files per engine.
+
+- Its manifest binds the engine, run ID, source revision and XML/source/audit references; it is not a generic HTML exception.
+- Current means selected for readers; an older capture does not become the latest Git HEAD.
+- Original source identities and execution limits stay visible.
 
 ## Publication lifecycle
 
@@ -80,12 +88,12 @@ Git HEAD. Original source identities and execution limits stay visible.
 5. Validate staging, archive the previous selection, and replace the current set
    as a unit. Recheck hashes and links before recording completion in feedback.
 
-The live entry points are artifacts/atlas/current/index.html and
-artifacts/reports/current/index.html. Raw atlas/runs and reports/runs layouts
-belong to external analysis/history, not the live publication. Temporary, build,
-release and investigation folders are outside this publication perimeter.
-A JAR/ZIP is build evidence until a separately authorized process qualifies a
-release. Collection itself never creates a release.
+The live entry points are artifacts/atlas/current/index.html and artifacts/reports/current/index.html.
+
+- Raw atlas/runs and reports/runs layouts belong to external analysis/history, not the live publication.
+- Temporary, build, release and investigation folders are outside this publication perimeter.
+- A JAR/ZIP is build evidence until a separately authorized process qualifies a release.
+- Collection itself never creates a release.
 
 Retention is by role: one selected Atlas per project, one explicit current proof
 selection, and intact original history externally. There is no automatic
@@ -106,10 +114,9 @@ recheck. The checker accepts source-only or complete current layout and rejects
 legacy live history, orphan files, duplicate projects, undeclared HTMLs, changed or
 missing payloads, links and escaping paths. It never moves or deletes evidence.
 
-Use the [testing guide](../docs/Testing.md) for Java/governance selections and
-[collector checks](reports/README.md#verification) for filesystem behavior.
-Use the [Atlas consistency checker](atlas/README.md#verification) for generated
-maps. Source governance protects these guides, while the separate checker binds
-generated analysis to source bytes and declared execution evidence.
-Inspect the manifest, original verdicts, assets and evidence together. An empty
-category, copied report or Atlas source inspection is not a new test run.
+Use the [testing guide](../docs/Testing.md) for Java/governance selections and [collector checks](reports/README.md#verification) for filesystem behavior.
+
+- Use the [Atlas consistency checker](atlas/README.md#verification) for generated maps.
+- Source governance protects these guides, while the separate checker binds generated analysis to source bytes and declared execution evidence.
+- Inspect the manifest, original verdicts, assets and evidence together.
+- An empty category, copied report or Atlas source inspection is not a new test run.

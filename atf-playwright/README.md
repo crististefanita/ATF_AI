@@ -18,7 +18,7 @@ the [browser session](src/main/java/com/ai/ui/core/engine/playwright/PlaywrightB
 owns Playwright browser/context/page creation and cleanup.
 
 ```mermaid
-flowchart TB
+flowchart LR
     Lifecycle["Core UI lifecycle"] --> Factory["UIEngineFactory"]
     Factory -. ServiceLoader .-> Provider["PlaywrightProvider"]
     Provider --> Engine["PlaywrightEngine"]
@@ -26,10 +26,15 @@ flowchart TB
     Engine --> Session["Browser and page session"]
 ```
 
+<details>
+<summary>Legend: relationships and proof boundary</summary>
+
 The lifecycle node is BaseTestUI/DriverManager. Solid arrows show creation or
 delegation; the dotted arrow shows provider discovery. Consumers use Core
 UIEngine/UIActions and choose `ui.engine=playwright`.
 Playwright SDK types stay inside this adapter.
+
+</details>
 
 ## Dependencies and configuration
 
@@ -38,10 +43,11 @@ Playwright SDK types stay inside this adapter.
 | [atf-core](../atf-core/README.md) | Neutral UI API, provider SPI, configuration and runtime metadata |
 | Playwright Java SDK | Browser implementation and pinned browser revision |
 
-[Core defaults](../atf-core/src/main/resources/framework.properties) select
-Playwright with headless execution. Shared UI keys control window size, zoom,
-waits and screenshots. PLAYWRIGHT_BROWSERS_PATH can select an external browser
-cache. Use the SDK's bundled Node runtime for the maintained setup.
+[Core defaults](../atf-core/src/main/resources/framework.properties) select Playwright with headless execution.
+
+- Shared UI keys control window size, zoom, waits and screenshots.
+- PLAYWRIGHT_BROWSERS_PATH can select an external browser cache.
+- Use the SDK's bundled Node runtime for the maintained setup.
 
 ## Consumer example
 
@@ -121,11 +127,11 @@ mvn -B -ntp -pl atf-tests -am -Pbrowser test
 </details>
 
 The first command runs native provider/Core checks without starting a browser.
-The second selects existing local locator, real network-response and screenshot
-regressions. Their fixtures exercise **both Playwright and Selenium**; setting
-`ui.engine=playwright` does not turn those parity selections into a single-engine
-run. The final command selects the maintained browser suite. Follow
-[browser preparation](../docs/Testing.md#browser-preparation-and-checks) first.
+
+- The second selects existing local locator, real network-response and screenshot regressions.
+- Their fixtures exercise **both Playwright and Selenium**; setting `ui.engine=playwright` does not turn those parity selections into a single-engine run.
+- The final command selects the maintained browser suite.
+- Follow [browser preparation](../docs/Testing.md#browser-preparation-and-checks) first.
 
 | Behavior | Existing executable source |
 |---|---|

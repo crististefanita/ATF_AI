@@ -21,7 +21,6 @@
     <playwright.version>1.53.0</playwright.version>
     <extentreports.version>5.1.2</extentreports.version>
     <slf4j.version>2.0.13</slf4j.version>
-    <allure.version>2.27.0</allure.version>
     <snakeyaml-engine.version>2.9</snakeyaml-engine.version>
     <lombok.version>1.18.34</lombok.version>
   </properties>
@@ -54,16 +53,6 @@
         <groupId>org.mockito</groupId>
         <artifactId>mockito-core</artifactId>
         <version>5.11.0</version>
-      </dependency>
-      <dependency>
-        <groupId>io.qameta.allure</groupId>
-        <artifactId>allure-java-commons</artifactId>
-        <version>${allure.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>io.qameta.allure</groupId>
-        <artifactId>allure-testng</artifactId>
-        <version>${allure.version}</version>
       </dependency>
       <dependency>
         <groupId>io.rest-assured</groupId>

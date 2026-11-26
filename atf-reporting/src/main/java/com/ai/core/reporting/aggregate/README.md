@@ -21,8 +21,7 @@ from historical reports.
 ## Verification
 
 Run `mvn -B -ntp -Paggregate test` from an isolated reactor copy. The profile
-selects the maintained aggregate suite in atf-tests and publishes both Extent
-and Allure. The default aggregate output is
+selects the maintained aggregate suite in atf-tests and publishes Extent HTML. The default aggregate output is
 atf-tests/target/atf-core-aggregate-report.
 
 Check the generated counts, statuses, timing and attachments. Full commands,

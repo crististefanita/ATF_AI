@@ -14,31 +14,34 @@ the caller-selected local archive following the [report guide](../../artifacts/r
 The register is reserved for framework governance, stability and documentation.
 Product-flow improvement records are excluded from this backlog.
 
+Historical verification rows describe their captured revisions. Current reporting is Extent-only; see [R-002](Code_And_Documentation_Maturity.md#r-002).
+
 ## Current maintenance scope
 
-Prioritize maturity, stability, readable architecture, English documentation
-with diagrams, governance and the quality of existing checks. Keep the current
-E2E inventory; do not add application journeys during this phase. Use desktop
-browsers for retained browser checks and do not use emulators.
-Assessment scores must follow evidence and the rubric below. Removing a
-requirement from scope is not a quality improvement or a test success.
+Prioritize maturity, stability, readable architecture, English documentation with diagrams, governance and the quality of existing checks.
+
+- Keep the current E2E inventory; do not add application journeys during this phase.
+- Use desktop browsers for retained browser checks and do not use emulators.
+- Assessment scores must follow evidence and the rubric below.
+- Removing a requirement from scope is not a quality improvement or a test success.
 
 ## Assessment rubric and evidence locations
 
-The two scores answer different questions. Priority increases with the urgency
-of remediation; quality increases with the strength of the affected area.
-Both are integers from 1 to 100. They are evidence-backed review judgments,
-not test coverage percentages or probabilities.
+The two scores answer different questions.
+
+- Priority increases with the urgency of remediation; quality increases with the strength of the affected area.
+- Both are integers from 1 to 100.
+- They are evidence-backed review judgments, not test coverage percentages or probabilities.
 
 - Priority = round(0.50 × impact + 0.30 × exposure/risk + 0.20 × urgency).
 - Quality = round(0.40 × correctness + 0.30 × verification + 0.30 × clarity).
 
-Each input uses the same 1–100 scale. Use 1–39 for weak/low, 40–69 for partial/
-moderate, 70–89 for strong/high, and 90–100 for thoroughly evidenced/critical,
-according to the relevant axis. Round to the nearest integer, with halves
-rounded upward. State the scope, observations and component
-scores in the linked item. A closed item retains its baseline assessment there;
-historical verified records do not receive invented retrospective scores.
+Each input uses the same 1–100 scale.
+
+- Use 1–39 for weak/low, 40–69 for partial/ moderate, 70–89 for strong/high, and 90–100 for thoroughly evidenced/critical, according to the relevant axis.
+- Round to the nearest integer, with halves rounded upward.
+- State the scope, observations and component scores in the linked item.
+- A closed item retains its baseline assessment there; historical verified records do not receive invented retrospective scores.
 
 Review scores when evidence or scope changes, not simply when test counts grow.
 The existing documentation governance validates the two distinct columns,
@@ -73,6 +76,8 @@ Retained baseline component scores:
 | D-009 | 90 / 80 / 80 | 85 / 65 / 80 | Markdown structure, code/numeric parity and meaning drift lacked owned controls |
 | G-018 | 70 / 75 / 60 | 75 / 45 / 60 | One 1297-line documentation test class mixed six review domains and selector/fixture ownership |
 | D-012 | 90 / 80 / 75 | 70 / 40 / 75 | Testing strategy used a vertical flow and lacked comparable API/Playwright/Selenium design boundaries |
+| D-013 | 85 / 85 / 75 | 75 / 45 / 75 | Vertical flows, open/missing legend boundaries and dense overview decisions |
+| R-002 | 90 / 80 / 75 | 60 / 60 / 60 | Previously supported Allure conflicts with the newly narrowed Extent-only scope |
 
 Historical evidence locators use `${ATF_WORK_ROOT}/...`, with the external
 workspace selected as described in [Development](../Development.md).
@@ -84,6 +89,8 @@ normalizing their presentation does not claim a fresh execution.
 
 | ID | Delivered behavior | Verification |
 |---|---|---|
+| D-013 | Shared presentation rules across 50 pairs; quality 93 (94/92/94) | Paired 736/736; 203 Node each; desktop rendering; [evidence and limits](Code_And_Documentation_Maturity.md#d-013) |
+| R-002 | Extent-only maintained backend with explicit rejection and recovery; quality 93 (95/92/92) | Paired aggregate readers and 15 desktop components; [evidence](Code_And_Documentation_Maturity.md#r-002) |
 | D-012 | Horizontal strategy maps and comparable API/Playwright/Selenium boundaries; quality 93 (94/92/94) | EN/RO 209/209; native desktop diagrams/tables; [evidence and limits](Code_And_Documentation_Maturity.md#d-012) |
 | F-011 | Teardown clears interaction state after success, RuntimeException and Error; delivered quality 94 (95/92/94) | Complete EN/RO local reactors, focused 69/69 and preserved negative baseline; [evidence](Behavior_And_Negative_Cases.md#f-011) |
 | F-012 | Shared strict UI configuration and wait boundaries; delivered quality 94 (95/93/94) | Positive/negative component contracts and complete paired acceptance; [evidence](Code_And_Documentation_Maturity.md#f-012) |
@@ -132,14 +139,12 @@ normalizing their presentation does not claim a fresh execution.
 | A-002 | Pure traversal, publisher components and API component proof retain independent scopes | 138 Node cases and five added invocations in the existing API contract class passed; retained original XML/TAP; [evidence](Behavior_And_Negative_Cases.md#a-002) |
 | D-008 | Current artifact publication is bounded and complete immutable history stays outside live | 26 generated current files, two unchanged Atlas readers, 20 component cases and 211/211 Java governance cases; [evidence](Artifact_Publication_And_History.md#d-008) |
 
-Desktop browser acceptance criteria and explicitly historical correction receipts are in
-[framework maintenance](Framework_Maintenance.md). Current closure contracts and
-execution receipts are in [deeper executable contracts](Governance_Contracts.md)
-and [browser compatibility and portability](Browser_Compatibility_And_Portability.md).
-[The earlier governance review](Governance_Review.md) retains its original scope.
-F-008 is verified for its recorded Windows matrix; another platform or version requires
-fresh acceptance evidence. The [API verification record](API_Verification.md)
-distinguishes framework API regressions from the existing GoRest write journeys.
+Desktop browser acceptance criteria and explicitly historical correction receipts are in [framework maintenance](Framework_Maintenance.md).
+
+- Current closure contracts and execution receipts are in [deeper executable contracts](Governance_Contracts.md) and [browser compatibility and portability](Browser_Compatibility_And_Portability.md).
+- [The earlier governance review](Governance_Review.md) retains its original scope.
+- F-008 is verified for its recorded Windows matrix; another platform or version requires fresh acceptance evidence.
+- The [API verification record](API_Verification.md) distinguishes framework API regressions from the existing GoRest write journeys.
 
 ## Recording and closing feedback
 

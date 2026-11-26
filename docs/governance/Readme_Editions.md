@@ -31,18 +31,22 @@ permit Romanian Java messages, code comments or executable examples.
 ## Synchronization and review
 
 ```mermaid
-flowchart TB
-    Main["English source"] --> Freeze["Freeze source checkpoint"]
-    Freeze --> Translate["Translate all maintained documents"]
-    Translate --> Review["Retrieve context and review complete EN/RO pairs"]
-    Review --> Check["Check both editions and render changes"]
+flowchart LR
+    Freeze["English checkpoint"] --> Translate["Translate complete pairs"]
+    Translate --> Review["Meaning and rendering"]
+    Review --> Check["Paired checks"]
     Check --> Publish["Synchronize branches"]
     Check -. drift .-> Translate
 ```
 
+<details>
+<summary>Legend: relationships and proof boundary</summary>
+
 Solid arrows show delivery order; the dashed arrow returns observed drift to
 its owner. Checks follow full-text review. Publishing follows the validated
 source state and does not establish semantic quality by itself.
+
+</details>
 
 1. Use separate main and main_RO checkouts below the caller-selected work root.
    Preserve concurrent changes and the local archive reference.

@@ -27,8 +27,6 @@ public class AtfContractNarrativeSuiteIds {
             "core.contract-narrative.extent-adapter-suite";
     public static final String UI_ZOOM_RUNTIME =
             "core.contract-narrative.ui-zoom-runtime-suite";
-    public static final String ALLURE_PRESENTATION =
-            "core.contract-narrative.allure-presentation-suite";
     public static final String BASE_UI_RUNTIME =
             "core.contract-narrative.base-ui-runtime-suite";
     public static final String UI_ENGINE_ACTION_PARITY =
@@ -41,8 +39,6 @@ public class AtfContractNarrativeSuiteIds {
             "core.contract-narrative.ui-core-config-override-suite";
     public static final String UI_WINDOW_SIZE_RESOLVER =
             "core.contract-narrative.ui-window-size-resolver-suite";
-    public static final String ALLURE_RESULTS_CLEANUP =
-            "core.contract-narrative.allure-results-cleanup-suite";
     public static final String EXPECTED_FAILURE_STYLE =
             "core.contract-narrative.expected-failure-style-suite";
     public static final String EXTENT_PUBLISHED_OVERVIEW_INSPECTOR =
@@ -79,8 +75,6 @@ public class AtfContractNarrativeSuiteIds {
             "core.contract-narrative.yaml-scalars-contract-test-suite";
     public static final String AGGREGATE_EXTENT_TEST_DISPLAY_CONTRACT_TEST_SUITE =
             "core.contract-narrative.aggregate-extent-test-display-contract-test-suite";
-    public static final String ATF_CORE_AGGREGATE_ALLURE_CONTRACT_TEST_SUITE =
-            "core.contract-narrative.atf-core-aggregate-allure-contract-test-suite";
     public static final String ATF_CORE_AGGREGATE_EXTENT_CONTRACT_TEST_SUITE =
             "core.contract-narrative.atf-core-aggregate-extent-contract-test-suite";
     public static final String EXTENT_SPARK_LISTENER_FIXTURE_CONTRACT_TEST_SUITE =
@@ -120,10 +114,6 @@ public class AtfContractNarrativeSuiteIds {
             "core.contract-narrative.runtime-audit-publisher-coordinator-contract-test-suite";
     public static final String STEP_LOGGER_CONTRACT_TEST_SUITE =
             "core.contract-narrative.step-logger-contract-test-suite";
-    public static final String ALLURE_SCREENSHOT_ARTIFACT_SMOKE_TEST_SUITE =
-            "core.contract-narrative.allure-screenshot-artifact-smoke-test-suite";
-    public static final String ALLURE_UI_ZOOM_ARTIFACT_SMOKE_TEST_SUITE =
-            "core.contract-narrative.allure-ui-zoom-artifact-smoke-test-suite";
     public static final String EXTENT_SCREENSHOT_ARTIFACT_SMOKE_TEST_SUITE =
             "core.contract-narrative.extent-screenshot-artifact-smoke-test-suite";
     public static final String FINAL_UI_SCREENSHOT_CONTRACT_TEST_SUITE =
@@ -132,8 +122,6 @@ public class AtfContractNarrativeSuiteIds {
             "core.contract-narrative.ui-engine-browser-window-contract-smoke-test-suite";
     public static final String UI_ENGINE_SCREENSHOT_SMOKE_TEST_SUITE =
             "core.contract-narrative.ui-engine-screenshot-smoke-test-suite";
-    public static final String EMPTY_PAYLOAD_ATTACHMENT_CONTRACT_TEST_SUITE =
-            "core.contract-narrative.empty-payload-attachment-contract-test-suite";
     public static final String EXTENT_SPARK_COLLAPSE_POLICY_COMPONENT_TEST_SUITE =
             "core.contract-narrative.extent-spark-collapse-policy-component-test-suite";
     public static final String EXTENT_SPARK_FAILURE_TRIAGE_CSS_COMPONENT_TEST_SUITE =

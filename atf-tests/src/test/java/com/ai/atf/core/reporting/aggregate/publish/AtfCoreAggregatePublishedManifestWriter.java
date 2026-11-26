@@ -75,7 +75,6 @@ final class AtfCoreAggregatePublishedManifestWriter {
         lines.add(extentRunCommand(validationDir, runtimeRoot));
         lines.add("```");
         lines.add("");
-        lines.add("Allure-only validation is intentionally tracked separately from this Extent artifact.");
         return lines;
     }
 
@@ -94,7 +93,6 @@ final class AtfCoreAggregatePublishedManifestWriter {
                 AtfCoreAggregateRunCommands.property(
                         AtfCoreAggregateConfig.SUREFIRE_SUITE_XML_FILES_KEY,
                         workspaceRelative(Path.of(suite))),
-                AtfCoreAggregateRunCommands.skipAllureSpiListenerProperty(),
                 AtfCoreAggregateRunCommands.property(
                         AtfCoreAggregateConfig.FORK_COUNT_KEY,
                         AtfCoreAggregateRunCommands.FORK_COUNT_ZERO),

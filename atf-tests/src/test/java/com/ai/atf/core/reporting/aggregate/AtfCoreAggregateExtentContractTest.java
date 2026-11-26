@@ -106,8 +106,8 @@ public class AtfCoreAggregateExtentContractTest {
             ITestResult second = result("runtime_two", AtfCoreAggregateExtentContractTest.class, ITestResult.SUCCESS);
             ExtentRuntimeAuditRegistry.record(first, "PASSED");
             ExtentRuntimeAuditRegistry.record(second, "PASSED");
-            recordRuntimeCase(first, io.qameta.allure.model.Status.PASSED);
-            recordRuntimeCase(second, io.qameta.allure.model.Status.PASSED);
+            recordRuntimeCase(first, com.ai.core.reporting.aggregate.AggregateStatus.PASSED);
+            recordRuntimeCase(second, com.ai.core.reporting.aggregate.AggregateStatus.PASSED);
 
             invokeAggregateAppend();
         } finally {

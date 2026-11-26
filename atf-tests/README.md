@@ -7,6 +7,23 @@ explicit application journeys. Its coordinates are `com.ai:atf-tests:1.0.0`.
 Its framework dependencies and support code are test scoped; this module is
 not a production runtime library.
 
+```mermaid
+flowchart LR
+    Selection["Explicit selection"] --> Local["Local contracts"]
+    Selection --> Browser["Browser fixtures"]
+    Selection -. opt-in .-> App["Existing application checks"]
+    Local --> Proof["Native outcomes"]
+    Browser --> Proof
+    App --> Proof
+```
+
+<details>
+<summary>Legend: selection, ownership and outcomes</summary>
+
+Arrows show test selection and evidence production. The dotted branch requires an explicit application class and its deployment prerequisites. Local and browser suites do not select that branch implicitly. Native outcomes retain their own subjects and proof limits; an application result is not inferred from a local fixture.
+
+</details>
+
 ## Ownership
 
 | Area | Location |
@@ -47,24 +64,21 @@ mvn -B -ntp -Paggregate test
 
 </details>
 
-The default selects framework-local, including governance. The browser profile
-selects framework-browser only in this module. The aggregate profile executes
-the maintained aggregate suite and publishes both report formats.
-[Testing](../docs/Testing.md) owns browser preparation, filtered commands,
-application configuration and artifact acceptance.
+The default selects framework-local, including governance.
+
+- The browser profile selects framework-browser only in this module.
+- The aggregate profile executes the maintained aggregate suite and publishes Extent HTML.
+- [Testing](../docs/Testing.md) owns browser preparation, filtered commands, application configuration and artifact acceptance.
 
 Application journeys remain explicit class selections. They need configured
 URLs/accounts and can create data. Local framework results do not establish
 public-site acceptance.
 
-The [retained UI selection](../docs/Testing.md#retained-product-ui-audit) runs
-the same registration, account and profile methods once through each browser
-provider. Product test methods compose services/components and validations;
-actions record technical completion, while validations record expected/actual
-business evidence and a terminal verdict. A negative application scenario passes
-only when its rejection oracle succeeds. See the
-[living principles](../docs/Living_Architecture_UI_API_doc_v1_0.md#retained-principles)
-for the maintained responsibilities and explicit data-cleanup limit.
+The [retained UI selection](../docs/Testing.md#retained-product-ui-audit) runs the same registration, account and profile methods once through each browser provider.
+
+- Product test methods compose services/components and validations; actions record technical completion, while validations record expected/actual business evidence and a terminal verdict.
+- A negative application scenario passes only when its rejection oracle succeeds.
+- See the [living principles](../docs/Living_Architecture_UI_API_doc_v1_0.md#retained-principles) for the maintained responsibilities and explicit data-cleanup limit.
 
 ## Evidence and maintenance
 

@@ -87,6 +87,4 @@ public class AtfContractNarrativeContractIds extends AtfGeneratedContractNarrati
             "core.contract-narrative.ui-zoom-runtime-navigation-screenshot";
     public static final String UI_ZOOM_RUNTIME_EXTENT_METADATA =
             "core.contract-narrative.ui-zoom-runtime-extent-metadata";
-    public static final String UI_ZOOM_RUNTIME_ALLURE_METADATA =
-            "core.contract-narrative.ui-zoom-runtime-allure-metadata";
 }

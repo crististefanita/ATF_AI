@@ -142,6 +142,12 @@ tests; it does not prove every possible control-flow path. An API's intentional
 executor/future contract is not an excuse for a blanket text ban or a new
 unreviewed exception.
 
+### Reporting scope
+
+Extent is the maintained reporting backend. Runtime reporting.engine accepts extent; aggregate publication accepts extent or an explicit disabled setting. Retired Allure dependencies, providers, active suites and execution recipes must not return through an implicit default.
+
+The dependency/source guards and existing command contracts reject retired integration and unsupported engine values. Generic artifact collectors may preserve historical or external producer formats; that does not reactivate a framework backend. Historical receipts retain their original source, counts and verdicts.
+
 ## Maintainability and exceptions
 
 Review package cohesion, large methods/classes and resource growth where the
@@ -193,24 +199,37 @@ configuration and setup are visible beside the example.
 Place the dependency map under the design section and the API/UI execution map
 under the check-run section; governance verifies both diagram locations.
 
-Use one diagram for one question: dependency direction, runtime flow or lifecycle
-order. Prefer compact left-to-right flowcharts for new relationship maps; switch
-to a vertical layout when labels would become unreadable at a narrow viewport.
-Use a sequence diagram when ordering matters. Put a short legend immediately after the
-diagram that defines arrow meaning, responsibility and any omitted detail.
+Requirement DOC-PRESENT-001: use one diagram for one question: dependency,
+runtime flow or lifecycle order. Maintained flowcharts, including explicit subgraph directions, use compact `LR` reading;
+sequence, state and class diagrams retain their semantic direction. Simplify
+labels or split a question before widening a diagram. A proposed vertical map
+needs an owned requirement, rationale and revised acceptance criterion.
+
+Requirement DOC-PRESENT-002: immediately after every Mermaid fence, place one
+balanced `<details>` without an open attribute. Its descriptive Legend summary
+introduces an explanation of arrows, responsibilities, branches and omissions.
+Keep essential purpose and preconditions visible before the diagram. Literal
+examples and commented diagrams are data; a mere nonempty legend is not proof
+that its explanation matches the source. Inspect the actual rendering.
 Diagrams explain the POM or implementation; they do not replace either source.
 
 Use semantic Markdown headings, minimal tables, typed code fences and concise
 labels. Place secondary detail in its owner guide or a named `<details>` block.
 Keep renderer styling out of Markdown rather than embedding local fonts or CSS.
 
-Requirement DOC-TABLE-001: each prose cell in a maintained README table MUST
+Requirement DOC-TABLE-001: each prose cell in a maintained normative Markdown table MUST
 stay within 140 visible characters and 22 words. Keep tables for short mappings
 and comparisons; move explanations to nearby prose or a linked owner, and split
 a table when its rows answer different questions. The bound is a deterministic
 review prompt, not a rendering or readability guarantee. Inspect each changed
 table at its actual rendered width. Preserve distinct fields such as Priority
 and Quality even when a compact layout requires more deliberate wording.
+
+Historical feedback tables retain their captured proof shape; the active feedback
+index remains governed. Short package guides can use bullets or tables without
+an artificial diagram quota. Table limits cannot establish column balance:
+inspect wrapping, clipping and proportion at 1440 and 900 CSS px on a desktop
+browser; keep legitimate wide reference tables in a locally scrollable area.
 
 Requirement DOC-REVIEW-001: every maintained Markdown document MUST have one H1,
 begin its heading hierarchy at H1 and descend by at most one level at a time.
@@ -230,6 +249,8 @@ Every diagram has an adjacent explanation of arrows, responsibilities and
 omissions. Human review compares that explanation with code/POM ownership and
 actual rendering. Preserve a correct, approved diagram rather than changing
 its geometry merely to satisfy a preferred visual style.
+
+The living LD-02/LD-03/LD-04 controls retain UIActions interaction ownership, the Selenium/Playwright wait distinction and WaitUtils verdict limits. Counterexamples swap those roles between rows. Owner names are bounded consistency signals; review the conditions and negations against source.
 
 ### Apply the documentation review in practice
 
@@ -301,12 +322,55 @@ working-tree paths or active skills.
 
 | Archived source | Decision | Retained principle |
 |---|---|---|
-| `src/main/resources/skills/codequality/contracts/code-quality.yml` | Adapt | Owned debt, explicit repair criteria and stale-exception removal; do not copy old budgets, source roots or legacy allowances |
-| `src/main/java/com/ai/skills/codequality/README.md` | Adapt | Cohesion, Java compatibility and dependency ownership belong to review and existing governance tests |
-| `src/main/java/com/ai/skills/atlas/rules/scoring/AtlasScoreEvidenceTraceRule.java` and `AtlasScoreOverallCalculationRule.java` in that package | Adapt | Review scores need declared axes, evidence and a reproducible calculation; keyword counts are not an oracle |
-| `src/main/java/com/ai/skills/atlas/rules/scoring/limits/AtlasSuiteCompletenessSeparationRule.java` | Adopt principle | Suite success and product coverage are different claims with separate acceptance evidence |
-| `src/test/java/com/ai/skills/codequality/tests/AtfCodeQualityAssertionDensityContractTest.java` | Reject as quality oracle | Assertion-cue density cannot replace inspection of assertions and meaningful negative cases |
-| `src/main/java/com/ai/core/skills` and `src/main/java/com/ai/skills` | Do not restore | Reuse useful rules as documentation/governance without the retired registry, facades or runtime stack |
+| Code quality policy | Adapt | Owned debt, repair criteria and stale-exception removal; legacy budgets, source roots and allowances stay archived |
+| Code quality README | Adapt | Cohesion, Java compatibility and dependency ownership belong to review and existing governance tests |
+| Evidence-aware scoring | Adapt | Review scores need declared axes, evidence and a reproducible calculation; keyword counts are not an oracle |
+| Completeness boundary | Adopt principle | Suite success and product coverage are different claims with separate acceptance evidence |
+| Assertion-density test | Reject as quality oracle | Assertion-cue density cannot replace inspection of assertions and meaningful negative cases |
+| Retired runtime packages | Do not restore | Reuse useful rules as documentation/governance without the retired registry, facades or runtime stack |
+
+<details>
+<summary>Archived source paths and exact rule provenance</summary>
+
+Code quality policy:
+
+```text
+src/main/resources/skills/codequality/contracts/code-quality.yml
+```
+
+Code quality README:
+
+```text
+src/main/java/com/ai/skills/codequality/README.md
+```
+
+Evidence-aware scoring:
+
+```text
+src/main/java/com/ai/skills/atlas/rules/scoring/AtlasScoreEvidenceTraceRule.java
+AtlasScoreOverallCalculationRule.java
+```
+
+Completeness boundary:
+
+```text
+src/main/java/com/ai/skills/atlas/rules/scoring/limits/AtlasSuiteCompletenessSeparationRule.java
+```
+
+Assertion-density test:
+
+```text
+src/test/java/com/ai/skills/codequality/tests/AtfCodeQualityAssertionDensityContractTest.java
+```
+
+Retired runtime packages:
+
+```text
+src/main/java/com/ai/core/skills
+src/main/java/com/ai/skills
+```
+
+</details>
 
 J0 references inform the same separation: `AtfPackageCohesionGovernanceTest`
 uses reviewed inventories and rejects stale exceptions;
@@ -358,8 +422,8 @@ not diagram/table/bullet quotas. A diagram
 explains real relationships; its legend states arrow meaning, ownership and
 omissions. Do not hide a prerequisite in a disclosure merely to shorten a page.
 
-The source guard measures logical prose blocks across physical wraps. Strategy
-orientation in Testing.md permits at most 3 sentences and 100 visible words per
+The source guard measures logical prose blocks across physical wraps. README
+orientation and Testing.md permit at most 3 sentences and 100 visible words per
 paragraph. Detailed operational references use the 100-word paragraph bound;
 all inspected prose uses a 45-word sentence bound. These are review triggers,
 not readability scores or proof that shorter text is correct.

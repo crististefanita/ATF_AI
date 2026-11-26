@@ -12,8 +12,6 @@
             <class name="com.ai.atf.core.reporting.adapters.spark.ExtentSparkTreeCollapseContractTest"/>
             <class name="com.ai.atf.core.reporting.adapters.tags.ExtentSparkRuntimeTagTablesContractTest"/>
             <class name="com.ai.atf.core.reporting.adapters.tags.ExtentSparkTagNavigationContractTest"/>
-            <class name="com.ai.atf.core.reporting.screenshot.AllureScreenshotArtifactSmokeTest"/>
-            <class name="com.ai.atf.core.reporting.screenshot.AllureUiZoomArtifactSmokeTest"/>
             <class name="com.ai.atf.core.reporting.screenshot.ExtentScreenshotArtifactSmokeTest"/>
             <class name="com.ai.atf.core.reporting.screenshot.UiEngineBrowserWindowContractSmokeTest"/>
             <class name="com.ai.atf.core.reporting.screenshot.UiEngineConfiguredRuntimeParityContractTest"/>

@@ -208,22 +208,22 @@ requires a fresh matrix check and browser run, with results recorded in feedback
 
 ## Reporting acceptance
 
-The native Allure subset and aggregate publication are explicit:
+The maintained Extent contracts and aggregate publication are explicit:
 
 <details>
-<summary>Run native Allure checks and aggregate reporting acceptance</summary>
+<summary>Run Extent checks and aggregate reporting acceptance</summary>
 
 ```powershell
-mvn -B -ntp -pl atf-tests -am "-Datf.test.suite=src/test/resources/suites/framework-allure.xml" "-Dreporting.engine=allure" test
+mvn -B -ntp -pl atf-tests -am "-Datf.test.suite=src/test/resources/suites/framework-reporting.xml" "-Dreporting.engine=extent" test
 mvn -B -ntp -Paggregate test
 ```
 
 </details>
 
-The [Allure suite](../atf-tests/src/test/resources/suites/framework-allure.xml)
-checks the native integration. The
+The [reporting suite](../atf-tests/src/test/resources/suites/framework-reporting.xml)
+checks Extent integration. The
 [aggregate suite](../atf-tests/src/test/resources/suites/framework-aggregate.xml)
-collects executed cases and publishes both Extent and Allure evidence.
+collects executed cases and publishes Extent evidence.
 Inspect the generated artifacts as well as the TestNG outcome: verify counts,
 statuses, timing, attachments and declared output paths.
 
@@ -363,7 +363,6 @@ Under the default configuration, paths are relative to the validation copy:
 | Surefire/TestNG results | Each tested module's target/surefire-reports |
 | Cross-module results | atf-tests/target/surefire-reports |
 | Extent reports | atf-tests/target/reports |
-| Allure raw results | atf-tests/target/allure-results |
 | Aggregate publication | atf-tests/target/atf-core-aggregate-report |
 
 The aggregate directory retains its compatibility name. Runtime properties can

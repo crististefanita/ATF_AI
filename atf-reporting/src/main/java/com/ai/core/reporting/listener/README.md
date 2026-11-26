@@ -8,12 +8,11 @@ outcomes and attachments.
 
 ## Entry points
 
-[ReportingTestListener](ReportingTestListener.java) coordinates lifecycle/runtime
-collaborators. The compatibility
-[TestListener](../../../../../../../../../atf-core/src/main/java/com/ai/core/reporting/listener/TestListener.java)
-in Core forwards TestNG events through the reporting SPI. The reporting module
-owns the concrete listener and native Allure service registration. Core base
-classes do not declare a vendor listener.
+[ReportingTestListener](ReportingTestListener.java) coordinates lifecycle/runtime collaborators.
+
+- The compatibility [TestListener](../../../../../../../../../atf-core/src/main/java/com/ai/core/reporting/listener/TestListener.java) in Core forwards TestNG events through the reporting SPI.
+- The reporting module owns the concrete listener and Extent publication.
+- Core base classes do not declare a vendor listener.
 
 The listener must retain the owning test identity through setup, test failure,
 teardown and final-state capture. Diagnostic failures must not replace the
