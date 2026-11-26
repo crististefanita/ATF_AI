@@ -21,7 +21,9 @@ public class InvoiceEvidenceContractTest {
     @BeforeMethod
     public void installEngine() {
         previousTimeout = System.getProperty("ui.wait.timeout.seconds");
-        System.setProperty("ui.wait.timeout.seconds", "0");
+        System.setProperty("ui.wait.timeout.seconds", "1");
+        engine.url = "";
+        engine.rowText = "";
         UiEngineThreadLocalTestSupport.setEngineForCurrentThread(engine);
     }
 
@@ -46,8 +48,10 @@ public class InvoiceEvidenceContractTest {
         engine.rowText = "";
         AccountInvoiceContext invoice = new AccountInvoiceContext(
                 null, "Pliers", "19.95", "Cash on Delivery", "INV-123", "known-id");
-        Assert.expectThrows(AssertionError.class,
+        AssertionError failure = Assert.expectThrows(AssertionError.class,
                 () -> new AccountInvoiceActions().openInvoiceDetails(invoice));
+        Assert.assertEquals(failure.getMessage(), "Expected customer invoice list to contain INV-123.",
+                "Repair hint: preserve missing-row evidence; a configuration/navigation error is a different failure.");
         Assert.assertFalse(engine.url.contains("known-id"),
                 "Details navigation must not bypass the missing customer invoice row.");
     }
@@ -55,15 +59,19 @@ public class InvoiceEvidenceContractTest {
     @Test
     public void unrelatedInvoiceDoesNotSatisfyCustomerListEvidence() {
         engine.rowText = "INV-999  Pliers  19.95  COMPLETED";
-        Assert.expectThrows(AssertionError.class,
+        AssertionError failure = Assert.expectThrows(AssertionError.class,
                 () -> new AccountInvoiceActions().openInvoiceListAndReadRow("INV-123"));
+        Assert.assertEquals(failure.getMessage(), "Expected customer invoice list to contain INV-123.",
+                "Repair hint: reject the observed unrelated row, not an earlier configuration/navigation error.");
     }
 
     @Test
     public void invoiceNumberPrefixCannotProveAnotherInvoiceExists() {
         engine.rowText = "INV-1234  Pliers  19.95  COMPLETED";
-        Assert.expectThrows(AssertionError.class,
+        AssertionError failure = Assert.expectThrows(AssertionError.class,
                 () -> new AccountInvoiceActions().openInvoiceListAndReadRow("INV-123"));
+        Assert.assertEquals(failure.getMessage(), "Expected customer invoice list to contain INV-123.",
+                "Repair hint: retain the exact invoice boundary; another failure cannot prove prefix rejection.");
     }
 
     @Test

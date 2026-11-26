@@ -211,3 +211,10 @@ separate. The focused selection proves only the selected owned contracts; it
 does not replace the complete local reactor. No E2E class, product journey or
 emulator is added. Historical acceptance sections above retain their captured
 source and counts; current F-011 work supersedes its earlier open-state summary.
+
+The first complete local-01 selection retains 703 atf-tests cases per edition,
+with 702 passed and one invoice-fixture failure. That fixture configured zero;
+it now uses one valid second. The three existing negative controls also assert
+the exact missing-row message, so an earlier configuration/navigation failure
+cannot satisfy the oracle. Invoice checks remain controlled components without
+a browser or product journey.
