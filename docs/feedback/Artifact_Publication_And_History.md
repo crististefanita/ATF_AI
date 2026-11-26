@@ -6,7 +6,7 @@ this does not rerun or relabel the older product/Atlas evidence.
 
 Baseline: source checkpoint `6232c00`. This review changes maintenance tooling,
 governance and documentation. It adds no runtime feature, product E2E scenario
-or emulator. G-014 and F-011 retain their independent open scopes.
+or emulator. G-014 belongs to its external captured J1 scope; F-011 is now verified.
 
 <a id="d-008"></a>
 ## D-008: Separate selected current artifacts from execution history
@@ -121,7 +121,7 @@ render observations and relative dependencies remain together outside live.
 
 These scores are an authored review of the delivered organization and its
 proof. They do not imply full runtime coverage, release qualification or an
-updated maturity score for either captured project. G-014 and F-011 remain TODO.
+updated maturity score for either captured project. At that checkpoint F-011 was open; its current closure is linked above. G-014 is a retained external observation.
 
 The first final-documentation check rejected a delivered D-008 summary inserted
 into the numeric baseline table in both editions (DOC-FEEDBACK-SCHEMA). Its

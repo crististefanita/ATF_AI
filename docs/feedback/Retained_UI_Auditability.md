@@ -98,7 +98,7 @@ declared label/selector semantics. It does not rewrite arbitrary provider
 exception messages or unrelated caller logs. Native artifacts require their own
 review; an error must retain its original technical identity and actual outcome.
 
-G-014 and F-011 retain their independent TODO scopes. Historical Atlas captures
+F-011 is verified in its linked component record; G-014 is a retained external observation. Historical Atlas captures
 keep their captured source revisions; this work does not silently regenerate
 their project understanding or reinterpret previous test outcomes.
 

@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 /** Pins executable TestNG method identities independently of the selected class list. */
 final class TestMethodInventoryRules {
     static final String INVENTORY = "atf-tests/src/test/resources/governance/test-method-inventory.txt";
-    private static final String INVENTORY_SHA256 = "e6d4dbfc84001dc9ad65c6af55df709296b00833261682aee0cff29b79e77c72";
+    private static final String INVENTORY_SHA256 = "d28d55a021c10b8aa84750a5f989b6febba501083689b01737492523e8812099";
 
     private TestMethodInventoryRules() { }
 
@@ -122,8 +122,11 @@ final class TestMethodInventoryRules {
         return methods;
     }
 
+    /** Seals UTF-8 content with Git CRLF/LF equivalence; all other content remains protected. */
     static String sha256(Path path) throws Exception {
-        byte[] digest = MessageDigest.getInstance("SHA-256").digest(Files.readAllBytes(path));
+        byte[] canonical = Files.readString(path, StandardCharsets.UTF_8).replace("\r\n", "\n")
+                .getBytes(StandardCharsets.UTF_8);
+        byte[] digest = MessageDigest.getInstance("SHA-256").digest(canonical);
         StringBuilder result = new StringBuilder();
         for (byte value : digest) result.append(String.format("%02x", value & 0xff));
         return result.toString();

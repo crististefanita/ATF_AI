@@ -177,7 +177,8 @@ later recorded.
 - Closure receipts: `${ATF_WORK_ROOT}/runs/atlas-depth-acceptance-publication-audit.json`, original run XML/TAP/source manifests and `${ATF_WORK_ROOT}/reviews/20261125-atlas-depth/new-render-acceptance-01/metrics.json`. Final synchronized readers are recaptured and audited separately against their exact source.
 
 <a id="g-014"></a>
-## G-014: Current J1 change-control compliance stays open
+<a id="g-014-current-j1-change-control-compliance-stays-open"></a>
+## G-014: Captured external J1 change-control observation
 
 - Owner: J1 test-change owner. This is an external project observation, not an
   ATF_AI runtime correction or authority to edit concurrent J1 work.
@@ -192,20 +193,21 @@ later recorded.
   governance/release/ConsumerEvidenceCatalogGovernanceTest.java lack eligible
   ACTIVE/VERIFIED controls for that exact baseline and those paths.
 - Interpretation: J1 documents the requirement in its test guide and implements
-  the guard. The current changes do not satisfy it. The new catalog's six tests
+  the guard. The captured changes did not satisfy it. The new catalog's six tests
   passed; that scoped result does not turn the whole suite into PASSED. At review,
   the captured raw source hashes still matched live J1. Later changes require a
   new capture; a commit alone cannot identify a dirty tree.
-- Required action: the J1 owner records justified structured testChanges for the
+- External closure route, if resumed by its owner: the J1 owner records justified structured testChanges for the
   two exact paths and baseline, including reason, proof and expiry, then runs the
   existing governance selection with a new immutable run ID. Do not weaken the
   rule, invent retrospective approval or amend the original failed XML.
 - Evidence: `${ATF_WORK_ROOT}/runs/j1-atlas-depth-governance-01.log`, its original
   source manifest and XML; classification under
   `${ATF_WORK_ROOT}/reviews/20261125-atlas-depth/j1-governance-failure-01.md`.
-  The new J1 Atlas embeds the original failure and its captured-source comparison.
-- State: TODO. No J1 source or control record was changed by this review. This
-  finding remains open independently of the completed Atlas delivery gates.
+  The captured J1 Atlas embeds the original failure and its captured-source comparison.
+- State: EXTERNAL_OBSERVATION. The recorded J1 failure is historical; current
+  J1 readiness has not been reassessed. No J1 source/control record is changed or
+  declared fixed. G-014 is removed from active ATF_AI implementation work.
 
 ## Verification and closure route
 
@@ -259,8 +261,8 @@ The two original AI governance attempt01 runs each failed one README-edition
 check: wrapping `schemaVersion 1` before `1. Declare` accidentally created an
 English ordered-list item. Correcting the paragraph restored the declared
 translation structure; both attempt02 selections passed all 211 cases. Their
-failed reports remain immutable alongside the repaired results. G-014 remains
-TODO for the independently owned J1 change-control records.
+failed reports remain immutable alongside the repaired results. G-014 retains
+its captured external J1 change-control scope; it is not an active ATF_AI task.
 
 ## D-011
 

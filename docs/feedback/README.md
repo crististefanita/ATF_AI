@@ -7,14 +7,29 @@ the caller-selected local archive following the [report guide](../../artifacts/r
 
 ## Active TODOs
 
+No accepted ATF_AI implementation task remains after the 2026-11-26 reconciliation. This is a reviewed scope decision, not a claim that no undiscovered defect exists.
+
+<!-- feedback:empty -->
+
+Current review: [live source, documentation, Atlas/RAG and framework attributes](Code_And_Documentation_Maturity.md#current-assessment).
+
 | ID | Finding | Owner | Priority (1-100) | Quality (1-100) | Status | Closure evidence |
 |---|---|---|---:|---:|---|---|
-| G-014 | Retain the J1 change-control failure separately from Atlas consistency and scoped catalog success | J1 test-change owner; external observation | 84 | 68 | TODO | [Exact source and required control records](Atlas_Depth_And_Assessment.md#g-014) |
 
 The register is reserved for framework governance, stability and documentation.
 Product-flow improvement records are excluded from this backlog.
 
 Historical verification rows describe their captured revisions. Current reporting is Extent-only; see [R-002](Code_And_Documentation_Maturity.md#r-002).
+
+<details>
+<summary>Retained scope decisions and external observations</summary>
+
+- [G-014](Atlas_Depth_And_Assessment.md#g-014) preserves a captured J1 failure. It is an external observation, with no current J1 verdict or ATF_AI implementation obligation.
+- [F-011](Behavior_And_Negative_Cases.md#f-011) is verified; older checkpoints do not reopen its completed component correction.
+- [LD-11](../Living_Architecture_UI_API_doc_v1_0.md#retained-principles) still discloses absent application-data deletion. It remains a PARTIAL proof boundary, outside new E2E implementation scope.
+- [R-002](Code_And_Documentation_Maturity.md#r-002) retires Allure integration. Historical receipts and generic archive classification retain their original identities.
+
+</details>
 
 ## Current maintenance scope
 
@@ -49,6 +64,9 @@ integer range and actionable owner/status/evidence fields.
 
 Retained baseline component scores:
 
+<details>
+<summary>Historical baseline scores and original gaps</summary>
+
 | ID | Impact / risk / urgency | Correctness / verification / clarity | Evidence scope |
 |---|---|---|---|
 | D-011 | 90 / 85 / 85 | 65 / 45 / 60 | Generic HTML column widths, literal source blocks and no measured readability gate |
@@ -76,8 +94,12 @@ Retained baseline component scores:
 | D-009 | 90 / 80 / 80 | 85 / 65 / 80 | Markdown structure, code/numeric parity and meaning drift lacked owned controls |
 | G-018 | 70 / 75 / 60 | 75 / 45 / 60 | One 1297-line documentation test class mixed six review domains and selector/fixture ownership |
 | D-012 | 90 / 80 / 75 | 70 / 40 / 75 | Testing strategy used a vertical flow and lacked comparable API/Playwright/Selenium design boundaries |
+| G-020 | 75 / 70 / 75 | 70 / 70 / 85 | A raw CRLF inventory digest rejected identical method content after an LF checkout |
+| G-019 | 80 / 85 / 70 | 75 / 65 / 75 | An external item and stale closure text confused the active scope; empty-state intent lacked a guard |
 | D-013 | 85 / 85 / 75 | 75 / 45 / 75 | Vertical flows, open/missing legend boundaries and dense overview decisions |
 | R-002 | 90 / 80 / 75 | 60 / 60 / 60 | Previously supported Allure conflicts with the newly narrowed Extent-only scope |
+
+</details>
 
 Historical evidence locators use `${ATF_WORK_ROOT}/...`, with the external
 workspace selected as described in [Development](../Development.md).
@@ -87,8 +109,13 @@ normalizing their presentation does not claim a fresh execution.
 
 ## Verified corrections
 
+<details>
+<summary>Verified corrections and captured execution evidence</summary>
+
 | ID | Delivered behavior | Verification |
 |---|---|---|
+| G-020 | Canonical LF/CRLF-equivalent inventory seal; quality 94 (95/94/93) | Existing owner-method probe and final native closure; [evidence](Code_And_Documentation_Maturity.md#g-020) |
+| G-019 | Reconciled lifecycle and explicit zero-task contract; quality 94 (95/93/94) | Paired native/Node receipts, negative controls and actual repairs; [evidence](Code_And_Documentation_Maturity.md#g-019) |
 | D-013 | Shared presentation rules across 50 pairs; quality 93 (94/92/94) | Paired 736/736; 203 Node each; desktop rendering; [evidence and limits](Code_And_Documentation_Maturity.md#d-013) |
 | R-002 | Extent-only maintained backend with explicit rejection and recovery; quality 93 (95/92/92) | Paired aggregate readers and 15 desktop components; [evidence](Code_And_Documentation_Maturity.md#r-002) |
 | D-012 | Horizontal strategy maps and comparable API/Playwright/Selenium boundaries; quality 93 (94/92/94) | EN/RO 209/209; native desktop diagrams/tables; [evidence and limits](Code_And_Documentation_Maturity.md#d-012) |
@@ -139,6 +166,8 @@ normalizing their presentation does not claim a fresh execution.
 | A-002 | Pure traversal, publisher components and API component proof retain independent scopes | 138 Node cases and five added invocations in the existing API contract class passed; retained original XML/TAP; [evidence](Behavior_And_Negative_Cases.md#a-002) |
 | D-008 | Current artifact publication is bounded and complete immutable history stays outside live | 26 generated current files, two unchanged Atlas readers, 20 component cases and 211/211 Java governance cases; [evidence](Artifact_Publication_And_History.md#d-008) |
 
+</details>
+
 Desktop browser acceptance criteria and explicitly historical correction receipts are in [framework maintenance](Framework_Maintenance.md).
 
 - Current closure contracts and execution receipts are in [deeper executable contracts](Governance_Contracts.md) and [browser compatibility and portability](Browser_Compatibility_And_Portability.md).
@@ -156,3 +185,12 @@ Desktop browser acceptance criteria and explicitly historical correction receipt
    exact command and external evidence location.
 5. Move durable behavior to its owner documentation and keep this register
    focused on active gaps and concise closure records.
+
+6. If no accepted work remains, retain the table header and one standalone
+   empty declaration in Active TODOs. The marker must be outside fenced examples;
+   active rows and an empty declaration cannot coexist. Keep external observations,
+   withdrawn scope and verified proof separate from implementation work.
+
+The machine-readable declaration is `<!-- feedback:empty -->`. Empty means
+no accepted implementation item is recorded; it does not certify defect-free
+code, completed external work or an implemented PARTIAL living principle.

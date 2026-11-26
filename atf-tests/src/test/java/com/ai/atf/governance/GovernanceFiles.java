@@ -348,6 +348,10 @@ final class GovernanceFiles {
                 "A retained living-architecture principle, real owner/check route or declared proof limit drifted.",
                 "Restore LD-01 through LD-12 exactly once and resolve the real source/check owners. Keep LD-02 UIActions ownership, LD-03 Selenium/Playwright waits and LD-04 WaitUtils/FAIL limits in their own rows; inspect the source conditions, not just matching names. Retain MAINTAINED/PARTIAL boundaries and keep cleanup PARTIAL until independent account-deletion evidence exists; synchronize the paired HTML.",
                 "docs/Living_Architecture_UI_API_doc_v1_0.md#retained-principles", documentation);
+        help(result, "DOC-FEEDBACK-EMPTY",
+                "The active backlog is empty without a deliberate declaration, or its declaration contradicts active work.",
+                "For zero accepted ATF_AI tasks, keep the register header and one standalone <!-- feedback:empty --> in Active TODOs, outside fences. For active rows, remove that marker. Preserve closed evidence and classify foreign or withdrawn scope separately; an empty backlog is not proof of defect-free code.",
+                "docs/feedback/README.md#recording-and-closing-feedback", documentation);
         help(result, "DOC-FEEDBACK DOC-FEEDBACK-PRIORITY DOC-FEEDBACK-QUALITY DOC-FEEDBACK-SCHEMA DOC-LIFECYCLE",
                 "Feedback ownership, assessment or evidence lifecycle no longer matches its declared scope.",
                 "Correct the specific row/owner/state and retain baseline scores and original failures; close only demonstrated criteria and keep stable usage at its canonical owner.",

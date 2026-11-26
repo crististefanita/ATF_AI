@@ -70,6 +70,9 @@ does not establish the expected failure. Unknown findings remain unclassified.
   in `TestMethodInventoryRules`. This is a source-level identity baseline, not
   proof that the method ran or that a Git change was approved. Review the paired
   inventory and digest changes with the owning test.
+- The executable-method seal uses UTF-8 with CRLF normalized to LF. Git checkout
+  conversion must preserve the digest; metadata, whitespace and method-content
+  changes remain protected. Review the canonical seal with its existing owner.
 - A source guard checks architecture or policy. Label that scope separately
   from runtime execution and controlled application acceptance.
 
@@ -440,3 +443,5 @@ the actual selection or purpose. Keep strategy and proof limits visible; inline
 diagnostic rechecks remain directly readable. Literal text/code fixtures are
 not runnable shell recipes. The guard inspects real tags outside fences/comments
 and recognizes Maven/wrapper invocations, not a keyword in prose.
+
+Feedback reconciliation follows the [lifecycle owner](../feedback/README.md#recording-and-closing-feedback): an empty active register needs an explicit declaration, while closed, external and withdrawn scope retain their actual proof boundaries. A fenced example cannot declare the backlog empty.

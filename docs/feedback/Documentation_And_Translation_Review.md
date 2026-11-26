@@ -75,7 +75,7 @@ and actual native results have distinct roles. Current generated E2E/Atlas
 readers retain their captured revisions and original bytes; this document
 does not relabel them as executions of later documentation changes.
 
-G-014 and F-011 retain their independent TODOs. The LD-11 application-data cleanup
+F-011 is verified in its linked component record; G-014 remains an external captured observation. The LD-11 application-data cleanup
 obligation remains PARTIAL. The review adds no E2E flow improvement to feedback.
 
 ## Verified review and execution

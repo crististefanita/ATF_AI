@@ -313,7 +313,7 @@ were rerun here.
 
 G-016's method-identity loss control is now verified within its stated source
 boundary. G-018 below closes the next recorded maintainability observation.
-No new product journey is required. G-014 remains an external J1-owned TODO.
+No new product journey is required. G-014 preserves an external J1 observation, outside the active ATF_AI implementation register.
 
 <a id="g-018"></a>
 ## G-018: Focused documentation-test owners with explicit suite registration
@@ -554,3 +554,147 @@ Atlas policy retrieval contributed cited behavior, evidence, traceability and
 score boundaries. It is deterministic lexical policy context, with no semantic
 recall claim and no new Atlas publication. The final closure selection checks
 both documentation editions, constructive diagnostics and the reviewed inventory.
+
+<a id="g-019"></a>
+## G-019: Feedback reconciliation without artificial implementation work
+
+Status: VERIFIED. Owner: feedback/documentation governance.
+Priority 80 (impact 80 / exposure 85 / urgency 70).
+Baseline quality 72 (correctness 75 / verification 65 / clarity 75).
+
+The source checkpoint is 0e7495353b414c592c404a1731facbadfb8b894d. The review
+covers all 18 feedback documents in both editions. The active register contained
+one external J1 observation; three later records still used present-tense F-011
+TODO wording despite the linked component closure. A fourth publication summary
+also described that resolved gap as independently open.
+
+- F-011 stays verified; earlier failed/source-only observations retain their
+  recorded source and counts, with explicit links to the later correction.
+- G-014 becomes EXTERNAL_OBSERVATION outside the ATF_AI implementation register.
+  Its captured J1 failure is neither repaired nor upgraded by this cleanup.
+- LD-11 remains PARTIAL: application-data deletion is absent. No new product
+  journey, emulator, invoice/admin acceptance or cleanup implementation is added.
+- Allure stays retired under R-002. Generic historical archive handling remains
+  distinct from an active reporting backend.
+- Historical baseline and verified tables become closed named disclosures.
+  The active index keeps its schema, current scope and proof routes visible.
+
+The baseline fixture accepted both an unmarked empty register and a populated
+register declaring itself empty. The original observations remain in
+`${ATF_WORK_ROOT}/reviews/feedback-reconciliation-20261126/baseline-empty-register.log`.
+The existing feedback component method now checks both refusals, a fenced marker,
+a marker outside Active TODOs, duplicate declarations and the actual repairs.
+An empty register needs one standalone `<!-- feedback:empty -->` and retains
+its table header. It does not certify defect-free source or external completion.
+
+J4 at a4dfc3dfdbc0a91fe566c4665417bab6c2290479 supplied read-only calibration:
+FeedbackIndexRules and zeroThroughNineOpenItemsCanCompleteWithoutFillingAQuota
+make zero open items a valid state. This repository keeps its own seven-column
+schema, separate Priority/Quality and TestNG owners. No J4 execution or score
+comparison is claimed; its wider Android/release domains are outside this scope.
+
+Acceptance requires paired documentation/source governance, the existing local
+reactors, maintained Node components and review of the changed index rendering.
+Runtime Java, POMs, RAG algorithms and the reviewed 561-method inventory are
+unchanged. Expanding an existing component method adds no E2E method.
+
+Delivered quality 94 (correctness 95 / verification 93 / clarity 94).
+The first acceptance attempt failed test compilation because the new diagnostic
+omitted its recheck-selection argument. Its original log is retained; that
+argument is repaired without changing an assertion or runtime implementation.
+Acceptance-02 passes 736/736 cases per edition: 37 native module cases and
+699 cross-module cases, with zero failures, errors or skips. All 203 maintained
+Node component cases pass per edition in acceptance-01; their tool sources are
+identical in the final overlay. The current complete EN/RO parity probe passes.
+
+The final closure selection binds the finished register and assessment below.
+Exact source overlays, commands, native XML/TAP, baseline observations and J4
+source citations remain under `${ATF_WORK_ROOT}/reviews/feedback-reconciliation-20261126`.
+The existing 15-case real-desktop screenshot/zoom and 699-case aggregate-reader
+receipts from R-002 still bind unchanged runtime source; they are retained
+prior executions, not new browser/E2E runs in this review.
+
+
+<a id="g-020"></a>
+## G-020: Line-ending-independent executable-method seal
+
+Status: VERIFIED for the owned component boundary. Owner: test-inventory governance.
+Priority 74 (impact 75 / exposure 70 / urgency 75).
+Baseline quality 75 (correctness 70 / verification 70 / clarity 85).
+Delivered quality 94 (correctness 95 / verification 94 / clarity 93).
+
+The former seal hashed raw inventory bytes. The exact source-level reproduction
+shows the same 561 method identities accepted with CRLF and refused with LF.
+The result depends on checkout conversion, including legitimate Windows Git
+settings; it does not require a non-Windows runtime defect.
+
+- Normalize only CRLF to LF in the UTF-8 digest and pin the resulting canonical
+  SHA-256. The inventory file, method identities and ordering do not change.
+- The existing inventory-owner method accepts both line-ending variants, rejects
+  metadata and trailing-space changes, and retains removed/unregistered controls.
+- The direct owner-method probe passes. The final native selection includes the
+  entire architecture-governance owner, the documentation owners and scanner.
+- No runtime implementation, dependency or product test is changed. This is
+  checkout-independent governance evidence, not Linux/macOS runtime acceptance.
+
+The original byte-level reproduction is in line-ending-baseline.json; the actual
+owner-method execution is in line-ending-owner-method.log under the G-019 review
+root. Existing 736-case reactors predate this final two-file governance repair;
+the final native closure qualifies the changed owners rather than relabelling
+the older source capture as a new complete execution.
+
+<a id="current-assessment"></a>
+## Current ATF AI assessment
+
+Reviewed on 2026-11-26 against the live runtime checkpoint
+0e7495353b414c592c404a1731facbadfb8b894d and the reviewed governance/documentation
+overlay. Ratings cover the supported HTTP, desktop UI, Extent and Atlas scope.
+Critical runtime owners were inspected directly; all-source static controls and
+representative execution are distinct proof levels. This is an authored review,
+not an automatic coverage percentage or a universal correctness certificate.
+
+C means correctness, V verification and Cl clarity. Each input and result uses
+1-100. Apply the register's reproducible formula:
+`round(0.40 × C + 0.30 × V + 0.30 × Cl)`. Separate axes have no invented overall grade.
+
+| Axis | C / V / Cl | Quality (1-100) |
+|---|---|---:|
+| Code and architecture | 94 / 93 / 92 | 93 |
+| Documentation and editions | 94 / 93 / 94 | 94 |
+| Atlas and RAG | 90 / 94 / 89 | 91 |
+| Feedback lifecycle | 95 / 93 / 94 | 94 |
+| Code and test governance | 95 / 94 / 93 | 94 |
+| Existing-test stability | 93 / 94 / 90 | 92 |
+| Configuration and failure handling | 93 / 94 / 90 | 92 |
+| Auditability and reporting | 94 / 94 / 92 | 93 |
+| Maintainability | 92 / 92 / 91 | 92 |
+| Portability evidence | 88 / 86 / 92 | 89 |
+| Provider extensibility | 92 / 90 / 92 | 91 |
+
+<details>
+<summary>Source owners, verification and limits by axis</summary>
+
+- **Code and architecture:** [Registry](../../atf-core/src/main/java/com/ai/ui/core/engine/UiEngineRegistry.java). Neutral module ownership, provider discovery and current failure paths. Framework API and source review; not an exhaustive correctness proof.
+- **Documentation and editions:** [Document policy](../governance/Code_And_Documentation_Policy.md). 50 maintained Markdown pairs, Living HTML, compilation, language and presentation guards. Finite guards and reviewed renderers; semantic translation still needs review.
+- **Atlas and RAG:** [Retrieval and provenance](../../tools/atlas-knowledge.mjs). Cited retrieval, exact receipts, independent oracles, negative paths and one-HTML delivery. Lexical policy context; authoring and semantic completeness are not certified automatically.
+- **Feedback lifecycle:** [Feedback controls](../../atf-tests/src/test/java/com/ai/atf/governance/FeedbackGovernanceTest.java). 18 bilingual records reconciled; explicit empty state, historical closure and external scope. Zero accepted tasks does not mean zero defects or external implementation completion.
+- **Code and test governance:** [Architecture and inventories](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureGovernanceTest.java). Owned diagnostic hints, negative controls, exact suites and a reviewed 561-method inventory. Policy/source invariants complement review; matching a token is not semantic proof.
+- **Existing-test stability:** [Existing logging contracts](../../atf-tests/src/test/java/com/ai/atf/core/reporting/regression/StepLoggerContractTest.java). Bounded worker/HTTP behavior, independent observations and completed native selections. Point-in-time execution, not a measured long-term CI flake rate.
+- **Configuration and failure handling:** [UI options](../../atf-core/src/main/java/com/ai/core/support/config/UiRuntimeOptions.java). Typed UI settings, retry boundaries, teardown and partial-acquisition rollback. Caller credentials, deployment state and arbitrary provider failures remain separate.
+- **Auditability and reporting:** [Extent inspector](../../atf-reporting/src/main/java/com/ai/core/reporting/adapters/extent/inspection/ExtentPublishedOverviewInspector.java). Extent lifecycle, expected/actual steps, original XML and inspected aggregate readers. Original captures retain their source; masking does not sanitize every arbitrary log.
+- **Maintainability:** [Source ownership rules](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureRules.java). Focused owners, reusable fixtures, explicit dependencies and concise entry guides. Large catalogs and process-global configuration still require coordinated review.
+- **Portability evidence:** [Recorded matrix and relocation](Browser_Compatibility_And_Portability.md). Relative project paths, caller-selected roots and the recorded desktop browser/CDP matrix. Current proof is Windows-focused; other OS/browser combinations need their own receipts.
+- **Provider extensibility:** [Provider contract](../../atf-core/src/main/java/com/ai/ui/core/engine/UiEngineProvider.java). Core SPI boundaries and separate Playwright, Selenium and Extent implementations. An additional provider requires contract/parity acceptance; no universal plug-in guarantee.
+
+</details>
+
+The retrieval review validates 19 knowledge records, 16 mandatory policies and
+three pinned archived blobs. Its declared scope is deterministic lexical policy
+context; semantic recall remains NOT_CLAIMED. New Atlas generation or application
+acceptance is not inferred from these checks. Source size and test counts identify
+scope; the declared review inputs determine these scores.
+
+Earlier AI/J1 comparison tables and published Atlas readers keep their original
+source checkpoints and scores. J4 is a read-only feedback-governance reference,
+not a freshly executed or graded competitor. The lower portability rating reflects
+the recorded Windows matrix rather than an observed cross-platform runtime defect.

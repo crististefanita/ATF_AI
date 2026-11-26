@@ -37,6 +37,31 @@ public class FeedbackGovernanceTest {
             assertFinding(failures, "DOC-FEEDBACK active item has invalid status");
             assertFinding(failures, "DOC-FEEDBACK verified item has pending");
         }
+        try (GovernanceFiles.Fixture fixture = documentation()) {
+            String path = "docs/feedback/README.md";
+            String original = Files.readString(fixture.root.resolve(path));
+            String empty = original.replaceAll("(?m)^\\| G-001 \\|[^\\r\\n]*\\r?\\n", "");
+            String marker = "<!-- feedback:empty -->";
+            fixture.write(path, empty);
+            List<String> missing = MarkdownDocumentationRules.validate(fixture.root);
+            assertFinding(missing, "DOC-FEEDBACK-EMPTY");
+            String report = GovernanceFiles.problems(missing);
+            Assert.assertTrue(report.contains("Repair hint:"));
+            Assert.assertTrue(report.contains("Owner: docs/feedback/README.md#recording-and-closing-feedback"));
+            String declared = empty.replace("## Active TODOs", "## Active TODOs\n\n" + marker);
+            fixture.write(path, declared);
+            assertValid(MarkdownDocumentationRules.validate(fixture.root));
+            for (String invalid : List.of(
+                    original.replace("## Active TODOs", "## Active TODOs\n\n" + marker),
+                    empty + "\n" + marker,
+                    empty.replace("## Active TODOs", "## Active TODOs\n\n```text\n" + marker + "\n```"),
+                    declared.replace(marker, marker + "\n" + marker))) {
+                fixture.write(path, invalid);
+                assertFinding(MarkdownDocumentationRules.validate(fixture.root), "DOC-FEEDBACK-EMPTY");
+            }
+            fixture.write(path, original);
+            assertValid(MarkdownDocumentationRules.validate(fixture.root));
+        }
     }
 
     @org.testng.annotations.DataProvider(name = "invalidFeedbackScores")

@@ -563,6 +563,21 @@ public class FrameworkArchitectureGovernanceTest {
     public void executableTestMethodsMatchTheReviewedInventoryAndDetectLossOrUnregisteredChanges() throws Exception {
         List<String> maintained = TestMethodInventoryRules.validate(GovernanceFiles.root());
         assertValid(maintained);
+        String canonical = Files.readString(GovernanceFiles.root().resolve(TestMethodInventoryRules.INVENTORY))
+                .replace("\r\n", "\n");
+        String reviewed = TestMethodInventoryRules.sha256(GovernanceFiles.root().resolve(TestMethodInventoryRules.INVENTORY));
+        try (GovernanceFiles.Fixture fixture = new GovernanceFiles.Fixture()) {
+            for (String equivalent : List.of(canonical, canonical.replace("\n", "\r\n"))) {
+                fixture.write(TestMethodInventoryRules.INVENTORY, equivalent);
+                Assert.assertEquals(TestMethodInventoryRules.sha256(fixture.root.resolve(TestMethodInventoryRules.INVENTORY)), reviewed,
+                        "Git line-ending conversion must preserve the reviewed method-content seal.");
+            }
+            for (String changed : List.of(canonical + "# changed metadata\n", canonical.replaceFirst("\n", " \n"))) {
+                fixture.write(TestMethodInventoryRules.INVENTORY, changed);
+                Assert.assertNotEquals(TestMethodInventoryRules.sha256(fixture.root.resolve(TestMethodInventoryRules.INVENTORY)), reviewed);
+                assertFinding(TestMethodInventoryRules.validate(fixture.root), "TEST-METHOD-INVENTORY baseline digest changed");
+            }
+        }
         try (GovernanceFiles.Fixture fixture = new GovernanceFiles.Fixture()) {
             String path = "atf-tests/src/test/java/com/ai/atf/fixture/SampleTest.java";
             fixture.write(path, "package com.ai.atf.fixture; import org.testng.annotations.Test; "
