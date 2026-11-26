@@ -11,9 +11,6 @@ the caller-selected local archive following the [report guide](../../artifacts/r
 |---|---|---|---:|---:|---|---|
 | G-014 | Retain the J1 change-control failure separately from Atlas consistency and scoped catalog success | J1 test-change owner; external observation | 84 | 68 | TODO | [Exact source and required control records](Atlas_Depth_And_Assessment.md#g-014) |
 | G-016 | Review loss of an existing regression method within a still-selected class | Test-maintenance owner | 75 | 69 | TODO | [Source-only gap and bounded acceptance](Code_And_Documentation_Maturity.md#g-016) |
-| F-011 | Keep interaction-tracker cleanup observable when UI engine shutdown throws | Core UI base teardown owner | 82 | 66 | IN PROGRESS | [Source-only cleanup gap and missing component oracle](Behavior_And_Negative_Cases.md#f-011) |
-| F-012 | Reject malformed UI options before resource acquisition | Core configuration and wait owners | 87 | 71 | IN PROGRESS | [Shared readers and negative cases](Code_And_Documentation_Maturity.md#f-012) |
-| F-013 | Roll back partial UI session acquisition and preserve the first failure | Browser adapter session owners | 82 | 65 | IN PROGRESS | [Owned rollback and component cases](Code_And_Documentation_Maturity.md#f-013) |
 
 The register is reserved for framework governance, stability and documentation.
 Product-flow improvement records are excluded from this backlog.
@@ -86,6 +83,9 @@ normalizing their presentation does not claim a fresh execution.
 
 | ID | Delivered behavior | Verification |
 |---|---|---|
+| F-011 | Teardown clears interaction state after success, RuntimeException and Error; delivered quality 94 (95/92/94) | Complete EN/RO local reactors, focused 69/69 and preserved negative baseline; [evidence](Behavior_And_Negative_Cases.md#f-011) |
+| F-012 | Shared strict UI configuration and wait boundaries; delivered quality 94 (95/93/94) | Positive/negative component contracts and complete paired acceptance; [evidence](Code_And_Documentation_Maturity.md#f-012) |
+| F-013 | Partial acquisition rolls back without masking the original cause; delivered quality 93 (94/92/93) | Existing Playwright 16 and Selenium 12 provider cases; [evidence](Code_And_Documentation_Maturity.md#f-013) |
 | D-011 | Atlas semantic blocks, adjacent legends, bounded columns and native table balance; delivered quality 93 (94/92/92) | 203/203 Node per edition, EN 315/315 and RO 315/315 existing governance; [evidence and limits](Atlas_Depth_And_Assessment.md#d-011) |
 | G-017 | Source-disabled maintained tests are rejected and the existing console worker is bounded; delivered quality 93 (94/92/92) | Final local-02 EN/RO 690/690 and 690/690; original failed attempt retained; [evidence](Code_And_Documentation_Maturity.md#g-017) |
 | D-010 | Strategy, closed command recipes and all 51 document reviews are governed; delivered quality 92 (94/90/92) | Paired native controls, 182 captured Node cases per edition and 32 desktop records/56 SVG/98 captures; [evidence and limits](Code_And_Documentation_Maturity.md#d-010) |

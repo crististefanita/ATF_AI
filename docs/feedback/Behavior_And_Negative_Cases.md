@@ -139,13 +139,15 @@ describes the actual implementation and assertion.
   [lifecycle contract](../../atf-tests/src/test/java/com/ai/atf/core/support/base/BaseTestUIContractTest.java)
   verifies exact failure identity, engine removal, cleared interaction state and
   repeated teardown without a second quit.
-- Current evidence: the focused reactor selection passed 69/69 cases. Complete
-  EN/RO local reactor, documentation and maintenance checks remain required.
+- Current evidence: complete EN/RO default reactors passed 740/740 each, including 703 atf-tests cases and 315 governance cases per edition. The focused selection passed 69/69; Node passed 203/203 per edition. The paired document probe and native desktop review passed.
+- Delivered quality: 94; correctness/verification/clarity 95/92/94.
 - Proof limit: controlled component observations establish these owned cleanup
   paths. They do not establish browser-process or live-site acceptance. Existing
   Atlas captures retain their original source-only finding and source identity.
-- State: IN PROGRESS pending complete paired acceptance. Evidence is retained at
+- State: VERIFIED for the owned teardown component contract. Original baseline
+  failures and captured Atlas source identities remain preserved. Evidence is at
   `${ATF_WORK_ROOT}/reviews/20261126-ui-lifecycle-config`.
+
 
 ## Verification and closure
 
@@ -194,8 +196,9 @@ full claim references, weights and limitations are embedded in each reader.
 | Offline delivery and reader structure | 91 | 91 |
 | Weighted group | 91 | 90 |
 
-G-014 remains TODO for J1-owned change controls. F-011 remains a source-only
-UI cleanup gap: no component proof establishes a tracker leak or a completed fix.
+In that original Atlas capture, G-014 was TODO and F-011 was a source-only
+UI cleanup gap without component proof. Current F-011 closure is recorded above;
+the older Atlas evidence retains its original scope and source.
 Representative case witnesses expose declared-edge gaps and cannot establish
 exhaustive branch coverage, prose truth or semantic RAG recall. The policy corpus
 contains 19 records, 16 mandatory; exact cited fragments and complete canonical

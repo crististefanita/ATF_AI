@@ -105,7 +105,8 @@ Existing diagnostics and boundaries are assessed independently of test counts.
 AI improves executable selection and one bounded concurrency owner. J0 retains
 stronger change-control and lifecycle aggregation; AI retains stronger emitted
 observations, cause/repair distinction and exact owned recheck routes. F-011
-remains open. High scores require stronger evidence, not a wider unsupported claim.
+was open at that comparison checkpoint; the current closure follows below. High
+scores require stronger evidence, not a wider unsupported claim.
 
 ## Acceptance evidence
 
@@ -145,7 +146,7 @@ reactors. The existing ignored current publication remains at its captured scope
   not framework/browser application acceptance or universal accessibility proof.
 - The first untranslated baseline and the first complete execution remain retained
   below. No new E2E journey, emulator or runtime feature was added. G-016, G-014
-  and F-011 remain TODO; synchronization is evidenced separately by actual branch,
+  and F-011 were TODO at that checkpoint; synchronization was evidenced by branch,
   remote and live identities after the documentation-only closure check.
 
 ## Retained first complete execution
@@ -181,7 +182,7 @@ failure and establish their own separately captured source and outcomes.
   canonical precedence, lower/upper bounds and Turkish default locale. Errors
   identify the actual key and value; wait rejection precedes condition polling.
 - Stable contract: [Core configuration and cleanup](../../atf-core/README.md#validated-ui-configuration-and-cleanup).
-- State: IN PROGRESS. Focused 69/69 passed; complete paired acceptance is pending.
+- State: VERIFIED for the owned configuration component boundary. Delivered quality: 94; correctness/verification/clarity 95/93/94. Complete paired evidence follows below.
 
 <a id="f-013"></a>
 ## F-013: Roll back partial UI session acquisition
@@ -201,7 +202,7 @@ failure and establish their own separately captured source and outcomes.
   acquisition, cleanup order, primary identity and self-suppression controls.
 - Stable contracts: [Playwright](../../atf-playwright/README.md#acquisition-failure-and-cleanup)
   and [Selenium](../../atf-selenium/README.md#acquisition-failure-and-cleanup).
-- State: IN PROGRESS. Focused 69/69 passed; complete paired acceptance is pending.
+- State: VERIFIED for the owned acquisition and cleanup component paths. Delivered quality: 93; correctness/verification/clarity 94/92/93. Complete paired evidence follows below.
 
 ## Current UI maintenance evidence
 
@@ -218,3 +219,54 @@ it now uses one valid second. The three existing negative controls also assert
 the exact missing-row message, so an earlier configuration/navigation failure
 cannot satisfy the oracle. Invoice checks remain controlled components without
 a browser or product journey.
+
+
+## UI repair acceptance and current review scores
+
+Complete default local reactors passed 740/740 in each edition, including
+703 atf-tests cases, 37 upstream library cases and 315 governance cases.
+The existing 29 local API cases passed in each edition. Each run has zero
+failures, errors or skipped cases. This is framework/component acceptance;
+GoRest application writes, product E2Es and emulators are outside this execution.
+
+| Evidence | Result | Bound source or retained locator |
+|---|---|---|
+| English default reactor | 740/740 PASS | 6a90e248e09e3b553f77bd8cb5764a6f9b427614 |
+| Romanian default reactor | 740/740 PASS | 10d8974f69530c370932643a8227b73a9999decc |
+| Focused UI/configuration/providers | 69/69 PASS | modules-code-documentation-ui-lifecycle-focused-01 |
+| Node maintenance | 203/203 PASS per edition | en-node-01 and ro-node-01 |
+| Original negative baseline | 7 passed, 18 failed; expected | baseline/native/testng-results.xml |
+
+Full source manifests, native XML, completed logs and native-summary.json remain
+in the external review root. Source/POM/resources are frozen independently of
+later feedback closure. Final paired documentation and governance checks bind
+the closure text. Native desktop document review covers the changed Core/Living
+pairs at 1440/900 CSS px with 8 records and 32 diagram observations. Contained
+scrolling in wide Living figures is intentional. This is file rendering, not
+browser-process or application acceptance.
+
+The following 1–100 judgments use the same axes and weights as the prior live
+comparison. Weights sum to 100; counts do not determine grades. The baseline is
+the 2026-11-26 source review at 14daf233e8039049cf6d8ba2db7421fb48c4c5be.
+
+| Axis | Weight | Baseline | Current | Evidence and remaining limit |
+|---|---:|---:|---:|---|
+| Architecture and ownership | 15 | 92 | 92 | Same five modules; no new runtime class or product feature |
+| Maintainability | 10 | 88 | 89 | Shared wait reader; the large documentation helper still mixes concerns |
+| Configuration | 10 | 82 | 93 | Strict booleans, bounded waits and locale-independent engine validation |
+| Failure lifecycle | 10 | 84 | 94 | Exact primary identity, finally cleanup and acquired-resource rollback |
+| Code/test governance | 15 | 91 | 91 | Existing controls pass; G-016 method-deletion protection remains open |
+| Demonstrated test stability | 15 | 90 | 91 | Complete paired local selections pass; no fresh product execution |
+| Documentation and editions | 15 | 94 | 94 | Maintained EN/RO contracts, diagrams and paired Living formats |
+| Feedback and provenance | 10 | 93 | 94 | Preserved negative baseline, bounded closures and source-bound receipts |
+
+Weighted maturity increases from 89.75 to 92.20, rounded from 90 to 92.
+The prior read-only J1 comparison remains 89.10, rounded 89, at its captured
+dirty-tree scope; J1 was not changed, rebuilt or freshly regraded in this repair.
+Neither result is a coverage percentage or a complete-runtime guarantee.
+
+The next surgical priorities are G-016's explicit method-loss controls and
+separating documentation-rule responsibilities while preserving their negative
+controls and repair hints. The existing documentation helper has 1293 lines;
+this is a maintainability observation, not a failing execution. Neither priority
+requires a new product journey. G-014 remains an external J1-owned TODO.

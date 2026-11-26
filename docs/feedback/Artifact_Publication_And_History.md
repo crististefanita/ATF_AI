@@ -1,5 +1,9 @@
 # Bounded publication and immutable external history
 
+Historical scope: F-011 was open in this captured review. Its later owned
+component correction and current acceptance are recorded in [F-011](Behavior_And_Negative_Cases.md#f-011);
+this does not rerun or relabel the older product/Atlas evidence.
+
 Baseline: source checkpoint `6232c00`. This review changes maintenance tooling,
 governance and documentation. It adds no runtime feature, product E2E scenario
 or emulator. G-014 and F-011 retain their independent open scopes.

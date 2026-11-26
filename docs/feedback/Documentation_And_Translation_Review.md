@@ -1,5 +1,9 @@
 # Documentation contracts and semantic translation review
 
+Historical scope: F-011 was open in this captured review. Its later owned
+component correction and current acceptance are recorded in [F-011](Behavior_And_Negative_Cases.md#f-011);
+this does not rerun or relabel the older product/Atlas evidence.
+
 Baseline: English `fd5cf47f403bd01d00dbb1a40f17d9a37496e843` and Romanian
 `b62d4e9dd3690b25f7ea9de16b84867cb88c561d`. The read-only J0 reference is
 `96f50e5f277771ca9dfac3b7c959b47188afd0b0`, including its two observed local

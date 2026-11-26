@@ -1,5 +1,9 @@
 # Retained UI execution and auditable report evidence
 
+Historical scope: F-011 was open in this captured review. Its later owned
+component correction and current acceptance are recorded in [F-011](Behavior_And_Negative_Cases.md#f-011);
+this does not rerun or relabel the older product/Atlas evidence.
+
 Baseline: main source checkpoint `fe2940f`. Reference: the locally preserved
 `main_mcp` checkpoint `70a7279c2a9560d39e6bd2554cd2f96a88626692`, including its
 living-architecture HTML. This scope preserves the existing product methods and
