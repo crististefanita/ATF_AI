@@ -1,6 +1,5 @@
 package com.ai.ui.support.wait;
 
-import com.ai.core.support.config.ConfigManager;
 import com.ai.core.support.config.UiRuntimeOptions;
 import com.ai.core.reporting.StepLogger;
 import com.ai.ui.core.runtime.DriverManager;
@@ -14,25 +13,13 @@ import java.util.function.Supplier;
 
 public final class WaitUtils {
 
-    private static final String DEFAULT_WAIT_TIMEOUT_SECONDS = "10";
     private static final Duration DEFAULT_POLL_INTERVAL = Duration.ofMillis(250);
 
     private WaitUtils() {
     }
 
     private static int explicitWaitSeconds() {
-        String key = UiRuntimeOptions.UI_WAIT_TIMEOUT_SECONDS_KEY;
-        String value = ConfigManager.get(
-                UiRuntimeOptions.UI_WAIT_TIMEOUT_SECONDS_KEY,
-                ConfigManager.get(UiRuntimeOptions.LEGACY_WAIT_TIMEOUT_SECONDS_KEY, DEFAULT_WAIT_TIMEOUT_SECONDS)
-        );
-        try {
-            return Integer.parseInt(value);
-        } catch (Exception e) {
-            throw new RuntimeException(
-                    "Missing or invalid integer config key: " + key, e
-            );
-        }
+        return UiRuntimeOptions.readWaitTimeoutSeconds();
     }
 
     public static void waitForVisible(String cssSelector) {

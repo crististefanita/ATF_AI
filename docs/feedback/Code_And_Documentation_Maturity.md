@@ -170,3 +170,58 @@ Aserțiunile booleene ale precondițiilor evită afișarea întregului HTML la e
 inserării. Ambele rulări native originale rămân intacte la locațiile local-01.
 Execuțiile local-02 acceptate, consemnate în dovezile de acceptanță, păstrează eșecul
 anterior și stabilesc sursele și rezultatele proprii capturate separat.
+
+
+<a id="f-012"></a>
+<a id="f-012-strict-ui-options-and-a-shared-configured-wait"></a>
+## F-012: Opțiuni UI stricte și așteptare configurată comună
+
+- Responsabil: configurația UI tipizată și utilitarele de așteptare din Core.
+- Prioritate: 87, din impact/risc/urgență 90/85/80.
+- Calitate inițială: 71, din corectitudine/verificare/claritate 75/60/75.
+- Observație: textul boolean UI malformat devenea false fără avertizare; erau
+  acceptate așteptări zero, negative sau prea mari pentru milisecunde. Conversia
+  motorului dependentă de limbă și parsarea duplicată slăbeau validarea.
+- Corecție: ConfigManager și UiRuntimeOptions existente dețin cititorii stricți
+  pentru booleeni și așteptarea configurată. Opțiunile sesiunii și WaitUtils îi
+  folosesc împreună. Motoarele necunoscute sunt respinse înaintea achiziției.
+  Valorile implicite, precedența, suprasarcinile Duration explicite și normalizarea
+  acceptată a măririi paginii rămân neschimbate.
+- Criteriile existente acoperă șase chei booleene, valori malformate, ambele chei
+  de așteptare, precedența canonică, limitele inferioară/superioară și limba turcă
+  implicită. Erorile identifică cheia și valoarea reale; respingerea așteptării
+  precede evaluarea repetată a condiției.
+- Contract stabil: [configurația și curățarea Core](../../atf-core/README.md#validated-ui-configuration-and-cleanup).
+- Stare: IN PROGRESS. Selecția focalizată a trecut 69/69; acceptanța completă a ambelor ediții este în așteptare.
+
+<a id="f-013"></a>
+<a id="f-013-roll-back-partial-ui-session-acquisition"></a>
+## F-013: Curățarea achiziției parțiale a sesiunii UI
+
+- Responsabil: clasele existente de sesiune/furnizor Playwright și Selenium.
+- Prioritate: 82, din impact/risc/urgență 85/80/75.
+- Calitate inițială: 65, din corectitudine/verificare/claritate 65/50/80.
+- Observație: eșecul constructorului după alocarea resurselor nu avea o cale de
+  curățare deținută. Erorile imbricate la închiderea Playwright puteau înlocui
+  prima eroare. Observația inițială se bazează pe surse, nu dovedește procese rămase.
+- Corecție: eliberarea resurselor dobândite în ordinea inversă a deținerii,
+  păstrarea RuntimeException sau Error originale și a cauzelor distincte de
+  curățare ca excepții suprimate. Contextul persistent Playwright deține închiderea
+  browserului; profilurile temporare sunt șterse. Eșecul fabricii Selenium nu are
+  un driver dobândit pentru care să apeleze quit.
+- Clasele existente de componentă injectează eșecuri pe etape fără pornirea unui
+  browser: Playwright are 16 cazuri și Selenium are 12, inclusiv achiziție reușită,
+  ordinea curățării, identitatea cauzei și controale împotriva auto-suprimării.
+- Contracte stabile: [Playwright](../../atf-playwright/README.md#acquisition-failure-and-cleanup)
+  și [Selenium](../../atf-selenium/README.md#acquisition-failure-and-cleanup).
+- Stare: IN PROGRESS. Selecția focalizată a trecut 69/69; acceptanța completă a ambelor ediții este în așteptare.
+
+<a id="current-ui-maintenance-evidence"></a>
+## Dovezile curente pentru mentenanța UI
+
+Rădăcina externă este `${ATF_WORK_ROOT}/reviews/20261126-ui-lifecycle-config`.
+Sursa inițială, XML-ul nativ al eșecurilor și execuția Maven focalizată rămân
+separate. Selecția focalizată dovedește doar contractele selectate și nu înlocuiește
+reactorul local complet. Nu se adaugă clase E2E, parcursuri de produs sau emulatoare.
+Secțiunile istorice de acceptanță de mai sus își păstrează sursa și numerele capturate;
+lucrarea curentă F-011 înlocuiește rezumatul anterior privind starea deschisă.

@@ -13,7 +13,9 @@ jurnale și rapoarte în zona externă; copiile selectate și verificate pot fi 
 |---|---|---|---:|---:|---|---|
 | G-014 | Păstrează eșecul de control al schimbărilor J1 separat de consistența Atlas și de rezultatul reușit al catalogului în aria verificată | Responsabilul schimbărilor testelor J1; observație externă | 84 | 68 | TODO | [Sursa exactă și înregistrările de control necesare](Atlas_Depth_And_Assessment.md#g-014) |
 | G-016 | Revizuiește pierderea unei metode de regresie existente dintr-o clasă încă selectată | Responsabilul mentenanței testelor | 75 | 69 | TODO | [Lacuna observată în surse și acceptanța limitată](Code_And_Documentation_Maturity.md#g-016) |
-| F-011 | Păstrează observabilă curățarea urmăririi interacțiunilor când închiderea motorului UI aruncă o excepție | Responsabilul închiderii UI din Core | 82 | 66 | TODO | [Lipsa observată în surse și criteriul de componentă absent](Behavior_And_Negative_Cases.md#f-011) |
+| F-011 | Păstrează observabilă curățarea urmăririi interacțiunilor când închiderea motorului UI aruncă o excepție | Responsabilul închiderii UI din Core | 82 | 66 | IN PROGRESS | [Lipsa observată în surse și criteriul de componentă absent](Behavior_And_Negative_Cases.md#f-011) |
+| F-012 | Respinge opțiunile UI malformate înaintea alocării resurselor | Responsabilii configurației și așteptărilor Core | 87 | 71 | IN PROGRESS | [Cititori comuni și cazuri negative](Code_And_Documentation_Maturity.md#f-012) |
+| F-013 | Curăță achiziția parțială a sesiunii UI și păstrează prima eroare | Responsabilii sesiunilor adaptoarelor browser | 82 | 65 | IN PROGRESS | [Curățare deținută și cazuri de componentă](Code_And_Documentation_Maturity.md#f-013) |
 
 Registrul este rezervat guvernanței, stabilității și documentației framework-ului.
 Înregistrările despre îmbunătățirea fluxurilor de produs sunt excluse din această listă.
@@ -72,6 +74,8 @@ Componentele păstrate ale evaluărilor inițiale:
 | D-007 | 90 / 80 / 85 | 65 / 55 / 55 | Afirmațiile negative susținute de surse nu aveau parcursuri explicite și fragmente selectate ale aserțiunilor |
 | A-002 | 85 / 80 / 85 | 70 / 55 / 70 | Testele structurale necesitau mutații ale parcurgerii și verificări generice de componentă dincolo de prezența câmpurilor |
 | F-011 | 85 / 80 / 75 | 70 / 40 / 85 | Ordinea apelurilor poate omite curățarea urmăririi interacțiunilor când închiderea motorului eșuează; nicio execuție de componentă nu demonstrează o scurgere de stare |
+| F-012 | 90 / 85 / 80 | 75 / 60 / 75 | Booleeni UI malformați și așteptări fără limite; parsare duplicată |
+| F-013 | 85 / 80 / 75 | 65 / 50 / 80 | Inițializarea parțială nu are curățare, iar erorile imbricate pot masca prima cauză |
 | D-008 | 90 / 90 / 90 | 60 / 45 / 70 | Copia live păstrează 44 de colecții de rapoarte și 14 capturi Atlas fără selecție curentă limitată sau verificare a structurii publicației |
 | R-001 | 90 / 90 / 90 | 60 / 40 / 65 | Metodele de produs păstrate nu au dovezi native selectate pentru fiecare motor; validarea înregistrării și detaliile câmpurilor sensibile necesită controale explicite de audit |
 | D-009 | 90 / 80 / 80 | 85 / 65 / 80 | Structura susținută nu este impusă în toate documentele Markdown; contraexemplele privind paritatea codului inline și a valorilor numerice, precum și modificarea sensului calificărilor necesită controale cu responsabili expliciți |

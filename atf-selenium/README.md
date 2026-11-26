@@ -97,6 +97,19 @@ Metodele moștenite creează și închid sesiunea de browser asociată firului d
 Codul de acțiuni și aserțiuni este comun cu [exemplul Playwright](../atf-playwright/README.md#consumer-example);
 furnizorul instalat și setarea `ui.engine` de dinaintea inițializării selectează adaptorul.
 
+<a id="acquisition-failure-and-cleanup"></a>
+## Eșecul achiziției și curățarea
+
+După achiziția driverului, orice eșec al timeout-urilor, ferestrei sau verificării
+ferestrelor inițiale închide exact acel driver. Un factory eșuat nu furnizează un
+driver de închis. Păstrează RuntimeException sau Error original și atașează eșecul
+distinct al închiderii ca dovadă suprimată; un eșec nu se poate suprima pe sine.
+
+[Testul existent al furnizorului](src/test/java/com/ai/ui/core/engine/selenium/SeleniumProviderTest.java)
+injectează factory-ul și colaboratorii driverului fără pornirea Chrome. Succesul
+folosește și închide același driver deținut. Compatibilitatea browser/driver reală
+își păstrează limita separată de acceptanță nativă.
+
 <a id="verification"></a>
 ## Verificare
 

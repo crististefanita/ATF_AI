@@ -11,6 +11,8 @@ import com.microsoft.playwright.PlaywrightException;
 
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Objects;
+import java.util.function.Supplier;
 
 final class PlaywrightBrowserSession {
     private final Playwright playwright;
@@ -21,32 +23,42 @@ final class PlaywrightBrowserSession {
     private final Path userDataDir;
 
     PlaywrightBrowserSession(UIWindowConfiguration windowConfiguration, UiRuntimeOptions runtimeOptions) {
+        this(windowConfiguration, runtimeOptions, Playwright::create);
+    }
+
+    PlaywrightBrowserSession(UIWindowConfiguration windowConfiguration, UiRuntimeOptions runtimeOptions,
+                             Supplier<Playwright> driverFactory) {
         this.runtimeOptions = runtimeOptions;
         boolean headless = runtimeOptions.isHeadless();
-        this.playwright = Playwright.create();
-        this.userDataDir = requiresPersistentContextForZoom(windowConfiguration, headless)
-                ? PlaywrightUserDataDirectory.createTemporary()
-                : null;
-
-        if (userDataDir == null) {
-            this.browser = playwright.chromium().launch(
-                    PlaywrightLaunchOptionsFactory.launchOptions(windowConfiguration, headless)
-            );
-            this.context = browser.newContext(
-                    PlaywrightLaunchOptionsFactory.contextOptions(windowConfiguration, headless)
-            );
-        } else {
-            this.context = playwright.chromium()
-                    .launchPersistentContext(
-                            userDataDir,
-                            PlaywrightLaunchOptionsFactory.persistentContextOptions(windowConfiguration, headless)
-                    );
-            this.browser = context.browser();
+        Playwright acquiredPlaywright = null;
+        Browser acquiredBrowser = null;
+        BrowserContext acquiredContext = null;
+        Path acquiredDirectory = null;
+        try {
+            acquiredPlaywright = Objects.requireNonNull(driverFactory.get(), "playwright");
+            acquiredDirectory = requiresPersistentContextForZoom(windowConfiguration, headless)
+                    ? PlaywrightUserDataDirectory.createTemporary() : null;
+            if (acquiredDirectory == null) {
+                acquiredBrowser = acquiredPlaywright.chromium().launch(
+                        PlaywrightLaunchOptionsFactory.launchOptions(windowConfiguration, headless));
+                acquiredContext = acquiredBrowser.newContext(
+                        PlaywrightLaunchOptionsFactory.contextOptions(windowConfiguration, headless));
+            } else {
+                acquiredContext = acquiredPlaywright.chromium().launchPersistentContext(acquiredDirectory,
+                        PlaywrightLaunchOptionsFactory.persistentContextOptions(windowConfiguration, headless));
+                acquiredBrowser = acquiredContext.browser();
+            }
+            this.playwright = acquiredPlaywright;
+            this.browser = acquiredBrowser;
+            this.context = acquiredContext;
+            this.userDataDir = acquiredDirectory;
+            this.page = acquireStartupPage(acquiredContext);
+            applyWindowConfiguration(windowConfiguration, headless);
+            assertSingleStartupTarget("after init");
+        } catch (RuntimeException | Error primary) {
+            release(acquiredContext, acquiredBrowser, acquiredPlaywright, acquiredDirectory, primary);
+            throw primary;
         }
-
-        this.page = acquireStartupPage(context);
-        applyWindowConfiguration(windowConfiguration, headless);
-        assertSingleStartupTarget("after init");
     }
 
     Page page() {
@@ -70,21 +82,33 @@ final class PlaywrightBrowserSession {
     }
 
     void close() {
+        release(context, browser, playwright, userDataDir, null);
+    }
+
+    private static void release(BrowserContext context, Browser browser, Playwright playwright,
+                                Path directory, Throwable primary) {
+        Throwable failure = primary;
+        if (context != null) failure = closeResource(failure, context::close);
+        if (browser != null && directory == null) failure = closeResource(failure, browser::close);
+        if (playwright != null) failure = closeResource(failure, playwright::close);
+        failure = closeResource(failure, () -> PlaywrightUserDataDirectory.deleteQuietly(directory));
+        if (primary == null) {
+            if (failure instanceof RuntimeException) throw (RuntimeException) failure;
+            if (failure instanceof Error) throw (Error) failure;
+        }
+    }
+
+    private static Throwable closeResource(Throwable primary, Runnable close) {
         try {
-            context.close();
-        } finally {
-            try {
-                if (browser != null && userDataDir == null) {
-                    browser.close();
-                }
-            } finally {
-                try {
-                    playwright.close();
-                } finally {
-                    PlaywrightUserDataDirectory.deleteQuietly(userDataDir);
-                }
+            close.run();
+        } catch (RuntimeException | Error secondary) {
+            if (primary == null) return secondary;
+            if (primary != secondary) {
+                for (Throwable existing : primary.getSuppressed()) if (existing == secondary) return primary;
+                primary.addSuppressed(secondary);
             }
         }
+        return primary;
     }
 
     private void applyWindowConfiguration(UIWindowConfiguration windowConfiguration, boolean headless) {

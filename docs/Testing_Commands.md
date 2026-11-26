@@ -69,6 +69,20 @@ Verificările native ale unei biblioteci pot fi selectate prin modul și depende
 de exemplu `mvn -B -ntp -pl atf-core -am test`. Selecția nu rulează regresiile
 între module din atf-tests.
 
+Această selecție de componentă injectează eșecuri ale colaboratorilor și nu
+pornește browsere. Păstrează eroarea originală și observă independent starea
+curățării. Rulează și selecția locală completă înaintea închiderii feedback-ului.
+
+<details>
+<summary>Verifică contractele existente de ciclu de viață UI, configurație și curățare a adaptoarelor</summary>
+
+```powershell
+mvn -B -ntp "-Dsurefire.failIfNoSpecifiedTests=false" "-Dtest=BaseTestUIContractTest,UiEngineRuntimeOptionsContractTest,WaitUtilsContractTest" test
+mvn -B -ntp -pl atf-playwright,atf-selenium -am test
+```
+
+</details>
+
 <a id="browser-preparation-and-checks"></a>
 ## Pregătirea și verificarea browserelor
 

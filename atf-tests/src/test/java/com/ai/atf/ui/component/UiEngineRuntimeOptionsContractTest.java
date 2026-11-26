@@ -8,9 +8,14 @@ import com.ai.core.support.contract.ids.AtfRuntimeConfigSandbox;
 import com.ai.core.reporting.listener.TestListener;
 import com.ai.core.support.config.UiRuntimeOptions;
 import com.ai.core.support.config.UiEngineType;
+import com.ai.core.support.config.UiScreenshotConfigKeys;
+import com.ai.ui.core.engine.UIEngineFactory;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.annotations.DataProvider;
+
+import java.util.Locale;
 
 @AtfContractSuiteRef(AtfContractNarrativeIds.Suite.UI_ENGINE_RUNTIME_OPTIONS)
 @AtfContractRef(AtfContractNarrativeIds.Contract.UI_ENGINE_RUNTIME_OPTIONS_CLASS)
@@ -112,9 +117,14 @@ public class UiEngineRuntimeOptionsContractTest {
         );
     }
 
-    @Test
+    @DataProvider(name = "invalidWaits")
+    public Object[][] invalidWaits() {
+        return new Object[][]{{"not-a-number"}, {"-1"}, {"0"}, {"2147484"}, {"99999999999999999999"}};
+    }
+
+    @Test(dataProvider = "invalidWaits")
     @AtfContractRef(AtfContractNarrativeIds.Contract.UI_ENGINE_RUNTIME_OPTIONS_INVALID_WAIT)
-    public void runtimeOptionsRejectInvalidWaitTimeoutBeforeBrowserStartup() {
+    public void runtimeOptionsRejectInvalidWaitTimeoutBeforeBrowserStartup(String value) {
         AtfContractSteps.ContractDetails contract = AtfContractSteps.contractDetailsFor(
                 getClass(),
                 "runtimeOptionsRejectInvalidWaitTimeoutBeforeBrowserStartup"
@@ -122,7 +132,7 @@ public class UiEngineRuntimeOptionsContractTest {
         AtfContractSteps.expected(contract);
 
         try (AtfRuntimeConfigSandbox ignored = AtfRuntimeConfigSandbox.open()
-                .setConfig(UiRuntimeOptions.UI_WAIT_TIMEOUT_SECONDS_KEY, "not-a-number")) {
+                .setConfigAndSystemProperty(UiRuntimeOptions.UI_WAIT_TIMEOUT_SECONDS_KEY, value)) {
 
             IllegalStateException failure = Assert.expectThrows(
                     IllegalStateException.class,
@@ -132,11 +142,84 @@ public class UiEngineRuntimeOptionsContractTest {
             AtfContractSteps.observed("exception=" + failure.getClass().getSimpleName()
                     + " | message=" + failure.getMessage());
             Assert.assertTrue(failure.getMessage().contains(UiRuntimeOptions.UI_WAIT_TIMEOUT_SECONDS_KEY));
+            Assert.expectThrows(IllegalStateException.class, UIEngineFactory::create);
         }
 
         AtfContractSteps.verdict(
                 "Invalid runtime wait config fails fast and remains diagnosable.",
                 contract.repairHint()
         );
+    }
+
+    @DataProvider(name = "invalidBooleans")
+    public Object[][] invalidBooleans() {
+        String[] keys = {UiRuntimeOptions.UI_HEADLESS_KEY, UiRuntimeOptions.CONSOLE_DETAILS_ENABLED_KEY,
+                UiRuntimeOptions.UI_RUNTIME_METADATA_REPORTING_KEY, UiScreenshotConfigKeys.SCREENSHOTS_ENABLED,
+                UiScreenshotConfigKeys.FAILURE_ONLY, UiScreenshotConfigKeys.CAPTURE_FINAL_STATE};
+        Object[][] cases = new Object[keys.length * 2][2];
+        for (int index = 0; index < keys.length; index++) {
+            cases[index * 2] = new Object[]{keys[index], "tru"};
+            cases[index * 2 + 1] = new Object[]{keys[index], "1"};
+        }
+        return cases;
+    }
+
+    @Test(dataProvider = "invalidBooleans")
+    public void runtimeOptionsRejectMalformedBooleanFlags(String key, String value) {
+        try (AtfRuntimeConfigSandbox ignored = AtfRuntimeConfigSandbox.open()
+                .setConfigAndSystemProperty(key, value)) {
+            IllegalStateException failure = Assert.expectThrows(IllegalStateException.class, UiRuntimeOptions::load);
+            Assert.assertTrue(failure.getMessage().contains(key), "The diagnostic names the actual invalid key");
+            Assert.assertTrue(failure.getMessage().contains(value), "The diagnostic retains the observed value");
+            Assert.expectThrows(IllegalStateException.class, UIEngineFactory::create);
+        }
+    }
+
+    @Test
+    public void runtimeOptionsKeepValidBooleanWaitAndLocaleBoundaries() {
+        Locale original = Locale.getDefault();
+        try (AtfRuntimeConfigSandbox sandbox = AtfRuntimeConfigSandbox.open()
+                .setConfigAndSystemProperty(UiRuntimeOptions.UI_ENGINE_KEY, "PLAYWRIGHT")
+                .setConfigAndSystemProperty(UiRuntimeOptions.UI_HEADLESS_KEY, " TrUe ")
+                .setConfigAndSystemProperty(UiRuntimeOptions.UI_WAIT_TIMEOUT_SECONDS_KEY, "1")) {
+            Locale.setDefault(Locale.forLanguageTag("tr-TR"));
+            Assert.assertEquals(UiRuntimeOptions.load().engineType(), UiEngineType.PLAYWRIGHT);
+            Assert.assertTrue(UiRuntimeOptions.load().isHeadless());
+            Assert.assertEquals(UiRuntimeOptions.load().waitTimeoutSeconds(), 1);
+            sandbox.setConfigAndSystemProperty(UiRuntimeOptions.UI_HEADLESS_KEY, " FaLsE ")
+                    .setConfigAndSystemProperty(UiRuntimeOptions.UI_WAIT_TIMEOUT_SECONDS_KEY, "2147483");
+            Assert.assertFalse(UiRuntimeOptions.load().isHeadless());
+            Assert.assertEquals(UiRuntimeOptions.load().waitTimeoutSeconds(), 2147483);
+            sandbox.setConfigAndSystemProperty(UiRuntimeOptions.UI_HEADLESS_KEY, " ");
+            Assert.assertTrue(UiRuntimeOptions.load().isHeadless(), "Blank flags retain the documented fallback");
+        } finally {
+            Locale.setDefault(original);
+        }
+    }
+
+    @Test
+    public void legacyWaitRejectsInvalidValuesAndKeepsItsOwnDiagnosticKey() {
+        try (AtfRuntimeConfigSandbox sandbox = AtfRuntimeConfigSandbox.open()
+                .clearConfig(UiRuntimeOptions.UI_WAIT_TIMEOUT_SECONDS_KEY)
+                .clearSystemProperty(UiRuntimeOptions.UI_WAIT_TIMEOUT_SECONDS_KEY)) {
+            for (String value : new String[]{"-1", "0", "bad", "2147484"}) {
+                sandbox.setConfigAndSystemProperty(UiRuntimeOptions.LEGACY_WAIT_TIMEOUT_SECONDS_KEY, value);
+                IllegalStateException failure = Assert.expectThrows(IllegalStateException.class, UiRuntimeOptions::load);
+                Assert.assertTrue(failure.getMessage().contains(UiRuntimeOptions.LEGACY_WAIT_TIMEOUT_SECONDS_KEY));
+            }
+            sandbox.setConfigAndSystemProperty(UiRuntimeOptions.LEGACY_WAIT_TIMEOUT_SECONDS_KEY, "3")
+                    .setConfigAndSystemProperty(UiRuntimeOptions.UI_WAIT_TIMEOUT_SECONDS_KEY, "7");
+            Assert.assertEquals(UiRuntimeOptions.load().waitTimeoutSeconds(), 7, "The canonical key wins over its legacy fallback");
+        }
+    }
+
+    @Test
+    public void unsupportedEngineFailsDuringOptionLoading() {
+        try (AtfRuntimeConfigSandbox ignored = AtfRuntimeConfigSandbox.open()
+                .setConfigAndSystemProperty(UiRuntimeOptions.UI_ENGINE_KEY, "unknown-engine")) {
+            IllegalArgumentException failure = Assert.expectThrows(IllegalArgumentException.class, UiRuntimeOptions::load);
+            Assert.assertTrue(failure.getMessage().contains(UiRuntimeOptions.UI_ENGINE_KEY));
+            Assert.assertTrue(failure.getMessage().contains("unknown-engine"));
+        }
     }
 }

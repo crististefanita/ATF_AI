@@ -7,6 +7,8 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 
 import java.time.Duration;
+import java.util.Objects;
+import java.util.function.Supplier;
 
 final class SeleniumBrowserSession {
     private static final Duration IMPLICIT_WAIT_TIMEOUT = Duration.ofSeconds(0);
@@ -15,11 +17,26 @@ final class SeleniumBrowserSession {
     private final UiRuntimeOptions runtimeOptions;
 
     SeleniumBrowserSession(UIWindowConfiguration windowConfiguration, UiRuntimeOptions runtimeOptions) {
+        this(windowConfiguration, runtimeOptions,
+                () -> new SeleniumChromeDriverFactory(runtimeOptions).createDriver());
+    }
+
+    SeleniumBrowserSession(UIWindowConfiguration windowConfiguration, UiRuntimeOptions runtimeOptions,
+                           Supplier<WebDriver> driverFactory) {
         this.runtimeOptions = runtimeOptions;
-        this.driver = new SeleniumChromeDriverFactory(runtimeOptions).createDriver();
-        this.driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIMEOUT);
-        applyWindowConfiguration(windowConfiguration);
-        assertSingleStartupTarget("after init");
+        this.driver = Objects.requireNonNull(driverFactory.get(), "driver");
+        try {
+            this.driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT_TIMEOUT);
+            applyWindowConfiguration(windowConfiguration);
+            assertSingleStartupTarget("after init");
+        } catch (RuntimeException | Error primary) {
+            try {
+                driver.quit();
+            } catch (RuntimeException | Error secondary) {
+                if (secondary != primary) primary.addSuppressed(secondary);
+            }
+            throw primary;
+        }
     }
 
     WebDriver driver() {

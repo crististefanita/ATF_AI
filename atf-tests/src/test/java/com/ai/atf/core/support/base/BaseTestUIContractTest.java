@@ -11,17 +11,22 @@ import com.ai.core.reporting.StepLogger;
 import com.ai.ui.core.runtime.BaseTestUI;
 import com.ai.ui.core.runtime.DriverManager;
 import com.ai.ui.core.runtime.UiInteractionTracker;
+import com.ai.ui.core.engine.UIEngine;
+import com.ai.atf.ui.component.support.UiEngineThreadLocalTestSupport;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.annotations.DataProvider;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @AtfContractSuiteRef(AtfContractNarrativeIds.Suite.BASE_UI_RUNTIME)
 @AtfContractRef(AtfContractNarrativeIds.Contract.BASE_UI_RUNTIME_CLASS)
@@ -30,12 +35,15 @@ public class BaseTestUIContractTest {
     private static final Path BASE_TEST_UI_SOURCE =
             AtfSourcePaths.mainJava(BaseTestUI.class);
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void cleanup() {
-        DriverManager.quitEngine();
-        UiInteractionTracker.clear();
-        ReportingManager.reset();
-        StepLogger.clear();
+        try {
+            DriverManager.quitEngine();
+        } finally {
+            UiInteractionTracker.clear();
+            ReportingManager.reset();
+            StepLogger.clear();
+        }
     }
 
     @Test
@@ -63,9 +71,14 @@ public class BaseTestUIContractTest {
         );
     }
 
-    @Test
+    @DataProvider(name = "shutdownOutcomes")
+    public Object[][] shutdownOutcomes() {
+        return new Object[][]{{"success"}, {"runtime failure"}, {"error"}};
+    }
+
+    @Test(dataProvider = "shutdownOutcomes")
     @AtfContractRef(AtfContractNarrativeIds.Contract.BASE_UI_RUNTIME_LIFECYCLE)
-    public void baseTestUiLifecycleHooksAreClassScopedAndDeterministic() throws Exception {
+    public void baseTestUiLifecycleHooksAreClassScopedAndDeterministic(String outcome) throws Exception {
         AtfContractSteps.ContractDetails contract = AtfContractSteps.contractDetailsFor(
                 getClass(),
                 "baseTestUiLifecycleHooksAreClassScopedAndDeterministic"
@@ -82,7 +95,40 @@ public class BaseTestUIContractTest {
         Assert.assertNotNull(afterClass, "tearDown must be @AfterClass");
         Assert.assertTrue(afterClass.alwaysRun(), "tearDown must always run");
 
-        AtfContractSteps.observed("setUp=@BeforeClass(alwaysRun=true) | tearDown=@AfterClass(alwaysRun=true)");
+        Throwable original = "success".equals(outcome) ? null
+                : "error".equals(outcome) ? new AssertionError("Controlled shutdown error")
+                : new IllegalStateException("Controlled shutdown failure");
+        AtomicInteger quitCalls = new AtomicInteger();
+        UIEngine engine = (UIEngine) Proxy.newProxyInstance(UIEngine.class.getClassLoader(),
+                new Class<?>[]{UIEngine.class}, (proxy, method, arguments) -> {
+                    if ("quit".equals(method.getName())) {
+                        quitCalls.incrementAndGet();
+                        if (original != null) throw original;
+                    }
+                    return null;
+                });
+        UiEngineThreadLocalTestSupport.setEngineForCurrentThread(engine);
+        UiInteractionTracker.markUiInteraction();
+        try {
+            BaseTestUI subject = new BaseTestUI() { };
+            if (original == null) {
+                subject.tearDown();
+            } else {
+                Throwable observed = Assert.expectThrows(original.getClass(), subject::tearDown);
+                Assert.assertSame(observed, original, "Teardown must preserve the exact shutdown failure");
+            }
+            Assert.assertEquals(quitCalls.get(), 1, "The owned engine is closed once");
+            Assert.assertFalse(DriverManager.hasActiveEngine(), "Engine state is removed after every outcome");
+            Assert.assertFalse(UiInteractionTracker.hasUiInteraction(), "Interaction state is removed after every outcome");
+            subject.tearDown();
+            Assert.assertEquals(quitCalls.get(), 1, "Repeated teardown does not close the removed engine again");
+        } finally {
+            UiEngineThreadLocalTestSupport.setEngineForCurrentThread(null);
+            UiInteractionTracker.clear();
+        }
+
+        AtfContractSteps.observed("Class-scoped alwaysRun hooks | shutdown=" + outcome
+                + " | engine and tracker cleared | original failure preserved | repeated teardown safe");
         AtfContractSteps.verdict(
                 "UI engine lifecycle is deterministic and class-scoped.",
                 contract.repairHint()

@@ -96,6 +96,20 @@ BaseTestUI gestionează metodele sesiunii la nivel de clasă. Setează motorul �
 de inițializare, nu după pornirea unei metode de test. Același cod de acțiuni și
 aserțiuni funcționează și cu [configurația Selenium](../atf-selenium/README.md#consumer-example).
 
+<a id="acquisition-failure-and-cleanup"></a>
+## Eșecul achiziției și curățarea
+
+Dacă lansarea, crearea contextului/paginii sau configurarea ferestrei eșuează,
+eliberează numai resursele achiziționate, în ordine inversă. Contextul persistent
+deține browserul; închide contextul și Playwright, apoi elimină profilul temporar.
+Păstrează eșecul original și cauzele distincte de curățare ca excepții suprimate.
+
+[Testul existent al furnizorului](src/test/java/com/ai/ui/core/engine/playwright/PlaywrightProviderTest.java)
+folosește o injecție de achiziție locală pachetului pentru succes, RuntimeException,
+Error și eșecuri de curățare, fără pornirea browserului. Închiderea normală păstrează
+primul eșec și continuă eliberarea celorlalte resurse. Terminarea proceselor reale
+își păstrează limita separată de dovezi native de browser.
+
 <a id="verification"></a>
 ## Verificare
 

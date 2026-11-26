@@ -61,6 +61,12 @@ Selecția implicită din rădăcină rulează verificările native ale bibliotec
 
 Folosește [rețeta bazei locale](Testing_Commands.md#local-baseline).
 
+Verificările UI locale existente includ acum închiderea sigură a clasei,
+validarea strictă a booleenilor/așteptării/motorului și rollback-ul achiziției pentru
+ambii furnizori. Colaboratorii injectați observă responsabilitatea resurselor și
+identitatea excepțiilor fără pornirea browserelor. Separă aceste rezultate de
+componentă de selecțiile existente pentru browser și aplicație.
+
 <a id="selective-checks"></a>
 ## Verificări selective
 

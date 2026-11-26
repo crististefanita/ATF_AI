@@ -255,6 +255,13 @@ completitudinea semantică și nu înlocuiesc acceptanța nativă a produsului.
 <a id="configuration-and-reporting-boundaries"></a>
 ### Limitele configurației și raportării
 
+Validarea UI respinge booleenii malformați și așteptările din afara intervalului
+`1..2147483` secunde întregi înaintea achiziției furnizorului. Cele șase opțiuni UI
+folosesc un cititor comun de booleeni; WaitUtils folosește cititorul validat de
+așteptare. Precedența cheii canonice și a celei vechi și valorile implicite valide
+rămân neschimbate. Vezi [contractul Core](../atf-core/README.md#validated-ui-configuration-and-cleanup).
+
+
 - MUST păstra un singur încărcător de configurație Core și folosi responsabilii opțiunilor sale tipizate.
 - MUST direcționa raportarea semantică a execuției prin StepLogger/ReportLogger.
 - MUST păstra importurile SDK Extent/Allure în atf-reporting și importurile SDK de browser
@@ -471,6 +478,13 @@ separat de rezultatul de afaceri.
 <a id="ui-lifecycle-failure-screenshots-and-final-state"></a>
 ### Ciclu UI, capturi la eșec și stare finală
 
+Închiderea clasei curăță starea interacțiunilor în `finally` după orice rezultat
+al închiderii motorului. Eșecurile achiziției eliberează numai resursele obținute,
+în ordine inversă, păstrând eșecul primar și cauzele distincte suprimate de curățare.
+Testele de componentă existente pentru bază și furnizori verifică aceste căi fără
+pornirea browserelor; acceptanța nativă și cea de produs rămân separate.
+
+
 ```mermaid
 sequenceDiagram
     participant TestNG
@@ -485,7 +499,8 @@ sequenceDiagram
     Listener->>Capture: solicită dovezi de eșec sau stare finală
     Capture->>Driver: capturează numai cu motor și logger active
     TestNG->>Base: după clasă, rulează întotdeauna
-    Base->>Driver: încearcă închiderea motorului, apoi curăță starea interacțiunilor
+    Base->>Driver: încearcă închiderea motorului
+    Base->>Base: finally curăță starea interacțiunilor
 ```
 
 BaseTestUI inițializează/închide motorul o dată pe clasă, cu închidere programată
@@ -493,13 +508,13 @@ BaseTestUI inițializează/închide motorul o dată pe clasă, cu închidere pro
 invocă gestionarul atașamentelor UI. ScreenshotManager atașează cel mult o dată pe
 invocare după o captură/atașare reușită; fără motor/logger active nu fabrică dovezi.
 
-Ultima săgeată descrie ordinea apelurilor de închidere. DriverManager își elimină
-referința la motor în finally dacă închiderea motorului aruncă o excepție; curățarea
-ulterioară a urmăririi interacțiunilor din BaseTestUI poate fi astfel ocolită.
-[Lacuna de curățare F-011 susținută de sursă](feedback/Behavior_And_Negative_Cases.md#f-011)
-rămâne deschisă; programarea întotdeauna nu demonstrează finalizarea fiecărei
-operații de curățare. Această limită a stării framework-ului este separată de
-obligația LD-11 privind curățarea datelor aplicației.
+Ultima săgeată încearcă închiderea; nota indică acea curățare independentă din
+finally. DriverManager elimină referința motorului, iar BaseTestUI curăță starea
+interacțiunilor chiar dacă quit aruncă o excepție. [Criteriul de componentă F-011](feedback/Behavior_And_Negative_Cases.md#f-011)
+verifică succesul, RuntimeException și Error, identitatea exactă a cauzei și
+repetarea închiderii. Programarea întotdeauna, singură, nu stabilește aceste
+garanții. Contractul stării framework-ului este separat de obligația LD-11 privind
+curățarea datelor aplicației și de acceptanța proceselor de browser.
 
 Captura la eșec depinde de configurație. Succesul eligibil poate captura și starea
 UI finală când capturile sunt activate, modul exclusiv-la-eșec este dezactivat și

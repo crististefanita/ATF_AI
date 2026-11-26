@@ -19,7 +19,10 @@ public abstract class BaseTestUI {
 
     @AfterClass(alwaysRun = true)
     public void tearDown() {
-        DriverManager.quitEngine();
-        UiInteractionTracker.clear();
+        try {
+            DriverManager.quitEngine();
+        } finally {
+            UiInteractionTracker.clear();
+        }
     }
 }

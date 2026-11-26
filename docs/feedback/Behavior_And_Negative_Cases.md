@@ -131,26 +131,26 @@ descrie implementarea și aserțiunea efective.
 - Responsabil: închiderea clasei de bază UI din Core și starea interacțiunilor deținută de fir.
 - Prioritate: 82, din impact/risc/urgență 85/80/75.
 - Calitate inițială: 66, din corectitudine/verificare/claritate 70/40/85.
-- Observație: revizia sursei
-  [BaseTestUI](../../atf-core/src/main/java/com/ai/ui/core/runtime/BaseTestUI.java)
-  arată că tearDown apelează DriverManager.quitEngine înainte de
-  UiInteractionTracker.clear. O excepție la închidere poate ocoli acel apel ulterior de ștergere.
-  [DriverManager](../../atf-core/src/main/java/com/ai/ui/core/runtime/DriverManager.java)
-  își elimină referința ENGINE în finally, ceea ce reprezintă un contract separat de curățare.
-  [BaseTestUIContractTest](../../atf-tests/src/test/java/com/ai/atf/core/support/base/BaseTestUIContractTest.java)
-  existent verifică punctele de integrare ale ciclului de viață/proprietatea surselor, nu această observație de eșec.
-- Limita dovezii: aceasta este o lacună a fluxului de control susținută de surse. Nicio execuție de componentă
-  din această revizie nu reproduce starea păstrată a urmăritorului și nu stabilește o scurgere la execuție.
-  Trecerea verificărilor de arhitectură sau Atlas nu poate transforma acea observație lipsă
-  într-o garanție verificată de închidere.
-- Următoarele dovezi necesare: un oracol pur de componentă, delimitat, care observă independent
-  starea urmăritorului de interacțiuni și proprietatea motorului când quit aruncă o excepție,
-  păstrând excepția originală. Aparține contractului existent al ciclului de viață al clasei de bază
-  UI, nu unui nou parcurs de produs/E2E sau unui emulator.
-- Acțiune curentă: păstrarea lacunei și a limitelor exacte ale surselor/oracolului în Atlas.
-  Această fază nu face nicio corecție Java de execuție în Core și nu închide elementul.
-- Stare: lacună OPEN din revizia surselor; TODO în registrul activ. O observație viitoare de
-  componentă delimitată și o corecție autorizată sunt necesare înainte de închidere.
+- Observație istorică: BaseTestUI închidea motorul înaintea curățării urmăritorului
+  de interacțiuni. Revizia originală se baza doar pe surse; blocul finally separat
+  din DriverManager elimina deja referința motorului.
+- Reproducere: contractul existent observă acum succesul, RuntimeException și
+  Error. Ambele cazuri de eșec pică pe implementarea anterioară: motorul este
+  eliminat, dar starea interacțiunilor rămâne. Identitatea excepției originale
+  este verificată independent. Referința inițială combinată păstrează 25 de cazuri,
+  cu 7 trecute și 18 eșuate, pentru ciclul de viață și configurație.
+- Corecție: [BaseTestUI](../../atf-core/src/main/java/com/ai/ui/core/runtime/BaseTestUI.java)
+  curăță starea interacțiunilor în finally. [Contractul existent](../../atf-tests/src/test/java/com/ai/atf/core/support/base/BaseTestUIContractTest.java)
+  verifică identitatea exactă a erorii, eliminarea motorului, starea curățată și
+  repetarea închiderii fără un al doilea apel quit.
+- Dovezi curente: selecția focalizată a reactorului a trecut 69/69 de cazuri.
+  Reactorul local complet EN/RO, documentația și verificările de mentenanță sunt
+  încă necesare.
+- Limita dovezii: observațiile controlate de componentă stabilesc aceste căi de
+  curățare. Nu stabilesc acceptanța proceselor de browser sau a site-ului real.
+  Capturile Atlas existente își păstrează constatarea și sursa originale.
+- Stare: IN PROGRESS până la acceptanța completă a ambelor ediții. Dovezile sunt în
+  `${ATF_WORK_ROOT}/reviews/20261126-ui-lifecycle-config`.
 
 <a id="verification-and-closure"></a>
 ## Verificare și închidere

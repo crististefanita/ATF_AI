@@ -49,6 +49,48 @@ un fișier explicit. Printre valorile implicite importante se numără `ui.engin
 `api.wait.timeout.seconds=10` și `reporting.engine=extent`.
 Implementările de browser și raportare sunt furnizate de modulele lor.
 
+<a id="validated-ui-configuration-and-cleanup"></a>
+## Configurație UI validată și curățare
+
+Opțiunile UI sunt validate înaintea achiziției resurselor furnizorului. Core deține
+cititorii comuni pentru booleeni și așteptare; adaptoarele primesc valori validate.
+Suprascrierile JVM, valorile implicite din classpath sau fișier explicit și
+fallback-ul vechi pentru așteptare își păstrează precedența existentă.
+
+| Intrare | Valori acceptate | Limita eșecului |
+|---|---|---|
+| Booleeni UI | `true` sau `false` după eliminarea spațiilor, fără diferență de majuscule; valoarea goală păstrează fallback-ul responsabil | Textul invalid identifică cheia și valoarea reale |
+| Așteptare configurată | `1..2147483` secunde întregi | Respinge zero, valori negative, malformate sau care depășesc reprezentarea în milisecunde |
+| Motor | `playwright`, `selenium` sau aliasul vechi `default` | Normalizează cu `Locale.ROOT` și respinge numele necunoscute înaintea achiziției |
+| Așteptare veche | `explicit.wait.seconds` când lipsește `ui.wait.timeout.seconds` | Aplică același interval și numește cheia selectată în diagnostic |
+
+Limita pentru booleeni acoperă headless, detaliile consolei, metadatele runtime și
+cele trei opțiuni de captură. Tratarea capturilor reutilizează același cititor.
+WaitUtils reutilizează cititorul validat de secunde; suprasarcinile cu Duration
+explicit își păstrează contractul separat. Normalizarea acceptată a zoom-ului rămâne neschimbată.
+
+```mermaid
+flowchart TB
+    Config["Rezolvarea și validarea opțiunilor UI"] --> Acquire["Achiziția resurselor furnizorului"]
+    Acquire --> Ready["Folosirea sesiunii deținute"]
+    Acquire -->|eșec| Rollback["Eliberarea în ordine inversă a resurselor achiziționate"]
+    Ready --> Close["Închiderea sesiunii deținute"]
+    Close --> Clear["Curățarea stării independente în finally"]
+    Rollback --> Cause["Păstrarea cauzei primare și a cauzelor distincte de curățare"]
+    Clear --> Cause
+```
+
+Săgețile descriu responsabilitatea lifecycle-ului. Validarea precede alocarea.
+Rollback-ul eliberează numai resursele achiziționate; închiderea la nivel de clasă
+curăță starea interacțiunilor chiar dacă motorul aruncă o excepție. Excepția
+originală rămâne primară, iar eșecurile distincte de curățare rămân dovezi suprimate.
+
+[Contractele existente pentru opțiuni UI](../atf-tests/src/test/java/com/ai/atf/ui/component/UiEngineRuntimeOptionsContractTest.java),
+[așteptare](../atf-tests/src/test/java/com/ai/atf/ui/component/WaitUtilsContractTest.java)
+și [lifecycle-ul de bază](../atf-tests/src/test/java/com/ai/atf/core/support/base/BaseTestUIContractTest.java)
+verifică aceste limite fără pornirea unui browser. Testele native ale furnizorilor
+injectează eșecuri de achiziție; nu demonstrează acceptanța unui site live.
+
 <a id="verification"></a>
 ## Verificare
 
@@ -59,7 +101,7 @@ Dintr-o copie izolată a reactorului:
 
 ```powershell
 mvn -B -ntp -pl atf-core -am test
-mvn -B -ntp -pl atf-tests -am "-Dtest=ConfigManagerFileContractTest,BaseTestAPIContractTest,BaseTestUIContractTest,StepLoggerContractTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
+mvn -B -ntp -pl atf-tests -am "-Dtest=ConfigManagerFileContractTest,BaseTestAPIContractTest,BaseTestUIContractTest,UiEngineRuntimeOptionsContractTest,WaitUtilsContractTest,StepLoggerContractTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
 ```
 
 </details>

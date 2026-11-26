@@ -66,6 +66,6 @@ public final class UiScreenshotFailureHandler
     }
 
     private boolean getBoolean(String key, boolean defaultValue) {
-        return Boolean.parseBoolean(ConfigManager.get(key, Boolean.toString(defaultValue)));
+        return ConfigManager.getBoolean(key, defaultValue);
     }
 }

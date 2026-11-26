@@ -17,6 +17,7 @@ import com.ai.ui.support.wait.WaitUtils;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+import org.testng.annotations.DataProvider;
 
 import java.time.Duration;
 import java.util.ArrayDeque;
@@ -27,6 +28,26 @@ import java.util.concurrent.atomic.AtomicInteger;
 @AtfContractRef(AtfContractNarrativeIds.Contract.WAIT_UTILS_CONTRACT_TEST_CLASS)
 @Listeners(TestListener.class)
 public class WaitUtilsContractTest {
+
+    @DataProvider(name = "invalidConfiguredWaits")
+    public Object[][] invalidConfiguredWaits() {
+        return new Object[][]{{"-1"}, {"0"}, {"2147484"}, {"bad"}};
+    }
+
+    @Test(dataProvider = "invalidConfiguredWaits")
+    public void configuredWaitsRejectInvalidBudgetsBeforeObservingTheCondition(String value) {
+        AtomicInteger observations = new AtomicInteger();
+        try (AtfRuntimeConfigSandbox ignored = AtfRuntimeConfigSandbox.open()
+                .setConfigAndSystemProperty(UiRuntimeOptions.UI_WAIT_TIMEOUT_SECONDS_KEY, value)) {
+            IllegalStateException failure = Assert.expectThrows(IllegalStateException.class, () ->
+                    WaitUtils.waitForCondition("Controlled condition", () -> {
+                        observations.incrementAndGet();
+                        return true;
+                    }, "Condition was not met"));
+            Assert.assertTrue(failure.getMessage().contains(UiRuntimeOptions.UI_WAIT_TIMEOUT_SECONDS_KEY));
+            Assert.assertEquals(observations.get(), 0, "Invalid configuration is rejected before the first observation");
+        }
+    }
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
