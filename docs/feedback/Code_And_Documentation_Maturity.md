@@ -274,7 +274,7 @@ the 2026-11-26 source review at 14daf233e8039049cf6d8ba2db7421fb48c4c5be.
 | Axis | Weight | Baseline | Current | Evidence and remaining limit |
 |---|---:|---:|---:|---|
 | Architecture and ownership | 15 | 92 | 92 | Same five modules; no new runtime class or product feature |
-| Maintainability | 10 | 88 | 89 | Shared wait reader; the large documentation helper still mixes concerns |
+| Maintainability | 10 | 88 | 91 | Shared wait reader; six focused documentation-test owners are registered in both suites |
 | Configuration | 10 | 82 | 93 | Strict booleans, bounded waits and locale-independent engine validation |
 | Failure lifecycle | 10 | 84 | 94 | Exact primary identity, finally cleanup and acquired-resource rollback |
 | Code/test governance | 15 | 91 | 94 | Existing class selection plus AST-pinned method identities; controlled removal/addition findings |
@@ -282,7 +282,7 @@ the 2026-11-26 source review at 14daf233e8039049cf6d8ba2db7421fb48c4c5be.
 | Documentation and editions | 15 | 94 | 94 | Maintained EN/RO contracts, diagrams and paired Living formats |
 | Feedback and provenance | 10 | 93 | 95 | G-016 baseline and delivered quality remain separate; paired evidence and limits recorded |
 
-Weighted maturity increases from 89.75 to 92.90, rounded from 90 to 93.
+Weighted maturity increases from 89.75 to 93.10, rounded from 90 to 93.
 Neither result is a coverage percentage or a complete-runtime guarantee.
 
 ## Same-axis ATF_AI and atf-j1 review
@@ -296,24 +296,79 @@ or regraded in this repair.
 | Axis | Weight | ATF_AI | atf-j1 | Difference |
 |---|---:|---:|---:|---:|
 | Architecture and ownership | 15 | 92 | 94 | -2 |
-| Maintainability | 10 | 89 | 90 | -1 |
+| Maintainability | 10 | 91 | 90 | +1 |
 | Configuration | 10 | 93 | 90 | +3 |
 | Failure lifecycle | 10 | 94 | 93 | +1 |
 | Code/test governance | 15 | 94 | 89 | +5 |
 | Demonstrated test stability | 15 | 92 | 80 | +12 |
 | Documentation and editions | 15 | 94 | 91 | +3 |
 | Feedback and provenance | 10 | 95 | 87 | +8 |
-| **Weighted score** | **100** | **92.90** | **89.10** | **+3.80** |
+| **Weighted score** | **100** | **93.10** | **89.10** | **+4.00** |
 
-ATF_AI leads this scoped comparison in six of eight axes after closing G-016.
-atf-j1 retains a two-point advantage in architecture and a one-point advantage
-in maintainability. The governance and test-stability differences reflect the
+ATF_AI leads this scoped comparison in seven of eight axes after closing G-018;
+maintainability is one point higher. atf-j1 retains a two-point advantage in
+architecture. The governance and test-stability differences reflect the
 captured source evidence and execution receipts, not a claim that the J1 tests
 were rerun here.
 
 G-016's method-identity loss control is now verified within its stated source
-boundary. The next surgical priority is to reduce responsibility mixing in the
-1293-line documentation governance helper while preserving its negative
-controls and repair hints. This is a maintainability observation, not a failing
-execution. No new product journey is required. G-014 remains an external
-J1-owned TODO.
+boundary. G-018 below closes the next recorded maintainability observation.
+No new product journey is required. G-014 remains an external J1-owned TODO.
+
+<a id="g-018"></a>
+## G-018: Focused documentation-test owners with explicit suite registration
+
+Status: VERIFIED. Owner: ATF_AI documentation-test governance.
+Priority 70; baseline quality 62. Priority inputs: impact 70, exposure 75,
+urgency 60. Quality inputs: correctness 75, verification 45, clarity 60.
+The baseline was one 1,297-line `DocumentationGovernanceTest` containing six
+distinct documentation-review domains, shared fixture setup and the public
+Maven selector. This is a test-maintenance concern; no product behavior failed.
+
+The existing methods now live in six focused TestNG owners: root README,
+English/Romanian editions, living principles, Markdown structure, feedback, and
+HTML publication/configuration. `DocumentationGovernanceTest` remains the
+diagnostic-owner check; it does not generate tests implicitly. Every focused
+owner appears exactly once in both maintained suites, and documented Maven
+selections enumerate the owners explicitly. Shared fixtures and assertions
+have one package-local owner. The reviewed method inventory still contains 573
+executable methods; 60 documentation method identities were re-pinned to their
+new owners, with no method added or removed.
+
+In the same-axis review, this evidence raises ATF_AI maintainability by one point,
+from 90 to 91: six review domains now have focused owners and explicit suite
+entries, while all 573 existing methods remain accounted for. This does not
+claim broader product coverage.
+
+```mermaid
+flowchart LR
+    Selection["Explicit Maven selection"] --> Root["Root README"]
+    Selection --> Editions["EN / RO editions"]
+    Selection --> Living["Living principles"]
+    Selection --> Structure["Markdown contracts"]
+    Selection --> Feedback["Feedback rules"]
+    Selection --> Publication["HTML and command rules"]
+    Local["Local and aggregate suites"] --> Root
+    Local --> Editions
+    Local --> Living
+    Local --> Structure
+    Local --> Feedback
+    Local --> Publication
+    Root -. uses .-> Fixtures["Shared fixtures and assertions"]
+    Editions -. uses .-> Fixtures
+    Living -. uses .-> Fixtures
+    Structure -. uses .-> Fixtures
+    Feedback -. uses .-> Fixtures
+    Publication -. uses .-> Fixtures
+```
+
+Solid arrows show the explicit Maven or suite selection; dotted arrows show
+shared fixture use. Diagnostic recheck commands name the same owners directly.
+No E2E method, emulator, runtime feature or new test method was added.
+
+Delivered quality: 92 (correctness 94 / verification 90 / clarity 92).
+The paired documentation, readability and source-language selection passed
+205/205 cases per edition. The exact suite-ownership and method-inventory
+checks passed 2/2 per edition. This validates test ownership, explicit
+selection and method preservation; it does not claim improved product coverage
+or establish atf-j1 execution evidence.

@@ -72,7 +72,7 @@ They are separate QA executions, not additional reactor cases.
 
 - Owner: existing
   [documentation rules](../../atf-tests/src/test/java/com/ai/atf/governance/MarkdownDocumentationRules.java)
-  and [documentation regressions](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationGovernanceTest.java),
+  and [focused documentation-test owners](../../docs/governance/README.md),
   stable guides and the canonical Living Architecture Markdown/HTML pair.
 - Original observation: fenced Maven commands were not tied to real profile/module/suite/test
   selections, and a changed documented default could remain green after simply

@@ -218,7 +218,10 @@ final class GovernanceFiles {
     private static Map<String, DiagnosticHelp> diagnosticHelp() {
         Map<String, DiagnosticHelp> result = new LinkedHashMap<>();
         String architecture = "FrameworkArchitectureGovernanceTest";
-        String documentation = "DocumentationGovernanceTest";
+        String documentation = String.join(",", "DocumentationGovernanceTest",
+                "DocumentationRootGovernanceTest", "DocumentationEditionGovernanceTest",
+                "LivingPrinciplesGovernanceTest", "DocumentationStructureGovernanceTest",
+                "FeedbackGovernanceTest", "DocumentationPublicationGovernanceTest");
         String policy = "docs/governance/Code_And_Documentation_Policy.md";
         String structure = "docs/Architecture.md";
         help(result, "SUITE-DISABLED",

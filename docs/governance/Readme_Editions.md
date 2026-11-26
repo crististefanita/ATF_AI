@@ -57,8 +57,12 @@ source state and does not establish semantic quality by itself.
 
 ## Existing executable checks
 
-DocumentationGovernanceTest protects links, structure, examples, defaults,
-commands, anchors, topology and technical facts for every maintained Markdown.
+The explicit documentation-test owners protect links, structure, examples,
+defaults, commands, anchors, topology and technical facts for every maintained
+Markdown. The root README, bilingual editions, Living principles, Markdown
+structure, feedback and publication checks are separate TestNG classes listed
+in the local and aggregate suites. `DocumentationGovernanceTest` checks that
+diagnostic owners and their recheck selections remain executable.
 The Living pair additionally checks language, section order, source digest and
 principle rows. Non-document source must remain identical between editions.
 
@@ -69,7 +73,7 @@ From a disposable reactor root, select an existing peer snapshot:
 
 ```powershell
 $peerRoot = (Resolve-Path -LiteralPath $env:ATF_DOCS_PEER_ROOT -ErrorAction Stop).Path
-mvn -B -ntp -pl atf-tests -am "-Dtest=DocumentationGovernanceTest,DocumentationReadabilityRulesTest" "-Dsurefire.failIfNoSpecifiedTests=false" "-Datf.docs.peer.root=$peerRoot" test
+mvn -B -ntp -pl atf-tests -am "-Dtest=DocumentationGovernanceTest,DocumentationRootGovernanceTest,DocumentationEditionGovernanceTest,LivingPrinciplesGovernanceTest,DocumentationStructureGovernanceTest,FeedbackGovernanceTest,DocumentationPublicationGovernanceTest,DocumentationReadabilityRulesTest" "-Dsurefire.failIfNoSpecifiedTests=false" "-Datf.docs.peer.root=$peerRoot" test
 ```
 
 </details>

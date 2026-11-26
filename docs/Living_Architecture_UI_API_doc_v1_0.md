@@ -230,7 +230,7 @@ can pass its test only when that expected rejection is independently observed.
 An unexpected browser, action, assertion or configuration failure retains its
 actual failed or skipped result; recording contract metadata cannot certify it.
 
-The [documentation governance owner](../atf-tests/src/test/java/com/ai/atf/governance/DocumentationGovernanceTest.java)
+The [living-principles governance owner](../atf-tests/src/test/java/com/ai/atf/governance/LivingPrinciplesGovernanceTest.java)
 checks the twelve IDs, real source/check routes and bounded states. Missing or
 duplicate principles and promotion of the declared cleanup gap are diagnostic
 failures. These structural guards do not establish semantic completeness or

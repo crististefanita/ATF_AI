@@ -71,6 +71,7 @@ Retained baseline component scores:
 | D-008 | 90 / 90 / 90 | 60 / 45 / 70 | Live has 44 report and 14 Atlas captures without a bounded selection or layout guard |
 | R-001 | 90 / 90 / 90 | 60 / 40 / 65 | Retained UI methods lack per-engine native proof; registration and sensitive-input audits need controls |
 | D-009 | 90 / 80 / 80 | 85 / 65 / 80 | Markdown structure, code/numeric parity and meaning drift lacked owned controls |
+| G-018 | 70 / 75 / 60 | 75 / 45 / 60 | One 1297-line documentation test class mixed six review domains and selector/fixture ownership |
 
 Historical evidence locators use `${ATF_WORK_ROOT}/...`, with the external
 workspace selected as described in [Development](../Development.md).
@@ -87,6 +88,7 @@ normalizing their presentation does not claim a fresh execution.
 | F-013 | Partial acquisition rolls back without masking the original cause; delivered quality 93 (94/92/93) | Existing Playwright 16 and Selenium 12 provider cases; [evidence](Code_And_Documentation_Maturity.md#f-013) |
 | D-011 | Atlas semantic blocks, adjacent legends, bounded columns and native table balance; delivered quality 93 (94/92/92) | 203/203 Node per edition, EN 315/315 and RO 315/315 existing governance; [evidence and limits](Atlas_Depth_And_Assessment.md#d-011) |
 | G-017 | Disabled selected tests and an unbounded console worker are now rejected; quality 93 (94/92/92) | Final local-02 EN/RO 690/690 and 690/690; original failed attempt retained; [evidence](Code_And_Documentation_Maturity.md#g-017) |
+| G-018 | Six focused owners are registered explicitly in both maintained suites; quality 92 (94/90/92) | EN/RO docs/source 205/205; suite and method inventory 2/2; 573 methods, 60 owners re-pinned; [evidence](Code_And_Documentation_Maturity.md#g-018) |
 | D-010 | Strategy, closed command recipes and all 51 document reviews are governed; delivered quality 92 (94/90/92) | Paired native controls, 182 captured Node cases per edition and 32 desktop records/56 SVG/98 captures; [evidence and limits](Code_And_Documentation_Maturity.md#d-010) |
 | D-009 | All Markdown has structural/editorial guards; README facts and Romanian meaning are checked separately | 250 governance cases per edition, 182 Node cases, semantic review of all 21 README pairs and inspected changed diagrams; [evidence](Documentation_And_Translation_Review.md#d-009) |
 | R-001 | Living principles, expected/actual checks, credential masking and native proof for the same retained methods | Playwright/Selenium 16/16 each; paired EN/RO runs and 181 Node cases; failed attempts preserved; [evidence](Retained_UI_Auditability.md#r-001) |

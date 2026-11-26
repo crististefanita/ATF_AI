@@ -22,9 +22,9 @@ described in [Architecture](../docs/Architecture.md).
 ## Ownership
 
 The framework documentation owner maintains the map; each capability's source
-and test owner remains responsible for its contract and acceptance. Existing
-[documentation governance](../atf-tests/src/test/java/com/ai/atf/governance/DocumentationGovernanceTest.java)
-protects the maintained documentation surface.
+and test owner remains responsible for its contract and acceptance. The
+[governance index](../docs/governance/README.md) routes maintained documents to
+their focused test owners and explains their suite registration.
 
 ```mermaid
 flowchart TB
@@ -151,7 +151,7 @@ Run from an isolated reactor copy, following [Development](../docs/Development.m
 <summary>Run Verification commands</summary>
 
 ```powershell
-mvn -B -ntp -pl atf-tests -am "-Dtest=DocumentationGovernanceTest,FrameworkArchitectureGovernanceTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
+mvn -B -ntp -pl atf-tests -am "-Dtest=FrameworkArchitectureGovernanceTest,DocumentationGovernanceTest,DocumentationRootGovernanceTest,DocumentationEditionGovernanceTest,LivingPrinciplesGovernanceTest,DocumentationStructureGovernanceTest,FeedbackGovernanceTest,DocumentationPublicationGovernanceTest,DocumentationReadabilityRulesTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
 ```
 
 </details>

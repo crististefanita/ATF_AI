@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="atf-source" content="Living_Architecture_UI_API_doc_v1_0.md">
-<meta name="atf-source-sha256" content="28372cb3eeced7cc1b7a44c9e579461d901f3c1193028ec791a881f9f962e70e">
+<meta name="atf-source-sha256" content="2fac43b5332fc42e5a1fd2a50aedb29bfd5da69ee78e03e3defb21a9ba23fdc5">
 <title>Living Architecture (UI + API)</title>
 <style>
   :root {
@@ -317,7 +317,7 @@ console.details.enabled=true</code></pre>
 </tbody></table></div>
 <p>For each selected UI scenario, the action step records intent, locator and the reportable input; password/secret-labelled values are represented by <code class="inline">[REDACTED]</code> while the original value still reaches the browser. This bounded classification does not inspect arbitrary application fields or sanitize SDK exception text. A final artifact review must check the actual generated evidence for unintended sensitive values.</p>
 <p>The validation step states the expectation, reads the observed value and owns the assertion and terminal PASS/FAIL. Expected negative application behavior can pass its test only when that expected rejection is independently observed. An unexpected browser, action, assertion or configuration failure retains its actual failed or skipped result; recording contract metadata cannot certify it.</p>
-<p>The <a href="../atf-tests/src/test/java/com/ai/atf/governance/DocumentationGovernanceTest.java">documentation governance owner</a> checks the twelve IDs, real source/check routes and bounded states. Missing or duplicate principles and promotion of the declared cleanup gap are diagnostic failures. These structural guards do not establish semantic completeness or replace native product acceptance.</p>
+<p>The <a href="../atf-tests/src/test/java/com/ai/atf/governance/LivingPrinciplesGovernanceTest.java">living-principles governance owner</a> checks the twelve IDs, real source/check routes and bounded states. Missing or duplicate principles and promotion of the declared cleanup gap are diagnostic failures. These structural guards do not establish semantic completeness or replace native product acceptance.</p>
 <h3 id="configuration-boundary">Configuration and reporting boundaries</h3>
 <p>UI runtime validation rejects malformed boolean values and waits outside <code class="inline">1..2147483</code> whole seconds before provider acquisition. The six UI flags share one boolean reader; WaitUtils shares the validated wait reader. Canonical and legacy wait precedence and valid defaults remain unchanged. See the <a href="../atf-core/README.md#validated-ui-configuration-and-cleanup">Core configuration contract</a>.</p>
 <ul>

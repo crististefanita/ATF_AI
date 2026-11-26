@@ -115,15 +115,15 @@ exemption. New external-language cases need explicit owner review.
 The executable owner is
 [JavaSourceScannerTest](../../atf-tests/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java),
 including repository inspection and deliberate failing comment/name/message cases.
-[DocumentationGovernanceTest](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationGovernanceTest.java)
-also protects this mandatory requirement, README diagrams and compilable consumer
-examples. From an isolated reactor copy:
+The documentation-test owners protect this mandatory requirement, README diagrams
+and compilable consumer examples. The owners are listed explicitly in the local
+and aggregate TestNG suites. From an isolated reactor copy:
 
 <details>
 <summary>Run English source and comments commands</summary>
 
 ```powershell
-mvn -B -ntp -pl atf-tests -am "-Dtest=JavaSourceScannerTest,DocumentationGovernanceTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
+mvn -B -ntp -pl atf-tests -am "-Dtest=JavaSourceScannerTest,DocumentationGovernanceTest,DocumentationRootGovernanceTest,DocumentationEditionGovernanceTest,LivingPrinciplesGovernanceTest,DocumentationStructureGovernanceTest,FeedbackGovernanceTest,DocumentationPublicationGovernanceTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
 ```
 
 </details>
