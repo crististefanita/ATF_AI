@@ -90,6 +90,36 @@ public class PlaywrightProviderTest {
             session.close();
             Assert.assertEquals(ports.closed, List.of("context", "browser", "playwright"));
         }
+        for (boolean headless : new boolean[]{true, false}) {
+            for (boolean fullscreen : new boolean[]{true, false}) {
+                for (int zoom : new int[]{100, 67}) {
+                    Ports configured = new Ports("none", null, null, null, null);
+                    try (AtfRuntimeConfigSandbox ignored = options(!headless)) {
+                        UIWindowConfiguration window = fullscreen
+                                ? UIWindowConfiguration.fullscreen(800, 600, zoom)
+                                : UIWindowConfiguration.customSize(800, 600, zoom);
+                        PlaywrightBrowserSession session = new PlaywrightBrowserSession(
+                                window, UiRuntimeOptions.load(), () -> configured.playwright);
+                        boolean persistent = !headless && zoom != 100;
+                        if (persistent) {
+                            Assert.assertEquals(configured.persistentOptions.get().headless, Boolean.FALSE);
+                            Assert.assertNull(configured.launchOptions.get(), "Persistent setup must not launch a second browser");
+                        } else {
+                            Assert.assertEquals(configured.launchOptions.get().headless, Boolean.valueOf(headless));
+                            Assert.assertNull(configured.persistentOptions.get());
+                        }
+                        Assert.assertEquals(configured.viewports.size(), fullscreen && !headless ? 0 : 1,
+                                "Only headed fullscreen leaves viewport sizing to the browser");
+                        if (!configured.viewports.isEmpty()) Assert.assertEquals(configured.viewports.get(0), List.of(800, 600));
+                        session.close();
+                        Assert.assertEquals(configured.closed, persistent
+                                ? List.of("context", "playwright") : List.of("context", "browser", "playwright"));
+                        if (persistent) Assert.assertFalse(Files.exists(configured.profile.get()),
+                                "Closing the configured persistent session removes its temporary profile");
+                    }
+                }
+            }
+        }
     }
 
     @Test
@@ -119,6 +149,9 @@ public class PlaywrightProviderTest {
         private final Throwable primary;
         private final List<String> closed = new ArrayList<>();
         private final AtomicReference<Path> profile = new AtomicReference<>();
+        private final AtomicReference<BrowserType.LaunchOptions> launchOptions = new AtomicReference<>();
+        private final AtomicReference<BrowserType.LaunchPersistentContextOptions> persistentOptions = new AtomicReference<>();
+        private final List<List<Integer>> viewports = new ArrayList<>();
         private final Page page;
         private final Playwright playwright;
 
@@ -128,7 +161,9 @@ public class PlaywrightProviderTest {
             this.primary = primary;
             AtomicBoolean pageCreated = new AtomicBoolean();
             page = port(Page.class, (proxy, method, args) -> {
-                if ("setViewportSize".equals(method.getName())) failAt("size");
+                if ("setViewportSize".equals(method.getName())) {
+                    failAt("size"); viewports.add(List.of((Integer) args[0], (Integer) args[1]));
+                }
                 return null;
             });
             BrowserContext context = port(BrowserContext.class, (proxy, method, args) -> {
@@ -147,9 +182,12 @@ public class PlaywrightProviderTest {
                 return null;
             });
             BrowserType type = port(BrowserType.class, (proxy, method, args) -> {
-                if ("launch".equals(method.getName())) { failAt("launch"); return browser; }
+                if ("launch".equals(method.getName())) {
+                    launchOptions.set((BrowserType.LaunchOptions) args[0]); failAt("launch"); return browser;
+                }
                 if ("launchPersistentContext".equals(method.getName())) {
-                    profile.set((Path) args[0]); return context;
+                    profile.set((Path) args[0]);
+                    persistentOptions.set((BrowserType.LaunchPersistentContextOptions) args[1]); return context;
                 }
                 return null;
             });

@@ -195,6 +195,58 @@ rendering verifies these bounds at 1440 and 900 CSS px.
 
 </details>
 
+## Partial facet refinement
+
+`ATLAS-REFINEMENT-001: Compare every original partial facet with the preserved baseline audit, retain its original scope and limits, record the investigated question and decision, and require additional owned implementation and independent oracle fragments before promotion; scope deletion or recycled receipts cannot count as progress.`
+
+The profile preserves the previous dossier as a separately verified document.
+Review compares all seven dimensions of every unit, then requires a decision
+for every previously PARTIAL facet. Difficult questions cannot disappear through
+deleted rows or rewritten original boundaries.
+
+| Input | Required decision | Retained boundary |
+|---|---|---|
+| Previous scope | Concrete question and new observation | The original scope remains included |
+| Additional fragments | Owned implementation; independent oracle for promotion | Repeating an old receipt is not progress |
+| Configuration | Value, application time and observed choices | An SDK command does not certify pixels or every operating system |
+| Information | Origin, transformation, result and refusal | Distinguish derived totals from manually supplied fields |
+| Verdict | Bounded REVIEWED or explained PARTIAL | No inferred external acceptance |
+
+Understanding a limit does not automatically repair implementation. Preserve
+absent application-data cleanup and visual or environmental unknowns wherever
+independent evidence remains insufficient.
+
+## Source graph quality and archive adaptation
+
+`ATLAS-DIAGRAM-001: Recover the archived shared visual grammar through source-specific readable nodes, complete relationship labels and arrowheads, horizontal dependency direction, compact supporting graphs, closed local bullet legends and honest boundary cues; compare the actual native graph with source endpoints and reject overlaps, clipping, missing cues and generic label substitution.`
+
+The archive provides principles; the analyzed project determines meaning.
+SOURCE_GRAPH_V1 retains every relationship and its complete label. Longer
+explanations belong in the legend; text is neither shrunk nor replaced by “observe”.
+
+| Archived principle | Current application | Required adaptation |
+|---|---|---|
+| Shared primitives and CSS | Consistent box, type and arrow scale | One HTML with embedded styling |
+| Actor, intent, object, outcome | Source-specific nodes and conditions | A framework's own value is the subject when that framework is analyzed |
+| Visible hierarchy and frontier | Emphasized operation; a distinct boundary outline | An observed refusal is not automatically a future frontier |
+| Structured local legends | Concise closed bullets immediately below each graph | Keep essays outside the boxes |
+| Traceable proof | Exact references in the adjacent audit | Commands and raw source stay outside the HTML |
+
+Dependency maps point from consumer to provider; position does not promise
+execution order. Cycles and long relationships receive separate routes.
+The reading model remains distinct from architecture and branched behavior.
+
+<details>
+<summary>Component and rendered verification</summary>
+
+- The [graph component](../tools/atlas-reader-graphs.mjs) retains identities, direction and labels, including cycles.
+- [Controls](../tools/atlas-reader-graphs.test.mjs) refuse template-only nodes and generic relationships; long text is preserved or explicitly refused.
+- [Native calibration](../tools/atlas-calibration.mjs) compares actual text and endpoints, arrowheads, visible outlines and overlaps.
+- Captures at 1440 and 900 px bind the HTML, audit and source identities. A stale screenshot or passing metadata cannot qualify current appearance.
+- Historical language badges, internal technical strips and interactive commands do not override the current reader requirements.
+
+</details>
+
 ## Historical contract and retained provenance
 
 The contract below describes renderers 1–4 and preserves the exact archival

@@ -951,6 +951,45 @@ Delivered quality 95 (correctness 96 / verification 95 / clarity 95).
 - Native captures at 1440 and 900 px confirm a 58 px header starting 16 px from the top, with a 20 px font. The guard caught the initial 44 px offset; the repair removes inherited padding while retaining the 24 px limit.
 - Owned hints and negative controls refuse oversized identity, impossible geometry, clipped text and redundant language badges. Other project titles need their own width checks.
 
+<a id="d-018"></a>
+## D-018: Partial facet refinement
+
+Status: VERIFIED within the declared review scope. Owner: Atlas governance.
+Priority 87 (impact 90 / exposure 85 / urgency 80).
+Baseline quality 91 (correctness 90 / verification 90 / clarity 93).
+
+- Ten partial facets have concrete information, setup and behavior questions. Narrowing the scope alone cannot justify promotion.
+- Review live operations, independent oracles and configuration choices; preserve original boundaries and the actual verdict of every check.
+- Acceptance needs a verifiable previous dossier, a decision for every facet and negative controls with owned repair guidance. No new application E2E, emulator or runtime Java.
+
+Delivered quality 93 (correctness 93 / verification 93 / clarity 94).
+
+- All ten originally PARTIAL facets have investigated questions, observations and additional selected fragments. Six now have a bounded REVIEWED scope; four remain PARTIAL. Total: 38 REVIEWED / 4 PARTIAL, without claiming project-wide qualification.
+- Existing tests inspect eight Playwright and four Selenium combinations through SDK commands, compatibility configuration, observer caching and derived versus manual summary counts. These checks start neither a product application nor a product browser.
+- Information in both browser integrations and application behavior/data remain partial. Source-only oracles are not presented as execution; absent application-data deletion remains explicit.
+- Governance compares the original dossier, requires every decision, retains original scope/limits and refuses recycled or renamed fragments as progress.
+- The focused run retains the real EN/RO ordering failure for two new sections. Sections and the historical anchor are aligned; both responsible checks pass separately. Final qualification and publication have their own receipts.
+
+Evidence: `${ATF_WORK_ROOT}/reviews/facet-closure-20261127`.
+
+<a id="d-019"></a>
+## D-019: Source-calibrated diagram quality
+
+Status: VERIFIED within the declared review scope. Owner: Atlas presentation.
+Priority 86 (impact 88 / exposure 85 / urgency 82).
+Baseline quality 83 (correctness 85 / verification 78 / clarity 85).
+
+- Archived requirements call for common primitives, labeled relationships, visual hierarchy, local legends and explicit boundaries. The current graph replaces long labels with “observe”, losing branch meaning.
+- Recover main_mcp principles adapted to the analyzed project and current English audience, keeping construction details outside the HTML.
+- Acceptance needs component controls for relationships and routing, native graph/source comparison, concise legends and no overlapping or clipped text.
+
+Delivered quality 95 (correctness 96 / verification 94 / clarity 95).
+
+- Recovered rules cover shared primitives, consistent scale, source-specific relationships, hierarchy and closed local legends. Adaptation retains the English audience and external technical proof.
+- Complete relationship text survives; behavior maps use actual conditions and dependencies retain direction. Long and cyclic relationships have separate routing lanes rather than an invented linear sequence.
+- Native prototype captures at 1440/900 pass comparison of all 15 graphs with source and checks for overlaps, clipping, arrowheads and visible outlines. Diagnostics identify the observed graph and relationship/node.
+- Dashed outlines identify a boundary or refusal, not a failed test. Final rendering and the controlled counterexample must remain bound to the actual published bytes.
+
 <a id="current-assessment"></a>
 ## Current ATF AI assessment
 
@@ -969,7 +1008,7 @@ C means correctness, V verification and Cl clarity. Each input and result uses
 |---|---|---:|
 | Code and architecture | 94 / 93 / 92 | 93 |
 | Documentation and editions | 94 / 93 / 94 | 94 |
-| Atlas and RAG | 95 / 95 / 93 | 94 |
+| Atlas and RAG | 95 / 95 / 94 | 95 |
 | Feedback lifecycle | 95 / 93 / 94 | 94 |
 | Code and test governance | 95 / 95 / 94 | 95 |
 | Existing-test stability | 95 / 95 / 94 | 95 |
@@ -996,8 +1035,8 @@ C means correctness, V verification and Cl clarity. Each input and result uses
 
 </details>
 
-The retrieval review validates 21 knowledge records, 18 mandatory policies and
-three pinned archived blobs. Its declared scope is deterministic lexical policy
+The retrieval review validates 22 knowledge records, 20 mandatory policies and
+five pinned archived blobs. Its declared scope is deterministic lexical policy
 context; semantic recall remains NOT_CLAIMED. New Atlas generation or application
 acceptance is not inferred from these checks. Source size and test counts identify
 scope; the declared review inputs determine these scores.

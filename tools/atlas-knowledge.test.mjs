@@ -24,7 +24,7 @@ test('the maintained knowledge corpus has complete mandatory policy and exact cu
 });
 
 test('archived provenance verifies actual pinned Git bytes and useful excerpts without network access',()=>{
-  const result=verifyAtlasKnowledgeArchive();assert.equal(result.status,'PASSED');assert.equal(result.archivedBlobs,3);
+  const result=verifyAtlasKnowledgeArchive();assert.equal(result.status,'PASSED');assert.equal(result.archivedBlobs,5);
   assert.match(result.scope,/PINNED_ARCHIVE_BLOB_AND_EXCERPT_IDENTITY/);
 });
 
@@ -169,4 +169,9 @@ test('every retrieval keeps native artifact calibration and actual source compar
 
 test('semantic qualification and compact identity policy cannot be evicted by query ranking',()=>{
  const r=retrieveAtlasKnowledge({query:'unrelated topic',limit:0}),rule=r.records.find(x=>x.id==='KB-SEMANTIC-FACETS');assert.equal(rule.mandatory,true);for(const value of ['SEMANTIC_FACETS_V1','independent existing oracles','original testcase identities','partial scopes','compact Atlas/project identity'])assert.ok(rule.requirement.includes(value));const changed=raw();changed.records.find(x=>x.id===rule.id).mandatory=false;expectKnowledgeFailure(()=>validateAtlasKnowledge(changed));
+});
+
+test('refinement and archived graph quality remain mandatory for unrelated retrieval',()=>{
+ const receipt=retrieveAtlasKnowledge({query:'unrelated topic',limit:0});for(const id of ['KB-FACET-REFINEMENT','KB-GRAPH-READABILITY']){assert.ok(receipt.mandatoryIds.includes(id));assert.ok(receipt.selectedIds.includes(id));const changed=raw();changed.records.find(r=>r.id===id).mandatory=false;expectKnowledgeFailure(()=>validateAtlasKnowledge(changed));}
+ const graph=receipt.records.find(r=>r.id==='KB-GRAPH-READABILITY');assert.ok(graph.sources.some(s=>s.path.endsWith('graph-style-primitives.html')));assert.ok(graph.sources.some(s=>s.path.endsWith('AtlasGraphRuleCatalog.java')));assert.match(graph.requirement,/SOURCE_GRAPH_V1/);assert.match(receipt.records.find(r=>r.id==='KB-FACET-REFINEMENT').requirement,/recycled old receipts/);
 });

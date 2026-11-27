@@ -88,6 +88,17 @@ public class ReportingManagerSessionContractTest {
             Assert.assertSame(((CompositeReportLogger) active).primary(), logger,
                     "The observer must remain the primary logger in mirror mode.");
         }
+        for (String value : java.util.List.of("false", "", "true ", "unsupported")) {
+            try (AtfRuntimeConfigSandbox ignored = AtfRuntimeConfigSandbox.open()
+                    .setSystemProperty(ReportingConfigKeys.EXTENT_MIRROR_ENABLED, value)) {
+                ReportingManager.reset();
+                RecordingLogger direct = new RecordingLogger();
+                ReportingManager.setLoggerForTests(direct);
+                Assert.assertSame(ReportingManager.tryGetLogger(), direct,
+                        "The compatibility mirror uses Boolean.parseBoolean; unsupported or padded values disable mirroring");
+                Assert.assertSame(ReportingManager.testLoggerForTests(), direct);
+            }
+        }
     }
 
     @Test

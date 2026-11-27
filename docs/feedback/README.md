@@ -71,6 +71,8 @@ Retained baseline component scores:
 
 | ID | Impact / risk / urgency | Correctness / verification / clarity | Evidence scope |
 |---|---|---|---|
+| D-018 | 90 / 85 / 80 | 90 / 90 / 93 | Ten partial facets need a preserved baseline and additional evidence |
+| D-019 | 88 / 85 / 82 | 85 / 78 / 85 | Generic relationship substitution and unmeasured graph geometry |
 | D-011 | 90 / 85 / 85 | 65 / 45 / 60 | Generic HTML column widths, literal source blocks and no measured readability gate |
 | G-017 | 90 / 80 / 75 | 80 / 65 / 80 | Source-disabled selected tests and one unbounded console worker |
 | D-010 | 90 / 85 / 85 | 65 / 60 / 80 | English non-README documentation remains in the declared Romanian edition |
@@ -150,6 +152,8 @@ normalizing their presentation does not claim a fresh execution.
 | M-001 | Five modules, independent runtime providers, test-only product support and enforced architecture/documentation contracts | 372 final reactor checks, 102 browser cases, 11 Allure cases and inspected aggregate artifacts; [evidence](Module_Architecture.md) |
 | G-001 | Required owner/feedback guides, factual build claims, paired HTML/Markdown and agent-file exclusion | 24 documentation cases within 74 governance cases passed; [evidence](Governance_Review.md#g-001) |
 | T-001 | Existing regressions use bounded waits, observable oracles, exact cleanup and enforced suite coverage | 393 reactor cases and 4 configuration-isolation cases passed; [evidence](Governance_Review.md#t-001) |
+| D-018 | Ten facets investigated with preserved baseline and boundaries | 38 REVIEWED / 4 PARTIAL; [evidence and limits](Code_And_Documentation_Maturity.md#d-018) |
+| D-019 | Diagrams calibrated against archive and live source | 15 graphs, complete relationships and native review; [evidence](Code_And_Documentation_Maturity.md#d-019) |
 | D-016 | Scoped semantic explanations and independent oracles | 32 REVIEWED / 10 PARTIAL facets, 12 existing behaviors; [evidence and limits](Code_And_Documentation_Maturity.md#d-016) |
 | D-017 | Compact readable Atlas identity | Native 1440/900 rendering, 58 px header and 16 px top offset; [verification](Code_And_Documentation_Maturity.md#d-017) |
 | P-001 | Separate documentation Atlas and recovered policies, with the essential living architecture in both formats | Source/links/hash and desktop/mobile rendering verified; no production/POM/new-Java changes; [evidence](Governance_Review.md#p-001) |
