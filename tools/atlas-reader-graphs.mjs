@@ -2,6 +2,7 @@ import {requireAtlas} from './atlas-diagnostics.mjs';
 import {layoutFittedDiagram} from '../atf-atlas/governance/diagram-layout.mjs';
 import {referencePresentationProjection} from './atlas-reference.mjs';
 import {presentationTable} from './atlas-presentation.mjs';
+import {referenceTable} from '../atf-atlas/governance/reading.mjs';
 const need=(ok,message)=>requireAtlas(ok,'ATLAS-READER',message);
 const escape=value=>String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 const plain=value=>typeof value==='string'&&value.trim().length>0;
@@ -39,6 +40,7 @@ export function readerGraphSet(analysis){
   if(reader.primaryGraph){const g=reader.primaryGraph;views.unshift({title:g.title,legend:g.legend,primary:true,graph:{...g,kind:'PRIMARY',nodes:g.nodes.map(n=>({...n,role:n.maturity!=='REVIEWED'?'boundary':n.id===g.focusNodeId?'action':'owner'}))}});}
   if(reader.presentationProfile==='BUSINESS_REFERENCE_V2')for(const view of views){
     view.fit=true;
+    view.concise=reader.readingProfile==='CONCISE_READING_V1';
     const journey=reader.journeys.find(j=>j.flowId===view.flowId);
     const pathScope=journey?analysis.behaviorFlows.find(f=>f.id===view.flowId).caseAnalysis.pathScope:null;
     view.legendItems=view.primary?[view.legend,'Solid objects have a scoped review. Dashed objects retain partial or unestablished understanding; they are not promises of future functionality.','The emphasized object is the owned result. Arrows name actual relationships and limits; placement is a reading aid, not a complete runtime sequence.']:journey?['Shows: '+journey.operation,'Adds to the main map: '+journey.outcome,'Boundary: '+(pathScope==='ALL_DECLARED_EDGES'?'The selected cases witness every declared relationship, not every implementation branch or deployment condition.':'These are representative observations; other paths and deployment conditions remain outside this view.')+' Individual proof and limits stay with the references.']:['Shows: '+view.legend,'Adds to the main map: '+view.title+' connects '+view.graph.nodes.map(n=>n.label).join(', ')+'.','Boundary: '+reader.review.limits];
@@ -70,9 +72,9 @@ export function validateReaderDiagramProfile(analysis){
 }
 
 /** Full labels are wrapped or rejected, never silently replaced by a generic relationship. */
-export function renderReaderGraph(graph,{title,legend,labels,fit=false,legendItems,references}){
+export function renderReaderGraph(graph,{title,legend,labels,fit=false,legendItems,references,concise=false}){
   const layout=layoutReaderGraph(graph,{fit}),byId=new Map(layout.nodes.map(node=>[node.id,node]));let lane=0;
-  if(graph.kind==='PRIMARY')return renderPrimaryMap(graph,layout,{title,legend,fit,legendItems,references});
+  if(graph.kind==='PRIMARY')return renderPrimaryMap(graph,layout,{title,legend,fit,legendItems,references,concise});
   const paths=layout.edges.map(edge=>{const from=byId.get(edge.from),to=byId.get(edge.to),start=from.x+from.width,end=to.x,sy=from.y+45,ty=to.y+45,skip=end-start>200||end<start,y=skip?52+lane++*44:0;
     const route=skip?'M'+start+','+sy+' C'+(start+28)+','+sy+' '+(start+28)+','+y+' '+(start+42)+','+y+' H'+(end-36)+' C'+(end-12)+','+y+' '+(end-24)+','+ty+' '+end+','+ty:'M'+start+','+sy+' C'+(start+30)+','+sy+' '+(end-30)+','+ty+' '+end+','+ty;
     const label=edge.label||(graph.kind==='DEPENDENCY'?'uses':'relates'),text=lines(label,fit?14:18),cx=(start+end)/2,baseline=skip?y-26:(sy+ty)/2-14-(text.length-1)*18;
@@ -81,15 +83,15 @@ export function renderReaderGraph(graph,{title,legend,labels,fit=false,legendIte
   const boxes=layout.nodes.map(node=>{const text=lines(labels?.get(node.id)||node.label),center=node.x+node.width/2,top=node.y+45-(text.length-1)*11,role=node.role||'owner';return '<g class="node" data-node-id="'+escape(node.id)+'" data-graph-role="'+escape(role)+'"><rect x="'+node.x+'" y="'+node.y+'" width="'+node.width+'" height="90" rx="12"/><text x="'+center+'" y="'+top+'" text-anchor="middle">'+text.map((line,i)=>'<tspan x="'+center+'" dy="'+(i?22:0)+'">'+escape(line)+'</tspan>').join('')+'</text></g>';}).join('');
   const reading=fit?legendItems:[legend+(layout.cyclic?' A neutral row preserves the declared cycle; position does not imply execution order.':''),'Labels retain the declared relationship direction. Position and visual emphasis do not establish complete verification.'];
   need(!fit||Array.isArray(reading)&&reading.length===3&&reading.every(v=>plain(v)&&v.length>=30),'A fitted diagram needs three source-specific reading bullets: purpose, contribution to the main map and remaining boundary');
-  return '<figure class="atlas-graph reader-map" data-graph-id="'+escape(graph.id||'declared-graph')+'" data-graph-kind="'+escape(graph.kind||'RELATIONSHIP')+'"'+(fit?' data-graph-fit="true"':'')+' role="region" tabindex="0" aria-label="'+escape(title)+'"><svg class="flow" role="img" aria-label="'+escape(title)+'"'+(fit?'':' style="min-width:'+Math.ceil(layout.width*0.86)+'px"')+' viewBox="0 0 '+layout.width+' '+layout.height+'">'+paths+boxes+'</svg><figcaption class="atlas-legend"><details><summary>Legend and boundaries</summary><ul>'+reading.map(v=>'<li>'+escape(v)+'</li>').join('')+'</ul></details>'+(fit?renderDiagramReferences(references):'')+'</figcaption></figure>';
+  return '<figure class="atlas-graph reader-map" data-graph-id="'+escape(graph.id||'declared-graph')+'" data-graph-kind="'+escape(graph.kind||'RELATIONSHIP')+'"'+(fit?' data-graph-fit="true"':'')+' role="region" tabindex="0" aria-label="'+escape(title)+'"><svg class="flow" role="img" aria-label="'+escape(title)+'"'+(fit?'':' style="min-width:'+Math.ceil(layout.width*0.86)+'px"')+' viewBox="0 0 '+layout.width+' '+layout.height+'">'+paths+boxes+'</svg><figcaption class="atlas-legend"><details><summary>Legend and boundaries</summary><ul>'+reading.map(v=>'<li>'+escape(v)+'</li>').join('')+'</ul></details>'+(fit?renderDiagramReferences(references,false,concise):'')+'</figcaption></figure>';
 }
 
-function renderDiagramReferences(rows,primary=false){
+function renderDiagramReferences(rows,primary=false,concise=false){
   need(Array.isArray(rows)&&rows.length>0&&rows.every(r=>Array.isArray(r)&&r.length===3&&r.every(plain)),'Diagram references need actual owned subjects, original proof and remaining limits; do not add an empty references disclosure');
-  return '<details class="atlas-references'+(primary?' reader-primary-proof':'')+'"><summary>References and review scope</summary>'+presentationTable(['Reference','Support for this view','Remaining boundary'],rows)+'</details>';
+  return '<details class="atlas-references'+(primary?' reader-primary-proof':'')+'"><summary>References and review scope</summary>'+(concise?referenceTable(rows):presentationTable(['Reference','Support for this view','Remaining boundary'],rows))+'</details>';
 }
 
-function renderPrimaryMap(graph,layout,{title,legend,fit,legendItems,references}){
+function renderPrimaryMap(graph,layout,{title,legend,fit,legendItems,references,concise}){
   const byId=new Map(layout.nodes.map(n=>[n.id,n]));
   const relationshipLines=value=>{const result=[''];for(const word of value.split(/\s+/)){if((result.at(-1)+' '+word).trim().length>11)result.push(word);else result[result.length-1]=(result.at(-1)+' '+word).trim();}return result;};
   const paths=layout.edges.map(edge=>{
@@ -103,5 +105,5 @@ function renderPrimaryMap(graph,layout,{title,legend,fit,legendItems,references}
     return '<g class="relationship" data-from="'+escape(edge.from)+'" data-to="'+escape(edge.to)+'"><path class="edge'+(edge.kind==='LIMIT'?' primary-limit':'')+'" d="'+route+'" marker-end="url(#arrow)"/><text class="edge-label" x="'+cx+'" y="'+baseline+'" text-anchor="middle">'+wrapped.map((line,i)=>'<tspan x="'+cx+'" dy="'+(i?18:0)+'">'+escape(line)+'</tspan>').join('')+'</text></g>';
   }).join('');
   const boxes=layout.nodes.map(node=>{const wrapped=lines(node.label);need(wrapped.length<=2,'Use concise primary object labels; put their full meaning in the local proof');const x=node.x+110,top=node.y+32-(wrapped.length-1)*11;return '<g class="node" data-node-id="'+escape(node.id)+'" data-graph-role="'+escape(node.role)+'" data-maturity="'+escape(node.maturity)+'" data-focus="'+(node.id===graph.focusNodeId)+'"><rect x="'+node.x+'" y="'+node.y+'" width="220" height="90" rx="10"/><text class="primary-object-label" x="'+x+'" y="'+top+'" text-anchor="middle">'+wrapped.map((line,i)=>'<tspan x="'+x+'" dy="'+(i?22:0)+'">'+escape(line)+'</tspan>').join('')+'</text><text class="maturity-label" x="'+x+'" y="'+(node.y+77)+'" text-anchor="middle">'+({REVIEWED:'Scoped review',PARTIAL:'Partial',UNKNOWN:'Not established'}[node.maturity])+'</text></g>';}).join('');
-  return '<figure class="atlas-graph reader-map primary-map" data-graph-id="'+escape(graph.id)+'" data-graph-kind="PRIMARY"'+(fit?' data-graph-fit="true"':'')+' role="region" tabindex="0" aria-label="'+escape(title)+'"><svg class="flow" role="img" aria-label="'+escape(title)+'" viewBox="0 0 '+layout.width+' '+layout.height+'">'+paths+boxes+'</svg><figcaption class="atlas-legend"><details><summary>Legend and boundaries</summary><ul><li>'+escape(legend)+'</li><li>Solid objects have a scoped review. Dashed objects retain partial or unestablished understanding; they are not promises of future functionality.</li><li>The emphasized object is the owned result. Arrows name actual relationships and limits; placement is a reading aid, not a complete runtime sequence.</li></ul></details>'+(fit?renderDiagramReferences(references,true):'')+'</figcaption></figure>';
+  return '<figure class="atlas-graph reader-map primary-map" data-graph-id="'+escape(graph.id)+'" data-graph-kind="PRIMARY"'+(fit?' data-graph-fit="true"':'')+' role="region" tabindex="0" aria-label="'+escape(title)+'"><svg class="flow" role="img" aria-label="'+escape(title)+'" viewBox="0 0 '+layout.width+' '+layout.height+'">'+paths+boxes+'</svg><figcaption class="atlas-legend"><details><summary>Legend and boundaries</summary><ul><li>'+escape(legend)+'</li><li>Solid objects have a scoped review. Dashed objects retain partial or unestablished understanding; they are not promises of future functionality.</li><li>The emphasized object is the owned result. Arrows name actual relationships and limits; placement is a reading aid, not a complete runtime sequence.</li></ul></details>'+(fit?renderDiagramReferences(references,true,concise):'')+'</figcaption></figure>';
 }

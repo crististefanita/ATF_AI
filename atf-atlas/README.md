@@ -212,6 +212,11 @@ source-bound references.
 Actual transformed type, geometry and original proof
 are inspected together. Wide ideas require meaningful subviews or prose.
 
+The concise reader starts with a project brief and short source-bound questions.
+Responsibility and behavior tables support comparison; cases and individual
+score rationale open on request. Exactly shared boundaries appear once, while
+distinct limits and complete technical construction remain attributable.
+
 Semantic qualification uses distinct facet observations, owned source and independent oracles, with visible remaining limits. Atlas identity stays compact; review date belongs with confidence. See the [semantic contract](Report_Contract.md#semantic-review-and-compact-identity).
 
 For a successive review, preserve the [baseline and each facet decision](Report_Contract.md#partial-facet-refinement), then apply the [archive-adapted graph rules](Report_Contract.md#source-graph-quality-and-archive-adaptation). Promotion counts do not replace evidence or meaning review.

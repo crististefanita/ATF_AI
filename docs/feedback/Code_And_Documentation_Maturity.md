@@ -1331,3 +1331,51 @@ These grades use reasoned 40/30/30 inputs in the external comparison, without
 an averaged winner or pass rates converted to quality. They assess the inspected
 artifacts and policies, not fresh historical runtime acceptance or all source.
 The reference's original self-assessments stay unchanged in its own artifact.
+
+<a id="d-028"></a>
+## D-028: Concise reading and semantic orientation
+
+Status: VERIFIED within the bounded reading and evidence scope. Owner: Atlas reading and governance.
+Priority 91 (impact 94 / exposure 88 / urgency 89).
+Baseline quality 86 (correctness 92 / verification 85 / clarity 80).
+
+- Fixed width leaves avoidable space on wide screens; cards and prose repeat
+  the same boundaries, and opening behavior exposes too many cases at once.
+- Readers need actual choices explained: API or UI, observation or accepted
+  result, evidence or application guarantee. Source and independent oracle
+  ownership must survive the shorter explanation.
+- The correction uses a project brief beside the map, comparative tables,
+  individual cases and scores on request, and one display of exact shared limits.
+- Acceptance compares the real page at 900/1440/1920, its initial view and normal
+  reading path. Every case situation, expectation and original verdict remains
+  verifiable; a large box does not prove visibility inside a closed disclosure.
+- Initial captures exposed nested-table selector contamination and fragment state
+  retained between widths. Preserve those observations and repair measurement
+  without relabeling product outcomes or weakening presentation rules.
+
+Evidence: ${ATF_WORK_ROOT}/reviews/atlas-reading-20261128.
+No new application E2E or emulator is requested. Two partial facets and five
+application questions retain their original boundaries.
+
+Delivered quality 96 (correctness 96 / verification 97 / clarity 95).
+
+- Three questions connect API/UI choice, consumer verdict and evidence to
+  existing operations and independent oracles. Core explicitly names API/UI
+  ownership; partial application facets are not presented as failed governance.
+- At 1920 px the frame grows from 1256 to 1884 px. At 1440 px the behavior
+  section falls from approximately 23934 to 2032 px before cases are opened;
+  all 51 cases remain in the expanded source comparison.
+- Identical boundaries appear once; distinct limits, situations, expectations
+  and original verdicts are compared in actual rendering.
+- Seven reading components and the repaired three-width preview pass. The EN/RO
+  refusal caught a wrapped numeral interpreted as a list; repair preserves
+  structure and the focused paired recheck passes.
+- Fragment state, nested table headers and visibility through closed details
+  are measured correctly. Initial failed observations remain in the dossier.
+- Final exact-source qualification, actual publisher controls and delivered
+  selection retain separate receipts. The previous reader's 1920 px capture
+  is a comparative observation, not retroactive V4 qualification.
+
+The scoped assessment targets understanding 95, reading quality 96 and semantic
+breadth 94: the new questions connect existing responsibilities without claiming
+more code coverage or external acceptance. Both partial facets remain partial.

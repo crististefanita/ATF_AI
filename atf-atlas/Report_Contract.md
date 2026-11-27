@@ -116,10 +116,25 @@ reader cues, with business explanations of the remaining responsibility.
 
 `ATLAS-REFERENCE-AUTHORING-001: Fresh CURRENT_UNDERSTANDING_V2 requires BUSINESS_REFERENCE_V1 in addition to the source, comparison, origin and diagram profiles; preserve historical V1 declarations without upgrading their presentation assessment.`
 
-The retained authoring literals describe captured V1/V2 declarations. Current
-`understand` publishes V3 and requires `BUSINESS_REFERENCE_V2`. Offline V1/V2
-verification preserves its original scope; it cannot supply the new fitted
-presentation qualification. Historical readers are never rewritten.
+The retained authoring literals describe captured V1/V2/V3 declarations. Current
+`understand` publishes V4, retaining `BUSINESS_REFERENCE_V2` and adding
+`CONCISE_READING_V1`. Earlier verification preserves its original scope;
+historical readers are never rewritten or given a new presentation grade.
+
+`ATLAS-READING-001: Fresh CURRENT_UNDERSTANDING_V4 requires CONCISE_READING_V1: a short source-bound reader guide, comparative responsibility and behavior tables, cases and individual score rationale closed on request, and meaningful use of native desktop width; favor understanding and calm presentation over repeated proof prose.`
+
+`ATLAS-READING-PROOF-001: A concise guide binds each answer to every selected existing flow and its independent oracle or disclosed gap; deduplicate only exactly identical boundaries, preserve distinct limits and original case situations, expectations and verdicts, and keep complete construction detail in the adjacent audit.`
+
+Declare `reader.readingProfile` and two to five `reader.guide` entries. Each
+entry has `question`, `answer`, `limits`, `flowIds`, `claimIds` and
+`oracleClaimIds`. Keep questions within 16 words, answers within 55 and limits
+within 35. These bounds support editing; only source review establishes meaning.
+
+Use the [reading component](governance/README.md) for progressive disclosure.
+At wide desktop widths the main map and project brief share the opening;
+comparative tables use the available page. Native review includes 1920 px as
+well as 1440/900. Measure the real first view before any interaction. Reuse a
+shared boundary once only when its exact original text matches every row.
 
 `ATLAS-DIAGRAM-FIT-001: Fresh CURRENT_UNDERSTANDING_V3 requires BUSINESS_REFERENCE_V2; every diagram and table fits without horizontal scrolling, clipping or reduced text, with actual transformed SVG type of at least 13 CSS px at the qualified desktop widths; split a wide idea into meaningful source-bound subviews or prose and retain its complete audit.`
 

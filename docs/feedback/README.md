@@ -69,6 +69,7 @@ Retained baseline component scores:
 
 | ID | Impact / risk / urgency | Correctness / verification / clarity | Evidence scope |
 |---|---|---|---|
+| D-028 | 94 / 88 / 89 | 92 / 85 / 80 | Fixed width, many cards and repeated limits instead of concise orientation |
 | D-027 | 94 / 92 / 90 | 86 / 82 / 83 | Local scroll allowed, generic legends and missing support references |
 | D-026 | 94 / 90 / 85 | 85 / 78 / 82 | Hidden primary map and audit-only scores without a first-view contract |
 | D-024 | 92 / 88 / 85 | 91 / 89 / 92 | Generic case comparisons and omitted existing framework decisions |
@@ -130,6 +131,7 @@ normalizing their presentation does not claim a fresh execution.
 
 | ID | Delivered behavior | Verification |
 |---|---|---|
+| D-028 | Concise reading, useful width and cases on request; quality 96 (96/97/95) | [Source, reading path and evidence](Code_And_Documentation_Maturity.md#d-028) |
 | D-027 | Fitted diagrams and two complete local disclosures; quality 95 (95/96/94) | [Components, refusals and native calibration](Code_And_Documentation_Maturity.md#d-027) |
 | D-026 | Open primary map, local proof and explained scores; quality 95 (95/96/94) | [Provenance, components and native repair](Code_And_Documentation_Maturity.md#d-026) |
 | D-024 | Concrete comparisons and four existing behavior boundaries; quality 95 (96/94/95) | [Exact source, original subjects and native review](Code_And_Documentation_Maturity.md#d-024) |

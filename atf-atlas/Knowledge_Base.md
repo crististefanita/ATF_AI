@@ -158,8 +158,9 @@ technical evidence in the audit, with no hidden HTML bundle. History retains its
 
 The current profile includes `BUSINESS_REFERENCE_V2`: an open primary map,
 closed support, facet-bound maturity and goal–question–measure score rationale.
-Current V3 also requires fitted diagrams and two closed local disclosures per
-graph. Historical V1/V2 declarations retain their original assessment. A passing
+Current V4 also requires `CONCISE_READING_V1`: short owned answers, comparative
+tables and optional depth, while fitted graphs keep two closed local disclosures.
+Historical V1/V2/V3 declarations retain their original assessment. A passing
 result never becomes an automatic grade.
 
 ## Artifact calibration

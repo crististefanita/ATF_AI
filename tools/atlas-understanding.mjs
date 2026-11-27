@@ -35,11 +35,11 @@ export function validateAtlasOrigins(analysis,index){
 }
 
 /** The current authoring entry cannot silently downgrade to a historical profile. */
-export function validateCurrentUnderstandingProfiles(analysis,index,{profile='CURRENT_UNDERSTANDING_V3'}={}){
-  requireDepth(['CURRENT_UNDERSTANDING_V1','CURRENT_UNDERSTANDING_V2','CURRENT_UNDERSTANDING_V3'].includes(profile),'Unsupported understanding publication profile');
+export function validateCurrentUnderstandingProfiles(analysis,index,{profile='CURRENT_UNDERSTANDING_V4'}={}){
+  requireDepth(['CURRENT_UNDERSTANDING_V1','CURRENT_UNDERSTANDING_V2','CURRENT_UNDERSTANDING_V3','CURRENT_UNDERSTANDING_V4'].includes(profile),'Unsupported understanding publication profile');
   const reference=analysis?.reader?.presentationProfile;
-  requireDepth(analysis?.reader?.diagramProfile==='SOURCE_GRAPH_V2'&&analysis.reader.comparisonProfile==='SOURCE_BOUND_COMPARISONS_V1'&&analysis.reader.captureProfile==='GIT_WORKTREE_V1'&&index?.captureProfile==='GIT_WORKTREE_V1'&&analysis.understanding?.originProfile==='SOURCE_ORIGINS_V1'&&(profile==='CURRENT_UNDERSTANDING_V1'||profile==='CURRENT_UNDERSTANDING_V2'&&reference==='BUSINESS_REFERENCE_V1'||profile==='CURRENT_UNDERSTANDING_V3'&&reference==='BUSINESS_REFERENCE_V2'),'Current understanding requires a business map without horizontal scrolling, explained review scores, useful source diagrams, concrete case comparisons, source-capture disclosure and local/consumed origins; use the current owner contract instead of silently dropping a profile');
-  return {status:'PASSED',profile,scope:profile==='CURRENT_UNDERSTANDING_V3'?'CURRENT_PROFILE_DECLARATIONS; LIVE_SOURCE_COMPONENT_AND_HUMAN_REVIEW_STILL_REQUIRED':'HISTORICAL_'+profile.slice(-2)+'_DECLARATIONS; NO_NEW_PRESENTATION_UPGRADE'};
+  requireDepth(analysis?.reader?.diagramProfile==='SOURCE_GRAPH_V2'&&analysis.reader.comparisonProfile==='SOURCE_BOUND_COMPARISONS_V1'&&analysis.reader.captureProfile==='GIT_WORKTREE_V1'&&index?.captureProfile==='GIT_WORKTREE_V1'&&analysis.understanding?.originProfile==='SOURCE_ORIGINS_V1'&&(profile==='CURRENT_UNDERSTANDING_V1'||profile==='CURRENT_UNDERSTANDING_V2'&&reference==='BUSINESS_REFERENCE_V1'||['CURRENT_UNDERSTANDING_V3','CURRENT_UNDERSTANDING_V4'].includes(profile)&&reference==='BUSINESS_REFERENCE_V2')&&(profile!=='CURRENT_UNDERSTANDING_V4'||analysis.reader.readingProfile==='CONCISE_READING_V1'),'Current understanding requires concise source-bound orientation, a business map without horizontal scrolling, explained review scores, useful source diagrams, concrete case comparisons, source-capture disclosure and local/consumed origins; use the current owner contract instead of silently dropping a profile');
+  return {status:'PASSED',profile,scope:profile==='CURRENT_UNDERSTANDING_V4'?'CURRENT_PROFILE_DECLARATIONS; LIVE_SOURCE_COMPONENT_AND_HUMAN_REVIEW_STILL_REQUIRED':'HISTORICAL_'+profile.slice(-2)+'_DECLARATIONS; NO_NEW_PRESENTATION_UPGRADE'};
 }
 
 function reviewAssessment(assessment,claims,evidence){

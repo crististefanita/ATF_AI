@@ -932,3 +932,34 @@ marker#arrow path{fill:var(--accent)}body{font-size:15px}.wrap{max-width:1320px}
 .fit-reader .reader-map:not(.primary-map) .flow .edge-label{font-size:18px}
 .fit-reader .table-scroll{overflow:visible}
 .fit-reader table{min-width:0;max-width:100%;table-layout:fixed}
+
+/* Concise orientation uses width for comparisons and keeps depth on request. */
+.wrap.reader.concise-reader{width:calc(100% - 36px);max-width:none;margin-inline:auto;padding-inline:0}
+.concise-reader p{max-width:80ch}
+.concise-reader .reader-overview-grid{display:grid;gap:24px;align-items:start}
+.concise-reader .reader-primary{padding:0;border:0;background:none}
+.concise-reader .reader-brief h2{font-size:20px;margin:8px 0 12px}
+.concise-reader .reader-brief p{max-width:70ch}
+.concise-reader .reader-journey{padding:0;margin:0;background:none}
+.concise-reader .reader-journey-table>tbody>tr>th{vertical-align:top}
+.concise-reader .reader-journey-details{padding:10px 12px;margin:0 0 8px}
+.concise-reader .reader-journey-details:not([open]){padding:0 10px;margin:0;border:0;border-radius:0;background:none}
+.concise-reader .reader-journey-details>summary{font-size:14px;padding:3px 0}
+.concise-reader .reader-journey-table>tbody>tr:nth-child(2)>td{padding:0 8px 6px}
+.concise-reader .atlas-legend>details,.concise-reader .reader-facets{padding:6px 12px;margin:8px 0}
+.concise-reader .atlas-legend>details>summary,.concise-reader .reader-facets>summary{font-size:14px;padding:4px 0}
+.concise-reader .reader-case-table .reader-case{padding:0;border:0;border-radius:0;background:none}
+.concise-reader .reader-case h3{font-size:16px;line-height:1.55;margin:6px 0}
+.concise-reader .reader-case .eyebrow{font-size:13px;margin:0 0 6px}
+.concise-reader .reader-comparison-row>td{padding-top:0}
+.concise-reader .reader-comparison{margin-top:0;padding:6px 12px;border-radius:8px}
+.concise-reader .reader-comparison-row>td{padding:4px 8px 8px}
+.concise-reader .reader-comparison dl{display:grid;grid-template-columns:minmax(140px,1fr) minmax(0,3fr);gap:8px 20px}
+.concise-reader .reader-comparison dt,.concise-reader .reader-comparison dd{margin:0}
+.concise-reader .reader-facet{padding:0;margin:0;border-left:0}
+.concise-reader .reader-facet h4{font-size:15px}
+.concise-reader .reader-facet th{font-weight:400;vertical-align:top}
+.concise-reader .reader-score-axis{margin:10px 0}
+.concise-reader .reader-score-axis>summary{font-size:16px}
+.concise-reader .reader-shared-limit,.concise-reader .references-shared-limit{padding:10px 12px;border-left:2px solid var(--border)}
+@media(min-width:1280px){.concise-reader .reader-overview-grid{grid-template-columns:minmax(770px,1.5fr) minmax(320px,1fr)}.concise-reader nav{grid-template-columns:repeat(6,minmax(0,1fr))}}

@@ -11,8 +11,8 @@ const validate=f=>validateAtlasUnderstanding(f.analysis,f.index,{required:true})
 const fails=(f,code,needle)=>assert.throws(()=>validate(f),error=>error.code===code&&error.observed.includes(needle));
 
 test('the current understanding entry cannot downgrade any promised evidence profile',()=>{
-  const f=fixture();f.analysis.reader={diagramProfile:'SOURCE_GRAPH_V2',comparisonProfile:'SOURCE_BOUND_COMPARISONS_V1',captureProfile:'GIT_WORKTREE_V1',presentationProfile:'BUSINESS_REFERENCE_V2'};f.analysis.understanding.originProfile='SOURCE_ORIGINS_V1';f.index.captureProfile='GIT_WORKTREE_V1';assert.equal(validateCurrentUnderstandingProfiles(f.analysis,f.index).status,'PASSED');
-  for(const key of ['diagramProfile','comparisonProfile','captureProfile','presentationProfile']){const changed=structuredClone(f);delete changed.analysis.reader[key];assert.throws(()=>validateCurrentUnderstandingProfiles(changed.analysis,changed.index),e=>e.code==='ATLAS-UNDERSTANDING'&&/Current understanding requires/.test(e.observed)&&Boolean(e.hint&&e.owner&&e.recheck));}
+  const f=fixture();f.analysis.reader={diagramProfile:'SOURCE_GRAPH_V2',comparisonProfile:'SOURCE_BOUND_COMPARISONS_V1',captureProfile:'GIT_WORKTREE_V1',presentationProfile:'BUSINESS_REFERENCE_V2',readingProfile:'CONCISE_READING_V1'};f.analysis.understanding.originProfile='SOURCE_ORIGINS_V1';f.index.captureProfile='GIT_WORKTREE_V1';assert.equal(validateCurrentUnderstandingProfiles(f.analysis,f.index).status,'PASSED');
+  for(const key of ['diagramProfile','comparisonProfile','captureProfile','presentationProfile','readingProfile']){const changed=structuredClone(f);delete changed.analysis.reader[key];assert.throws(()=>validateCurrentUnderstandingProfiles(changed.analysis,changed.index),e=>e.code==='ATLAS-UNDERSTANDING'&&/Current understanding requires/.test(e.observed)&&Boolean(e.hint&&e.owner&&e.recheck));}
   const changed=structuredClone(f);delete changed.analysis.understanding.originProfile;assert.throws(()=>validateCurrentUnderstandingProfiles(changed.analysis,changed.index),e=>e.code==='ATLAS-UNDERSTANDING');
 });
 

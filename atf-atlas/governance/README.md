@@ -44,6 +44,7 @@ The external native review supplies actual screenshots and transformed pixels.
 | Local node proof and maturity | [Reference contract](../../tools/atlas-reference.mjs): actual facets, independent checks and least-established maturity |
 | Collapsed supporting subgraphs | [Reader](../../tools/atlas-reader.mjs): primary open, support closed, two closed disclosures below each graph |
 | Negative candidate fixtures | [Component tests](diagram-layout.test.mjs) and [native calibration](../../tools/atlas-calibration.mjs) |
+| Concise source orientation | [Reading component](reading.mjs) and [independent cases](reading.test.mjs): short answers, exact shared boundaries and measured width/disclosure |
 
 The source anchor is `main_mcp` revision
 `70a7279c2a9560d39e6bd2554cd2f96a88626692`. The archived visual-scale,
@@ -74,7 +75,7 @@ passing markup alone never certifies semantic truth.
 <summary>Focused component command</summary>
 
 ```powershell
-node --test tools/atlas-fit.test.mjs tools/atlas-reader-graphs.test.mjs tools/atlas-calibration.test.mjs
+node --test tools/atlas-reading.test.mjs tools/atlas-fit.test.mjs tools/atlas-reader-graphs.test.mjs tools/atlas-calibration.test.mjs
 ```
 
 </details>

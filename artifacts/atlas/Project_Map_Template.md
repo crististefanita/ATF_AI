@@ -323,12 +323,17 @@ For BOUNDED_OBSERVATIONS_V2, copy retainedProofs from the prior audit and declar
 ## Map opening and scoped scores
 
 Declare `presentationProfile: BUSINESS_REFERENCE_V2`, `reader.primaryGraph` and
-`reader.assessment` for current V3 authoring. Bind each object to actual facets
+`reader.assessment` for current V4 authoring. Bind each object to actual facets
 and independent existing oracles, preserving the least-established maturity.
 The primary map is open. Every diagram has two closed disclosures: its legend
 and references with original proof and limits. Fit diagrams and tables without
 horizontal scrolling; split an oversized story into meaningful source-bound
 subviews or prose while preserving the complete adjacent audit.
+
+Add `readingProfile: CONCISE_READING_V1` and a short `reader.guide`. Each entry
+retains `question`, `answer`, `limits`, `flowIds`, `claimIds` and `oracleClaimIds`.
+Answer the reader's actual choices through existing source relationships;
+preserve every case and distinct boundary while removing repeated presentation.
 
 - `band` and `column` positions organize reading without inventing a runtime sequence.
 - Axes come from `analysis.assessment`; project and Atlas scopes remain separate.
