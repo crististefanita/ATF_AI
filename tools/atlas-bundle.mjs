@@ -5,6 +5,7 @@ import {surefireSummary,nodeTestSummary} from './verify-atlas.mjs';
 import {validateFlowExecutionBindings} from './atlas-execution.mjs';
 import {validateAtlasUnderstanding} from './atlas-understanding.mjs';
 import {validateAtlasBehavior} from './atlas-behavior.mjs';
+import {validateBusinessReader} from './atlas-reader.mjs';
 
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
 const nonempty=value=>typeof value==='string'&&value.trim().length>0;
@@ -52,7 +53,7 @@ function exactInventory(actual,expected,code,name){
 
 /** Verifies portable internal consistency; live source and semantic review remain separate gates. */
 export function validateAtlasBundle(bundle){
-  requireAtlas(object(bundle)&&bundle.schemaVersion===1&&[1,2,3,4].includes(bundle.renderVersion),'ATLAS-SCHEMA','Unsupported complete bundle schema or renderer version');
+  requireAtlas(object(bundle)&&bundle.schemaVersion===1&&[1,2,3,4,5].includes(bundle.renderVersion),'ATLAS-SCHEMA','Unsupported complete bundle schema or renderer version');
   const analysis=parseJson(bundle.analysisText,'ATLAS-SCHEMA','analysis'),index=parseJson(bundle.sourceIndexText,'ATLAS-SOURCE','source index');
   requireAtlas(isDeepStrictEqual(analysis,bundle.analysis)&&isDeepStrictEqual(index,bundle.sourceIndex),'ATLAS-SCHEMA','Original JSON and embedded parsed objects disagree');
   requireAtlas(object(analysis)&&object(index)&&analysis.schemaVersion===1&&index.schemaVersion===1
@@ -148,5 +149,6 @@ export function validateAtlasBundle(bundle){
     &&knowledge.records.every(record=>object(record)&&nonempty(record.id)&&knowledge.selectedIds.includes(record.id))
     &&new Set(knowledge.records.map(record=>record.id)).size===knowledge.records.length
     &&knowledge.mandatoryIds.every(id=>knowledge.selectedIds.includes(id)),'ATLAS-KNOWLEDGE','Retrieved mandatory policy or its declared scope is incomplete');
+  if(bundle.renderVersion>=5)validateBusinessReader(analysis);
   return {status:'PASSED',projectId:analysis.projectId,documents:documents.size,sources:sources.size,evidenceFiles:files.size,scope:'PORTABLE_BUNDLE_INTERNAL_CONSISTENCY'};
 }

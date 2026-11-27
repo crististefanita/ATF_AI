@@ -907,6 +907,25 @@ Folosește aceeași formulă 40/30/30 din registru. Fiecare intrare este 1–100
 
 </details>
 
+<a id="d-014"></a>
+<a id="d-014-business-reader-and-numbered-atlas-workflow"></a>
+## D-014: Cititor business și flux Atlas numerotat
+
+Stare: VERIFIED pentru contractul cititorului business și captura ATF_AI selectată, înregistrată. Responsabil: guvernanța Atlas.
+Prioritate 92 (impact 95 / expunere 90 / urgență 85).
+Calitate inițială 65 (corectitudine 60 / verificare 70 / claritate 65).
+Calitate livrată pentru publicul cititorului 94 (corectitudine 94 / verificare 95 / claritate 94); nu este o notă pentru întregul proiect.
+
+- Rendererul 5 separă cititorul offline de auditul adiacent complet. Sursele brute, comenzile, amprentele și pachetul tehnic ascuns nu intră în HTML.
+- Șase secțiuni numerotate și cazuri ierarhice corespund navigației. Modelul orizontal de funcționare are legendă adiacentă; secțiunile colapsabile native funcționează cu tastatura.
+- Politica RAG obligatorie leagă publicul, responsabilitatea surselor, cazurile, necunoscutele și limitele reviziei semantice. Ghidurile curente de redactare nu pot reveni tacit la contractul rendererului anterior.
+- Sursa ATF_AI curentă oferă 41 de afirmații, șase unități responsabile, opt comportamente selectate și 24 de cazuri. Afirmațiile criteriilor existente leagă 96 de identități exacte de teste trecute de manifestele originale și cinci rezultate păstrate; nu se deduce acceptanța mai largă a aplicației.
+- Acceptance-02 a finalizat 743 de verificări native și 225 de componente Node pe ediție, fără eșecuri sau omiteri. Documentația finală și controlul suplimentar al ghidurilor curente sunt calificate separat în acceptance-03; capturile originale ale surselor păstrează domeniul exact al fiecărei rulări.
+- Randarea nativă render-02 trece la 1440 și 900 CSS px: numerotare, ținte locale, 24 de cazuri, diagrame lizibile, operare prin tastatură și zero resurse externe. Textul mic și etichetele invizibile introduse deliberat sunt respinse; originalul reparat trece.
+- Cititorul selectat de 47,961 de octeți înlocuiește prezentarea tehnică anterioară numai după recapturarea sursei curate și verificarea identității. Cititorul anterior și încercările de construcție nereușite rămân externe; captura J1 nu este recalificată.
+
+Dovezi: `${ATF_WORK_ROOT}/reviews/business-atlas-20261127`. Controalele finite de public și recuperarea lexicală necesită revizie semantică; cazurile selectate nu dovedesc înțelegerea exhaustivă. Fără E2E noi ale aplicației, emulator sau funcționalitate Java runtime.
+
 <a id="current-assessment"></a>
 <a id="current-atf-ai-assessment"></a>
 ## Evaluarea curentă ATF AI
@@ -940,9 +959,9 @@ folosește 1-100. Aplică formula reproductibilă a registrului:
 <summary>Responsabilii surselor, verificarea și limitele fiecărei axe</summary>
 
 - **Cod și arhitectură:** [Registru](../../atf-core/src/main/java/com/ai/ui/core/engine/UiEngineRegistry.java). Responsabilități neutre ale modulelor, descoperirea furnizorilor și căile actuale de eșec. API-ul framework-ului și revizuirea sursei; nu o demonstrație exhaustivă a corectitudinii.
-- **Documentație și ediții:** [Politica documentelor](../governance/Code_And_Documentation_Policy.md). 50 de perechi Markdown întreținute, HTML Living, controale de compilare, limbă și prezentare. Controale finite și randări revizuite; traducerea semantică necesită în continuare revizuire.
+- **Documentație și ediții:** [Politica documentelor](../governance/Code_And_Documentation_Policy.md). 51 de perechi Markdown întreținute, HTML Living, controale de compilare, limbă și prezentare. Controale finite și randări revizuite; traducerea semantică necesită în continuare revizuire.
 - **Atlas și RAG:** [Regăsire și proveniență](../../tools/atlas-knowledge.mjs). Regăsire citată, dovezi exacte, oracole independente, căi negative și livrare într-un HTML. Context lexical de politici; redactarea și completitudinea semantică nu sunt certificate automat.
-- **Ciclul de viață al feedback-ului:** [Controale de feedback](../../atf-tests/src/test/java/com/ai/atf/governance/FeedbackGovernanceTest.java). 18 înregistrări bilingve reconciliate; stare goală explicită, închidere istorică și domeniu extern. Zero sarcini acceptate nu înseamnă zero defecte sau finalizarea implementării externe.
+- **Ciclul de viață al feedback-ului:** [Controale de feedback](../../atf-tests/src/test/java/com/ai/atf/governance/FeedbackGovernanceTest.java). Înregistrări bilingve reconciliate cu indexul activ; stare goală explicită, închidere istorică și domeniu extern. Zero sarcini acceptate nu înseamnă zero defecte sau finalizarea implementării externe.
 - **Guvernanța codului și testelor:** [Arhitectură și inventare](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureGovernanceTest.java). Indicații cu responsabil, contraexemple, suite exacte și inventar revizuit de 561 de metode. Invariantele de politici/sursă completează revizuirea; potrivirea unui simbol nu este dovadă semantică.
 - **Stabilitatea testelor existente:** [Contractele existente de jurnalizare](../../atf-tests/src/test/java/com/ai/atf/core/reporting/regression/StepLoggerContractTest.java). Comportament delimitat al lucrătorilor/HTTP, observații independente și selecții native finalizate. Execuție la un moment dat, nu o rată măsurată a instabilității CI pe termen lung.
 - **Configurație și tratarea erorilor:** [Opțiuni UI](../../atf-core/src/main/java/com/ai/core/support/config/UiRuntimeOptions.java). Setări UI tipizate, limite ale reîncercării, închidere și revenire după achiziție parțială. Acreditările apelantului, starea mediului și erorile arbitrare ale furnizorului rămân separate.
@@ -953,7 +972,7 @@ folosește 1-100. Aplică formula reproductibilă a registrului:
 
 </details>
 
-Revizuirea regăsirii validează 19 înregistrări de cunoștințe, 16 politici obligatorii
+Revizuirea regăsirii validează 20 înregistrări de cunoștințe, 17 politici obligatorii
 și trei obiecte arhivate fixate. Domeniul declarat este context lexical determinist
 de politici; regăsirea semantică rămâne NOT_CLAIMED. Aceste verificări nu implică o
 generare Atlas nouă sau acceptanța aplicației. Dimensiunea sursei și numărul testelor

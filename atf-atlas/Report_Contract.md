@@ -1,6 +1,127 @@
 <a id="complete-atlas-report-contract"></a>
 # Contractul raportului Atlas complet
 
+<a id="reader-and-audit-responsibilities"></a>
+## Responsabilitățile cititorului și auditului
+
+Publicarea nouă folosește renderVersion 5. Livrabilul este un HTML offline de
+înțelegere business pentru un singur proiect selectat. Explică scopul, valoarea,
+capabilitățile, comportamentele utile, relațiile, încrederea și limitele înaintea implementării.
+Cititorul este util fără înregistrările construirii sale.
+
+`ATLAS-READER-001: Publish business understanding in one numbered offline HTML; preserve source, commands, file verification, raw JSON and execution evidence in a separate adjacent audit, never hidden in the reader.`
+
+Publicatorul păstrează pachetul tehnic complet în atlas-audit.json lângă
+analysis.json. delivery/ conține doar atlas.html. Cititorul copiat rămâne lizibil;
+verificarea completă cere auditul adiacent original și rendererul canonic.
+Nu elimina dovezi tehnice, nu reconstrui rezultate trecute și nu suprascrie istoricul.
+
+| Public | Conținut | Limită |
+|---|---|---|
+| Cititorul proiectului | Scop, valoare, responsabili, comportamente, cazuri negative, încredere și întrebări | Fără comenzi, căi de sursă, amprente, date brute sau pachet ascuns |
+| Revizorul sursei | Fragmente exacte, legături cu afirmații, trasee de caz și necunoscute | Analiza originală și dovezile complete rămân în audit |
+| Responsabilul mentenanței | Validarea intrărilor, regăsirea politicilor, randarea și diagnosticele | Detaliile construirii nu devin capabilități ale proiectului |
+
+<a id="numbered-reading-structure"></a>
+## Structura numerotată de lectură
+
+`ATLAS-READER-002: Use stable ordered section numbers mirrored in navigation, hierarchical child numbers, valid local anchors and adjacent diagram legends; keep concise explanations, meaningful cases and balanced tables.`
+
+Ordinea fixă este 01 scop/valoare, 02 capabilități, 03 comportamente/cazuri,
+04 model de funcționare, 05 încredere/domeniu și 06 limite/întrebări. Titlurile copil
+urmează părintele, precum 03.01 și 03.01.01. Numerele completează titlurile descriptive;
+nu înlocuiesc sensul și nu creează o cotă decorativă de secțiuni.
+
+- Folosește secțiuni native pliabile, cu prezentarea generală deschisă și restul închise inițial.
+- Păstrează navigarea locală și stilul încorporat; CSS-ul canonic dedicat rămâne întreținut separat.
+- Folosește un model orizontal de lectură legat de dovezi. Legenda explică abstracția, fără a pretinde un graf runtime sau de dependențe exhaustiv.
+- Folosește carduri pentru cazuri utile și tabele pentru comparații; păstrează textul complet, lizibil și aliniat sus.
+- Randează la 1440 și 900 CSS px în Chromium desktop real, fără emulare de dispozitiv sau URL de aplicație.
+
+<a id="source-bound-business-projection"></a>
+## Proiecția business legată de sursă
+
+analysis.reader declară schemaVersion 1, aceeași identitate de proiect, text în
+engleză, o dată validă și un revizor semantic cu domeniu/limite explicite.
+Proiecția aparține analizei originale; nu este o editare neauditată a paginii.
+
+| Proiecție | Corespondență necesară | Control de eșec |
+|---|---|---|
+| Valoare și model | Afirmații existente revizuite | Necunoscutele nu pot deveni beneficii certe |
+| Capabilități | Fiecare unitate declarată cu responsabil | O capabilitate nu poate împrumuta afirmațiile altui responsabil |
+| Fluxuri pentru cititor | Legare explicită la comportamente | Lipsurile sau duplicatele neexplicate sunt respinse |
+| Cazuri | Fiecare caz declarat al unui flux pentru cititor | Cazurile pozitive/negative și verificările lipsă rămân vizibile |
+| Fluxuri doar tehnice | Clasificare explicită de construire/detaliu, cu motiv | Clasificarea rămâne revizuibilă în audit |
+| Limite | Fiecare afirmație UNKNOWN | Nicio informație necertificată nu este omisă tacit |
+
+Câmpurile cititorului resping tipare de implementare și câmpuri tehnice necunoscute.
+Aceste controale finite completează revizia; nu certifică fiecare propoziție și nu
+inferențiază automat relevanța business. Revizorul verifică sensul dintre afirmații
+și explicații, precum și clasificările doar tehnice.
+
+`ATLAS-READER-004: Explain verification and assessment limits in reader language; do not infer a project quality grade from consistency, retrieval or passing checks.`
+
+<a id="governed-authoring-loop"></a>
+## Ciclul guvernat de redactare
+
+`ATLAS-READER-003: Retrieve mandatory audience and numbering policy, author the project-specific projection from actual source, preserve negative controls and repairs, verify the adjacent audit, and inspect native rendering before selecting the final reader.`
+
+```mermaid
+flowchart LR
+    Policy["Politici regăsite"] --> Review["Revizie de sursă și public"]
+    Review --> Controls["Controale componente și audit"]
+    Controls --> Render["Revizie vizuală nativă"]
+    Render --> Reader["Un cititor business"]
+```
+
+<details>
+<summary>Legendă: responsabilitățile redactării și acceptanței</summary>
+
+- Săgețile descriu secvența reviziei, nu execuția automată a unui model lingvistic.
+- Un control component, de proveniență sau de aspect eșuat păstrează dovada originală și revine la responsabil pentru corecție.
+- Geometria nativă și legarea sursei sunt semnale delimitate; revizorul verifică sensul, echilibrul și utilitatea explicațiilor.
+- Nu se adaugă E2E de aplicație, emulator, serviciu de model lingvistic sau funcționalitate Java runtime.
+
+</details>
+
+Controalele curente de sursă/dovezi, înțelegere și trasee de caz se aplică în
+continuare întregului audit. Rendererul 5 adaugă limita publicului, fără să reducă
+dovezile. O execuție eșuată rămâne eșuată, un oracol lipsă rămâne lipsă, iar
+observațiile din sursă nu devin executate prin prezentare.
+
+<details>
+<summary>Câmpuri tehnice pentru redactare și organizarea auditului</summary>
+
+Schema executabilă este în [validatorul cititorului](../tools/atlas-reader.mjs), iar [fixture-ul component](../tools/atlas-reader.test.mjs) arată un proiect generic. Păstrează câmpurile tehnice în analiză, nu în textul cititorului.
+
+| Câmp | Responsabilitate |
+|---|---|
+| schemaVersion / projectId / language | Versiunea 1, aceeași țintă și text redactat în engleză |
+| title / summary / reviewDate | Identitate lizibilă, explicație concisă și dată calendaristică validă |
+| review | Revizor, domeniu, limite și claimIds revizuite |
+| value | Titlu, explicație și claimIds pentru fiecare beneficiu |
+| capabilities | unitId, titlu, beneficiu și afirmații ale responsabilului corect |
+| journeys / cases | flowId și fiecare caseId declarat, cu situație, rezultat așteptat și limite |
+| auditOnlyFlows | flowId, reason de construire/detaliu și justificare explicită |
+| model | Titlu, etape și legături ordonate, afirmații revizuite și legendă |
+| limits | Titlu, explicație și claimIds, inclusiv toate necunoscutele și eșecurile reținute |
+
+analysis.json, source-index.json, documentele originale și dovezile rămân lângă atlas-audit.json. delivery/atlas.html este singurul fișier livrat cititorului. Rularea auditului are nevoie de dosarul complet; lectura offline nu.
+
+</details>
+
+<a id="historical-contract-and-retained-provenance"></a>
+## Contract istoric și proveniență păstrată
+
+Contractul de mai jos descrie rendererele 1–4 și păstrează extrasele arhivate exacte.
+Regula sa despre intrări complete în HTML este înlocuită pentru publicarea nouă de
+separarea cititor/audit de mai sus. HTML-ul istoric este imuabil; validarea folosește
+politica și stilul capturate pentru acel cititor istoric.
+
+<details>
+<summary>Renderere istorice 1–4: cititor tehnic și audit încorporat</summary>
+
+
 Extrasele canonice pentru regăsire apar ca literali tehnici inline. Păstrează textul
 lor englezesc exact în fiecare ediție a documentației; traduce explicațiile din jur
 păstrând cerința citată și limitele dovezii.
@@ -486,3 +607,5 @@ documentație/arhitectură. Sunt teste de mentenanță, nu scenarii noi de produ
 Nu se folosește emulator. Autenticitatea înregistrărilor demonstrează proveniența
 politicii; păstrarea obligatorie pentru o interogare fără legătură este context onest
 de politică, nu regăsire semantică a proiectului. Revizuirea sursei oferă explicația proiectului.
+
+</details>

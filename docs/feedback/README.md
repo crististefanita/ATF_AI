@@ -9,14 +9,13 @@ jurnale și rapoarte în zona externă; copiile selectate și verificate pot fi 
 <a id="active-todos"></a>
 ## TODO-uri active
 
-Nu există elemente active acceptate în domeniul curent. Înregistrările verificate păstrează dovezile și limitele; comparația Whist este în A-003.
+<!-- feedback:empty -->
 
 Revizuirea curentă: [sursa live, documentația, Atlas/RAG și atributele framework-ului](Code_And_Documentation_Maturity.md#current-assessment).
 
 | ID | Constatare | Responsabil | Prioritate (1-100) | Calitate (1-100) | Stare | Dovada închiderii |
 |---|---|---|---:|---:|---|---|
 
-<!-- feedback:empty -->
 
 
 Registrul este rezervat guvernanței, stabilității și documentației framework-ului.
@@ -126,6 +125,7 @@ normalizarea prezentării nu reprezintă o nouă execuție.
 
 | ID | Comportament livrat | Verificare |
 |---|---|---|
+| D-014 | Cititor business numerotat, audit adiacent și RAG obligatoriu; calitate 94 (94/95/94) | Surse, criterii independente, controale negative/reparații și randare nativă; [dovezi și limite](Code_And_Documentation_Maturity.md#d-014) |
 | G-023 | Membri JSON unici la toate limitele Atlas, calitate 94 (95/95/93) | 209 Node per ediție, contraexemple/reparații și dovadă validă identică; [dovezi](Code_And_Documentation_Maturity.md#g-023) |
 | G-024 | Ordine ordinală a căilor, calitate 93 (93/92/95) | Perechi cale/amprentă identice sub două colaționări native; [dovezi](Code_And_Documentation_Maturity.md#g-024) |
 | T-008 | Număr explicit pozitiv de invocări, calitate 95 (95/95/94) | Probă TestNG reală, controale existente extinse și reparații ale adnotării; [dovezi](Code_And_Documentation_Maturity.md#t-008) |

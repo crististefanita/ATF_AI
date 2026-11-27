@@ -121,7 +121,7 @@ Nu deduce calitatea din numărul fișierelor, cuvinte ale aserțiunilor sau un r
 <a id="declared-breadth-record"></a>
 ## Înregistrarea amplorii declarate
 
-Pachetul cititorului folosește renderVersion 4 pentru o captură publică nouă.
+Pachetul cititorului folosește renderVersion 5 pentru o captură publică nouă.
 Adaugă analysis.understanding cu schemaVersion 1, scope PROJECT sau SELECTED,
 scopeStatement, inventoryClaimIds și units. PROJECT aliniază inventarele unităților
 revizuite și arhitecturii. SELECTED explică responsabilii omiși. Niciun domeniu nu
@@ -275,3 +275,14 @@ Păstrează utilizarea stabilă la responsabilul sursei. Păstrează constatări
 schimbătoare în feedback și analiza/dovezile generate în rădăcina artefactelor
 selectată. Declară încrederea și incertitudinea rămasă fără a inventa un scor global
 sau o extindere E2E.
+
+<a id="business-reader-review"></a>
+## Revizia cititorului business
+
+- Care este valoarea proiectului pentru cititor și ce comportamente o susțin?
+- Ce unități și cazuri pozitive/negative sunt reprezentate în analysis.reader?
+- Ce controale de construire rămân doar în audit și de ce?
+- Sunt necunoscutele, verificările lipsă și dovezile contrare vizibile ca limite?
+- Au numerele 01–06 și subtitlurile aceeași ordine ca navigarea și ancorele?
+- Sunt diagramele orizontale, legendele apropiate și tabelele lizibile la 1440/900 CSS px?
+- Sunt păstrate toate intrările tehnice în atlas-audit.json, fără includere ascunsă în HTML?

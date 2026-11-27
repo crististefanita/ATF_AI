@@ -148,7 +148,7 @@ completitudinea semantică.
 [contractul curent de prezentare](Report_Contract.md#reader-presentation-and-render-review)
 și controalele de componentă/randare înaintea publicării. Un extras recuperat
 despre stil nu înlocuiește cerințele actuale și nu demonstrează lizibilitatea
-vizuală. Publicarea nouă folosește versiunea 4; regulile păstrate ale versiunii 3
+vizuală. Publicarea nouă folosește versiunea 5, cu proiecție business și audit adiacent; regulile păstrate ale versiunii 3
 pentru cazuri și accesibilitate continuă să se aplice.
 
 ID-urile cunoștințelor și valorile SHA-256 arhivate sunt șiruri JSON. Tablourile sau obiectele convertibile la text potrivit trebuie respinse înaintea clasării sau construirii dovezii; duplicatele sunt verificate pe șiruri validate. Aceasta este guvernanța tipurilor de intrare, separată de verificarea octeților arhivați reali și revizuirea semantică a sursei.
@@ -158,3 +158,8 @@ HTML trebuie să aibă nume de membri unice în fiecare obiect, inclusiv după d
 escapărilor. Membrii repetați sunt respinși chiar dacă valorile lor sunt identice;
 obiecte independente pot reutiliza aceeași cheie. Șirurile și valorile JSON valide
 rămân neschimbate. Diagnosticul păstrează regula, responsabilul, indicația și reverificarea.
+
+Politica obligatorie KB-BUSINESS-READER păstrează publicul business, auditul adiacent
+și numerotarea ierarhică în orice regăsire, inclusiv când întrebarea nu are legătură
+cu prezentarea. KB-COMPLETE cere acum înțelegere completă în cititor și dovezi
+tehnice complete în audit, fără pachet ascuns în HTML. Istoricul își păstrează politica capturată.

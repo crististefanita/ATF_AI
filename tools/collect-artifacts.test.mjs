@@ -423,3 +423,14 @@ test('only the canonical extent E2E reader route can use the HTML exception', t 
     f.save(); publicationFailure(f, relative);
   }
 });
+
+function currentBusinessEnvelope(projectId){const ids=['overview','capabilities','journeys','operating-model','confidence','limits'];return '<!doctype html><html lang="en" data-atlas-reader="5" data-project-id="'+projectId+'"><head><style>body{color:#123}</style></head><body><nav>'+ids.map(id=>'<a href="#'+id+'">Read the section</a>').join('')+'</nav>'+ids.map((id,i)=>'<section id="'+id+'" data-atlas-section="'+id+'" data-section-number="0'+(i+1)+'"><h2>Project understanding</h2></section>').join('')+'</body></html>';}
+test('current reader declarations and numbered envelopes are checked without claiming a full audit',t=>{
+  const f=publicationFixture(t),entry=f.manifest.atlases[0];Object.assign(entry,{readerVersion:5,audience:'BUSINESS_PROJECT_UNDERSTANDING',...f.write(entry.path,currentBusinessEnvelope(entry.projectId))});f.save();const before=publicationState(f.artifactRoot);assert.equal(validateArtifactPublication({artifactRoot:f.artifactRoot}).atlases,2);assert.deepEqual(publicationState(f.artifactRoot),before);
+});
+test('business reader selection refuses hidden payloads, numbering drift and mixed target or audience',t=>{
+  for(const change of [html=>html.replace('</body>','<template>raw proof</template></body>'),html=>html.replace('data-section-number="02"','data-section-number="01"'),html=>html.replace('data-project-id="atf-ai"','data-project-id="foreign-project"'),html=>html.replace('href="#journeys"','href="#limits"')]){
+    const f=publicationFixture(t),entry=f.manifest.atlases[0];Object.assign(entry,{readerVersion:5,audience:'BUSINESS_PROJECT_UNDERSTANDING',...f.write(entry.path,change(currentBusinessEnvelope(entry.projectId)))});f.save();publicationFailure(f,entry.path);
+  }
+  const f=publicationFixture(t),entry=f.manifest.atlases[0];Object.assign(entry,{readerVersion:5,audience:'TECHNICAL',...f.write(entry.path,currentBusinessEnvelope(entry.projectId))});f.save();publicationFailure(f,entry.path);
+});

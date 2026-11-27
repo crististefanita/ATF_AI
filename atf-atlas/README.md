@@ -68,24 +68,22 @@ Contractul Atlas în engleză, arhivat la `main_mcp:docs/prompts/html_EN/atlas/b
 <a id="complete-understanding-report"></a>
 ## Raport complet de înțelegere
 
-Fiecare invocare, inclusiv redactarea asistată de cunoștințe, livrează exact un HTML complet de înțelegere pentru exact un proiect selectat, indiferent de limbaj sau sistemul de construcție.
+Publicarea nouă folosește rendererul 5: un singur HTML offline de înțelegere
+business pentru proiectul selectat. Scopul, valoarea, capabilitățile,
+comportamentele și limitele sunt explicate înaintea detaliilor de implementare.
 
-- Artefactul pentru cititor este `delivery/atlas.html` într-o analiză nouă.
-- Include contextul, comportamentul existent susținut și criteriul său de verificare ori lipsa explicită a acestuia, afirmațiile, fragmentele sursă, arhitectura, auditul guvernanței, cerințele recuperate, limitele dovezilor și toate intrările declarate.
-- Markdown, manifestele, jurnalele și HTML-urile anterioare rămân în afara acelui folder.
-- Un HTML suplimentar sub delivery/ sau combinarea unor identități distincte de țintă încalcă acest contract.
+- Secțiunile 01–06 au numere stabile, oglindite în navigare; subtitlurile urmează ierarhia 03.01 și 03.01.01.
+- Proiecția business este legată de afirmații, responsabili și cazuri pozitive/negative existente; necunoscutele rămân vizibile.
+- Comenzile, căile de sursă, amprentele, JSON-ul brut și dovezile de execuție rămân în atlas-audit.json, lângă analiză și în afara delivery/.
+- HTML-ul nu conține pachet tehnic ascuns. Poate fi citit singur; verificarea completă cere auditul adiacent original.
+- Stilul canonic este încorporat, diagramele au legende, iar tabelele păstrează textul complet și lizibil.
 
-Stilul canonic este menținut separat și încorporat în raport, împreună cu SVG și navigare internă.
+[Contractul cititorului](Report_Contract.md#reader-and-audit-responsibilities)
+definește separarea publicurilor și ciclul regăsire–redactare–audit–randare.
+Controalele componente refuză detaliile tehnice în textul cititorului, cazurile
+omise și numerotarea modificată. Revizorul verifică în continuare sensul.
 
-- Copierea doar a HTML-ului trebuie să păstreze documentul complet offline.
-- Absența testelor, metadatelor Git sau dependențelor rămâne explicită, împreună cu aria și limitele sursei.
-- Recuperarea oferă politici citate responsabilului care verifică sursele; nu demonstrează execuție sau înțelegere semantică completă.
-
-Versiunea 4 guvernează și structura lecturii și echilibrul măsurat al tabelelor.
-
-- Explicațiile primesc spațiu, comparațiile dense au derulare locală, dovezile lungi de caz devin fișe verticale complete și fiecare graf declarat are o legendă alăturată.
-- [Contractul de prezentare](Report_Contract.md#reader-presentation-and-render-review) separă verificările de componentă, măsurătorile desktop native și revizia vizuală umană.
-- Cititorii istorici și dovezile lor capturate rămân imuabile.
+Cititorii istorici 1–4 și dovezile lor rămân imuabile, conform contractului capturat.
 
 <a id="review-breadth-and-quality-axes"></a>
 ## Aria revizuirii și axele de calitate
@@ -124,7 +122,7 @@ Evaluările opționale 1–100 declară responsabilul revizuirii, aria, justific
 <a id="behavior-cases-and-negative-scope"></a>
 ## Cazuri de comportament și limitele analizei negative
 
-Capturile noi renderVersion 4 explică situațiile pozitive și negative existente, cu precondiții, declanșatori, observații așteptate și fragmentele exacte ale criteriilor din surse.
+Capturile noi renderVersion 5 explică situațiile pozitive și negative existente, cu precondiții, declanșatori, observații așteptate și fragmentele exacte ale criteriilor din surse.
 
 - Fiecare flux declară intrarea, ID-uri stabile ale săgeților, parcursuri continue și aria revizuirii negative.
 - Fiecare rezultat are un caz martor; toate nodurile sunt accesibile de la intrare și pot ajunge la un rezultat.

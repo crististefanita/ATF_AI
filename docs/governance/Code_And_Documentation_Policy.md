@@ -486,3 +486,8 @@ invocări Maven/wrapper, nu un cuvânt-cheie din proză.
 Reconcilierea feedback-ului urmează [responsabilul ciclului de viață](../feedback/README.md#recording-and-closing-feedback): un registru activ gol cere o declarație explicită, iar domeniul închis, extern sau retras își păstrează limitele reale ale dovezii. Un exemplu delimitat nu poate declara lista goală.
 
 Inventarele sursei exclud directoarele generate înaintea inspectării descendenților. Aceeași politică păstrează numele de rezultate sub rădăcinile surselor/resurselor deținute. Rezolvă rădăcina canonică o singură dată per scanare, păstrează limita sa și califică rădăcini relative, cu spații și Unicode. Observațiile directoarelor verifică domeniul parcurgerii fără praguri temporale dependente de planificare.
+
+Cititorul Atlas actual respectă [limita publicului](../../atf-atlas/Report_Contract.md#reader-and-audit-responsibilities):
+explicații business numerotate, cazuri și limite în HTML; datele tehnice de construire
+în auditul adiacent. Controalele [cititorului](../../tools/atlas-reader.test.mjs)
+completează verificările de sursă, fără a certifica automat sensul propozițiilor.

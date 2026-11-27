@@ -91,7 +91,9 @@ Indexul generat al surselor înregistrează fiecare cale inspectată, rolul și 
 <a id="declared-review-units-and-seven-facets"></a>
 ## Unități declarate și șapte perspective de revizuire
 
-Capturile publice noi folosesc renderVersion 4 și analysis.understanding cu schemaVersion 1.
+Capturile publice noi folosesc renderVersion 5 și analysis.understanding cu schemaVersion 1.
+
+Metadatele publicării curente declară împreună readerVersion 5 și audience BUSINESS_PROJECT_UNDERSTANDING. Colectorul verifică structura HTML selectată și identitatea; acceptanța completă cere în continuare auditul adiacent original, randarea canonică și revizuirea sensului. Capturile istorice fără versiune păstrează politica inițială.
 
 - Declară aria PROJECT sau SELECTED, scopeStatement și inventoryClaimIds pornind de la declarațiile reale ale pachetelor, construcției, intrărilor și responsabilităților.
 - Enumeră unitățile conform responsabilităților reale ale componentelor și documentelor sursă.
@@ -222,3 +224,16 @@ Verificatorul validează consistența declarată, nu adevărul dedus din cuvinte
 - Păstrează întrebările nerezolvate.
 - Un proiect care interzice hărți de context în documentația menținută poate fi analizat aici: păstrează rezultatul generat în rădăcina de artefacte a apelantului, în afara zonei docs/lib a proiectului.
 - Nu slăbi guvernanța acelui proiect pentru a găzdui o hartă.
+
+<a id="reader-projection-and-construction-dossier"></a>
+### Proiecția pentru cititor și dosarul de construire
+
+Redactează analysis.reader din scopul, responsabilii și cazurile proiectului real.
+Folosește [contractul actual](../../atf-atlas/Report_Contract.md#source-bound-business-projection),
+nu o copie a unui alt proiect. Păstrează justificările semantice și excluderile
+strict tehnice în analiza originală.
+
+- Publicarea produce delivery/atlas.html și atlas-audit.json adiacent, în afara delivery/.
+- Citește HTML-ul fără fișiere auxiliare; verifică-l cu auditul original, stilul canonic și geometria nativă.
+- Nu afișa comenzi, verificări de fișiere, amprente sau JSON brut în cititor, nici în elemente ascunse.
+- Numerotarea, cazurile negative și limitele sunt verificate înaintea selecției în current/.

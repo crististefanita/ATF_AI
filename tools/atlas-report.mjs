@@ -10,6 +10,7 @@ import {validateAtlasBundle} from './atlas-bundle.mjs';
 import {validateAtlasUnderstanding,understandingFacets} from './atlas-understanding.mjs';
 import {validateAtlasBehavior} from './atlas-behavior.mjs';
 import {presentationTable,presentationMarkdown,graphLegend} from './atlas-presentation.mjs';
+import {businessSections,renderBusinessReader,inspectBusinessReaderHtml} from './atlas-reader.mjs';
 
 const repositoryRoot=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 export const atlasSections=['context','behavior','evidence','trace','architecture','audit','knowledge','limits','documents','provenance'];
@@ -153,6 +154,7 @@ function reviewKnowledgeReceipt(receipt,source,required){
 export function renderAtlasHtml(bundle,css){
   validateAtlasBundle(bundle);reviewKnowledgeReceipt(bundle.knowledge,bundle.knowledgeSource,bundle.renderVersion>=2);
   const caseReview=reviewUnderstanding(bundle.analysis,{requiredCases:bundle.renderVersion>=3,sourceIndex:bundle.sourceIndex});
+  if(bundle.renderVersion>=5)return renderBusinessReader(bundle,css);
   const {analysis,sourceIndex,knowledge,documents,evidenceFiles,consistency}=bundle;
   const table=bundle.renderVersion>=4?presentationTable:legacyTable;
   const markdown=bundle.renderVersion>=4?presentationMarkdown:legacyMarkdown;
@@ -197,7 +199,15 @@ export function renderAtlasHtml(bundle,css){
   return '<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(analysis.projectId)+' · complete understanding Atlas</title><style id="atlas-style" data-sha256="'+digest(css)+'">'+css+'</style></head><body><div class="wrap"><header class="hero"><p class="eyebrow">Atlas · governed source understanding</p><h1>'+escape(analysis.projectId)+' — understanding Atlas</h1><p>One target. One complete document. Dedicated embedded design and auditable evidence.</p><div class="pill-row"><span class="pill">'+escape(analysis.revision.slice(0,12))+'</span><span class="pill">'+claims.length+' source-bound claims</span><span class="pill">'+sourceIndex.files.length+' indexed files</span><span class="pill">English</span></div></header><nav aria-label="Atlas sections">'+navigation+'</nav><svg width="0" height="0" aria-hidden="true"><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z"/></marker></defs></svg>'+body+'<template id="atlas-bundle">'+escape(JSON.stringify(bundle))+'</template><footer><p>Generated from declared source and preserved evidence. No network resource or companion page is required. Review scope and source identity remain explicit.</p></footer></div></body></html>\n';
 }
 
-export function validateAtlasHtml({html,css,projectId}){
+export function validateAtlasHtml({html,css,projectId,auditBundle}){
+  if(html.includes('data-atlas-reader="5"')){
+    inspectBusinessReaderHtml(html,{projectId});
+    requireAtlas(auditBundle&&auditBundle.renderVersion===5,'ATLAS-READER','The reader needs its separate original audit bundle for verification; reading remains offline and independent');
+    requireAtlas(auditBundle.analysis.projectId===projectId,'ATLAS-TARGET','The reader audit belongs to another target');
+    requireAtlas(html.includes('<style id="atlas-style">'+css+'</style>'),'ATLAS-CSS','The reader does not embed canonical CSS');
+    requireAtlas(html===renderAtlasHtml(auditBundle,css),'ATLAS-READER','The business reader differs from its audited projection, numbered sections or preserved limits');
+    return {status:'PASSED',projectId,sections:businessSections.length,offline:true,scope:'BUSINESS_READER_WITH_ADJACENT_AUDIT'};
+  }
   const payload=/<template id="atlas-bundle">([\s\S]*?)<\/template>/.exec(html);
   requireAtlas(payload,'ATLAS-HTML','Complete machine bundle is missing');
   const bundle=parseAtlasJson(decode(payload[1]),'ATLAS-HTML','embedded analysis bundle');
@@ -212,10 +222,12 @@ export function validateAtlasDelivery({deliveryRoot,projectId,css}){
   const walk=directory=>{for(const entry of fs.readdirSync(directory,{withFileTypes:true})){const file=path.join(directory,entry.name);requireAtlas(!entry.isSymbolicLink(),'ATLAS-PATH','Delivery contains a symbolic link');if(entry.isDirectory())walk(file);else if(entry.isFile())files.push(file);}};
   walk(root);
   requireAtlas(files.length===1&&path.relative(root,files[0])==='atlas.html','ATLAS-HTML','A target invocation must deliver exactly one file: delivery/atlas.html');
-  return validateAtlasHtml({html:fs.readFileSync(files[0],'utf8'),projectId,css});
+  const html=fs.readFileSync(files[0],'utf8');
+  const auditBundle=html.includes('data-atlas-reader="5"')?parseAtlasJson(fs.readFileSync(ownedFile(path.dirname(root),'atlas-audit.json'),'utf8'),'ATLAS-EVIDENCE','adjacent Atlas audit'):undefined;
+  return validateAtlasHtml({html,projectId,css,auditBundle});
 }
 
-export function publishAtlas({sourceRoot,analysisRoot,artifactRoot,root=repositoryRoot,query='complete standalone HTML behavior source evidence styling governance'}){
+export function prepareAtlasBundle({sourceRoot,analysisRoot,artifactRoot,root=repositoryRoot,query='business project understanding audience source evidence styling numbered sections'}){
   requireAtlas([sourceRoot,analysisRoot,artifactRoot].every(nonempty),'ATLAS-SCHEMA','Declare source, analysis and artifact roots for one target');
   const source=fs.realpathSync(sourceRoot),analysisDirectory=fs.realpathSync(analysisRoot),artifacts=fs.realpathSync(artifactRoot);
   const consistency=verifyAtlas({sourceRoot:source,analysisRoot:analysisDirectory,artifactRoot:artifacts});
@@ -245,12 +257,20 @@ export function publishAtlas({sourceRoot,analysisRoot,artifactRoot,root=reposito
   const knowledge=retrieveAtlasKnowledge({query,root}),css=canonicalCss(root),knowledgeBytes=fs.readFileSync(path.join(root,'atf-atlas/knowledge/atlas-contracts.json'));
   const knowledgeSource={path:'atf-atlas/knowledge/atlas-contracts.json',sha256:digest(knowledgeBytes),...preservedText(knowledgeBytes)};
   const bundle={schemaVersion:1,renderVersion:4,analysis,analysisText,sourceIndex,sourceIndexText,documents,sourceDocuments,referencedSources,evidenceFiles,knowledge,knowledgeSource,consistency};
-  const html=renderAtlasHtml(bundle,css);validateAtlasHtml({html,css,projectId:analysis.projectId});
+  return bundle;
+}
+
+export function publishAtlas(options){
+  const bundle={...prepareAtlasBundle(options),renderVersion:5},css=canonicalCss(options.root||repositoryRoot);
+  const {analysis}=bundle,artifacts=fs.realpathSync(options.artifactRoot),analysisDirectory=fs.realpathSync(options.analysisRoot);
+  const html=renderAtlasHtml(bundle,css);validateAtlasHtml({html,css,projectId:analysis.projectId,auditBundle:bundle});
   const delivery=path.join(analysisDirectory,'delivery');
-  requireAtlas(within(artifacts,delivery)&&!fs.existsSync(delivery),'ATLAS-PATH','Use a new analysis delivery directory; existing output is preserved');
+  const audit=path.join(analysisDirectory,'atlas-audit.json');
+  requireAtlas(within(artifacts,delivery)&&!fs.existsSync(delivery)&&!fs.existsSync(audit),'ATLAS-PATH','Use a new analysis delivery directory and adjacent audit; existing output is preserved');
+  fs.writeFileSync(audit,JSON.stringify(bundle,null,2)+'\n',{flag:'wx'});
   fs.mkdirSync(delivery);fs.writeFileSync(path.join(delivery,'atlas.html'),html,{flag:'wx'});
   const verification=validateAtlasDelivery({deliveryRoot:delivery,projectId:analysis.projectId,css});
-  return {...verification,output:path.join(delivery,'atlas.html'),bytes:Buffer.byteLength(html),sha256:digest(html),sourceRevision:analysis.revision,knowledgeSha256:knowledge.corpusSha256};
+  return {...verification,output:path.join(delivery,'atlas.html'),bytes:Buffer.byteLength(html),sha256:digest(html),audit,auditSha256:digest(fs.readFileSync(audit)),sourceRevision:analysis.revision,knowledgeSha256:bundle.knowledge.corpusSha256};
 }
 
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){

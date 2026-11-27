@@ -136,12 +136,12 @@
         "embed"
       ],
       "mandatory": true,
-      "requirement": "Deliver all declared understanding, diagrams, source traces, documents, knowledge context, proof boundaries and original declared evidence in the single final HTML. Do not truncate inputs or depend on navigation sidecars. Missing facts remain explicit gaps.",
+      "requirement": "Deliver one complete business understanding HTML that remains readable offline. Preserve complete source traces, original documents, retrieved policy and execution evidence in the separate adjacent audit; never truncate or discard them. Missing facts stay visible in reader limits. The HTML does not embed raw technical inputs.",
       "sources": [
         {
           "kind": "CURRENT_CONTRACT",
           "path": "atf-atlas/Report_Contract.md",
-          "quote": "Each invocation publishes exactly one complete understanding HTML for exactly one selected project."
+          "quote": "ATLAS-READER-001: Publish business understanding in one numbered offline HTML; preserve source, commands, file verification, raw JSON and execution evidence in a separate adjacent audit, never hidden in the reader."
         }
       ]
     },
@@ -244,12 +244,12 @@
         "maturity"
       ],
       "mandatory": true,
-      "requirement": "Display NOT_ASSESSED when no actual rubric and assessment were supplied. Never infer a maturity or understanding score from passing checks, hash identity, retrieval relevance or the number of source files.",
+      "requirement": "State in reader language when no project-quality grade was authored. Keep detailed assessment inputs and machine review states in the adjacent audit. Never infer a maturity or understanding score from passing checks, identity, retrieval relevance or source-file counts; a separate authored assessment retains its own scope.",
       "sources": [
         {
           "kind": "CURRENT_CONTRACT",
           "path": "atf-atlas/Report_Contract.md",
-          "quote": "No score is inferred from passing checks."
+          "quote": "ATLAS-READER-004: Explain verification and assessment limits in reader language; do not infer a project quality grade from consistency, retrieval or passing checks."
         }
       ]
     },
@@ -446,6 +446,33 @@
           "kind": "CURRENT_CONTRACT",
           "path": "atf-atlas/Report_Contract.md",
           "quote": "Every declared behavior outcome has a source-bound case witness reachable from its entry."
+        }
+      ]
+    },
+    {
+      "id": "KB-BUSINESS-READER",
+      "title": "Business audience and governed numbering",
+      "topics": [
+        "business",
+        "audience",
+        "numbering",
+        "reader",
+        "creation",
+        "audit",
+        "rendering"
+      ],
+      "mandatory": true,
+      "requirement": "Use renderer 5 business projection with source-bound capabilities, meaningful positive and negative cases, visible unknowns, and ordered hierarchical section numbering mirrored in navigation. Keep SSH, commands, file checks, raw JSON and proof payloads outside the HTML, including hidden templates. Preserve the adjacent audit, component negative/repair controls and native desktop render review; semantic meaning still needs a reviewer.",
+      "sources": [
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "ATLAS-READER-002: Use stable ordered section numbers mirrored in navigation, hierarchical child numbers, valid local anchors and adjacent diagram legends; keep concise explanations, meaningful cases and balanced tables."
+        },
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "ATLAS-READER-003: Retrieve mandatory audience and numbering policy, author the project-specific projection from actual source, preserve negative controls and repairs, verify the adjacent audit, and inspect native rendering before selecting the final reader."
         }
       ]
     }
