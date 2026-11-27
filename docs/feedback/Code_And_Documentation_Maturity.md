@@ -1270,3 +1270,64 @@ Delivered quality 95 (correctness 95 / verification 96 / clarity 94).
 - Current V2 publication requires the reference profile; V1 remains historically verifiable without an implicit new presentation qualification. No runtime services, E2E additions or emulators are introduced.
 
 Evidence: `${ATF_WORK_ROOT}/reviews/atlas-reference-adaptation-20261127`. The two partial application facets and five application questions stay explicit; reviewed status is not exhaustive semantic understanding.
+
+<a id="d-027"></a>
+## D-027: Fitted diagrams and useful local references
+
+Status: VERIFIED within the bounded presentation and evidence scope. Owner: Atlas diagram governance.
+Priority 93 (impact 94 / exposure 92 / urgency 90).
+Baseline quality 84 (correctness 86 / verification 82 / clarity 83).
+
+- The baseline admits horizontal overflow in supporting maps. At 900 px,
+  response and foundation nodes leave the visible panel; valid scroll metadata
+  does not make the complete story immediately readable.
+- Supporting legends repeat generic wording and lack the second local references
+  disclosure present in the historical example. A declaration of traceability
+  cannot replace the actual owned subject, verdict and boundary.
+- A tall multiline label can hide a tiny transformed font from a height-only
+  check. The archived scale and legend rules provide useful repair principles;
+  their old thresholds and runtime infrastructure are not copied blindly.
+- Acceptance requires zero horizontal scrolling, complete readable nodes and
+  relationships, exactly two closed disclosures per graph, source-specific
+  legends, original proof and useful owned refusal hints.
+- Current source lives in the separate `atf-atlas/governance` component area.
+  Native review, paired documentation and meaningful counterexamples qualify
+  this correction; test volume cannot increase an understanding score.
+
+Evidence: `${ATF_WORK_ROOT}/reviews/atlas-diagram-calibration-20261127`.
+No new application E2E or emulator is requested. The two partial application
+facets and five remaining questions retain their original scope.
+
+
+Delivered quality 95 (correctness 95 / verification 96 / clarity 94).
+
+- All 18 diagrams in the native preview fit at 1440/900 without horizontal
+  scrolling and with two closed legend/reference disclosures.
+- The nine module cases and 55-component selection pass. Documentation checks
+  caught a four-sentence paragraph in both editions; the repair separates
+  decisions and the focused readability/edition checks pass.
+- Twelve distinct historical objects anchor the rules, code examples and
+  negative controls. The no-scroll extension is an explicit current decision.
+- The old primary reference has approximately 8–10 px type at 900 px and 13
+  relationships without their own labels. Its structure informs stricter gates.
+- Atlas reading quality is recalibrated from 96 to 95; understanding 94 and
+  semantic breadth 93 retain their bounded scope. Layout does not complete source.
+- Final exact-source qualification, actual publisher controls and delivered
+  selection retain separate receipts in the external dossier; failed attempts
+  remain preserved. Historical V1/V2 receive no retroactive V3 qualification.
+
+| Inspected artifact and policy axis | Historical main_mcp | Revised ATF_AI |
+|---|---:|---:|
+| Business story | 94 | 94 |
+| Primary relationships and comprehension | 80 | 95 |
+| Measured scale and readability | 78 | 95 |
+| Local legends and references | 94 | 95 |
+| Auditability and evidence boundaries | 91 | 96 |
+| Demonstrated presentation governance | 87 | 96 |
+| Single-file offline delivery | 88 | 95 |
+| Selected semantic breadth | 94 | 93 |
+
+These grades use reasoned 40/30/30 inputs in the external comparison, without
+an averaged winner or pass rates converted to quality. They assess the inspected
+artifacts and policies, not fresh historical runtime acceptance or all source.
+The reference's original self-assessments stay unchanged in its own artifact.

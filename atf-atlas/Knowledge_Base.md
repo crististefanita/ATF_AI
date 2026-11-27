@@ -49,6 +49,9 @@ execution evidence. A cited old requirement cannot certify today's project code.
 - Keep target files read only and outputs in caller-selected ignored artifacts.
 - Treat observed score inputs and unresolved questions honestly.
 - Preserve an original failure and give a bounded repair route.
+- Apply current no-scroll diagram governance: consistent measured scale and two
+  closed local disclosures with source-specific legends and original references.
+  Use [the component owner](governance/README.md) for a wide-view repair.
 
 Archive paths and blob digests identify provenance. They are not active runtime
 instructions. No old registry, execution plan or automatic score is restored.
@@ -153,7 +156,11 @@ hierarchical numbering in every retrieval, including unrelated questions.
 KB-COMPLETE now requires complete understanding in the reader and complete
 technical evidence in the audit, with no hidden HTML bundle. History retains its captured policy.
 
-The current profile includes `BUSINESS_REFERENCE_V1`: an open primary map, closed support, facet-bound maturity and goal–question–measure score rationale. V2 is verified separately from historical V1 declarations. A passing result never becomes an automatic grade.
+The current profile includes `BUSINESS_REFERENCE_V2`: an open primary map,
+closed support, facet-bound maturity and goal–question–measure score rationale.
+Current V3 also requires fitted diagrams and two closed local disclosures per
+graph. Historical V1/V2 declarations retain their original assessment. A passing
+result never becomes an automatic grade.
 
 ## Artifact calibration
 

@@ -204,6 +204,14 @@ The reader explains business purpose, project architecture and behavior. Archite
 
 The [contract](Report_Contract.md) defines the schema and limits; the [calibration component](../tools/atlas-calibration.mjs) explains failures and repair routes. Axis ratings remain reasoned review judgments, not test pass rates.
 
+The [diagram governance module](governance/README.md) adapts pinned archive
+rules into current components. Current diagrams and tables fit without horizontal
+scrolling; every graph has two closed local disclosures for its legend and
+source-bound references.
+
+Actual transformed type, geometry and original proof
+are inspected together. Wide ideas require meaningful subviews or prose.
+
 Semantic qualification uses distinct facet observations, owned source and independent oracles, with visible remaining limits. Atlas identity stays compact; review date belongs with confidence. See the [semantic contract](Report_Contract.md#semantic-review-and-compact-identity).
 
 For a successive review, preserve the [baseline and each facet decision](Report_Contract.md#partial-facet-refinement), then apply the [archive-adapted graph rules](Report_Contract.md#source-graph-quality-and-archive-adaptation). Promotion counts do not replace evidence or meaning review.

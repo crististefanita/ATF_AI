@@ -262,7 +262,7 @@ export function prepareAtlasBundle({sourceRoot,analysisRoot,artifactRoot,root=re
 
 export function publishAtlas(options){
   const bundle={...prepareAtlasBundle(options),renderVersion:5},css=canonicalCss(options.root||repositoryRoot);
-  if(options.requireCurrentUnderstanding){bundle.publicationProfile='CURRENT_UNDERSTANDING_V2';bundle.profileReview=validateCurrentUnderstandingProfiles(bundle.analysis,bundle.sourceIndex);}
+  if(options.requireCurrentUnderstanding){bundle.publicationProfile='CURRENT_UNDERSTANDING_V3';bundle.profileReview=validateCurrentUnderstandingProfiles(bundle.analysis,bundle.sourceIndex);}
   const {analysis}=bundle,artifacts=fs.realpathSync(options.artifactRoot),analysisDirectory=fs.realpathSync(options.analysisRoot);
   const html=renderAtlasHtml(bundle,css);validateAtlasHtml({html,css,projectId:analysis.projectId,auditBundle:bundle});
   const delivery=path.join(analysisDirectory,'delivery');

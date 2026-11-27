@@ -116,10 +116,22 @@ reader cues, with business explanations of the remaining responsibility.
 
 `ATLAS-REFERENCE-AUTHORING-001: Fresh CURRENT_UNDERSTANDING_V2 requires BUSINESS_REFERENCE_V1 in addition to the source, comparison, origin and diagram profiles; preserve historical V1 declarations without upgrading their presentation assessment.`
 
-The earlier authoring literal describes captured V1 declarations. Current
-`understand` publishes V2 and additionally requires `BUSINESS_REFERENCE_V1`.
-Offline V1 verification preserves its original scope; it cannot supply the new
-opening or score qualification. Historical readers are never rewritten.
+The retained authoring literals describe captured V1/V2 declarations. Current
+`understand` publishes V3 and requires `BUSINESS_REFERENCE_V2`. Offline V1/V2
+verification preserves its original scope; it cannot supply the new fitted
+presentation qualification. Historical readers are never rewritten.
+
+`ATLAS-DIAGRAM-FIT-001: Fresh CURRENT_UNDERSTANDING_V3 requires BUSINESS_REFERENCE_V2; every diagram and table fits without horizontal scrolling, clipping or reduced text, with actual transformed SVG type of at least 13 CSS px at the qualified desktop widths; split a wide idea into meaningful source-bound subviews or prose and retain its complete audit.`
+
+`ATLAS-DIAGRAM-SUPPORT-001: Every current diagram has exactly two initially closed local disclosures, a source-specific bulleted legend and references with owned subjects, original proof and remaining limits; compare their actual rendered content with the original source-bound projection, never accept empty shells or generic legend filler.`
+
+The [diagram governance module](governance/README.md) adapts archived visual
+scale, legend and maturity contracts. Supporting views use a shared canvas and
+bounded layers; overly wide stories fail with an owned split/prose repair.
+Native checks measure text after SVG transforms, local overflow, initial
+disclosures and source-specific references. A multiline text box cannot hide
+a tiny font. The current no-scroll rule is a deliberate project decision;
+archive citations retain their actual historical requirements.
 
 `ATLAS-REFERENCE-001: Keep one source-bound primary business map open in the initial reader, with supporting maps, local legends, object proof and score rationale closed; explain the actual project objects rather than runtime module topology or authoring metadata.`
 
@@ -452,7 +464,7 @@ and execution identities remain unchanged by a presentation refresh.
 | Comparison | Content-aware columns, top alignment, wrapped identifiers and full text | Native cell geometry at declared desktop widths |
 | Long case witness | A vertical case record with every original field | Independent expected observation, assertion and limits remain visible |
 | Diagram | Adjacent legend for boxes, arrows, evidence scope and omissions | Dependency arrows and behavior transitions retain different meanings |
-| Dense table | Named, keyboard-focusable local scrolling | No document overflow, clipping, ellipsis or reduced type to force a fit |
+| Dense table | Current V3: wrapped columns or case records; historical readers retain their captured policy | No horizontal scrolling, clipping, ellipsis or reduced type to force a fit |
 
 The [presentation controls](../tools/atlas-presentation.test.mjs) exercise
 negative, repaired and valid cases. Column allocation gives prose at least 300
