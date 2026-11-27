@@ -9,18 +9,18 @@ jurnale și rapoarte în zona externă; copiile selectate și verificate pot fi 
 <a id="active-todos"></a>
 ## TODO-uri active
 
-Nu există TODO-uri acceptate deschise în domeniul curent.
+Nu mai există TODO-uri de implementare acceptate; corecțiile verificate și delimitate rămân mai jos.
 
-Revizuirea curentă: [sursa live, documentația, Atlas/RAG și atributele framework-ului](Code_And_Documentation_Maturity.md#current-assessment).
+Revizuirea curentă: [sursa live, documentația, Atlas/RAG și atributele framework-ului](Code_And_Documentation_Maturity.md#cross-project-assessment).
 
 | ID | Constatare | Responsabil | Prioritate (1-100) | Calitate (1-100) | Stare | Dovada închiderii |
 |---|---|---|---:|---:|---|---|
 
+
+
+
+
 <!-- feedback:empty -->
-
-
-
-
 
 Registrul este rezervat guvernanței, stabilității și documentației framework-ului.
 Înregistrările despre îmbunătățirea fluxurilor de produs sunt excluse din această listă.
@@ -77,6 +77,8 @@ Componentele păstrate ale evaluărilor inițiale:
 
 | ID | Impact / risc / urgență | Corectitudine / verificare / claritate | Limitele dovezilor |
 |---|---|---|---|
+| D-024 | 92 / 88 / 85 | 91 / 89 / 92 | Comparații generice ale cazurilor și decizii existente de framework omise |
+| D-025 | 90 / 88 / 80 | 88 / 80 / 85 | Grafuri randate mici și cerințe curente lipsă pentru origine/captură |
 | D-023 | 92 / 90 / 85 | 90 / 85 / 95 | Auditul succesiv mare depășește stiva tokenizării |
 | D-022 | 88 / 84 / 78 | 94 / 93 / 95 | Două fațete parțiale și limite anterioare de păstrat |
 | D-020 | 90 / 88 / 84 | 93 / 93 / 94 | Patru fațete necesită observații independente și limite explicite |
@@ -135,6 +137,8 @@ normalizarea prezentării nu reprezintă o nouă execuție.
 
 | ID | Comportament livrat | Verificare |
 |---|---|---|
+| D-024 | Comparații concrete și patru limite de comportament existente; calitate 95 (96/94/95) | [Sursă exactă, subiecți originali și revizie nativă](Code_And_Documentation_Maturity.md#d-024) |
+| D-025 | Diagrame utile, sursă/origini fidele și refuzuri reale; calitate 96 (97/96/95) | [Calificare comparată și eșec J1 păstrat](Code_And_Documentation_Maturity.md#d-025) |
 | D-023 | Scanare iterativă, istoric integral și refuzul duplicatelor; calitate 95 (96/95/94) | [Regresii și auditul original reparat](Code_And_Documentation_Maturity.md#d-023) |
 | D-022 | Dovezi locale aprofundate, întrebări explicite și limite păstrate; calitate 95 (96/95/94) | [Componente, refuzuri și limite](Code_And_Documentation_Maturity.md#d-022) |
 | D-015 | Audit nativ față de sursa live, arhitectură și verdicte explicite; calitate 95 (95/95/94) | Artefact inițial respins, reparație nativă și controale independente; [dovezi și note](Code_And_Documentation_Maturity.md#d-015) |

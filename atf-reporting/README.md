@@ -52,6 +52,21 @@ Săgețile arată evenimentele TestNG și pașii neutri Core ajungând la implem
 Raportarea obișnuită nu depinde de dovezi istorice sau de fișiere de calibrare.
 
 <a id="verification"></a>
+<a id="evidence-ownership-and-limits"></a>
+## Proprietatea dovezilor și limitele lor
+
+Fiecare invocare deține propriul context de pași și propria eligibilitate pentru
+capturi. Componentele locale existente compară observatori separați într-o
+suprapunere controlată, șterg starea veche înaintea altei invocări și permit o
+singură captură eligibilă pentru fiecare context UI. Ele nu demonstrează orice
+planificare, pixelii unui browser real sau siguranța distribuirii imaginilor.
+
+Hook-urile de atașare la eșec își diagnostichează erorile și continuă distribuirea
+către handler-ele sănătoase în fixture-ul selectat. Hook-urile stării de succes
+apelează direct handler-ele; testele cu handler-e sănătoase nu demonstrează
+recuperarea din orice eroare de hook sau jurnal. Vezi [registrele de atașare Core](../atf-core/src/main/java/com/ai/core/reporting/attachment/)
+și [contractele existente pentru capturi](../atf-tests/src/test/java/com/ai/atf/core/reporting/screenshot/FinalUiScreenshotContractTest.java).
+
 ## Verificare
 
 Dintr-o copie izolată a reactorului:

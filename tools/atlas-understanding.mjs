@@ -11,6 +11,35 @@ const inside=(file,scope)=>file===scope||file.startsWith(scope+'/');
 const requireDepth=(condition,observed)=>requireAtlas(condition,'ATLAS-UNDERSTANDING',observed);
 const requireScore=(condition,observed)=>requireAtlas(condition,'ATLAS-ASSESSMENT',observed);
 
+/** Origin declarations distinguish reviewed local source from selected artifact contracts. */
+export function validateAtlasOrigins(analysis,index){
+  const review=analysis.understanding;
+  if(review?.originProfile===undefined)return {status:'NOT_ASSESSED',scope:'LEGACY_ORIGIN_DECLARATIONS'};
+  requireDepth(review.originProfile==='SOURCE_ORIGINS_V1'&&array(review.units)&&array(index?.files),'Declare the supported source-origin profile and indexed units');
+  const indexed=new Set(index.files.map(file=>file.path)),claims=new Map((analysis.claims||[]).map(c=>[c.id,c]));let local=0,consumed=0,artifacts=0;
+  for(const unit of review.units){
+    requireDepth(['LOCAL_SOURCE','CONSUMED_ARTIFACT'].includes(unit.sourceRole),'Declare local source or consumed artifact for each unit: '+unit.id);
+    if(unit.sourceRole==='LOCAL_SOURCE'){
+      requireDepth(unit.artifacts===undefined||array(unit.artifacts)&&unit.artifacts.length===0,'Local source must not relabel a consumed artifact pair: '+unit.id);local++;continue;
+    }
+    requireDepth(unit.kind==='BOUNDARY'&&array(unit.artifacts)&&unit.artifacts.length>0,'Consumed artifacts are contract boundaries, not local source modules: '+unit.id);
+    const paths=new Set(),owned=relative=>unit.scopePaths?.some(scope=>inside(relative,scope));
+    for(const artifact of unit.artifacts){
+      requireDepth(artifact&&typeof artifact.coordinate==='string'&&/^[^\s:]+:[^\s:]+:[^\s:]+$/.test(artifact.coordinate)&&relative(artifact.jarPath)&&relative(artifact.pomPath)&&artifact.jarPath.endsWith('.jar')&&artifact.pomPath.endsWith('.pom')&&artifact.jarPath!==artifact.pomPath&&indexed.has(artifact.jarPath)&&indexed.has(artifact.pomPath)&&owned(artifact.jarPath)&&owned(artifact.pomPath)&&!paths.has(artifact.jarPath)&&!paths.has(artifact.pomPath),'A consumed contract needs its distinct indexed, owned JAR/POM pair and selected coordinate: '+unit.id);
+      requireDepth((unit.claimIds||[]).some(id=>reviewed(claims.get(id))&&claims.get(id).sourceRefs?.some(ref=>ref.path===artifact.pomPath)),'Cite the selected artifact declaration; an index entry alone is not a reviewed library contract: '+unit.id+'/'+artifact.pomPath);
+      paths.add(artifact.jarPath);paths.add(artifact.pomPath);artifacts++;
+    }
+    consumed++;
+  }
+  return {status:'PASSED',profile:review.originProfile,localUnits:local,consumedBoundaries:consumed,selectedArtifacts:artifacts,scope:'DECLARED_ORIGIN_AND_SELECTED_PAIR_BINDINGS; NOT_PRODUCER_SOURCE_OR_AUTOMATIC_DEPENDENCY_RESOLUTION'};
+}
+
+/** The current authoring entry cannot silently downgrade to a historical profile. */
+export function validateCurrentUnderstandingProfiles(analysis,index){
+  requireDepth(analysis?.reader?.diagramProfile==='SOURCE_GRAPH_V2'&&analysis.reader.comparisonProfile==='SOURCE_BOUND_COMPARISONS_V1'&&analysis.reader.captureProfile==='GIT_WORKTREE_V1'&&index?.captureProfile==='GIT_WORKTREE_V1'&&analysis.understanding?.originProfile==='SOURCE_ORIGINS_V1','Current understanding requires useful source diagrams, concrete case comparisons, source-capture disclosure and local/consumed origins; use the current owner contract instead of silently dropping a profile');
+  return {status:'PASSED',profile:'CURRENT_UNDERSTANDING_V1',scope:'CURRENT_PROFILE_DECLARATIONS; LIVE_SOURCE_COMPONENT_AND_HUMAN_REVIEW_STILL_REQUIRED'};
+}
+
 function reviewAssessment(assessment,claims,evidence){
   if(assessment===undefined)return null;
   requireScore(assessment&&assessment.method==='EVIDENCE_BOUND_REVIEW'&&text(assessment.reviewer)&&text(assessment.scope)&&text(assessment.limits)
@@ -88,7 +117,7 @@ export function validateAtlasUnderstanding(analysis,index,{required=false}={}){
   for(const graph of analysis.dependencyGraphs||[])for(const node of graph.nodes||[]){requireDepth(units.has(node.unitId),'Architecture node lacks a declared understanding unit: '+node.id);graphUnits.add(node.unitId);}
   if(understanding.scope==='PROJECT')requireDepth(graphUnits.size===units.size&&[...units.keys()].every(key=>graphUnits.has(key)),
     'Project review inventory and declared architecture units disagree; declare missing units or narrow the review scope');
-  const semanticReview=validateSemanticFacets(analysis);
-  return {semanticReview,status:'ASSESSED_DECLARATIONS',scope:understanding.scope,units:units.size,facets:counts,assessment,
+  const semanticReview=validateSemanticFacets(analysis),origins=validateAtlasOrigins(analysis,index);
+  return {semanticReview,origins,status:'ASSESSED_DECLARATIONS',scope:understanding.scope,units:units.size,facets:counts,assessment,
     limitation:'Facet counts describe declared review records, not code coverage or automatic semantic completeness'};
 }

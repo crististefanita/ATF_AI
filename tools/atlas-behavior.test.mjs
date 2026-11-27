@@ -143,3 +143,65 @@ test('iterative traversal handles a deep chain and does not invent an exit for a
   edges.pop();edges.push({id:'cycle',from:'n-'+(size-2),to:'n-'+(size-3)});
   assert.equal(analyzeDirectedBehavior({nodes,edges,entryNodeId:'n-0'}).deadEndNodeIds.length,size-1);
 });
+
+function comparisonFixture(){
+  const analysis=fixture(),cases=analysis.behaviorFlows[0].caseAnalysis;
+  cases.comparisonProfile='SOURCE_BOUND_COMPARISONS_V1';
+  for(const witness of cases.cases)witness.comparison={
+    observedSubject:'The status actually returned by the selected local response operation.',
+    expectedCriterion:'The independently supplied successful status required by the fixture.',
+    relation:'EQUALITY',
+    failureMeaning:'A mismatched status remains a rejected validation rather than an invented success.',
+    oracleRefIndices:[0]
+  };
+  return analysis;
+}
+
+test('source-bound comparisons retain concrete roles while identical valid equality prose remains legitimate',()=>{
+  const analysis=comparisonFixture(),before=structuredClone(analysis),cases=analysis.behaviorFlows[0].caseAnalysis.cases;
+  assert.deepEqual(cases[0].comparison,cases[1].comparison);
+  assert.equal(validate(analysis).flows[0].cases,2);assert.deepEqual(analysis,before);
+});
+
+test('comparison profiles and undeclared comparison records fail with their actual flow and case owner',()=>{
+  for(const profile of ['UNKNOWN_PROFILE',null,[],1]){const analysis=comparisonFixture();analysis.behaviorFlows[0].caseAnalysis.comparisonProfile=profile;fails(analysis,/SOURCE_BOUND_COMPARISONS_V1.*comparison/);}
+  for(const comparison of [comparisonFixture().behaviorFlows[0].caseAnalysis.cases[0].comparison,null]){const analysis=fixture();analysis.behaviorFlows[0].caseAnalysis.cases[0].comparison=comparison;fails(analysis,/Declare SOURCE_BOUND_COMPARISONS_V1.*comparison\/match/);}
+});
+
+test('comparison fields and custom relations require structured source meaning without invented runtime values',()=>{
+  for(const change of [w=>delete w.comparison,w=>w.comparison=null,w=>w.comparison=[],w=>w.comparison.observedSubject='Observed',w=>w.comparison.expectedCriterion=' ',w=>delete w.comparison.failureMeaning,w=>w.comparison.relation='assertEquals',w=>w.comparison.recordedActual='200',w=>w.comparison.explanation=[]]){
+    const analysis=comparisonFixture();change(analysis.behaviorFlows[0].caseAnalysis.cases[0]);fails(analysis,/comparison\/match/);
+  }
+  const analysis=comparisonFixture(),comparison=analysis.behaviorFlows[0].caseAnalysis.cases[0].comparison;comparison.relation='CUSTOM';fails(analysis,/CUSTOM.*comparison\/match/);
+  comparison.explanation='The selected oracle compares a domain-specific relation supplied by this existing fixture.';assert.equal(validate(analysis).status,'ASSESSED_DECLARATIONS');
+});
+
+test('comparison fragments are a nonempty subset of this case oracle rather than another valid method',()=>{
+  for(const indices of [[],[1],[-1],['0'],[0,0],null]){
+    const analysis=comparisonFixture();analysis.claims[1].sourceRefs.push({path:'checks.any',startLine:3,endLine:3,quote:'A different existing independent method.'});analysis.behaviorFlows[0].caseAnalysis.cases[0].comparison.oracleRefIndices=indices;fails(analysis,/selected independent case-oracle fragments.*comparison\/match/);
+  }
+  const analysis=comparisonFixture(),witness=analysis.behaviorFlows[0].caseAnalysis.cases[0];analysis.claims[1].sourceRefs.push({path:'checks.any',startLine:3,endLine:3,quote:'A separately selected independent method.'});witness.oracleRefIndices=[0,1];witness.comparison.oracleRefIndices=[1];assert.equal(validate(analysis).status,'ASSESSED_DECLARATIONS');
+});
+
+test('an explicit missing oracle retains its gap and refuses a fabricated source-bound comparison',()=>{
+  const analysis=comparisonFixture(),witness=analysis.behaviorFlows[0].caseAnalysis.cases[1];Object.assign(witness,{oracleClaimId:'MISSING',oracleStatus:'NOT_FOUND',oracleRefIndices:[],oracleGap:{searchedClaimIds:['SOURCE'],explanation:'The selected operation was inspected without locating an independent existing check.'}});
+  fails(analysis,/explicit null comparison.*comparison\/reject/);witness.comparison=null;assert.equal(validate(analysis).flows[0].oracleGaps,1);
+  delete witness.comparison;fails(analysis,/explicit null comparison.*comparison\/reject/);
+});
+
+test('comparison descriptions cannot upgrade source review to execution or replace original subject bindings',()=>{
+  const analysis=comparisonFixture(),witness=analysis.behaviorFlows[0].caseAnalysis.cases[0],oracle=analysis.claims[1];witness.oracleStatus='EXECUTED';fails(analysis,/status or declared flow ownership/);
+  oracle.status='EXECUTED';oracle.verdict='PASSED';fails(analysis,/retained testcase subjects/);
+  oracle.executionSubjects=[{sourcePath:'checks.any',sourceRefIndices:[0],testClass:'ObservedCheck',testName:'matchesExpectedStatus'}];assert.equal(validate(analysis).status,'ASSESSED_DECLARATIONS');
+  oracle.executionSubjects[0].sourceRefIndices=[1];fails(analysis,/retained testcase subjects/);
+});
+
+test('a reader promising source-bound comparisons cannot silently downgrade any flow to legacy',()=>{
+  const analysis=comparisonFixture();analysis.reader={comparisonProfile:'SOURCE_BOUND_COMPARISONS_V1'};assert.equal(validate(analysis).status,'ASSESSED_DECLARATIONS');
+  delete analysis.behaviorFlows[0].caseAnalysis.comparisonProfile;fails(analysis,/reader comparison profile.*every flow: comparison/);
+  delete analysis.behaviorFlows[0].caseAnalysis;fails(analysis,/reader comparison profile.*every flow: comparison/);
+});
+
+test('unknown reader comparison profiles fail even before an absent legacy flow can escape review',()=>{
+  for(const profile of ['UNKNOWN',null,[],1]){const analysis=fixture();analysis.reader={comparisonProfile:profile};delete analysis.behaviorFlows;assert.throws(()=>validateAtlasBehavior(analysis),error=>error.code==='ATLAS-CASES'&&/reader comparison profile/.test(error.observed));}
+});

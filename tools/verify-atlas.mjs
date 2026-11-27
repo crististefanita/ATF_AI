@@ -3,7 +3,7 @@ import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
-import {atlasFailure,parseAtlasJson} from './atlas-diagnostics.mjs';
+import {atlasFailure,parseAtlasJson,requireAtlas} from './atlas-diagnostics.mjs';
 import {validateFlowExecutionBindings} from './atlas-execution.mjs';
 import {validateAtlasBehavior} from './atlas-behavior.mjs';
 import {validateSemanticBaseline,validateSemanticFacets} from './atlas-semantics.mjs';
@@ -12,6 +12,24 @@ const digest = bytes => createHash('sha256').update(bytes).digest('hex');
 const fail = message => {throw atlasFailure(message);};
 const textNormalizationAllowed = relative => !/^lib\//i.test(relative) && /\.(?:java|mjs|cjs|js|md|xml|json|properties|ya?ml|txt|csv|html|css|ps1)$/.test(relative);
 const within = (root, file) => {const relative = path.relative(root, file); return !path.isAbsolute(relative) && relative !== '..' && !relative.startsWith('..' + path.sep);};
+const captureNeed=(condition,message)=>requireAtlas(condition,'ATLAS-SOURCE',message);
+const canonicalWorktreeStatus=value=>value.replaceAll('\r\n','\n').trimEnd();
+
+/** Validate captured declaration only; this function never queries or certifies live Git. */
+export function validateAtlasCaptureDeclaration(index){
+  captureNeed(index!==null&&typeof index==='object'&&!Array.isArray(index),'Source capture declaration needs an actual source-index object');
+  if(index.captureProfile===undefined)return {status:'NOT_ASSESSED',profile:null,state:'UNKNOWN'};
+  captureNeed(index.captureProfile==='GIT_WORKTREE_V1','Use the declared GIT_WORKTREE_V1 source-capture profile');
+  captureNeed(['CLEAN','DIRTY'].includes(index.captureState)&&typeof index.worktreeStatus==='string',
+    'Capture CLEAN or DIRTY together with the canonical Git worktree status');
+  captureNeed(index.worktreeStatus===canonicalWorktreeStatus(index.worktreeStatus)
+    &&!/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/.test(index.worktreeStatus)
+    &&(index.worktreeStatus===''||index.worktreeStatus.split('\n').every(line=>/^[ MADRCUT?!m]{2} .+$/.test(line)&&line.slice(0,2)!=='  ')),
+    'Capture canonical porcelain-v1 status: normalize CRLF to LF and trim only the end; preserve leading status spaces');
+  captureNeed(index.captureState===(index.worktreeStatus===''?'CLEAN':'DIRTY'),
+    'Source capture state contradicts its declared Git worktree status; do not infer clean source from HEAD alone');
+  return {status:'PASSED',profile:'GIT_WORKTREE_V1',state:index.captureState};
+}
 
 function ownedFile(root, relative) {
   if (typeof relative !== 'string' || !relative || relative.includes('\\') || relative.includes(':')
@@ -78,9 +96,29 @@ export function verifyAtlas({sourceRoot, analysisRoot, artifactRoot}) {
   if (!/^[a-z0-9][a-z0-9-]*$/.test(manifest.projectId || '') || manifest.projectId !== index.projectId
       || manifest.revision !== index.revision) fail('Atlas target identity differs');
   if (!/^(?:[a-f0-9]{40}|UNVERSIONED)$/.test(manifest.revision || '')) fail('Declare the source revision');
-  if (fs.existsSync(path.join(source, '.git'))) {
-    const actual = execFileSync('git', ['-C', source, 'rev-parse', 'HEAD'], {encoding:'utf8', timeout:60000, windowsHide:true}).trim();
+  const declaration=validateAtlasCaptureDeclaration(index),captureProfile=declaration.status==='PASSED';
+  let captureStateReview=declaration;
+  const git=args=>execFileSync('git',['-C',source,...args],{encoding:'utf8',timeout:60000,windowsHide:true,stdio:['ignore','pipe','pipe']});
+  if(captureProfile){
+    let inside=false;try{inside=git(['rev-parse','--is-inside-work-tree']).trim()==='true';}catch{}
+    captureNeed(inside,'GIT_WORKTREE_V1 needs a real Git worktree at the selected source; keep unversioned or unavailable capture identity explicit');
+  }
+  if (captureProfile||fs.existsSync(path.join(source, '.git'))) {
+    let actual;
+    try{actual=git(['rev-parse','HEAD']).trim();}catch(error){
+      if(!captureProfile)throw error;
+      captureNeed(false,'Cannot read the actual Git HEAD for GIT_WORKTREE_V1; capture source bytes and existing revision together');
+    }
     if (actual !== manifest.revision) fail('Live Git revision differs from the Atlas target');
+    if(captureProfile){
+      let status;try{status=canonicalWorktreeStatus(git(['status','--porcelain=v1','--untracked-files=all']));}catch{
+        captureNeed(false,'Cannot read the actual Git worktree status; recapture GIT_WORKTREE_V1 identity without relabeling the source');
+      }
+      const state=status===''?'CLEAN':'DIRTY';
+      captureNeed(index.captureState===state&&index.worktreeStatus===status,
+        'Declared Git capture state/status differs from the actual worktree; recapture its exact porcelain-v1 status with the reviewed bytes');
+      captureStateReview={status:'PASSED',profile:'GIT_WORKTREE_V1',state,verification:'LIVE_GIT_STATUS_COMPARED',worktreeStatus:status};
+    }
   }
   if (manifest.sourceIndexSha256 !== digest(fs.readFileSync(ownedFile(analysis, 'source-index.json')))) fail('Source index integrity differs');
   const sources = new Map();
@@ -180,6 +218,7 @@ export function verifyAtlas({sourceRoot, analysisRoot, artifactRoot}) {
   validateFlowExecutionBindings({analysis:manifest,evidence:[...evidence.values()]});
   validateAtlasBehavior(manifest,{sourceIndex:index});
   return {status:'PASSED', projectId:manifest.projectId, revision:manifest.revision,
+    captureStateReview,
     sourceFiles:sources.size, documents:documents.size, claims:claims.size, evidence:evidence.size,
     scope:'DECLARED_SOURCE_AND_ARTIFACT_CONSISTENCY', sourceNormalization:manifest.sourceNormalization || 'EXACT', semanticCompleteness:'HUMAN_REVIEW_REQUIRED'};
 }

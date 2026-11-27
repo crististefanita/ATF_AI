@@ -89,6 +89,8 @@ Indexul generat al surselor înregistrează fiecare cale inspectată, rolul și 
 - Timpul analizei și timpul execuției sunt separate.
 
 <a id="declared-review-units-and-seven-facets"></a>
+Redactarea nouă prin `understand` urmează [profilurile curente](../../atf-atlas/Report_Contract.md#current-source-bound-authoring-profiles). Randează o diagramă numai cu cel puțin trei noduri semnificative și două relații reale; folosește `TEXT_ONLY` motivat pentru o responsabilitate compactă. Comparațiile concrete, captura Git reală și originile locale/consumate își păstrează limitele dovezii.
+
 ## Unități declarate și șapte perspective de revizuire
 
 Capturile publice noi folosesc renderVersion 5 și analysis.understanding cu schemaVersion 1.

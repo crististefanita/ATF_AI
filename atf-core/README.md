@@ -96,6 +96,22 @@ verifică aceste limite fără pornirea unui browser. Testele native ale furnizo
 injectează eșecuri de achiziție; nu demonstrează acceptanța unui site live.
 
 <a id="verification"></a>
+<a id="observation-and-optional-reporting-boundaries"></a>
+## Limitele observației și ale raportării opționale
+
+| Decizie | Contract existent | Limita dovezii |
+|---|---|---|
+| Așteaptă o stare | Returnează prima observație care satisface condiția; la expirare, returnează ultima valoare observată | O valoare returnată nu demonstrează singură o potrivire sau un termen de timp real |
+| Cere o condiție | Învelișul pentru condiție ridică aserțiunea apelantului când nu s-a observat o potrivire | Erorile furnizorului și operațiile blocante păstrează propria limită de eșec |
+| Rulează Core fără raportare | Căutarea opțională nu găsește un jurnal; cererea explicită a unui jurnal eșuează clar | Callback-urile numai pentru consolă nu creează un raport Extent |
+
+[Componentele de așteptare](../atf-tests/src/test/java/com/ai/atf/ui/component/WaitUtilsContractTest.java)
+compară valorile și numărul observațiilor. [Raportarea numai cu Core](src/test/java/com/ai/core/reporting/ConsoleOnlyReportingContractTest.java)
+și [descoperirea furnizorilor](src/test/java/com/ai/core/reporting/spi/ReportingBackendLoaderTest.java)
+separă lipsa furnizorului, un furnizor și ambiguitatea înainte de construire.
+Backend-ul este selectat la inițializarea clasei; modificarea classpath-ului nu îl
+înlocuiește dinamic.
+
 ## Verificare
 
 Dintr-o copie izolată a reactorului:

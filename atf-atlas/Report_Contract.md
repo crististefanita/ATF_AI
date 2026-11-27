@@ -61,6 +61,63 @@ inferențiază automat relevanța business. Revizorul verifică sensul dintre af
 
 `ATLAS-READER-004: Explain verification and assessment limits in reader language; do not infer a project quality grade from consistency, retrieval or passing checks.`
 
+<a id="current-source-bound-authoring-profiles"></a>
+## Profile curente de redactare ancorate în sursă
+
+`ATLAS-AUTHORING-001: Fresh understand authoring requires SOURCE_BOUND_COMPARISONS_V1, SOURCE_GRAPH_V2, GIT_WORKTREE_V1 and SOURCE_ORIGINS_V1 together; legacy publish preserves captured history without silently upgrading its assessment.`
+
+Punctul de intrare `understand` cere toate cele patru profile. Compatibilitatea
+`publish` poate păstra o captură anterioară; un înveliș istoric valid nu primește
+automat calificarea curentă pentru semantică, originea sursei sau randare. Oprește
+procesul când lipsește o declarație curentă, fără să inventezi fapte pentru schemă.
+
+| Decizie de revizie | Sens necesar | Limită păstrată |
+|---|---|---|
+| Stare comparată | Subiectul real al oracolului, criteriul independent și sensul nepotrivirii | Descrierile nu sunt valori observate inventate |
+| Diagramă utilă | Cel puțin trei noduri cu sens și două relații direcționate reale, distincte | Ideile mici rămân text sau carduri |
+| Copie de lucru capturată | Revizia reală, inventarul complet și starea exactă curată sau modificată | Concluziile despre modificări aparțin copiei capturate |
+| Originea sursei | Implementare locală sau contract consumat selectat | Un pachet selectat nu devine sursa producătorului |
+
+`ATLAS-COMPARISON-001: SOURCE_BOUND_COMPARISONS_V1 binds every represented case to its actual oracle subject, independent expected criterion, supported comparison relation and failureMeaning; describe compared state without inventing runtime actuals or treating an unrelated failure as the intended refusal.`
+
+Înregistrează `observedSubject`, `expectedCriterion`, `relation` și `failureMeaning`
+față de fragmentele exacte ale oracolului existent. EQUALITY, PREDICATE,
+FAILURE_IDENTITY, ORDER și OWNERSHIP înseamnă doar ce stabilesc aserțiunile;
+CUSTOM explică și comparația reală. Clasa excepției nu este identitatea cauzei
+inițiale, apartenența nu este ordine, iar un indicator boolean nu este un număr
+exact de apelări. Păstrează explicit lipsa oracolului, fără să fabrici un rezultat
+așteptat față de unul observat.
+
+`ATLAS-DIAGRAM-002: SOURCE_GRAPH_V2 renders a diagram only when it contains at least three meaningful nodes and two distinct real directed relationships; use TEXT_ONLY with a substantive diagramReason for a compact idea, never pad nodes or invent dependencies.`
+
+Aplică cerința vederilor randate pentru comportament, arhitectură și modelul de
+operare. Un graf compact poate rămâne fidel în audit, iar explicația cititorului
+folosește `TEXT_ONLY`. Explică de ce textul este mai clar; alegerea nu elimină
+cazurile, asocierea responsabilului sau limitele sursei. Toate grafurile afișate
+păstrează etichete complete și lizibile, direcția reală și legende alăturate,
+închise implicit, conform contractului vizual existent.
+
+`ATLAS-CAPTURE-001: GIT_WORKTREE_V1 captures the actual Git revision and complete indexed source with exact canonical porcelain status; retain leading status spaces, distinguish CLEAN from DIRTY and explain dirty-source limits in business language without presenting unpublished changes as a clean committed release.`
+
+Starea canonică normalizează CRLF la LF și elimină doar spațiile de la final.
+Nu apela `trim()` pe ieșirea porcelain: spațiile inițiale codifică starea.
+Verifică starea declarată față de copia reală împreună cu identitățile fișierelor.
+Cititorul explică faptul că concluziile aparțin modificărilor locale nepublicate;
+căile exacte, starea brută și comenzile rămân în auditul alăturat. Lipsa metadatelor
+Git înseamnă că profilul curent nu este disponibil, nu o captură curată inventată;
+intrările istorice numai cu sursă își păstrează limitele declarate.
+
+`ATLAS-ORIGIN-001: SOURCE_ORIGINS_V1 distinguishes LOCAL_SOURCE units from CONSUMED_ARTIFACT boundaries; each selected consumed coordinate owns an indexed raw JAR/POM pair and a reviewed POM declaration, while absent producer implementation and native oracles remain explicit limits.`
+
+O unitate consumată este BOUNDARY, nu un modul cu sursă locală. Păstrează coordonata
+selectată, `jarPath` și `pomPath` distincte, responsabilitatea indexată și identitatea
+octeților originali; perechile de bibliotecă nu sunt dovezi text normalizate.
+Revizuiește declarația selectată și domeniul real al consumului. Acceptanța locală
+a pachetului poate verifica dependența aleasă, dar nu înlocuiește sursa absentă a
+producătorului și nu stabilește întregul comportament. Declarațiile locale și
+contractele consumate primesc indicii vizuale distincte, cu explicații orientate
+spre înțelegere despre responsabilitatea rămasă.
+
 <a id="governed-authoring-loop"></a>
 ## Ciclul guvernat de redactare
 

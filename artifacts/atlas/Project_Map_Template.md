@@ -31,6 +31,37 @@ Leagă intrările de sursa reală și de documentele complete:
   sau navigare spre pagini HTML separate.
 
 <a id="target-and-proof-boundary"></a>
+<a id="current-intake-profile"></a>
+## Profilul curent de preluare
+
+Pentru o analiză nouă folosește intrarea guvernată `understand` și
+[profilurile curente legate de sursă](../../atf-atlas/Report_Contract.md#current-source-bound-authoring-profiles).
+Capturile vechi fără versiune și cele cu grafuri mici rămân istorice prin `publish`.
+
+| Intrare | Declarație curentă |
+|---|---|
+| Cititor | `diagramProfile: SOURCE_GRAPH_V2`, `comparisonProfile: SOURCE_BOUND_COMPARISONS_V1`, `captureProfile: GIT_WORKTREE_V1` |
+| Indexul sursei | `captureProfile: GIT_WORKTREE_V1`, starea reală `captureState` și valoarea canonică exactă `worktreeStatus` |
+| Înțelegere | `originProfile: SOURCE_ORIGINS_V1`; fiecare unitate declară `sourceRole` |
+| Analiza cazurilor | `comparisonProfile: SOURCE_BOUND_COMPARISONS_V1`; fiecare caz susținut declară comparația concretă `comparison` |
+
+O comparație declară subiectul real al oracolului, criteriul independent, relația,
+semnificația diferenței și indicii selectați ai oracolului. CUSTOM explică și modul
+în care verificarea decide. Cazurile fără oracol păstrează `comparison: null`
+și lipsa explicită. Niciun câmp nu inventează o valoare observată la execuție.
+
+Folosește cel puțin trei noduri semnificative și două relații direcționate reale,
+distincte, într-o diagramă afișată. Păstrează graful brut compact în audit dacă
+este corect; alege `diagramMode: TEXT_ONLY` și o explicație substanțială
+`diagramReason` în cititor. Nu adăuga noduri decorative sau dependențe fictive
+pentru a trece o verificare.
+
+Unitățile locale folosesc `LOCAL_SOURCE`. O unitate `CONSUMED_ARTIFACT` este o
+limită cu coordonată și căi JAR/POM brute indexate, inclusiv declarația POM
+revizuită. Dovada consumatorului nu demonstrează implementarea absentă a
+producătorului. Captura modificată descrie sursa nepublicată reală; lipsa
+metadatelor Git nu poate fi redenumită drept o preluare curentă curată.
+
 ## Ținta și limitele dovezii
 
 | Câmp | Valoare observată | Dovadă |

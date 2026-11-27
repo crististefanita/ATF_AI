@@ -20,11 +20,11 @@ export function layoutReaderGraph(graph){
 }
 
 export function readerGraphSet(analysis){
-  const reader=analysis.reader,views=reader.journeys.map(journey=>{
+  const reader=analysis.reader,views=reader.journeys.filter(journey=>journey.diagramMode!=='TEXT_ONLY').map(journey=>{
     const flow=analysis.behaviorFlows.find(f=>f.id===journey.flowId),negative=new Set(flow.caseAnalysis.cases.filter(c=>c.kind==='NEGATIVE').map(c=>c.nodeIds?.at(-1))),positive=new Set(flow.caseAnalysis.cases.filter(c=>c.kind==='POSITIVE').map(c=>c.nodeIds?.at(-1)));
-    return {graph:{...flow.graph,nodes:flow.graph.nodes.map(n=>({...n,role:negative.has(n.id)&&!positive.has(n.id)?'boundary':n.kind==='INTENT'?'intent':n.kind==='ACTION'?'action':'outcome'}))},title:journey.title,legend:'Arrows show the named conditions between intent, operation and possible outcomes. Case cards retain their independent recorded verdicts. Dashed boxes identify refusal or boundary outcomes; they do not mean that an existing check failed.'};
+    return {flowId:flow.id,graph:{...flow.graph,nodes:flow.graph.nodes.map(n=>({...n,role:negative.has(n.id)&&!positive.has(n.id)?'boundary':n.kind==='INTENT'?'intent':n.kind==='ACTION'?'action':'outcome'}))},title:journey.title,legend:'Arrows show the named conditions between intent, operation and possible outcomes. Case cards retain their independent recorded verdicts. Dashed boxes identify refusal or boundary outcomes; they do not mean that an existing check failed.'};
   });
-  for(const view of reader.architecture){const graph=analysis.dependencyGraphs.find(g=>g.id===view.graphId);views.push({...view,graph:{...graph,nodes:graph.nodes.map(n=>({...n,role:'owner',label:reader.capabilities.find(c=>c.unitId===n.unitId).title}))}});}
+  for(const view of reader.architecture.filter(view=>view.diagramMode!=='TEXT_ONLY')){const graph=analysis.dependencyGraphs.find(g=>g.id===view.graphId);views.push({...view,graph:{...graph,nodes:graph.nodes.map(n=>({...n,role:analysis.understanding?.originProfile==='SOURCE_ORIGINS_V1'&&analysis.understanding.units.find(u=>u.id===n.unitId)?.sourceRole==='CONSUMED_ARTIFACT'?'consumed':'owner',label:reader.capabilities.find(c=>c.unitId===n.unitId).title}))}});}
   views.push({title:reader.model.title,legend:reader.model.legend,graph:{id:'reader-value-model',kind:'VALUE',nodes:reader.model.stages.map(n=>({...n,label:n.title,role:'stage'})),edges:reader.model.links}});return views;
 }
 
@@ -33,8 +33,9 @@ export function readerDiagramProjection(analysis){return readerGraphSet(analysis
 /** A shared visual grammar cannot replace source-specific meaning with generic template labels. */
 export function validateReaderDiagramProfile(analysis){
   if(analysis.reader?.diagramProfile===undefined)return {status:'NOT_ASSESSED'};
-  need(analysis.reader.diagramProfile==='SOURCE_GRAPH_V1','Use the declared source-graph profile');const views=readerGraphSet(analysis),signatures=new Set();
+  need(['SOURCE_GRAPH_V1','SOURCE_GRAPH_V2'].includes(analysis.reader.diagramProfile),'Use the declared source-graph profile');const views=readerGraphSet(analysis),signatures=new Set();
   for(const view of views){need(plain(view.title)&&plain(view.legend)&&view.legend.length>=30,'Explain actual graph direction and boundaries beside it');layoutReaderGraph(view.graph);
+    if(analysis.reader.diagramProfile==='SOURCE_GRAPH_V2')need(view.graph.nodes.length>=3&&new Set(view.graph.edges.map(e=>e.from+'\u0000'+e.to)).size>=2,'A useful reader diagram needs at least three meaningful nodes and two distinct source relationships: '+(view.graph.id||view.title)+'. Move a smaller idea to prose, a card or a list; never pad nodes or invent dependencies.');
     for(const node of view.graph.nodes)lines(node.label);
     for(const edge of view.graph.edges){need(plain(edge.label),'Do not invent or silently replace a missing relationship label');need(lines(edge.label).length<=2,'Move long relationship detail to the local legend instead of dropping meaning');}
     if(view.graph.kind==='BEHAVIOR'){
@@ -44,7 +45,7 @@ export function validateReaderDiagramProfile(analysis){
     }
   }
   need(views.filter(v=>v.graph.kind==='BEHAVIOR').length<4||signatures.size>=4,'Distinct source behaviors need distinct diagram signatures, not cloned labels');
-  return {status:'PASSED',profile:'SOURCE_GRAPH_V1',graphs:views.length,scope:'SOURCE_RELATIONSHIPS_AND_DECLARED_DOMAIN_LABELS; NATIVE_GEOMETRY_AND_HUMAN_MEANING_REVIEW_REQUIRED'};
+  return {status:'PASSED',profile:analysis.reader.diagramProfile,graphs:views.length,scope:'SOURCE_RELATIONSHIPS_AND_DECLARED_DOMAIN_LABELS; NATIVE_GEOMETRY_AND_HUMAN_MEANING_REVIEW_REQUIRED'};
 }
 
 /** Full labels are wrapped or rejected, never silently replaced by a generic relationship. */

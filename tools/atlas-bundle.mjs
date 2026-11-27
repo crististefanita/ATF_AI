@@ -1,9 +1,9 @@
 import {createHash} from 'node:crypto';
 import {isDeepStrictEqual} from 'node:util';
 import {requireAtlas,parseAtlasJson} from './atlas-diagnostics.mjs';
-import {surefireSummary,nodeTestSummary} from './verify-atlas.mjs';
+import {surefireSummary,nodeTestSummary,validateAtlasCaptureDeclaration} from './verify-atlas.mjs';
 import {validateFlowExecutionBindings} from './atlas-execution.mjs';
-import {validateAtlasUnderstanding} from './atlas-understanding.mjs';
+import {validateAtlasUnderstanding,validateCurrentUnderstandingProfiles} from './atlas-understanding.mjs';
 import {validateAtlasBehavior} from './atlas-behavior.mjs';
 import {validateBusinessReader} from './atlas-reader.mjs';
 
@@ -60,6 +60,8 @@ export function validateAtlasBundle(bundle){
     &&/^[a-z0-9][a-z0-9-]*$/.test(analysis.projectId||'')&&analysis.projectId===index.projectId
     &&analysis.revision===index.revision&&/^(?:[a-f0-9]{40}|UNVERSIONED)$/.test(analysis.revision||''),'ATLAS-TARGET','Embedded target identity or source revision differs');
   requireAtlas(analysis.sourceIndexSha256===hash(Buffer.from(bundle.sourceIndexText,'utf8')),'ATLAS-SOURCE','Original source index digest differs');
+  const captureDeclaration=validateAtlasCaptureDeclaration(index);if(analysis.reader?.captureProfile)requireAtlas(captureDeclaration.profile===analysis.reader.captureProfile&&captureDeclaration.status==='PASSED','ATLAS-SOURCE','The reader capture promise needs the original indexed source state');
+  if(bundle.publicationProfile!==undefined){requireAtlas(bundle.publicationProfile==='CURRENT_UNDERSTANDING_V1','ATLAS-UNDERSTANDING','Unsupported current understanding publication profile');validateCurrentUnderstandingProfiles(analysis,index);}
   requireAtlas(!analysis.sourceNormalization||['EXACT','CRLF_LF'].includes(analysis.sourceNormalization),'ATLAS-SOURCE','Unsupported source normalization policy');
   const indexed=inventory(index.files,'ATLAS-SOURCE','source index');
   requireAtlas(indexed.size>0&&[...indexed.values()].every(entry=>nonempty(entry.role)&&(!entry.normalizedSha256||(sha(entry.normalizedSha256)&&textAllowed(entry.path)))),'ATLAS-SOURCE','Source index needs owned identities and valid text normalization');

@@ -895,3 +895,8 @@ marker#arrow path{fill:var(--accent)}body{font-size:15px}.wrap{max-width:1320px}
 .reader .facet-questions summary{font-size:14px}
 .reader .facet-questions dt{font-weight:600;margin-top:14px;line-height:1.6}
 .reader .facet-questions dd{margin:6px 0 14px;padding-left:14px;border-left:2px solid var(--border);line-height:1.7}
+.reader .flow .node[data-graph-role="consumed"] rect{stroke:var(--accent);stroke-dasharray:4 5}
+.reader .reader-comparison{margin-top:14px}
+.reader .reader-comparison summary{font-size:14px}
+.reader .reader-comparison dt{font-weight:600;margin-top:12px}
+.reader .reader-comparison dd{margin:5px 0 12px;line-height:1.7}

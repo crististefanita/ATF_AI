@@ -167,6 +167,27 @@ tehnice complete în audit, fără pachet ascuns în HTML. Istoricul își păst
 <a id="artifact-calibration"></a>
 ## Calibrarea artefactului
 
+Redactarea nouă prin `understand` regăsește înregistrările obligatorii existente și
+aplică toate cele patru [profile curente](Report_Contract.md#current-source-bound-authoring-profiles).
+Corpusul extinde aceleași înregistrări pentru cazuri, grafuri, dovezi și amploare;
+un subiect de politică nou nu cere încă o înregistrare suprapusă.
+
+- Compară subiectul real al oracolului cu criteriul său independent, relația
+  susținută și sensul nepotrivirii. Descrierile stării comparate nu sunt valori
+  observate inventate; o frază generică nu dovedește corespondența.
+- Randează cel puțin trei noduri cu sens și două relații reale distincte.
+  Folosește `TEXT_ONLY` cu un motiv concret pentru o idee compactă; păstrează graful
+  și cazurile în audit fără noduri decorative sau dependențe artificiale.
+- Păstrează captura Git reală, curată sau modificată, spațiile inițiale exacte ale
+  stării porcelain și inventarul complet. Explică cititorului limitele sursei nepublicate.
+- Separă sursa locală de contractele consumate selectate. Păstrează perechile
+  JAR/POM originale și lipsa oracolelor producătorului fără să împrumuți responsabilitatea sursei.
+
+Compatibilitatea `publish` păstrează evaluarea capturii originale; nu promovează
+istoricul la profilele curente. Lipsa Git sau a sursei producătorului este o limită
+declarată. Nu inventa identitate, modul local sau poartă trecută pentru a prezenta
+un proiect numai cu sursă ca fiind complet calificat.
+
 Cititorul explică scopul business, arhitectura și comportamentele proiectului. Hărțile arhitecturii păstrează relațiile reale și folosesc denumiri pentru cititor; hărțile comportamentale stau în secțiuni colapsabile, cu legende adiacente.
 
 - Compară artefactul efectiv cu implementările live și documentele proiectului.

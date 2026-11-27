@@ -54,6 +54,9 @@ Aceste observații din surse rafinează harta existentă; nu adaugă un flux de 
 |---|---|---|
 | [Sursa configurației](../atf-core/src/main/java/com/ai/core/support/config/ConfigManager.java) | Suprascrierile apelantului preced setările încărcate; sursa explicită absentă produce eșec | Proprietățile încărcate sunt memorate; modificarea fișierului nu le reîncarcă automat |
 | [Pregătirea scrierii](../atf-core/src/main/java/com/ai/api/core/BaseTestAPI.java) | Accesul local gol face fluxul de scriere indisponibil | Accesul negol nu demonstrează autorizarea la distanță sau scrierea reușită |
+| [Așteptare delimitată](../atf-core/src/main/java/com/ai/ui/support/wait/WaitUtils.java) | Verificările existente compară prima potrivire, ultima observație nepotrivită la expirare și varianta cu aserțiune | Ultima valoare returnată nu este acceptanță; erorile și blocarea furnizorului rămân separate |
+| [Politica imaginii finale](../atf-core/src/main/java/com/ai/ui/core/reporting/ScreenshotManager.java) | Contractele existente disting eligibilitatea la succes/eșec, UI absent, deduplicarea și responsabilitatea invocării | Politica și conținutul capturii nu certifică pixelii; două sarcini nu stabilesc orice intercalare |
+| [Raportare opțională](../atf-core/src/main/java/com/ai/core/reporting/spi/ReportingBackendLoader.java) | Contractele existente disting funcționarea doar cu Core, un furnizor instalat și refuzul duplicatelor înaintea construirii | Fixture-urile de descoperire nu dovedesc orice instalare; jurnalizarea cerută explicit are cerința proprie |
 | [Achiziția browserului](../atf-playwright/src/main/java/com/ai/ui/core/engine/playwright/PlaywrightBrowserSession.java) | Sesiunea Playwright inspectată selectează Chromium; Selenium folosește fabrica sa Chrome | Capabilitatea bibliotecii nu demonstrează toate combinațiile de browser și sistem de operare |
 | [Valorile agregării](../atf-reporting/src/main/java/com/ai/core/reporting/aggregate/model/AggregateSummary.java) | Constructorii selectați resping valori negative; agregarea poate deriva numere din cazuri observate | Constructorul public al sumarului nu impune singur toate relațiile dintre totalurile apelantului |
 | [Compatibilitatea raportării](../atf-reporting/src/main/java/com/ai/core/reporting/ReportingSession.java) | Comutatorul compatibil de oglindire folosește politica sa existentă de interpretare | Nu susține că toate opțiunile raportării folosesc cititorul boolean comun strict |
@@ -92,3 +95,23 @@ Revizia completă privește domeniul declarat, nu orice comportament posibil.
 Cele două fațete ale aplicației rămân PARTIAL. Verificările existente urmăresc acum câmpurile complete ale ambelor fabrici până la singura trimitere respinsă, forma credențialelor generate și independența copiei de date. Respingerea valorii vechi a stării și a facturii fără legătură verifică mesajul așteptat, astfel încât altă eroare să nu poată produce un fals rezultat pozitiv.
 
 Întrebările și dovezile lipsă sunt păstrate conform [contractului reviziilor succesive](Report_Contract.md#successive-application-boundaries). Nu se deduc persistență, unicitate globală, interpretare generală a formatelor sau ștergere a datelor aplicației.
+
+<a id="deeper-project-understanding-review"></a>
+## Revizie aprofundată a înțelegerii proiectului
+
+Rândurile despre așteptare, imaginea finală și raportarea opțională expun decizii
+existente importante, omise din cititorul selectat anterior. Revizuiește starea
+comparată concretă conform [profilelor curente](Report_Contract.md#current-source-bound-authoring-profiles);
+nu deduce amploarea din fișiere capturate sau din creșterea numărului de fluxuri.
+
+Hook-urile pentru atașarea la eșec și cele pentru starea finală au politici diferite
+de propagare. Dispecerizarea inspectată a stării finale este directă; testele cu
+handleri sănătoși nu stabilesc că orice eroare de hook sau logger nu blochează
+procesul. Păstrează această limită numai de sursă separat de componentele protejate
+pentru atașarea la eșec.
+
+Revizia între proiecte distinge și implementarea locală de contractele selectate
+ale producătorului. Verificările consumatorului nu certifică sursa absentă a
+producătorului, iar componentele selectate care trec nu înlocuiesc o poartă
+completă eșuată. Comparația datată și rezultatele originale aparțin feedback-ului
+și dosarului extern de revizie, nu unei afirmații permanente despre acoperire.

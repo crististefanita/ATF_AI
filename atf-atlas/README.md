@@ -194,6 +194,18 @@ NOT_ASSESSED și rerulează verificarea de componentă a documentului înainte d
 <a id="artifact-calibration"></a>
 ## Calibrarea artefactului
 
+Înțelegerea nouă a proiectului folosește `understand` cu cele patru
+[profile ancorate în sursă](Report_Contract.md#current-source-bound-authoring-profiles).
+Fiecare caz explică ce compară oracolul existent și de ce contează o nepotrivire.
+
+Diagramele randate cer trei noduri cu sens și două relații reale; ideile compacte
+folosesc text motivat. Sursa modificată și responsabilitatea bibliotecilor consumate
+rămân limite explicate cititorului, cu dovezile tehnice exacte în auditul alăturat.
+
+Compatibilitatea `publish` păstrează capturile istorice la evaluarea originală.
+Nici pagina validă, nici componentele selectate care trec nu transformă o captură
+modificată, sursa absentă a producătorului sau o poartă completă eșuată în acceptanță deplină.
+
 Cititorul explică scopul business, arhitectura și comportamentele proiectului. Hărțile arhitecturii păstrează relațiile reale și folosesc denumiri pentru cititor; hărțile comportamentale stau în secțiuni colapsabile, cu legende adiacente.
 
 - Compară artefactul efectiv cu implementările live și documentele proiectului.

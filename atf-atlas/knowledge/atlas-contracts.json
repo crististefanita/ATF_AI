@@ -181,12 +181,27 @@
         "unknown"
       ],
       "mandatory": true,
-      "requirement": "Detect the actual project language, build system, components and proof scope. Never reuse an ATF module graph for an unrelated project. A source-only project with no tests or Git is valid with explicit unknown identity or missing oracle. A single component and zero declared edges must remain truthful. Use oracleStatus NOT_FOUND and an UNKNOWN oracle claim when no oracle is available; do not invent a test suite.",
+      "requirement": "Adapt to the actual project language, build system, local owners and selected consumed contracts. Never reuse an ATF module graph for an unrelated project or claim producer source from consumed packages. Projects with no tests or Git retain legitimate source-only or historical inputs with unknown identity or missing oracles. A single component and zero declared edges must remain truthful in the audit; use reasoned TEXT_ONLY in the reader rather than padding a small idea. Current understand requires actual GIT_WORKTREE_V1 and stops when that capture cannot be established. Use oracleStatus NOT_FOUND with an UNKNOWN oracle claim and source-backed search rather than inventing a suite.",
       "sources": [
         {
           "kind": "CURRENT_CONTRACT",
           "path": "atf-atlas/Report_Contract.md",
           "quote": "The selected project may use any language or build system, or have no tests or Git metadata."
+        },
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "ATLAS-DIAGRAM-002: SOURCE_GRAPH_V2 renders a diagram only when it contains at least three meaningful nodes and two distinct real directed relationships; use TEXT_ONLY with a substantive diagramReason for a compact idea, never pad nodes or invent dependencies."
+        },
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "ATLAS-CAPTURE-001: GIT_WORKTREE_V1 captures the actual Git revision and complete indexed source with exact canonical porcelain status; retain leading status spaces, distinguish CLEAN from DIRTY and explain dirty-source limits in business language without presenting unpublished changes as a clean committed release."
+        },
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "ATLAS-ORIGIN-001: SOURCE_ORIGINS_V1 distinguishes LOCAL_SOURCE units from CONSUMED_ARTIFACT boundaries; each selected consumed coordinate owns an indexed raw JAR/POM pair and a reviewed POM declaration, while absent producer implementation and native oracles remain explicit limits."
         }
       ]
     },
@@ -228,12 +243,17 @@
         "snapshot"
       ],
       "mandatory": true,
-      "requirement": "Separate source review, real execution, historical reports and unknowns. Preserve actual XML/TAP counters and verdicts plus the original executed source manifest. A passing consistency check cannot relabel a failed run or certify later edits.",
+      "requirement": "Separate source review, real execution, historical reports and unknowns. Preserve actual native counters and verdicts plus the original executed source manifest. A passing consistency check or selected expected-negative component cannot relabel a failed whole-project gate or certify later edits. Require GIT_WORKTREE_V1 for fresh understand: actual HEAD, complete indexed source and exact canonical porcelain status with leading spaces preserved; normalize CRLF to LF and trim only the end. Explain DIRTY unpublished-source limits in business language and keep raw status in the adjacent audit.",
       "sources": [
         {
           "kind": "CURRENT_CONTRACT",
           "path": "atf-atlas/Report_Contract.md",
           "quote": "execution stays FAILED even if consistency verification passes."
+        },
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "ATLAS-CAPTURE-001: GIT_WORKTREE_V1 captures the actual Git revision and complete indexed source with exact canonical porcelain status; retain leading status spaces, distinguish CLEAN from DIRTY and explain dirty-source limits in business language without presenting unpublished changes as a clean committed release."
         }
       ]
     },
@@ -291,7 +311,7 @@
         "readability"
       ],
       "mandatory": true,
-      "requirement": "Use visible minimal SVG shapes, understandable relationship labels and arrowheads. Inspect real desktop rendering for overlap, clipped labels and ambiguous direction; valid markup alone is insufficient. Require SOURCE_GRAPH_V1 for the current reader: preserve full source/domain relationship labels and arrow direction, distinguish actual refusal boundaries from future frontiers, use calm shared primitives, consistent scale, compact horizontal layouts and closed local bullet legends. Audit actual native labels, endpoints, outlines, arrowheads, overlap and clipping; never replace a long relationship with a generic observe label. Adapt archive guidance to the current English audience and keep raw technical proof outside the HTML.",
+      "requirement": "Use visible minimal SVG shapes, understandable relationship labels and arrowheads. Inspect real desktop rendering for overlap, clipped labels and ambiguous direction; valid markup alone is insufficient. Require SOURCE_GRAPH_V2 for fresh understand: preserve full source/domain relationship labels and arrow direction, distinguish actual refusal boundaries from future frontiers, use calm shared primitives, consistent scale, compact horizontal layouts and closed local bullet legends. Audit actual native labels, endpoints, outlines, arrowheads, overlap and clipping; never replace a long relationship with a generic observe label. Adapt archive guidance to the current English audience and keep raw technical proof outside the HTML. Each rendered view needs at least three meaningful nodes and two distinct real directed relationships. Compact journey or architecture ideas use TEXT_ONLY with a substantive diagramReason; preserve truthful audit graphs, cases and ownership without padding nodes or fabricating dependencies. Historical SOURCE_GRAPH_V1 captures retain their original assessment; compatibility publication does not recertify them as the current profile.",
       "sources": [
         {
           "kind": "ARCHIVE",
@@ -325,6 +345,11 @@
           "path": "docs/prompts/html_EN/shared/graph-style-primitives.html",
           "sha256": "f9f44d324af4106f4b717b41782d7ab09d60eef0ed0ca418718be4beb40be1d7",
           "quote": "Business nodes must represent actors, decisions, owned objects, and observable outcomes."
+        },
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "ATLAS-DIAGRAM-002: SOURCE_GRAPH_V2 renders a diagram only when it contains at least three meaningful nodes and two distinct real directed relationships; use TEXT_ONLY with a substantive diagramReason for a compact idea, never pad nodes or invent dependencies."
         }
       ]
     },
@@ -372,12 +397,17 @@
         "failure"
       ],
       "mandatory": true,
-      "requirement": "Declare PROJECT or SELECTED understanding scope from actual source-owner inventory. Review purpose, structure, behavior, data, configuration, failure and verification per unit with evidence-backed REVIEWED/PARTIAL or explicit UNKNOWN/NOT_APPLICABLE. Align owner units, architecture nodes and existing flows without inferring semantic completeness from indexed files.",
+      "requirement": "Declare PROJECT or SELECTED understanding scope from actual source-owner inventory. Review purpose, structure, behavior, data, configuration, failure and verification per unit with evidence-backed REVIEWED/PARTIAL or explicit UNKNOWN/NOT_APPLICABLE. Align owner units, architecture nodes and existing flows without inferring semantic completeness from indexed files. Require SOURCE_ORIGINS_V1 for fresh understand. Every unit declares LOCAL_SOURCE or CONSUMED_ARTIFACT; a consumed unit is a BOUNDARY with selected coordinates and distinct indexed owned raw JAR/POM pairs whose POM declarations are reviewed. Producer implementation and native oracle absence remain explicit. Consumer package controls establish selected consumption, not complete producer behavior.",
       "sources": [
         {
           "kind": "CURRENT_CONTRACT",
           "path": "atf-atlas/Report_Contract.md",
           "quote": "A full source inventory is not a declaration of complete semantic understanding."
+        },
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "ATLAS-ORIGIN-001: SOURCE_ORIGINS_V1 distinguishes LOCAL_SOURCE units from CONSUMED_ARTIFACT boundaries; each selected consumed coordinate owns an indexed raw JAR/POM pair and a reviewed POM declaration, while absent producer implementation and native oracles remain explicit limits."
         }
       ]
     },
@@ -441,12 +471,17 @@
         "witness"
       ],
       "mandatory": true,
-      "requirement": "For each new behavior capture declare actual positive/negative cases with preconditions, triggers, expected observations, contiguous node/edge walks, local source claims and exact existing oracle sourceRef indices. Explain reviewed negative scope or an evidence-backed searched gap; NOT_FOUND keeps an UNKNOWN oracle and source search evidence. Do not invent tests or infer case kind from names.",
+      "requirement": "For each new behavior capture declare actual positive/negative cases with preconditions, triggers, expected observations, contiguous node/edge walks, local source claims and exact existing oracle sourceRef indices. Explain reviewed negative scope or an evidence-backed searched gap; NOT_FOUND keeps an UNKNOWN oracle and source search evidence. Do not invent tests or infer case kind from names. Require SOURCE_BOUND_COMPARISONS_V1: actual oracle observedSubject, independent expectedCriterion, supported relation and failureMeaning, with a concrete CUSTOM explanation. Describe compared state, never fabricate runtime actuals. Exception type is not original failure identity; membership is not order; a callback flag is not an exact count. A refusal must retain its intended observed condition, not an unrelated failure.",
       "sources": [
         {
           "kind": "CURRENT_CONTRACT",
           "path": "atf-atlas/Report_Contract.md",
           "quote": "Negative observations are explicit reviewed cases or an evidence-backed search gap, never inferred from a happy-path diagram."
+        },
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "ATLAS-COMPARISON-001: SOURCE_BOUND_COMPARISONS_V1 binds every represented case to its actual oracle subject, independent expected criterion, supported comparison relation and failureMeaning; describe compared state without inventing runtime actuals or treating an unrelated failure as the intended refusal."
         }
       ]
     },
@@ -486,7 +521,7 @@
         "rendering"
       ],
       "mandatory": true,
-      "requirement": "Use renderer 5 business projection with source-bound capabilities, meaningful positive and negative cases, visible unknowns, and ordered hierarchical section numbering mirrored in navigation. Keep SSH, commands, file checks, raw JSON and proof payloads outside the HTML, including hidden templates. Preserve the adjacent audit, component negative/repair controls and native desktop render review; semantic meaning still needs a reviewer. Calibrate the actual artifact against live source and project documentation: follow delegation to implementation, separate expected cases from actual recorded verdicts, expose partial review depth, exercise native navigation from closed sections, and inspect source-bound architecture/behavior diagrams and adjacent legends. Keep known masking and sharing limits explicit; metadata does not attest semantic truth.",
+      "requirement": "Use renderer 5 business projection with source-bound capabilities, meaningful positive and negative cases, visible unknowns, and ordered hierarchical section numbering mirrored in navigation. Keep SSH, commands, file checks, raw JSON and proof payloads outside the HTML, including hidden templates. Preserve the adjacent audit, component negative/repair controls and native desktop render review; semantic meaning still needs a reviewer. Calibrate the actual artifact against live source and project documentation: follow delegation to implementation, separate expected cases from actual recorded verdicts, expose partial review depth, exercise native navigation from closed sections, and inspect source-bound architecture/behavior diagrams and adjacent legends. Keep known masking and sharing limits explicit; metadata does not attest semantic truth. Fresh understand requires comparison V1, source graph V2, Git worktree capture V1 and source origins V1 together. Legacy publish preserves captured assessment without upgrading history; dirty capture and absent producer source remain visible confidence limits.",
       "sources": [
         {
           "kind": "CURRENT_CONTRACT",
@@ -502,6 +537,11 @@
           "kind": "CURRENT_CONTRACT",
           "path": "atf-atlas/Report_Contract.md",
           "quote": "ATLAS-CALIBRATION-001: Audit the actual rendered artifact against live source and project documentation; distinguish expected behavior from recorded verdicts, expose partial review, test native navigation, and retain source-bound architecture and behavior diagrams with adjacent legends."
+        },
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "ATLAS-AUTHORING-001: Fresh understand authoring requires SOURCE_BOUND_COMPARISONS_V1, SOURCE_GRAPH_V2, GIT_WORKTREE_V1 and SOURCE_ORIGINS_V1 together; legacy publish preserves captured history without silently upgrading its assessment."
         }
       ]
     },

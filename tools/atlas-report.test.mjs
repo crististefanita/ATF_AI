@@ -204,6 +204,17 @@ test('publication preserves existing deliveries and target source bytes',t=>{
 
 test('the CLI publishes a generic project under space-containing roots',t=>{
   const f=readerFixture(t),script=fileURLToPath(new URL('./atlas-report.mjs',import.meta.url));
+  const git=(...args)=>{const r=spawnSync('git',args,{cwd:f.sourceRoot,encoding:'utf8',windowsHide:true});assert.equal(r.status,0,r.stderr);return r.stdout.trim();};
+  git('init','--quiet');git('add','.');git('-c','user.name=Atlas fixture','-c','user.email=atlas-fixture@example.invalid','commit','--quiet','-m','Capture existing fixture contract');
+  f.analysis.revision=f.index.revision=git('rev-parse','HEAD');Object.assign(f.index,{captureProfile:'GIT_WORKTREE_V1',captureState:'CLEAN',worktreeStatus:''});
+  Object.assign(f.analysis.reader,{diagramProfile:'SOURCE_GRAPH_V2',comparisonProfile:'SOURCE_BOUND_COMPARISONS_V1',captureProfile:'GIT_WORKTREE_V1'});
+  f.analysis.understanding.originProfile='SOURCE_ORIGINS_V1';f.analysis.understanding.units.forEach(unit=>unit.sourceRole='LOCAL_SOURCE');
+  const flow=f.analysis.behaviorFlows[0];flow.caseAnalysis.comparisonProfile='SOURCE_BOUND_COMPARISONS_V1';
+  flow.caseAnalysis.cases[0].comparison={observedSubject:'The response observation returned to the fixture caller',expectedCriterion:'The returned observation retains the exact independently expected response.',relation:'EQUALITY',failureMeaning:'A substituted response would change what the caller actually observes.',oracleRefIndices:[0]};
+  Object.assign(f.analysis.reader.journeys[0],{diagramMode:'TEXT_ONLY',diagramReason:'This compact fixture declares one caller-to-observation relationship; a prose explanation retains its case without padding a diagram.'});
+  Object.assign(f.analysis.reader.architecture[0],{diagramMode:'TEXT_ONLY',diagramReason:'The fixture has one local responsibility and no declared dependency, so prose describes this boundary more accurately than a singleton diagram.'});
+  f.analysis.reader.model.stages.splice(1,0,{id:'operation',title:'Perform the request',claimIds:['CONTRACT-1']});
+  f.analysis.reader.model.links=[{from:'request',to:'operation',label:'requests an observation',claimIds:['CONTRACT-1']},{from:'operation',to:'observe',label:'returns the observation',claimIds:['CONTRACT-1']}];f.save();
   const result=spawnSync(process.execPath,[script,'understand','--source',f.sourceRoot,'--analysis',f.analysisRoot,'--artifacts',f.artifactRoot],{encoding:'utf8',windowsHide:true});
   assert.equal(result.status,0,result.stderr);assert.equal(JSON.parse(result.stdout).projectId,'sample-project');assert.deepEqual(fs.readdirSync(f.deliveryRoot),['atlas.html']);
 });

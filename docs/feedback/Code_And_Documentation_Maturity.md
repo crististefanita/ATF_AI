@@ -1181,3 +1181,131 @@ identifică domeniul; intrările declarate ale revizuirii determină aceste note
 Tabelele comparative AI/J1 și cititorii Atlas publicați își păstrează reperele și
 notele originale. J4 are acum comparația A-003 legată de captura de sursă, cu execuție NOT_RUN. Nota mai mică a portabilității reflectă
 matricea Windows înregistrată, nu un defect runtime observat între platforme.
+
+<a id="d-024"></a>
+<a id="d-024-concrete-comparisons-and-deeper-existing-behavior"></a>
+## D-024: Comparații concrete și aprofundarea comportamentului existent
+
+Stare: VERIFIED în domeniul declarat de sursă/componente și artefact. Responsabil: revizie semantică Atlas.
+Prioritate 89 (impact 92 / expunere 88 / urgență 85).
+Calitate inițială 91 (corectitudine 91 / verificare 89 / claritate 92).
+
+- Revizia independentă a găsit 32 din 35 de descrieri de caz care repetau aceeași
+  explicație generică. Identitatea sursei nu explică subiectul real, criteriul
+  independent sau sensul unei nepotriviri.
+- `SOURCE_BOUND_COMPARISONS_V1` cere acum selecțiile concrete și relația susținută.
+  Tipul excepției nu este identitatea obiectului cauzei; apartenența nu este
+  ordine; un indicator de callback nu este număr exact. Nu se inventează valori observate.
+- Trei limite existente revizuite aprofundează povestea: așteptarea distinge prima
+  potrivire de ultima valoare nepotrivită la expirare; politica imaginii finale separă
+  eligibilitatea, UI absent, deduplicarea și responsabilitatea invocării; raportarea
+  opțională separă lipsa furnizorului, unul instalat și refuzul duplicatelor.
+- O a patra limită existentă urmărește contextul propriu al rezultatului, resetarea
+  invocării și diagnosticele protejate ale hook-urilor prin aserțiunile independente.
+- Schița AI curentă păstrează 16 fluxuri și 51 de cazuri, inclusiv 16 martori
+  suplimentari pentru cele patru responsabilități existente. Acestea explică
+  verificări menținute, nu scenarii noi de produs sau afirmații mai largi de execuție.
+- Componenta existentă pentru capturi păstrează prima invocare deschisă în timp
+  ce alta își verifică propria eligibilitate. Originalul și reparația trec fiecare 1/1; o
+  mutație temporară cu indicator comun eșuează exact pentru al doilea context,
+  cu valoarea așteptată unu și observată zero. Intercalarea delimitată nu
+  certifică orice cursă; calificarea completă a sursei finale rămâne separată.
+- Hook-urile protejate pentru atașarea la eșec nu stabilesc că hook-urile directe
+  de stare finală sau orice eroare de logger nu blochează procesul. Limitele numai de sursă rămân explicite.
+
+| Axă Atlas | Cititorul selectat anterior | Revizie independentă înaintea corecției |
+|---|---:|---:|
+| Înțelegerea proiectului/business | 93 | 92 |
+| Amploare semantică | 92 | 91 |
+
+Intrările independente sunt 93/90/92 și, respectiv, 91/89/92 conform formulei
+40/30/30. Recalibrarea reflectă decizii omise și comparații generice, nu o regresie
+runtime observată. Notele anterioare rămân neschimbate; numărul mai mare de cazuri
+nu justifică o notă finală crescută.
+
+Dovezi: `${ATF_WORK_ROOT}/reviews/cross-project-understanding-20261127/ai-audit`
+și `${ATF_WORK_ROOT}/reviews/cross-project-understanding-20261127/screenshot-proof`.
+Calitate livrată 95 (corectitudine 96 / verificare 94 / claritate 95).
+
+- Acceptanța inițială pereche a sursei complete trece 748 de verificări native și 304 Node pe ediție. Sursa finală a închiderii are propria dovadă de acceptanță păstrată independent.
+- Cititorul real asociază 76 de afirmații-oracol cu 165 de subiecți originali. Revizia nativă la 1440/900 trece cu 18 diagrame reale și 51 de comparații; responsabilitatea cu un singur nod este text.
+- Două mărturii Atlas suplimentare separă omiterea cerută de politică de captura eligibilă, folosind aceleași oracole existente ale matricei. Nu se adaugă teste runtime sau fluxuri de produs.
+- Eșecurile inițiale pentru proză densă, ancore RO și fixture-ul intrării curente rămân păstrate împreună cu reparațiile observate. Refuzurile hărții sursei păstrează geometria invalidă, selecțiile de fațetă duplicate și etichetele prea lungi înaintea reparației acceptate.
+- Sursa originală pentru capturi și restaurarea trec; mutația temporară cu stare comună eșuează exact la a doua captură independentă.
+
+Dovezi: acceptanța inițială calificată, calibrarea nativă inițială, revizia narativă și chitanțele finale ale sursei/publicării din dosarul comparat. Închiderea nu elimină cele două fațete parțiale ale aplicației și nu garantează orice planificare.
+
+<a id="d-025"></a>
+<a id="d-025-truthful-origins-source-capture-and-useful-diagrams"></a>
+## D-025: Origini fidele, capturarea sursei și diagrame utile
+
+Stare: VERIFIED în domeniul declarat de sursă/componente și artefact. Responsabil: intrări și prezentare Atlas.
+Prioritate 87 (impact 90 / expunere 88 / urgență 80).
+Calitate inițială 85 (corectitudine 88 / verificare 80 / claritate 85).
+
+- Redactarea nouă prin `understand` cere împreună profilele pentru comparații,
+  diagrame, captură Git și originea sursei. Compatibilitatea `publish` păstrează
+  evaluarea capturată fără recertificarea implicită a cititorilor istorici.
+- `SOURCE_GRAPH_V2` cere trei noduri cu sens și două relații direcționate reale,
+  distincte, în fiecare figură randată. Ideile compacte folosesc `TEXT_ONLY` cu un
+  motiv concret. Limita AI cu un singur nod devine text; nu se inventează un
+  responsabil sau o dependență pentru a crește numărul de diagrame.
+- `GIT_WORKTREE_V1` păstrează revizia reală, identitățile complete și starea
+  canonică exactă a modificărilor, inclusiv spațiile inițiale. Secțiunea de încredere
+  explică modificările locale nepublicate, iar detaliile de construcție rămân alături.
+- `SOURCE_ORIGINS_V1` distinge cele cinci module locale J1 de bibliotecile consumate
+  selectate și inspectorul separat, doar pentru citire. Șase perechi JAR/POM originale
+  păstrează coordonatele și declarațiile revizuite; sursa producătorului lipsește.
+- Validarea independentă este o capabilitate locală explicită, nu etapă automată
+  Shop sau AutoEx. Inspectorul este în domeniul testelor, nu generează rapoarte și
+  nu califică acceptanța aplicației. Câmpurile declarate de invocare a modelului nu
+  atestă un apel real sau adevărul conținutului de referință.
+- Intrarea J1 nouă revizuiește opt comportamente și 32 de comparații cu 30 de metode
+  existente de verificare. Cele 49 de fațete delimitate rămân 30 REVIEWED, 17 PARTIAL
+  și două UNKNOWN; numărul declară domeniul reviziei, nu acoperirea semantică.
+- Dovezile native J1 reale disting 234 de componente pure selectate trecute de
+  216 verificări ale guvernanței complete, cu o verificare eșuată pentru controale
+  de responsabil lipsă pe două fișiere protejate modificate. Captura modificată
+  păstrată deține eșecul. Contraexemplele care trec nu înlocuiesc verdictul complet.
+
+Dovezi: `${ATF_WORK_ROOT}/reviews/cross-project-understanding-20261127/j1-audit`
+și `${ATF_WORK_ROOT}/reviews/cross-project-understanding-20261127/j1-intake`.
+Calitate livrată 96 (corectitudine 97 / verificare 96 / claritate 95).
+
+- Publicatorul curent real refuză și repară 13 controale AI aplicabile și 12 J1; fiecare restaurare reproduce octeții cititorului original. Capturile modificate reale și perechile bibliotecilor consumate sunt verificate fără schimbarea proiectelor.
+- Ambele revizii native inițiale trec la 1440/900. Cititorul J1 cu politica comună finală asociază 30 de metode-oracol existente cu 47 de subiecți originali exacți și păstrează subiectul real eșuat al guvernanței complete.
+- Toate cele 684 de fișiere sursă J1 brute și starea Git exactă rămân neschimbate. Cele 234 de componente trecute nu suprascriu rezultatul separat de 216 cazuri cu un eșec.
+- Publicarea AI finală curată, calificarea traducerii pereche și selecția păstrează propriile dovezi finale; cititorul inițial modificat și toate intrările eșuate/refuzate rămân păstrate.
+
+Înregistrarea închide corecția delimitată de preluare/prezentare Atlas. Nu creează obligația modificării sursei J1, TODO-uri E2E sau cerință de emulator.
+
+<a id="cross-project-source-and-atlas-assessment"></a>
+<a id="cross-project-assessment"></a>
+## Evaluarea comparată a sursei și Atlasului
+
+Revizia curentă compară modificările de mentenanță AI inspectate cu sursa J1
+`4e3cac10061c95ea2b9b32cc18a6d4add1007a1e` și modificările sale nepublicate
+păstrate. AI deține implementarea locală a framework-ului; J1 combină consumatori
+ai aplicațiilor cu biblioteci binare selectate. Domeniile diferite ale sursei nu
+sunt procente de completitudine. Evaluările anterioare își păstrează reperele.
+
+Axele proiectului și ale Atlasului rămân separate. Intrările finale legate de
+sursă, justificările și dovada randării native apar în `comparison.json` și
+`atlas-axis-review.json` din dosarul reviziei comparate. Folosesc aceeași regulă
+40/30/30 și nu calculează un câștigător general din numărul testelor trecute.
+
+- Revizia AI adaugă comparații concrete ale oracolelor, patru limite existente de
+  comportament și profiluri stricte de preluare curentă. Cele două fațete ale
+  aplicației rămân parțiale.
+- J1 păstrează 234 de componente selectate trecute și un eșec real în 216 cazuri
+  de guvernanță/artefacte. Două modificări protejate de teste nu au controlul de
+  responsabilitate acceptat; un fixture negativ trecut nu înlocuiește poarta eșuată.
+- Perechile de dependențe J1 selectate rămân artefacte brute. Observațiile
+  consumatorului nu demonstrează sursa absentă a producătorului, iar metadatele
+  furnizate pentru invocarea AI nu atestă independent apelarea unui model.
+- Publicarea finală păstrează un cititor business HTML offline pentru fiecare
+  proiect, iar sursa originală, eșecurile observate și auditul construcției stau separat.
+
+Calificarea finală a sursei, randării native și publicării este înregistrată în
+D-024/D-025; chitanțele originale ale dosarului stabilesc starea livrată exactă.
+Această corecție nu include fluxuri E2E noi, emulatoare sau funcționalități Java runtime.

@@ -7,6 +7,31 @@ const identity=value=>typeof value==='string'&&/^[a-z][a-z0-9-]*$/.test(value);
 const reviewed=claim=>claim&&['SOURCE_REVIEWED','EXECUTED'].includes(claim.status);
 const unique=values=>new Set(values).size===values.length;
 const textIdentityAllowed=file=>!/^lib\//i.test(file)&&/\.(?:java|mjs|cjs|js|md|xml|json|properties|ya?ml|txt|csv|html|css|ps1)$/.test(file);
+const substantial=value=>typeof value==='string'&&value.trim().length>=30;
+const comparisonRelations=new Set(['EQUALITY','PREDICATE','FAILURE_IDENTITY','ORDER','OWNERSHIP','CUSTOM']);
+
+function validateCaseComparison(cases,witness,flowId){
+  const context=flowId+'/'+witness.id;
+  if(cases.comparisonProfile===undefined){
+    need(witness.comparison===undefined,'Declare SOURCE_BOUND_COMPARISONS_V1 before adding a case comparison: '+context);
+    return;
+  }
+  if(witness.oracleStatus==='NOT_FOUND'){
+    need(witness.comparison===null,'A missing oracle needs an explicit null comparison, not a fabricated observed/expected assertion: '+context);
+    return;
+  }
+  const comparison=witness.comparison;
+  need(object(comparison)&&Object.keys(comparison).every(key=>['observedSubject','expectedCriterion','relation','failureMeaning','oracleRefIndices','explanation'].includes(key)),
+    'Comparison needs only the declared source-review fields, not invented recorded values: '+context);
+  need(['observedSubject','expectedCriterion','failureMeaning'].every(key=>substantial(comparison[key])),
+    'Explain the observed subject, independent expected criterion and failure meaning of this exact oracle: '+context);
+  need(comparisonRelations.has(comparison.relation),'Declare an existing comparison relation or explain CUSTOM: '+context);
+  need(comparison.explanation===undefined||substantial(comparison.explanation),'A comparison explanation must describe its actual source-bound meaning: '+context);
+  need(comparison.relation!=='CUSTOM'||substantial(comparison.explanation),'CUSTOM comparison needs its substantive source-bound explanation: '+context);
+  need(Array.isArray(comparison.oracleRefIndices)&&comparison.oracleRefIndices.length>0&&unique(comparison.oracleRefIndices)
+    &&comparison.oracleRefIndices.every(index=>Number.isInteger(index)&&index>=0&&witness.oracleRefIndices.includes(index)),
+    'Bind comparison meaning to nonempty selected independent case-oracle fragments: '+context);
+}
 
 function visit(start,adjacency){
   const seen=new Set(start),queue=[...start];
@@ -36,6 +61,9 @@ export function analyzeDirectedBehavior({nodes,edges,entryNodeId}){
 export function validateAtlasBehavior(analysis,{required=false,sourceIndex}={}){
   need(object(analysis)&&Array.isArray(analysis.claims)&&analysis.claims.every(claim=>object(claim)&&text(claim.id)),
     'Behavior cases need claims and flow records');
+  const readerComparisonProfile=analysis.reader?.comparisonProfile;
+  need(readerComparisonProfile===undefined||readerComparisonProfile==='SOURCE_BOUND_COMPARISONS_V1',
+    'Use the declared SOURCE_BOUND_COMPARISONS_V1 reader comparison profile');
   if(analysis.behaviorFlows===undefined&&!required)return {status:'NOT_ASSESSED',flows:[],scope:'No behavior declaration was supplied by this historical or source-only input'};
   need(Array.isArray(analysis.behaviorFlows)&&(!required||analysis.behaviorFlows.length>0),'Behavior cases need declared flow records for a new complete report');
   let identities=null;
@@ -55,9 +83,13 @@ export function validateAtlasBehavior(analysis,{required=false,sourceIndex}={}){
   for(const flow of analysis.behaviorFlows){
     need(object(flow),'A behavior flow must be an object');
     const cases=flow.caseAnalysis;
+    if(readerComparisonProfile==='SOURCE_BOUND_COMPARISONS_V1')need(object(cases)&&cases.comparisonProfile===readerComparisonProfile,
+      'The reader comparison profile requires the same source-bound case profile on every flow: '+flow.id);
     if(cases===undefined){need(!required,'Renderer version 3 requires explicit caseAnalysis: '+flow.id);continue;}
     need(object(cases)&&cases.schemaVersion===1&&identity(cases.entryNodeId)&&['REPRESENTATIVE','ALL_DECLARED_EDGES'].includes(cases.pathScope)
       &&Array.isArray(cases.cases)&&cases.cases.length>0,'Declare case schema, entry, path scope and witnesses: '+flow.id);
+    need(cases.comparisonProfile===undefined||cases.comparisonProfile==='SOURCE_BOUND_COMPARISONS_V1',
+      'Use the declared SOURCE_BOUND_COMPARISONS_V1 comparison profile: '+flow.id);
     const graph=flow.graph;need(object(graph)&&graph.kind==='BEHAVIOR','Cases require their actual behavior graph: '+flow.id);
     const reach=analyzeDirectedBehavior({...graph,entryNodeId:cases.entryNodeId});
     need(reach.unreachableNodeIds.length===0,'Nodes are unreachable from the declared entry in '+flow.id+': '+reach.unreachableNodeIds.join(', '));
@@ -105,6 +137,7 @@ export function validateAtlasBehavior(analysis,{required=false,sourceIndex}={}){
           &&witness.oracleRefIndices.every(index=>oracle.executionSubjects.some(subject=>subject.sourceRefIndices.includes(index))),
           'An executed case needs retained testcase subjects bound to each selected oracle fragment: '+witness.id);
       }
+      validateCaseComparison(cases,witness,flow.id);
       need(Array.isArray(witness.nodeIds)&&witness.nodeIds.length>0&&witness.nodeIds.every(id=>nodes.has(id))
         &&Array.isArray(witness.edgeIds)&&witness.nodeIds.length===witness.edgeIds.length+1
         &&witness.nodeIds[0]===cases.entryNodeId&&nodes.get(witness.nodeIds.at(-1)).kind==='OUTCOME',
