@@ -1244,3 +1244,29 @@ and native-render evidence belong to `comparison.json` and
 Final source, native and publication qualification is recorded by D-024/D-025;
 the dossier's original receipts determine the exact delivered state. No new E2E
 journey, emulator or runtime Java feature is part of this correction.
+
+<a id="d-026"></a>
+## D-026: Historical business reference adaptation
+
+Status: VERIFIED within the bounded presentation and evidence scope. Owner: Atlas presentation and governance.
+Priority 91 (impact 94 / exposure 90 / urgency 85).
+Baseline quality 82 (correctness 85 / verification 78 / clarity 82).
+
+- The current reader hides every graph behind closed sections and uses a short generic reading model; review scores remain only in the audit.
+- The main_mcp reference keeps the primary map open, supporting material collapsed, shared styling, local legends, node proof and explained scores.
+- Adaptation must model actual test intent, API/UI observations, verdict, evidence and report ownership; application persistence stays partial.
+- Visible scores must come from a scoped authored assessment with arithmetic, source, purpose and reasoned ceilings. Test counts do not generate a grade, and historical runtime infrastructure is not restored.
+- Acceptance needs meaningful counterexamples and repairs, actual native initial-state measurements and paired EN/RO review. No new E2E or emulator is required.
+
+Evidence: `${ATF_WORK_ROOT}/reviews/atlas-reference-adaptation-20261127`.
+
+Delivered quality 95 (correctness 95 / verification 96 / clarity 94).
+
+- The primary map has seven actual objects in three reading bands; the owned result is emphasized and the application outcome retains PARTIAL.
+- Six Atlas cards open local rationale. All 18 project and Atlas axes retain separate scopes, goals, questions, measures, original inputs and reasoned ceilings.
+- Initial native review refused the map below the reading threshold and overlapping relationship labels. The measured repair passes at 1440/900, including initial state, 18 diagrams, local object support and score navigation.
+- The 96 focused components and paired documentation checks pass; final full qualification and selection retain their own exact-source receipts.
+- Nine pinned historical Git objects retain rule and example provenance. The first selection incorrectly counted a shared citation as a new object; the guard observed eight rather than nine. The repair includes the actual node-maturity rule without weakening the check.
+- Current V2 publication requires the reference profile; V1 remains historically verifiable without an implicit new presentation qualification. No runtime services, E2E additions or emulators are introduced.
+
+Evidence: `${ATF_WORK_ROOT}/reviews/atlas-reference-adaptation-20261127`. The two partial application facets and five application questions stay explicit; reviewed status is not exhaustive semantic understanding.

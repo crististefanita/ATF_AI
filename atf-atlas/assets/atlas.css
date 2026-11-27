@@ -897,6 +897,30 @@ marker#arrow path{fill:var(--accent)}body{font-size:15px}.wrap{max-width:1320px}
 .reader .facet-questions dd{margin:6px 0 14px;padding-left:14px;border-left:2px solid var(--border);line-height:1.7}
 .reader .flow .node[data-graph-role="consumed"] rect{stroke:var(--accent);stroke-dasharray:4 5}
 .reader .reader-comparison{margin-top:14px}
+
+/* The reference opening explains the project before secondary detail. */
+.reference-reader .reader-score-opening{margin:12px 0 18px}
+.reference-reader .reader-score-wall{grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.reference-reader .reader-score-wall .score-card{display:flex;flex-direction:column;gap:4px;min-width:0;padding:12px 14px;text-decoration:none;background:var(--panel);border:1px solid var(--border);border-radius:12px}
+.reference-reader .reader-score-wall .label{font-size:14px;line-height:1.4;color:var(--text)}
+.reference-reader .reader-score-wall .score{font-size:28px;line-height:1.2;color:var(--accent);font-variant-numeric:tabular-nums}
+.reference-reader .reader-score-wall small{font-size:14px;color:var(--muted)}
+.reference-reader .reader-score-wall .note{font-size:13px;line-height:1.45;border:0;border-radius:0;padding:0;margin:0;background:transparent;box-shadow:none}
+.reference-reader .reader-score-wall a:hover,.reference-reader .reader-score-wall a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.reference-reader nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:12px 14px}
+.reference-reader nav a{font-size:14px;line-height:1.45;padding:6px}
+.reference-reader section{margin:20px 0}
+.reference-reader .reader-primary{margin:8px 0}
+.reference-reader .reader-primary>h2{font-size:20px;margin:14px 0 6px}
+.reference-reader .primary-map .flow{min-width:740px;max-width:940px;margin:auto}
+.reference-reader .primary-map .primary-object-label{font-size:19px}
+.reference-reader .primary-map .maturity-label,.reference-reader .primary-map .edge-label{font-size:17px}
+.reference-reader .primary-map .maturity-label{fill:var(--muted)}
+.reference-reader .primary-map .primary-limit{stroke-dasharray:7 5}
+.reference-reader .reader-primary-proof summary,.reference-reader .reader-score-rationale summary,.reference-reader .reader-value summary{font-size:16px}
+.reference-reader .reader-score-axis{margin:20px 0;scroll-margin-top:20px}
+@media(max-width:1050px){.reference-reader .reader-score-wall{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:600px){.reference-reader .reader-score-wall{grid-template-columns:repeat(2,minmax(0,1fr))}.reference-reader nav{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .reader .reader-comparison summary{font-size:14px}
 .reader .reader-comparison dt{font-weight:600;margin-top:12px}
 .reader .reader-comparison dd{margin:5px 0 12px;line-height:1.7}

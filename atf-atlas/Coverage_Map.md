@@ -106,3 +106,7 @@ producer contracts. Consumer package checks cannot certify absent producer
 source, and selected passing components cannot replace a failing whole-project
 gate. The dated comparison and original outcomes belong to feedback and their
 external review dossier, not an evergreen coverage claim.
+
+## Reference presentation governance
+
+[Presentation components](../tools/atlas-reference.test.mjs) protect actual object facets and oracles, maturity boundaries and explained scores. [Native calibration](../tools/atlas-calibration.mjs) checks the initial state before interactions and compares the map, local proof and rationale with the original analysis. These controls introduce no product behavior or E2E tests.

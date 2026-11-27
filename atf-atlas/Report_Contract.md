@@ -61,7 +61,7 @@ meaning and whether technical-only classifications are appropriate.
 
 `ATLAS-AUTHORING-001: Fresh understand authoring requires SOURCE_BOUND_COMPARISONS_V1, SOURCE_GRAPH_V2, GIT_WORKTREE_V1 and SOURCE_ORIGINS_V1 together; legacy publish preserves captured history without silently upgrading its assessment.`
 
-The `understand` entry point requires all four profiles. Compatibility `publish`
+The current `understand` entry point adds the reference presentation below to the four source profiles. Compatibility `publish`
 can preserve an earlier capture; a valid historical envelope does not acquire
 current semantic, source-origin or rendering qualification. Stop on a missing
 current declaration rather than inventing facts to satisfy the schema.
@@ -111,6 +111,57 @@ declaration and actual consumption scope. Consumer package acceptance can verify
 the chosen dependency but cannot replace absent producer source or establish its
 complete behavior. Local declarations and consumed contracts receive distinct
 reader cues, with business explanations of the remaining responsibility.
+
+## Business reference opening and local proof
+
+`ATLAS-REFERENCE-AUTHORING-001: Fresh CURRENT_UNDERSTANDING_V2 requires BUSINESS_REFERENCE_V1 in addition to the source, comparison, origin and diagram profiles; preserve historical V1 declarations without upgrading their presentation assessment.`
+
+The earlier authoring literal describes captured V1 declarations. Current
+`understand` publishes V2 and additionally requires `BUSINESS_REFERENCE_V1`.
+Offline V1 verification preserves its original scope; it cannot supply the new
+opening or score qualification. Historical readers are never rewritten.
+
+`ATLAS-REFERENCE-001: Keep one source-bound primary business map open in the initial reader, with supporting maps, local legends, object proof and score rationale closed; explain the actual project objects rather than runtime module topology or authoring metadata.`
+
+| Reading surface | Default | Source meaning |
+|---|---|---|
+| Primary business map | Open inside the open purpose section | Actual consumer objects, decisions, observations and outcomes |
+| Behavior and architecture support | Closed | Separate operations and dependencies, with local legends |
+| Local object proof | Closed immediately after the legend | Meaning, selected maturity, independent check basis and remaining limit |
+| Featured review axes | Visible, with local rationale links | Original authored judgments with source and scope |
+| Review rationale and earlier short model | Closed rationale; model in prose | Detailed goals, measures, ceilings and supporting interpretation |
+
+`ATLAS-LOCAL-PROOF-001: Bind every primary object to actual owner facets, selected implementation claims and independent existing oracles; retain the least-established selected maturity, visible original failures and local remaining limits beside the graph.`
+
+Declare `reader.primaryGraph` with real objects and named relationships.
+Each node selects `facetRefs`, owned `claimIds` and independent
+`oracleClaimIds`. Its `maturity` retains UNKNOWN before PARTIAL before
+REVIEWED across the selected facets. A passing unrelated check cannot promote
+that state. The focus identifies the owned result; dashed objects preserve a
+limit rather than request a future E2E feature.
+
+`ATLAS-SCORE-VIEW-001: Visible score cards must reopen to their original scoped authored axes, separate project and Atlas groups, expose goal-question-measure rationale and forty-thirty-thirty inputs, and respect a reasoned ceiling; passing checks never manufacture a score or application acceptance.`
+
+`analysis.assessment` retains the original EVIDENCE_BOUND_REVIEW axes, source
+claims and native evidence. `reader.assessment` supplies the business language,
+featured axis references, goals, questions, measures, limits and ceilings.
+Every axis remains represented; a featured subset cannot erase a weak or partial
+review. Scores of 95 or above require original execution evidence and an explicit
+remaining limit. No automatic Overall is added.
+
+`ATLAS-REFERENCE-STYLE-001: Reuse canonical calm node, edge and legend primitives; rich primary maps use context, operation and outcome bands, complete readable relationship labels and honest maturity cues, verified against actual native geometry and initial disclosure state.`
+
+Primary objects use bounded `band` and `column` reading positions. Six or
+more objects require three bands; three honest objects remain valid for a simple
+project. Do not invent nodes to meet density. Native review records the opening
+before interactions, then checks every object, relationship, rationale and score
+link. Hidden primary content, clipped cards, false maturity, changed grades and
+broken rationale targets need their own observed refusal and actual repair.
+
+The archive's node/method/layer strips become business object support here.
+Exact method names, paths, commands and raw evidence remain in the adjacent audit;
+they do not re-enter the business HTML. Shared style and stronger local proof are
+adapted without restoring old runtime services or generating new product tests.
 
 ## Governed authoring loop
 

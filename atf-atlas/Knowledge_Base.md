@@ -153,10 +153,12 @@ hierarchical numbering in every retrieval, including unrelated questions.
 KB-COMPLETE now requires complete understanding in the reader and complete
 technical evidence in the audit, with no hidden HTML bundle. History retains its captured policy.
 
+The current profile includes `BUSINESS_REFERENCE_V1`: an open primary map, closed support, facet-bound maturity and goal–question–measure score rationale. V2 is verified separately from historical V1 declarations. A passing result never becomes an automatic grade.
+
 ## Artifact calibration
 
 Fresh `understand` authoring retrieves the existing mandatory records and applies
-all four [current profiles](Report_Contract.md#current-source-bound-authoring-profiles).
+the source and presentation [current profiles](Report_Contract.md#current-source-bound-authoring-profiles).
 The corpus extends the same case, graph, evidence and breadth records; adding a
 new policy topic does not require another overlapping record.
 

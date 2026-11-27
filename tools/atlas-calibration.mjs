@@ -1,6 +1,7 @@
 import {createHash} from 'node:crypto';
 import {validateSemanticFacets,facetProofProjection} from './atlas-semantics.mjs';
-import {readerDiagramProjection,validateReaderDiagramProfile} from './atlas-reader-graphs.mjs';
+import {readerDiagramProjection,validateReaderDiagramProfile,readerGraphSet} from './atlas-reader-graphs.mjs';
+import {referencePresentationProjection} from './atlas-reference.mjs';
 import {businessSections,readerComparisonProjection,readerCaptureProjection} from './atlas-reader.mjs';
 import {reviewAtlasLayout} from './atlas-presentation.mjs';
 import {requireAtlas} from './atlas-diagnostics.mjs';
@@ -9,6 +10,15 @@ const object=value=>value!==null&&typeof value==='object'&&!Array.isArray(value)
 const hash=value=>createHash('sha256').update(value).digest('hex');
 const meaningful=value=>typeof value==='string'&&value.trim().length>=30;
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+
+/** Measure before any navigation or disclosure interaction changes the initial document. */
+export function atlasReferenceOpeningProbe(){
+  if(document.documentElement.dataset.atlasPresentation!=='business-reference-1')return null;
+  const main=document.querySelector('.reader-primary'),map=main?.querySelector('.primary-map'),box=map?.getBoundingClientRect();
+  const cards=[...document.querySelectorAll('.reader-score-wall .score-card')];
+  const exposed=n=>{for(let p=n;p;p=p.parentElement){const style=getComputedStyle(p);if(style.visibility==='hidden'||Number(style.opacity)<0.05)return false;}return true;};
+  return {primaryCount:document.querySelectorAll('.reader-primary').length,primaryOpen:main?.open===true,primaryVisible:!!box&&box.width>0&&box.height>0&&exposed(map),mapTop:box?.top??null,graphId:map?.dataset.graphId||'',scoreScope:document.querySelector('.reader-score-opening>.eyebrow')?.textContent.trim(),secondaryOpen:document.querySelectorAll('.reader-flow[open]').length,legendOpen:document.querySelectorAll('.atlas-legend details[open]').length,proofOpen:document.querySelectorAll('.reader-primary-proof[open]').length,scoreRationaleOpen:document.querySelectorAll('.reader-score-rationale[open]').length,valueOpen:document.querySelectorAll('.reader-value[open]').length,cards:cards.map(n=>({groupId:n.dataset.scoreGroup,axisId:n.dataset.scoreAxis,label:n.querySelector('.label').textContent.trim(),score:Number(n.querySelector('.score').firstChild.textContent.trim()),meaning:n.querySelector('.note').textContent.trim(),target:n.getAttribute('href')})),overflow:cards.filter(n=>!exposed(n)||n.scrollWidth>n.clientWidth+2||[...n.querySelectorAll('.label,.score,.note')].some(c=>c.getBoundingClientRect().height<=0||c.scrollWidth>c.clientWidth+2||c.scrollHeight>c.clientHeight+2)).map(n=>n.dataset.scoreAxis)};
+}
 
 /** Run in real document QA only. Nothing from this probe is embedded in the business reader. */
 export function atlasCalibrationProbe(){
@@ -25,11 +35,12 @@ export function atlasCalibrationProbe(){
     for(const edge of edges){const path=edge.querySelector('path'),marker=getComputedStyle(path).markerEnd.match(/#([^\)"']+)/)?.[1],arrow=marker&&document.getElementById(marker);if(!arrow?.querySelector('path')||!(Number(arrow.getAttribute('markerWidth'))>0))issue('missingArrows',edge.dataset.from+' -> '+edge.dataset.to);
       const length=path.getTotalLength();for(let i=1;i<40;i++){const point=path.getPointAtLength(length*i/40),global=new DOMPoint(point.x,point.y).matrixTransform(svg.getScreenCTM()),hit=boxes.findIndex((box,index)=>![edge.dataset.from,edge.dataset.to].includes(nodes[index].dataset.nodeId)&&global.x>box.left+2&&global.x<box.right-2&&global.y>box.top+2&&global.y<box.bottom-2);if(hit>=0){issue('routeHits',edge.dataset.from+' -> '+edge.dataset.to+' / '+nodes[hit].dataset.nodeId);break;}}
     }
-    return {id:figure.dataset.graphId,kind:figure.dataset.graphKind,title:svg.getAttribute('aria-label'),nodes:nodes.map(n=>({id:n.dataset.nodeId,role:n.dataset.graphRole,label:label(n.querySelector('text'))})),edges:edges.map(e=>({from:e.dataset.from,to:e.dataset.to,label:label(e.querySelector('text'))})),quality,issues};
+    return {id:figure.dataset.graphId,kind:figure.dataset.graphKind,title:svg.getAttribute('aria-label'),nodes:nodes.map(n=>({id:n.dataset.nodeId,role:n.dataset.graphRole,label:label(n.querySelector('text')),...(figure.dataset.graphKind==='PRIMARY'?{maturity:n.dataset.maturity,maturityLabel:n.querySelector('.maturity-label').textContent.trim(),focus:n.dataset.focus==='true'}:{})})),edges:edges.map(e=>({from:e.dataset.from,to:e.dataset.to,label:label(e.querySelector('text'))})),quality,issues};
   });
   const header=document.querySelector('header'),heading=header?.querySelector('h1'),box=header?.getBoundingClientRect();
   return {
     diagramDetails,
+    reference:document.documentElement.dataset.atlasPresentation==='business-reference-1'?{proof:[...document.querySelectorAll('.reader-primary-proof tbody tr')].map(n=>[...n.cells].map(c=>c.textContent.trim())),axes:[...document.querySelectorAll('.reader-score-axis')].map(n=>({groupId:n.dataset.scoreGroup,axisId:n.dataset.scoreAxis,score:Number(n.querySelector('.axis-score').textContent.trim()),rows:[...n.querySelectorAll('tbody tr')].map(r=>[...r.cells].map(c=>c.textContent.trim()))}))}:null,
     identity:header&&heading?{height:box.height,top:box.top+scrollY,headingCount:header.querySelectorAll('h1').length,font:parseFloat(getComputedStyle(heading).fontSize),clipped:heading.scrollWidth>heading.clientWidth+2,languageBadges:[...header.querySelectorAll('.pill')].filter(n=>/^(?:English|EN)$/.test(n.textContent.trim())).length}:null,
     facets:[...document.querySelectorAll('.reader-facet')].filter(visible).map(n=>({capability:n.dataset.capability,facet:n.dataset.facet,status:n.querySelector('.facet-status').textContent.trim(),meaning:n.querySelector('.facet-meaning').textContent.trim(),limit:n.querySelector('.facet-limit').textContent.trim(),proof:n.querySelector('.facet-proof')?.textContent.trim()||'',nonClaims:[...n.querySelectorAll('.facet-nonclaims li')].map(x=>x.textContent.trim()),openQuestions:[...n.querySelectorAll('.facet-questions dt')].filter(visible).map(x=>({id:x.dataset.questionId,question:x.textContent.trim(),evidenceNeeded:x.nextElementSibling.textContent.trim()}))})),
     cases:[...document.querySelectorAll('.reader-case')].filter(visible).map(node=>{const pane=node.querySelector('.reader-comparison'),text=selector=>pane?.querySelector(selector)?.textContent.trim()||'';return {title:node.querySelector('h3').textContent.replace(/^\d{2}(?:\.\d{2})+\s*/,'').trim(),kind:node.querySelector('.eyebrow').textContent.trim(),proof:node.querySelector('.reader-proof')?.textContent.trim()||node.querySelectorAll('p')[2]?.textContent.trim()||'',...(pane?{comparison:{observedSubject:text('.comparison-subject'),expectedCriterion:text('.comparison-criterion'),rule:text('.comparison-rule'),failureMeaning:text('.comparison-failure'),explanation:text('.comparison-explanation')}}:{})};}),
@@ -53,6 +64,7 @@ export function reviewAtlasCalibration({analysis,sourceIndex,html,auditSha256,ca
   need(sourceReview.schemaVersion===1&&meaningful(sourceReview.reviewer)&&meaningful(sourceReview.limits)&&sourceReview.coverageDeclaration===analysis.understanding.scope,'Declare the actual reviewer, semantic limits and selected/full review scope');
   const semanticReview=validateSemanticFacets(analysis);
   const diagramReview=validateReaderDiagramProfile(analysis);
+  need(html.includes('data-atlas-presentation="business-reference-1"')===(analysis.reader.presentationProfile==='BUSINESS_REFERENCE_V1'),'The actual reader and original analysis must retain the same reference presentation promise');
   const claims=new Set(analysis.claims.map(claim=>claim.id)),comparisons=sourceReview.comparisons;
   need(Array.isArray(comparisons)&&same(comparisons.map(item=>item.sectionId),businessSections),'Compare every reader section with actual source and project documentation in reading order');
   for(const row of comparisons){
@@ -66,10 +78,20 @@ export function reviewAtlasCalibration({analysis,sourceIndex,html,auditSha256,ca
   const claimsById=new Map(analysis.claims.map(claim=>[claim.id,claim]));
   const expectedCases=analysis.reader.journeys.flatMap(journey=>journey.cases.map(item=>{const source=analysis.behaviorFlows.find(flow=>flow.id===journey.flowId).caseAnalysis.cases.find(row=>row.id===item.caseId),oracle=claimsById.get(source.oracleClaimId);if(source.oracleStatus==='EXECUTED')need(oracle?.status==='EXECUTED'&&['PASSED','FAILED'].includes(oracle.verdict),'An executed case lacks its actual recorded oracle verdict');return {title:item.title,kind:source.kind==='POSITIVE'?'Expected success':source.kind==='NEGATIVE'?'Expected refusal or failure':'Boundary case',proof:source.oracleStatus==='EXECUTED'?(oracle?.verdict==='FAILED'?'Recorded check failed':'Recorded check passed'):source.oracleStatus==='NOT_FOUND'?'No existing check identified':'Check reviewed in source; no execution inferred',...(readerComparisonProjection(source)?{comparison:readerComparisonProjection(source)}:{})};}));
   const expectedBreadth=analysis.understanding.units.map(unit=>{const status=Object.values(unit.facets||{}).map(facet=>facet.status),depth=!status.length?'Review depth not declared':status.includes('UNKNOWN')?(status.includes('PARTIAL')?'Partial review; some areas unestablished':'Some areas unestablished'):status.includes('PARTIAL')?'Partial review':unit.facets.purpose?.review?'Reviewed within stated scope':'Declared aspects reviewed';return [analysis.reader.capabilities.find(item=>item.unitId===unit.id).title,depth];});
-  const expectedGraphs=analysis.reader.journeys.filter(view=>view.diagramMode!=='TEXT_ONLY').length+(analysis.reader.architecture||[]).filter(view=>view.diagramMode!=='TEXT_ONLY').length+1;
+  const expectedGraphs=analysis.reader.journeys.filter(v=>v.diagramMode!=='TEXT_ONLY').length+(analysis.reader.architecture||[]).filter(v=>v.diagramMode!=='TEXT_ONLY').length+(analysis.reader.model?.diagramMode==='TEXT_ONLY'?0:1)+(analysis.reader.primaryGraph?1:0),reference=referencePresentationProjection(analysis);
   for(const record of capture.records){
     need(object(record.metrics)&&object(record.structure)&&Array.isArray(record.navigation),'Retain actual layout, structure and interaction observations');
     const {structure,width}=record;
+    if(reference){
+      const opening=record.initialReference,expectedCards=reference.featured.map(a=>({groupId:a.groupId,axisId:a.axisId,label:a.label,score:a.score,meaning:a.meaning,target:'#score-'+a.groupId+'-'+a.axisId}));
+      if(!opening||opening.primaryCount!==1||!opening.primaryOpen||!opening.primaryVisible||opening.graphId!==reference.primary.id||!Number.isFinite(opening.mapTop)||opening.mapTop<0||opening.mapTop>900||['secondaryOpen','legendOpen','proofOpen','scoreRationaleOpen','valueOpen'].some(k=>opening[k]!==0))add(width,'REFERENCE_OPENING','The actual first view must expose its real primary map and retain closed supporting disclosures');
+      if(!opening||opening.scoreScope!==reference.featured[0].groupTitle+' · 1–100'||!same(opening.cards,expectedCards)||!Array.isArray(opening.overflow)||opening.overflow.length)add(width,'REFERENCE_SCORES','Opening score cards must retain their exact authored axes, scope and readable local targets');
+      const expectedProof=reference.primary.nodes.map(n=>[n.label,n.meaning+' '+n.status+'. '+n.proof+'.',n.limit]);
+      const expectedAxes=reference.axes.map(a=>({groupId:a.groupId,axisId:a.axisId,score:a.score,rows:[['Goal',a.goal],['Question',a.question],['Measure',a.measure],['Meaning',a.meaning],['Rubric inputs','Correctness '+a.correctness+' · verification '+a.verification+' · clarity '+a.clarity],['Review ceiling',a.ceiling+' — '+a.ceilingReason],['Remaining limit',a.limits]]}));
+      if(!same(structure.reference?.proof,expectedProof))add(width,'REFERENCE_PROOF','Local object support, maturity or remaining limits differ from the selected source facets');
+      if(!same(structure.reference?.axes,expectedAxes))add(width,'REFERENCE_SCORES','Visible rationale, rubric or ceilings differ from their original authored assessment');
+      if(!Array.isArray(record.scoreNavigation)||record.scoreNavigation.length!==expectedCards.length||record.scoreNavigation.some((row,i)=>row.target!==expectedCards[i].target||row.opened!==true))add(width,'REFERENCE_NAVIGATION','Every score card must open its actual scoped rationale through native local navigation');
+    }
     if(['SOURCE_GRAPH_V1','SOURCE_GRAPH_V2'].includes(analysis.reader.diagramProfile)){
       const actual=structure.diagramDetails,expected=readerDiagramProjection(analysis);
       const projected=Array.isArray(actual)?actual.map(({quality,issues,...projection})=>projection):null;

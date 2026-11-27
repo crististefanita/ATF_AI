@@ -319,3 +319,12 @@ Semantic qualification uses distinct facet observations, owned source and indepe
 For observation refinement, retain the named oracle, actual proof level and visible non-claims. Distinguish a component verdict from an observed response status, and captured bytes from complete application acceptance.
 
 For BOUNDED_OBSERVATIONS_V2, copy retainedProofs from the prior audit and declare openQuestions for each PARTIAL decision. Every question has id, question and evidenceNeeded; it is boundary information, not a product-flow TODO. [Contract and rendering comparison](../../atf-atlas/Report_Contract.md#successive-application-boundaries).
+
+## Map opening and scoped scores
+
+Declare `presentationProfile: BUSINESS_REFERENCE_V1`, `reader.primaryGraph` and `reader.assessment` for current V2 authoring. Bind every object to actual facets and independent existing oracles, preserving the least-established maturity. The primary map is open; its legend, object proof and score rationale are closed.
+
+- `band` and `column` positions organize reading without inventing a runtime sequence.
+- Axes come from `analysis.assessment`; project and Atlas scopes remain separate.
+- Every axis explains its goal, question, measure, limit and ceiling; test results do not generate grades.
+- Inspect actual initial rendering and score-rationale navigation before selecting the reader.

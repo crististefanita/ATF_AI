@@ -179,6 +179,8 @@ at both recorded widths and retain overlapping, repaired and touching-boundary
 control receipts. Report missing `edgeLabelPairOverlaps` evidence as NOT_ASSESSED
 and rerun the document component gate before publishing.
 
+The primary business map is open on first reading, with actual objects and local object proof. Supporting graphs, legends and score rationale remain collapsed. The [reference profile](Report_Contract.md#business-reference-opening-and-local-proof) preserves authored judgments, reasoned ceilings and partial boundaries.
+
 ## Artifact calibration
 
 Fresh project understanding uses `understand` with the four

@@ -18,6 +18,8 @@ Current review: [live source, documentation, Atlas/RAG and framework attributes]
 
 
 
+
+
 <!-- feedback:empty -->
 
 The register is reserved for framework governance, stability and documentation.
@@ -73,6 +75,7 @@ Retained baseline component scores:
 
 | ID | Impact / risk / urgency | Correctness / verification / clarity | Evidence scope |
 |---|---|---|---|
+| D-026 | 94 / 90 / 85 | 85 / 78 / 82 | Hidden primary map and audit-only scores without a first-view contract |
 | D-024 | 92 / 88 / 85 | 91 / 89 / 92 | Generic case comparisons and omitted existing framework decisions |
 | D-025 | 90 / 88 / 80 | 88 / 80 / 85 | Tiny rendered graphs and missing current origin/capture requirements |
 | D-023 | 92 / 90 / 85 | 90 / 85 / 95 | A large successive audit exceeds the tokenization stack |
@@ -132,6 +135,7 @@ normalizing their presentation does not claim a fresh execution.
 
 | ID | Delivered behavior | Verification |
 |---|---|---|
+| D-026 | Open primary map, local proof and explained scores; quality 95 (95/96/94) | [Provenance, components and native repair](Code_And_Documentation_Maturity.md#d-026) |
 | D-024 | Concrete comparisons and four existing behavior boundaries; quality 95 (96/94/95) | [Exact source, original subjects and native review](Code_And_Documentation_Maturity.md#d-024) |
 | D-025 | Useful diagrams, truthful source/origins and actual refusals; quality 96 (97/96/95) | [Cross-project qualification and preserved J1 failure](Code_And_Documentation_Maturity.md#d-025) |
 | D-023 | Iterative scan, complete history and duplicate refusal; quality 95 (96/95/94) | [Regressions and original repaired audit](Code_And_Documentation_Maturity.md#d-023) |
