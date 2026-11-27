@@ -1,6 +1,7 @@
 import {requireAtlas} from './atlas-diagnostics.mjs';
 import {presentationTable} from './atlas-presentation.mjs';
 import {renderReaderGraph,readerGraphSet,validateReaderDiagramProfile} from './atlas-reader-graphs.mjs';
+import {facetProofProjection} from './atlas-semantics.mjs';
 
 export const businessSections=Object.freeze(['overview','capabilities','journeys','operating-model','confidence','limits']);
 const need=(ok,message)=>requireAtlas(ok,'ATLAS-READER',message);
@@ -96,7 +97,15 @@ export function renderBusinessReader(bundle,css){
   const breadth='<h3>Review depth by capability</h3><div class="reader-breadth">'+presentationTable(['Capability','Source review'],analysis.understanding.units.map(unit=>[r.capabilities.find(c=>c.unitId===unit.id).title,reviewDepth(unit)]))+'</div>'+paragraph('Review depth concerns purpose, ownership, behavior, information, setup, failure handling and available checks. Partial review means selected aspects were inspected; passing checks do not complete unreviewed areas.');
   const unknownAreas=(analysis.understanding?.units||[]).flatMap(unit=>{const missing=Object.entries(unit.facets||{}).filter(([,facet])=>facet.status==='UNKNOWN').map(([name])=>({purpose:'purpose',structure:'ownership',behavior:'behavior',data:'information',configuration:'setup',failure:'failure handling',verification:'available checks'}[name]));return missing.length?[[r.capabilities.find(c=>c.unitId===unit.id).title,missing.join(', ')]]:[];});
   const semantic=analysis.understanding.reviewProfile==='SEMANTIC_FACETS_V1',facetNames={purpose:'Purpose',structure:'Ownership',behavior:'Behavior',data:'Information',configuration:'Setup',failure:'Failure handling',verification:'Existing verification'};
-  const facetDetails=item=>{if(!semantic)return '';const unit=analysis.understanding.units.find(u=>u.id===item.unitId);return '<details class="reader-facets"><summary>Understanding and boundaries</summary>'+Object.entries(unit.facets).map(([key,facet])=>{for(const text of [facet.explanation,facet.review.scope,facet.review.limits])prose(text,'business facet '+key);const status={REVIEWED:'Reviewed within stated scope',PARTIAL:'Partial review',UNKNOWN:'Not established',NOT_APPLICABLE:'Not applicable'}[facet.status];return '<article class="reader-facet" data-capability="'+escape(item.title)+'" data-facet="'+key+'"><h4>'+facetNames[key]+'</h4><p class="facet-status">'+status+'</p><p class="facet-meaning">'+escape(facet.explanation)+'</p><p class="facet-limit">'+escape(facet.review.limits)+'</p></article>';}).join('')+'</details>';};
+  const facetDetails=item=>{
+    if(!semantic)return '';const unit=analysis.understanding.units.find(u=>u.id===item.unitId);
+    return '<details class="reader-facets"><summary>Understanding and boundaries</summary>'+Object.entries(unit.facets).map(([key,facet])=>{
+      const boundary=facetProofProjection(analysis,unit.id,key);
+      for(const text of [facet.explanation,facet.review.scope,facet.review.limits,...boundary.nonClaims])prose(text,'business facet '+key);
+      const status={REVIEWED:'Reviewed within stated scope',PARTIAL:'Partial review',UNKNOWN:'Not established',NOT_APPLICABLE:'Not applicable'}[facet.status];
+      return '<article class="reader-facet" data-capability="'+escape(item.title)+'" data-facet="'+key+'"><h4>'+facetNames[key]+'</h4><p class="facet-status">'+status+'</p><p class="facet-meaning">'+escape(facet.explanation)+'</p><p class="facet-limit">'+escape(facet.review.limits)+'</p>'+(boundary.proof?'<p class="facet-proof">'+escape(boundary.proof)+'</p><ul class="facet-nonclaims">'+boundary.nonClaims.map(value=>'<li>'+escape(value)+'</li>').join('')+'</ul>':'')+'</article>';
+    }).join('')+'</details>';
+  };
   const architecture=r.architecture.map(view=>{const projected=diagramViews.find(v=>v.graph.id===view.graphId);return '<h3>'+escape(view.title)+'</h3>'+renderReaderGraph(projected.graph,projected);}).join('');
   const bodies=[paragraph(r.summary)+'<div class="reader-grid">'+r.value.map((item,i)=>card(item.title,item.text,'01.'+number(i+1))).join('')+'</div>',
     '<div class="reader-grid">'+r.capabilities.map((item,i)=>'<article class="card"><h3>'+badge('02.'+number(i+1))+escape(item.title)+'</h3>'+paragraph(item.benefit)+facetDetails(item)+'</article>').join('')+'</div>',

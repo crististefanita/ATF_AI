@@ -112,6 +112,17 @@ public class DocumentationRootGovernanceTest {
             findings = MarkdownDocumentationRules.validate(fixture.root);
             assertFinding(findings, "DOC-README-MODULE-TABLE");
             assertFinding(findings, "DOC-TABLE-SHAPE");
+            for (String route : List.of("See main_RO.", "See main_ro.",
+                    "[Translated branch](https://example.invalid/tree/main%5FRO/README.md)",
+                    "100% [Translated branch](https://example.invalid/tree/%6dain%5FRO/README.md)",
+                    "```text\nmain_RO\n```", "<!-- main_RO -->")) {
+                fixture.write("README.md", original + "\n" + route + "\n");
+                findings = MarkdownDocumentationRules.validate(fixture.root);
+                assertFinding(findings, "DOC-README-EDITION");
+                report = GovernanceFiles.problems(findings);
+                Assert.assertTrue(report.contains("Move translated-branch names and routes"));
+                Assert.assertTrue(report.contains("Owner: docs/governance/Code_And_Documentation_Policy.md#reader-orientation-and-diagrams"));
+            }
             fixture.write("README.md", original);
             assertValid(MarkdownDocumentationRules.validate(fixture.root));
         }

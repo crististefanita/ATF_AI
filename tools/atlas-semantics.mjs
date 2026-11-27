@@ -23,9 +23,20 @@ function refinement(analysis){
   need(review.schemaVersion===1&&typeof review.baselineRevision==='string'&&/^[a-f0-9]{64}$/.test(review.baselineSha256||'')&&review.baselineDocument==='semantic-baseline.json'&&analysis.documents?.some(d=>d.path===review.baselineDocument&&d.sha256===review.baselineSha256)&&Array.isArray(review.baselineFacets)&&Array.isArray(review.decisions),'Bind refinement to its original baseline document, digest and revision');
   const baseline=new Map();for(const row of review.baselineFacets){const key=row?.unitId+'/'+row?.facet;need(row&&facets.includes(row.facet)&&!baseline.has(key)&&['REVIEWED','PARTIAL','UNKNOWN','NOT_APPLICABLE'].includes(row.status)&&substantive(row.scope)&&substantive(row.limits)&&Array.isArray(row.implementationRefs)&&Array.isArray(row.oracleRefs)&&Array.isArray(row.implementationSources)&&Array.isArray(row.oracleSources),'Preserve unique original baseline facet states, scopes, limits and actual fragments');baseline.set(key,row);}
   const partial=[...baseline].filter(([,row])=>row.status==='PARTIAL'),decisions=new Set();
+  need(review.verificationProfile===undefined||review.verificationProfile==='BOUNDED_OBSERVATIONS_V1','Use the declared bounded-observation verification profile');
+  need(review.verificationProfile==='BOUNDED_OBSERVATIONS_V1'||review.decisions.every(d=>d?.proofBoundary===undefined),'Declare the bounded-observation profile before displaying a component proof boundary');
   for(const decision of review.decisions){const key=decision?.unitId+'/'+decision?.facet,previous=baseline.get(key),unit=analysis.understanding.units.find(u=>u.id===decision?.unitId),current=unit?.facets?.[decision?.facet];
     need(previous?.status==='PARTIAL'&&current&&!decisions.has(key)&&substantive(decision.question)&&substantive(decision.answer),'Give every previous partial facet one actual investigated question and decision');decisions.add(key);
     need(decision.baselineScope===previous.scope&&decision.baselineLimits===previous.limits&&current.review.scope.includes(previous.scope)&&current.review.limits.includes(previous.limits),'Do not close a partial facet by deleting or narrowing its original scope or limits: '+key);
+    if(review.verificationProfile==='BOUNDED_OBSERVATIONS_V1'){
+      const boundary=decision.proofBoundary;
+      need(boundary&&['COMPONENT','SOURCE_REVIEW'].includes(boundary.level)&&boundary.applicationAcceptance==='NOT_ESTABLISHED'&&Array.isArray(boundary.claimIds)&&boundary.claimIds.length>0&&new Set(boundary.claimIds).size===boundary.claimIds.length&&Array.isArray(boundary.nonClaims)&&boundary.nonClaims.length>0&&boundary.nonClaims.every(substantive),'Distinguish observed component contracts, source review and explicit application non-claims: '+key);
+      for(const id of boundary.claimIds){const claim=analysis.claims.find(c=>c.id===id);need(claim&&current.review.oracleRefs.some(r=>r.claimId===id),'The proof boundary must cite an actual selected independent facet oracle: '+key);
+        if(boundary.level==='COMPONENT')need(claim.status==='EXECUTED'&&claim.verdict==='PASSED','A component proof boundary needs its actual passing execution; source text or an unrelated green suite is insufficient: '+key);
+        else need(claim.status==='SOURCE_REVIEWED','A source-only boundary must preserve its actual source-review status: '+key);
+      }
+      need(current.status!=='REVIEWED'||boundary.level==='COMPONENT','Source-only observation cannot silently become a component-qualified promotion: '+key);
+    }
     for(const [field,oldRefs]of [['implementationRefs',previous.implementationRefs],['oracleRefs',previous.oracleRefs]]){
       const added=decision[field];need(Array.isArray(added)&&(field!=='oracleRefs'||current.status!=='REVIEWED'||added.length>0)&& (field!=='implementationRefs'||added.length>0),'A refinement needs additional owned source; promotion also needs an additional independent existing oracle: '+key);
       for(const item of added)need(item&&Array.isArray(item.refIndices)&&item.refIndices.length>0&&item.refIndices.every(index=>{const source=analysis.claims.find(c=>c.id===item.claimId)?.sourceRefs?.[index],oldSources=previous[field==='implementationRefs'?'implementationSources':'oracleSources'];return source&&current.review[field].some(r=>r.claimId===item.claimId&&r.refIndices.includes(index))&&!oldRefs.some(r=>r.claimId===item.claimId&&r.refIndices.includes(index))&&!oldSources.some(old=>old.path===source.path&&old.startLine===source.startLine&&old.endLine===source.endLine||old.quote&&source.quote&&old.quote.replaceAll('\r\n','\n')===source.quote.replaceAll('\r\n','\n'));}),'Refinement evidence must add actual selected fragments rather than recycle or rename the previous receipt: '+key);
@@ -33,6 +44,13 @@ function refinement(analysis){
   }
   need(partial.length===decisions.size&&partial.every(([key])=>decisions.has(key)),'Investigate every original partial facet; do not drop inconvenient baseline questions');
   return {status:'PASSED',previousPartial:partial.length,decisions:decisions.size,remainingPartial:review.decisions.filter(d=>analysis.understanding.units.find(u=>u.id===d.unitId).facets[d.facet].status==='PARTIAL').length,scope:'DECLARED_PROGRESS_WITH_RETAINED_BOUNDARIES; ORIGINAL_BASELINE_CHECK_REQUIRED'};
+}
+
+export function facetProofProjection(analysis,unitId,facet){
+  if(analysis.understanding?.refinement?.verificationProfile!=='BOUNDED_OBSERVATIONS_V1')return {proof:'',nonClaims:[]};
+  const boundary=analysis.understanding?.refinement?.decisions?.find(d=>d.unitId===unitId&&d.facet===facet)?.proofBoundary;
+  if(!boundary)return {proof:'',nonClaims:[]};
+  return {proof:boundary.level==='COMPONENT'?'Local component checks; application acceptance is not established.':'Source review; no component execution inferred for the additional observation.',nonClaims:boundary.nonClaims};
 }
 
 /** Reviewed means the declared facet scope was investigated, never that a whole source tree is understood. */

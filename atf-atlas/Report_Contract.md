@@ -225,6 +225,31 @@ eliminarea unor rânduri sau schimbarea limitelor inițiale.
 curățării datelor aplicației și necunoscutele vizuale ori de mediu acolo unde
 nu există dovezi independente suficiente.
 
+<a id="bounded-observation-and-application-non-claims"></a>
+## Observații delimitate și limitele acceptanței
+
+`ATLAS-OBSERVATION-001: Separate observed response fields and bounded previews from complete payloads, image bytes from pixel meaning, and local component validation from application acceptance; a reviewed observation facet needs original passing component oracle subjects and explicit non-claims, while additional source-only observations remain partial.`
+
+Profilul BOUNDED_OBSERVATIONS_V1 distinge criteriile de componentă executate de
+observațiile suplimentare citite numai din sursă. Fiecare dintre fațetele revizuite
+arată explicit ce nu dovedește verificarea; un rezultat local nu devine acceptanță
+a aplicației prin schimbarea unei etichete.
+
+| Observație | Ce este verificat | Ce rămâne separat |
+|---|---|---|
+| Răspuns | URL, metodă și status observat | Un status de eroare nu este succes |
+| Previzualizare | Normalizare și limită de 2000 unități UTF-16, apoi elipsă | Corpul brut integral și interpretarea lui |
+| Imagine | Octeții sau conținutul codificat păstrat de adaptor | Aspectul paginii, mascarea și sensul pixelilor |
+| Identitatea cererii | Asocierea câmpurilor observate | Toate întârzierile și scenariile de redirecționare |
+| Validare locală | Criteriul și excepția componentei | Persistența și curățarea datelor aplicației |
+
+Metadatele COMPONENT cer verdict PASSED pentru criteriile independente numite,
+cu legăturile originale către fragmente și rezultate. SOURCE_REVIEW păstrează
+fațeta PARTIAL. Cititorul și auditul randării compară eticheta vizibilă a dovezii
+și lista limitelor cu aceste declarații, fără a certifica automat sensul textului.
+
+`DOC-ROOT-FOCUS-001: The root README routes project decisions to owner guides; keep translated branch names and URLs in the edition guide, including references in comments and encoded examples.`
+
 <a id="source-graph-quality-and-archive-adaptation"></a>
 ## Calitatea diagramelor și adaptarea arhivei
 

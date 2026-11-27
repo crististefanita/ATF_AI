@@ -1046,6 +1046,45 @@ Calitate livrată 95 (corectitudine 96 / verificare 94 / claritate 95).
 - Capturile native ale prototipului la 1440/900 trec comparația celor 15 grafuri cu sursa și verificările pentru suprapuneri, tăieri, săgeți și contururi. Diagnosticele numesc graful și relația/nodul observat.
 - Conturul întrerupt indică o limită sau un refuz, nu eșecul unui test. Randarea finală și contraexemplul controlat trebuie să rămână legate de octeții efectiv publicați.
 
+<a id="d-020"></a>
+<a id="d-020-bounded-observation-evidence"></a>
+## D-020: Dovezi delimitate pentru observații
+
+Stare: VERIFIED în domeniul declarat. Responsabil: guvernanța Atlas.
+Prioritate 88 (impact 90 / expunere 88 / urgență 84).
+Calitate inițială 93 (corectitudine 93 / verificare 93 / claritate 94).
+
+- Cele patru fațete parțiale privesc datele browser și comportamentul/datele aplicației. Urmărește proiecția răspunsului, limitele previzualizării, imaginile și criteriile locale existente.
+- Noile componente pot inspecta contractele SDK și valorile, fără aplicații, E2E noi, emulatoare sau Java runtime nou.
+- Păstrează limitele inițiale și separă observația de acceptanța externă, previzualizarea de corpul integral și conținutul imaginii de sensul pixelilor.
+
+Calitate livrată 94 (corectitudine 94 / verificare 94 / claritate 95).
+
+- Cinci componente noi de adaptor inspectează câmpurile observate, statusurile de eroare, previzualizările normalizate și limitate, conținutul imaginilor, erorile originale și asocierea cererilor. Nu pornesc browser, server sau aplicație.
+- Ambele fațete de date browser au acum dovezi de componentă delimitate. Comportamentul/datele aplicației rămân PARTIAL: 40 REVIEWED / 2 PARTIAL, cu toate limitele inițiale păstrate.
+- Registrul Selenium păstrează valorile observate anterior când noul corp este gol pentru o identitate reutilizată; nu se deduce curățarea corpului unei cereri. Citirea Chrome live și sensul pixelilor rămân limite explicite.
+- Profilul BOUNDED_OBSERVATIONS_V1 cere nivelul real al dovezii, criterii originale cu verdict PASSED și limite vizibile. SOURCE_REVIEW nu se promovează printr-o etichetă; randarea compară și eticheta dovezii/lista limitelor.
+- Contraexemplul RAG păstrează refuzul unei citări plasate în afara contractului canonic. Citarea este aliniată la proprietarul cerut; selecția de 62 componente relevante trece după corecție. Rulările originale rămân separate.
+
+Dovezi: `${ATF_WORK_ROOT}/reviews/observation-facets-20261127`.
+
+<a id="d-021"></a>
+<a id="d-021-root-readme-project-focus"></a>
+## D-021: README principal concentrat pe proiect
+
+Stare: VERIFIED în domeniul declarat. Responsabil: documentație.
+Prioritate 78 (impact 80 / expunere 75 / urgență 75).
+Calitate inițială 86 (corectitudine 88 / verificare 80 / claritate 90).
+
+- README-ul principal nu trebuie să trimită la main_RO. Administrarea edițiilor rămâne în ghidul dedicat.
+- Actualizează ambele versiuni 1:1 și verifică reapariția rutelor în text, linkuri sau exemple prin guvernanță cu indicații de remediere.
+
+Calitate livrată 95 (corectitudine 96 / verificare 95 / claritate 95).
+
+- Secțiunea de administrare a limbilor/ramurilor este eliminată din README-ul principal în ambele ediții. Ghidul edițiilor rămâne proprietarul instrucțiunilor de întreținere.
+- DOC-README-EDITION refuză rutele în text, variantele de registru, linkurile codificate, exemplele și comentariile. Cazul cu procent literal lângă o rută codificată este verificat separat în aceeași componentă existentă.
+- Diagnosticul numește regula și proprietarul, oferă corecția și reverificarea. Perechea întreagă și cele două verificări focalizate de documentație trec înainte de calificarea completă.
+
 <a id="current-assessment"></a>
 <a id="current-atf-ai-assessment"></a>
 ## Evaluarea curentă ATF AI
@@ -1064,7 +1103,7 @@ folosește 1-100. Aplică formula reproductibilă a registrului:
 | Axă | C / V / Cl | Calitate (1-100) |
 |---|---|---:|
 | Cod și arhitectură | 94 / 93 / 92 | 93 |
-| Documentație și ediții | 94 / 93 / 94 | 94 |
+| Documentație și ediții | 95 / 95 / 94 | 95 |
 | Atlas și RAG | 95 / 95 / 94 | 95 |
 | Ciclul de viață al feedback-ului | 95 / 93 / 94 | 94 |
 | Guvernanța codului și testelor | 95 / 95 / 94 | 95 |
@@ -1092,7 +1131,7 @@ folosește 1-100. Aplică formula reproductibilă a registrului:
 
 </details>
 
-Revizuirea regăsirii validează 22 înregistrări de cunoștințe, 20 politici obligatorii
+Revizuirea regăsirii validează 23 înregistrări de cunoștințe, 21 politici obligatorii
 și cinci obiecte arhivate fixate. Domeniul declarat este context lexical determinist
 de politici; regăsirea semantică rămâne NOT_CLAIMED. Aceste verificări nu implică o
 generare Atlas nouă sau acceptanța aplicației. Dimensiunea sursei și numărul testelor

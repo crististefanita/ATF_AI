@@ -210,6 +210,13 @@ responsabil existent în locul întreținerii unor reguli paralele.
 <a id="reader-orientation-and-diagrams"></a>
 ### Orientarea cititorului și diagrame
 
+`DOC-ROOT-FOCUS-001: The root README routes project decisions to owner guides; keep translated branch names and URLs in the edition guide, including references in comments and encoded examples.`
+
+README-ul principal explică scopul proiectului, compoziția și deciziile cititorului.
+Păstrează numele și rutele ramurii traduse în [ghidul edițiilor](Readme_Editions.md),
+inclusiv referințele plasate în comentarii, exemple sau linkuri codificate.
+Aceeași structură a paginii principale se aplică ambelor ediții întreținute.
+
 Primul ecran trebuie să răspundă ce face zona, cine o deține, ce rezultat
 produce, cum se verifică și unde trebuie să continue cititorul. Folosește un
 tabel scurt întrebare–responsabil când există mai multe intrări utile.

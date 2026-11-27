@@ -96,11 +96,6 @@ Selecția implicită rulează verificări native ale modulelor și regresiile ex
 
 Înlocuiește vechiul `com.ai:test-framework` cu `com.ai:atf-core:1.0.0`, adaptorul de browser necesar și opțional `com.ai:atf-reporting:1.0.0`. Fluxurile API nu au nevoie de browser sau modul de raportare. `atf-tests` conține verificările depozitului și fixture-urile produsului; nu este un API runtime pentru consumatori.
 
-<a id="documentation-and-language"></a>
-## Documentație și limbă
-
-`main` este în engleză; `main_RO` oferă documentația întreținută în română, la aceleași căi. Sursele, comentariile, diagnosticele și exemplele executabile rămân în engleză. Consultă [contractul edițiilor](docs/governance/Readme_Editions.md) și [politica pentru cod și documentație](docs/governance/Code_And_Documentation_Policy.md).
-
 <a id="read-by-task"></a>
 ## Citește în funcție de sarcină
 
