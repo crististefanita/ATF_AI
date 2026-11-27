@@ -990,6 +990,43 @@ Delivered quality 95 (correctness 96 / verification 94 / clarity 95).
 - Native prototype captures at 1440/900 pass comparison of all 15 graphs with source and checks for overlaps, clipping, arrowheads and visible outlines. Diagnostics identify the observed graph and relationship/node.
 - Dashed outlines identify a boundary or refusal, not a failed test. Final rendering and the controlled counterexample must remain bound to the actual published bytes.
 
+<a id="d-020"></a>
+## D-020: Bounded observation evidence
+
+Status: VERIFIED within the declared scope. Owner: Atlas governance.
+Priority 88 (impact 90 / exposure 88 / urgency 84).
+Baseline quality 93 (correctness 93 / verification 93 / clarity 94).
+
+- Four partial facets concern browser information and application behavior/data. Follow response projection, preview limits, image payloads and existing local oracles.
+- Additional components may inspect SDK and value contracts without applications, new E2E, emulators or runtime Java.
+- Preserve original boundaries and distinguish observations from external acceptance, previews from complete bodies, and image content from pixel meaning.
+
+Delivered quality 94 (correctness 94 / verification 94 / clarity 95).
+
+- Five new adapter components inspect observed fields, error statuses, normalized bounded previews, image payloads, original failures and request association. They start no browser, server or application.
+- Both browser-information facets now have bounded component evidence. Application behavior/data remain PARTIAL: 40 REVIEWED / 2 PARTIAL, with every original boundary preserved.
+- The Selenium ledger retains previously observed nonblank data for a reused identity; empty-body clearing is not inferred. Live Chrome retrieval and pixel meaning remain explicit boundaries.
+- BOUNDED_OBSERVATIONS_V1 requires the actual proof level, original passing oracle subjects and visible non-claims. SOURCE_REVIEW cannot be promoted by a label; rendering also compares the proof label and non-claims.
+- The RAG counterexample preserves refusal of a citation outside the canonical report contract. Citation ownership is repaired; the 62 relevant components pass afterward. Original attempts remain separately retained.
+
+Evidence: `${ATF_WORK_ROOT}/reviews/observation-facets-20261127`.
+
+<a id="d-021"></a>
+## D-021: Root README project focus
+
+Status: VERIFIED within the declared scope. Owner: Documentation.
+Priority 78 (impact 80 / exposure 75 / urgency 75).
+Baseline quality 86 (correctness 88 / verification 80 / clarity 90).
+
+- The root README must not route readers to main_RO. Edition administration belongs in the dedicated guide.
+- Update both editions 1:1 and protect text, links and examples against route reintroduction with owned repair guidance.
+
+Delivered quality 95 (correctness 96 / verification 95 / clarity 95).
+
+- Language/branch administration is removed from the root README in both editions. The edition guide retains ownership of maintenance instructions.
+- DOC-README-EDITION refuses plain text, case variants, encoded links, examples and comments. A literal percent sign beside an encoded route is independently covered inside the existing component.
+- The diagnostic names its owner, repair and recheck. Whole-pair review and both focused documentation checks pass before final full qualification.
+
 <a id="current-assessment"></a>
 ## Current ATF AI assessment
 
@@ -1007,7 +1044,7 @@ C means correctness, V verification and Cl clarity. Each input and result uses
 | Axis | C / V / Cl | Quality (1-100) |
 |---|---|---:|
 | Code and architecture | 94 / 93 / 92 | 93 |
-| Documentation and editions | 94 / 93 / 94 | 94 |
+| Documentation and editions | 95 / 95 / 94 | 95 |
 | Atlas and RAG | 95 / 95 / 94 | 95 |
 | Feedback lifecycle | 95 / 93 / 94 | 94 |
 | Code and test governance | 95 / 95 / 94 | 95 |
@@ -1035,7 +1072,7 @@ C means correctness, V verification and Cl clarity. Each input and result uses
 
 </details>
 
-The retrieval review validates 22 knowledge records, 20 mandatory policies and
+The retrieval review validates 23 knowledge records, 21 mandatory policies and
 five pinned archived blobs. Its declared scope is deterministic lexical policy
 context; semantic recall remains NOT_CLAIMED. New Atlas generation or application
 acceptance is not inferred from these checks. Source size and test counts identify

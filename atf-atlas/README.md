@@ -193,3 +193,5 @@ The [contract](Report_Contract.md) defines the schema and limits; the [calibrati
 Semantic qualification uses distinct facet observations, owned source and independent oracles, with visible remaining limits. Atlas identity stays compact; review date belongs with confidence. See the [semantic contract](Report_Contract.md#semantic-review-and-compact-identity).
 
 For a successive review, preserve the [baseline and each facet decision](Report_Contract.md#partial-facet-refinement), then apply the [archive-adapted graph rules](Report_Contract.md#source-graph-quality-and-archive-adaptation). Promotion counts do not replace evidence or meaning review.
+
+For browser and application observations, use [bounded evidence](Report_Contract.md#bounded-observation-and-application-non-claims): a preview is not the complete body, and a captured image does not certify pixel meaning.

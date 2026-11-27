@@ -286,3 +286,5 @@ The reader explains business purpose, project architecture and behavior. Archite
 The [contract](../../atf-atlas/Report_Contract.md) defines the schema and limits; the [calibration component](../../tools/atlas-calibration.mjs) explains failures and repair routes. Axis ratings remain reasoned review judgments, not test pass rates.
 
 Semantic qualification uses distinct facet observations, owned source and independent oracles, with visible remaining limits. Atlas identity stays compact; review date belongs with confidence. See the [semantic contract](../../atf-atlas/Report_Contract.md#semantic-review-and-compact-identity).
+
+For observation refinement, retain the named oracle, actual proof level and visible non-claims. Distinguish a component verdict from an observed response status, and captured bytes from complete application acceptance.

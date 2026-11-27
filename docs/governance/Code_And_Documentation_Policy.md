@@ -192,6 +192,13 @@ active gaps. Cross-link an existing owner instead of maintaining parallel rules.
 
 ### Reader orientation and diagrams
 
+`DOC-ROOT-FOCUS-001: The root README routes project decisions to owner guides; keep translated branch names and URLs in the edition guide, including references in comments and encoded examples.`
+
+The root README explains project purpose, composition and reader decisions.
+Keep translated-branch names and routes in the [edition guide](Readme_Editions.md),
+including references otherwise placed in comments, examples or encoded links.
+The same root-page structure applies to both maintained editions.
+
 The first screen should answer what the area does, who owns it, what result it
 produces, how it is verified and where the reader should continue. Use a short
 question-to-owner table when several entry points are useful. The root explains

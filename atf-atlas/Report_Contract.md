@@ -216,6 +216,29 @@ Understanding a limit does not automatically repair implementation. Preserve
 absent application-data cleanup and visual or environmental unknowns wherever
 independent evidence remains insufficient.
 
+## Bounded observation and application non-claims
+
+`ATLAS-OBSERVATION-001: Separate observed response fields and bounded previews from complete payloads, image bytes from pixel meaning, and local component validation from application acceptance; a reviewed observation facet needs original passing component oracle subjects and explicit non-claims, while additional source-only observations remain partial.`
+
+BOUNDED_OBSERVATIONS_V1 distinguishes executed component oracles from additional
+source-only observations. Each refined facet states what its evidence does not
+establish; changing a label cannot turn a local result into application acceptance.
+
+| Observation | Verified boundary | Separate responsibility |
+|---|---|---|
+| Response | Observed URL, method and status | An error status is not success |
+| Preview | Normalization and a 2000 UTF-16 unit limit, followed by an ellipsis | Complete raw body and its interpretation |
+| Image | Bytes or encoded content retained by the adapter | Page layout, masking and pixel meaning |
+| Request identity | Association of observed fields | Every delay and redirect combination |
+| Local validation | Component assertion and original exception | Application persistence and data cleanup |
+
+COMPONENT metadata needs PASSED verdicts for the named independent oracles, with
+original fragment and testcase bindings. SOURCE_REVIEW retains PARTIAL status.
+The reader and native audit compare the visible proof label and non-claims with
+these declarations; they do not automatically certify the prose meaning.
+
+`DOC-ROOT-FOCUS-001: The root README routes project decisions to owner guides; keep translated branch names and URLs in the edition guide, including references in comments and encoded examples.`
+
 ## Source graph quality and archive adaptation
 
 `ATLAS-DIAGRAM-001: Recover the archived shared visual grammar through source-specific readable nodes, complete relationship labels and arrowheads, horizontal dependency direction, compact supporting graphs, closed local bullet legends and honest boundary cues; compare the actual native graph with source endpoints and reject overlaps, clipping, missing cues and generic label substitution.`

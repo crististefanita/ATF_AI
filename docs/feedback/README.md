@@ -71,6 +71,8 @@ Retained baseline component scores:
 
 | ID | Impact / risk / urgency | Correctness / verification / clarity | Evidence scope |
 |---|---|---|---|
+| D-020 | 90 / 88 / 84 | 93 / 93 / 94 | Four facets need independent observation and explicit non-claims |
+| D-021 | 80 / 75 / 75 | 88 / 80 / 90 | The root README exposes branch administration |
 | D-018 | 90 / 85 / 80 | 90 / 90 / 93 | Ten partial facets need a preserved baseline and additional evidence |
 | D-019 | 88 / 85 / 82 | 85 / 78 / 85 | Generic relationship substitution and unmeasured graph geometry |
 | D-011 | 90 / 85 / 85 | 65 / 45 / 60 | Generic HTML column widths, literal source blocks and no measured readability gate |
@@ -152,6 +154,8 @@ normalizing their presentation does not claim a fresh execution.
 | M-001 | Five modules, independent runtime providers, test-only product support and enforced architecture/documentation contracts | 372 final reactor checks, 102 browser cases, 11 Allure cases and inspected aggregate artifacts; [evidence](Module_Architecture.md) |
 | G-001 | Required owner/feedback guides, factual build claims, paired HTML/Markdown and agent-file exclusion | 24 documentation cases within 74 governance cases passed; [evidence](Governance_Review.md#g-001) |
 | T-001 | Existing regressions use bounded waits, observable oracles, exact cleanup and enforced suite coverage | 393 reactor cases and 4 configuration-isolation cases passed; [evidence](Governance_Review.md#t-001) |
+| D-020 | Bounded browser observations and retained application limits | Five local components; 40 REVIEWED / 2 PARTIAL; [evidence](Code_And_Documentation_Maturity.md#d-020) |
+| D-021 | Root README stays focused on the project | No translated branch routes; governance and EN/RO; [verification](Code_And_Documentation_Maturity.md#d-021) |
 | D-018 | Ten facets investigated with preserved baseline and boundaries | 38 REVIEWED / 4 PARTIAL; [evidence and limits](Code_And_Documentation_Maturity.md#d-018) |
 | D-019 | Diagrams calibrated against archive and live source | 15 graphs, complete relationships and native review; [evidence](Code_And_Documentation_Maturity.md#d-019) |
 | D-016 | Scoped semantic explanations and independent oracles | 32 REVIEWED / 10 PARTIAL facets, 12 existing behaviors; [evidence and limits](Code_And_Documentation_Maturity.md#d-016) |

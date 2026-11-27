@@ -350,6 +350,10 @@ final class GovernanceFiles {
                 "A normative Markdown table cell is too dense for scanning or a row no longer matches its declared columns.",
                 "Keep explanatory cells within 140 visible characters and 22 words, move detail into nearby prose or a linked owner, and recheck the rendered table; align every row with its header.",
                 policy + "#reader-orientation-and-diagrams", documentation);
+        help(result, "DOC-README-EDITION",
+                "The root project guide exposes translated-branch administration instead of reader decisions.",
+                "Move translated-branch names and routes to docs/governance/Readme_Editions.md; keep the root guide focused on project purpose, composition and owner routes. Repair both maintained editions without hiding branch references in comments, encoded URLs or examples.",
+                policy + "#reader-orientation-and-diagrams", documentation);
         help(result, "DOC-README-DIAGRAM DOC-README-MODULE-TABLE DOC-README-ROUTE DOC-README-EXAMPLE-PLACEMENT",
                 "The root README no longer serves as a compact map to module owners, consumer routes and detailed guides.",
                 "Restore the two-column five-module map, dependency diagram under the design section and API/UI flow under check execution; restore required reader routes and section anchors, and keep compilable examples in the Playwright/Selenium owner guides.",

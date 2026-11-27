@@ -181,6 +181,17 @@ final class MarkdownDocumentationRules {
 
     private static void validateRootReadme(Path root, Path file, List<String> visible, List<String> source,
                                            List<String> violations) {
+        Pattern editionBranch = Pattern.compile("(?i)(?<![a-z0-9])main[_-]\\s*ro(?![a-z0-9])");
+        Pattern encodedAscii = Pattern.compile("%[0-9a-fA-F]{2}");
+        for (int index = 0; index < source.size(); index++) {
+            String line = source.get(index);
+            // Normalize ASCII branch identifiers even beside a literal percent sign.
+            line += " " + encodedAscii.matcher(line).replaceAll(match -> Matcher.quoteReplacement(
+                    String.valueOf((char) Integer.parseInt(match.group().substring(1), 16))));
+            if (editionBranch.matcher(line).find()) {
+                violations.add(location(root, file, index) + "DOC-README-EDITION keep translated-branch references in the edition guide, not the root orientation page");
+            }
+        }
         Set<String> requiredSections = Set.of("the-design-in-one-view", "how-a-check-runs",
                 "how-to-choose-a-consumer-route", "build-and-verify", "read-by-task");
         Set<String> foundSections = anchors(visible);

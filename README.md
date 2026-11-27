@@ -90,10 +90,6 @@ Default runs native module checks and existing framework/governance regressions.
 
 Replace historical `com.ai:test-framework` with `com.ai:atf-core:1.0.0`, any required browser adapter and optional `com.ai:atf-reporting:1.0.0`. API flows need no browser or reporting module. `atf-tests` holds repository checks and product fixtures; it is not a consumer runtime API.
 
-## Documentation and language
-
-`main` is English; `main_RO` provides maintained documentation in Romanian at the same paths. Source, comments, diagnostics and runnable examples stay in English. See the [edition contract](docs/governance/Readme_Editions.md) and [code/documentation policy](docs/governance/Code_And_Documentation_Policy.md).
-
 ## Read by task
 
 | Need | Continue with |

@@ -200,12 +200,17 @@
         "code"
       ],
       "mandatory": true,
-      "requirement": "Keep authored report prose, code and comments English. Preserve exact external source excerpts and original retained evidence as attributed data instead of silently translating source facts.",
+      "requirement": "Keep authored report prose, code and comments English. Preserve exact external source excerpts and original retained evidence as attributed data instead of silently translating source facts. Keep the framework root README focused on project orientation without translated branch routes; edition administration belongs to its dedicated guide.",
       "sources": [
         {
           "kind": "CURRENT_CONTRACT",
           "path": "atf-atlas/Report_Contract.md",
           "quote": "The final document is English; code and comments remain English."
+        },
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "DOC-ROOT-FOCUS-001: The root README routes project decisions to owner guides; keep translated branch names and URLs in the edition guide, including references in comments and encoded examples."
         }
       ]
     },
@@ -547,6 +552,28 @@
           "kind": "CURRENT_CONTRACT",
           "path": "atf-atlas/Report_Contract.md",
           "quote": "ATLAS-REFINEMENT-001: Compare every original partial facet with the preserved baseline audit, retain its original scope and limits, record the investigated question and decision, and require additional owned implementation and independent oracle fragments before promotion; scope deletion or recycled receipts cannot count as progress."
+        }
+      ]
+    },
+    {
+      "id": "KB-OBSERVATION-BOUNDARIES",
+      "title": "Bounded previews, image payloads and local versus application proof",
+      "topics": [
+        "observation",
+        "preview",
+        "payload",
+        "image",
+        "application",
+        "component",
+        "nonclaims"
+      ],
+      "mandatory": true,
+      "requirement": "For observation refinement declare BOUNDED_OBSERVATIONS_V1 and a proof boundary on every investigated facet. Component claims need their actual named passing oracle execution; source-only observations remain partial. Follow the live shared response projection: whitespace normalization and bounded previews do not preserve a complete raw body. Image bytes do not prove page layout, masking or pixel meaning. Request association does not establish every delayed event or redirect. Local validation, randomized contacts and flat resource lookup do not establish remote persistence, global uniqueness or account cleanup. Preserve original scope, limits and explicit non-claims in the reader and native comparison.",
+      "sources": [
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "ATLAS-OBSERVATION-001: Separate observed response fields and bounded previews from complete payloads, image bytes from pixel meaning, and local component validation from application acceptance; a reviewed observation facet needs original passing component oracle subjects and explicit non-claims, while additional source-only observations remain partial."
         }
       ]
     }

@@ -57,11 +57,11 @@ The [semantic profile](Report_Contract.md#semantic-review-and-compact-identity)
 requires scope-specific observations and independent existing oracles. A REVIEWED
 facet completes its declared scope; named remaining questions still apply.
 
-The next review preserves all ten PARTIAL boundaries in the [refinement dossier](Report_Contract.md#partial-facet-refinement). Configuration checks distinguish SDK commands from actual window appearance; aggregation distinguishes calculated totals from manual values. Pixel, network and application-data cleanup unknowns remain visible.
+Successive reviews preserve their original boundaries in the [refinement dossier](Report_Contract.md#partial-facet-refinement). Configuration checks distinguish SDK commands from actual window appearance; aggregation distinguishes calculated totals from manual values. Pixel, network and application-data cleanup unknowns remain visible.
 
 ## Successive facet review
 
-The outcome preserves all ten original boundaries: 38 REVIEWED / 4 PARTIAL.
+The current outcome preserves original boundaries: 40 REVIEWED / 2 PARTIAL.
 Completed review concerns its declared scope, not every possible behavior.
 
 | Deepened dimension | Observation and boundary |
@@ -72,10 +72,10 @@ Completed review concerns its declared scope, not every possible behavior.
 | Reporting configuration | Compatibility and caching have explicit policies; arbitrary destinations are not inferred as accepted |
 | Test selection | The local catalog remains separate from opt-in selections; credentials and application state stay external |
 | Atlas configuration | Mandatory policy and explicit inputs are checked; complete semantic recall is not claimed |
+| Playwright information | Components preserve observed fields, bounded previews and image bytes; pixel meaning stays separate |
+| Selenium information | Request identities and payloads are checked; live Chrome body retrieval and event ordering stay separate |
 
 | Dimension retained PARTIAL | Reason and next evidence boundary |
 |---|---|
-| Playwright information | Response association and image capture are followed in source; complete combinations and pixel content remain unqualified |
-| Selenium information | Network association and body retrieval are followed; delayed events and pixels need further independent evidence |
 | Application behavior | Local components explain validation; complete application persistence is not established |
 | Application information | Flat resources and randomized values are explained; global uniqueness and data deletion are not guaranteed |
