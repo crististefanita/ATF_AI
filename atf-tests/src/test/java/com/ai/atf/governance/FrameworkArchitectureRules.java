@@ -250,12 +250,17 @@ final class FrameworkArchitectureRules {
             for (ExpressionTree argument : annotation.getArguments()) {
                 if (!(argument instanceof AssignmentTree)) continue;
                 AssignmentTree assignment = (AssignmentTree) argument;
-                if (!assignment.getVariable().toString().equals("enabled")) continue;
-                ExpressionTree enabled = assignment.getExpression();
-                while (enabled instanceof ParenthesizedTree) enabled = ((ParenthesizedTree) enabled).getExpression();
-                if (!(enabled instanceof LiteralTree) || !Boolean.TRUE.equals(((LiteralTree) enabled).getValue())) {
+                String attribute = assignment.getVariable().toString();
+                ExpressionTree expression = assignment.getExpression();
+                while (expression instanceof ParenthesizedTree) expression = ((ParenthesizedTree) expression).getExpression();
+                Object literal = expression instanceof LiteralTree ? ((LiteralTree) expression).getValue() : null;
+                if (attribute.equals("enabled") && !Boolean.TRUE.equals(literal)) {
                     violations.add(location + ": SUITE-DISABLED " + owner
                             + " must omit enabled or explicitly use true; observed enabled=" + assignment.getExpression());
+                }
+                if (attribute.equals("invocationCount") && (!(literal instanceof Integer) || (Integer) literal <= 0)) {
+                    violations.add(location + ": SUITE-INVOCATIONS " + owner
+                            + " must omit invocationCount or use a positive integer literal; observed invocationCount=" + assignment.getExpression());
                 }
             }
         }

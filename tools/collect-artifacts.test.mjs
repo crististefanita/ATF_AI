@@ -23,6 +23,23 @@ function fixture(t) {
   return {root, source, output, write};
 }
 
+test('native collation cannot change ordinal evidence ordering or preserved bytes',t=>{
+  const f=fixture(t),names=['A','Å','ä','z','😀'];f.write('pom.xml','<project/>');
+  for(const name of names)f.write('target/reports/'+name+' report.html','<p>'+name+'</p>');
+  const moduleUrl=new URL('./collect-artifacts.mjs',import.meta.url).href;
+  const worker=`import {collectArtifacts} from ${JSON.stringify(moduleUrl)};
+    const [source,output,locale]=process.argv.slice(1),original=String.prototype.localeCompare;
+    String.prototype.localeCompare=function(other){return original.call(this,other,locale);};
+    try{const {manifest}=collectArtifacts({sourceRoot:source,outputRoot:output,runId:'ordinal-input',revision:'c0ffee0'});
+      console.log(JSON.stringify(manifest.files.map(({path,sha256})=>({path,sha256}))));
+    }finally{String.prototype.localeCompare=original;}`;
+  const expected=names.map(name=>({path:'files/target/reports/'+name+' report.html',sha256:createHash('sha256').update('<p>'+name+'</p>').digest('hex')})).sort((a,b)=>a.path<b.path?-1:a.path>b.path?1:0);
+  for(const locale of ['en','sv']){
+    const observed=spawnSync(process.execPath,['--input-type=module','-e',worker,f.source,path.join(f.output,locale),locale],{encoding:'utf8',windowsHide:true,timeout:30000});
+    assert.equal(observed.status,0,observed.stderr);assert.deepEqual(JSON.parse(observed.stdout),expected);
+  }
+});
+
 test('all report families retain their bytes, relative assets and source evidence', t => {
   const f=fixture(t);
   f.write('pom.xml','<project/>'); f.write('atf-tests/pom.xml','<project/>');

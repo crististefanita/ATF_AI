@@ -140,3 +140,9 @@ does not replace current requirements or establish visual readability. New
 publication uses version 4; retained version 3 case and reachability rules still apply.
 
 Knowledge IDs and archived SHA-256 values are JSON strings. Arrays or objects that coerce to matching text must fail before ranking or receipt construction; duplicate identity checks use validated strings. This is typed input governance, separate from verifying actual archived bytes and semantic source review.
+
+Original corpus, analysis, inventory, provenance and embedded HTML JSON must use
+unique member names within each object, including after escape decoding. Repeated
+members fail even when their values agree; independent objects may reuse a key.
+Valid JSON strings and values remain unchanged. The diagnostic retains its rule,
+owner, repair hint and recheck selection.

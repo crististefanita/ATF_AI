@@ -54,6 +54,10 @@ does not establish the expected failure. Unknown findings remain unclassified.
 - Maintained TestNG source annotations must omit `enabled` or use literal `true`
   (parentheses are allowed). Disabled or indirect flags fail source governance;
   reviewed nested/manual fixtures retain their explicit boundary.
+- Omit `invocationCount` or use a positive integer literal (parentheses are allowed).
+  Zero, negative values and indirect expressions/constants fail with
+  `SUITE-INVOCATIONS`; parse-only inspection does not certify constant values.
+  Repair the annotation while preserving the method and assertions.
 - Keep meaningful existing test classes reachable through the maintained suite
   selections. Distinguish deliberate opt-in application tests, fixtures and
   environment probes from accidentally omitted regressions.

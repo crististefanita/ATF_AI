@@ -727,11 +727,141 @@ unchanged. Two added Node component cases bring the maintained Node total to 205
 
 </details>
 
+<a id="g-023"></a>
+## G-023: Unambiguous JSON across Atlas input boundaries
+
+Status: VERIFIED for the maintained Atlas JSON boundaries. Owner: Atlas governance.
+Priority 85 (impact 90 / exposure 80 / urgency 80).
+Baseline quality 93 (correctness 93 / verification 95 / clarity 92).
+Delivered quality 94 (correctness 95 / verification 95 / clarity 93).
+
+- The original loader/retrieval accepted repeated root/nested members. Reject
+  decoded duplicate names in each object, including identical values and escaped
+  spellings. Valid strings, independent object scopes and native values survive.
+- Use the same guard for corpus, raw analysis/inventory, executed-source manifests
+  and embedded HTML JSON. Component cases verify owned diagnostics and actual
+  repaired inputs; valid retrieval receipts remain exactly equal.
+- The maintained Node selection passes 209/209 per edition. This strengthens input
+  identity; semantic recall and automatic project understanding remain unclaimed.
+
+<a id="g-024"></a>
+## G-024: Locale-independent artifact path ordering
+
+Status: VERIFIED for the collector ordering boundary. Owner: artifact governance.
+Priority 72 (impact 75 / exposure 70 / urgency 65).
+Baseline quality 92 (correctness 91 / verification 92 / clarity 94).
+Delivered quality 93 (correctness 93 / verification 92 / clarity 95).
+
+- Explicit native English/Swedish collations produced different path sequences
+  for identical inputs. Replace host collation with ordinal UTF-16 comparisons
+  in directory traversal, module traversal and final manifest ordering.
+- Isolated workers verify complete path/hash pairs, including accented, spaced
+  and supplementary-character names. Original report bytes remain unchanged.
+- This is native ICU variation, not a second OS-locale or Linux/macOS acceptance.
+  Stable ordering does not make timestamps or execution outcomes identical.
+
+<a id="t-008"></a>
+## T-008: Positive execution counts for maintained tests
+
+Status: VERIFIED for maintained source annotations. Owner: test governance.
+Priority 87 (impact 90 / exposure 85 / urgency 80).
+Baseline quality 94 (correctness 94 / verification 95 / clarity 93).
+Delivered quality 95 (correctness 95 / verification 95 / clarity 94).
+
+- A real TestNG probe returned status 0 with one normal invocation and zero
+  invocations of a retained method; baseline source governance reported no gap.
+- Existing controls now reject zero, negative and indirect invocation counts at
+  class/method scope. Positive integer literals and omission pass. Parse-only
+  governance does not resolve constants; the diagnostic explains that boundary.
+- Seven added data rows exercise failures and actual annotation repairs without
+  changing the 561-method Java inventory. Existing nested/manual boundaries and
+  comment/literal examples stay explicit; application E2E selections are unchanged.
+
+<details>
+<summary>Source receipts, acceptance and excluded observations for G-023/G-024/T-008</summary>
+
+- Evidence root: `${ATF_WORK_ROOT}/reviews/rag-portability-stability-20261127`.
+  Original malformed inputs, native TestNG and ICU observations remain under baseline.
+- Native local reactors pass 743/743 per edition: 37 library and 706 cross-module
+  cases, with zero failures/errors/skips. Windows LF/CRLF checkouts use spaces and
+  Unicode paths through the controlled UTF-8 launcher; no new OS/browser matrix is claimed.
+- The final source capture binds 209 Node cases per edition, bilingual governance
+  and the reviewed documentation rendering. README.md records exact commands,
+  raw/canonical hashes and original native XML/TAP; no failed receipt is rewritten.
+- The first Node run passed 208/209: the new collector fixture supplied an invalid
+  revision before its ordering assertions. Repair only that fixture metadata; the
+  focused repair and final complete selections retain their actual outcomes.
+- One existing perimeter case took unusually long once, then passed in about 1.2
+  seconds unchanged. No reproducible cause or software timing improvement is claimed.
+- The first native attempt has no complete summary/exit receipt and is excluded.
+  The qualified rerun is identified separately. No product E2E or emulator is used.
+- Native acceptance-02 exposed a duplicate diagnostic-help registration in this
+  change. Keep the existing enabled-test owner and register only the new
+  invocation-count key; its failed XML is retained and excluded from acceptance.
+
+</details>
+
+<a id="a-003"></a>
+## A-003: ATF AI and Whist snapshot comparison
+
+Authored review on 2026-11-27 over common control axes. `atf_j4` is Whist Lab, not a third framework. Its captured tree has local work in progress; execution in this review is NOT_RUN. Lower V inputs reflect that proof boundary, not demonstrated test failures.
+
+```mermaid
+flowchart LR
+    AI["ATF_AI"] -->|executes| Native["Native controls"]
+    Whist["Whist snapshot"] -->|inspects| Review["Source review"]
+    Native -->|supports| Axes["C / V / Cl"]
+    Review -->|bounds| Axes
+```
+
+<details>
+<summary>Legend: proof levels and comparison limits</summary>
+
+- Arrows describe evidence contributing to the review, not runtime dependencies.
+- ATF_AI has fresh local executions; Whist is reviewed captured source, neither rerun nor modified here.
+- No overall winner, gameplay score, Android/browser acceptance or semantic recall is calculated.
+
+</details>
+
+| Axis | ATF_AI | Whist | Review basis |
+|---|---:|---:|---|
+| Module boundaries | 93 | 92 | Five neutral modules; Whist combines application adapters and shared libraries. |
+| Code and test governance | 95 | 94 | Owned controls and method seal; Whist also binds protected changes to reviewed controls. |
+| RAG identity and provenance | 94 | 94 | Atlas reader contracts versus a release evaluator; compare evidence integrity, not answer quality. |
+| Portability controls | 93 | 93 | ATF_AI has relocated/native-collation probes; Whist has explicit JVM and source-normalization contracts. |
+| Existing-test stability | 95 | 91 | Fresh ATF_AI runs; Whist launcher and negative controls are inspected, not rerun. |
+| Documentation design | 94 | 94 | Governed horizontal diagrams, concise prose and owned detail routes in both projects. |
+| Feedback and evidence lifecycle | 94 | 95 | Whist distinguishes qualified subcriteria from still-open acceptance/research gates. |
+| Bilingual review evidence | 94 | 90 | ATF_AI pair is rechecked; Whist declares an edition seal without fresh pair execution here. |
+
+<details>
+<summary>C/V/Cl inputs and reviewed sources</summary>
+
+Use the register's same 40/30/30 formula. Each input is 1–100; unlike scopes have no global average.
+
+| Axis | ATF_AI C/V/Cl | Whist C/V/Cl |
+|---|---|---|
+| Module boundaries | 94 / 93 / 92 | 95 / 87 / 94 |
+| Code and test governance | 95 / 95 / 94 | 96 / 89 / 96 |
+| RAG identity and provenance | 95 / 95 / 93 | 97 / 86 / 97 |
+| Portability controls | 93 / 92 / 95 | 96 / 87 / 96 |
+| Existing-test stability | 95 / 95 / 94 | 95 / 82 / 94 |
+| Documentation design | 94 / 93 / 94 | 95 / 89 / 96 |
+| Feedback and evidence lifecycle | 95 / 93 / 94 | 97 / 90 / 97 |
+| Bilingual review evidence | 94 / 93 / 94 | 94 / 81 / 95 |
+
+- The Whist capture and hashes of the 24 reviewed sources are in `comparison/whist-source-v2.json` under the G-023 evidence root. The Git checkpoint is retained with the dirty state; this is not qualification of the live Whist branch.
+- Reviewed Whist owners: RAG evaluator and input identity, JVM launcher and component controls, test-change review, prose/diagram rules and feedback register.
+- Game rules and negative cases were inspected only; gameplay correctness is not graded. The Whist manifest declares 130 documents; its EN/RO pair is not rerun here.
+- Delivered transfers are G-023, G-024 and T-008. Whist release-qualification policies remain comparison context; no feature, LangGraph coordinator or E2E is added.
+
+</details>
+
 <a id="current-assessment"></a>
 ## Current ATF AI assessment
 
-Reviewed on 2026-11-26 against the live runtime checkpoint
-fad9c29abb9ec5a7ae68b5e002907a6c054c0f86 and the reviewed governance/documentation
+Reviewed on 2026-11-27 against the live runtime checkpoint
+9bea4567cc352ad75e1e06f4238a2c80d467506e and the reviewed governance/documentation
 overlay. Ratings cover the supported HTTP, desktop UI, Extent and Atlas scope.
 Critical runtime owners were inspected directly; all-source static controls and
 representative execution are distinct proof levels. This is an authored review,
@@ -745,14 +875,14 @@ C means correctness, V verification and Cl clarity. Each input and result uses
 |---|---|---:|
 | Code and architecture | 94 / 93 / 92 | 93 |
 | Documentation and editions | 94 / 93 / 94 | 94 |
-| Atlas and RAG | 93 / 95 / 92 | 93 |
+| Atlas and RAG | 95 / 95 / 93 | 94 |
 | Feedback lifecycle | 95 / 93 / 94 | 94 |
-| Code and test governance | 95 / 94 / 93 | 94 |
-| Existing-test stability | 94 / 95 / 93 | 94 |
+| Code and test governance | 95 / 95 / 94 | 95 |
+| Existing-test stability | 95 / 95 / 94 | 95 |
 | Configuration and failure handling | 93 / 94 / 90 | 92 |
 | Auditability and reporting | 94 / 94 / 92 | 93 |
 | Maintainability | 92 / 92 / 91 | 92 |
-| Portability evidence | 91 / 92 / 94 | 92 |
+| Portability evidence | 93 / 92 / 95 | 93 |
 | Provider extensibility | 92 / 90 / 92 | 91 |
 
 <details>
@@ -779,6 +909,5 @@ acceptance is not inferred from these checks. Source size and test counts identi
 scope; the declared review inputs determine these scores.
 
 Earlier AI/J1 comparison tables and published Atlas readers keep their original
-source checkpoints and scores. J4 is a read-only feedback-governance reference,
-not a freshly executed or graded competitor. The lower portability rating reflects
+source checkpoints and scores. J4 now has the source-bound A-003 comparison, with execution NOT_RUN. The lower portability rating reflects
 the recorded Windows matrix rather than an observed cross-platform runtime defect.

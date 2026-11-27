@@ -7,7 +7,7 @@ the caller-selected local archive following the [report guide](../../artifacts/r
 
 ## Active TODOs
 
-No accepted active items remain in the current scope. Verified records retain their evidence boundaries and baseline scores below.
+No accepted active items remain in the current scope. Verified records retain evidence and limits; the Whist comparison is in A-003.
 
 Current review: [live source, documentation, Atlas/RAG and framework attributes](Code_And_Documentation_Maturity.md#current-assessment).
 
@@ -15,6 +15,7 @@ Current review: [live source, documentation, Atlas/RAG and framework attributes]
 |---|---|---|---:|---:|---|---|
 
 <!-- feedback:empty -->
+
 
 The register is reserved for framework governance, stability and documentation.
 Product-flow improvement records are excluded from this backlog.
@@ -94,6 +95,9 @@ Retained baseline component scores:
 | D-009 | 90 / 80 / 80 | 85 / 65 / 80 | Markdown structure, code/numeric parity and meaning drift lacked owned controls |
 | G-018 | 70 / 75 / 60 | 75 / 45 / 60 | One 1297-line documentation test class mixed six review domains and selector/fixture ownership |
 | D-012 | 90 / 80 / 75 | 70 / 40 / 75 | Testing strategy used a vertical flow and lacked comparable API/Playwright/Selenium design boundaries |
+| G-023 | 90 / 80 / 80 | 93 / 95 / 92 | Duplicate JSON members were admitted at Atlas boundaries |
+| G-024 | 75 / 70 / 65 | 91 / 92 / 94 | Host collation changed path order for the same bytes |
+| T-008 | 90 / 85 / 80 | 94 / 95 / 93 | TestNG could pass while invocationCount=0 suppressed a method |
 | G-021 | 85 / 80 / 75 | 90 / 94 / 89 | Loader/retrieval admitted array IDs and digests before the separate archived-provenance guard |
 | G-022 | 85 / 85 / 75 | 88 / 86 / 92 | Generated descendants were traversed before filtering; current Unicode/space-path acceptance was absent |
 | T-007 | 75 / 65 / 65 | 93 / 94 / 90 | Bounded source-bound native repeats of retained component oracles were absent |
@@ -117,6 +121,9 @@ normalizing their presentation does not claim a fresh execution.
 
 | ID | Delivered behavior | Verification |
 |---|---|---|
+| G-023 | Unique JSON members across Atlas boundaries, quality 94 (95/95/93) | 209 Node per edition, counterexamples/repairs and identical valid receipt; [evidence](Code_And_Documentation_Maturity.md#g-023) |
+| G-024 | Ordinal path ordering, quality 93 (93/92/95) | Identical path/digest pairs under two native collations; [evidence](Code_And_Documentation_Maturity.md#g-024) |
+| T-008 | Explicit positive invocation counts, quality 95 (95/95/94) | Real TestNG probe, extended existing controls and annotation repairs; [evidence](Code_And_Documentation_Maturity.md#t-008) |
 | G-021 | Strict JSON IDs/digests, quality 93 (93/95/92) | 205 Node per edition, malformed inputs/repairs and identical valid receipt; [evidence](Code_And_Documentation_Maturity.md#g-021) |
 | G-022 | Prune before traversal and Windows relocation, quality 92 (91/92/94) | 736 native per edition in Unicode/space LF/CRLF paths and final closure; [limits](Code_And_Documentation_Maturity.md#g-022) |
 | T-007 | Bounded repeatability of retained components, quality 94 (94/95/93) | 120/120 native outcomes, no skips/configuration errors; [evidence](Code_And_Documentation_Maturity.md#t-007) |

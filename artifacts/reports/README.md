@@ -18,6 +18,10 @@ the producing commands finish, from any checkout that contains this tool.
 | execution | Explicit logs/provenance and process diagnostics | Original execution context and declared source revision |
 | unclassified | Other retained output | Visible evidence that needs owner review, never silently discarded |
 
+Evidence paths use ordinal UTF-16 ordering, independent of host collation.
+Path/digest pairs remain comparable across collations; this order does not make
+timestamps or execution outcomes identical.
+
 The collector visits the supplied root and immediate POM-bearing modules.
 
 - It copies target output except declared compiled/temporary directories and generated Java/class files outside report trees.

@@ -4,7 +4,7 @@ import {createHash} from 'node:crypto';
 import {isDeepStrictEqual} from 'node:util';
 import {fileURLToPath} from 'node:url';
 import {verifyAtlas} from './verify-atlas.mjs';
-import {requireAtlas} from './atlas-diagnostics.mjs';
+import {requireAtlas,parseAtlasJson} from './atlas-diagnostics.mjs';
 import {retrieveAtlasKnowledge,validateAtlasKnowledge} from './atlas-knowledge.mjs';
 import {validateAtlasBundle} from './atlas-bundle.mjs';
 import {validateAtlasUnderstanding,understandingFacets} from './atlas-understanding.mjs';
@@ -145,7 +145,7 @@ function reviewKnowledgeReceipt(receipt,source,required){
     requireAtlas(source.path==='atf-atlas/knowledge/atlas-contracts.json'&&source.encoding==='UTF8'&&typeof source.text==='string'
       &&digest(Buffer.from(source.text))===source.sha256&&receipt.sourceSha256===source.sha256,
       'ATLAS-KNOWLEDGE','The retrieval receipt does not match its complete original corpus bytes');
-    let corpus;try{corpus=JSON.parse(source.text);}catch{requireAtlas(false,'ATLAS-KNOWLEDGE','Original corpus payload is invalid JSON');}
+    const corpus=parseAtlasJson(source.text,'ATLAS-KNOWLEDGE','original corpus payload');
     requireAtlas(validateAtlasKnowledge(corpus).corpusSha256===receipt.corpusSha256,'ATLAS-KNOWLEDGE','Original corpus and retrieved canonical identity differ');
   }else requireAtlas(!required&&receipt.sourceSha256===expected.sourceSha256,'ATLAS-KNOWLEDGE','Complete original knowledge source is required for renderer version 2');
 }
@@ -200,7 +200,7 @@ export function renderAtlasHtml(bundle,css){
 export function validateAtlasHtml({html,css,projectId}){
   const payload=/<template id="atlas-bundle">([\s\S]*?)<\/template>/.exec(html);
   requireAtlas(payload,'ATLAS-HTML','Complete machine bundle is missing');
-  let bundle;try{bundle=JSON.parse(decode(payload[1]));}catch{requireAtlas(false,'ATLAS-HTML','Embedded analysis bundle is invalid JSON');}
+  const bundle=parseAtlasJson(decode(payload[1]),'ATLAS-HTML','embedded analysis bundle');
   requireAtlas(bundle.analysis.projectId===projectId,'ATLAS-TARGET','The complete HTML belongs to another target');
   requireAtlas(html.includes('<style id="atlas-style" data-sha256="'+digest(css)+'">'+css+'</style>'),'ATLAS-CSS','The complete HTML does not embed canonical CSS');
   requireAtlas(html===renderAtlasHtml(bundle,css),'ATLAS-HTML','The complete HTML differs from its governed sections, content or local resources');
@@ -219,8 +219,8 @@ export function publishAtlas({sourceRoot,analysisRoot,artifactRoot,root=reposito
   requireAtlas([sourceRoot,analysisRoot,artifactRoot].every(nonempty),'ATLAS-SCHEMA','Declare source, analysis and artifact roots for one target');
   const source=fs.realpathSync(sourceRoot),analysisDirectory=fs.realpathSync(analysisRoot),artifacts=fs.realpathSync(artifactRoot);
   const consistency=verifyAtlas({sourceRoot:source,analysisRoot:analysisDirectory,artifactRoot:artifacts});
-  const analysisText=fs.readFileSync(ownedFile(analysisDirectory,'analysis.json'),'utf8'),analysis=JSON.parse(analysisText);
-  const sourceIndexText=fs.readFileSync(ownedFile(analysisDirectory,'source-index.json'),'utf8'),sourceIndex=JSON.parse(sourceIndexText);
+  const analysisText=fs.readFileSync(ownedFile(analysisDirectory,'analysis.json'),'utf8'),analysis=parseAtlasJson(analysisText,'ATLAS-SCHEMA','analysis.json');
+  const sourceIndexText=fs.readFileSync(ownedFile(analysisDirectory,'source-index.json'),'utf8'),sourceIndex=parseAtlasJson(sourceIndexText,'ATLAS-SOURCE','source-index.json');
   reviewUnderstanding(analysis,{requiredCases:true,sourceIndex});
   const documents=analysis.documents.map(item=>{
     const bytes=fs.readFileSync(ownedFile(analysisDirectory,item.path));requireAtlas(digest(bytes)===item.sha256,'ATLAS-DOCUMENT','Input document changed before publication: '+item.path);return {...item,...preservedText(bytes)};
