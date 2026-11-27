@@ -20,6 +20,8 @@ Revizuirea curentă: [sursa live, documentația, Atlas/RAG și atributele framew
 
 
 
+
+
 Registrul este rezervat guvernanței, stabilității și documentației framework-ului.
 Înregistrările despre îmbunătățirea fluxurilor de produs sunt excluse din această listă.
 
@@ -75,6 +77,7 @@ Componentele păstrate ale evaluărilor inițiale:
 
 | ID | Impact / risc / urgență | Corectitudine / verificare / claritate | Limitele dovezilor |
 |---|---|---|---|
+| D-022 | 88 / 84 / 78 | 94 / 93 / 95 | Două fațete parțiale și limite anterioare de păstrat |
 | D-020 | 90 / 88 / 84 | 93 / 93 / 94 | Patru fațete necesită observații independente și limite explicite |
 | D-021 | 80 / 75 / 75 | 88 / 80 / 90 | README-ul principal expune administrarea ramurilor |
 | D-018 | 90 / 85 / 80 | 90 / 90 / 93 | Zece fațete parțiale necesită reper păstrat și dovezi suplimentare |
@@ -131,6 +134,7 @@ normalizarea prezentării nu reprezintă o nouă execuție.
 
 | ID | Comportament livrat | Verificare |
 |---|---|---|
+| D-022 | Dovezi locale aprofundate, întrebări explicite și limite păstrate; calitate 95 (96/95/94) | [Componente, refuzuri și limite](Code_And_Documentation_Maturity.md#d-022) |
 | D-015 | Audit nativ față de sursa live, arhitectură și verdicte explicite; calitate 95 (95/95/94) | Artefact inițial respins, reparație nativă și controale independente; [dovezi și note](Code_And_Documentation_Maturity.md#d-015) |
 | D-014 | Cititor business numerotat, audit adiacent și RAG obligatoriu; calitate 94 (94/95/94) | Surse, criterii independente, controale negative/reparații și randare nativă; [dovezi și limite](Code_And_Documentation_Maturity.md#d-014) |
 | G-023 | Membri JSON unici la toate limitele Atlas, calitate 94 (95/95/93) | 209 Node per ediție, contraexemple/reparații și dovadă validă identică; [dovezi](Code_And_Documentation_Maturity.md#g-023) |

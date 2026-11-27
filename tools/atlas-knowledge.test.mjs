@@ -177,3 +177,10 @@ test('refinement and archived graph quality remain mandatory for unrelated retri
 });
 
 test('observation policy retains preview and image limits plus root-guide ownership for any query',()=>{const r=retrieveAtlasKnowledge({query:'unrelated topic',limit:0}),rule=r.records.find(x=>x.id==='KB-OBSERVATION-BOUNDARIES');assert.ok(r.mandatoryIds.includes(rule.id));for(const term of ['BOUNDED_OBSERVATIONS_V1','source-only observations remain partial','complete raw body','pixel meaning','global uniqueness'])assert.ok(rule.requirement.includes(term));const changed=raw();changed.records.find(x=>x.id===rule.id).mandatory=false;expectKnowledgeFailure(()=>validateAtlasKnowledge(changed));const language=r.records.find(x=>x.id==='KB-ENGLISH');assert.ok(language.sources.some(s=>s.quote.startsWith('DOC-ROOT-FOCUS-001:')));});
+
+test('successive application review retrieves retained proof and remaining questions even without lexical overlap',()=>{
+  const receipt=retrieveAtlasKnowledge({query:'unrelated topic',limit:0}),rule=receipt.records.find(r=>r.id==='KB-FACET-REFINEMENT');assert.ok(receipt.mandatoryIds.includes(rule.id));
+  for(const term of ['BOUNDED_OBSERVATIONS_V2','actual prior audit','additional oracle fragments','remaining questions','collapsed by default','not new product-flow tasks'])assert.ok(rule.requirement.includes(term));
+  assert.ok(rule.sources.some(s=>s.kind==='CURRENT_CONTRACT'&&s.quote.startsWith('ATLAS-SUCCESSIVE-001:')));
+  const changed=raw();changed.records.find(r=>r.id===rule.id).mandatory=false;expectKnowledgeFailure(()=>validateAtlasKnowledge(changed));
+});

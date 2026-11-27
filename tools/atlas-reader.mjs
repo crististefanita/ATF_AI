@@ -103,7 +103,9 @@ export function renderBusinessReader(bundle,css){
       const boundary=facetProofProjection(analysis,unit.id,key);
       for(const text of [facet.explanation,facet.review.scope,facet.review.limits,...boundary.nonClaims])prose(text,'business facet '+key);
       const status={REVIEWED:'Reviewed within stated scope',PARTIAL:'Partial review',UNKNOWN:'Not established',NOT_APPLICABLE:'Not applicable'}[facet.status];
-      return '<article class="reader-facet" data-capability="'+escape(item.title)+'" data-facet="'+key+'"><h4>'+facetNames[key]+'</h4><p class="facet-status">'+status+'</p><p class="facet-meaning">'+escape(facet.explanation)+'</p><p class="facet-limit">'+escape(facet.review.limits)+'</p>'+(boundary.proof?'<p class="facet-proof">'+escape(boundary.proof)+'</p><ul class="facet-nonclaims">'+boundary.nonClaims.map(value=>'<li>'+escape(value)+'</li>').join('')+'</ul>':'')+'</article>';
+      for(const question of boundary.openQuestions){prose(question.question);prose(question.evidenceNeeded);}
+      const questions=boundary.openQuestions.length?'<details class="facet-questions"><summary>Remaining questions</summary><dl>'+boundary.openQuestions.map(value=>'<dt data-question-id="'+escape(value.id)+'">'+escape(value.question)+'</dt><dd>'+escape(value.evidenceNeeded)+'</dd>').join('')+'</dl></details>':'';
+      return '<article class="reader-facet" data-capability="'+escape(item.title)+'" data-facet="'+key+'"><h4>'+facetNames[key]+'</h4><p class="facet-status">'+status+'</p><p class="facet-meaning">'+escape(facet.explanation)+'</p><p class="facet-limit">'+escape(facet.review.limits)+'</p>'+(boundary.proof?'<p class="facet-proof">'+escape(boundary.proof)+'</p><ul class="facet-nonclaims">'+boundary.nonClaims.map(value=>'<li>'+escape(value)+'</li>').join('')+'</ul>':'')+questions+'</article>';
     }).join('')+'</details>';
   };
   const architecture=r.architecture.map(view=>{const projected=diagramViews.find(v=>v.graph.id===view.graphId);return '<h3>'+escape(view.title)+'</h3>'+renderReaderGraph(projected.graph,projected);}).join('');

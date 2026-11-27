@@ -546,12 +546,17 @@
         "data"
       ],
       "mandatory": true,
-      "requirement": "For refinement preserve the original adjacent audit as semantic-baseline.json with its exact digest and revision. Compare all original facet states. Investigate every previously partial facet once, retain its original scope and limits in the new dossier, and require additional owned implementation plus independent oracle fragments before promotion. Never count scope deletion, changed wording or recycled old receipts as progress. Distinguish component SDK configuration from actual pixels or an operating-system matrix; keep application cleanup and unsupported data guarantees visible.",
+      "requirement": "For refinement preserve the original adjacent audit as semantic-baseline.json with its exact digest and revision. Compare all original facet states. Investigate every previously partial facet once, retain its original scope and limits in the new dossier, and require additional owned implementation plus independent oracle fragments before promotion. Never count scope deletion, changed wording or recycled old receipts as progress. Distinguish component SDK configuration from actual pixels or an operating-system matrix; keep application cleanup and unsupported data guarantees visible. For successive BOUNDED_OBSERVATIONS_V2 reviews retain earlier proof boundaries against the actual prior audit. Bind new proof to additional oracle fragments. Expose remaining questions and evidence boundaries for partial application behavior and data, collapsed by default. Input shape, local rejection and immutable copies do not establish deployment persistence, global uniqueness or data deletion; these limits are not new product-flow tasks.",
       "sources": [
         {
           "kind": "CURRENT_CONTRACT",
           "path": "atf-atlas/Report_Contract.md",
           "quote": "ATLAS-REFINEMENT-001: Compare every original partial facet with the preserved baseline audit, retain its original scope and limits, record the investigated question and decision, and require additional owned implementation and independent oracle fragments before promotion; scope deletion or recycled receipts cannot count as progress."
+        },
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "ATLAS-SUCCESSIVE-001: Preserve prior observation proofs against the actual baseline, bind each new proof to its additional oracle fragments, and keep partial application facets explicit through source-bound remaining questions; local input or validation checks do not establish deployment persistence, global uniqueness or data deletion."
         }
       ]
     },

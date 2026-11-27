@@ -302,3 +302,5 @@ Cititorul explică scopul business, arhitectura și comportamentele proiectului.
 Revizia semantică folosește observații distincte, surse responsabile și criterii independente pentru fiecare fațetă, cu limite vizibile. Identitatea Atlasului rămâne compactă; data aparține încrederii. Vezi [contractul semantic](../../atf-atlas/Report_Contract.md#semantic-review-and-compact-identity).
 
 Pentru aprofundarea observațiilor, păstrează criteriul numit, nivelul real al dovezii și limitele vizibile. Separă verdictul componentei de statusul răspunsului observat și octeții capturați de acceptanța completă a aplicației.
+
+Pentru BOUNDED_OBSERVATIONS_V2, copiați retainedProofs din auditul precedent și declarați openQuestions pentru fiecare decizie PARTIAL. Fiecare întrebare are id, question și evidenceNeeded; rămâne informație despre limite, nu ToDo pentru un flux de produs. [Contract și compararea randării](../../atf-atlas/Report_Contract.md#successive-application-boundaries).

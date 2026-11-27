@@ -891,3 +891,7 @@ marker#arrow path{fill:var(--accent)}body{font-size:15px}.wrap{max-width:1320px}
 .reader .flow .node[data-graph-role="boundary"] rect{stroke:#f4a261;stroke-dasharray:7 5}
 .reader .flow .edge-label{paint-order:stroke;stroke:var(--panel2);stroke-width:4;stroke-linejoin:round}
 .reader .atlas-legend summary{font-size:14px}
+.reader .facet-questions{margin-top:14px}
+.reader .facet-questions summary{font-size:14px}
+.reader .facet-questions dt{font-weight:600;margin-top:14px;line-height:1.6}
+.reader .facet-questions dd{margin:6px 0 14px;padding-left:14px;border-left:2px solid var(--border);line-height:1.7}

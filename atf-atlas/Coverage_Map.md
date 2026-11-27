@@ -85,3 +85,10 @@ Revizia completă privește domeniul declarat, nu orice comportament posibil.
 |---|---|
 | Comportamentul aplicației | Componentele locale explică validările; nu stabilesc persistența completă în aplicație |
 | Datele aplicației | Resursele plate și valorile aleatorii sunt explicate; unicitatea globală și ștergerea datelor nu sunt garantate |
+
+<a id="local-evidence-for-retained-boundaries"></a>
+## Dovezi locale pentru limitele păstrate
+
+Cele două fațete ale aplicației rămân PARTIAL. Verificările existente urmăresc acum câmpurile complete ale ambelor fabrici până la singura trimitere respinsă, forma credențialelor generate și independența copiei de date. Respingerea valorii vechi a stării și a facturii fără legătură verifică mesajul așteptat, astfel încât altă eroare să nu poată produce un fals rezultat pozitiv.
+
+Întrebările și dovezile lipsă sunt păstrate conform [contractului reviziilor succesive](Report_Contract.md#successive-application-boundaries). Nu se deduc persistență, unicitate globală, interpretare generală a formatelor sau ștergere a datelor aplicației.

@@ -1085,6 +1085,28 @@ Calitate livrată 95 (corectitudine 96 / verificare 95 / claritate 95).
 - DOC-README-EDITION refuză rutele în text, variantele de registru, linkurile codificate, exemplele și comentariile. Cazul cu procent literal lângă o rută codificată este verificat separat în aceeași componentă existentă.
 - Diagnosticul numește regula și proprietarul, oferă corecția și reverificarea. Perechea întreagă și cele două verificări focalizate de documentație trec înainte de calificarea completă.
 
+<a id="d-022"></a>
+<a id="d-022-application-boundaries-and-retained-proof"></a>
+## D-022: Limitele aplicației și păstrarea dovezilor
+
+Stare: VERIFIED în domeniul local declarat. Responsabil: guvernanța Atlas.
+Prioritate 85 (impact 88 / expunere 84 / urgență 78).
+Calitate inițială 94 (corectitudine 94 / verificare 93 / claritate 95).
+
+- Cele două fațete PARTIAL trebuie aprofundate prin codul și oracolele locale existente, fără acceptanță inventată a aplicației.
+- O revizie nouă trebuie să păstreze limitele observațiilor deja revizuite și să arate întrebările rămase, închise implicit.
+- Verificarea finală trebuie să lege codul, documentația, rezultatele originale și randarea HTML; evaluarea pe axe rămâne o judecată delimitată.
+
+Calitate livrată 95 (corectitudine 96 / verificare 95 / claritate 94).
+
+- Cele două fațete rămân PARTIAL. Verificările existente urmăresc cele 12 câmpuri ale ambelor fabrici, forma credențialelor, independența câmpurilor selectate ale copiei și o singură trimitere respinsă.
+- Două verificări negative existente confirmă mesajul așteptat pentru valoarea veche a stării și factura fără legătură. O altă eroare nu poate demonstra criteriul urmărit.
+- BOUNDED_OBSERVATIONS_V2 păstrează limitele revizuite anterior, cere oracole suplimentare reale și arată cinci întrebări rămase în secțiuni închise implicit. Aceste limite nu sunt ToDo-uri pentru fluxuri E2E noi.
+- Cele 68 de componente Node relevante și cele zece componente existente ale aplicației trec. Corecțiile documentației acoperă starea feedback-ului, două ancore RO și metadatele narative netraduse detectate de verificarea integrală a ediției; încercările originale sunt păstrate separat.
+- Calificarea completă a surselor finale, publicarea și verificarea nativă a HTML-ului au dovezi independente în dosarul reviziei; numărul testelor nu determină nota sau completitudinea semantică.
+
+Dovezi: `${ATF_WORK_ROOT}/reviews/application-boundaries-20261127`.
+
 <a id="current-assessment"></a>
 <a id="current-atf-ai-assessment"></a>
 ## Evaluarea curentă ATF AI

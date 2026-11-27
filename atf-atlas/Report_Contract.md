@@ -250,6 +250,28 @@ fațeta PARTIAL. Cititorul și auditul randării compară eticheta vizibilă a d
 
 `DOC-ROOT-FOCUS-001: The root README routes project decisions to owner guides; keep translated branch names and URLs in the edition guide, including references in comments and encoded examples.`
 
+<a id="successive-application-boundaries"></a>
+## Revizii succesive și limitele aplicației
+
+`ATLAS-SUCCESSIVE-001: Preserve prior observation proofs against the actual baseline, bind each new proof to its additional oracle fragments, and keep partial application facets explicit through source-bound remaining questions; local input or validation checks do not establish deployment persistence, global uniqueness or data deletion.`
+
+Profilul BOUNDED_OBSERVATIONS_V2 păstrează dovezile reviziei precedente și
+arată întrebările rămase. Limitele acceptanței sunt informații despre încredere,
+nu cerințe de implementare a unor fluxuri E2E suplimentare.
+
+| Element | Regulă și dovadă |
+|---|---|
+| retainedProofs | Copiază limitele observațiilor deja revizuite; publicarea le compară cu auditul precedent original |
+| proofBoundary.claimIds | Selectează oracolele suplimentare ale deciziei curente, cu rezultatele lor originale |
+| openQuestions | Fiecare fațetă PARTIAL declară id, question și evidenceNeeded; întrebările din domeniul deciziei nu pot coexista cu REVIEWED |
+| Cititor | Păstrează sensul observației, limitele și întrebările în secțiuni închise implicit; fără detalii de construcție |
+| Randare | Compară întrebările vizibile și limitele păstrate cu proiecția auditului, la ambele lățimi desktop |
+
+Un test al câmpurilor pregătite nu demonstrează unicitate globală. O respingere
+locală a unei facturi greșite nu demonstrează persistență în aplicație. Cititorul
+arată atât observația concretă, cât și dovezile care lipsesc, fără a transforma
+acele limite în ToDo-uri pentru noi scenarii de produs.
+
 <a id="source-graph-quality-and-archive-adaptation"></a>
 ## Calitatea diagramelor și adaptarea arhivei
 

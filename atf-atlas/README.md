@@ -208,3 +208,5 @@ Revizia semantică folosește observații distincte, surse responsabile și crit
 Pentru o revizie succesivă, păstrează [reperul și deciziile fiecărei fațete](Report_Contract.md#partial-facet-refinement), apoi aplică [regulile grafice adaptate arhivei](Report_Contract.md#source-graph-quality-and-archive-adaptation). Numărul de fațete promovate nu înlocuiește dovezile sau revizia sensului.
 
 Pentru observațiile browser și ale aplicației, folosește [dovezi delimitate](Report_Contract.md#bounded-observation-and-application-non-claims): previzualizarea nu este corpul integral, iar imaginea capturată nu certifică sensul pixelilor.
+
+Reviziile succesive păstrează dovezile și limitele precedente. [Întrebările rămase](Report_Contract.md#successive-application-boundaries) explică ce nu demonstrează componentele locale; ele nu cer scenarii E2E suplimentare.
