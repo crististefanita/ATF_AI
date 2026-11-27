@@ -964,6 +964,47 @@ Calitate livrată a calibrării 95 (corectitudine 95 / verificare 95 / claritate
 
 Notele folosesc formula 40/30/30 a registrului și privesc acest Atlas, nu întregul ATF. Revizia rămâne SELECTED: șase responsabili cu fațete PARTIAL, fără acceptanță nouă de aplicație. Săgețile, metricele native și 243 de teste nu dovedesc toate sensurile sau conformitatea completă de accesibilitate.
 
+<a id="d-016"></a>
+<a id="d-016-source-grounded-semantic-facet-review"></a>
+## D-016: Revizie semantică a fațetelor, susținută de surse
+
+Stare: VERIFIED în domeniul declarat al reviziei. Responsabil: guvernanța Atlas.
+Prioritate 88 (impact 90 / expunere 85 / urgență 85).
+Calitate inițială 85 (corectitudine 84 / verificare 82 / claritate 90).
+
+- Cele șase unități folosesc explicații generice repetate pentru toate cele șapte fațete; opt comportamente nu explică suficient configurația, pregătirea API, ciclul raportării și agregarea.
+- Revizia urmărește operațiile reale și criteriile existente. Promovarea unei fațete cere domeniu explicit, implementare responsabilă și verificare independentă unde se aplică; limitele rămân vizibile.
+- Atlasul va explica noile observații prin comportamente deja existente, fără scenarii E2E noi sau acceptanță externă dedusă.
+
+Calitate livrată 91 (corectitudine 90 / verificare 90 / claritate 93).
+
+- Revizia urmărește 12 comportamente existente, 35 de cazuri și 15 diagrame: precedență și memorarea configurației, acces local API, ciclul rezultatului și publicarea rapoartelor.
+- Cele 42 de fațete au explicații distincte: 32 REVIEWED în domeniul declarat și 10 PARTIAL. Fragmentele implementării responsabile și criteriile independente sunt selectate explicit; statusul nu certifică întregul proiect.
+- Guvernanța refuză explicațiile repetate, lipsa limitelor, responsabilitatea străină, auto-verificarea și legăturile de execuție incorecte. Randarea compară efectiv explicațiile și limitele vizibile cu dosarul analizat.
+- Selecția inițială de 255 de componente Node pe ediție trece. Eșecurile intermediare reale și corecțiile lor rămân păstrate; calificarea finală Java/Node și publicarea au dovezi separate.
+- Limite păstrate: configurație memorată per proces, verificare locală diferită de acceptanța externă, rezumate de raport fără demonstrarea tuturor relațiilor numerice și combinații browser limitate.
+
+Dovezi: `${ATF_WORK_ROOT}/reviews/semantic-atlas-20261127`.
+
+- Calificarea Java inițială identifică două eșecuri de documentație: închiderea registrului a eliminat antetul tabelului activ. Corecția restabilește antetul și coloanele distincte chiar când lista este goală; XML-urile originale rămân păstrate înainte de reverificare.
+
+<a id="d-017"></a>
+<a id="d-017-compact-project-identity"></a>
+## D-017: Identitate compactă a proiectului
+
+Stare: VERIFIED în domeniul declarat al reviziei. Responsabil: prezentarea Atlas.
+Prioritate 76 (impact 75 / expunere 80 / urgență 70).
+Calitate inițială 79 (corectitudine 84 / verificare 70 / claritate 80).
+
+- Antetul ocupă prea mult spațiu, repetă scopul și afișează inutil limba English; titlul proiectului poate sta pe linia Atlas.
+- Acceptanța verifică antetul randat, fără micșorarea excesivă sau ascunderea textului. Data reviziei aparține încrederii, iar limba rămâne metadată semantică.
+
+Calitate livrată 95 (corectitudine 96 / verificare 95 / claritate 95).
+
+- O singură linie „Atlas · ATF AI” păstrează titlul lizibil, fără eticheta redundantă English. Data apare lângă încredere, iar limba rămâne în metadatele HTML.
+- Capturile native la 1440 și 900 px confirmă un antet de 58 px, pornind la 16 px de sus, cu font de 20 px. Controlul a identificat spațiul inițial de 44 px; corecția elimină paddingul moștenit, păstrând pragul de 24 px.
+- Indicațiile de remediere și contraexemplele refuză identitatea supradimensionată, geometria imposibilă, textul tăiat și etichetele de limbă redundante. Alte titluri trebuie verificate la propriile lățimi.
+
 <a id="current-assessment"></a>
 <a id="current-atf-ai-assessment"></a>
 ## Evaluarea curentă ATF AI
@@ -1010,7 +1051,7 @@ folosește 1-100. Aplică formula reproductibilă a registrului:
 
 </details>
 
-Revizuirea regăsirii validează 20 înregistrări de cunoștințe, 17 politici obligatorii
+Revizuirea regăsirii validează 21 înregistrări de cunoștințe, 18 politici obligatorii
 și trei obiecte arhivate fixate. Domeniul declarat este context lexical determinist
 de politici; regăsirea semantică rămâne NOT_CLAIMED. Aceste verificări nu implică o
 generare Atlas nouă sau acceptanța aplicației. Dimensiunea sursei și numărul testelor

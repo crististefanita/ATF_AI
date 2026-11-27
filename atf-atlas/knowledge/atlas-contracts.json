@@ -480,6 +480,34 @@
           "quote": "ATLAS-CALIBRATION-001: Audit the actual rendered artifact against live source and project documentation; distinguish expected behavior from recorded verdicts, expose partial review, test native navigation, and retain source-bound architecture and behavior diagrams with adjacent legends."
         }
       ]
+    },
+    {
+      "id": "KB-SEMANTIC-FACETS",
+      "title": "Scoped semantic qualification and compact identity",
+      "topics": [
+        "semantic",
+        "facets",
+        "review",
+        "scope",
+        "implementation",
+        "oracle",
+        "identity",
+        "header"
+      ],
+      "mandatory": true,
+      "requirement": "For semantic qualification require SEMANTIC_FACETS_V1: distinct facet observations, explicit reviewed scope and limits, owned source fragments and independent existing oracles. Bind executed facet oracles to their original testcase identities. Review actual data relationships, initialization, caching and failure paths; passing one narrow oracle never proves a broader guarantee. Keep partial scopes visible. Use one compact Atlas/project identity line, no redundant English badge, with actual native geometry checks. Inventory size and passing tests do not compute semantic completeness or a quality grade.",
+      "sources": [
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "ATLAS-SEMANTICS-001: Qualify semantic understanding through distinct scoped facet observations, owned implementation fragments and independent existing oracles; preserve remaining boundaries and verify the actual visible facet projection instead of inferring completeness from source inventory or test counts."
+        },
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "ATLAS-IDENTITY-001: Use one compact Atlas and project-title line without a redundant language badge; retain review date with confidence, preserve readable text and measure the actual rendered header at both desktop widths."
+        }
+      ]
     }
   ]
 }

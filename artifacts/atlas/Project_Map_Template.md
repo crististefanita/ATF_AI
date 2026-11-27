@@ -298,3 +298,5 @@ Cititorul explică scopul business, arhitectura și comportamentele proiectului.
 - Verifică navigarea din secțiuni închise, capturile native, lizibilitatea și identitatea octeților selectați.
 
 [Contractul](../../atf-atlas/Report_Contract.md) definește schema și limitele; [componenta de calibrare](../../tools/atlas-calibration.mjs) explică eșecurile și calea de reparație. Notele pe axe rămân evaluări motivate, nu rate de teste.
+
+Revizia semantică folosește observații distincte, surse responsabile și criterii independente pentru fiecare fațetă, cu limite vizibile. Identitatea Atlasului rămâne compactă; data aparține încrederii. Vezi [contractul semantic](../../atf-atlas/Report_Contract.md#semantic-review-and-compact-identity).

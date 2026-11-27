@@ -1,4 +1,5 @@
 import {requireAtlas} from './atlas-diagnostics.mjs';
+import {validateSemanticFacets} from './atlas-semantics.mjs';
 
 export const understandingFacets=Object.freeze(['purpose','structure','behavior','data','configuration','failure','verification']);
 const text=value=>typeof value==='string'&&value.trim().length>0;
@@ -87,6 +88,7 @@ export function validateAtlasUnderstanding(analysis,index,{required=false}={}){
   for(const graph of analysis.dependencyGraphs||[])for(const node of graph.nodes||[]){requireDepth(units.has(node.unitId),'Architecture node lacks a declared understanding unit: '+node.id);graphUnits.add(node.unitId);}
   if(understanding.scope==='PROJECT')requireDepth(graphUnits.size===units.size&&[...units.keys()].every(key=>graphUnits.has(key)),
     'Project review inventory and declared architecture units disagree; declare missing units or narrow the review scope');
-  return {status:'ASSESSED_DECLARATIONS',scope:understanding.scope,units:units.size,facets:counts,assessment,
+  const semanticReview=validateSemanticFacets(analysis);
+  return {semanticReview,status:'ASSESSED_DECLARATIONS',scope:understanding.scope,units:units.size,facets:counts,assessment,
     limitation:'Facet counts describe declared review records, not code coverage or automatic semantic completeness'};
 }

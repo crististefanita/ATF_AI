@@ -44,3 +44,20 @@ rândul afectat cu sursa live și criteriul de verificare. Păstrează vizibile 
 unui criteriu sau indisponibilitatea mediului. Adaugă o afirmație de execuție numai
 în înregistrarea dovezii sale după rularea efectivă a selecției numite; păstrează
 harta concentrată pe contractele și limitele curente.
+
+<a id="reviewed-semantic-boundaries"></a>
+## Limite semantice revizuite
+
+Aceste observații din surse rafinează harta existentă; nu adaugă un flux de teste.
+
+| Limită | Comportament observat | Responsabilitate rămasă |
+|---|---|---|
+| [Sursa configurației](../atf-core/src/main/java/com/ai/core/support/config/ConfigManager.java) | Suprascrierile apelantului preced setările încărcate; sursa explicită absentă produce eșec | Proprietățile încărcate sunt memorate; modificarea fișierului nu le reîncarcă automat |
+| [Pregătirea scrierii](../atf-core/src/main/java/com/ai/api/core/BaseTestAPI.java) | Accesul local gol face fluxul de scriere indisponibil | Accesul negol nu demonstrează autorizarea la distanță sau scrierea reușită |
+| [Achiziția browserului](../atf-playwright/src/main/java/com/ai/ui/core/engine/playwright/PlaywrightBrowserSession.java) | Sesiunea Playwright inspectată selectează Chromium; Selenium folosește fabrica sa Chrome | Capabilitatea bibliotecii nu demonstrează toate combinațiile de browser și sistem de operare |
+| [Valorile agregării](../atf-reporting/src/main/java/com/ai/core/reporting/aggregate/model/AggregateSummary.java) | Constructorii selectați resping valori negative; agregarea poate deriva numere din cazuri observate | Constructorul public al sumarului nu impune singur toate relațiile dintre totalurile apelantului |
+| [Compatibilitatea raportării](../atf-reporting/src/main/java/com/ai/core/reporting/ReportingSession.java) | Comutatorul compatibil de oglindire folosește politica sa existentă de interpretare | Nu susține că toate opțiunile raportării folosesc cititorul boolean comun strict |
+
+[Profilul semantic](Report_Contract.md#semantic-review-and-compact-identity)
+cere observații cu domeniu precis și criterii independente existente. O fațetă
+REVIEWED încheie domeniul declarat; întrebările rămase continuă să se aplice.

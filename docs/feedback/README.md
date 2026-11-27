@@ -9,12 +9,14 @@ jurnale și rapoarte în zona externă; copiile selectate și verificate pot fi 
 <a id="active-todos"></a>
 ## TODO-uri active
 
-<!-- feedback:empty -->
+Nu există TODO-uri acceptate deschise în domeniul curent.
 
 Revizuirea curentă: [sursa live, documentația, Atlas/RAG și atributele framework-ului](Code_And_Documentation_Maturity.md#current-assessment).
 
 | ID | Constatare | Responsabil | Prioritate (1-100) | Calitate (1-100) | Stare | Dovada închiderii |
 |---|---|---|---:|---:|---|---|
+
+<!-- feedback:empty -->
 
 
 
@@ -153,6 +155,8 @@ normalizarea prezentării nu reprezintă o nouă execuție.
 | M-001 | Cinci module, furnizori independenți, suport de produs exclusiv în teste și contracte impuse de arhitectură/documentație | 372 verificări finale ale reactorului, 102 cazuri de browser, 11 Allure și artefacte agregate inspectate; [dovezi](Module_Architecture.md) |
 | G-001 | Ghiduri obligatorii pentru responsabili/feedback, fapte despre construcție, pereche HTML/Markdown și excluderea fișierelor de agenți | 24 cazuri de documentație dintre 74 de guvernanță au trecut; [dovezi](Governance_Review.md#g-001) |
 | T-001 | Regresiile folosesc așteptări limitate, rezultate observate, curățare și selecții impuse | 393 cazuri reactor și 4 de izolare a configurației; [dovezi](Governance_Review.md#t-001) |
+| D-016 | Explicații semantice delimitate și criterii independente | 32 fațete REVIEWED / 10 PARTIAL, 12 comportamente existente; [dovezi și limite](Code_And_Documentation_Maturity.md#d-016) |
+| D-017 | Identitate Atlas compactă, lizibilă | Randare nativă la 1440/900, antet 58 px și poziție 16 px; [verificare](Code_And_Documentation_Maturity.md#d-017) |
 | P-001 | Atlas de documentație separat și politici recuperate, cu arhitectura vie esențială în ambele formate | Sursa/legăturile/hash-ul și redarea desktop/la lățime mică au fost verificate; fără modificări de producție/POM/Java nou; [dovezi](Governance_Review.md#p-001) |
 | G-002 | Vizibilitatea surselor, responsabilitatea pauzelor/consolei și restaurarea întreruperii firului curent sunt guvernate | 474 verificări locale și 474 agregate au trecut; [dovezi](Governance_Contracts.md#g-002) |
 | G-003 | Selecțiile Maven susținute, valorile implicite declarate și ciclul documentelor stabile sunt verificate față de responsabilii curenți | Verificările locale/agregate finale și contractele ghidurilor în pereche au trecut; [dovezi](Governance_Contracts.md#g-003) |

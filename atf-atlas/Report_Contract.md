@@ -158,6 +158,52 @@ Notele sunt judecăți redactate cu domeniu explicit, nu rate de teste sau note 
 
 </details>
 
+<a id="semantic-review-and-compact-identity"></a>
+## Revizia semantică și identitatea compactă
+
+`ATLAS-SEMANTICS-001: Qualify semantic understanding through distinct scoped facet observations, owned implementation fragments and independent existing oracles; preserve remaining boundaries and verify the actual visible facet projection instead of inferring completeness from source inventory or test counts.`
+
+Profilul `SEMANTIC_FACETS_V1` completează cele șapte dimensiuni ale fiecărui
+responsabil. REVIEWED înseamnă că domeniul declarat al fațetei a fost investigat;
+proiectul poate rămâne SELECTED. Nu transforma inventarul complet în înțelegere
+exhaustivă și nu promova toate fațetele deoarece o selecție de teste trece.
+
+| Înregistrare | Dovadă cerută | Limită păstrată |
+|---|---|---|
+| Explicație distinctă | Observație specifică dimensiunii | Fără text generic repetat pentru toate rolurile |
+| Domeniu revizuit | Fragmente reale din implementarea responsabilă | Urmărește delegarea până la operația relevantă |
+| Criteriu independent | Fragmente distincte ale verificării existente | Implementarea nu poate fi propriul criteriu |
+| Criteriu executat | Identitatea originală a testului și fragmentul exact | Fără deducerea execuției din potrivirea sursei |
+| Limite rămase | Întrebări specifice vizibile lângă capabilitate | Păstrează PARTIAL unde revizia este incompletă |
+
+Scopul și structura pot folosi declarații reale. Promovarea comportamentului,
+informațiilor, configurației, eșecului sau verificării cere și un criteriu existent
+independent. Selecțiile trebuie să aparțină unității și fațetei; fragmentele
+implementării și criteriului nu se pot suprapune. Clasificarea sensului rămâne o
+responsabilitate explicită a revizorului.
+
+Cititorul derivă explicațiile și limitele business din fațetele revizuite, în
+secțiuni colapsabile. Metadatele și referințele tehnice rămân în audit. Sondele
+native compară starea, explicația și limita vizibilă cu sursa calificată.
+
+`ATLAS-IDENTITY-001: Use one compact Atlas and project-title line without a redundant language badge; retain review date with confidence, preserve readable text and measure the actual rendered header at both desktop widths.`
+
+Antetul folosește o singură linie de identitate, cu font între 16 și 24 CSS px,
+înălțime de cel mult 96 CSS px și margine superioară de cel mult 24 CSS px.
+Textul nu este ascuns sau tăiat. Limba rămâne metadată semantică; data reviziei
+apare la încredere. Limitele sunt verificate în randare la 1440 și 900 CSS px.
+
+<details>
+<summary>Responsabili și verificări ale calificării semantice</summary>
+
+- [Componenta semantică](../tools/atlas-semantics.mjs) și [controalele sale](../tools/atlas-semantics.test.mjs) verifică promovările și reparațiile.
+- [Legarea execuției](../tools/atlas-execution.mjs) păstrează testele originale inclusiv pentru criteriile fațetelor.
+- [Calibrarea nativă](../tools/atlas-calibration.mjs) compară proiecția efectivă și geometria identității.
+- Revizuiește relațiile dintre date, inițializarea, efectele secundare, cache-ul și căile de eșec; nu extinde un criteriu îngust într-o garanție generală.
+- Un profil istoric fără dosar semantic rămâne necalificat semantic, chiar dacă structura sa HTML este validă.
+
+</details>
+
 ## Contract istoric și proveniență păstrată
 
 Contractul de mai jos descrie rendererele 1–4 și păstrează extrasele arhivate exacte.

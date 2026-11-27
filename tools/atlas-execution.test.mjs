@@ -119,3 +119,7 @@ test('unsupported HTML and historical proof cannot satisfy an execution binding'
   const f=fixture();Object.assign(f.evidence[0],{format:'HTML',text:'<p>Passed</p>'});fails(f,/verified XML\/TAP/);
   const g=fixture();g.evidence[0].status='HISTORICAL';fails(g,/verified XML\/TAP/);
 });
+
+test('executed facet oracles keep exact testcase bindings even without a declared behavior flow',()=>{
+ const f=fixture();delete f.analysis.behaviorFlows;f.analysis.understanding={reviewProfile:'SEMANTIC_FACETS_V1',units:[{facets:{verification:{review:{oracleRefs:[{claimId:'BEHAVIOR-1',refIndices:[0]}]}}}}]};assert.equal(validateFlowExecutionBindings(f).claims,1);f.analysis.claims[0].executionSubjects[0].testName='unrelated case';fails(f,/absent, ambiguous or skipped/);f.analysis.claims[0].executionSubjects[0].testName='observed response';assert.equal(validateFlowExecutionBindings(f).subjects,1);
+});
