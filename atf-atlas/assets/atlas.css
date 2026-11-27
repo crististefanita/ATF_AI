@@ -860,3 +860,14 @@ marker#arrow path{fill:var(--accent)}body{font-size:15px}.wrap{max-width:1320px}
 .reader .flow .edge{fill:none;stroke:var(--accent);stroke-width:2}
 .reader summary::after{content:'+';margin-left:auto;padding-left:14px;color:var(--accent);font-size:22px}
 .reader details[open]>summary::after{content:'−'}
+
+/* Actual verification outcomes remain distinct from expected scenario kinds. */
+.reader .reader-proof{font-weight:600}
+.reader .reader-proof-failed{border-left:3px solid #f4a261;padding:8px 12px;background:#36251e;color:#ffd8b5}
+.reader .section-body{scroll-margin-top:20px}
+
+.reader .reader-map{max-width:100%;overflow-x:auto}
+.reader .reader-flow{margin:16px 0}
+.reader .reader-flow summary{font-size:16px}
+
+.reader .flow .edge-label{font-size:16px}

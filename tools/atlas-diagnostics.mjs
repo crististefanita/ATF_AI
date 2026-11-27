@@ -1,6 +1,7 @@
 const owner='atf-atlas/Report_Contract.md';
-const recheck='node --test tools/verify-atlas.test.mjs tools/atlas-report.test.mjs tools/atlas-presentation.test.mjs tools/atlas-knowledge.test.mjs tools/atlas-bundle.test.mjs tools/atlas-execution.test.mjs tools/atlas-understanding.test.mjs tools/atlas-behavior.test.mjs';
+const recheck='node --test tools/atlas-calibration.test.mjs tools/atlas-reader.test.mjs tools/atlas-reader-graphs.test.mjs tools/verify-atlas.test.mjs tools/atlas-report.test.mjs tools/atlas-presentation.test.mjs tools/atlas-knowledge.test.mjs tools/atlas-bundle.test.mjs tools/atlas-execution.test.mjs tools/atlas-understanding.test.mjs tools/atlas-behavior.test.mjs';
 const rules={
+  'ATLAS-CALIBRATION':['The actual rendered artifact differs from its source-bound business understanding or native acceptance.','Compare live source and project documentation, preserve real screenshots and original verdicts, repair the owned projection or layout, and repeat the failing native interaction with an actual repaired artifact. Passing metadata does not prove semantic truth.'],
   'ATLAS-READER':['The project-understanding view mixes audiences or omits a reviewed behavior boundary.','Repair the source-bound business projection, retain meaningful negative cases and unknowns, and move commands, file checks and raw proof into the adjacent audit. Recheck section numbering and native rendering.'],
   'ATLAS-PATH':['An input or output escapes its declared owner.','Use project-relative evidence paths, regular files and an owned artifact output directory.'],
   'ATLAS-TARGET':['The analysis targets a different project or revision.','Capture the intended tree again and retain its actual revision and dirty state.'],

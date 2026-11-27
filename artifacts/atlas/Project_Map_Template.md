@@ -273,3 +273,14 @@ remaining uncertainty without inventing an overall score or an E2E expansion.
 - Do section numbers 01–06 and child titles match navigation and anchors?
 - Are horizontal diagrams, adjacent legends and tables readable at 1440/900 CSS px?
 - Are complete technical inputs retained in atlas-audit.json without hidden HTML inclusion?
+
+## Artifact calibration
+
+The reader explains business purpose, project architecture and behavior. Architecture views preserve actual relationships using reader capability names; behavior maps stay in closed disclosures with adjacent legends.
+
+- Compare the actual artifact with live implementation owners and project documents.
+- Follow delegation to the operation; do not broaden detail masking into a guarantee for all screenshots or messages.
+- Keep the observed verdict separate from the expected scenario outcome and expose partial review depth.
+- Exercise navigation from closed sections, native screenshots, readability and the identity of selected bytes.
+
+The [contract](../../atf-atlas/Report_Contract.md) defines the schema and limits; the [calibration component](../../tools/atlas-calibration.mjs) explains failures and repair routes. Axis ratings remain reasoned review judgments, not test pass rates.

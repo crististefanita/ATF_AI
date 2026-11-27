@@ -462,7 +462,7 @@
         "rendering"
       ],
       "mandatory": true,
-      "requirement": "Use renderer 5 business projection with source-bound capabilities, meaningful positive and negative cases, visible unknowns, and ordered hierarchical section numbering mirrored in navigation. Keep SSH, commands, file checks, raw JSON and proof payloads outside the HTML, including hidden templates. Preserve the adjacent audit, component negative/repair controls and native desktop render review; semantic meaning still needs a reviewer.",
+      "requirement": "Use renderer 5 business projection with source-bound capabilities, meaningful positive and negative cases, visible unknowns, and ordered hierarchical section numbering mirrored in navigation. Keep SSH, commands, file checks, raw JSON and proof payloads outside the HTML, including hidden templates. Preserve the adjacent audit, component negative/repair controls and native desktop render review; semantic meaning still needs a reviewer. Calibrate the actual artifact against live source and project documentation: follow delegation to implementation, separate expected cases from actual recorded verdicts, expose partial review depth, exercise native navigation from closed sections, and inspect source-bound architecture/behavior diagrams and adjacent legends. Keep known masking and sharing limits explicit; metadata does not attest semantic truth.",
       "sources": [
         {
           "kind": "CURRENT_CONTRACT",
@@ -473,6 +473,11 @@
           "kind": "CURRENT_CONTRACT",
           "path": "atf-atlas/Report_Contract.md",
           "quote": "ATLAS-READER-003: Retrieve mandatory audience and numbering policy, author the project-specific projection from actual source, preserve negative controls and repairs, verify the adjacent audit, and inspect native rendering before selecting the final reader."
+        },
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "ATLAS-CALIBRATION-001: Audit the actual rendered artifact against live source and project documentation; distinguish expected behavior from recorded verdicts, expose partial review, test native navigation, and retain source-bound architecture and behavior diagrams with adjacent legends."
         }
       ]
     }

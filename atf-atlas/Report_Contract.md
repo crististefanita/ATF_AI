@@ -98,10 +98,56 @@ The executable schema is in the [reader validator](../tools/atlas-reader.mjs); t
 | capabilities | unitId, title, benefit and claims from the correct owner |
 | journeys / cases | flowId and every declared caseId, with situation, expectation and limits |
 | auditOnlyFlows | flowId, construction/detail reason and explicit rationale |
+| architecture | graphId, title and legend for each source architecture map |
 | model | Title, ordered stages/links, reviewed claims and legend |
 | limits | Title, explanation and claimIds, including every unknown and retained failure |
 
 analysis.json, source-index.json, original documents and evidence remain beside atlas-audit.json. delivery/atlas.html is the only delivered reader file. Audit execution needs the complete dossier; offline reading does not.
+
+</details>
+
+## Artifact audit and calibration
+
+`ATLAS-CALIBRATION-001: Audit the actual rendered artifact against live source and project documentation; distinguish expected behavior from recorded verdicts, expose partial review, test native navigation, and retain source-bound architecture and behavior diagrams with adjacent legends.`
+
+The Atlas explains business purpose, project architecture and meaningful behavior.
+The architecture view projects actual source-owner relationships using reader
+capability names. It preserves edge direction and disconnected owners. Behavior
+maps remain closed inside their journeys; cases and confidence retain actual
+positive, negative, partial and unknown boundaries.
+
+| Audit question | Actual comparison | Repair route |
+|---|---|---|
+| Does the story match implementation? | Follow delegation to the operation and compare project documents | Narrow unsupported guarantees; retain known limits |
+| Does verification match the case? | Compare the oracle verdict with the visible case | Expected refusal may pass; a failed check remains failed |
+| Is project understanding complete? | Compare source-owner facets with visible review depth | Never promote PARTIAL or UNKNOWN because checks pass |
+| Can the reader reach the explanation? | Click each local link from a closed section in native Chromium | Target the content inside its disclosure |
+| Do diagrams help understanding? | Inspect actual architecture, behavior, labels and legends | Keep source relationships; contain wide graphs without shrinking text |
+
+The [calibration component](../tools/atlas-calibration.mjs) binds observations to
+the actual HTML, source revision and source-index identity. It requires both
+1440 and 900 CSS px, native keyboard/navigation observations and reasoned
+comparisons for all six reader sections. Its [controls](../tools/atlas-calibration.test.mjs)
+retain specific failures and actual repairs; the [graph controls](../tools/atlas-reader-graphs.test.mjs)
+protect finite horizontal layout, cycles and original relationships.
+
+<details>
+<summary>Technical audit sequence and proof limits</summary>
+
+1. Retrieve mandatory audience and calibration policy before authoring.
+2. Verify the captured source and complete audit against the actual live project.
+3. Review meaning against implementation owners and declared project documents.
+4. Render the exact candidate, exercise native navigation and inspect screenshots.
+5. Run calibration, preserve the failing artifact/control and apply the real repair.
+6. Select only the accepted bytes; a changed HTML or source inventory needs a new review.
+
+Current calibrated readers declare data-atlas-calibration 1 and publication calibrationProfile 1. Historical version-5 envelopes keep their captured navigation/profile and are not recertified by the new audit.
+
+The browser probe is for document QA and is never embedded in the reader. Source
+comparison declarations are authored evidence, not automatic semantic attestation.
+Metadata cannot prove that a screenshot or human review is truthful. Full source
+verification, canonical rendering and visual/semantic review remain separate gates.
+Scores are scoped authored judgments, not test pass rates or automatic project grades.
 
 </details>
 

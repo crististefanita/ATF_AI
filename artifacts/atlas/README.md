@@ -226,3 +226,14 @@ classifications in the original analysis.
 - Read the HTML without companion files; verify it using the original audit, canonical style and native geometry.
 - Do not expose commands, file checks, digests or raw JSON in the reader, including hidden elements.
 - Numbering, negative cases and limits are checked before selection into current/.
+
+## Artifact calibration
+
+The reader explains business purpose, project architecture and behavior. Architecture views preserve actual relationships using reader capability names; behavior maps stay in closed disclosures with adjacent legends.
+
+- Compare the actual artifact with live implementation owners and project documents.
+- Follow delegation to the operation; do not broaden detail masking into a guarantee for all screenshots or messages.
+- Keep the observed verdict separate from the expected scenario outcome and expose partial review depth.
+- Exercise navigation from closed sections, native screenshots, readability and the identity of selected bytes.
+
+The [contract](../../atf-atlas/Report_Contract.md) defines the schema and limits; the [calibration component](../../tools/atlas-calibration.mjs) explains failures and repair routes. Axis ratings remain reasoned review judgments, not test pass rates.

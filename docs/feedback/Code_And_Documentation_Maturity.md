@@ -875,6 +875,43 @@ Delivered reader-audience quality 94 (correctness 94 / verification 95 / clarity
 
 Evidence: `${ATF_WORK_ROOT}/reviews/business-atlas-20261127`. Finite audience checks and lexical retrieval require semantic review; selected cases do not establish exhaustive understanding. No new application E2E, emulator or runtime Java feature.
 
+<a id="d-015"></a>
+## D-015: Artifact calibration against the live project
+
+Status: VERIFIED for owned repairs and the reviewed artifact; final outcomes retain separate identities. Owner: Atlas governance.
+Priority 90 (impact 92 / exposure 90 / urgency 85).
+Baseline calibration quality 82 (correctness 82 / verification 75 / clarity 90).
+
+- Actual rendering confirms five links that leave their content closed at both widths.
+- Six capabilities with PARTIAL facets lack explicit review-depth disclosure in the reader.
+- Failed executed cases use the same neutral label as passing recorded checks.
+- The generic linear model does not adequately explain architecture or behavioral branches.
+- Following delegation to implementation bounds masking to known input details; screenshots and external messages are not automatically sanitized.
+- Acceptance requires real source/document comparisons, negative/repair controls, native navigation/screenshots, RAG policy and scoped axis ratings. No new E2E or emulator.
+
+Evidence: `${ATF_WORK_ROOT}/reviews/atlas-calibration-20261127`.
+
+Delivered calibration quality 95 (correctness 95 / verification 95 / clarity 94).
+
+- The initial native artifact audit finds eight deviations: verdicts, breadth, navigation and diagrams at both widths. The repaired candidate passes with 11 purposeful diagrams and 24 cases.
+- Navigation opens native content. Architecture maps preserve actual relationships; behavior maps remain closed with adjacent legends.
+- The first native reactor is rejected for two missing EN aliases in RO; the owned rule identifies the repair. Aliases are restored and the responsible check passes before final execution.
+- Original failures are retained; 243 Node components per edition pass. Metadata, source review and screenshots are not automatic semantic attestation.
+- Final native qualification, exact selected-reader capture and publication are bound in separate evidence; original failed outcomes are never relabeled as passing.
+
+| Atlas axis | C / V / Cl | Quality (1-100) |
+|---|---|---:|
+| Business understanding | 95 / 93 / 96 | 95 |
+| Architecture explanation | 95 / 94 / 94 | 94 |
+| Behavior and negative cases | 95 / 95 / 94 | 95 |
+| Source and verdict fidelity | 96 / 95 / 94 | 95 |
+| Rendered readability | 95 / 95 / 95 | 95 |
+| Native navigation | 95 / 94 / 94 | 94 |
+| RAG and calibration governance | 95 / 95 / 93 | 94 |
+| Semantic review breadth | 84 / 82 / 90 | 85 |
+
+Ratings use the register's 40/30/30 formula for this Atlas, not the whole ATF. Review remains SELECTED: six owners with PARTIAL facets and no new application acceptance. Arrows, native metrics and 243 tests do not establish every meaning or full accessibility compliance.
+
 <a id="current-assessment"></a>
 ## Current ATF AI assessment
 

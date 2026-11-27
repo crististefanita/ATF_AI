@@ -178,3 +178,14 @@ crossings and clipping with actual rendered bounds. Observe every declared graph
 at both recorded widths and retain overlapping, repaired and touching-boundary
 control receipts. Report missing `edgeLabelPairOverlaps` evidence as NOT_ASSESSED
 and rerun the document component gate before publishing.
+
+## Artifact calibration
+
+The reader explains business purpose, project architecture and behavior. Architecture views preserve actual relationships using reader capability names; behavior maps stay in closed disclosures with adjacent legends.
+
+- Compare the actual artifact with live implementation owners and project documents.
+- Follow delegation to the operation; do not broaden detail masking into a guarantee for all screenshots or messages.
+- Keep the observed verdict separate from the expected scenario outcome and expose partial review depth.
+- Exercise navigation from closed sections, native screenshots, readability and the identity of selected bytes.
+
+The [contract](Report_Contract.md) defines the schema and limits; the [calibration component](../tools/atlas-calibration.mjs) explains failures and repair routes. Axis ratings remain reasoned review judgments, not test pass rates.

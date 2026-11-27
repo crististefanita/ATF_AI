@@ -120,6 +120,7 @@ normalizing their presentation does not claim a fresh execution.
 
 | ID | Delivered behavior | Verification |
 |---|---|---|
+| D-015 | Native artifact/live-source audit, architecture and explicit verdicts; quality 95 (95/95/94) | Rejected original artifact, native repair and independent controls; [evidence and ratings](Code_And_Documentation_Maturity.md#d-015) |
 | D-014 | Numbered business reader, adjacent audit and mandatory RAG; quality 94 (94/95/94) | Source, independent oracles, negative/repair controls and native rendering; [evidence and limits](Code_And_Documentation_Maturity.md#d-014) |
 | G-023 | Unique JSON members across Atlas boundaries, quality 94 (95/95/93) | 209 Node per edition, counterexamples/repairs and identical valid receipt; [evidence](Code_And_Documentation_Maturity.md#g-023) |
 | G-024 | Ordinal path ordering, quality 93 (93/92/95) | Identical path/digest pairs under two native collations; [evidence](Code_And_Documentation_Maturity.md#g-024) |
