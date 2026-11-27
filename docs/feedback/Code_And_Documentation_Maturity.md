@@ -1372,6 +1372,9 @@ Delivered quality 96 (correctness 96 / verification 97 / clarity 95).
   structure and the focused paired recheck passes.
 - Fragment state, nested table headers and visibility through closed details
   are measured correctly. Initial failed observations remain in the dossier.
+- The final 900 px capture refused an opening whose map began below the agreed
+  first-view boundary. Smaller score-card padding repairs the opening without
+  hiding text, shrinking type or relaxing the native gate; retain both captures.
 - Final exact-source qualification, actual publisher controls and delivered
   selection retain separate receipts. The previous reader's 1920 px capture
   is a comparative observation, not retroactive V4 qualification.
