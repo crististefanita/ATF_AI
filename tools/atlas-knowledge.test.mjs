@@ -148,3 +148,19 @@ test('duplicate corpus members are refused before retrieval, including escaped a
   assert.equal(loadAtlasKnowledge({root:selected}).corpusSha256,loadAtlasKnowledge().corpusSha256);
   assert.ok(retrieveAtlasKnowledge({root:selected,query:'complete reader'}).selectedIds.includes('KB-ONE-TARGET'));
 });
+
+test('business audience, adjacent audit and numbering remain mandatory for every retrieval question',()=>{
+  const receipt=retrieveAtlasKnowledge({query:'unrelated question',limit:0}),rule=receipt.records.find(r=>r.id==='KB-BUSINESS-READER');
+  assert.ok(rule?.mandatory);assert.match(rule.requirement,/hierarchical section numbering/);assert.match(rule.requirement,/hidden templates/);assert.match(rule.requirement,/adjacent audit/);
+  const altered=raw();altered.records.find(r=>r.id===rule.id).mandatory=false;expectKnowledgeFailure(()=>validateAtlasKnowledge(altered));
+  const complete=receipt.records.find(r=>r.id==='KB-COMPLETE');assert.match(complete.requirement,/does not embed raw technical inputs/);
+});
+
+// Active authoring guides must not reintroduce the retired reader audience contract.
+test('active Atlas guides agree with the retrieved business reader generation',()=>{
+  for(const relative of ['atf-atlas/README.md','artifacts/atlas/README.md','artifacts/atlas/Project_Map_Template.md']){
+    const text=fs.readFileSync(path.join(root,relative),'utf8');
+    assert.match(text,/renderVersion 5/,'Repair '+relative+' to explain the current business reader and adjacent audit.');
+    assert.doesNotMatch(text,/renderVersion [1-4]\b/,'Move old publication instructions to explicitly scoped historical contract material: '+relative);
+  }
+});

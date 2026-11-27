@@ -86,7 +86,9 @@ The generated source index records each inspected path, role and evidence scope.
 
 ## Declared review units and seven facets
 
-New public captures use renderVersion 4 and analysis.understanding schemaVersion 1.
+New public captures use renderVersion 5 and analysis.understanding schemaVersion 1.
+
+Current publication metadata declares readerVersion 5 and audience BUSINESS_PROJECT_UNDERSTANDING together. The collector checks the selected HTML envelope and identity; full acceptance still requires the original adjacent audit, canonical rendering and semantic review. Historical unversioned captures retain their original policy.
 
 - Declare scope PROJECT or SELECTED, scopeStatement and inventoryClaimIds from the actual package/build/entry/ownership declarations.
 - Enumerate units using their real source owners.
@@ -212,3 +214,15 @@ The checker validates declared consistency, not truth inferred from keywords or 
 - Preserve unresolved questions.
 - A project that forbids context maps in maintained docs can still be analyzed here: keep the generated result in the caller-selected artifact root, outside that project's source-owned docs/lib perimeter.
 - Do not weaken its governance to host a map.
+
+### Reader projection and construction dossier
+
+Author analysis.reader from the actual project purpose, owners and cases. Use
+the [current contract](../../atf-atlas/Report_Contract.md#source-bound-business-projection),
+not another project's content. Retain semantic review and technical-only scope
+classifications in the original analysis.
+
+- Publication produces delivery/atlas.html and adjacent atlas-audit.json outside delivery/.
+- Read the HTML without companion files; verify it using the original audit, canonical style and native geometry.
+- Do not expose commands, file checks, digests or raw JSON in the reader, including hidden elements.
+- Numbering, negative cases and limits are checked before selection into current/.

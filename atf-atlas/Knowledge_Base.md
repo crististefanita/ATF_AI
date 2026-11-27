@@ -137,7 +137,8 @@ The retrieved KB-STYLE record supplies the archived design context. Apply the
 current [reader presentation contract](Report_Contract.md#reader-presentation-and-render-review)
 and its component/render controls before publication. A retrieved styling excerpt
 does not replace current requirements or establish visual readability. New
-publication uses version 4; retained version 3 case and reachability rules still apply.
+publication uses version 5 with a business projection and adjacent technical audit;
+retained case and reachability rules still apply.
 
 Knowledge IDs and archived SHA-256 values are JSON strings. Arrays or objects that coerce to matching text must fail before ranking or receipt construction; duplicate identity checks use validated strings. This is typed input governance, separate from verifying actual archived bytes and semantic source review.
 
@@ -146,3 +147,8 @@ unique member names within each object, including after escape decoding. Repeate
 members fail even when their values agree; independent objects may reuse a key.
 Valid JSON strings and values remain unchanged. The diagnostic retains its rule,
 owner, repair hint and recheck selection.
+
+Mandatory KB-BUSINESS-READER keeps the business audience, adjacent audit and
+hierarchical numbering in every retrieval, including unrelated questions.
+KB-COMPLETE now requires complete understanding in the reader and complete
+technical evidence in the audit, with no hidden HTML bundle. History retains its captured policy.

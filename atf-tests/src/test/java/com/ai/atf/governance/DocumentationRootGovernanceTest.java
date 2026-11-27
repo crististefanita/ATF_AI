@@ -59,7 +59,7 @@ public class DocumentationRootGovernanceTest {
                     "artifacts/atlas/Project_Map_Template.md", "tools/collect-artifacts.mjs", "tools/collect-artifacts.test.mjs",
                     "tools/verify-atlas.mjs", "tools/verify-atlas.test.mjs",
                     "atf-atlas/Report_Contract.md", "atf-atlas/Knowledge_Base.md", "atf-atlas/assets/atlas.css",
-                    "atf-atlas/knowledge/atlas-contracts.json", "tools/atlas-report.mjs", "tools/atlas-report.test.mjs",
+                    "atf-atlas/knowledge/atlas-contracts.json", "tools/atlas-reader.mjs", "tools/atlas-reader.test.mjs", "tools/atlas-report.mjs", "tools/atlas-report.test.mjs",
                     "tools/atlas-knowledge.mjs", "tools/atlas-knowledge.test.mjs", "tools/atlas-diagnostics.mjs",
                     "tools/atlas-bundle.mjs", "tools/atlas-bundle.test.mjs",
                     "tools/atlas-execution.mjs", "tools/atlas-execution.test.mjs",

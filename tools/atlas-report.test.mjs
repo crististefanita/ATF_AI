@@ -6,7 +6,7 @@ import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
-import {publishAtlas,renderAtlasHtml,validateAtlasHtml,validateAtlasDelivery,atlasSections} from './atlas-report.mjs';
+import {publishAtlas as publishBusinessAtlas,prepareAtlasBundle,renderAtlasHtml,validateAtlasHtml,validateAtlasDelivery,atlasSections} from './atlas-report.mjs';
 import {atlasFailure,AtlasGovernanceError} from './atlas-diagnostics.mjs';
 import {validateAtlasBundle} from './atlas-bundle.mjs';
 
@@ -42,9 +42,28 @@ function fixture(t){
   save();return {directory,sourceRoot,artifactRoot,analysisRoot,index,analysis,docs,save,deliveryRoot:path.join(analysisRoot,'delivery')};
 }
 
+// Historical renderer controls retain their original technical contract; current publication is tested separately.
+function publishAtlas(f){
+  const bundle=prepareAtlasBundle(f),html=renderAtlasHtml(bundle,css());
+  validateAtlasHtml({html,css:css(),projectId:bundle.analysis.projectId});
+  if(fs.existsSync(f.deliveryRoot))throw new AtlasGovernanceError('ATLAS-PATH','Use a fresh delivery directory; existing output is preserved');
+  fs.mkdirSync(f.deliveryRoot);fs.writeFileSync(path.join(f.deliveryRoot,'atlas.html'),html);
+  return {...validateAtlasDelivery({...f,projectId:bundle.analysis.projectId,css:css()}),output:path.join(f.deliveryRoot,'atlas.html')};
+}
+function readerFixture(t){
+  const f=fixture(t),ids=['CONTRACT-1'];
+  f.analysis.reader={schemaVersion:1,projectId:'sample-project',language:'en',title:'Observed response service',summary:'The service helps callers observe the outcome of a request and understand the boundary of the available checks.',reviewDate:'2026-11-27',
+    review:{reviewer:'Source reviewer',scope:'One existing request behavior and its available check.',limits:'No external deployment or broader service acceptance is established.',claimIds:ids},
+    value:[{title:'Clear outcomes',text:'The caller receives the observed result instead of an invented success.',claimIds:ids}],
+    capabilities:[{unitId:'component',title:'Observe request outcomes',benefit:'A shared request operation preserves the response that was actually observed.',claimIds:ids}],
+    journeys:[{flowId:'request-behavior',title:'Receive an observed outcome',actor:'A caller using the service',intent:'Understand the result of one request',operation:'The existing request operation observes and returns the response.',outcome:'The caller receives the same observed response.',cases:[{caseId:'observed-response',title:'The observed result is returned',situation:'A caller submits one supported request.',expectation:'The result received by the caller is the actual observation.',limits:'Only the declared request and available check are represented.'}]}],auditOnlyFlows:[],
+    model:{title:'From request to observation',stages:[{id:'request',title:'Request an outcome',claimIds:ids},{id:'observe',title:'Receive the observation',claimIds:ids}],links:[{from:'request',to:'observe',label:'returns',claimIds:ids}],legend:'The arrows summarize the reviewed caller-to-result relationship; they do not promise an unreviewed integration.'},
+    limits:[{title:'Bounded service review',text:'External integrations and additional failure behavior remain outside this reviewed request scope.',claimIds:ids}]};f.save();return f;
+}
+
 const read=f=>fs.readFileSync(path.join(f.deliveryRoot,'atlas.html'),'utf8');
 
-test('one target invocation delivers one complete offline English HTML with original evidence',t=>{
+test('the historical technical renderer retains complete original evidence',t=>{
   const f=fixture(t),result=publishAtlas(f),html=read(f);
   assert.equal(result.status,'PASSED');assert.equal(result.sections,10);assert.deepEqual(fs.readdirSync(f.deliveryRoot),['atlas.html']);
   for(const id of atlasSections)assert.ok(html.includes('data-atlas-section="'+id+'"'),id);
@@ -183,7 +202,7 @@ test('publication preserves existing deliveries and target source bytes',t=>{
 });
 
 test('the CLI publishes a generic project under space-containing roots',t=>{
-  const f=fixture(t),script=fileURLToPath(new URL('./atlas-report.mjs',import.meta.url));
+  const f=readerFixture(t),script=fileURLToPath(new URL('./atlas-report.mjs',import.meta.url));
   const result=spawnSync(process.execPath,[script,'understand','--source',f.sourceRoot,'--analysis',f.analysisRoot,'--artifacts',f.artifactRoot],{encoding:'utf8',windowsHide:true});
   assert.equal(result.status,0,result.stderr);assert.equal(JSON.parse(result.stdout).projectId,'sample-project');assert.deepEqual(fs.readdirSync(f.deliveryRoot),['atlas.html']);
 });
@@ -271,4 +290,37 @@ test('retrieval metadata and undeclared attestations cannot extend the canonical
   assert.throws(()=>renderAtlasHtml(bundle,css()),error=>error.code==='ATLAS-KNOWLEDGE');
   bundle=embedded(f);bundle.knowledge.automaticSemanticCertification=true;
   assert.throws(()=>renderAtlasHtml(bundle,css()),error=>error.code==='ATLAS-KNOWLEDGE');
+});
+
+
+test('current publication delivers one numbered business reader with its complete adjacent audit',t=>{
+  const f=readerFixture(t);f.docs['README.md']='# Construction record\n\nssh audit-host\nOriginal JSON manifest and source verification.\n';f.save();
+  const result=publishBusinessAtlas(f),html=read(f),bundle=JSON.parse(fs.readFileSync(result.audit,'utf8'));
+  assert.equal(result.sections,6);assert.equal(bundle.renderVersion,5);assert.deepEqual(fs.readdirSync(f.deliveryRoot),['atlas.html']);
+  assert.doesNotMatch(html,/<(?:template|script|pre|code)\b|ssh audit-host|Original JSON manifest|request\.test\.txt|sample\.RequestContractTest/);
+  assert.ok(bundle.documents.some(doc=>doc.text.includes('ssh audit-host')));assert.ok(bundle.evidenceFiles.some(file=>file.text.includes('<testsuite')));
+  assert.ok(html.includes('What to observe:'));assert.equal(validateAtlasDelivery({...f,projectId:'sample-project',css:css()}).status,'PASSED');
+  const sections=[...html.matchAll(/data-section-number="([^"]+)"/g)].map(m=>m[1]);assert.deepEqual(sections,['01','02','03','04','05','06']);
+  assert.ok(html.includes('03.01.01'));assert.equal((html.match(/href="#/g)||[]).length,6);
+});
+
+test('reader verification needs the separate audited inputs and rejects numbered or content drift',t=>{
+  const f=readerFixture(t),result=publishBusinessAtlas(f),html=read(f),auditBundle=JSON.parse(fs.readFileSync(result.audit,'utf8'));
+  assert.throws(()=>validateAtlasHtml({html,css:css(),projectId:'sample-project'}),e=>e.code==='ATLAS-READER');
+  for(const changed of [html.replace('data-section-number="02"','data-section-number="01"'),html.replace('03.01.01','03.01.02'),html.replace('href="#journeys"','href="#limits"'),html.replace('The caller receives the same observed response.','Everything always succeeds.')]){
+    assert.notEqual(changed,html);assert.throws(()=>validateAtlasHtml({html:changed,css:css(),projectId:'sample-project',auditBundle}),e=>e.code==='ATLAS-READER'&&e.hint.includes('numbering'));
+  }
+  assert.equal(validateAtlasHtml({html,css:css(),projectId:'sample-project',auditBundle}).status,'PASSED');
+});
+
+test('reader construction details, unknown fields and missing cases fail before output creation',t=>{
+  for(const change of [r=>r.summary='Use ssh to inspect the project.',r=>r.value[0].text='Inspect the JSON manifest.',r=>r.capabilities[0].benefit='Run mvn test before publication.',r=>r.journeys[0].cases=[],r=>r.sourceDigest='0'.repeat(64),r=>r.projectId='other-project']){
+    const f=readerFixture(t);change(f.analysis.reader);f.save();assert.throws(()=>publishBusinessAtlas(f),e=>e.code==='ATLAS-READER'&&e.owner==='atf-atlas/Report_Contract.md'&&Boolean(e.recheck));assert.equal(fs.existsSync(f.deliveryRoot),false);
+  }
+});
+
+test('current business publication preserves both original reader and adjacent audit on repeated invocation',t=>{
+  const f=readerFixture(t),result=publishBusinessAtlas(f),htmlHash=hash(read(f)),auditHash=hash(fs.readFileSync(result.audit));
+  assert.throws(()=>publishBusinessAtlas(f),e=>e.code==='ATLAS-PATH'&&e.observed.includes('existing output'));
+  assert.equal(hash(read(f)),htmlHash);assert.equal(hash(fs.readFileSync(result.audit)),auditHash);
 });

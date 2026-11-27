@@ -857,6 +857,24 @@ Use the register's same 40/30/30 formula. Each input is 1–100; unlike scopes h
 
 </details>
 
+<a id="d-014"></a>
+## D-014: Business reader and numbered Atlas workflow
+
+Status: VERIFIED for the business-reader contract and the recorded selected ATF_AI capture. Owner: Atlas governance.
+Priority 92 (impact 95 / exposure 90 / urgency 85).
+Baseline quality 65 (correctness 60 / verification 70 / clarity 65).
+Delivered reader-audience quality 94 (correctness 94 / verification 95 / clarity 94); this is not a whole-project grade.
+
+- Renderer 5 separates the offline reader from the complete adjacent audit. No raw source, commands, digests or hidden technical bundle enter the HTML.
+- Six numbered sections and hierarchical cases mirror navigation. The horizontal operating model has an adjacent legend; native disclosure works with the keyboard.
+- Mandatory RAG policy binds audience, source ownership, cases, unknowns and semantic-review limits. Active authoring guides cannot silently revert to the earlier renderer contract.
+- Current ATF_AI source supplies 41 claims, six owner units, eight selected behaviors and 24 cases. Existing oracle claims bind 96 exact passing testcase subjects to original source manifests and five retained receipts; broader application acceptance is not inferred.
+- Acceptance-02 completed 743 native checks and 225 Node components per edition, with no failures or skips. Final documentation and the additional active-guide guard are qualified separately in acceptance-03; original source snapshots retain each run's exact scope.
+- Native render-02 passes at 1440 and 900 CSS px, including numbering, local targets, 24 cases, readable diagrams, keyboard disclosure and zero external resources. Deliberately small text and invisible diagram labels fail; the repaired original passes.
+- The 47,961-byte selected reader replaces the earlier technical presentation only after clean-source recapture and identity checks. The previous reader and failed construction attempts remain external; the J1 capture is not requalified.
+
+Evidence: `${ATF_WORK_ROOT}/reviews/business-atlas-20261127`. Finite audience checks and lexical retrieval require semantic review; selected cases do not establish exhaustive understanding. No new application E2E, emulator or runtime Java feature.
+
 <a id="current-assessment"></a>
 ## Current ATF AI assessment
 
@@ -889,9 +907,9 @@ C means correctness, V verification and Cl clarity. Each input and result uses
 <summary>Source owners, verification and limits by axis</summary>
 
 - **Code and architecture:** [Registry](../../atf-core/src/main/java/com/ai/ui/core/engine/UiEngineRegistry.java). Neutral module ownership, provider discovery and current failure paths. Framework API and source review; not an exhaustive correctness proof.
-- **Documentation and editions:** [Document policy](../governance/Code_And_Documentation_Policy.md). 50 maintained Markdown pairs, Living HTML, compilation, language and presentation guards. Finite guards and reviewed renderers; semantic translation still needs review.
+- **Documentation and editions:** [Document policy](../governance/Code_And_Documentation_Policy.md). 51 maintained Markdown pairs, Living HTML, compilation, language and presentation guards. Finite guards and reviewed renderers; semantic translation still needs review.
 - **Atlas and RAG:** [Retrieval and provenance](../../tools/atlas-knowledge.mjs). Cited retrieval, exact receipts, independent oracles, negative paths and one-HTML delivery. Lexical policy context; authoring and semantic completeness are not certified automatically.
-- **Feedback lifecycle:** [Feedback controls](../../atf-tests/src/test/java/com/ai/atf/governance/FeedbackGovernanceTest.java). 18 bilingual records reconciled; explicit empty state, historical closure and external scope. Zero accepted tasks does not mean zero defects or external implementation completion.
+- **Feedback lifecycle:** [Feedback controls](../../atf-tests/src/test/java/com/ai/atf/governance/FeedbackGovernanceTest.java). Bilingual records reconciled with the active index; explicit empty state, historical closure and external scope. Zero accepted tasks does not mean zero defects or external implementation completion.
 - **Code and test governance:** [Architecture and inventories](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureGovernanceTest.java). Owned diagnostic hints, negative controls, exact suites and a reviewed 561-method inventory. Policy/source invariants complement review; matching a token is not semantic proof.
 - **Existing-test stability:** [Existing logging contracts](../../atf-tests/src/test/java/com/ai/atf/core/reporting/regression/StepLoggerContractTest.java). Bounded worker/HTTP behavior, independent observations and completed native selections. Point-in-time execution, not a measured long-term CI flake rate.
 - **Configuration and failure handling:** [UI options](../../atf-core/src/main/java/com/ai/core/support/config/UiRuntimeOptions.java). Typed UI settings, retry boundaries, teardown and partial-acquisition rollback. Caller credentials, deployment state and arbitrary provider failures remain separate.
@@ -902,7 +920,7 @@ C means correctness, V verification and Cl clarity. Each input and result uses
 
 </details>
 
-The retrieval review validates 19 knowledge records, 16 mandatory policies and
+The retrieval review validates 20 knowledge records, 17 mandatory policies and
 three pinned archived blobs. Its declared scope is deterministic lexical policy
 context; semantic recall remains NOT_CLAIMED. New Atlas generation or application
 acceptance is not inferred from these checks. Source size and test counts identify

@@ -7,14 +7,13 @@ the caller-selected local archive following the [report guide](../../artifacts/r
 
 ## Active TODOs
 
-No accepted active items remain in the current scope. Verified records retain evidence and limits; the Whist comparison is in A-003.
+<!-- feedback:empty -->
 
 Current review: [live source, documentation, Atlas/RAG and framework attributes](Code_And_Documentation_Maturity.md#current-assessment).
 
 | ID | Finding | Owner | Priority (1-100) | Quality (1-100) | Status | Closure evidence |
 |---|---|---|---:|---:|---|---|
 
-<!-- feedback:empty -->
 
 
 The register is reserved for framework governance, stability and documentation.
@@ -121,6 +120,7 @@ normalizing their presentation does not claim a fresh execution.
 
 | ID | Delivered behavior | Verification |
 |---|---|---|
+| D-014 | Numbered business reader, adjacent audit and mandatory RAG; quality 94 (94/95/94) | Source, independent oracles, negative/repair controls and native rendering; [evidence and limits](Code_And_Documentation_Maturity.md#d-014) |
 | G-023 | Unique JSON members across Atlas boundaries, quality 94 (95/95/93) | 209 Node per edition, counterexamples/repairs and identical valid receipt; [evidence](Code_And_Documentation_Maturity.md#g-023) |
 | G-024 | Ordinal path ordering, quality 93 (93/92/95) | Identical path/digest pairs under two native collations; [evidence](Code_And_Documentation_Maturity.md#g-024) |
 | T-008 | Explicit positive invocation counts, quality 95 (95/95/94) | Real TestNG probe, extended existing controls and annotation repairs; [evidence](Code_And_Documentation_Maturity.md#t-008) |

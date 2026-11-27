@@ -17,7 +17,7 @@ const normalized=bytes=>bytes.toString('utf8').replaceAll('\r\n','\n');
 const tokens=value=>[...new Set((value.toLowerCase().match(/[\p{L}\p{N}]+/gu)||[]))];
 
 export const ATLAS_MANDATORY_KNOWLEDGE_IDS=Object.freeze([
-  'KB-BEHAVIOR','KB-BREADTH','KB-CASE-WITNESS','KB-COLLAPSE','KB-COMPLETE','KB-ENGLISH','KB-EVIDENCE','KB-EXECUTION-SUBJECT',
+  'KB-BEHAVIOR','KB-BREADTH','KB-BUSINESS-READER','KB-CASE-WITNESS','KB-COLLAPSE','KB-COMPLETE','KB-ENGLISH','KB-EVIDENCE','KB-EXECUTION-SUBJECT',
   'KB-ONE-TARGET','KB-REACHABILITY','KB-READONLY','KB-SCORES','KB-SEMANTICS','KB-STYLE','KB-TARGET-ADAPTATION','KB-TRACE'
 ]);
 

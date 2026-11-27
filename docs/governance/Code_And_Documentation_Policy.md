@@ -451,3 +451,8 @@ and recognizes Maven/wrapper invocations, not a keyword in prose.
 Feedback reconciliation follows the [lifecycle owner](../feedback/README.md#recording-and-closing-feedback): an empty active register needs an explicit declaration, while closed, external and withdrawn scope retain their actual proof boundaries. A fenced example cannot declare the backlog empty.
 
 Source inventories prune excluded generated directories before inspecting descendants. The same ownership policy must retain output-like names under owned source/resource roots. Resolve the canonical root once per scan, preserve its escape boundary and qualify relative, spaced and Unicode roots. Directory observations test traversal scope without scheduler-dependent timing thresholds.
+
+The current Atlas reader follows the [audience boundary](../../atf-atlas/Report_Contract.md#reader-and-audit-responsibilities):
+numbered business explanations, cases and limits in HTML; technical construction
+inputs in the adjacent audit. [Reader controls](../../tools/atlas-reader.test.mjs)
+complement source verification without automatically certifying prose meaning.

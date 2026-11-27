@@ -1,5 +1,121 @@
 # Complete Atlas report contract
 
+## Reader and audit responsibilities
+
+New publication uses renderVersion 5. The deliverable is one offline business
+understanding HTML for one selected project. Explain purpose, value, capabilities,
+meaningful behavior, operating relationships, confidence and limits before implementation.
+The reader is useful without its construction records.
+
+`ATLAS-READER-001: Publish business understanding in one numbered offline HTML; preserve source, commands, file verification, raw JSON and execution evidence in a separate adjacent audit, never hidden in the reader.`
+
+The publisher preserves the complete technical bundle as atlas-audit.json beside
+analysis.json. delivery/ contains only atlas.html. A copied reader remains readable;
+full verification requires the original adjacent audit and canonical renderer.
+Do not remove technical evidence, reconstruct a passing result or overwrite history.
+
+| Audience | Content | Boundary |
+|---|---|---|
+| Project reader | Purpose, value, owners, behavior, negative cases, confidence and questions | No commands, source paths, digests, raw payloads or hidden machine bundle |
+| Source reviewer | Exact fragments, claim mappings, case walks and unknowns | Complete original analysis and evidence stay in the audit |
+| Maintainer | Input validation, policy retrieval, rendering controls and diagnostics | Construction details do not become project capabilities |
+
+## Numbered reading structure
+
+`ATLAS-READER-002: Use stable ordered section numbers mirrored in navigation, hierarchical child numbers, valid local anchors and adjacent diagram legends; keep concise explanations, meaningful cases and balanced tables.`
+
+The fixed root sequence is 01 purpose/value, 02 capabilities, 03 behavior/cases,
+04 operating model, 05 confidence/scope and 06 limits/questions. Child headings
+follow their parent, such as 03.01 and 03.01.01. Numbers supplement descriptive
+titles; they never replace meaning or create a decorative section quota.
+
+- Use native disclosure with the overview open and other sections initially closed.
+- Keep navigation local and all styling inline; the dedicated canonical CSS remains owned separately.
+- Use an evidence-bound horizontal reading model. Its legend explains that it is an abstraction, not an exhaustive runtime or dependency graph.
+- Use cards for meaningful cases and tables for comparison; preserve readable type, complete text and top alignment.
+- Render at 1440 and 900 CSS px in real desktop Chromium, without device emulation or an application URL.
+
+## Source-bound business projection
+
+analysis.reader declares schemaVersion 1, the same project identity, English
+prose, a valid review date and an explicit semantic reviewer/scope/limits.
+The projection is part of the original analysis, not an unaudited page edit.
+
+| Projection | Required correspondence | Failure control |
+|---|---|---|
+| Value and model | Existing reviewed claims | Unknown facts cannot become confident benefits |
+| Capabilities | Every declared source-owner unit | A capability cannot borrow another owner's claims |
+| Reader journeys | Explicit behavior-flow mapping | Unexplained missing or duplicate flows fail |
+| Cases | Every declared case in a reader journey | Positive/negative cases and missing checks remain visible |
+| Technical-only flows | Explicit construction/detail classification with rationale | Classification remains reviewable in the audit |
+| Limits | Every UNKNOWN claim | No silent omission of an unestablished fact |
+
+Plain reader fields reject implementation patterns and unknown technical fields.
+These finite guards complement review; they do not certify every sentence or infer
+business relevance automatically. The reviewer checks the actual claim-to-prose
+meaning and whether technical-only classifications are appropriate.
+
+`ATLAS-READER-004: Explain verification and assessment limits in reader language; do not infer a project quality grade from consistency, retrieval or passing checks.`
+
+## Governed authoring loop
+
+`ATLAS-READER-003: Retrieve mandatory audience and numbering policy, author the project-specific projection from actual source, preserve negative controls and repairs, verify the adjacent audit, and inspect native rendering before selecting the final reader.`
+
+```mermaid
+flowchart LR
+    Policy["Retrieved policy"] --> Review["Source and audience review"]
+    Review --> Controls["Component and audit checks"]
+    Controls --> Render["Native visual review"]
+    Render --> Reader["One business reader"]
+```
+
+<details>
+<summary>Legend: authoring and acceptance responsibilities</summary>
+
+- Arrows describe the authoring review sequence, not automatic language-model execution.
+- A failed component, provenance or layout gate preserves the original evidence and returns to its owner for repair.
+- Native geometry and source bindings are bounded signals; a reviewer still checks meaning, balance and useful explanations.
+- No new application E2E, emulator, language-model service or Java runtime feature is introduced.
+
+</details>
+
+The current source/evidence, understanding and directed-case validators still
+apply to the entire audit. Renderer 5 adds an audience boundary; it does not reduce
+proof coverage. A failed run stays failed, a missing oracle stays missing and
+source-only observations never become executed through presentation.
+
+<details>
+<summary>Technical authoring fields and audit layout</summary>
+
+The executable schema is in the [reader validator](../tools/atlas-reader.mjs); the [component fixture](../tools/atlas-reader.test.mjs) shows a generic project. Keep technical fields in the analysis, not in reader prose.
+
+| Field | Responsibility |
+|---|---|
+| schemaVersion / projectId / language | Version 1, the same target and English authored text |
+| title / summary / reviewDate | Readable identity, concise explanation and a valid calendar date |
+| review | Reviewer, scope, limits and reviewed claimIds |
+| value | Title, explanation and claimIds for each benefit |
+| capabilities | unitId, title, benefit and claims from the correct owner |
+| journeys / cases | flowId and every declared caseId, with situation, expectation and limits |
+| auditOnlyFlows | flowId, construction/detail reason and explicit rationale |
+| model | Title, ordered stages/links, reviewed claims and legend |
+| limits | Title, explanation and claimIds, including every unknown and retained failure |
+
+analysis.json, source-index.json, original documents and evidence remain beside atlas-audit.json. delivery/atlas.html is the only delivered reader file. Audit execution needs the complete dossier; offline reading does not.
+
+</details>
+
+## Historical contract and retained provenance
+
+The contract below describes renderers 1–4 and preserves the exact archival
+retrieval excerpts. Its complete-input-in-HTML audience rule is superseded for
+new publication by the reader/audit split above. Historical HTML is immutable;
+validation uses the policy and stylesheet captured for that historical reader.
+
+<details>
+<summary>Historical renderers 1–4: technical reader and embedded audit</summary>
+
+
 Canonical retrieval excerpts appear as inline technical literals. Keep their
 exact English text in every documentation edition; translate the surrounding
 explanations while preserving the cited requirement and its proof limits.
@@ -458,3 +574,5 @@ guards. They are maintenance tests, not new product/E2E scenarios. No emulator
 is used. Receipt authenticity proves policy provenance; mandatory fallback for
 an unrelated query is honest policy context and does not become semantic
 project retrieval. Source review supplies the project explanation.
+
+</details>

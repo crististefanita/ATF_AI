@@ -115,7 +115,7 @@ Do not derive quality from file counts, assertion keywords or a copied report.
 
 ## Declared breadth record
 
-The reader bundle uses renderVersion 4 for a new public capture. Add
+The reader bundle uses renderVersion 5 for a new public capture. Add
 analysis.understanding with schemaVersion 1, scope PROJECT or SELECTED,
 scopeStatement, inventoryClaimIds and units. PROJECT aligns declared review-unit
 and architecture inventories. SELECTED explains omitted owners. Neither scope
@@ -263,3 +263,13 @@ mandatory records or a corpus hash does not authenticate an edited receipt.
 Keep stable usage at its source owner. Keep changing findings in feedback and
 generated analysis/evidence in the selected artifact root. Declare confidence and
 remaining uncertainty without inventing an overall score or an E2E expansion.
+
+## Business reader review
+
+- What value does the project provide, and which reviewed behavior supports it?
+- Which owner units and positive/negative cases are represented in analysis.reader?
+- Which construction controls remain audit-only, and why?
+- Are unknowns, missing checks and contrary evidence visible as boundaries?
+- Do section numbers 01–06 and child titles match navigation and anchors?
+- Are horizontal diagrams, adjacent legends and tables readable at 1440/900 CSS px?
+- Are complete technical inputs retained in atlas-audit.json without hidden HTML inclusion?

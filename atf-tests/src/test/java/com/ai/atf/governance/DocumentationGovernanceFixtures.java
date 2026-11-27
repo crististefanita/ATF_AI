@@ -20,7 +20,7 @@ final class DocumentationGovernanceFixtures {
         fixture.write("tools/collect-artifacts.test.mjs", "// Tooling regression fixture.\n");
         fixture.write("tools/verify-atlas.mjs", "// Atlas verification fixture.\n");
         fixture.write("tools/verify-atlas.test.mjs", "// Atlas verifier regression fixture.\n");
-        for (String tool : List.of("atlas-report.mjs", "atlas-report.test.mjs", "atlas-knowledge.mjs",
+        for (String tool : List.of("atlas-reader.mjs", "atlas-reader.test.mjs", "atlas-report.mjs", "atlas-report.test.mjs", "atlas-knowledge.mjs",
                 "atlas-knowledge.test.mjs", "atlas-diagnostics.mjs", "atlas-bundle.mjs", "atlas-bundle.test.mjs",
                 "atlas-execution.mjs", "atlas-execution.test.mjs", "atlas-understanding.mjs", "atlas-understanding.test.mjs",
                 "atlas-behavior.mjs", "atlas-behavior.test.mjs")) {

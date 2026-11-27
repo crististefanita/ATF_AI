@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
+import {inspectBusinessReaderHtml} from './atlas-reader.mjs';
 
 export const artifactKinds = Object.freeze(['test-results', 'extent', 'allure', 'aggregate', 'browser', 'build', 'execution', 'unclassified']);
 const compiledDirectories = new Set(['classes', 'test-classes', 'generated-sources', 'generated-test-sources', 'surefire', 'dependency', '.tmp']);
@@ -182,6 +183,16 @@ export function validateArtifactPublication({artifactRoot}) {
   };
   walk('atlas/current'); walk('reports/current');
   for (const [key, entry] of expected) if (!observed.has(key)) fail(entry.path, 'A declared current reader, document or proof file is missing.');
+  for (const entry of manifest.atlases) {
+    const html=fs.readFileSync(local(entry.path),'utf8'),current=html.includes('data-atlas-reader="5"');
+    if (current || Object.hasOwn(entry,'readerVersion')) {
+      if (!current || entry.readerVersion!==5 || entry.audience!=='BUSINESS_PROJECT_UNDERSTANDING') {
+        fail(entry.path,'Declare renderer 5 and its business audience together; historical readers are not automatically certified under the current reader contract.');
+      }
+      try { inspectBusinessReaderHtml(html,{projectId:entry.projectId}); }
+      catch (error) { fail(entry.path,error.message+' The original adjacent audit and native render acceptance remain required before selection.'); }
+    }
+  }
   return {status:'COMPLETE', role:'CURRENT_PUBLICATION', atlases:manifest.atlases.length, reports:manifest.reports.length, files:observed.size};
 }
 

@@ -62,24 +62,22 @@ The archived English Atlas contract at `main_mcp:docs/prompts/html_EN/atlas/busi
 
 ## Complete understanding report
 
-Each invocation, including knowledge-assisted authoring, delivers exactly one complete understanding HTML for exactly one selected project, in any language or build system.
+New publication uses renderer 5: one offline business understanding HTML for the
+selected project. Purpose, value, capabilities, behavior and boundaries are
+explained before implementation detail.
 
-- The reader artifact is `delivery/atlas.html` under a new analysis run.
-- It includes context, supported existing behavior and oracle or disclosed oracle gap, claims, source fragments, architecture, governance audit, retrieved requirements, proof limits and full declared inputs.
-- Markdown, machine manifests, logs and prior HTML stay outside that reader folder.
-- An extra HTML below delivery/ or a report that combines separate target identities fails the delivery contract.
+- Sections 01–06 have stable numbers mirrored in navigation; child titles follow the 03.01 and 03.01.01 hierarchy.
+- The business projection binds existing claims, owners and positive/negative cases; unknowns stay visible.
+- Commands, source paths, digests, raw JSON and execution evidence stay in atlas-audit.json beside the analysis and outside delivery/.
+- The HTML contains no hidden technical bundle. It can be read alone; full verification requires its original adjacent audit.
+- Canonical styling is embedded, diagrams have legends and tables preserve complete readable text.
 
-The canonical stylesheet is maintained separately and embedded into the report with inline SVG and internal navigation.
+The [reader contract](Report_Contract.md#reader-and-audit-responsibilities) defines
+audience separation and the retrieval–authoring–audit–render loop. Component
+controls reject technical prose leakage, missing cases and numbering drift.
+A reviewer still checks meaning.
 
-- Copying the HTML alone must preserve the full document offline.
-- Missing tests, Git metadata or dependency edges remain explicit, with source scope and limits.
-- Retrieval supplies cited policy to a source-grounded reviewer; it does not establish execution or semantic completeness.
-
-Version 4 also governs reading structure and measured table balance.
-
-- Explanations receive space, dense comparisons scroll locally, long case witnesses become full vertical records and every declared graph has an adjacent legend.
-- The [presentation contract](Report_Contract.md#reader-presentation-and-render-review) separates component checks, native desktop measurements and human visual review.
-- Historical readers and their captured proof remain immutable.
+Historical readers 1–4 and their evidence remain immutable under their captured contract.
 
 ## Review breadth and quality axes
 
@@ -115,7 +113,7 @@ Optional 1–100 assessments declare the reviewer, scope, rationale, limitations
 
 ## Behavior cases and negative scope
 
-New renderVersion 4 captures explain existing positive and negative cases with preconditions, triggers, expected observations and exact oracle source fragments.
+New renderVersion 5 captures explain existing positive and negative cases with preconditions, triggers, expected observations and exact oracle source fragments.
 
 - Each flow declares an entry, stable edge IDs, contiguous case walks and negative review scope.
 - Every outcome has a case witness; all behavior nodes are reachable from entry and can reach an outcome.
