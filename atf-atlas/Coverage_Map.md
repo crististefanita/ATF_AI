@@ -61,3 +61,27 @@ Aceste observații din surse rafinează harta existentă; nu adaugă un flux de 
 [Profilul semantic](Report_Contract.md#semantic-review-and-compact-identity)
 cere observații cu domeniu precis și criterii independente existente. O fațetă
 REVIEWED încheie domeniul declarat; întrebările rămase continuă să se aplice.
+
+Revizia următoare păstrează cele zece limite PARTIAL în [dosarul de aprofundare](Report_Contract.md#partial-facet-refinement). Verificările de configurare disting comenzile SDK de aspectul real al ferestrei; agregarea distinge totalurile calculate de valorile manuale. Necunoscutele despre pixeli, rețea și curățarea datelor rămân vizibile.
+
+<a id="successive-facet-review"></a>
+## Revizia succesivă a fațetelor
+
+Rezultatul păstrează cele zece limite inițiale: 38 REVIEWED / 4 PARTIAL.
+Revizia completă privește domeniul declarat, nu orice comportament posibil.
+
+| Dimensiune aprofundată | Observație și limită |
+|---|---|
+| Configurație Playwright | Opt combinații inspectează profilul, viewportul și închiderea; aspectul fizic nu este certificat |
+| Configurație Selenium | Patru combinații inspectează opțiunile și comenzile ferestrei; cache-urile și sistemele complete rămân separate |
+| Date de raportare | Totalurile derivate urmează rezultatele; câmpurile manuale nenegative pot fi neconservante |
+| Configurație de raportare | Compatibilitatea și cache-ul au politici explicite; nu se deduce acceptanța oricărei destinații |
+| Selecția testelor | Catalogul local este separat de selecțiile opționale; acreditările și aplicația rămân externe |
+| Configurație Atlas | Politica obligatorie și intrările explicite sunt verificate; regăsirea semantică completă nu este revendicată |
+
+| Dimensiune păstrată PARTIAL | Motiv și următorul prag de dovadă |
+|---|---|
+| Date Playwright | Asocierea răspunsului și capturarea imaginii sunt urmărite în sursă; combinațiile complete și conținutul pixelilor rămân necalificate |
+| Date Selenium | Asocierile rețelei și citirea corpului sunt urmărite; evenimentele întârziate și pixelii cer dovezi independente suplimentare |
+| Comportamentul aplicației | Componentele locale explică validările; nu stabilesc persistența completă în aplicație |
+| Datele aplicației | Resursele plate și valorile aleatorii sunt explicate; unicitatea globală și ștergerea datelor nu sunt garantate |

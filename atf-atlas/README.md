@@ -204,3 +204,5 @@ Cititorul explică scopul business, arhitectura și comportamentele proiectului.
 [Contractul](Report_Contract.md) definește schema și limitele; [componenta de calibrare](../tools/atlas-calibration.mjs) explică eșecurile și calea de reparație. Notele pe axe rămân evaluări motivate, nu rate de teste.
 
 Revizia semantică folosește observații distincte, surse responsabile și criterii independente pentru fiecare fațetă, cu limite vizibile. Identitatea Atlasului rămâne compactă; data aparține încrederii. Vezi [contractul semantic](Report_Contract.md#semantic-review-and-compact-identity).
+
+Pentru o revizie succesivă, păstrează [reperul și deciziile fiecărei fațete](Report_Contract.md#partial-facet-refinement), apoi aplică [regulile grafice adaptate arhivei](Report_Contract.md#source-graph-quality-and-archive-adaptation). Numărul de fațete promovate nu înlocuiește dovezile sau revizia sensului.

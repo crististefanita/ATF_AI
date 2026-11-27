@@ -45,7 +45,7 @@ public class SeleniumProviderTest {
     }
 
     @Test
-    public void successfulAcquisitionUsesAndClosesTheOwnedDriver() {
+    public void successfulAcquisitionUsesAndClosesTheOwnedDriver() throws Exception {
         AtomicInteger quitCalls = new AtomicInteger();
         WebDriver driver = driver("none", null, null, quitCalls);
         try (AtfRuntimeConfigSandbox ignored = options()) {
@@ -54,6 +54,43 @@ public class SeleniumProviderTest {
             Assert.assertSame(session.driver(), driver);
             session.close();
             Assert.assertEquals(quitCalls.get(), 1);
+        }
+        for (boolean headless : new boolean[]{true, false}) {
+            for (boolean fullscreen : new boolean[]{true, false}) {
+                try (AtfRuntimeConfigSandbox settings = options()
+                        .setConfigAndSystemProperty(UiRuntimeOptions.UI_HEADLESS_KEY, Boolean.toString(headless))) {
+                    java.util.List<String> windowCalls = new java.util.ArrayList<>();
+                    WebDriver.Window window = port(WebDriver.Window.class, (proxy, method, args) -> {
+                        windowCalls.add(method.getName());
+                        if ("setSize".equals(method.getName())) Assert.assertEquals(args[0], new org.openqa.selenium.Dimension(800, 600));
+                        return null;
+                    });
+                    WebDriver.Timeouts timeouts = port(WebDriver.Timeouts.class, (proxy, method, args) -> {
+                        Assert.assertEquals(args[0], java.time.Duration.ZERO, "Session startup must not introduce an implicit wait");
+                        return proxy;
+                    });
+                    WebDriver.Options options = port(WebDriver.Options.class, (proxy, method, args) ->
+                            "timeouts".equals(method.getName()) ? timeouts : window);
+                    WebDriver configured = port(WebDriver.class, (proxy, method, args) -> {
+                        if ("manage".equals(method.getName())) return options;
+                        if ("getWindowHandles".equals(method.getName())) return Set.of("owned-window");
+                        return null;
+                    });
+                    UiRuntimeOptions runtime = UiRuntimeOptions.load();
+                    SeleniumBrowserSession session = new SeleniumBrowserSession(fullscreen
+                            ? UIWindowConfiguration.fullscreen(800, 600, 100)
+                            : UIWindowConfiguration.customSize(800, 600, 100), runtime, () -> configured);
+                    Assert.assertEquals(windowCalls, java.util.List.of(fullscreen && !headless ? "maximize" : "setSize"));
+                    java.lang.reflect.Method method = SeleniumChromeDriverFactory.class.getDeclaredMethod("chromeOptions");
+                    method.setAccessible(true);
+                    org.openqa.selenium.chrome.ChromeOptions chrome = (org.openqa.selenium.chrome.ChromeOptions)
+                            method.invoke(new SeleniumChromeDriverFactory(runtime));
+                    java.util.Map<?, ?> arguments = (java.util.Map<?, ?>) chrome.getCapability("goog:chromeOptions");
+                    Assert.assertEquals(((java.util.List<?>) arguments.get("args")).contains("--headless=new"), headless);
+                    Assert.assertNotNull(chrome.getCapability("goog:loggingPrefs"), "Network observation remains configured explicitly");
+                    session.close();
+                }
+            }
         }
     }
 

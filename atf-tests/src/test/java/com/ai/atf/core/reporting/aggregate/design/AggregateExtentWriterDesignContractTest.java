@@ -127,6 +127,28 @@ public class AggregateExtentWriterDesignContractTest {
         Assert.assertThrows(IllegalArgumentException.class,
                 () -> new com.ai.core.reporting.listener.internal.runtime.audit.model.RuntimeAuditWriteRecord(
                         RUNTIME_AUDIT_REPORT_FIXTURE, Instant.now(), "abc", " "));
+        java.util.List<AggregateExtentReportWriter.CaseRecord> cases = new java.util.ArrayList<>();
+        for (com.ai.core.reporting.aggregate.AggregateStatus status : java.util.List.of(
+                com.ai.core.reporting.aggregate.AggregateStatus.PASSED,
+                com.ai.core.reporting.aggregate.AggregateStatus.FAILED,
+                com.ai.core.reporting.aggregate.AggregateStatus.FAILED,
+                com.ai.core.reporting.aggregate.AggregateStatus.SKIPPED)) {
+            cases.add((AggregateExtentReportWriter.CaseRecord) java.lang.reflect.Proxy.newProxyInstance(
+                    getClass().getClassLoader(), new Class<?>[]{AggregateExtentReportWriter.CaseRecord.class},
+                    (proxy, method, arguments) -> {
+                        if ("status".equals(method.getName())) return status;
+                        throw new AssertionError("Summary derivation unexpectedly requested " + method.getName());
+                    }));
+        }
+        AggregateSummary derived = AggregateSummary.from(cases);
+        Assert.assertEquals(derived.total(), 4);
+        Assert.assertEquals(derived.passed(), 1L);
+        Assert.assertEquals(derived.failed(), 2L);
+        Assert.assertEquals(derived.skipped(), 1L);
+        AggregateSummary manual = new AggregateSummary(1, 2, 3, 4);
+        Assert.assertEquals(manual.total(), 1, "The public constructor validates nonnegative fields, not conservation");
+        Assert.assertEquals(manual.passed() + manual.failed() + manual.skipped(), 9L,
+                "Do not document constructor conservation as an established runtime guarantee");
     }
 
     @Test

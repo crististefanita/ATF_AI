@@ -1005,6 +1005,47 @@ Calitate livrată 95 (corectitudine 96 / verificare 95 / claritate 95).
 - Capturile native la 1440 și 900 px confirmă un antet de 58 px, pornind la 16 px de sus, cu font de 20 px. Controlul a identificat spațiul inițial de 44 px; corecția elimină paddingul moștenit, păstrând pragul de 24 px.
 - Indicațiile de remediere și contraexemplele refuză identitatea supradimensionată, geometria imposibilă, textul tăiat și etichetele de limbă redundante. Alte titluri trebuie verificate la propriile lățimi.
 
+<a id="d-018"></a>
+<a id="d-018-partial-facet-refinement"></a>
+## D-018: Aprofundarea fațetelor parțiale
+
+Stare: VERIFIED în domeniul declarat al reviziei. Responsabil: guvernanța Atlas.
+Prioritate 87 (impact 90 / expunere 85 / urgență 80).
+Calitate inițială 91 (corectitudine 90 / verificare 90 / claritate 93).
+
+- Cele zece fațete parțiale au întrebări concrete despre date, configurație și comportament. Nicio promovare nu poate rezulta doar din restrângerea domeniului.
+- Revizuiește implementările live, criteriile independente și alegerile de configurare; păstrează limitele inițiale și verdictul real al fiecărei verificări.
+- Acceptanța cere un reper anterior verificabil, decizie pentru fiecare fațetă și controale negative cu indicații de remediere. Fără scenarii E2E noi, emulatoare sau Java runtime nou.
+
+Calitate livrată 93 (corectitudine 93 / verificare 93 / claritate 94).
+
+- Toate cele zece fațete inițial PARTIAL au întrebări, observații și fragmente suplimentare. Șase au acum revizie delimitată REVIEWED; patru rămân PARTIAL. Total: 38 REVIEWED / 4 PARTIAL, fără extinderea domeniului la întregul proiect.
+- Testele existente verifică opt combinații Playwright și patru combinații Selenium prin comenzile SDK, comportamentul configurației de compatibilitate, cache-ul observatorului și diferența dintre totalurile derivate și manuale. Aceste verificări nu pornesc o aplicație sau un browser de produs.
+- Datele celor două integrări browser și comportamentul/datele aplicației rămân parțiale. Criteriile citite numai din sursă nu sunt prezentate ca execuție, iar lipsa ștergerii datelor rămâne declarată.
+- Guvernanța compară dosarul inițial, cere fiecare decizie, păstrează domeniul și limitele inițiale și refuză reciclarea sau redenumirea fragmentelor ca progres.
+- Rularea focalizată păstrează eșecul real de ordine EN/RO a două secțiuni noi. Secțiunile și ancora istorică sunt aliniate; cele două verificări responsabile trec separat. Calificarea finală și publicarea au dovezi proprii.
+
+Dovezi: `${ATF_WORK_ROOT}/reviews/facet-closure-20261127`.
+
+<a id="d-019"></a>
+<a id="d-019-source-calibrated-diagram-quality"></a>
+## D-019: Calitatea diagramelor calibrată după surse
+
+Stare: VERIFIED în domeniul declarat al reviziei. Responsabil: prezentarea Atlas.
+Prioritate 86 (impact 88 / expunere 85 / urgență 82).
+Calitate inițială 83 (corectitudine 85 / verificare 78 / claritate 85).
+
+- Cerințele arhivate cer primitive comune, relații etichetate, ierarhie vizuală, legende locale și limite clare. Graful actual înlocuiește etichetele lungi cu „observe”, pierzând sensul ramurilor.
+- Recuperează principiile din main_mcp, adaptate proiectului analizat și cerințelor actuale EN, fără detalii tehnice în HTML.
+- Acceptanța cere controale de componentă pentru relații și rutare, comparație nativă între graf și surse, legende concise și lipsa suprapunerilor/tăierii textului.
+
+Calitate livrată 95 (corectitudine 96 / verificare 94 / claritate 95).
+
+- Sunt recuperate cerințele pentru primitive comune, scară coerentă, relații specifice, ierarhie și legende locale colapsate. Adaptarea păstrează publicul EN și dovezile tehnice în afara HTML-ului.
+- Etichetele integrale sunt păstrate; hărțile comportamentale au condiții specifice, iar dependențele își păstrează sensul. Traseele lungi și ciclice folosesc culoare separate; nu se inventează o succesiune liniară.
+- Capturile native ale prototipului la 1440/900 trec comparația celor 15 grafuri cu sursa și verificările pentru suprapuneri, tăieri, săgeți și contururi. Diagnosticele numesc graful și relația/nodul observat.
+- Conturul întrerupt indică o limită sau un refuz, nu eșecul unui test. Randarea finală și contraexemplul controlat trebuie să rămână legate de octeții efectiv publicați.
+
 <a id="current-assessment"></a>
 <a id="current-atf-ai-assessment"></a>
 ## Evaluarea curentă ATF AI
@@ -1024,7 +1065,7 @@ folosește 1-100. Aplică formula reproductibilă a registrului:
 |---|---|---:|
 | Cod și arhitectură | 94 / 93 / 92 | 93 |
 | Documentație și ediții | 94 / 93 / 94 | 94 |
-| Atlas și RAG | 95 / 95 / 93 | 94 |
+| Atlas și RAG | 95 / 95 / 94 | 95 |
 | Ciclul de viață al feedback-ului | 95 / 93 / 94 | 94 |
 | Guvernanța codului și testelor | 95 / 95 / 94 | 95 |
 | Stabilitatea testelor existente | 95 / 95 / 94 | 95 |
@@ -1051,8 +1092,8 @@ folosește 1-100. Aplică formula reproductibilă a registrului:
 
 </details>
 
-Revizuirea regăsirii validează 21 înregistrări de cunoștințe, 18 politici obligatorii
-și trei obiecte arhivate fixate. Domeniul declarat este context lexical determinist
+Revizuirea regăsirii validează 22 înregistrări de cunoștințe, 20 politici obligatorii
+și cinci obiecte arhivate fixate. Domeniul declarat este context lexical determinist
 de politici; regăsirea semantică rămâne NOT_CLAIMED. Aceste verificări nu implică o
 generare Atlas nouă sau acceptanța aplicației. Dimensiunea sursei și numărul testelor
 identifică domeniul; intrările declarate ale revizuirii determină aceste note.

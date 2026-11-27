@@ -75,6 +75,8 @@ Componentele păstrate ale evaluărilor inițiale:
 
 | ID | Impact / risc / urgență | Corectitudine / verificare / claritate | Limitele dovezilor |
 |---|---|---|---|
+| D-018 | 90 / 85 / 80 | 90 / 90 / 93 | Zece fațete parțiale necesită reper păstrat și dovezi suplimentare |
+| D-019 | 88 / 85 / 82 | 85 / 78 / 85 | Relații înlocuite generic și geometrie grafică neverificată |
 | D-011 | 90 / 85 / 85 | 65 / 45 / 60 | Lățimi HTML generice, blocuri sursă literale și absența verificării lizibilității măsurate |
 | G-017 | 90 / 80 / 75 | 80 / 65 / 80 | Teste selectate dezactivate în surse și un fir de consolă nelimitat |
 | D-010 | 90 / 85 / 85 | 65 / 60 / 80 | Documentația din afara README-urilor rămâne engleză în ediția declarată română |
@@ -155,6 +157,8 @@ normalizarea prezentării nu reprezintă o nouă execuție.
 | M-001 | Cinci module, furnizori independenți, suport de produs exclusiv în teste și contracte impuse de arhitectură/documentație | 372 verificări finale ale reactorului, 102 cazuri de browser, 11 Allure și artefacte agregate inspectate; [dovezi](Module_Architecture.md) |
 | G-001 | Ghiduri obligatorii pentru responsabili/feedback, fapte despre construcție, pereche HTML/Markdown și excluderea fișierelor de agenți | 24 cazuri de documentație dintre 74 de guvernanță au trecut; [dovezi](Governance_Review.md#g-001) |
 | T-001 | Regresiile folosesc așteptări limitate, rezultate observate, curățare și selecții impuse | 393 cazuri reactor și 4 de izolare a configurației; [dovezi](Governance_Review.md#t-001) |
+| D-018 | Zece fațete investigate cu reper și limite păstrate | 38 REVIEWED / 4 PARTIAL; [dovezi și limite](Code_And_Documentation_Maturity.md#d-018) |
+| D-019 | Diagrame calibrate după arhivă și codul live | 15 grafuri, relații integrale și verificare nativă; [dovezi](Code_And_Documentation_Maturity.md#d-019) |
 | D-016 | Explicații semantice delimitate și criterii independente | 32 fațete REVIEWED / 10 PARTIAL, 12 comportamente existente; [dovezi și limite](Code_And_Documentation_Maturity.md#d-016) |
 | D-017 | Identitate Atlas compactă, lizibilă | Randare nativă la 1440/900, antet 58 px și poziție 16 px; [verificare](Code_And_Documentation_Maturity.md#d-017) |
 | P-001 | Atlas de documentație separat și politici recuperate, cu arhitectura vie esențială în ambele formate | Sursa/legăturile/hash-ul și redarea desktop/la lățime mică au fost verificate; fără modificări de producție/POM/Java nou; [dovezi](Governance_Review.md#p-001) |

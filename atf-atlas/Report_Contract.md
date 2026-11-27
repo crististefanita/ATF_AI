@@ -111,7 +111,6 @@ analysis.json, source-index.json, documentele originale și dovezile rămân lâ
 
 </details>
 
-<a id="historical-contract-and-retained-provenance"></a>
 <a id="artifact-audit-and-calibration"></a>
 ## Auditul și calibrarea artefactului
 
@@ -204,6 +203,61 @@ apare la încredere. Limitele sunt verificate în randare la 1440 și 900 CSS px
 
 </details>
 
+<a id="partial-facet-refinement"></a>
+## Aprofundarea fațetelor parțiale
+
+`ATLAS-REFINEMENT-001: Compare every original partial facet with the preserved baseline audit, retain its original scope and limits, record the investigated question and decision, and require additional owned implementation and independent oracle fragments before promotion; scope deletion or recycled receipts cannot count as progress.`
+
+Profilul păstrează dosarul anterior ca document verificat separat. Revizia
+compară toate cele șapte dimensiuni ale fiecărei unități, apoi cere o decizie
+pentru fiecare fațetă anterior PARTIAL. Nu ascunde întrebările dificile prin
+eliminarea unor rânduri sau schimbarea limitelor inițiale.
+
+| Intrare | Decizie cerută | Limită păstrată |
+|---|---|---|
+| Domeniul anterior | Întrebare concretă și observație nouă | Domeniul inițial rămâne inclus |
+| Fragmente suplimentare | Implementare responsabilă; criteriu independent pentru promovare | O dovadă veche repetată nu înseamnă progres |
+| Configurație | Valoare, momentul aplicării și alegerile observate | Comanda SDK nu certifică pixelii sau toate sistemele |
+| Date | Origine, transformare, rezultat și refuz | Separă totalurile derivate de câmpurile furnizate manual |
+| Verdict | REVIEWED delimitat sau PARTIAL explicat | Nicio acceptanță externă dedusă |
+
+Înțelegerea unei limite nu repară automat implementarea. Păstrează lipsa
+curățării datelor aplicației și necunoscutele vizuale ori de mediu acolo unde
+nu există dovezi independente suficiente.
+
+<a id="source-graph-quality-and-archive-adaptation"></a>
+## Calitatea diagramelor și adaptarea arhivei
+
+`ATLAS-DIAGRAM-001: Recover the archived shared visual grammar through source-specific readable nodes, complete relationship labels and arrowheads, horizontal dependency direction, compact supporting graphs, closed local bullet legends and honest boundary cues; compare the actual native graph with source endpoints and reject overlaps, clipping, missing cues and generic label substitution.`
+
+Arhiva oferă principii, iar proiectul analizat stabilește sensul. Profilul
+SOURCE_GRAPH_V1 păstrează fiecare relație și eticheta integrală. Explicațiile
+lungi merg în legendă; textul nu este micșorat sau înlocuit cu „observe”.
+
+| Principiu din main_mcp | Aplicare curentă | Adaptare necesară |
+|---|---|---|
+| Primitive și CSS comune | Aceeași scară pentru casete, text și săgeți | Un singur HTML cu stil încorporat |
+| Actor, intenție, obiect, rezultat | Noduri și condiții specifice sursei | Pentru un framework, valoarea sa proprie este subiectul |
+| Ierarhie și frontieră vizibile | Operație evidențiată; limită diferențiată prin contur | Un refuz observat nu devine automat o frontieră viitoare |
+| Legende locale structurate | Liste concise, colapsate, imediat sub graf | Fără repetarea poveștii în casete |
+| Traseu către dovezi | Referințe exacte în auditul adiacent | Comenzile și sursele brute rămân în afara HTML-ului |
+
+Diagramele de dependențe arată consumatorul către furnizor; poziția nu promite
+ordine de execuție. Ciclurile și relațiile lungi primesc trasee separate. Harta
+de lectură rămâne distinctă de arhitectură și de comportamentele cu ramuri.
+
+<details>
+<summary>Verificări de componentă și randare</summary>
+
+- [Componenta grafică](../tools/atlas-reader-graphs.mjs) păstrează identitățile, sensul și etichetele, inclusiv ciclurile.
+- [Controalele](../tools/atlas-reader-graphs.test.mjs) refuză nodurile șablon și etichetele generice; textul lung este păstrat sau refuzat explicit.
+- [Calibrarea nativă](../tools/atlas-calibration.mjs) compară textul efectiv și capetele relațiilor, verifică săgețile, contururile și suprapunerile.
+- Capturile la 1440 și 900 px păstrează semnătura HTML-ului, a auditului și a sursei. O captură veche sau metadate verzi nu certifică aspectul curent.
+- Cerințele istorice pentru eticheta de limbă, detalii tehnice interne și comenzi interactive nu înlocuiesc cerințele curente ale cititorului.
+
+</details>
+
+<a id="historical-contract-and-retained-provenance"></a>
 ## Contract istoric și proveniență păstrată
 
 Contractul de mai jos descrie rendererele 1–4 și păstrează extrasele arhivate exacte.

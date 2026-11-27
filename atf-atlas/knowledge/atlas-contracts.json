@@ -285,8 +285,8 @@
         "svg",
         "readability"
       ],
-      "mandatory": false,
-      "requirement": "Use visible minimal SVG shapes, understandable relationship labels and arrowheads. Inspect real desktop rendering for overlap, clipped labels and ambiguous direction; valid markup alone is insufficient.",
+      "mandatory": true,
+      "requirement": "Use visible minimal SVG shapes, understandable relationship labels and arrowheads. Inspect real desktop rendering for overlap, clipped labels and ambiguous direction; valid markup alone is insufficient. Require SOURCE_GRAPH_V1 for the current reader: preserve full source/domain relationship labels and arrow direction, distinguish actual refusal boundaries from future frontiers, use calm shared primitives, consistent scale, compact horizontal layouts and closed local bullet legends. Audit actual native labels, endpoints, outlines, arrowheads, overlap and clipping; never replace a long relationship with a generic observe label. Adapt archive guidance to the current English audience and keep raw technical proof outside the HTML.",
       "sources": [
         {
           "kind": "ARCHIVE",
@@ -301,6 +301,25 @@
           "path": "src/main/resources/skills/atlas/contracts/graph-reporting.yml",
           "sha256": "ad3d419f2cffe010d53d63ddc07c4c947bd1a1888c8ff5fa55b76b3e3700bf6b",
           "quote": "supportingGraphEdgesRequireRelationshipLabels: true"
+        },
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "ATLAS-DIAGRAM-001: Recover the archived shared visual grammar through source-specific readable nodes, complete relationship labels and arrowheads, horizontal dependency direction, compact supporting graphs, closed local bullet legends and honest boundary cues; compare the actual native graph with source endpoints and reject overlaps, clipping, missing cues and generic label substitution."
+        },
+        {
+          "kind": "ARCHIVE",
+          "revision": "70a7279c2a9560d39e6bd2554cd2f96a88626692",
+          "path": "src/main/java/com/ai/skills/atlas/contract/catalog/AtlasGraphRuleCatalog.java",
+          "sha256": "bfba3d2e4b1b9019617668810598a58a0ef72e39b5af3b770124348c5587001c",
+          "quote": "Graphs should reuse the proven html-ex visual primitives."
+        },
+        {
+          "kind": "ARCHIVE",
+          "revision": "70a7279c2a9560d39e6bd2554cd2f96a88626692",
+          "path": "docs/prompts/html_EN/shared/graph-style-primitives.html",
+          "sha256": "f9f44d324af4106f4b717b41782d7ab09d60eef0ed0ca418718be4beb40be1d7",
+          "quote": "Business nodes must represent actors, decisions, owned objects, and observable outcomes."
         }
       ]
     },
@@ -506,6 +525,28 @@
           "kind": "CURRENT_CONTRACT",
           "path": "atf-atlas/Report_Contract.md",
           "quote": "ATLAS-IDENTITY-001: Use one compact Atlas and project-title line without a redundant language badge; retain review date with confidence, preserve readable text and measure the actual rendered header at both desktop widths."
+        }
+      ]
+    },
+    {
+      "id": "KB-FACET-REFINEMENT",
+      "title": "Preserved semantic baseline and evidence of actual progress",
+      "topics": [
+        "refinement",
+        "baseline",
+        "partial",
+        "promotion",
+        "scope",
+        "configuration",
+        "data"
+      ],
+      "mandatory": true,
+      "requirement": "For refinement preserve the original adjacent audit as semantic-baseline.json with its exact digest and revision. Compare all original facet states. Investigate every previously partial facet once, retain its original scope and limits in the new dossier, and require additional owned implementation plus independent oracle fragments before promotion. Never count scope deletion, changed wording or recycled old receipts as progress. Distinguish component SDK configuration from actual pixels or an operating-system matrix; keep application cleanup and unsupported data guarantees visible.",
+      "sources": [
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "ATLAS-REFINEMENT-001: Compare every original partial facet with the preserved baseline audit, retain its original scope and limits, record the investigated question and decision, and require additional owned implementation and independent oracle fragments before promotion; scope deletion or recycled receipts cannot count as progress."
         }
       ]
     }

@@ -6,6 +6,7 @@ import {fileURLToPath} from 'node:url';
 import {atlasFailure,parseAtlasJson} from './atlas-diagnostics.mjs';
 import {validateFlowExecutionBindings} from './atlas-execution.mjs';
 import {validateAtlasBehavior} from './atlas-behavior.mjs';
+import {validateSemanticBaseline,validateSemanticFacets} from './atlas-semantics.mjs';
 
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');
 const fail = message => {throw atlasFailure(message);};
@@ -107,6 +108,11 @@ export function verifyAtlas({sourceRoot, analysisRoot, artifactRoot}) {
     documents.set(entry.path, bytes.toString('utf8'));
   }
   for (const required of ['project-map.md', 'open-questions.md']) if (!documents.has(required)) fail('Required Atlas document missing: ' + required);
+  if(manifest.understanding?.refinement){
+    validateSemanticFacets(manifest);
+    const name=manifest.understanding.refinement.baselineDocument;
+    validateSemanticBaseline(manifest,parseAtlasJson(documents.get(name),'ATLAS-SEMANTICS','original semantic baseline'));
+  }
   const reference = ref => {
     if (!ref || !sources.has(ref.path)) fail('Reference is outside the captured source index');
     const lines = sources.get(ref.path).split('\n');

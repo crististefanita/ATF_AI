@@ -1,5 +1,6 @@
 import {createHash} from 'node:crypto';
 import {validateSemanticFacets} from './atlas-semantics.mjs';
+import {readerDiagramProjection,validateReaderDiagramProfile} from './atlas-reader-graphs.mjs';
 import {businessSections} from './atlas-reader.mjs';
 import {reviewAtlasLayout} from './atlas-presentation.mjs';
 import {requireAtlas} from './atlas-diagnostics.mjs';
@@ -12,8 +13,23 @@ const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 /** Run in real document QA only. Nothing from this probe is embedded in the business reader. */
 export function atlasCalibrationProbe(){
   const visible=node=>{const box=node.getBoundingClientRect();return box.width>0&&box.height>0&&getComputedStyle(node).visibility!=='hidden';};
+  const overlaps=(a,b)=>Math.min(a.right,b.right)-Math.max(a.left,b.left)>2&&Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)>2;
+  const label=node=>[...node.querySelectorAll('tspan')].map(n=>n.textContent.trim()).join(' ')||node.textContent.trim();
+  const diagramDetails=[...document.querySelectorAll('.reader-map')].map(figure=>{
+    const svg=figure.querySelector('svg'),canvas=svg.getBoundingClientRect(),nodes=[...svg.querySelectorAll('.node')],edges=[...svg.querySelectorAll('.relationship')],boxes=nodes.map(n=>n.querySelector('rect').getBoundingClientRect()),labels=edges.map(n=>n.querySelector('.edge-label').getBoundingClientRect());
+    const quality={nodeOverlaps:0,labelOverlaps:0,labelNodeOverlaps:0,routeHits:0,clipped:0,missingArrows:0,missingBoundaryCues:0,missingActionCues:0},issues=[],issue=(kind,context)=>{quality[kind]++;issues.push(kind+': '+context);},edgeName=i=>edges[i].dataset.from+' -> '+edges[i].dataset.to;
+    boxes.forEach((a,i)=>boxes.forEach((b,j)=>{if(j>i&&overlaps(a,b))issue('nodeOverlaps',nodes[i].dataset.nodeId+' / '+nodes[j].dataset.nodeId);}));
+    labels.forEach((a,i)=>{labels.forEach((b,j)=>{if(j>i&&overlaps(a,b))issue('labelOverlaps',edgeName(i)+' / '+edgeName(j));});boxes.forEach((b,j)=>{if(overlaps(a,b))issue('labelNodeOverlaps',edgeName(i)+' / '+nodes[j].dataset.nodeId);});});
+    for(const n of svg.querySelectorAll('text')){const b=n.getBoundingClientRect();if(b.left<canvas.left-2||b.right>canvas.right+2||b.top<canvas.top-2||b.bottom>canvas.bottom+2)issue('clipped',label(n));}
+    for(const node of nodes){const style=getComputedStyle(node.querySelector('rect'));if(node.dataset.graphRole==='boundary'&&(!style.strokeDasharray||/^none$|^0(?:px)?(?:,\s*0(?:px)?)*$/.test(style.strokeDasharray)))issue('missingBoundaryCues',node.dataset.nodeId);if(node.dataset.graphRole==='action'&&parseFloat(style.strokeWidth)<2.5)issue('missingActionCues',node.dataset.nodeId);}
+    for(const edge of edges){const path=edge.querySelector('path'),marker=getComputedStyle(path).markerEnd.match(/#([^\)"']+)/)?.[1],arrow=marker&&document.getElementById(marker);if(!arrow?.querySelector('path')||!(Number(arrow.getAttribute('markerWidth'))>0))issue('missingArrows',edge.dataset.from+' -> '+edge.dataset.to);
+      const length=path.getTotalLength();for(let i=1;i<40;i++){const point=path.getPointAtLength(length*i/40),global=new DOMPoint(point.x,point.y).matrixTransform(svg.getScreenCTM()),hit=boxes.findIndex((box,index)=>![edge.dataset.from,edge.dataset.to].includes(nodes[index].dataset.nodeId)&&global.x>box.left+2&&global.x<box.right-2&&global.y>box.top+2&&global.y<box.bottom-2);if(hit>=0){issue('routeHits',edge.dataset.from+' -> '+edge.dataset.to+' / '+nodes[hit].dataset.nodeId);break;}}
+    }
+    return {id:figure.dataset.graphId,kind:figure.dataset.graphKind,title:svg.getAttribute('aria-label'),nodes:nodes.map(n=>({id:n.dataset.nodeId,role:n.dataset.graphRole,label:label(n.querySelector('text'))})),edges:edges.map(e=>({from:e.dataset.from,to:e.dataset.to,label:label(e.querySelector('text'))})),quality,issues};
+  });
   const header=document.querySelector('header'),heading=header?.querySelector('h1'),box=header?.getBoundingClientRect();
   return {
+    diagramDetails,
     identity:header&&heading?{height:box.height,top:box.top+scrollY,headingCount:header.querySelectorAll('h1').length,font:parseFloat(getComputedStyle(heading).fontSize),clipped:heading.scrollWidth>heading.clientWidth+2,languageBadges:[...header.querySelectorAll('.pill')].filter(n=>/^(?:English|EN)$/.test(n.textContent.trim())).length}:null,
     facets:[...document.querySelectorAll('.reader-facet')].filter(visible).map(n=>({capability:n.dataset.capability,facet:n.dataset.facet,status:n.querySelector('.facet-status').textContent.trim(),meaning:n.querySelector('.facet-meaning').textContent.trim(),limit:n.querySelector('.facet-limit').textContent.trim()})),
     cases:[...document.querySelectorAll('.reader-case')].filter(visible).map(node=>({title:node.querySelector('h3').textContent.replace(/^\d{2}(?:\.\d{2})+\s*/,'').trim(),kind:node.querySelector('.eyebrow').textContent.trim(),proof:node.querySelector('.reader-proof')?.textContent.trim()||node.querySelectorAll('p')[2]?.textContent.trim()||''})),
@@ -35,6 +51,7 @@ export function reviewAtlasCalibration({analysis,html,auditSha256,capture,source
   need(capture.schemaVersion===1&&capture.htmlSha256===hash(html)&&capture.native===true&&capture.emulated===false&&capture.browser==='CHROMIUM','Bind native desktop metrics to these actual HTML bytes; emulation or stale screenshots cannot qualify them');
   need(sourceReview.schemaVersion===1&&meaningful(sourceReview.reviewer)&&meaningful(sourceReview.limits)&&sourceReview.coverageDeclaration===analysis.understanding.scope,'Declare the actual reviewer, semantic limits and selected/full review scope');
   const semanticReview=validateSemanticFacets(analysis);
+  const diagramReview=validateReaderDiagramProfile(analysis);
   const claims=new Set(analysis.claims.map(claim=>claim.id)),comparisons=sourceReview.comparisons;
   need(Array.isArray(comparisons)&&same(comparisons.map(item=>item.sectionId),businessSections),'Compare every reader section with actual source and project documentation in reading order');
   for(const row of comparisons){
@@ -52,6 +69,13 @@ export function reviewAtlasCalibration({analysis,html,auditSha256,capture,source
   for(const record of capture.records){
     need(object(record.metrics)&&object(record.structure)&&Array.isArray(record.navigation),'Retain actual layout, structure and interaction observations');
     const {structure,width}=record;
+    if(analysis.reader.diagramProfile==='SOURCE_GRAPH_V1'){
+      const actual=structure.diagramDetails,expected=readerDiagramProjection(analysis);
+      const projected=Array.isArray(actual)?actual.map(({quality,issues,...projection})=>projection):null;
+      if(!same(projected,expected)){const ordinal=expected.findIndex((g,i)=>!same(g,projected?.[i]));add(width,'DIAGRAM_SOURCE','Compare actual labels, endpoints and roles in '+(expected[ordinal]?.id||'unexpected graph')+'; expected '+JSON.stringify(expected[ordinal])+'; observed '+JSON.stringify(projected?.[ordinal]));}
+      const invalid=Array.isArray(actual)?actual.filter(g=>!object(g.quality)||!same(Object.keys(g.quality).sort(),['nodeOverlaps','labelOverlaps','labelNodeOverlaps','routeHits','clipped','missingArrows','missingBoundaryCues','missingActionCues'].sort())||Object.values(g.quality).some(value=>value!==0)):null;
+      if(!invalid||invalid.length)add(width,'DIAGRAM_GEOMETRY','Repair observed graph geometry and visible cues: '+(invalid?invalid.map(g=>g.id+' '+(g.issues?.length?g.issues.join('; '):JSON.stringify(g.quality))).join(' | '):'missing native graph observations'));
+    }
     need(record.metrics.viewport===width&&structure.touch===0&&structure.ratio===1,'Native viewport and device observations differ from the declared desktop run');
     for(const key of ['cases','breadth','smallText','graphClipping','invisibleLabels','graphs'])need(Array.isArray(structure[key]),'Missing native observation: '+key);
     if(html.includes('data-atlas-identity="compact-1"')){const h=structure.identity;if(!h||![h.height,h.top,h.font].every(Number.isFinite)||h.height<=0||h.height>96||h.top<0||h.top>24||h.font<16||h.font>24||h.headingCount!==1||h.clipped||h.languageBadges!==0)add(width,'IDENTITY','Use one compact readable project-identity line without redundant language badges or excessive header space');}
@@ -63,7 +87,7 @@ export function reviewAtlasCalibration({analysis,html,auditSha256,capture,source
     if(structure.hiddenPayloads||structure.smallText.length||structure.graphClipping.length||structure.invisibleLabels.length)add(width,'READABILITY','Hidden payload, tiny text or clipped/invisible graph content is present');
     if(structure.graphs.length!==expectedGraphs||structure.graphs.some(graph=>!meaningful(graph.legend)||!Array.isArray(graph.smallLabels)||graph.smallLabels.length||graph.contained&&(!graph.named||!graph.focusable)))add(width,'DIAGRAMS','Retain source-bound architecture and behavior diagrams, adjacent legends, legible labels and accessible local scrolling');
   }
-  return {semanticReview,status:findings.length?'REPAIR_REQUIRED':'PASSED',findings,scope:'BOUND_NATIVE_RENDER_AND_AUTHORED_SOURCE_COMPARISONS; LIVE_SOURCE_VERIFICATION_AND_HUMAN_SEMANTIC_REVIEW_REQUIRED',cases:expectedCases.length,capabilities:expectedBreadth.length,graphs:expectedGraphs};
+  return {semanticReview,diagramReview,status:findings.length?'REPAIR_REQUIRED':'PASSED',findings,scope:'BOUND_NATIVE_RENDER_AND_AUTHORED_SOURCE_COMPARISONS; LIVE_SOURCE_VERIFICATION_AND_HUMAN_SEMANTIC_REVIEW_REQUIRED',cases:expectedCases.length,capabilities:expectedBreadth.length,graphs:expectedGraphs};
 }
 
 export function validateAtlasCalibration(options){const result=reviewAtlasCalibration(options);need(result.status==='PASSED',result.findings.map(finding=>finding.code+' at '+finding.width+': '+finding.observation).join('\n'));return result;}
