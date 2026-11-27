@@ -77,6 +77,7 @@ Componentele păstrate ale evaluărilor inițiale:
 
 | ID | Impact / risc / urgență | Corectitudine / verificare / claritate | Limitele dovezilor |
 |---|---|---|---|
+| D-023 | 92 / 90 / 85 | 90 / 85 / 95 | Auditul succesiv mare depășește stiva tokenizării |
 | D-022 | 88 / 84 / 78 | 94 / 93 / 95 | Două fațete parțiale și limite anterioare de păstrat |
 | D-020 | 90 / 88 / 84 | 93 / 93 / 94 | Patru fațete necesită observații independente și limite explicite |
 | D-021 | 80 / 75 / 75 | 88 / 80 / 90 | README-ul principal expune administrarea ramurilor |
@@ -134,6 +135,7 @@ normalizarea prezentării nu reprezintă o nouă execuție.
 
 | ID | Comportament livrat | Verificare |
 |---|---|---|
+| D-023 | Scanare iterativă, istoric integral și refuzul duplicatelor; calitate 95 (96/95/94) | [Regresii și auditul original reparat](Code_And_Documentation_Maturity.md#d-023) |
 | D-022 | Dovezi locale aprofundate, întrebări explicite și limite păstrate; calitate 95 (96/95/94) | [Componente, refuzuri și limite](Code_And_Documentation_Maturity.md#d-022) |
 | D-015 | Audit nativ față de sursa live, arhitectură și verdicte explicite; calitate 95 (95/95/94) | Artefact inițial respins, reparație nativă și controale independente; [dovezi și note](Code_And_Documentation_Maturity.md#d-015) |
 | D-014 | Cititor business numerotat, audit adiacent și RAG obligatoriu; calitate 94 (94/95/94) | Surse, criterii independente, controale negative/reparații și randare nativă; [dovezi și limite](Code_And_Documentation_Maturity.md#d-014) |

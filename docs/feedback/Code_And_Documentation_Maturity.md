@@ -1107,6 +1107,25 @@ Calitate livrată 95 (corectitudine 96 / verificare 95 / claritate 94).
 
 Dovezi: `${ATF_WORK_ROOT}/reviews/application-boundaries-20261127`.
 
+<a id="d-023"></a>
+<a id="d-023-large-audit-tokenization"></a>
+## D-023: Scanarea auditului voluminos
+
+Stare: VERIFIED în domeniul delimitat al parsării. Responsabil: guvernanța Atlas.
+Prioritate 90 (impact 92 / expunere 90 / urgență 85).
+Calitate inițială 90 (corectitudine 90 / verificare 85 / claritate 95).
+
+- Auditul succesiv original producea o depășire a stivei în scanarea bazată pe expresii regulate, după scrierea cititorului și a auditului adiacent.
+- Două regresii cu valori escape mari reproduc atât eroarea de citire, cât și pierderea diagnosticului așteptat pentru chei duplicate.
+
+Calitate livrată 95 (corectitudine 96 / verificare 95 / claritate 94).
+
+- Scanarea iterativă elimină această limită de tokenizare, păstrând sintaxa, identitatea cheilor și refuzurile cu indicații de reparare.
+- Ambele regresii trec, iar auditul original care eșua este validat offline. Publicarea finală și dovezile sursei complete rămân verificări independente.
+- Istoricul nu este trunchiat, iar HTML-ul de business nu primește date de construcție. Consumul de memorie al întregului istoric nu este certificat ca nelimitat.
+
+Dovezi: `${ATF_WORK_ROOT}/reviews/application-boundaries-20261127`.
+
 <a id="current-assessment"></a>
 <a id="current-atf-ai-assessment"></a>
 ## Evaluarea curentă ATF AI

@@ -36,17 +36,26 @@ export function parseAtlasJson(text,code,name){
   requireAtlas(typeof text==='string',code,'Original '+name+' text is missing');
   let value;
   try{value=JSON.parse(text);}catch(error){throw new AtlasGovernanceError(code,'Invalid JSON input: '+name+' / '+error.message);}
-  const scopes=[],tokens=/"(?:[^"\\]|\\[\s\S])*"|[{}\[\]]/g;
-  for(const token of text.matchAll(tokens)){
-    const spelling=token[0];
-    if(spelling==='{'){scopes.push(new Set());continue;}
-    if(spelling==='['){scopes.push(null);continue;}
-    if(spelling==='}'||spelling===']'){scopes.pop();continue;}
-    let next=token.index+spelling.length;
-    while(next<text.length&&/[ \t\r\n]/.test(text[next]))next++;
+  const scopes=[];
+  // Syntax is already validated. Walk strings iteratively so large escaped audits
+  // do not consume the regular-expression engine's tokenization stack.
+  for(let index=0;index<text.length;index++){
+    const character=text[index];
+    if(character==='{'){scopes.push(new Set());continue;}
+    if(character==='['){scopes.push(null);continue;}
+    if(character==='}'||character===']'){scopes.pop();continue;}
+    if(character!=='"')continue;
+    const start=index;
+    for(index++;index<text.length;index++){
+      if(text[index]==='\\'){index++;continue;}
+      if(text[index]==='"')break;
+    }
+    let next=index+1;
+    while(next<text.length&&' \t\r\n'.includes(text[next]))next++;
     if(text[next]!==':')continue;
+    const spelling=text.slice(start,index+1);
     const keys=scopes.at(-1),key=JSON.parse(spelling);
-    requireAtlas(!keys.has(key),code,'Duplicate JSON member '+spelling+' in '+name+' at character '+token.index+'; remove the duplicate and review the intended value');
+    requireAtlas(!keys.has(key),code,'Duplicate JSON member '+spelling+' in '+name+' at character '+start+'; remove the duplicate and review the intended value');
     keys.add(key);
   }
   return value;

@@ -272,6 +272,17 @@ locală a unei facturi greșite nu demonstrează persistență în aplicație. C
 arată atât observația concretă, cât și dovezile care lipsesc, fără a transforma
 acele limite în ToDo-uri pentru noi scenarii de produs.
 
+<a id="large-audit-inputs"></a>
+## Intrări de audit voluminoase
+
+`ATLAS-AUDIT-SIZE-001: Preserve full original baseline evidence and parse large escaped audit strings without tokenization-stack failure; retain JSON syntax and duplicate-member diagnostics, and keep construction payloads outside the business HTML.`
+
+Istoricul original nu se trunchiază pentru a evita o eroare de parsare. Scanarea
+iterativă a șirurilor păstrează sintaxa JSON și identitatea cheilor, inclusiv
+refuzul membrilor duplicați după valori mari cu secvențe escape. Testele verifică
+intrări de peste 16 MiB; nu promit memorie nelimitată. Istoricul complet rămâne
+adiacent, iar cititorul de business este în continuare un singur HTML compact.
+
 <a id="source-graph-quality-and-archive-adaptation"></a>
 ## Calitatea diagramelor și adaptarea arhivei
 

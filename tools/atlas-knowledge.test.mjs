@@ -182,5 +182,6 @@ test('successive application review retrieves retained proof and remaining quest
   const receipt=retrieveAtlasKnowledge({query:'unrelated topic',limit:0}),rule=receipt.records.find(r=>r.id==='KB-FACET-REFINEMENT');assert.ok(receipt.mandatoryIds.includes(rule.id));
   for(const term of ['BOUNDED_OBSERVATIONS_V2','actual prior audit','additional oracle fragments','remaining questions','collapsed by default','not new product-flow tasks'])assert.ok(rule.requirement.includes(term));
   assert.ok(rule.sources.some(s=>s.kind==='CURRENT_CONTRACT'&&s.quote.startsWith('ATLAS-SUCCESSIVE-001:')));
+  assert.match(rule.requirement,/iterative tokenization/);assert.match(rule.requirement,/Never truncate history/);assert.ok(rule.sources.some(s=>s.quote.startsWith('ATLAS-AUDIT-SIZE-001:')));
   const changed=raw();changed.records.find(r=>r.id===rule.id).mandatory=false;expectKnowledgeFailure(()=>validateAtlasKnowledge(changed));
 });
