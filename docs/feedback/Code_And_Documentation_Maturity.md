@@ -1048,6 +1048,24 @@ Delivered quality 95 (correctness 96 / verification 95 / clarity 94).
 
 Evidence: `${ATF_WORK_ROOT}/reviews/application-boundaries-20261127`.
 
+<a id="d-023"></a>
+## D-023: Large audit tokenization
+
+Status: VERIFIED within the bounded parsing scope. Owner: Atlas governance.
+Priority 90 (impact 92 / exposure 90 / urgency 85).
+Baseline quality 90 (correctness 90 / verification 85 / clarity 95).
+
+- The original successive audit exceeded the regular-expression tokenization stack after the reader and adjacent audit were written.
+- Two large escaped-value regressions reproduce both the read failure and the lost expected duplicate-key diagnostic.
+
+Delivered quality 95 (correctness 96 / verification 95 / clarity 94).
+
+- Iterative scanning removes this tokenization limit while preserving syntax, key identity and owned duplicate-member refusals.
+- Both regressions pass and the original failed audit validates offline. Final publication and complete-source proof remain independent checks.
+- History is not truncated and the business HTML gains no construction payload. Memory use for unlimited history is not certified.
+
+Evidence: `${ATF_WORK_ROOT}/reviews/application-boundaries-20261127`.
+
 <a id="current-assessment"></a>
 ## Current ATF AI assessment
 

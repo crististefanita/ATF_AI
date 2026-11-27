@@ -73,6 +73,7 @@ Retained baseline component scores:
 
 | ID | Impact / risk / urgency | Correctness / verification / clarity | Evidence scope |
 |---|---|---|---|
+| D-023 | 92 / 90 / 85 | 90 / 85 / 95 | A large successive audit exceeds the tokenization stack |
 | D-022 | 88 / 84 / 78 | 94 / 93 / 95 | Two partial facets and prior boundaries need retained proof |
 | D-020 | 90 / 88 / 84 | 93 / 93 / 94 | Four facets need independent observation and explicit non-claims |
 | D-021 | 80 / 75 / 75 | 88 / 80 / 90 | The root README exposes branch administration |
@@ -129,6 +130,7 @@ normalizing their presentation does not claim a fresh execution.
 
 | ID | Delivered behavior | Verification |
 |---|---|---|
+| D-023 | Iterative scan, complete history and duplicate refusal; quality 95 (96/95/94) | [Regressions and original repaired audit](Code_And_Documentation_Maturity.md#d-023) |
 | D-022 | Deeper local proof, explicit questions and retained boundaries; quality 95 (96/95/94) | [Components, refusals and limits](Code_And_Documentation_Maturity.md#d-022) |
 | D-015 | Native artifact/live-source audit, architecture and explicit verdicts; quality 95 (95/95/94) | Rejected original artifact, native repair and independent controls; [evidence and ratings](Code_And_Documentation_Maturity.md#d-015) |
 | D-014 | Numbered business reader, adjacent audit and mandatory RAG; quality 94 (94/95/94) | Source, independent oracles, negative/repair controls and native rendering; [evidence and limits](Code_And_Documentation_Maturity.md#d-014) |

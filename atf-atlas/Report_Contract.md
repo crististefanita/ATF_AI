@@ -260,6 +260,16 @@ of an unrelated invoice does not establish application persistence. The reader
 shows the actual observation and missing evidence without turning those limits
 into TODOs for new product scenarios.
 
+## Large audit inputs
+
+`ATLAS-AUDIT-SIZE-001: Preserve full original baseline evidence and parse large escaped audit strings without tokenization-stack failure; retain JSON syntax and duplicate-member diagnostics, and keep construction payloads outside the business HTML.`
+
+Do not truncate original history to avoid a parsing failure. Iterative string
+scanning preserves JSON syntax and key identity, including duplicate-member
+refusal after large escaped values. Regressions exercise inputs above 16 MiB;
+they do not promise unlimited memory. Complete history remains adjacent while
+the business reader stays one compact HTML.
+
 ## Source graph quality and archive adaptation
 
 `ATLAS-DIAGRAM-001: Recover the archived shared visual grammar through source-specific readable nodes, complete relationship labels and arrowheads, horizontal dependency direction, compact supporting graphs, closed local bullet legends and honest boundary cues; compare the actual native graph with source endpoints and reject overlaps, clipping, missing cues and generic label substitution.`

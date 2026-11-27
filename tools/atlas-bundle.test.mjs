@@ -35,6 +35,23 @@ function fixture(){
   save();return {bundle,save};
 }
 
+test('large escaped audit strings preserve values without a tokenization stack limit',()=>{
+  const payload='quoted " braces {} arrays [] slash \\ newline\n'.repeat(400000);
+  const input=JSON.stringify({payload,observations:[{state:'retained'},{state:'independent'}]});
+  assert.ok(Buffer.byteLength(input)>16*1024*1024);
+  const parsed=parseAtlasJson(input,'ATLAS-EVIDENCE','large adjacent audit');
+  assert.ok(parsed.payload===payload,'The original audit string must survive byte-preserving JSON decoding');
+  assert.deepEqual(parsed.observations,[{state:'retained'},{state:'independent'}]);
+});
+
+test('duplicates after a large escaped value retain their owned refusal and key identity',()=>{
+  const payload=JSON.stringify('escaped " \\ { "state": 0 }\n'.repeat(600000));
+  for(const suffix of ['"state":1,"st\\u0061te":2','"nested":[{"a\\\"b":1,"a\\\"b":2}]']){
+    const input='{"payload":'+payload+','+suffix+'}';
+    assert.throws(()=>parseAtlasJson(input,'ATLAS-EVIDENCE','large duplicate audit'),error=>error.code==='ATLAS-EVIDENCE'&&/Duplicate JSON member/.test(error.observed)&&Boolean(error.hint&&error.owner&&error.recheck));
+  }
+});
+
 test('a portable complete bundle preserves raw original JSON, documents, sources and execution',()=>{
   const {bundle}=fixture(),before=structuredClone(bundle),result=validateAtlasBundle(bundle);
   assert.equal(result.status,'PASSED');assert.equal(result.documents,5);assert.equal(result.sources,2);assert.deepEqual(bundle,before);
