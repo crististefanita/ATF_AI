@@ -1440,6 +1440,9 @@ Calitate livrată 96 (corectitudine 96 / verificare 97 / claritate 95).
   listă; repararea păstrează structura, iar reverificarea perechii trece.
 - Starea fragmentului, antetele tabelelor imbricate și vizibilitatea prin
   secțiuni închise sunt măsurate corect. Încercările inițiale rămân în dosar.
+- Captura finală la 900 px a refuzat deschiderea în care harta începea sub limita
+  primei vederi. Spațiul mai mic din cardurile notelor repară deschiderea fără să
+  ascundă text, să micșoreze fontul sau să slăbească regula; păstrăm ambele capturi.
 - Calificarea finală a sursei exacte, controalele publicării și selecția livrată
   păstrează chitanțe separate. Captura reperului anterior la 1920 px este o
   observație comparativă și nu o calificare V4 retroactivă.
