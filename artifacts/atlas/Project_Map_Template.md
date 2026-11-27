@@ -288,3 +288,5 @@ The [contract](../../atf-atlas/Report_Contract.md) defines the schema and limits
 Semantic qualification uses distinct facet observations, owned source and independent oracles, with visible remaining limits. Atlas identity stays compact; review date belongs with confidence. See the [semantic contract](../../atf-atlas/Report_Contract.md#semantic-review-and-compact-identity).
 
 For observation refinement, retain the named oracle, actual proof level and visible non-claims. Distinguish a component verdict from an observed response status, and captured bytes from complete application acceptance.
+
+For BOUNDED_OBSERVATIONS_V2, copy retainedProofs from the prior audit and declare openQuestions for each PARTIAL decision. Every question has id, question and evidenceNeeded; it is boundary information, not a product-flow TODO. [Contract and rendering comparison](../../atf-atlas/Report_Contract.md#successive-application-boundaries).

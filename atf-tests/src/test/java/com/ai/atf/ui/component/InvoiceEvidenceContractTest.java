@@ -77,15 +77,21 @@ public class InvoiceEvidenceContractTest {
     @Test
     public void persistedStatusMustMatchSelectedValueAfterReopen() {
         AdminOrderStatusContext context = statusContext("NEW", "INV-123 COMPLETED");
-        Assert.expectThrows(AssertionError.class,
+        AssertionError failure = Assert.expectThrows(AssertionError.class,
                 () -> new AdminOrderStatusValidation().assertAdminStatusTransitionIsSaved(context));
+        Assert.assertTrue(failure.getMessage().startsWith(
+                        "Expected the selected status to persist after reopening the order."),
+                "Repair hint: an unrelated failure cannot prove rejection of the stale reopened status");
     }
 
     @Test
     public void statusOnUnrelatedOrderCannotProveTransition() {
         AdminOrderStatusContext context = statusContext("COMPLETED", "INV-999 COMPLETED");
-        Assert.expectThrows(AssertionError.class,
+        AssertionError failure = Assert.expectThrows(AssertionError.class,
                 () -> new AdminOrderStatusValidation().assertAdminStatusTransitionIsSaved(context));
+        Assert.assertTrue(failure.getMessage().startsWith(
+                        "Expected the matching admin order row to contain the updated status."),
+                "Repair hint: the selected value must pass before the unrelated invoice row is rejected");
     }
 
     @Test

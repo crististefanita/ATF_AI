@@ -79,3 +79,9 @@ Completed review concerns its declared scope, not every possible behavior.
 |---|---|
 | Application behavior | Local components explain validation; complete application persistence is not established |
 | Application information | Flat resources and randomized values are explained; global uniqueness and data deletion are not guaranteed |
+
+## Local evidence for retained boundaries
+
+Both application facets remain PARTIAL. Existing checks now follow the complete fields from both factories to one rejected submission, generated credential shape and independent data copies. Rejection of stale status and an unrelated invoice checks the expected diagnostic, preventing another error from producing a false positive.
+
+Remaining questions and missing evidence follow the [successive-review contract](Report_Contract.md#successive-application-boundaries). Application persistence, global uniqueness, general format parsing and application-data deletion are not inferred.

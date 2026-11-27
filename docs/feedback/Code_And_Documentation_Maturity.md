@@ -1027,6 +1027,27 @@ Delivered quality 95 (correctness 96 / verification 95 / clarity 95).
 - DOC-README-EDITION refuses plain text, case variants, encoded links, examples and comments. A literal percent sign beside an encoded route is independently covered inside the existing component.
 - The diagnostic names its owner, repair and recheck. Whole-pair review and both focused documentation checks pass before final full qualification.
 
+<a id="d-022"></a>
+## D-022: Application boundaries and retained proof
+
+Status: VERIFIED within the declared local scope. Owner: Atlas governance.
+Priority 85 (impact 88 / exposure 84 / urgency 78).
+Baseline quality 94 (correctness 94 / verification 93 / clarity 95).
+
+- Deepen both PARTIAL facets through existing local code and oracles without invented application acceptance.
+- A new review must retain earlier observation non-claims and expose remaining questions, collapsed by default.
+- Final review binds code, documentation, original outcomes and rendered HTML; axis ratings remain scoped authored judgments.
+
+Delivered quality 95 (correctness 96 / verification 95 / clarity 94).
+
+- Both facets remain PARTIAL. Existing checks follow all 12 fields from both factories, credential shape, selected immutable-copy fields and one rejected submission.
+- Two existing negative checks establish the expected diagnostic for stale status and an unrelated invoice. Another failure cannot prove the intended criterion.
+- BOUNDED_OBSERVATIONS_V2 retains earlier reviewed boundaries, requires actual additional oracles and exposes five remaining questions in collapsed sections. These boundaries are not TODOs for new E2E flows.
+- The 68 relevant Node components and ten existing application components pass. Documentation repairs cover the feedback state, two Romanian compatibility anchors and untranslated narrative metadata detected by the whole-text edition guard; original attempts remain separate.
+- Complete final-source qualification, publication and native HTML review retain independent evidence in the review dossier; test counts determine neither the score nor semantic completeness.
+
+Evidence: `${ATF_WORK_ROOT}/reviews/application-boundaries-20261127`.
+
 <a id="current-assessment"></a>
 ## Current ATF AI assessment
 

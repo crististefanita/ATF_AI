@@ -239,6 +239,27 @@ these declarations; they do not automatically certify the prose meaning.
 
 `DOC-ROOT-FOCUS-001: The root README routes project decisions to owner guides; keep translated branch names and URLs in the edition guide, including references in comments and encoded examples.`
 
+## Successive application boundaries
+
+`ATLAS-SUCCESSIVE-001: Preserve prior observation proofs against the actual baseline, bind each new proof to its additional oracle fragments, and keep partial application facets explicit through source-bound remaining questions; local input or validation checks do not establish deployment persistence, global uniqueness or data deletion.`
+
+BOUNDED_OBSERVATIONS_V2 retains the previous review's proof and exposes its
+remaining questions. Acceptance boundaries are confidence information, not
+implementation requests for additional E2E flows.
+
+| Element | Rule and evidence |
+|---|---|
+| retainedProofs | Copy previously reviewed observation boundaries; publication compares them with the original prior audit |
+| proofBoundary.claimIds | Select the current decision's additional oracles with their original outcomes |
+| openQuestions | Every PARTIAL facet declares id, question and evidenceNeeded; unresolved in-scope questions cannot coexist with REVIEWED |
+| Reader | Keep observations, limits and questions in collapsed sections without construction details |
+| Rendering | Compare visible questions and retained boundaries with the audit projection at both desktop widths |
+
+A prepared-field check does not establish global uniqueness. A local rejection
+of an unrelated invoice does not establish application persistence. The reader
+shows the actual observation and missing evidence without turning those limits
+into TODOs for new product scenarios.
+
 ## Source graph quality and archive adaptation
 
 `ATLAS-DIAGRAM-001: Recover the archived shared visual grammar through source-specific readable nodes, complete relationship labels and arrowheads, horizontal dependency direction, compact supporting graphs, closed local bullet legends and honest boundary cues; compare the actual native graph with source endpoints and reject overlaps, clipping, missing cues and generic label substitution.`

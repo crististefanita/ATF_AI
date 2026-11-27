@@ -18,6 +18,8 @@ Current review: [live source, documentation, Atlas/RAG and framework attributes]
 
 
 
+
+
 The register is reserved for framework governance, stability and documentation.
 Product-flow improvement records are excluded from this backlog.
 
@@ -71,6 +73,7 @@ Retained baseline component scores:
 
 | ID | Impact / risk / urgency | Correctness / verification / clarity | Evidence scope |
 |---|---|---|---|
+| D-022 | 88 / 84 / 78 | 94 / 93 / 95 | Two partial facets and prior boundaries need retained proof |
 | D-020 | 90 / 88 / 84 | 93 / 93 / 94 | Four facets need independent observation and explicit non-claims |
 | D-021 | 80 / 75 / 75 | 88 / 80 / 90 | The root README exposes branch administration |
 | D-018 | 90 / 85 / 80 | 90 / 90 / 93 | Ten partial facets need a preserved baseline and additional evidence |
@@ -126,6 +129,7 @@ normalizing their presentation does not claim a fresh execution.
 
 | ID | Delivered behavior | Verification |
 |---|---|---|
+| D-022 | Deeper local proof, explicit questions and retained boundaries; quality 95 (96/95/94) | [Components, refusals and limits](Code_And_Documentation_Maturity.md#d-022) |
 | D-015 | Native artifact/live-source audit, architecture and explicit verdicts; quality 95 (95/95/94) | Rejected original artifact, native repair and independent controls; [evidence and ratings](Code_And_Documentation_Maturity.md#d-015) |
 | D-014 | Numbered business reader, adjacent audit and mandatory RAG; quality 94 (94/95/94) | Source, independent oracles, negative/repair controls and native rendering; [evidence and limits](Code_And_Documentation_Maturity.md#d-014) |
 | G-023 | Unique JSON members across Atlas boundaries, quality 94 (95/95/93) | 209 Node per edition, counterexamples/repairs and identical valid receipt; [evidence](Code_And_Documentation_Maturity.md#g-023) |
