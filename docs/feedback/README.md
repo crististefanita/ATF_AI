@@ -7,18 +7,18 @@ the caller-selected local archive following the [report guide](../../artifacts/r
 
 ## Active TODOs
 
-No accepted TODOs remain open within the current maintenance scope.
+No accepted implementation TODOs remain; bounded verified corrections are retained below.
 
-Current review: [live source, documentation, Atlas/RAG and framework attributes](Code_And_Documentation_Maturity.md#current-assessment).
+Current review: [live source, documentation, Atlas/RAG and framework attributes](Code_And_Documentation_Maturity.md#cross-project-assessment).
 
 | ID | Finding | Owner | Priority (1-100) | Quality (1-100) | Status | Closure evidence |
 |---|---|---|---:|---:|---|---|
 
+
+
+
+
 <!-- feedback:empty -->
-
-
-
-
 
 The register is reserved for framework governance, stability and documentation.
 Product-flow improvement records are excluded from this backlog.
@@ -73,6 +73,8 @@ Retained baseline component scores:
 
 | ID | Impact / risk / urgency | Correctness / verification / clarity | Evidence scope |
 |---|---|---|---|
+| D-024 | 92 / 88 / 85 | 91 / 89 / 92 | Generic case comparisons and omitted existing framework decisions |
+| D-025 | 90 / 88 / 80 | 88 / 80 / 85 | Tiny rendered graphs and missing current origin/capture requirements |
 | D-023 | 92 / 90 / 85 | 90 / 85 / 95 | A large successive audit exceeds the tokenization stack |
 | D-022 | 88 / 84 / 78 | 94 / 93 / 95 | Two partial facets and prior boundaries need retained proof |
 | D-020 | 90 / 88 / 84 | 93 / 93 / 94 | Four facets need independent observation and explicit non-claims |
@@ -130,6 +132,8 @@ normalizing their presentation does not claim a fresh execution.
 
 | ID | Delivered behavior | Verification |
 |---|---|---|
+| D-024 | Concrete comparisons and four existing behavior boundaries; quality 95 (96/94/95) | [Exact source, original subjects and native review](Code_And_Documentation_Maturity.md#d-024) |
+| D-025 | Useful diagrams, truthful source/origins and actual refusals; quality 96 (97/96/95) | [Cross-project qualification and preserved J1 failure](Code_And_Documentation_Maturity.md#d-025) |
 | D-023 | Iterative scan, complete history and duplicate refusal; quality 95 (96/95/94) | [Regressions and original repaired audit](Code_And_Documentation_Maturity.md#d-023) |
 | D-022 | Deeper local proof, explicit questions and retained boundaries; quality 95 (96/95/94) | [Components, refusals and limits](Code_And_Documentation_Maturity.md#d-022) |
 | D-015 | Native artifact/live-source audit, architecture and explicit verdicts; quality 95 (95/95/94) | Rejected original artifact, native repair and independent controls; [evidence and ratings](Code_And_Documentation_Maturity.md#d-015) |

@@ -181,6 +181,18 @@ and rerun the document component gate before publishing.
 
 ## Artifact calibration
 
+Fresh project understanding uses `understand` with the four
+[source-bound profiles](Report_Contract.md#current-source-bound-authoring-profiles).
+Each case explains what its existing oracle compares and why a mismatch matters.
+
+Rendered diagrams need three meaningful nodes and two real relationships; compact
+ideas use reasoned text. Dirty source and consumed-library ownership stay visible
+as business limits, with exact construction evidence in the adjacent audit.
+
+Compatibility `publish` keeps historical captures at their original assessment.
+Neither a valid page nor passing selected components upgrades a dirty capture,
+absent producer source or a failed whole-project gate into complete acceptance.
+
 The reader explains business purpose, project architecture and behavior. Architecture views preserve actual relationships using reader capability names; behavior maps stay in closed disclosures with adjacent legends.
 
 - Compare the actual artifact with live implementation owners and project documents.

@@ -48,6 +48,19 @@ Arrows show TestNG lifecycle and neutral Core step events reaching the Extent ba
 
 Ordinary reporting does not depend on historical evidence or calibration files.
 
+## Evidence ownership and limits
+
+Each invocation owns its step context and screenshot eligibility. Existing local
+components compare separate observers under bounded overlap, clear stale step
+state before another invocation, and allow one eligible capture per UI context.
+They do not establish arbitrary scheduling, real browser pixels or safe sharing.
+
+Failure attachment hooks diagnose their errors and continue dispatching to the
+healthy handlers in the selected fixture. Success-state hooks dispatch directly;
+the healthy-handler tests do not establish recovery from every hook or logger
+failure. See the [Core attachment registries](../atf-core/src/main/java/com/ai/core/reporting/attachment/)
+and [existing screenshot contracts](../atf-tests/src/test/java/com/ai/atf/core/reporting/screenshot/FinalUiScreenshotContractTest.java).
+
 ## Verification
 
 From an isolated reactor copy:

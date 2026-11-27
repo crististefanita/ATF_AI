@@ -25,6 +25,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -215,35 +216,86 @@ public class FinalUiScreenshotContractTest {
     public void final_capture_is_thread_safe_in_parallel_execution() throws Exception {
         installObserverBesideActiveReporter();
         ExecutorService executor = Executors.newFixedThreadPool(2);
+        CountDownLatch initialized = new CountDownLatch(2);
+        CountDownLatch firstCaptured = new CountDownLatch(1);
+        CountDownLatch secondCaptured = new CountDownLatch(1);
+        Throwable primaryFailure = null;
 
         try {
-            Future<Integer> first = executor.submit(() -> runParallelCapture("parallel-1"));
-            Future<Integer> second = executor.submit(() -> runParallelCapture("parallel-2"));
-
-            Assert.assertEquals((int) first.get(10, TimeUnit.SECONDS), 1);
-            Assert.assertEquals((int) second.get(10, TimeUnit.SECONDS), 1);
+            List<Future<Integer>> captures = new java.util.ArrayList<>();
+            for (int index = 0; index < 2; index++) {
+                boolean firstContext = index == 0;
+                String name = "parallel-" + (index + 1);
+                captures.add(executor.submit(() -> {
+                    FakeUiEngine engine = new FakeUiEngine(name);
+                    setEngineForCurrentThread(engine);
+                    try {
+                        handler.onTestStart();
+                        UiInteractionTracker.markUiInteraction();
+                        initialized.countDown();
+                        Assert.assertTrue(initialized.await(5, TimeUnit.SECONDS),
+                                "Both screenshot contexts must initialize before either capture");
+                        if (!firstContext) {
+                            Assert.assertTrue(firstCaptured.await(5, TimeUnit.SECONDS),
+                                    "The second context must capture after the first capture completes");
+                        }
+                        Assert.assertSame(com.ai.ui.core.runtime.DriverManager.getEngine(), engine,
+                                "Each screenshot context must retain its own installed engine");
+                        int count = runParallelCapture(name);
+                        Assert.assertEquals(count, engine.captureCalls());
+                        if (firstContext) {
+                            firstCaptured.countDown();
+                            Assert.assertTrue(secondCaptured.await(5, TimeUnit.SECONDS),
+                                    "The first context must remain open until the second capture finishes");
+                        } else {
+                            secondCaptured.countDown();
+                        }
+                        return engine.captureCalls();
+                    } finally {
+                        if (firstContext) firstCaptured.countDown();
+                        else secondCaptured.countDown();
+                        UiInteractionTracker.clear();
+                        StepLogger.clear();
+                        setEngineForCurrentThread(null);
+                    }
+                }));
+            }
+            Assert.assertEquals((int) captures.get(0).get(10, TimeUnit.SECONDS), 1,
+                    "The first active context must capture exactly once");
+            Assert.assertEquals((int) captures.get(1).get(10, TimeUnit.SECONDS), 1,
+                    "The second active context must retain its independent capture eligibility");
             Assert.assertEquals(observer.screenshotTitles().size(), 2);
-            Assert.assertEquals(
-                    countScreenshotsWithTitle("Final Screenshot"),
-                    2
-            );
+            Assert.assertEquals(countScreenshotsWithTitle("Final Screenshot"), 2);
+        } catch (Exception | AssertionError failure) {
+            primaryFailure = failure;
+            if (failure instanceof InterruptedException) Thread.currentThread().interrupt();
+            throw failure;
         } finally {
+            initialized.countDown();
+            initialized.countDown();
+            firstCaptured.countDown();
+            secondCaptured.countDown();
             executor.shutdownNow();
+            try {
+                if (!executor.awaitTermination(5, TimeUnit.SECONDS)) {
+                    AssertionError cleanup = new AssertionError("Screenshot workers did not terminate within the owned timeout");
+                    if (primaryFailure == null) throw cleanup;
+                    primaryFailure.addSuppressed(cleanup);
+                }
+            } catch (InterruptedException cleanup) {
+                Thread.currentThread().interrupt();
+                if (primaryFailure == null) throw cleanup;
+                primaryFailure.addSuppressed(cleanup);
+            }
         }
     }
 
     private int runParallelCapture(String name) {
-        FakeUiEngine engine = new FakeUiEngine(name);
-        setEngineForCurrentThread(engine);
-
-        try {
-            handler.onTestStart();
-            UiInteractionTracker.markUiInteraction();
-            handler.captureFinalStateIfEligible();
-            return engine.captureCalls();
-        } finally {
-            setEngineForCurrentThread(null);
-        }
+        com.ai.ui.core.engine.UIEngine current = com.ai.ui.core.runtime.DriverManager.getEngine();
+        Assert.assertTrue(current instanceof FakeUiEngine,
+                "The " + name + " capture must use its already initialized fake engine");
+        handler.captureFinalStateIfEligible();
+        return ((FakeUiEngine) current).captureCalls();
     }
 
     private int countScreenshotsWithTitle(String title) {

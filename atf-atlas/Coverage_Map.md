@@ -49,6 +49,9 @@ These source observations refine the existing reading map; they do not add a tes
 |---|---|---|
 | [Configuration source](../atf-core/src/main/java/com/ai/core/support/config/ConfigManager.java) | Caller overrides precede loaded settings; an absent explicitly selected source fails | Loaded properties are cached; file edits do not automatically reload them |
 | [Write readiness](../atf-core/src/main/java/com/ai/api/core/BaseTestAPI.java) | Blank local access makes the write flow unavailable | Nonblank access does not establish remote authorization or a successful write |
+| [Bounded waiting](../atf-core/src/main/java/com/ai/ui/support/wait/WaitUtils.java) | Existing checks compare first match, last unmatched observation at expiry and the assertion wrapper | A returned last observation is not acceptance; supplier failures and blocking suppliers remain separate |
+| [Final image policy](../atf-core/src/main/java/com/ai/ui/core/reporting/ScreenshotManager.java) | Existing screenshot contracts distinguish success/failure eligibility, absent UI, deduplication and invocation ownership | Capture policy and payloads do not certify pixels; two tasks do not establish every interleaving |
+| [Optional reporting](../atf-core/src/main/java/com/ai/core/reporting/spi/ReportingBackendLoader.java) | Existing contracts distinguish Core-only operation, one installed provider and duplicate-before-construction refusal | Discovery fixtures do not prove every deployment; an explicitly requested logger has its own requirement |
 | [Browser acquisition](../atf-playwright/src/main/java/com/ai/ui/core/engine/playwright/PlaywrightBrowserSession.java) | The inspected Playwright session selects Chromium; Selenium uses its Chrome factory | Library capability does not establish every browser or operating-system combination |
 | [Aggregate values](../atf-reporting/src/main/java/com/ai/core/reporting/aggregate/model/AggregateSummary.java) | Selected constructors reject negative counts; aggregation can derive counts from observed cases | The public summary constructor does not itself enforce all relationships among caller-supplied totals |
 | [Reporting compatibility](../atf-reporting/src/main/java/com/ai/core/reporting/ReportingSession.java) | A compatibility mirror switch uses its existing interpretation policy | Do not claim that every reporting switch uses the strict shared boolean parser |
@@ -85,3 +88,21 @@ Completed review concerns its declared scope, not every possible behavior.
 Both application facets remain PARTIAL. Existing checks now follow the complete fields from both factories to one rejected submission, generated credential shape and independent data copies. Rejection of stale status and an unrelated invoice checks the expected diagnostic, preventing another error from producing a false positive.
 
 Remaining questions and missing evidence follow the [successive-review contract](Report_Contract.md#successive-application-boundaries). Application persistence, global uniqueness, general format parsing and application-data deletion are not inferred.
+
+## Deeper project-understanding review
+
+The waiting, final-image and optional-reporting rows expose important existing
+decisions omitted from the earlier selected reader. Review concrete compared
+state under the [current profiles](Report_Contract.md#current-source-bound-authoring-profiles);
+do not infer breadth from captured files or increased flow counts.
+
+Failure attachment hooks and final-state hooks have different propagation
+policies. The inspected final-state dispatch is direct; healthy-handler tests
+do not establish that arbitrary hook or logger failures are non-blocking. Keep
+that source-only boundary separate from guarded failure-attachment components.
+
+Cross-project review also distinguishes local implementation from selected
+producer contracts. Consumer package checks cannot certify absent producer
+source, and selected passing components cannot replace a failing whole-project
+gate. The dated comparison and original outcomes belong to feedback and their
+external review dossier, not an evergreen coverage claim.

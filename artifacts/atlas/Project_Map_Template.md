@@ -29,6 +29,35 @@ Bind the intake to its actual source and complete documents:
   architecture, testing and usage/contract owners, without partial excerpts or
   navigation to separate HTML pages.
 
+## Current intake profile
+
+For new authoring, use the governed `understand` entry point and the
+[current source-bound profiles](../../atf-atlas/Report_Contract.md#current-source-bound-authoring-profiles).
+Earlier unversioned and small-graph captures remain historical under `publish`.
+
+| Input | Current declaration |
+|---|---|
+| Reader | `diagramProfile: SOURCE_GRAPH_V2`, `comparisonProfile: SOURCE_BOUND_COMPARISONS_V1`, `captureProfile: GIT_WORKTREE_V1` |
+| Source index | `captureProfile: GIT_WORKTREE_V1`, actual `captureState` and exact canonical `worktreeStatus` |
+| Understanding | `originProfile: SOURCE_ORIGINS_V1`; each unit declares `sourceRole` |
+| Case analysis | `comparisonProfile: SOURCE_BOUND_COMPARISONS_V1`; each supported case declares its concrete `comparison` |
+
+A comparison records the actual oracle subject, independent criterion, relation,
+failure meaning and selected oracle indices. CUSTOM also explains how the check
+decides. Missing-oracle cases keep `comparison: null` and their explicit gap.
+No field invents an observed runtime value.
+
+Use at least three meaningful nodes and two distinct real directed relationships
+for a rendered diagram. Keep a compact raw graph in the audit if truthful; choose
+`diagramMode: TEXT_ONLY` and a substantive `diagramReason` in the reader.
+Never add decorative nodes or fake dependencies to pass a gate.
+
+Local units use `LOCAL_SOURCE`. A `CONSUMED_ARTIFACT` is a boundary with selected
+coordinate and indexed raw JAR/POM paths, including a reviewed POM declaration.
+Its consumer proof does not establish absent producer implementation. Dirty
+capture describes the actual unpublished source; no Git metadata cannot be
+relabeled as clean current intake.
+
 ## Target and proof boundary
 
 | Field | Observed value | Evidence |

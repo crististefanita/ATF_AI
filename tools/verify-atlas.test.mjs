@@ -6,7 +6,7 @@ import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
-import {verifyAtlas, surefireSummary, nodeTestSummary} from './verify-atlas.mjs';
+import {verifyAtlas, surefireSummary, nodeTestSummary, validateAtlasCaptureDeclaration} from './verify-atlas.mjs';
 
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 function fixture(t) {
@@ -183,4 +183,67 @@ test('declared Git inventory catches added files without hiding source packages 
   assert.equal(verifyAtlas(f).status,'PASSED');fs.mkdirSync(path.join(f.sourceRoot,'generated'));fs.writeFileSync(path.join(f.sourceRoot,'generated','receipt.txt'),'Generated only');
   assert.equal(verifyAtlas(f).status,'PASSED');fs.mkdirSync(path.join(f.sourceRoot,'src/target'),{recursive:true});fs.writeFileSync(path.join(f.sourceRoot,'src/target','Owned.java'),'class Owned {}');
   assert.throws(()=>verifyAtlas(f),error=>error.code==='ATLAS-SOURCE'&&error.observed.includes('src/target/Owned.java'));
+});
+
+function gitCaptureFixture(t){
+  const f=fixture(t),git=args=>{
+    const result=spawnSync('git',['-C',f.sourceRoot,...args],{encoding:'utf8',windowsHide:true});
+    assert.equal(result.status,0,result.stderr);return result.stdout.replaceAll('\r\n','\n').trimEnd();
+  };
+  git(['init','--quiet']);git(['add','.']);git(['-c','user.name=Atlas Fixture','-c','user.email=atlas-fixture@example.invalid','commit','--quiet','-m','Owned source capture fixture']);
+  f.index.revision=f.manifest.revision=git(['rev-parse','HEAD']);f.index.inventory={kind:'GIT_RELEVANT',excludedRoots:[]};
+  const capture=()=>{
+    const status=git(['status','--porcelain=v1','--untracked-files=all']);
+    Object.assign(f.index,{captureProfile:'GIT_WORKTREE_V1',captureState:status===''?'CLEAN':'DIRTY',worktreeStatus:status});f.save();return status;
+  };
+  capture();return {...f,git,capture};
+}
+const sourceCaptureFailure=(operation,pattern)=>assert.throws(operation,error=>error.code==='ATLAS-SOURCE'&&pattern.test(error.observed)&&Boolean(error.hint&&error.owner&&error.recheck));
+
+test('capture declaration consistency is explicit and does not pretend to verify live Git',()=>{
+  const clean={captureProfile:'GIT_WORKTREE_V1',captureState:'CLEAN',worktreeStatus:''},dirty={...clean,captureState:'DIRTY',worktreeStatus:' M contract.txt\n?? new source.txt'},before=structuredClone(dirty);
+  assert.deepEqual(validateAtlasCaptureDeclaration(clean),{status:'PASSED',profile:'GIT_WORKTREE_V1',state:'CLEAN'});
+  assert.deepEqual(validateAtlasCaptureDeclaration(dirty),{status:'PASSED',profile:'GIT_WORKTREE_V1',state:'DIRTY'});assert.deepEqual(dirty,before);
+  assert.deepEqual(validateAtlasCaptureDeclaration({worktreeStatus:'',captureState:'CLEAN'}),{status:'NOT_ASSESSED',profile:null,state:'UNKNOWN'});
+});
+
+test('capture profile declarations reject malformed states and noncanonical or contradictory status with owned hints',()=>{
+  const clean={captureProfile:'GIT_WORKTREE_V1',captureState:'CLEAN',worktreeStatus:''};
+  for(const change of [x=>x.captureProfile='UNKNOWN',x=>x.captureProfile=null,x=>x.captureState=['CLEAN'],x=>x.captureState='UNVERSIONED',x=>delete x.worktreeStatus,x=>x.worktreeStatus=[],x=>x.captureState='DIRTY',x=>x.worktreeStatus=' M contract.txt',x=>{x.captureState='DIRTY';x.worktreeStatus='M contract.txt';},x=>{x.captureState='DIRTY';x.worktreeStatus=' M contract.txt\r\n';},x=>{x.captureState='DIRTY';x.worktreeStatus='   unchanged.txt';},x=>{x.captureState='DIRTY';x.worktreeStatus='?? injected\u0000.txt';}]){
+    const index=structuredClone(clean);change(index);sourceCaptureFailure(()=>validateAtlasCaptureDeclaration(index),/capture|Capture|canonical/);
+  }
+  sourceCaptureFailure(()=>validateAtlasCaptureDeclaration(null),/actual source-index/);
+});
+
+test('a clean Git capture is separately bound to actual live status while legacy source stays unassessed',t=>{
+  const f=gitCaptureFixture(t),result=verifyAtlas(f);
+  assert.deepEqual(result.captureStateReview,{status:'PASSED',profile:'GIT_WORKTREE_V1',state:'CLEAN',verification:'LIVE_GIT_STATUS_COMPARED',worktreeStatus:''});
+  delete f.index.captureProfile;f.save();assert.deepEqual(verifyAtlas(f).captureStateReview,{status:'NOT_ASSESSED',profile:null,state:'UNKNOWN'});
+});
+
+test('an honest dirty snapshot preserves leading porcelain spaces and verifies exact source and quotes',t=>{
+  const f=gitCaptureFixture(t);fs.writeFileSync(path.join(f.sourceRoot,'contract.txt'),'Observed dirty contract\n');
+  f.index.files[0].sha256=hash('Observed dirty contract\n');f.manifest.claims[0].sourceRefs[0].quote='Observed dirty contract';const status=f.capture();assert.ok(status.startsWith(' M contract.txt'));
+  const result=verifyAtlas(f);assert.equal(result.status,'PASSED');assert.equal(result.sourceFiles,2);assert.equal(result.captureStateReview.state,'DIRTY');assert.equal(result.captureStateReview.worktreeStatus,status);
+});
+
+test('a matching HEAD and source hash cannot relabel dirty Git as clean or substitute another status',t=>{
+  const f=gitCaptureFixture(t);fs.appendFileSync(path.join(f.sourceRoot,'contract.txt'),'A captured local change.\n');f.index.files[0].sha256=hash(fs.readFileSync(path.join(f.sourceRoot,'contract.txt')));f.capture();
+  Object.assign(f.index,{captureState:'CLEAN',worktreeStatus:''});f.save();sourceCaptureFailure(()=>verifyAtlas(f),/actual worktree/);
+  Object.assign(f.index,{captureState:'DIRTY',worktreeStatus:' M guard.txt'});f.save();sourceCaptureFailure(()=>verifyAtlas(f),/actual worktree/);
+  f.capture();assert.equal(verifyAtlas(f).captureStateReview.state,'DIRTY');
+});
+
+test('the Git capture profile requires actual Git while unversioned legacy inputs retain their scope',t=>{
+  const f=fixture(t);Object.assign(f.index,{captureProfile:'GIT_WORKTREE_V1',captureState:'CLEAN',worktreeStatus:''});f.save();sourceCaptureFailure(()=>verifyAtlas(f),/real Git worktree/);
+  delete f.index.captureProfile;f.save();assert.equal(verifyAtlas(f).captureStateReview.status,'NOT_ASSESSED');
+});
+
+test('verified capture state cannot bypass byte inventory or original execution identity',t=>{
+  const a=gitCaptureFixture(t);fs.appendFileSync(path.join(a.sourceRoot,'contract.txt'),'Not yet captured.\n');a.capture();sourceCaptureFailure(()=>verifyAtlas(a),/Live source drift/);
+  a.index.files[0].sha256=hash(fs.readFileSync(path.join(a.sourceRoot,'contract.txt')));a.save();assert.equal(verifyAtlas(a).status,'PASSED');
+  fs.writeFileSync(path.join(a.sourceRoot,'unindexed.txt'),'Unindexed source.\n');a.capture();sourceCaptureFailure(()=>verifyAtlas(a),/unindexed file/);
+  const b=gitCaptureFixture(t);b.manifest.evidence=[b.proof()];Object.assign(b.manifest.claims[0],{status:'EXECUTED',verdict:'PASSED',evidenceIds:['run']});
+  fs.appendFileSync(path.join(b.sourceRoot,'contract.txt'),'Changed after the original execution.\n');b.index.files[0].sha256=hash(fs.readFileSync(path.join(b.sourceRoot,'contract.txt')));b.capture();
+  assert.throws(()=>verifyAtlas(b),error=>error.code==='ATLAS-EVIDENCE'&&/not the executed source/.test(error.observed));
 });

@@ -90,6 +90,20 @@ and [base lifecycle contracts](../atf-tests/src/test/java/com/ai/atf/core/suppor
 exercise these boundaries without starting a browser. Native adapter provider
 tests inject acquisition failures; they do not establish live-site acceptance.
 
+## Observation and optional reporting boundaries
+
+| Decision | Existing contract | Evidence boundary |
+|---|---|---|
+| Wait for a state | Return the first matching observation; on expiry, return the last observed value | A returned value alone does not establish a match or a real-time deadline |
+| Require a condition | The condition wrapper raises the caller assertion when no match was observed | Supplier errors and blocking operations keep their own failure boundary |
+| Run Core without reporting | Optional logger lookup is absent; explicitly requiring a logger fails clearly | Console-only callbacks do not create an Extent report |
+
+The [wait components](../atf-tests/src/test/java/com/ai/atf/ui/component/WaitUtilsContractTest.java)
+compare values and observation counts. [Core-only reporting](src/test/java/com/ai/core/reporting/ConsoleOnlyReportingContractTest.java)
+and [provider discovery](src/test/java/com/ai/core/reporting/spi/ReportingBackendLoaderTest.java)
+separate no provider, one provider and ambiguity before construction. The backend
+is selected during class initialization; classpath changes do not hot-replace it.
+
 ## Verification
 
 From an isolated reactor copy:

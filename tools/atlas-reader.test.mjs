@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {validateBusinessReader,renderBusinessReader,businessSections} from './atlas-reader.mjs';
+import {validateBusinessReader,renderBusinessReader,businessSections,readerComparisonProjection} from './atlas-reader.mjs';
 function fixture(){
  const claimIds=['FACT'],analysis={projectId:'generic-service',claims:[{id:'FACT',status:'SOURCE_REVIEWED'},{id:'GAP',status:'UNKNOWN'}],understanding:{units:[{id:'service',claimIds,sharedClaimIds:[]}]},behaviorFlows:[{id:'operation',caseAnalysis:{negativeScope:{status:'REVIEWED'},cases:[{id:'accept',kind:'POSITIVE',oracleStatus:'SOURCE_REVIEWED'},{id:'refuse',kind:'NEGATIVE',oracleStatus:'NOT_FOUND'}]}}]};
  analysis.dependencyGraphs=[{id:'service-map',kind:'DEPENDENCY',nodes:[{id:'service',unitId:'service',label:'Bounded operation'}],edges:[]}];analysis.behaviorFlows[0].graph={nodes:[{id:'intent',label:'Requested intent'},{id:'result',label:'Observed result'}],edges:[{from:'intent',to:'result'}]};
@@ -34,4 +34,25 @@ test('remaining questions are collapsed business explanations and retained obser
   a.understanding.refinement={verificationProfile:'BOUNDED_OBSERVATIONS_V2',retainedProofs:[{unitId:u.id,facet:'data',proofBoundary:boundary}],decisions:[]};
   const html=renderBusinessReader({analysis:a},'body{}');assert.match(html,/<details class="facet-questions"><summary>Remaining questions<\/summary>/);assert.match(html,/data-question-id="data-lifecycle"/);assert.match(html,/No account deletion implementation/);assert.doesNotMatch(html,/<details class="facet-questions"[^>]*\bopen\b/);
   boundary.openQuestions[0].evidenceNeeded='Inspect raw JSON construction files before reading this business document.';refusal(()=>renderBusinessReader({analysis:a},'body{}'));
+});
+
+test('case explanations show the compared subject and criterion without inventing recorded actual values',()=>{
+  const a=fixture(),flow=a.behaviorFlows[0];a.reader.comparisonProfile='SOURCE_BOUND_COMPARISONS_V1';flow.caseAnalysis.comparisonProfile=a.reader.comparisonProfile;
+  flow.caseAnalysis.cases[0].comparison={observedSubject:'The caller receives the actual decision returned by the operation.',expectedCriterion:'The returned decision must satisfy the independently supplied expectation.',relation:'EQUALITY',failureMeaning:'A different decision remains a mismatch rather than an accepted result.',oracleRefIndices:[0]};flow.caseAnalysis.cases[1].comparison=null;
+  const html=renderBusinessReader({analysis:a},'body{}');assert.match(html,/<details class="reader-comparison"><summary>How this check decides/);assert.match(html,/What the check reads/);assert.match(html,/comparison-criterion/);assert.doesNotMatch(html,/<details class="reader-comparison"[^>]* open|recordedActual/);
+  const projection=readerComparisonProjection(flow.caseAnalysis.cases[0]);assert.equal(projection.rule,'Matches the expected value');
+  flow.caseAnalysis.cases[0].comparison.observedSubject='Inspect raw JSON files for this check.';refusal(()=>renderBusinessReader({analysis:a},'body{}'));
+});
+
+test('a reader capture promise discloses unpublished source and cannot silently lose its index',()=>{
+  const a=fixture();a.reader.captureProfile='GIT_WORKTREE_V1';const bundle={analysis:a,sourceIndex:{captureProfile:'GIT_WORKTREE_V1',captureState:'DIRTY',worktreeStatus:' M component/source.any'}};
+  const html=renderBusinessReader(bundle,'body{}');assert.match(html,/data-atlas-capture-state="DIRTY"/);assert.match(html,/unpublished local changes/);assert.doesNotMatch(html,/source was committed with no local source changes/);
+  refusal(()=>renderBusinessReader({analysis:a},'body{}'));bundle.sourceIndex.captureState='CLEAN';assert.throws(()=>renderBusinessReader(bundle,'body{}'),e=>e.code==='ATLAS-SOURCE'&&Boolean(e.hint&&e.owner));bundle.sourceIndex.worktreeStatus='';assert.match(renderBusinessReader(bundle,'body{}'),/data-atlas-capture-state="CLEAN"/);
+});
+
+test('a compact responsibility stays readable as text without a padded one-node diagram',()=>{
+  const a=fixture();a.reader.diagramProfile='SOURCE_GRAPH_V2';a.reader.architecture[0].diagramMode='TEXT_ONLY';a.reader.architecture[0].diagramReason='Project understanding is an independent documentation responsibility with no declared runtime dependency.';a.reader.journeys[0].diagramMode='TEXT_ONLY';a.reader.journeys[0].diagramReason='This short operation is explained by its observed cases without an additional diagram.';
+  a.reader.model.stages=[{id:'expect',title:'Define expectation',claimIds:['FACT']},{id:'observe',title:'Read actual state',claimIds:['FACT']},{id:'explain',title:'Explain result',claimIds:['FACT']}];a.reader.model.links=[{from:'expect',to:'observe',label:'guides observation',claimIds:['FACT']},{from:'observe',to:'explain',label:'supports explanation',claimIds:['FACT']}];
+  const html=renderBusinessReader({analysis:a},'body{}');assert.equal((html.match(/class="atlas-graph reader-map"/g)||[]).length,1);assert.match(html,/Project understanding is an independent documentation responsibility/);assert.match(html,/Accepted request/);assert.match(html,/Refused request/);assert.doesNotMatch(html,/data-graph-id="service-map"|undefined/);
+  a.reader.architecture[0].diagramReason='';refusal(()=>validateBusinessReader(a));
 });

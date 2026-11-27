@@ -155,6 +155,27 @@ technical evidence in the audit, with no hidden HTML bundle. History retains its
 
 ## Artifact calibration
 
+Fresh `understand` authoring retrieves the existing mandatory records and applies
+all four [current profiles](Report_Contract.md#current-source-bound-authoring-profiles).
+The corpus extends the same case, graph, evidence and breadth records; adding a
+new policy topic does not require another overlapping record.
+
+- Compare the actual oracle subject with its independent criterion, supported
+  relation and mismatch meaning. Descriptions of compared state are not invented
+  runtime actuals; a matching generic assertion sentence proves no correspondence.
+- Render at least three meaningful nodes and two real distinct relationships.
+  Use `TEXT_ONLY` with a substantive reason for a compact idea; preserve its audit
+  graph and cases without adding decorative nodes or artificial dependencies.
+- Preserve actual clean or dirty Git capture, exact leading porcelain spaces and
+  the complete indexed source. Explain unpublished-source limits to the reader.
+- Separate local source from selected consumed contracts. Preserve raw selected
+  JAR/POM pairs and absent producer oracles instead of borrowing source ownership.
+
+Legacy `publish` preserves the assessment of its original capture; it does not
+upgrade history to the current profiles. Missing Git or producer source is a
+declared boundary. Never invent identity, a local module or a passing gate to
+make a source-only project appear fully qualified.
+
 The reader explains business purpose, project architecture and behavior. Architecture views preserve actual relationships using reader capability names; behavior maps stay in closed disclosures with adjacent legends.
 
 - Compare the actual artifact with live implementation owners and project documents.

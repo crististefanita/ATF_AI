@@ -7,7 +7,7 @@ import {verifyAtlas} from './verify-atlas.mjs';
 import {requireAtlas,parseAtlasJson} from './atlas-diagnostics.mjs';
 import {retrieveAtlasKnowledge,validateAtlasKnowledge} from './atlas-knowledge.mjs';
 import {validateAtlasBundle} from './atlas-bundle.mjs';
-import {validateAtlasUnderstanding,understandingFacets} from './atlas-understanding.mjs';
+import {validateAtlasUnderstanding,understandingFacets,validateCurrentUnderstandingProfiles} from './atlas-understanding.mjs';
 import {validateAtlasBehavior} from './atlas-behavior.mjs';
 import {presentationTable,presentationMarkdown,graphLegend} from './atlas-presentation.mjs';
 import {businessSections,renderBusinessReader,inspectBusinessReaderHtml} from './atlas-reader.mjs';
@@ -262,6 +262,7 @@ export function prepareAtlasBundle({sourceRoot,analysisRoot,artifactRoot,root=re
 
 export function publishAtlas(options){
   const bundle={...prepareAtlasBundle(options),renderVersion:5},css=canonicalCss(options.root||repositoryRoot);
+  if(options.requireCurrentUnderstanding){bundle.publicationProfile='CURRENT_UNDERSTANDING_V1';bundle.profileReview=validateCurrentUnderstandingProfiles(bundle.analysis,bundle.sourceIndex);}
   const {analysis}=bundle,artifacts=fs.realpathSync(options.artifactRoot),analysisDirectory=fs.realpathSync(options.analysisRoot);
   const html=renderAtlasHtml(bundle,css);validateAtlasHtml({html,css,projectId:analysis.projectId,auditBundle:bundle});
   const delivery=path.join(analysisDirectory,'delivery');
@@ -277,7 +278,7 @@ if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.ur
   try{
     const command=process.argv[2],options={},names={'--source':'sourceRoot','--analysis':'analysisRoot','--artifacts':'artifactRoot','--query':'query'};
     for(let index=3;index<process.argv.length;index+=2){const flag=process.argv[index],value=process.argv[index+1];requireAtlas(Object.hasOwn(names,flag)&&value&&!Object.hasOwn(options,names[flag]),'ATLAS-SCHEMA','Unknown, duplicate or missing argument: '+flag);options[names[flag]]=value;}
-    const result=command==='retrieve'?retrieveAtlasKnowledge({query:options.query}):command==='publish'||command==='understand'?publishAtlas(options):null;
+    const result=command==='retrieve'?retrieveAtlasKnowledge({query:options.query}):command==='publish'||command==='understand'?publishAtlas({...options,requireCurrentUnderstanding:command==='understand'}):null;
     requireAtlas(result,'ATLAS-SCHEMA','Use retrieve, understand or publish with the declared input paths');
     process.stdout.write(JSON.stringify(result)+'\n');
   }catch(error){process.stderr.write(error.message+'\n');process.exitCode=1;}

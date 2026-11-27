@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {validateAtlasUnderstanding,understandingFacets} from './atlas-understanding.mjs';
+import {validateAtlasUnderstanding,understandingFacets,validateAtlasOrigins,validateCurrentUnderstandingProfiles} from './atlas-understanding.mjs';
 
 function fixture(){
   const claim={id:'CONTRACT-1',status:'SOURCE_REVIEWED',sourceRefs:[{path:'component/source.any'}]},oracle={id:'ORACLE-1',status:'SOURCE_REVIEWED',sourceRefs:[{path:'checks/oracle.any'}]};
@@ -9,6 +9,22 @@ function fixture(){
 }
 const validate=f=>validateAtlasUnderstanding(f.analysis,f.index,{required:true});
 const fails=(f,code,needle)=>assert.throws(()=>validate(f),error=>error.code===code&&error.observed.includes(needle));
+
+test('the current understanding entry cannot downgrade any promised evidence profile',()=>{
+  const f=fixture();f.analysis.reader={diagramProfile:'SOURCE_GRAPH_V2',comparisonProfile:'SOURCE_BOUND_COMPARISONS_V1',captureProfile:'GIT_WORKTREE_V1'};f.analysis.understanding.originProfile='SOURCE_ORIGINS_V1';f.index.captureProfile='GIT_WORKTREE_V1';assert.equal(validateCurrentUnderstandingProfiles(f.analysis,f.index).status,'PASSED');
+  for(const key of ['diagramProfile','comparisonProfile','captureProfile']){const changed=structuredClone(f);delete changed.analysis.reader[key];assert.throws(()=>validateCurrentUnderstandingProfiles(changed.analysis,changed.index),e=>e.code==='ATLAS-UNDERSTANDING'&&/Current understanding requires/.test(e.observed)&&Boolean(e.hint&&e.owner&&e.recheck));}
+  const changed=structuredClone(f);delete changed.analysis.understanding.originProfile;assert.throws(()=>validateCurrentUnderstandingProfiles(changed.analysis,changed.index),e=>e.code==='ATLAS-UNDERSTANDING');
+});
+
+test('source origins keep local modules separate from reviewed consumed artifact boundaries',()=>{
+  const f=fixture();f.analysis.understanding.originProfile='SOURCE_ORIGINS_V1';const unit=f.analysis.understanding.units[0];unit.sourceRole='LOCAL_SOURCE';assert.equal(validate(f).origins.localUnits,1);
+  unit.sourceRole='CONSUMED_ARTIFACT';unit.kind='BOUNDARY';unit.scopePaths=['lib'];unit.artifacts=[{coordinate:'example:contract:1.0',jarPath:'lib/contract.jar',pomPath:'lib/contract.pom'}];f.index.files.push({path:'lib/contract.jar'},{path:'lib/contract.pom'});f.analysis.claims[0].sourceRefs=[{path:'lib/contract.pom'}];const result=validate(f).origins;assert.equal(result.selectedArtifacts,1);assert.equal(result.consumedBoundaries,1);assert.match(result.scope,/NOT_PRODUCER_SOURCE/);
+});
+test('consumed source labels, missing pairs and uncited declarations retain repair guidance',()=>{
+  for(const change of [u=>u.kind='MODULE',u=>u.artifacts[0].pomPath='lib/missing.pom',u=>u.artifacts[0].coordinate='unqualified',u=>u.artifacts.push(u.artifacts[0])]){const f=fixture(),u=f.analysis.understanding.units[0];f.analysis.understanding.originProfile='SOURCE_ORIGINS_V1';Object.assign(u,{kind:'BOUNDARY',sourceRole:'CONSUMED_ARTIFACT',scopePaths:['lib'],artifacts:[{coordinate:'example:contract:1.0',jarPath:'lib/contract.jar',pomPath:'lib/contract.pom'}]});f.index.files.push({path:'lib/contract.jar'},{path:'lib/contract.pom'});f.analysis.claims[0].sourceRefs=[{path:'lib/contract.pom'}];change(u);assert.throws(()=>validate(f),e=>e.code==='ATLAS-UNDERSTANDING'&&Boolean(e.owner&&e.hint&&e.recheck));}
+  const f=fixture();f.analysis.understanding.originProfile='invented';assert.throws(()=>validateAtlasOrigins(f.analysis,f.index),e=>e.code==='ATLAS-UNDERSTANDING');
+  const missing=fixture(),u=missing.analysis.understanding.units[0];missing.analysis.understanding.originProfile='SOURCE_ORIGINS_V1';Object.assign(u,{kind:'BOUNDARY',sourceRole:'CONSUMED_ARTIFACT',scopePaths:['lib'],artifacts:[{coordinate:'example:contract:1.0',jarPath:'lib/contract.jar',pomPath:'lib/contract.pom'}]});missing.index.files.push({path:'lib/contract.jar'},{path:'lib/contract.pom'},{path:'lib/guide.md'});missing.analysis.claims[0].sourceRefs=[{path:'lib/guide.md'}];fails(missing,'ATLAS-UNDERSTANDING','Cite the selected artifact declaration');
+});
 
 test('generic review inventory retains all seven facets and explicit partial scope',()=>{
   const f=fixture(),result=validate(f);assert.equal(result.units,1);assert.equal(result.facets.REVIEWED,1);assert.equal(result.facets.PARTIAL,6);assert.match(result.limitation,/not code coverage/);

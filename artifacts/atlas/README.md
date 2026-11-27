@@ -84,6 +84,8 @@ The generated source index records each inspected path, role and evidence scope.
 - Open questions identify the missing fact and its owner; they are not automatic requests to add product/E2E tests.
 - Analysis time and execution time are separate.
 
+Fresh `understand` follows the [current profiles](../../atf-atlas/Report_Contract.md#current-source-bound-authoring-profiles). Render a diagram only for at least three meaningful nodes and two real relationships; use reasoned `TEXT_ONLY` for a compact owner. Concrete case comparisons, actual Git capture and local/consumed origins retain their proof limits.
+
 ## Declared review units and seven facets
 
 New public captures use renderVersion 5 and analysis.understanding schemaVersion 1.

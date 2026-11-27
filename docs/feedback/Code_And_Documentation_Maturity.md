@@ -1120,3 +1120,127 @@ scope; the declared review inputs determine these scores.
 Earlier AI/J1 comparison tables and published Atlas readers keep their original
 source checkpoints and scores. J4 now has the source-bound A-003 comparison, with execution NOT_RUN. The lower portability rating reflects
 the recorded Windows matrix rather than an observed cross-platform runtime defect.
+
+<a id="d-024"></a>
+## D-024: Concrete comparisons and deeper existing behavior
+
+Status: VERIFIED within the declared source/component and artifact scope. Owner: Atlas semantic review.
+Priority 89 (impact 92 / exposure 88 / urgency 85).
+Baseline quality 91 (correctness 91 / verification 89 / clarity 92).
+
+- Independent review found that 32 of 35 case descriptions repeated one generic
+  assertion explanation. A matching source identity does not explain the actual
+  subject, independent criterion or the meaning of a mismatch.
+- `SOURCE_BOUND_COMPARISONS_V1` now requires those concrete selections and the
+  supported relation. Exception type is not failure-object identity; membership
+  is not order; a callback flag is not an exact count. No runtime actual is invented.
+- Three newly reviewed existing boundaries deepen the story: waiting distinguishes
+  first match from the last unmatched value at expiry; final-image policy separates
+  eligibility, absent UI, deduplication and invocation ownership; optional reporting
+  separates Core-only absence, one installed provider and duplicate refusal.
+- A fourth existing boundary follows owned result contexts, invocation reset and
+  guarded failure-hook diagnostics through their independent assertion bodies.
+- The current AI draft retains 16 flows and 51 cases, including 16 additional
+  witnesses for those four existing responsibilities. These are explanations of
+  maintained checks, not additional product journeys or broader execution claims.
+- The existing screenshot component now holds the first invocation open while
+  another evaluates its own eligibility. Original and repair runs each pass 1/1; a
+  disposable shared-flag mutation fails exactly the second-context expectation
+  with expected one versus actual zero. This bounded interleaving does not
+  certify every race schedule; complete final-source qualification remains separate.
+- Guarded failure-attachment hooks do not establish that direct final-state hooks
+  or an arbitrary logger failure are non-blocking. Those source-only limits stay explicit.
+
+| Atlas axis | Earlier selected reader | Independent pre-correction review |
+|---|---:|---:|
+| Business/project understanding | 93 | 92 |
+| Semantic breadth | 92 | 91 |
+
+The independent inputs are 93/90/92 and 91/89/92 respectively under the 40/30/30
+rubric. This recalibration reflects omitted decisions and generic comparisons,
+not an observed runtime regression. Earlier grades remain unchanged; larger
+case counts do not justify an increased final grade.
+
+Evidence: `${ATF_WORK_ROOT}/reviews/cross-project-understanding-20261127/ai-audit`
+and `${ATF_WORK_ROOT}/reviews/cross-project-understanding-20261127/screenshot-proof`.
+Delivered quality 95 (correctness 96 / verification 94 / clarity 95).
+
+- Initial paired complete-source acceptance passes 748 native and 304 Node checks per edition. The final closure source has its own independently retained acceptance receipt.
+- The actual reader binds 76 oracle claims to 165 original subjects. Native 1440/900 review passes with 18 real diagrams and 51 case comparisons; the singleton responsibility is prose.
+- Two additional Atlas witnesses separate policy omission from eligible capture using the same existing matrix oracles. No runtime test or product journey is added.
+- Original dense-prose, RO-anchor and current-entry fixture failures remain preserved with their observed repairs. Source-map refusals also retained invalid geometry, duplicate facet selections and overlong labels before the accepted repair.
+- Original screenshot source and repair pass; the disposable shared-state mutation fails exactly the independent second capture.
+
+Evidence: initial qualified acceptance, initial native calibration, narrative review and the final source/publication receipts in the cross-project dossier. This closure does not remove the two partial application facets or claim arbitrary scheduler safety.
+
+<a id="d-025"></a>
+## D-025: Truthful origins, source capture and useful diagrams
+
+Status: VERIFIED within the declared source/component and artifact scope. Owner: Atlas intake and presentation.
+Priority 87 (impact 90 / exposure 88 / urgency 80).
+Baseline quality 85 (correctness 88 / verification 80 / clarity 85).
+
+- Fresh `understand` requires the comparison, diagram, Git capture and source-origin
+  profiles together. Legacy `publish` preserves its captured assessment instead
+  of silently recertifying historical readers.
+- `SOURCE_GRAPH_V2` requires three meaningful nodes and two distinct real directed
+  relationships in every rendered figure. Compact ideas use `TEXT_ONLY` with a
+  substantive reason. The AI singleton boundary becomes prose; no owner or
+  dependency is invented to increase a diagram count.
+- `GIT_WORKTREE_V1` preserves actual revision, complete source identities and
+  exact canonical dirty status, including leading spaces. Reader confidence
+  explains unpublished local changes while construction details remain adjacent.
+- `SOURCE_ORIGINS_V1` distinguishes five J1 local modules from selected consumed
+  libraries and the separate read-only inspector. Six raw selected JAR/POM pairs
+  retain their coordinates and reviewed declarations; producer source is absent.
+- Independent validation is an explicit local capability, not an automatic Shop
+  or AutoEx stage. The inspector is test-scoped, does not generate reports and
+  does not qualify application acceptance. Supplied model invocation fields do
+  not attest an actual call or the truth of referenced content.
+- The fresh J1 intake reviews eight behaviors and 32 comparisons with 30 existing
+  oracle methods. Its 49 scoped facets remain 30 REVIEWED, 17 PARTIAL and two
+  UNKNOWN; the count is a declaration of review scope, not semantic coverage.
+- Actual native J1 records distinguish 234 passing selected pure components from
+  216 whole-governance checks with one failing check covering missing-owner
+  controls on two changed protected files. The preserved dirty capture owns that
+  failure. Passing expected-negative components cannot replace the whole verdict.
+
+Evidence: `${ATF_WORK_ROOT}/reviews/cross-project-understanding-20261127/j1-audit`
+and `${ATF_WORK_ROOT}/reviews/cross-project-understanding-20261127/j1-intake`.
+Delivered quality 96 (correctness 97 / verification 96 / clarity 95).
+
+- The actual current publisher refuses and repairs 13 applicable AI controls and 12 J1 controls; every repair reproduces its original reader bytes. Real dirty captures and consumed-library pairs are exercised without changing either target.
+- Both original native reader reviews pass at 1440/900. J1's final shared-policy reader binds 30 existing oracle methods to 47 exact original subjects and preserves the actual failed whole-governance subject.
+- All 684 J1 raw source files and exact Git state remain unchanged. Its 234 passing components do not overwrite the separate 216-case result with one failure.
+- Final clean AI publication, paired translation qualification and selection retain their own final receipts; the initial dirty reader and all failed/refused inputs remain preserved.
+
+This item closes the bounded Atlas intake/presentation correction. It creates no J1 source-edit obligation, E2E TODO or emulator requirement.
+
+<a id="cross-project-assessment"></a>
+## Cross-project source and Atlas assessment
+
+The current review compares the inspected AI maintenance overlay with J1 source
+`4e3cac10061c95ea2b9b32cc18a6d4add1007a1e` and its retained unpublished changes.
+AI has local framework implementation; J1 combines application-owned consumers
+with selected binary libraries. Different source scopes are not completeness
+percentages. Original assessments above retain their original checkpoints.
+
+Project and Atlas axes remain separate. The final source-bound inputs, rationales
+and native-render evidence belong to `comparison.json` and
+`atlas-axis-review.json` in the cross-project review dossier. They use the same
+40/30/30 rubric and do not calculate an overall winner from passing test counts.
+
+- AI review adds concrete oracle comparisons, four existing behavior boundaries
+  and strict current-intake profiles. The two application facets remain partial.
+- J1 retains 234 passing selected components and one actual failure in 216
+  governance/artifact cases. Two protected test edits lack the accepted owner
+  control; a passing negative fixture cannot replace this real failed gate.
+- Selected J1 dependency pairs remain raw artifacts. Consumer observations do
+  not establish absent producer source, and supplied AI invocation metadata is
+  not independent attestation that a model was called.
+- The final publication keeps one offline business reader per project and the
+  original source, failed observations and construction audit outside the HTML.
+
+Final source, native and publication qualification is recorded by D-024/D-025;
+the dossier's original receipts determine the exact delivered state. No new E2E
+journey, emulator or runtime Java feature is part of this correction.

@@ -57,6 +57,61 @@ meaning and whether technical-only classifications are appropriate.
 
 `ATLAS-READER-004: Explain verification and assessment limits in reader language; do not infer a project quality grade from consistency, retrieval or passing checks.`
 
+## Current source-bound authoring profiles
+
+`ATLAS-AUTHORING-001: Fresh understand authoring requires SOURCE_BOUND_COMPARISONS_V1, SOURCE_GRAPH_V2, GIT_WORKTREE_V1 and SOURCE_ORIGINS_V1 together; legacy publish preserves captured history without silently upgrading its assessment.`
+
+The `understand` entry point requires all four profiles. Compatibility `publish`
+can preserve an earlier capture; a valid historical envelope does not acquire
+current semantic, source-origin or rendering qualification. Stop on a missing
+current declaration rather than inventing facts to satisfy the schema.
+
+| Review decision | Required meaning | Retained boundary |
+|---|---|---|
+| Compared state | Actual oracle subject, independent criterion and mismatch meaning | Descriptions are not invented observed values |
+| Useful diagram | At least three meaningful nodes and two distinct real directed relationships | Small ideas remain prose or cards |
+| Captured worktree | Actual revision, complete inventory and exact clean or dirty status | Dirty conclusions belong to the captured working copy |
+| Source origin | Local implementation or a selected consumed contract | A selected package does not become producer source |
+
+`ATLAS-COMPARISON-001: SOURCE_BOUND_COMPARISONS_V1 binds every represented case to its actual oracle subject, independent expected criterion, supported comparison relation and failureMeaning; describe compared state without inventing runtime actuals or treating an unrelated failure as the intended refusal.`
+
+Record `observedSubject`, `expectedCriterion`, `relation` and `failureMeaning`
+against the exact existing oracle fragments. EQUALITY, PREDICATE,
+FAILURE_IDENTITY, ORDER and OWNERSHIP mean only what the assertions establish;
+CUSTOM also explains the actual comparison. An exception class is not original
+failure identity, membership is not order, and a boolean callback flag is not an
+exact invocation count. Keep a missing oracle explicit instead of fabricating
+an expected-versus-actual result.
+
+`ATLAS-DIAGRAM-002: SOURCE_GRAPH_V2 renders a diagram only when it contains at least three meaningful nodes and two distinct real directed relationships; use TEXT_ONLY with a substantive diagramReason for a compact idea, never pad nodes or invent dependencies.`
+
+Apply this requirement to rendered behavior, architecture and operating-model
+views. A compact graph can remain truthful in the audit while its reader
+explanation uses `TEXT_ONLY`. Explain why prose is clearer; the choice does not
+remove the underlying cases, owner mapping or source limits. All displayed
+graphs retain readable complete labels, actual direction and adjacent closed
+legends under the existing visual contract.
+
+`ATLAS-CAPTURE-001: GIT_WORKTREE_V1 captures the actual Git revision and complete indexed source with exact canonical porcelain status; retain leading status spaces, distinguish CLEAN from DIRTY and explain dirty-source limits in business language without presenting unpublished changes as a clean committed release.`
+
+Canonical status normalizes CRLF to LF and removes trailing whitespace only.
+Do not call `trim()` on porcelain output: its leading spaces encode state.
+Verify the declared status against the actual working copy together with file
+identities. The reader explains that conclusions belong to unpublished local
+changes; exact paths, status payloads and commands stay in the adjacent audit.
+No Git metadata means the current profile is unavailable, not an invented clean
+capture; historical source-only inputs retain their declared limits.
+
+`ATLAS-ORIGIN-001: SOURCE_ORIGINS_V1 distinguishes LOCAL_SOURCE units from CONSUMED_ARTIFACT boundaries; each selected consumed coordinate owns an indexed raw JAR/POM pair and a reviewed POM declaration, while absent producer implementation and native oracles remain explicit limits.`
+
+A consumed unit is a BOUNDARY, not a local source module. Preserve its selected
+coordinate, distinct `jarPath` and `pomPath`, indexed ownership and raw byte
+identity; library pairs are not normalized text evidence. Review the selected
+declaration and actual consumption scope. Consumer package acceptance can verify
+the chosen dependency but cannot replace absent producer source or establish its
+complete behavior. Local declarations and consumed contracts receive distinct
+reader cues, with business explanations of the remaining responsibility.
+
 ## Governed authoring loop
 
 `ATLAS-READER-003: Retrieve mandatory audience and numbering policy, author the project-specific projection from actual source, preserve negative controls and repairs, verify the adjacent audit, and inspect native rendering before selecting the final reader.`
