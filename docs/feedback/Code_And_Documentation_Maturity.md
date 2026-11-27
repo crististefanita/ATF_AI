@@ -1336,3 +1336,65 @@ Calitate livrată 95 (corectitudine 95 / verificare 96 / claritate 94).
 - Publicarea curentă V2 cere profilul de referință; V1 rămâne verificabil istoric, fără calificare nouă implicită. Nu se restaurează servicii runtime, nu se adaugă E2E și nu se execută emulatoare.
 
 Dovezi: `${ATF_WORK_ROOT}/reviews/atlas-reference-adaptation-20261127`. Cele două fațete parțiale și cele cinci întrebări despre aplicație rămân explicite; starea revizuită nu înseamnă înțelegere semantică exhaustivă.
+
+<a id="d-027"></a>
+<a id="d-027-fitted-diagrams-and-useful-local-references"></a>
+## D-027: Diagrame care încap în panou și referințe locale utile
+
+Stare: VERIFIED în domeniul delimitat al prezentării și dovezilor. Responsabil: guvernanța diagramelor Atlas.
+Prioritate 93 (impact 94 / expunere 92 / urgență 90).
+Calitate inițială 84 (corectitudine 86 / verificare 82 / claritate 83).
+
+- Reperul permite depășirea orizontală în hărțile secundare. La 900 px, nodurile
+  pentru răspuns și fundație ies din panoul vizibil; metadatele valide de scroll
+  nu fac întreaga poveste imediat lizibilă.
+- Legendele secundare repetă formulări generice și nu au a doua secțiune locală
+  de referințe din exemplul istoric. Declararea trasabilității nu înlocuiește
+  subiectul real, verdictul și limita responsabilității.
+- O etichetă înaltă pe mai multe linii poate ascunde un font transformat minuscul
+  de o verificare bazată doar pe înălțime. Regulile istorice de scară și legendă
+  oferă principii utile; pragurile și infrastructura veche nu sunt copiate orbește.
+- Acceptanța cere lipsa scroll-ului orizontal, noduri și relații complete și
+  lizibile, exact două secțiuni închise per graf, legende specifice sursei,
+  dovadă originală și indicații utile pentru refuzurile componentei responsabile.
+- Sursa curentă aparține zonei separate de componente `atf-atlas/governance`.
+  Revizuirea nativă, documentația pereche și contraexemplele semnificative califică
+  această corecție; volumul testelor nu crește nota de înțelegere.
+
+Dovezi: `${ATF_WORK_ROOT}/reviews/atlas-diagram-calibration-20261127`.
+Nu sunt cerute E2E noi ale aplicației sau emulatoare. Cele două fațete parțiale
+ale aplicației și cele cinci întrebări rămase își păstrează domeniul original.
+
+
+Calitate livrată 95 (corectitudine 95 / verificare 96 / claritate 94).
+
+- Toate cele 18 diagrame din previzualizarea nativă încap la 1440/900, fără
+  scroll orizontal și cu două secțiuni închise pentru legendă și referințe.
+- Cele nouă cazuri ale modulului și selecția de 55 componente trec. Testele
+  documentației au prins un paragraf de patru propoziții în ambele ediții;
+  repararea separă deciziile, iar verificările de lizibilitate și ediție trec.
+- Douăsprezece obiecte istorice distincte ancorează regulile, exemplele de cod
+  și controalele negative. Regula fără scroll este o decizie curentă explicită.
+- Referința principală veche are text de aproximativ 8–10 px la 900 px și 13
+  relații fără etichete proprii. Preluăm structura, păstrând verificări mai stricte.
+- Nota de lectură a Atlasului este recalibrată de la 96 la 95; înțelegerea 94
+  și amploarea semantică 93 rămân delimitate. Layout-ul nu completează sursa.
+- Calificarea finală a sursei exacte, controalele reale ale publicării și
+  selecția livrată au chitanțe proprii în dosarul extern; încercările eșuate
+  rămân păstrate. V1/V2 istorice nu primesc retroactiv calificarea V3.
+
+| Axă a artefactului și politicii inspectate | main_mcp istoric | ATF_AI revizuit |
+|---|---:|---:|
+| Poveste business | 94 | 94 |
+| Relații și înțelegerea diagramei principale | 80 | 95 |
+| Scară și lizibilitate măsurată | 78 | 95 |
+| Legende și referințe locale | 94 | 95 |
+| Auditabilitate și limite ale dovezilor | 91 | 96 |
+| Guvernanța prezentării demonstrată | 87 | 96 |
+| Livrare într-un singur fișier offline | 88 | 95 |
+| Amploare semantică selectată | 94 | 93 |
+
+Aceste note folosesc rubrici motivate 40/30/30 în comparația externă, fără
+câștigător mediu sau rate de trecere convertite în calitate. Evaluează artefactele
+și politicile inspectate, nu recertifică execuția istorică sau întregul cod.
+Notele originale ale reperului rămân neschimbate în artefactul său.

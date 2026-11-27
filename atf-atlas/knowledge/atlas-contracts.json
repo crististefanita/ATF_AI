@@ -327,10 +327,14 @@
         "relationship",
         "labels",
         "svg",
-        "readability"
+        "readability",
+        "no horizontal scroll",
+        "two disclosures",
+        "references",
+        "transformed text"
       ],
       "mandatory": true,
-      "requirement": "Use visible minimal SVG shapes, understandable relationship labels and arrowheads. Inspect real desktop rendering for overlap, clipped labels and ambiguous direction; valid markup alone is insufficient. Require SOURCE_GRAPH_V2 for fresh understand: preserve full source/domain relationship labels and arrow direction, distinguish actual refusal boundaries from future frontiers, use calm shared primitives, consistent scale, compact horizontal layouts and closed local bullet legends. Audit actual native labels, endpoints, outlines, arrowheads, overlap and clipping; never replace a long relationship with a generic observe label. Adapt archive guidance to the current English audience and keep raw technical proof outside the HTML. Each rendered view needs at least three meaningful nodes and two distinct real directed relationships. Compact journey or architecture ideas use TEXT_ONLY with a substantive diagramReason; preserve truthful audit graphs, cases and ownership without padding nodes or fabricating dependencies. Historical SOURCE_GRAPH_V1 captures retain their original assessment; compatibility publication does not recertify them as the current profile. Fresh reference presentation opens the actual primary map and closes support, uses three reading bands for rich maps, retains local facet-bound maturity and independent object proof, and measures initial state before interaction. Never use test metadata or invented future features as primary business objects.",
+      "requirement": "Use visible minimal SVG shapes, understandable relationship labels and arrowheads. Inspect real desktop rendering for overlap, clipped labels and ambiguous direction; valid markup alone is insufficient. Require SOURCE_GRAPH_V2 for fresh understand: preserve full source/domain relationship labels and arrow direction, distinguish actual refusal boundaries from future frontiers, use calm shared primitives, consistent scale, compact horizontal layouts and closed local bullet legends. Audit actual native labels, endpoints, outlines, arrowheads, overlap and clipping; never replace a long relationship with a generic observe label. Adapt archive guidance to the current English audience and keep raw technical proof outside the HTML. Each rendered view needs at least three meaningful nodes and two distinct real directed relationships. Compact journey or architecture ideas use TEXT_ONLY with a substantive diagramReason; preserve truthful audit graphs, cases and ownership without padding nodes or fabricating dependencies. Historical SOURCE_GRAPH_V1 captures retain their original assessment; compatibility publication does not recertify them as the current profile. Fresh reference presentation opens the actual primary map and closes support, uses three reading bands for rich maps, retains local facet-bound maturity and independent object proof, and measures initial state before interaction. Never use test metadata or invented future features as primary business objects. Current V3 requires BUSINESS_REFERENCE_V2. No horizontal scrolling in diagrams, tables or expanded details. Measure actual transformed type at native desktop widths, not multiline bounding-box height. Keep every graph at a consistent calm scale with two initially closed local disclosures: a three-bullet source-specific legend and owned references, original verdicts and limits. An empty shell or repeated generic caption does not qualify. Split an overly wide source story into meaningful subviews or prose without removing its complete audit. The no-scroll extension is a current project decision, distinct from the archived rules.",
       "sources": [
         {
           "kind": "ARCHIVE",
@@ -405,6 +409,37 @@
           "path": "src/main/java/com/ai/skills/atlas/rules/graph/proof/AtlasMainGraphNodeMaturityProofRule.java",
           "sha256": "659ec04df0cc72d82491864275acad7c4785ffc4c38303b274741141fcf2d024",
           "quote": "Primary Business Flow Graph nodes expose their maturity in-node and reconcile with local proof-strip rows that state method, layer, maturity, evidence and limit."
+        },
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "ATLAS-DIAGRAM-FIT-001: Fresh CURRENT_UNDERSTANDING_V3 requires BUSINESS_REFERENCE_V2; every diagram and table fits without horizontal scrolling, clipping or reduced text, with actual transformed SVG type of at least 13 CSS px at the qualified desktop widths; split a wide idea into meaningful source-bound subviews or prose and retain its complete audit."
+        },
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "ATLAS-DIAGRAM-SUPPORT-001: Every current diagram has exactly two initially closed local disclosures, a source-specific bulleted legend and references with owned subjects, original proof and remaining limits; compare their actual rendered content with the original source-bound projection, never accept empty shells or generic legend filler."
+        },
+        {
+          "kind": "ARCHIVE",
+          "revision": "70a7279c2a9560d39e6bd2554cd2f96a88626692",
+          "path": "src/main/java/com/ai/skills/atlas/rules/graph/legend/AtlasLegendContentQualityRule.java",
+          "sha256": "70e3c43d6e68b8be20ad39c09ec58d0dc57d56aabcf30241e3da5a34390679df",
+          "quote": "Every graph Legend is schematic and useful: bullet-based, business-aware, and explicit about what the graph adds."
+        },
+        {
+          "kind": "ARCHIVE",
+          "revision": "70a7279c2a9560d39e6bd2554cd2f96a88626692",
+          "path": "src/test/java/com/ai/skills/atlas/tests/candidate/AtlasCandidateGraphNegativeFixtureContractTest.java",
+          "sha256": "c36a5af991bd2d31b171cb7b396dd16437d06f39d456586251e3af90f7f3232b",
+          "quote": "Main graph should tell the agent to mark the primary owned business object."
+        },
+        {
+          "kind": "ARCHIVE",
+          "revision": "70a7279c2a9560d39e6bd2554cd2f96a88626692",
+          "path": "src/test/java/com/ai/skills/atlas/tests/candidate/AtlasCandidateGraphContractTest.java",
+          "sha256": "d932a551eb3af19e7b88a7786c62bbf2a46cc836bbdf18762b187c3aed803e33",
+          "quote": "public void candidateAtlasGraphProofStripsStayBelowCollapsedLegends() throws IOException {"
         }
       ]
     },

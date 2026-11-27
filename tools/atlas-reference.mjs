@@ -2,7 +2,7 @@ import {requireAtlas} from './atlas-diagnostics.mjs';
 import {reviewAtlasAssessment} from './atlas-understanding.mjs';
 import {presentationTable} from './atlas-presentation.mjs';
 
-export const referenceProfile='BUSINESS_REFERENCE_V1';
+export const referenceProfile='BUSINESS_REFERENCE_V2';
 const need=(condition,message)=>requireAtlas(condition,'ATLAS-READER',message);
 const object=value=>value!==null&&typeof value==='object'&&!Array.isArray(value);
 const text=value=>typeof value==='string'&&value.trim().length>=30;
@@ -17,7 +17,7 @@ const maturityLabel={REVIEWED:'Reviewed within scope',PARTIAL:'Partial understan
 /** Source and assessment bindings protect the authored projection, not automatic semantic truth. */
 export function referencePresentationProjection(analysis){
   if(analysis.reader?.presentationProfile===undefined)return null;
-  need(analysis.reader.presentationProfile===referenceProfile,'Use the supported business reference presentation profile');
+  need(['BUSINESS_REFERENCE_V1',referenceProfile].includes(analysis.reader.presentationProfile),'Use the supported business reference presentation profile');
   const {primaryGraph:graph,assessment:reader}=analysis.reader;
   shape(graph,['id','title','summary','legend','focusNodeId','nodes','edges'],'primary map');
   need(id(graph.id)&&text(graph.summary)&&text(graph.legend),'Explain the actual primary map and its relationship boundary');

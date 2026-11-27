@@ -123,10 +123,23 @@ spre înțelegere despre responsabilitatea rămasă.
 
 `ATLAS-REFERENCE-AUTHORING-001: Fresh CURRENT_UNDERSTANDING_V2 requires BUSINESS_REFERENCE_V1 in addition to the source, comparison, origin and diagram profiles; preserve historical V1 declarations without upgrading their presentation assessment.`
 
-Declarația de redactare anterioară descrie capturile V1. Intrarea curentă
-`understand` publică V2 și cere suplimentar `BUSINESS_REFERENCE_V1`.
-Verificarea offline V1 păstrează domeniul original; nu oferă calificarea noii
-prezentări sau a notelor. Cititorii istorici nu sunt rescriși.
+Declarațiile de redactare păstrate descriu capturile V1/V2. Intrarea curentă
+`understand` publică V3 și cere `BUSINESS_REFERENCE_V2`. Verificarea offline V1/V2
+păstrează domeniul original; nu oferă calificarea noii prezentări care încape în
+panou. Cititorii istorici nu sunt rescriși.
+
+`ATLAS-DIAGRAM-FIT-001: Fresh CURRENT_UNDERSTANDING_V3 requires BUSINESS_REFERENCE_V2; every diagram and table fits without horizontal scrolling, clipping or reduced text, with actual transformed SVG type of at least 13 CSS px at the qualified desktop widths; split a wide idea into meaningful source-bound subviews or prose and retain its complete audit.`
+
+`ATLAS-DIAGRAM-SUPPORT-001: Every current diagram has exactly two initially closed local disclosures, a source-specific bulleted legend and references with owned subjects, original proof and remaining limits; compare their actual rendered content with the original source-bound projection, never accept empty shells or generic legend filler.`
+
+[Modulul de guvernanță a diagramelor](governance/README.md) adaptează contractele
+istorice pentru scară vizuală, legendă și maturitate. Vederile secundare folosesc
+un cadru comun și niveluri delimitate; poveștile prea ample sunt respinse cu o
+reparare prin subvederi sau proză. Verificările native măsoară textul după
+transformările SVG, depășirea locală, secțiunile inițiale și referințele specifice
+sursei. O casetă cu mai multe linii nu poate ascunde un font minuscul. Regula
+curentă fără scroll este o decizie explicită a proiectului; citatele arhivei
+păstrează cerințele lor istorice reale.
 
 `ATLAS-REFERENCE-001: Keep one source-bound primary business map open in the initial reader, with supporting maps, local legends, object proof and score rationale closed; explain the actual project objects rather than runtime module topology or authoring metadata.`
 
@@ -472,7 +485,7 @@ surselor și execuțiilor originale rămân neschimbate de o actualizare a preze
 | Comparație | Coloane adaptate conținutului, aliniere sus, identificatori împărțiți și text complet | Geometria nativă a celulelor la lățimile desktop declarate |
 | Dovadă lungă de caz | Fișă verticală cu fiecare câmp original | Observația așteptată independentă, aserțiunea și limitele rămân vizibile |
 | Diagramă | Legendă alăturată pentru casete, săgeți, domeniul dovezii și omisiuni | Săgețile de dependență și tranzițiile comportamentale păstrează sensuri distincte |
-| Tabel dens | Derulare locală denumită, accesibilă prin tastatură | Fără depășirea documentului, decupare, puncte de suspensie sau micșorarea forțată a textului |
+| Tabel dens | V3 curent: coloane cu text încadrat sau fișe de caz; cititorii istorici păstrează politica lor | Fără scroll orizontal, decupare, puncte de suspensie sau micșorarea forțată a textului |
 
 [Controalele de prezentare](../tools/atlas-presentation.test.mjs) verifică situații
 negative, remediate și valide. Alocarea coloanelor rezervă prozei cel puțin 300

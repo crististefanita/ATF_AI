@@ -339,7 +339,13 @@ Pentru BOUNDED_OBSERVATIONS_V2, copiați retainedProofs din auditul precedent ș
 <a id="map-opening-and-scoped-scores"></a>
 ## Deschiderea hărții și notele delimitate
 
-Declară `presentationProfile: BUSINESS_REFERENCE_V1`, `reader.primaryGraph` și `reader.assessment` pentru redactarea curentă V2. Leagă fiecare obiect de fațete și oracole independente existente, păstrând cea mai puțin stabilită maturitate. Harta principală este deschisă; legenda, dovezile și justificările notelor sunt închise.
+Declară `presentationProfile: BUSINESS_REFERENCE_V2`, `reader.primaryGraph` și
+`reader.assessment` pentru redactarea curentă V3. Leagă fiecare obiect de fațete
+și oracole independente existente, păstrând cea mai puțin stabilită maturitate.
+Harta principală este deschisă. Fiecare diagramă are două secțiuni închise: legenda
+și referințele cu dovada originală și limite. Diagramele și tabelele încap fără
+scroll orizontal; împarte o poveste prea amplă în subvederi cu sens și sursă sau
+în proză, păstrând auditul adiacent complet.
 
 - Pozițiile `band` și `column` organizează lectura, fără să inventeze o secvență runtime.
 - Axele provin din `analysis.assessment`; scopurile proiectului și Atlasului rămân separate.

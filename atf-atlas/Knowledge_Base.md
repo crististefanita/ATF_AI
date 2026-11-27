@@ -54,6 +54,9 @@ actualul cod al proiectului.
 - Păstrează fișierele țintei numai pentru citire și rezultatele în artefactele ignorate alese de apelant.
 - Tratează onest intrările observate ale scorurilor și întrebările nerezolvate.
 - Păstrează eșecul original și oferă o cale delimitată de remediere.
+- Aplică guvernanța curentă fără scroll: scară măsurată consecventă și două
+  secțiuni locale închise, cu legende specifice sursei și referințe originale.
+  Folosește [responsabilul componentei](governance/README.md) pentru vederi prea ample.
 
 Căile arhivei și digest-urile blob identifică proveniența. Nu sunt instrucțiuni
 active de execuție. Nu se restaurează vreun registru vechi, plan de execuție sau
@@ -164,7 +167,11 @@ Politica obligatorie KB-BUSINESS-READER păstrează publicul business, auditul a
 cu prezentarea. KB-COMPLETE cere acum înțelegere completă în cititor și dovezi
 tehnice complete în audit, fără pachet ascuns în HTML. Istoricul își păstrează politica capturată.
 
-Profilul curent include `BUSINESS_REFERENCE_V1`: hartă principală deschisă, suport închis, maturitate legată de fațete și note cu obiectiv–întrebare–măsură. V2 este verificat separat de declarațiile V1 istorice. Nu se transformă un rezultat trecut într-o notă automată.
+Profilul curent include `BUSINESS_REFERENCE_V2`: hartă principală deschisă,
+suport închis, maturitate legată de fațete și note cu obiectiv–întrebare–măsură.
+V3 curent cere și diagrame care încap în panou și două secțiuni locale închise
+pentru fiecare graf. Declarațiile istorice V1/V2 își păstrează evaluarea originală.
+Un rezultat trecut nu devine niciodată o notă automată.
 
 <a id="artifact-calibration"></a>
 ## Calibrarea artefactului

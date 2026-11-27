@@ -924,3 +924,11 @@ marker#arrow path{fill:var(--accent)}body{font-size:15px}.wrap{max-width:1320px}
 .reader .reader-comparison summary{font-size:14px}
 .reader .reader-comparison dt{font-weight:600;margin-top:12px}
 .reader .reader-comparison dd{margin:5px 0 12px;line-height:1.7}
+
+/* Current fitted views share a calm scale and never hide relationships off-screen. */
+.fit-reader .reader-map{width:100%;max-width:960px;margin:18px auto;overflow:visible}
+.fit-reader .reader-map .flow{width:100%;min-width:0;max-width:960px;margin:auto}
+.fit-reader .reader-map:not(.primary-map) .flow text{font-size:20px}
+.fit-reader .reader-map:not(.primary-map) .flow .edge-label{font-size:18px}
+.fit-reader .table-scroll{overflow:visible}
+.fit-reader table{min-width:0;max-width:100%;table-layout:fixed}
