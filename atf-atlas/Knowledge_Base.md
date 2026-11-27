@@ -164,11 +164,13 @@ Politica obligatorie KB-BUSINESS-READER păstrează publicul business, auditul a
 cu prezentarea. KB-COMPLETE cere acum înțelegere completă în cititor și dovezi
 tehnice complete în audit, fără pachet ascuns în HTML. Istoricul își păstrează politica capturată.
 
+Profilul curent include `BUSINESS_REFERENCE_V1`: hartă principală deschisă, suport închis, maturitate legată de fațete și note cu obiectiv–întrebare–măsură. V2 este verificat separat de declarațiile V1 istorice. Nu se transformă un rezultat trecut într-o notă automată.
+
 <a id="artifact-calibration"></a>
 ## Calibrarea artefactului
 
 Redactarea nouă prin `understand` regăsește înregistrările obligatorii existente și
-aplică toate cele patru [profile curente](Report_Contract.md#current-source-bound-authoring-profiles).
+aplică profilurile de sursă și prezentare [profile curente](Report_Contract.md#current-source-bound-authoring-profiles).
 Corpusul extinde aceleași înregistrări pentru cazuri, grafuri, dovezi și amploare;
 un subiect de politică nou nu cere încă o înregistrare suprapusă.
 

@@ -1309,3 +1309,30 @@ sursă, justificările și dovada randării native apar în `comparison.json` ș
 Calificarea finală a sursei, randării native și publicării este înregistrată în
 D-024/D-025; chitanțele originale ale dosarului stabilesc starea livrată exactă.
 Această corecție nu include fluxuri E2E noi, emulatoare sau funcționalități Java runtime.
+
+<a id="d-026"></a>
+<a id="d-026-historical-business-reference-adaptation"></a>
+## D-026: Adaptarea referinței business istorice
+
+Stare: VERIFIED în domeniul delimitat al prezentării și dovezilor. Responsabil: prezentare și guvernanță Atlas.
+Prioritate 91 (impact 94 / expunere 90 / urgență 85).
+Calitate inițială 82 (corectitudine 85 / verificare 78 / claritate 82).
+
+- Cititorul actual ascunde toate diagramele în secțiuni închise și folosește un model generic scurt; notele reviziei rămân numai în audit.
+- Referința din main_mcp păstrează diagrama principală deschisă, suportul colapsat, un stil comun, legende locale, dovezi pe nod și note explicate.
+- Adaptarea trebuie să modeleze intenția testului, observațiile API/UI, verdictul, dovezile și raportul real; persistența aplicației rămâne parțială.
+- Notele vizibile trebuie să provină din evaluarea delimitată, cu formulă, surse, scop și plafoane motivate. Nu se generează automat un scor din numărul testelor și nu se reintroduce infrastructura runtime istorică.
+- Verificarea cere contraexemple și reparații, măsurarea stării inițiale în browser nativ și revizie EN/RO. Fără E2E noi sau emulatoare.
+
+Dovezi: `${ATF_WORK_ROOT}/reviews/atlas-reference-adaptation-20261127`.
+
+Calitate livrată 95 (corectitudine 95 / verificare 96 / claritate 94).
+
+- Harta principală are șapte obiecte reale în trei benzi; rezultatul deținut este evidențiat, iar rezultatul aplicației păstrează PARTIAL.
+- Șase carduri Atlas deschid justificările locale. Toate cele 18 axe ale proiectului și Atlasului păstrează scopuri distincte, obiective, întrebări, măsuri, intrări originale și plafoane motivate.
+- Revizia nativă inițială a refuzat harta prea joasă și etichetele suprapuse. Reparația măsurată trece la 1440/900, inclusiv starea inițială, 18 diagrame, dovezile locale și navigarea notelor.
+- Cele 96 de componente focalizate și verificările pereche ale documentației trec; calificarea completă finală și selecția păstrează propriile dovezi ale sursei exacte.
+- Nouă obiecte Git istorice fixează proveniența regulilor și exemplelor. Selecția inițială a numărat greșit o citare comună ca obiect nou; testul a observat opt în loc de nouă. Corecția include regula reală a maturității nodurilor, fără slăbirea verificării.
+- Publicarea curentă V2 cere profilul de referință; V1 rămâne verificabil istoric, fără calificare nouă implicită. Nu se restaurează servicii runtime, nu se adaugă E2E și nu se execută emulatoare.
+
+Dovezi: `${ATF_WORK_ROOT}/reviews/atlas-reference-adaptation-20261127`. Cele două fațete parțiale și cele cinci întrebări despre aplicație rămân explicite; starea revizuită nu înseamnă înțelegere semantică exhaustivă.

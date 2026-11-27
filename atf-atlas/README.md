@@ -191,6 +191,8 @@ folosind limitele randate reale. Observă fiecare graf declarat la ambele lăți
 care doar se ating. Raportează lipsa dovezii `edgeLabelPairOverlaps` ca
 NOT_ASSESSED și rerulează verificarea de componentă a documentului înainte de publicare.
 
+Harta business principală este deschisă de la început, cu obiecte reale și dovezi locale pe nod. Subdiagramele, legendele și justificările notelor rămân colapsate. [Profilul de referință](Report_Contract.md#business-reference-opening-and-local-proof) păstrează judecățile redactate, plafoanele motivate și limitele parțiale.
+
 <a id="artifact-calibration"></a>
 ## Calibrarea artefactului
 

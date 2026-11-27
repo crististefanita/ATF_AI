@@ -20,6 +20,8 @@ Revizuirea curentă: [sursa live, documentația, Atlas/RAG și atributele framew
 
 
 
+
+
 <!-- feedback:empty -->
 
 Registrul este rezervat guvernanței, stabilității și documentației framework-ului.
@@ -77,6 +79,7 @@ Componentele păstrate ale evaluărilor inițiale:
 
 | ID | Impact / risc / urgență | Corectitudine / verificare / claritate | Limitele dovezilor |
 |---|---|---|---|
+| D-026 | 94 / 90 / 85 | 85 / 78 / 82 | Hartă ascunsă și note numai în audit, fără contract al primei vederi |
 | D-024 | 92 / 88 / 85 | 91 / 89 / 92 | Comparații generice ale cazurilor și decizii existente de framework omise |
 | D-025 | 90 / 88 / 80 | 88 / 80 / 85 | Grafuri randate mici și cerințe curente lipsă pentru origine/captură |
 | D-023 | 92 / 90 / 85 | 90 / 85 / 95 | Auditul succesiv mare depășește stiva tokenizării |
@@ -137,6 +140,7 @@ normalizarea prezentării nu reprezintă o nouă execuție.
 
 | ID | Comportament livrat | Verificare |
 |---|---|---|
+| D-026 | Hartă deschisă, dovezi locale și note explicate; calitate 95 (95/96/94) | [Proveniență, componente și reparație nativă](Code_And_Documentation_Maturity.md#d-026) |
 | D-024 | Comparații concrete și patru limite de comportament existente; calitate 95 (96/94/95) | [Sursă exactă, subiecți originali și revizie nativă](Code_And_Documentation_Maturity.md#d-024) |
 | D-025 | Diagrame utile, sursă/origini fidele și refuzuri reale; calitate 96 (97/96/95) | [Calificare comparată și eșec J1 păstrat](Code_And_Documentation_Maturity.md#d-025) |
 | D-023 | Scanare iterativă, istoric integral și refuzul duplicatelor; calitate 95 (96/95/94) | [Regresii și auditul original reparat](Code_And_Documentation_Maturity.md#d-023) |

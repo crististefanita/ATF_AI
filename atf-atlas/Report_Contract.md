@@ -66,7 +66,7 @@ inferențiază automat relevanța business. Revizorul verifică sensul dintre af
 
 `ATLAS-AUTHORING-001: Fresh understand authoring requires SOURCE_BOUND_COMPARISONS_V1, SOURCE_GRAPH_V2, GIT_WORKTREE_V1 and SOURCE_ORIGINS_V1 together; legacy publish preserves captured history without silently upgrading its assessment.`
 
-Punctul de intrare `understand` cere toate cele patru profile. Compatibilitatea
+Punctul de intrare curent `understand` adaugă prezentarea de referință de mai jos celor patru profile de sursă. Compatibilitatea
 `publish` poate păstra o captură anterioară; un înveliș istoric valid nu primește
 automat calificarea curentă pentru semantică, originea sursei sau randare. Oprește
 procesul când lipsește o declarație curentă, fără să inventezi fapte pentru schemă.
@@ -117,6 +117,59 @@ a pachetului poate verifica dependența aleasă, dar nu înlocuiește sursa abse
 producătorului și nu stabilește întregul comportament. Declarațiile locale și
 contractele consumate primesc indicii vizuale distincte, cu explicații orientate
 spre înțelegere despre responsabilitatea rămasă.
+
+<a id="business-reference-opening-and-local-proof"></a>
+## Deschiderea referinței business și dovezi locale
+
+`ATLAS-REFERENCE-AUTHORING-001: Fresh CURRENT_UNDERSTANDING_V2 requires BUSINESS_REFERENCE_V1 in addition to the source, comparison, origin and diagram profiles; preserve historical V1 declarations without upgrading their presentation assessment.`
+
+Declarația de redactare anterioară descrie capturile V1. Intrarea curentă
+`understand` publică V2 și cere suplimentar `BUSINESS_REFERENCE_V1`.
+Verificarea offline V1 păstrează domeniul original; nu oferă calificarea noii
+prezentări sau a notelor. Cititorii istorici nu sunt rescriși.
+
+`ATLAS-REFERENCE-001: Keep one source-bound primary business map open in the initial reader, with supporting maps, local legends, object proof and score rationale closed; explain the actual project objects rather than runtime module topology or authoring metadata.`
+
+| Suprafață de lectură | Stare inițială | Semnificația sursei |
+|---|---|---|
+| Harta business principală | Deschisă în secțiunea deschisă a scopului | Obiecte, decizii, observații și rezultate reale ale consumatorului |
+| Suport de comportament și arhitectură | Închis | Operații și dependențe separate, cu legende locale |
+| Dovezi locale pe obiect | Închise imediat după legendă | Sens, maturitate selectată, verificare independentă și limită rămasă |
+| Axe de revizie evidențiate | Vizibile, cu trimiteri locale spre justificări | Judecăți originale redactate cu sursă și scop |
+| Justificarea reviziei și modelul scurt anterior | Justificare închisă; model în text | Obiective, măsuri, plafoane și interpretare secundară |
+
+`ATLAS-LOCAL-PROOF-001: Bind every primary object to actual owner facets, selected implementation claims and independent existing oracles; retain the least-established selected maturity, visible original failures and local remaining limits beside the graph.`
+
+Declară `reader.primaryGraph` cu obiecte reale și relații denumite.
+Fiecare nod selectează `facetRefs`, `claimIds` deținute și oracolele
+independente `oracleClaimIds`. Starea `maturity` păstrează UNKNOWN înainte
+PARTIAL înainte REVIEWED între fațetele selectate. O verificare trecută, fără
+legătură, nu promovează acea stare. Accentul indică rezultatul deținut; obiectele
+întrerupte păstrează o limită, fără să solicite o funcționalitate E2E viitoare.
+
+`ATLAS-SCORE-VIEW-001: Visible score cards must reopen to their original scoped authored axes, separate project and Atlas groups, expose goal-question-measure rationale and forty-thirty-thirty inputs, and respect a reasoned ceiling; passing checks never manufacture a score or application acceptance.`
+
+`analysis.assessment` păstrează axele originale EVIDENCE_BOUND_REVIEW,
+afirmațiile sursei și dovezile native. `reader.assessment` oferă limbajul
+business, referințele axelor evidențiate, obiective, întrebări, măsuri, limite și
+plafoane. Toate axele rămân reprezentate; selecția vizibilă nu șterge o revizie
+slabă sau parțială. Notele de cel puțin 95 cer dovadă originală de execuție și o
+limită explicită. Nu se adaugă automat Overall.
+
+`ATLAS-REFERENCE-STYLE-001: Reuse canonical calm node, edge and legend primitives; rich primary maps use context, operation and outcome bands, complete readable relationship labels and honest maturity cues, verified against actual native geometry and initial disclosure state.`
+
+Obiectele principale folosesc poziții de lectură delimitate `band` și
+`column`. Cel puțin șase obiecte cer trei benzi; trei obiecte reale sunt valide
+pentru un proiect simplu. Nu inventa noduri pentru densitate. Revizia nativă
+înregistrează deschiderea înainte de interacțiuni, apoi verifică fiecare obiect,
+relație, justificare și legătură a notelor. Ascunderea hărții, tăierea cardurilor,
+maturitatea falsă, notele modificate și țintele inexistente cer propriul refuz
+observat și o reparație reală.
+
+Benzile nod/metodă/strat din arhivă devin aici suport pentru obiectele business.
+Metodele exacte, căile, comenzile și dovezile brute rămân în auditul alăturat;
+nu revin în HTML-ul business. Stilul comun și dovezile locale mai puternice sunt
+adaptate fără servicii runtime istorice sau generarea unor teste noi de produs.
 
 <a id="governed-authoring-loop"></a>
 ## Ciclul guvernat de redactare

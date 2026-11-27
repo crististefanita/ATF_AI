@@ -335,3 +335,13 @@ Revizia semantică folosește observații distincte, surse responsabile și crit
 Pentru aprofundarea observațiilor, păstrează criteriul numit, nivelul real al dovezii și limitele vizibile. Separă verdictul componentei de statusul răspunsului observat și octeții capturați de acceptanța completă a aplicației.
 
 Pentru BOUNDED_OBSERVATIONS_V2, copiați retainedProofs din auditul precedent și declarați openQuestions pentru fiecare decizie PARTIAL. Fiecare întrebare are id, question și evidenceNeeded; rămâne informație despre limite, nu ToDo pentru un flux de produs. [Contract și compararea randării](../../atf-atlas/Report_Contract.md#successive-application-boundaries).
+
+<a id="map-opening-and-scoped-scores"></a>
+## Deschiderea hărții și notele delimitate
+
+Declară `presentationProfile: BUSINESS_REFERENCE_V1`, `reader.primaryGraph` și `reader.assessment` pentru redactarea curentă V2. Leagă fiecare obiect de fațete și oracole independente existente, păstrând cea mai puțin stabilită maturitate. Harta principală este deschisă; legenda, dovezile și justificările notelor sunt închise.
+
+- Pozițiile `band` și `column` organizează lectura, fără să inventeze o secvență runtime.
+- Axele provin din `analysis.assessment`; scopurile proiectului și Atlasului rămân separate.
+- Fiecare axă explică obiectivul, întrebarea, măsura, limita și plafonul; rezultatele testelor nu generează automat note.
+- Verifică randarea inițială reală și navigarea spre justificări înainte de a selecta cititorul.

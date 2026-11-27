@@ -115,3 +115,8 @@ ale producătorului. Verificările consumatorului nu certifică sursa absentă a
 producătorului, iar componentele selectate care trec nu înlocuiesc o poartă
 completă eșuată. Comparația datată și rezultatele originale aparțin feedback-ului
 și dosarului extern de revizie, nu unei afirmații permanente despre acoperire.
+
+<a id="reference-presentation-governance"></a>
+## Guvernanța prezentării de referință
+
+[Componentele prezentării](../tools/atlas-reference.test.mjs) protejează fațetele și oracolele reale ale fiecărui obiect, limitele de maturitate și notele explicate. [Calibrarea nativă](../tools/atlas-calibration.mjs) verifică starea inițială înainte de interacțiuni și compară harta, dovezile și justificările cu analiza originală. Aceste controale nu introduc comportamente de produs sau teste E2E.

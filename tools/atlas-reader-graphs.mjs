@@ -7,6 +7,12 @@ function lines(label){need(plain(label),'Give the diagram an actual readable lab
 /** Relationship identities and direction survive layout, including cycles and disconnected owners. */
 export function layoutReaderGraph(graph){
   need(Array.isArray(graph?.nodes)&&graph.nodes.length>0&&Array.isArray(graph.edges),'A reader graph needs actual nodes and relationships');
+  if(graph.kind==='PRIMARY'){
+    const ids=new Set(graph.nodes.map(n=>n.id));need(ids.size===graph.nodes.length&&graph.edges.every(e=>ids.has(e.from)&&ids.has(e.to)),'Primary map relationships need their actual unique endpoints');
+    need(graph.nodes.every(n=>Number.isInteger(n.band)&&n.band>=0&&n.band<=2&&Number.isInteger(n.column)&&n.column>=0&&n.column<=2),'Use the bounded primary reading bands');
+    need(new Set(graph.nodes.map(n=>n.band+'/'+n.column)).size===graph.nodes.length,'Primary map frames cannot overlap');
+    return {width:940,height:Math.max(...graph.nodes.map(n=>n.band))*210+290,nodes:graph.nodes.map(n=>({...n,x:40+n.column*320,y:120+n.band*210,width:220,height:90})),edges:graph.edges,cyclic:false,scope:'AUTHORED_BUSINESS_READING_BANDS; NOT_AN_EXHAUSTIVE_RUNTIME_SEQUENCE'};
+  }
   const nodes=new Map(graph.nodes.map(node=>[node.id,node]));need(nodes.size===graph.nodes.length,'Diagram node identities must be unique');
   const degree=new Map([...nodes.keys()].map(id=>[id,0])),rank=new Map([...nodes.keys()].map(id=>[id,0]));
   for(const edge of graph.edges){need(nodes.has(edge.from)&&nodes.has(edge.to),'A reader diagram relationship has an absent endpoint');degree.set(edge.to,degree.get(edge.to)+1);}
@@ -25,10 +31,12 @@ export function readerGraphSet(analysis){
     return {flowId:flow.id,graph:{...flow.graph,nodes:flow.graph.nodes.map(n=>({...n,role:negative.has(n.id)&&!positive.has(n.id)?'boundary':n.kind==='INTENT'?'intent':n.kind==='ACTION'?'action':'outcome'}))},title:journey.title,legend:'Arrows show the named conditions between intent, operation and possible outcomes. Case cards retain their independent recorded verdicts. Dashed boxes identify refusal or boundary outcomes; they do not mean that an existing check failed.'};
   });
   for(const view of reader.architecture.filter(view=>view.diagramMode!=='TEXT_ONLY')){const graph=analysis.dependencyGraphs.find(g=>g.id===view.graphId);views.push({...view,graph:{...graph,nodes:graph.nodes.map(n=>({...n,role:analysis.understanding?.originProfile==='SOURCE_ORIGINS_V1'&&analysis.understanding.units.find(u=>u.id===n.unitId)?.sourceRole==='CONSUMED_ARTIFACT'?'consumed':'owner',label:reader.capabilities.find(c=>c.unitId===n.unitId).title}))}});}
-  views.push({title:reader.model.title,legend:reader.model.legend,graph:{id:'reader-value-model',kind:'VALUE',nodes:reader.model.stages.map(n=>({...n,label:n.title,role:'stage'})),edges:reader.model.links}});return views;
+  if(reader.model.diagramMode!=='TEXT_ONLY')views.push({title:reader.model.title,legend:reader.model.legend,graph:{id:'reader-value-model',kind:'VALUE',nodes:reader.model.stages.map(n=>({...n,label:n.title,role:'stage'})),edges:reader.model.links}});
+  if(reader.primaryGraph){const g=reader.primaryGraph;views.unshift({title:g.title,legend:g.legend,primary:true,graph:{...g,kind:'PRIMARY',nodes:g.nodes.map(n=>({...n,role:n.maturity!=='REVIEWED'?'boundary':n.id===g.focusNodeId?'action':'owner'}))}});}
+  return views;
 }
 
-export function readerDiagramProjection(analysis){return readerGraphSet(analysis).map(view=>({id:view.graph.id||'declared-graph',kind:view.graph.kind||'RELATIONSHIP',title:view.title,nodes:view.graph.nodes.map(n=>({id:n.id,role:n.role||'owner',label:n.label.replace(/\s+/g,' ').trim()})),edges:view.graph.edges.map(e=>({from:e.from,to:e.to,label:e.label.replace(/\s+/g,' ').trim()}))}));}
+export function readerDiagramProjection(analysis){return readerGraphSet(analysis).map(view=>({id:view.graph.id||'declared-graph',kind:view.graph.kind||'RELATIONSHIP',title:view.title,nodes:view.graph.nodes.map(n=>({id:n.id,role:n.role||'owner',label:n.label.replace(/\s+/g,' ').trim(),...(view.primary?{maturity:n.maturity,maturityLabel:{REVIEWED:'Scoped review',PARTIAL:'Partial',UNKNOWN:'Not established'}[n.maturity],focus:n.id===view.graph.focusNodeId}:{})})),edges:view.graph.edges.map(e=>({from:e.from,to:e.to,label:e.label.replace(/\s+/g,' ').trim()}))}));}
 
 /** A shared visual grammar cannot replace source-specific meaning with generic template labels. */
 export function validateReaderDiagramProfile(analysis){
@@ -51,6 +59,7 @@ export function validateReaderDiagramProfile(analysis){
 /** Full labels are wrapped or rejected, never silently replaced by a generic relationship. */
 export function renderReaderGraph(graph,{title,legend,labels}){
   const layout=layoutReaderGraph(graph),byId=new Map(layout.nodes.map(node=>[node.id,node]));let lane=0;
+  if(graph.kind==='PRIMARY')return renderPrimaryMap(graph,layout,{title,legend});
   const paths=layout.edges.map(edge=>{const from=byId.get(edge.from),to=byId.get(edge.to),start=from.x+from.width,end=to.x,sy=from.y+45,ty=to.y+45,skip=end-start>200||end<start,y=skip?52+lane++*44:0;
     const route=skip?'M'+start+','+sy+' C'+(start+28)+','+sy+' '+(start+28)+','+y+' '+(start+42)+','+y+' H'+(end-36)+' C'+(end-12)+','+y+' '+(end-24)+','+ty+' '+end+','+ty:'M'+start+','+sy+' C'+(start+30)+','+sy+' '+(end-30)+','+ty+' '+end+','+ty;
     const label=edge.label||(graph.kind==='DEPENDENCY'?'uses':'relates'),text=lines(label),cx=(start+end)/2,baseline=skip?y-26:(sy+ty)/2-14-(text.length-1)*18;
@@ -58,4 +67,21 @@ export function renderReaderGraph(graph,{title,legend,labels}){
     return '<g class="relationship" data-from="'+escape(edge.from)+'" data-to="'+escape(edge.to)+'"><path class="edge" d="'+route+'" marker-end="url(#arrow)"/><text class="edge-label" x="'+cx+'" y="'+baseline+'" text-anchor="middle">'+text.map((line,i)=>'<tspan x="'+cx+'" dy="'+(i?18:0)+'">'+escape(line)+'</tspan>').join('')+'</text></g>';}).join('');
   const boxes=layout.nodes.map(node=>{const text=lines(labels?.get(node.id)||node.label),center=node.x+110,top=node.y+45-(text.length-1)*11,role=node.role||'owner';return '<g class="node" data-node-id="'+escape(node.id)+'" data-graph-role="'+escape(role)+'"><rect x="'+node.x+'" y="'+node.y+'" width="220" height="90" rx="12"/><text x="'+center+'" y="'+top+'" text-anchor="middle">'+text.map((line,i)=>'<tspan x="'+center+'" dy="'+(i?22:0)+'">'+escape(line)+'</tspan>').join('')+'</text></g>';}).join('');
   return '<figure class="atlas-graph reader-map" data-graph-id="'+escape(graph.id||'declared-graph')+'" data-graph-kind="'+escape(graph.kind||'RELATIONSHIP')+'" role="region" tabindex="0" aria-label="'+escape(title)+'"><svg class="flow" role="img" aria-label="'+escape(title)+'" style="min-width:'+Math.ceil(layout.width*0.86)+'px" viewBox="0 0 '+layout.width+' '+layout.height+'">'+paths+boxes+'</svg><figcaption class="atlas-legend"><details><summary>Legend and boundaries</summary><ul><li>'+escape(legend)+(layout.cyclic?' A neutral row preserves the declared cycle; position does not imply execution order.':'')+'</li><li>Labels retain the declared relationship direction. Position and visual emphasis do not establish complete verification.</li></ul></details></figcaption></figure>';
+}
+
+function renderPrimaryMap(graph,layout,{title,legend}){
+  const byId=new Map(layout.nodes.map(n=>[n.id,n]));
+  const relationshipLines=value=>{const result=[''];for(const word of value.split(/\s+/)){if((result.at(-1)+' '+word).trim().length>11)result.push(word);else result[result.length-1]=(result.at(-1)+' '+word).trim();}return result;};
+  const paths=layout.edges.map(edge=>{
+    const from=byId.get(edge.from),to=byId.get(edge.to),wrapped=relationshipLines(edge.label),sameBand=from.band===to.band;
+    need(wrapped.length<=2,'Keep primary relationship labels concise and explain detail in the legend');
+    let route,cx,baseline;
+    if(sameBand){const forward=to.x>from.x,sx=from.x+(forward?220:0),ex=to.x+(forward?0:220),y=from.y+45;cx=(sx+ex)/2;
+      if(Math.abs(from.column-to.column)>1){route='M'+sx+','+y+' C'+sx+',40 '+(sx+30)+',40 '+(sx+40)+',40 H'+(ex-30)+' C'+ex+',40 '+ex+','+y+' '+ex+','+y;baseline=18;}
+      else{route='M'+sx+','+y+' H'+ex;baseline=y-18-(wrapped.length-1)*18;}
+    }else{const down=to.band>from.band,sx=from.x+110,sy=from.y+(down?90:0),ex=to.x+110,ey=to.y+(down?0:90),mid=(sy+ey)/2;route='M'+sx+','+sy+' C'+sx+','+mid+' '+ex+','+mid+' '+ex+','+ey;cx=(sx+ex)/2+(sx===ex?62:0);baseline=mid-10-(wrapped.length-1)*18;}
+    return '<g class="relationship" data-from="'+escape(edge.from)+'" data-to="'+escape(edge.to)+'"><path class="edge'+(edge.kind==='LIMIT'?' primary-limit':'')+'" d="'+route+'" marker-end="url(#arrow)"/><text class="edge-label" x="'+cx+'" y="'+baseline+'" text-anchor="middle">'+wrapped.map((line,i)=>'<tspan x="'+cx+'" dy="'+(i?18:0)+'">'+escape(line)+'</tspan>').join('')+'</text></g>';
+  }).join('');
+  const boxes=layout.nodes.map(node=>{const wrapped=lines(node.label);need(wrapped.length<=2,'Use concise primary object labels; put their full meaning in the local proof');const x=node.x+110,top=node.y+32-(wrapped.length-1)*11;return '<g class="node" data-node-id="'+escape(node.id)+'" data-graph-role="'+escape(node.role)+'" data-maturity="'+escape(node.maturity)+'" data-focus="'+(node.id===graph.focusNodeId)+'"><rect x="'+node.x+'" y="'+node.y+'" width="220" height="90" rx="10"/><text class="primary-object-label" x="'+x+'" y="'+top+'" text-anchor="middle">'+wrapped.map((line,i)=>'<tspan x="'+x+'" dy="'+(i?22:0)+'">'+escape(line)+'</tspan>').join('')+'</text><text class="maturity-label" x="'+x+'" y="'+(node.y+77)+'" text-anchor="middle">'+({REVIEWED:'Scoped review',PARTIAL:'Partial',UNKNOWN:'Not established'}[node.maturity])+'</text></g>';}).join('');
+  return '<figure class="atlas-graph reader-map primary-map" data-graph-id="'+escape(graph.id)+'" data-graph-kind="PRIMARY" role="region" tabindex="0" aria-label="'+escape(title)+'"><svg class="flow" role="img" aria-label="'+escape(title)+'" viewBox="0 0 '+layout.width+' '+layout.height+'">'+paths+boxes+'</svg><figcaption class="atlas-legend"><details><summary>Legend and boundaries</summary><ul><li>'+escape(legend)+'</li><li>Solid objects have a scoped review. Dashed objects retain partial or unestablished understanding; they are not promises of future functionality.</li><li>The emphasized object is the owned result. Arrows name actual relationships and limits; placement is a reading aid, not a complete runtime sequence.</li></ul></details></figcaption></figure>';
 }
