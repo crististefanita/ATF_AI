@@ -169,9 +169,10 @@ tehnice complete în audit, fără pachet ascuns în HTML. Istoricul își păst
 
 Profilul curent include `BUSINESS_REFERENCE_V2`: hartă principală deschisă,
 suport închis, maturitate legată de fațete și note cu obiectiv–întrebare–măsură.
-V3 curent cere și diagrame care încap în panou și două secțiuni locale închise
-pentru fiecare graf. Declarațiile istorice V1/V2 își păstrează evaluarea originală.
-Un rezultat trecut nu devine niciodată o notă automată.
+V4 curent cere și `CONCISE_READING_V1`: răspunsuri scurte cu surse, tabele
+comparative și detalii la cerere; grafurile păstrează două secțiuni locale închise.
+Declarațiile istorice V1/V2/V3 își păstrează evaluarea originală. Un rezultat
+trecut nu devine niciodată o notă automată.
 
 <a id="artifact-calibration"></a>
 ## Calibrarea artefactului

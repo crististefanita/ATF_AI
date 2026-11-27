@@ -1398,3 +1398,52 @@ Aceste note folosesc rubrici motivate 40/30/30 în comparația externă, fără
 câștigător mediu sau rate de trecere convertite în calitate. Evaluează artefactele
 și politicile inspectate, nu recertifică execuția istorică sau întregul cod.
 Notele originale ale reperului rămân neschimbate în artefactul său.
+
+<a id="d-028"></a>
+<a id="d-028-concise-reading-and-semantic-orientation"></a>
+## D-028: Lectură concisă și orientare semantică
+
+Stare: VERIFIED în domeniul delimitat al lecturii și dovezilor. Responsabil: lectura și guvernanța Atlas.
+Prioritate 91 (impact 94 / expunere 88 / urgență 89).
+Calitate inițială 86 (corectitudine 92 / verificare 85 / claritate 80).
+
+- Lățimea fixă lasă spațiu inutil pe ecranele late; cardurile și proza repetă
+  aceleași limite, iar deschiderea comportamentelor expune prea multe cazuri.
+- Cititorul are nevoie de alegeri explicate: API sau UI, observație sau rezultat
+  acceptat, dovadă sau garanție despre aplicație. Legăturile cu sursa și criteriile
+  independente trebuie păstrate chiar când explicația devine mai scurtă.
+- Corecția folosește un rezumat lângă hartă, tabele comparative, cazuri și note
+  individuale la cerere și o singură afișare a limitelor identice exact.
+- Acceptanța compară pagina reală la 900/1440/1920, prima vedere și traseul normal
+  de lectură. Situația, așteptarea și verdictul fiecărui caz rămân verificabile;
+  o casetă mare nu dovedește vizibilitate într-o secțiune închisă.
+- Primele capturi au observat contaminarea dintre tabele imbricate și starea
+  fragmentului rămasă între ferestre. Păstrăm observațiile și reparăm măsurarea,
+  fără să schimbăm verdictele produsului sau să slăbim regula de prezentare.
+
+Dovezi: ${ATF_WORK_ROOT}/reviews/atlas-reading-20261128.
+Nu sunt cerute E2E noi sau emulatoare. Cele două fațete parțiale și cele cinci
+întrebări despre aplicație își păstrează limitele.
+
+Calitate livrată 96 (corectitudine 96 / verificare 97 / claritate 95).
+
+- Trei întrebări leagă alegerea API/UI, verdictul consumatorului și dovezile de
+  operațiile și criteriile independente existente. Rolul Core menționează explicit
+  API și UI; fațetele parțiale ale aplicației nu sunt prezentate ca guvernanță eșuată.
+- La 1920 px, cadrul trece de la 1256 la 1884 px. La 1440 px, secțiunea de
+  comportamente trece de la aproximativ 23934 la 2032 px înaintea deschiderii
+  cazurilor; toate cele 51 de cazuri rămân în verificarea extinsă.
+- Limitele identice apar o singură dată; limitele distincte, situațiile,
+  așteptările și verdictele originale sunt comparate în randarea reală.
+- Cele șapte componente de lectură și previzualizarea reparată la trei lățimi
+  trec. Refuzul EN/RO a prins un număr mutat la începutul liniei, interpretat ca
+  listă; repararea păstrează structura, iar reverificarea perechii trece.
+- Starea fragmentului, antetele tabelelor imbricate și vizibilitatea prin
+  secțiuni închise sunt măsurate corect. Încercările inițiale rămân în dosar.
+- Calificarea finală a sursei exacte, controalele publicării și selecția livrată
+  păstrează chitanțe separate. Captura reperului anterior la 1920 px este o
+  observație comparativă și nu o calificare V4 retroactivă.
+
+Evaluarea delimitată urmărește înțelegere 95, lectură 96 și amploare semantică 94:
+întrebările noi conectează responsabilități existente, fără să pretindă mai mult
+cod acoperit sau acceptanță externă. Cele două fațete parțiale rămân parțiale.

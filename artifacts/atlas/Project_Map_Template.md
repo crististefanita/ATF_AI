@@ -340,12 +340,17 @@ Pentru BOUNDED_OBSERVATIONS_V2, copiați retainedProofs din auditul precedent ș
 ## Deschiderea hărții și notele delimitate
 
 Declară `presentationProfile: BUSINESS_REFERENCE_V2`, `reader.primaryGraph` și
-`reader.assessment` pentru redactarea curentă V3. Leagă fiecare obiect de fațete
+`reader.assessment` pentru redactarea curentă V4. Leagă fiecare obiect de fațete
 și oracole independente existente, păstrând cea mai puțin stabilită maturitate.
 Harta principală este deschisă. Fiecare diagramă are două secțiuni închise: legenda
 și referințele cu dovada originală și limite. Diagramele și tabelele încap fără
 scroll orizontal; împarte o poveste prea amplă în subvederi cu sens și sursă sau
 în proză, păstrând auditul adiacent complet.
+
+Adaugă `readingProfile: CONCISE_READING_V1` și un `reader.guide` scurt. Fiecare
+intrare păstrează `question`, `answer`, `limits`, `flowIds`, `claimIds` și `oracleClaimIds`.
+Răspunde alegerilor reale ale cititorului prin relațiile existente în sursă;
+păstrează fiecare caz și limită distinctă, eliminând prezentarea repetitivă.
 
 - Pozițiile `band` și `column` organizează lectura, fără să inventeze o secvență runtime.
 - Axele provin din `analysis.assessment`; scopurile proiectului și Atlasului rămân separate.

@@ -48,6 +48,7 @@ Revizuirea nativă externă furnizează capturile reale și pixelii transformaț
 | Dovezi locale și maturitatea nodurilor | [Contractul de referință](../../tools/atlas-reference.mjs): fațete reale, verificări independente și maturitatea cel mai puțin stabilită |
 | Subgrafuri secundare colapsate | [Cititor](../../tools/atlas-reader.mjs): harta principală deschisă, suportul închis, două secțiuni închise sub fiecare graf |
 | Cazuri negative pentru candidați | [Teste de componentă](diagram-layout.test.mjs) și [calibrare nativă](../../tools/atlas-calibration.mjs) |
+| Orientare concisă legată de sursă | [Componenta de lectură](reading.mjs) și [cazurile independente](reading.test.mjs): răspunsuri scurte, limite comune exacte și lățime/secțiuni măsurate |
 
 Reperul sursei este revizia `main_mcp`
 `70a7279c2a9560d39e6bd2554cd2f96a88626692`. Regulile istorice pentru scară
@@ -80,7 +81,7 @@ reverificare concretă; markup-ul valid nu certifică singur adevărul semantic.
 <summary>Comandă pentru componentele vizate</summary>
 
 ```powershell
-node --test tools/atlas-fit.test.mjs tools/atlas-reader-graphs.test.mjs tools/atlas-calibration.test.mjs
+node --test tools/atlas-reading.test.mjs tools/atlas-fit.test.mjs tools/atlas-reader-graphs.test.mjs tools/atlas-calibration.test.mjs
 ```
 
 </details>

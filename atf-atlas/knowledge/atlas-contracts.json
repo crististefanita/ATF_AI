@@ -608,10 +608,16 @@
         "reader",
         "creation",
         "audit",
-        "rendering"
+        "rendering",
+        "concise",
+        "reader questions",
+        "comparison tables",
+        "shared boundary",
+        "progressive disclosure",
+        "screen width"
       ],
       "mandatory": true,
-      "requirement": "Use renderer 5 business projection with source-bound capabilities, meaningful positive and negative cases, visible unknowns, and ordered hierarchical section numbering mirrored in navigation. Keep SSH, commands, file checks, raw JSON and proof payloads outside the HTML, including hidden templates. Preserve the adjacent audit, component negative/repair controls and native desktop render review; semantic meaning still needs a reviewer. Calibrate the actual artifact against live source and project documentation: follow delegation to implementation, separate expected cases from actual recorded verdicts, expose partial review depth, exercise native navigation from closed sections, and inspect source-bound architecture/behavior diagrams and adjacent legends. Keep known masking and sharing limits explicit; metadata does not attest semantic truth. Fresh understand requires comparison V1, source graph V2, Git worktree capture V1 and source origins V1 together. Legacy publish preserves captured assessment without upgrading history; dirty capture and absent producer source remain visible confidence limits. Current understand publishes CURRENT_UNDERSTANDING_V2 and requires BUSINESS_REFERENCE_V1 as well as the four source-bound profiles. Verify one open primary map, closed supporting disclosures, local object support, readable source-bound scores and native rationale navigation. Preserve historical V1 declarations at their original presentation assessment.",
+      "requirement": "Use renderer 5 business projection with source-bound capabilities, meaningful positive and negative cases, visible unknowns, and ordered hierarchical section numbering mirrored in navigation. Keep SSH, commands, file checks, raw JSON and proof payloads outside the HTML, including hidden templates. Preserve the adjacent audit, component negative/repair controls and native desktop render review; semantic meaning still needs a reviewer. Calibrate the actual artifact against live source and project documentation: follow delegation to implementation, separate expected cases from actual recorded verdicts, expose partial review depth, exercise native navigation from closed sections, and inspect source-bound architecture/behavior diagrams and adjacent legends. Keep known masking and sharing limits explicit; metadata does not attest semantic truth. Fresh understand requires comparison V1, source graph V2, Git worktree capture V1 and source origins V1 together. Legacy publish preserves captured assessment without upgrading history; dirty capture and absent producer source remain visible confidence limits. Current understand publishes CURRENT_UNDERSTANDING_V2 and requires BUSINESS_REFERENCE_V1 as well as the four source-bound profiles. Verify one open primary map, closed supporting disclosures, local object support, readable source-bound scores and native rationale navigation. Preserve historical V1 declarations at their original presentation assessment. Fresh V4 requires CONCISE_READING_V1. Favor a short source-owned guide and comparative tables over repeated proof paragraphs or card walls. Use available desktop width with a calm primary-map/project-brief opening. Cases and individual score rationale open only on request. Deduplicate a boundary only when every original row has exactly the same text; preserve distinct limits, every original case situation, expected observation and actual verdict. Keep complete construction and technical proof in the adjacent audit. Source links are prerequisites, not automatic semantic truth.",
       "sources": [
         {
           "kind": "CURRENT_CONTRACT",
@@ -637,6 +643,16 @@
           "kind": "CURRENT_CONTRACT",
           "path": "atf-atlas/Report_Contract.md",
           "quote": "ATLAS-REFERENCE-AUTHORING-001: Fresh CURRENT_UNDERSTANDING_V2 requires BUSINESS_REFERENCE_V1 in addition to the source, comparison, origin and diagram profiles; preserve historical V1 declarations without upgrading their presentation assessment."
+        },
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "ATLAS-READING-001: Fresh CURRENT_UNDERSTANDING_V4 requires CONCISE_READING_V1: a short source-bound reader guide, comparative responsibility and behavior tables, cases and individual score rationale closed on request, and meaningful use of native desktop width; favor understanding and calm presentation over repeated proof prose."
+        },
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "ATLAS-READING-PROOF-001: A concise guide binds each answer to every selected existing flow and its independent oracle or disclosed gap; deduplicate only exactly identical boundaries, preserve distinct limits and original case situations, expectations and verdicts, and keep complete construction detail in the adjacent audit."
         }
       ]
     },

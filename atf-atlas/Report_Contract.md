@@ -123,10 +123,26 @@ spre înțelegere despre responsabilitatea rămasă.
 
 `ATLAS-REFERENCE-AUTHORING-001: Fresh CURRENT_UNDERSTANDING_V2 requires BUSINESS_REFERENCE_V1 in addition to the source, comparison, origin and diagram profiles; preserve historical V1 declarations without upgrading their presentation assessment.`
 
-Declarațiile de redactare păstrate descriu capturile V1/V2. Intrarea curentă
-`understand` publică V3 și cere `BUSINESS_REFERENCE_V2`. Verificarea offline V1/V2
-păstrează domeniul original; nu oferă calificarea noii prezentări care încape în
-panou. Cititorii istorici nu sunt rescriși.
+Declarațiile de redactare păstrate descriu capturile V1/V2/V3. Intrarea curentă
+`understand` publică V4, păstrează `BUSINESS_REFERENCE_V2` și adaugă
+`CONCISE_READING_V1`. Verificarea anterioară își păstrează domeniul original;
+cititorii istorici nu sunt rescriși și nu primesc o nouă notă de prezentare.
+
+`ATLAS-READING-001: Fresh CURRENT_UNDERSTANDING_V4 requires CONCISE_READING_V1: a short source-bound reader guide, comparative responsibility and behavior tables, cases and individual score rationale closed on request, and meaningful use of native desktop width; favor understanding and calm presentation over repeated proof prose.`
+
+`ATLAS-READING-PROOF-001: A concise guide binds each answer to every selected existing flow and its independent oracle or disclosed gap; deduplicate only exactly identical boundaries, preserve distinct limits and original case situations, expectations and verdicts, and keep complete construction detail in the adjacent audit.`
+
+Declară `reader.readingProfile` și două până la cinci intrări `reader.guide`.
+Fiecare intrare are `question`, `answer`, `limits`, `flowIds`, `claimIds` și
+`oracleClaimIds`. Întrebările au cel mult 16 cuvinte, răspunsurile 55, iar limitele 35.
+Aceste praguri ajută redactarea; sensul este stabilit prin revizuirea sursei.
+
+Folosește [componenta de lectură](governance/README.md) pentru detalii la cerere.
+Pe ecrane desktop late, harta principală și rezumatul împart deschiderea;
+tabelele comparative folosesc pagina disponibilă. Revizuirea nativă include
+1920 px alături de 1440/900. Măsoară prima vedere reală înaintea interacțiunilor.
+O limită comună apare o singură dată doar când textul original coincide exact
+pentru toate rândurile.
 
 `ATLAS-DIAGRAM-FIT-001: Fresh CURRENT_UNDERSTANDING_V3 requires BUSINESS_REFERENCE_V2; every diagram and table fits without horizontal scrolling, clipping or reduced text, with actual transformed SVG type of at least 13 CSS px at the qualified desktop widths; split a wide idea into meaningful source-bound subviews or prose and retain its complete audit.`
 

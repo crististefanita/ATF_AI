@@ -73,6 +73,7 @@ Componentele păstrate ale evaluărilor inițiale:
 
 | ID | Impact / risc / urgență | Corectitudine / verificare / claritate | Limitele dovezilor |
 |---|---|---|---|
+| D-028 | 94 / 88 / 89 | 92 / 85 / 80 | Lățime fixă, multe carduri și limite repetate în locul unei orientări concise |
 | D-027 | 94 / 92 / 90 | 86 / 82 / 83 | Scroll local permis, legende generice și lipsa referințelor secundare |
 | D-026 | 94 / 90 / 85 | 85 / 78 / 82 | Hartă ascunsă și note numai în audit, fără contract al primei vederi |
 | D-024 | 92 / 88 / 85 | 91 / 89 / 92 | Comparații generice ale cazurilor și decizii existente de framework omise |
@@ -135,6 +136,7 @@ normalizarea prezentării nu reprezintă o nouă execuție.
 
 | ID | Comportament livrat | Verificare |
 |---|---|---|
+| D-028 | Lectură concisă, lățime utilă și cazuri la cerere; calitate 96 (96/97/95) | [Sursă, traseu de lectură și dovezi](Code_And_Documentation_Maturity.md#d-028) |
 | D-027 | Diagrame fără scroll și două secțiuni locale complete; calitate 95 (95/96/94) | [Componente, refuzuri și calibrare nativă](Code_And_Documentation_Maturity.md#d-027) |
 | D-026 | Hartă deschisă, dovezi locale și note explicate; calitate 95 (95/96/94) | [Proveniență, componente și reparație nativă](Code_And_Documentation_Maturity.md#d-026) |
 | D-024 | Comparații concrete și patru limite de comportament existente; calitate 95 (96/94/95) | [Sursă exactă, subiecți originali și revizie nativă](Code_And_Documentation_Maturity.md#d-024) |
