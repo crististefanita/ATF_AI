@@ -151,6 +151,50 @@ Scores are scoped authored judgments, not test pass rates or automatic project g
 
 </details>
 
+## Semantic review and compact identity
+
+`ATLAS-SEMANTICS-001: Qualify semantic understanding through distinct scoped facet observations, owned implementation fragments and independent existing oracles; preserve remaining boundaries and verify the actual visible facet projection instead of inferring completeness from source inventory or test counts.`
+
+The `SEMANTIC_FACETS_V1` profile completes seven dimensions for each source
+owner. REVIEWED means the declared facet scope was investigated; the project can
+remain SELECTED. Do not convert a full inventory into exhaustive understanding
+or promote every facet because one test selection passes.
+
+| Record | Required evidence | Retained boundary |
+|---|---|---|
+| Distinct explanation | A facet-specific observation | No repeated generic prose across every responsibility |
+| Reviewed scope | Actual owned implementation fragments | Follow delegation to the relevant operation |
+| Independent oracle | Separate existing verification fragments | The implementation cannot be its own oracle |
+| Executed oracle | Original testcase identity and exact fragment | Matching source alone does not establish execution |
+| Remaining limits | Specific questions visible beside the capability | Preserve PARTIAL where review is incomplete |
+
+Purpose and structure can use actual declarations. Promoting behavior, data,
+configuration, failure or verification also needs an independent existing oracle.
+Selections must belong to the unit and facet; implementation and oracle ranges
+cannot overlap. Meaning classification remains an explicit reviewer responsibility.
+
+The reader derives business explanations and limits from the reviewed facets in
+closed disclosures. Technical metadata and references remain in the audit. Native
+probes compare visible status, explanation and boundary with the qualified source.
+
+`ATLAS-IDENTITY-001: Use one compact Atlas and project-title line without a redundant language badge; retain review date with confidence, preserve readable text and measure the actual rendered header at both desktop widths.`
+
+The header uses one identity line, with type between 16 and 24 CSS px, height at
+most 96 CSS px and top margin at most 24 CSS px. Text is neither hidden nor clipped.
+Language remains semantic metadata; review date appears with confidence. Actual
+rendering verifies these bounds at 1440 and 900 CSS px.
+
+<details>
+<summary>Semantic qualification owners and verification</summary>
+
+- The [semantic component](../tools/atlas-semantics.mjs) and [controls](../tools/atlas-semantics.test.mjs) check promotions and actual repairs.
+- [Execution binding](../tools/atlas-execution.mjs) preserves original testcase identities for facet oracles too.
+- [Native calibration](../tools/atlas-calibration.mjs) compares the actual projection and identity geometry.
+- Review data relationships, initialization, side effects, caching and failure routes; do not broaden a narrow oracle into a general guarantee.
+- A historical profile without a semantic dossier remains semantically unqualified even if its HTML envelope is valid.
+
+</details>
+
 ## Historical contract and retained provenance
 
 The contract below describes renderers 1–4 and preserves the exact archival

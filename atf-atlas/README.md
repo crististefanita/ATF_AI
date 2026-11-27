@@ -189,3 +189,5 @@ The reader explains business purpose, project architecture and behavior. Archite
 - Exercise navigation from closed sections, native screenshots, readability and the identity of selected bytes.
 
 The [contract](Report_Contract.md) defines the schema and limits; the [calibration component](../tools/atlas-calibration.mjs) explains failures and repair routes. Axis ratings remain reasoned review judgments, not test pass rates.
+
+Semantic qualification uses distinct facet observations, owned source and independent oracles, with visible remaining limits. Atlas identity stays compact; review date belongs with confidence. See the [semantic contract](Report_Contract.md#semantic-review-and-compact-identity).

@@ -40,3 +40,19 @@ When behavior, ownership or suite selection changes, reconcile the affected row
 with the live source and oracle. Keep a missing oracle or unavailable environment
 visible. Add an execution claim only to its evidence record after the named
 selection actually runs; keep this map focused on current contracts and limits.
+
+## Reviewed semantic boundaries
+
+These source observations refine the existing reading map; they do not add a test flow.
+
+| Boundary | Observed behavior | Remaining responsibility |
+|---|---|---|
+| [Configuration source](../atf-core/src/main/java/com/ai/core/support/config/ConfigManager.java) | Caller overrides precede loaded settings; an absent explicitly selected source fails | Loaded properties are cached; file edits do not automatically reload them |
+| [Write readiness](../atf-core/src/main/java/com/ai/api/core/BaseTestAPI.java) | Blank local access makes the write flow unavailable | Nonblank access does not establish remote authorization or a successful write |
+| [Browser acquisition](../atf-playwright/src/main/java/com/ai/ui/core/engine/playwright/PlaywrightBrowserSession.java) | The inspected Playwright session selects Chromium; Selenium uses its Chrome factory | Library capability does not establish every browser or operating-system combination |
+| [Aggregate values](../atf-reporting/src/main/java/com/ai/core/reporting/aggregate/model/AggregateSummary.java) | Selected constructors reject negative counts; aggregation can derive counts from observed cases | The public summary constructor does not itself enforce all relationships among caller-supplied totals |
+| [Reporting compatibility](../atf-reporting/src/main/java/com/ai/core/reporting/ReportingSession.java) | A compatibility mirror switch uses its existing interpretation policy | Do not claim that every reporting switch uses the strict shared boolean parser |
+
+The [semantic profile](Report_Contract.md#semantic-review-and-compact-identity)
+requires scope-specific observations and independent existing oracles. A REVIEWED
+facet completes its declared scope; named remaining questions still apply.

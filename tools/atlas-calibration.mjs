@@ -1,4 +1,5 @@
 import {createHash} from 'node:crypto';
+import {validateSemanticFacets} from './atlas-semantics.mjs';
 import {businessSections} from './atlas-reader.mjs';
 import {reviewAtlasLayout} from './atlas-presentation.mjs';
 import {requireAtlas} from './atlas-diagnostics.mjs';
@@ -11,7 +12,10 @@ const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 /** Run in real document QA only. Nothing from this probe is embedded in the business reader. */
 export function atlasCalibrationProbe(){
   const visible=node=>{const box=node.getBoundingClientRect();return box.width>0&&box.height>0&&getComputedStyle(node).visibility!=='hidden';};
+  const header=document.querySelector('header'),heading=header?.querySelector('h1'),box=header?.getBoundingClientRect();
   return {
+    identity:header&&heading?{height:box.height,top:box.top+scrollY,headingCount:header.querySelectorAll('h1').length,font:parseFloat(getComputedStyle(heading).fontSize),clipped:heading.scrollWidth>heading.clientWidth+2,languageBadges:[...header.querySelectorAll('.pill')].filter(n=>/^(?:English|EN)$/.test(n.textContent.trim())).length}:null,
+    facets:[...document.querySelectorAll('.reader-facet')].filter(visible).map(n=>({capability:n.dataset.capability,facet:n.dataset.facet,status:n.querySelector('.facet-status').textContent.trim(),meaning:n.querySelector('.facet-meaning').textContent.trim(),limit:n.querySelector('.facet-limit').textContent.trim()})),
     cases:[...document.querySelectorAll('.reader-case')].filter(visible).map(node=>({title:node.querySelector('h3').textContent.replace(/^\d{2}(?:\.\d{2})+\s*/,'').trim(),kind:node.querySelector('.eyebrow').textContent.trim(),proof:node.querySelector('.reader-proof')?.textContent.trim()||node.querySelectorAll('p')[2]?.textContent.trim()||''})),
     breadth:[...document.querySelectorAll('.reader-breadth tbody tr')].filter(visible).map(node=>[...node.cells].map(cell=>cell.textContent.trim())),
     hiddenPayloads:document.querySelectorAll('template,script,pre,code,iframe,object').length,
@@ -30,6 +34,7 @@ export function reviewAtlasCalibration({analysis,html,auditSha256,capture,source
   need(typeof auditSha256==='string'&&/^[a-f0-9]{64}$/.test(auditSha256)&&capture.auditSha256===auditSha256,'Native observations must retain the exact original adjacent audit identity');
   need(capture.schemaVersion===1&&capture.htmlSha256===hash(html)&&capture.native===true&&capture.emulated===false&&capture.browser==='CHROMIUM','Bind native desktop metrics to these actual HTML bytes; emulation or stale screenshots cannot qualify them');
   need(sourceReview.schemaVersion===1&&meaningful(sourceReview.reviewer)&&meaningful(sourceReview.limits)&&sourceReview.coverageDeclaration===analysis.understanding.scope,'Declare the actual reviewer, semantic limits and selected/full review scope');
+  const semanticReview=validateSemanticFacets(analysis);
   const claims=new Set(analysis.claims.map(claim=>claim.id)),comparisons=sourceReview.comparisons;
   need(Array.isArray(comparisons)&&same(comparisons.map(item=>item.sectionId),businessSections),'Compare every reader section with actual source and project documentation in reading order');
   for(const row of comparisons){
@@ -42,13 +47,15 @@ export function reviewAtlasCalibration({analysis,html,auditSha256,capture,source
   if(capture.networkRequests.length||capture.pageErrors.length)add(0,'OFFLINE','Unexpected external requests or document errors');
   const claimsById=new Map(analysis.claims.map(claim=>[claim.id,claim]));
   const expectedCases=analysis.reader.journeys.flatMap(journey=>journey.cases.map(item=>{const source=analysis.behaviorFlows.find(flow=>flow.id===journey.flowId).caseAnalysis.cases.find(row=>row.id===item.caseId),oracle=claimsById.get(source.oracleClaimId);if(source.oracleStatus==='EXECUTED')need(oracle?.status==='EXECUTED'&&['PASSED','FAILED'].includes(oracle.verdict),'An executed case lacks its actual recorded oracle verdict');return {title:item.title,kind:source.kind==='POSITIVE'?'Expected success':source.kind==='NEGATIVE'?'Expected refusal or failure':'Boundary case',proof:source.oracleStatus==='EXECUTED'?(oracle?.verdict==='FAILED'?'Recorded check failed':'Recorded check passed'):source.oracleStatus==='NOT_FOUND'?'No existing check identified':'Check reviewed in source; no execution inferred'};}));
-  const expectedBreadth=analysis.understanding.units.map(unit=>{const status=Object.values(unit.facets||{}).map(facet=>facet.status),depth=!status.length?'Review depth not declared':status.includes('UNKNOWN')?(status.includes('PARTIAL')?'Partial review; some areas unestablished':'Some areas unestablished'):status.includes('PARTIAL')?'Partial review':'Declared aspects reviewed';return [analysis.reader.capabilities.find(item=>item.unitId===unit.id).title,depth];});
+  const expectedBreadth=analysis.understanding.units.map(unit=>{const status=Object.values(unit.facets||{}).map(facet=>facet.status),depth=!status.length?'Review depth not declared':status.includes('UNKNOWN')?(status.includes('PARTIAL')?'Partial review; some areas unestablished':'Some areas unestablished'):status.includes('PARTIAL')?'Partial review':unit.facets.purpose?.review?'Reviewed within stated scope':'Declared aspects reviewed';return [analysis.reader.capabilities.find(item=>item.unitId===unit.id).title,depth];});
   const expectedGraphs=analysis.reader.journeys.length+(analysis.reader.architecture||[]).length+1;
   for(const record of capture.records){
     need(object(record.metrics)&&object(record.structure)&&Array.isArray(record.navigation),'Retain actual layout, structure and interaction observations');
     const {structure,width}=record;
     need(record.metrics.viewport===width&&structure.touch===0&&structure.ratio===1,'Native viewport and device observations differ from the declared desktop run');
     for(const key of ['cases','breadth','smallText','graphClipping','invisibleLabels','graphs'])need(Array.isArray(structure[key]),'Missing native observation: '+key);
+    if(html.includes('data-atlas-identity="compact-1"')){const h=structure.identity;if(!h||![h.height,h.top,h.font].every(Number.isFinite)||h.height<=0||h.height>96||h.top<0||h.top>24||h.font<16||h.font>24||h.headingCount!==1||h.clipped||h.languageBadges!==0)add(width,'IDENTITY','Use one compact readable project-identity line without redundant language badges or excessive header space');}
+    if(analysis.understanding.reviewProfile==='SEMANTIC_FACETS_V1'){const expected=analysis.understanding.units.flatMap(u=>Object.entries(u.facets).map(([facet,v])=>({capability:analysis.reader.capabilities.find(c=>c.unitId===u.id).title,facet,status:{REVIEWED:'Reviewed within stated scope',PARTIAL:'Partial review',UNKNOWN:'Not established',NOT_APPLICABLE:'Not applicable'}[v.status],meaning:v.explanation,limit:v.review.limits})));if(!same(structure.facets,expected))add(width,'SEMANTIC_FACETS','Visible responsibilities, status or remaining boundaries differ from their reviewed source facets');}
     for(const finding of reviewAtlasLayout(record.metrics).findings)add(width,'LAYOUT',finding);
     if(!same(structure.cases,expectedCases))add(width,'CASE_VERDICT','Visible case identities, expected kinds or actual recorded verdicts differ from their source-bound oracles');
     if(!same(structure.breadth,expectedBreadth))add(width,'REVIEW_DEPTH','Visible capability review depth hides or promotes partial/unknown source scope');
@@ -56,7 +63,7 @@ export function reviewAtlasCalibration({analysis,html,auditSha256,capture,source
     if(structure.hiddenPayloads||structure.smallText.length||structure.graphClipping.length||structure.invisibleLabels.length)add(width,'READABILITY','Hidden payload, tiny text or clipped/invisible graph content is present');
     if(structure.graphs.length!==expectedGraphs||structure.graphs.some(graph=>!meaningful(graph.legend)||!Array.isArray(graph.smallLabels)||graph.smallLabels.length||graph.contained&&(!graph.named||!graph.focusable)))add(width,'DIAGRAMS','Retain source-bound architecture and behavior diagrams, adjacent legends, legible labels and accessible local scrolling');
   }
-  return {status:findings.length?'REPAIR_REQUIRED':'PASSED',findings,scope:'BOUND_NATIVE_RENDER_AND_AUTHORED_SOURCE_COMPARISONS; LIVE_SOURCE_VERIFICATION_AND_HUMAN_SEMANTIC_REVIEW_REQUIRED',cases:expectedCases.length,capabilities:expectedBreadth.length,graphs:expectedGraphs};
+  return {semanticReview,status:findings.length?'REPAIR_REQUIRED':'PASSED',findings,scope:'BOUND_NATIVE_RENDER_AND_AUTHORED_SOURCE_COMPARISONS; LIVE_SOURCE_VERIFICATION_AND_HUMAN_SEMANTIC_REVIEW_REQUIRED',cases:expectedCases.length,capabilities:expectedBreadth.length,graphs:expectedGraphs};
 }
 
 export function validateAtlasCalibration(options){const result=reviewAtlasCalibration(options);need(result.status==='PASSED',result.findings.map(finding=>finding.code+' at '+finding.width+': '+finding.observation).join('\n'));return result;}

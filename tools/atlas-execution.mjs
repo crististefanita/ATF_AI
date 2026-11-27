@@ -88,6 +88,7 @@ export function validateFlowExecutionBindings({analysis,evidence}){
     need(object(flow)&&Array.isArray(flow.claimIds),'Behavior execution scope needs declared source claims');
     for(const id of [...flow.claimIds,flow.oracleClaimId])if(claims.get(id)?.status==='EXECUTED')selected.add(id);
   }
+  if(analysis.understanding?.reviewProfile==='SEMANTIC_FACETS_V1')for(const unit of analysis.understanding.units)for(const facet of Object.values(unit.facets))for(const ref of facet.review?.oracleRefs||[])if(claims.get(ref.claimId)?.status==='EXECUTED')selected.add(ref.claimId);
   let subjects=0;
   for(const id of selected){
     const claim=claims.get(id),refs=new Set([...(claim.sourceRefs||[]),...(claim.governanceRefs||[])].map(ref=>ref.path));

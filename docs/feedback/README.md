@@ -7,12 +7,14 @@ the caller-selected local archive following the [report guide](../../artifacts/r
 
 ## Active TODOs
 
-<!-- feedback:empty -->
+No accepted TODOs remain open within the current maintenance scope.
 
 Current review: [live source, documentation, Atlas/RAG and framework attributes](Code_And_Documentation_Maturity.md#current-assessment).
 
 | ID | Finding | Owner | Priority (1-100) | Quality (1-100) | Status | Closure evidence |
 |---|---|---|---:|---:|---|---|
+
+<!-- feedback:empty -->
 
 
 
@@ -148,6 +150,8 @@ normalizing their presentation does not claim a fresh execution.
 | M-001 | Five modules, independent runtime providers, test-only product support and enforced architecture/documentation contracts | 372 final reactor checks, 102 browser cases, 11 Allure cases and inspected aggregate artifacts; [evidence](Module_Architecture.md) |
 | G-001 | Required owner/feedback guides, factual build claims, paired HTML/Markdown and agent-file exclusion | 24 documentation cases within 74 governance cases passed; [evidence](Governance_Review.md#g-001) |
 | T-001 | Existing regressions use bounded waits, observable oracles, exact cleanup and enforced suite coverage | 393 reactor cases and 4 configuration-isolation cases passed; [evidence](Governance_Review.md#t-001) |
+| D-016 | Scoped semantic explanations and independent oracles | 32 REVIEWED / 10 PARTIAL facets, 12 existing behaviors; [evidence and limits](Code_And_Documentation_Maturity.md#d-016) |
+| D-017 | Compact readable Atlas identity | Native 1440/900 rendering, 58 px header and 16 px top offset; [verification](Code_And_Documentation_Maturity.md#d-017) |
 | P-001 | Separate documentation Atlas and recovered policies, with the essential living architecture in both formats | Source/links/hash and desktop/mobile rendering verified; no production/POM/new-Java changes; [evidence](Governance_Review.md#p-001) |
 | G-002 | Owned source visibility, pause/console ownership and current-thread interrupt restoration are governed | 474 local and 474 aggregate checks passed; [evidence](Governance_Contracts.md#g-002) |
 | G-003 | Supported Maven selections, declared defaults and stable-document lifecycle are checked against current owners | Final local/aggregate checks and paired-guide contracts passed; [evidence](Governance_Contracts.md#g-003) |

@@ -912,6 +912,45 @@ Delivered calibration quality 95 (correctness 95 / verification 95 / clarity 94)
 
 Ratings use the register's 40/30/30 formula for this Atlas, not the whole ATF. Review remains SELECTED: six owners with PARTIAL facets and no new application acceptance. Arrows, native metrics and 243 tests do not establish every meaning or full accessibility compliance.
 
+<a id="d-016"></a>
+## D-016: Source-grounded semantic facet review
+
+Status: VERIFIED within the declared review scope. Owner: Atlas governance.
+Priority 88 (impact 90 / exposure 85 / urgency 85).
+Baseline quality 85 (correctness 84 / verification 82 / clarity 90).
+
+- Six units reuse generic explanations across all seven facets; eight behaviors underspecify configuration, API readiness, reporting lifecycle and aggregation.
+- Review follows actual operations and existing oracles. Facet promotion needs explicit scope, owned implementation and independent verification where applicable; limits remain visible.
+- The Atlas will explain newly reviewed existing behavior without new E2E scenarios or inferred external acceptance.
+
+Delivered quality 91 (correctness 90 / verification 90 / clarity 93).
+
+- Review follows 12 existing behaviors, 35 cases and 15 diagrams: configuration precedence and caching, local API readiness, result lifecycle and report publication.
+- All 42 facets have distinct observations: 32 REVIEWED within their declared scope and 10 PARTIAL. Owned implementation fragments and independent oracles are explicitly selected; status does not certify the entire project.
+- Governance refuses repeated explanations, absent boundaries, foreign ownership, self-verification and incorrect execution subjects. Rendering compares actual visible meanings and limits with the reviewed dossier.
+- The initial 255-case Node component selection per edition passes. Real intermediate failures and owned repairs remain preserved; final Java/Node qualification and publication retain separate receipts.
+- Retained limits include process-cached configuration, local readiness distinct from external acceptance, report summaries without all numeric relationships proved and a bounded browser matrix.
+
+Evidence: `${ATF_WORK_ROOT}/reviews/semantic-atlas-20261127`.
+
+- Initial Java qualification identifies two documentation failures: register closure removed the active table header. The repair restores its header and distinct score columns even when empty; original XML is preserved before rechecking.
+
+<a id="d-017"></a>
+## D-017: Compact project identity
+
+Status: VERIFIED within the declared review scope. Owner: Atlas presentation.
+Priority 76 (impact 75 / exposure 80 / urgency 70).
+Baseline quality 79 (correctness 84 / verification 70 / clarity 80).
+
+- The header consumes excessive space, repeats purpose and redundantly displays English; the project title can share the Atlas line.
+- Acceptance checks the actual rendered header without tiny or hidden text. Review date belongs with confidence; language remains semantic metadata.
+
+Delivered quality 95 (correctness 96 / verification 95 / clarity 95).
+
+- A single “Atlas · ATF AI” line preserves readable identity without the redundant English badge. Date appears with confidence, while language remains HTML metadata.
+- Native captures at 1440 and 900 px confirm a 58 px header starting 16 px from the top, with a 20 px font. The guard caught the initial 44 px offset; the repair removes inherited padding while retaining the 24 px limit.
+- Owned hints and negative controls refuse oversized identity, impossible geometry, clipped text and redundant language badges. Other project titles need their own width checks.
+
 <a id="current-assessment"></a>
 ## Current ATF AI assessment
 
@@ -957,7 +996,7 @@ C means correctness, V verification and Cl clarity. Each input and result uses
 
 </details>
 
-The retrieval review validates 20 knowledge records, 17 mandatory policies and
+The retrieval review validates 21 knowledge records, 18 mandatory policies and
 three pinned archived blobs. Its declared scope is deterministic lexical policy
 context; semantic recall remains NOT_CLAIMED. New Atlas generation or application
 acceptance is not inferred from these checks. Source size and test counts identify
