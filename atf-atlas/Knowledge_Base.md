@@ -163,3 +163,15 @@ Politica obligatorie KB-BUSINESS-READER păstrează publicul business, auditul a
 și numerotarea ierarhică în orice regăsire, inclusiv când întrebarea nu are legătură
 cu prezentarea. KB-COMPLETE cere acum înțelegere completă în cititor și dovezi
 tehnice complete în audit, fără pachet ascuns în HTML. Istoricul își păstrează politica capturată.
+
+<a id="artifact-calibration"></a>
+## Calibrarea artefactului
+
+Cititorul explică scopul business, arhitectura și comportamentele proiectului. Hărțile arhitecturii păstrează relațiile reale și folosesc denumiri pentru cititor; hărțile comportamentale stau în secțiuni colapsabile, cu legende adiacente.
+
+- Compară artefactul efectiv cu implementările live și documentele proiectului.
+- Urmărește delegarea până la operație; nu extinde mascarea detaliilor la toate capturile sau mesajele.
+- Păstrează verdictul observat separat de rezultatul așteptat al scenariului și afișează revizia parțială.
+- Verifică navigarea din secțiuni închise, capturile native, lizibilitatea și identitatea octeților selectați.
+
+[Contractul](Report_Contract.md) definește schema și limitele; [componenta de calibrare](../tools/atlas-calibration.mjs) explică eșecurile și calea de reparație. Notele pe axe rămân evaluări motivate, nu rate de teste.

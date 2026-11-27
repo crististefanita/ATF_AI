@@ -103,6 +103,7 @@ Schema executabilă este în [validatorul cititorului](../tools/atlas-reader.mjs
 | capabilities | unitId, titlu, beneficiu și afirmații ale responsabilului corect |
 | journeys / cases | flowId și fiecare caseId declarat, cu situație, rezultat așteptat și limite |
 | auditOnlyFlows | flowId, reason de construire/detaliu și justificare explicită |
+| architecture | graphId, titlu și legendă pentru fiecare hartă sursă |
 | model | Titlu, etape și legături ordonate, afirmații revizuite și legendă |
 | limits | Titlu, explicație și claimIds, inclusiv toate necunoscutele și eșecurile reținute |
 
@@ -111,6 +112,52 @@ analysis.json, source-index.json, documentele originale și dovezile rămân lâ
 </details>
 
 <a id="historical-contract-and-retained-provenance"></a>
+<a id="artifact-audit-and-calibration"></a>
+## Auditul și calibrarea artefactului
+
+`ATLAS-CALIBRATION-001: Audit the actual rendered artifact against live source and project documentation; distinguish expected behavior from recorded verdicts, expose partial review, test native navigation, and retain source-bound architecture and behavior diagrams with adjacent legends.`
+
+Atlasul explică scopul business, arhitectura proiectului și comportamentele relevante.
+Harta arhitecturii proiectează relațiile reale dintre responsabilii surselor folosind
+denumirile capabilităților pentru cititor. Păstrează direcția săgeților și responsabilii
+deconectați. Hărțile comportamentale rămân colapsate în traseele lor; cazurile și
+încrederea păstrează limitele pozitive, negative, parțiale și necunoscute reale.
+
+| Întrebarea auditului | Comparația efectivă | Calea de reparare |
+|---|---|---|
+| Povestea corespunde implementării? | Urmărește delegarea până la operație și compară documentele proiectului | Restrânge garanțiile nesusținute; păstrează limitele cunoscute |
+| Verificarea corespunde cazului? | Compară verdictul criteriului cu situația vizibilă | Refuzul așteptat poate trece; verificarea eșuată rămâne eșuată |
+| Înțelegerea proiectului este completă? | Compară fațetele responsabililor cu profunzimea vizibilă a reviziei | Nu promova PARTIAL sau UNKNOWN deoarece testele trec |
+| Cititorul poate ajunge la explicație? | Apasă fiecare legătură locală dintr-o secțiune închisă în Chromium nativ | Țintește conținutul din interiorul secțiunii colapsabile |
+| Diagramele ajută înțelegerea? | Inspectează arhitectura, comportamentele, etichetele și legendele efective | Păstrează relațiile sursă; limitează local diagramele late fără micșorarea textului |
+
+[Componenta de calibrare](../tools/atlas-calibration.mjs) leagă observațiile de
+HTML-ul efectiv, revizia sursei și identitatea indexului. Cere ambele lățimi,
+1440 și 900 CSS px, observații native de tastatură/navigare și comparații motivate
+pentru toate cele șase secțiuni. [Controalele sale](../tools/atlas-calibration.test.mjs)
+păstrează eșecurile specifice și reparațiile reale; [controalele diagramelor](../tools/atlas-reader-graphs.test.mjs)
+protejează așezarea orizontală finită, ciclurile și relațiile originale.
+
+<details>
+<summary>Secvența auditului tehnic și limitele dovezii</summary>
+
+1. Recuperează politica obligatorie de public și calibrare înainte de redactare.
+2. Verifică sursa capturată și auditul complet față de proiectul live efectiv.
+3. Revizuiește sensul față de implementările responsabile și documentele declarate.
+4. Randează candidatul exact, verifică navigarea nativă și inspectează capturile.
+5. Rulează calibrarea, păstrează artefactul/controlul eșuat și aplică reparația reală.
+6. Selectează numai octeții acceptați; schimbarea HTML-ului sau a inventarului cere o nouă revizie.
+
+Cititorii calibrați curenți declară data-atlas-calibration 1 și calibrationProfile 1 în publicare. Structurile istorice de versiune 5 păstrează navigarea/profilul capturat și nu sunt recertificate de noul audit.
+
+Sonda browserului servește verificării documentului și nu este inclusă în cititor.
+Declarațiile de comparație cu sursa sunt dovezi redactate, nu atestare semantică
+automată. Metadatele nu pot demonstra veridicitatea capturii sau a reviziei umane.
+Verificarea sursei, randarea canonică și revizia vizuală/semantică rămân porți distincte.
+Notele sunt judecăți redactate cu domeniu explicit, nu rate de teste sau note automate.
+
+</details>
+
 ## Contract istoric și proveniență păstrată
 
 Contractul de mai jos descrie rendererele 1–4 și păstrează extrasele arhivate exacte.

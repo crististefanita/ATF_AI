@@ -125,6 +125,7 @@ normalizarea prezentării nu reprezintă o nouă execuție.
 
 | ID | Comportament livrat | Verificare |
 |---|---|---|
+| D-015 | Audit nativ față de sursa live, arhitectură și verdicte explicite; calitate 95 (95/95/94) | Artefact inițial respins, reparație nativă și controale independente; [dovezi și note](Code_And_Documentation_Maturity.md#d-015) |
 | D-014 | Cititor business numerotat, audit adiacent și RAG obligatoriu; calitate 94 (94/95/94) | Surse, criterii independente, controale negative/reparații și randare nativă; [dovezi și limite](Code_And_Documentation_Maturity.md#d-014) |
 | G-023 | Membri JSON unici la toate limitele Atlas, calitate 94 (95/95/93) | 209 Node per ediție, contraexemple/reparații și dovadă validă identică; [dovezi](Code_And_Documentation_Maturity.md#g-023) |
 | G-024 | Ordine ordinală a căilor, calitate 93 (93/92/95) | Perechi cale/amprentă identice sub două colaționări native; [dovezi](Code_And_Documentation_Maturity.md#g-024) |

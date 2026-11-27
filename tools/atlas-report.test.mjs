@@ -57,6 +57,7 @@ function readerFixture(t){
     value:[{title:'Clear outcomes',text:'The caller receives the observed result instead of an invented success.',claimIds:ids}],
     capabilities:[{unitId:'component',title:'Observe request outcomes',benefit:'A shared request operation preserves the response that was actually observed.',claimIds:ids}],
     journeys:[{flowId:'request-behavior',title:'Receive an observed outcome',actor:'A caller using the service',intent:'Understand the result of one request',operation:'The existing request operation observes and returns the response.',outcome:'The caller receives the same observed response.',cases:[{caseId:'observed-response',title:'The observed result is returned',situation:'A caller submits one supported request.',expectation:'The result received by the caller is the actual observation.',limits:'Only the declared request and available check are represented.'}]}],auditOnlyFlows:[],
+    architecture:[{graphId:'dependency-map',title:'One reviewed service boundary',legend:'The box identifies the reviewed capability. No relationship with an external integration is established.'}],
     model:{title:'From request to observation',stages:[{id:'request',title:'Request an outcome',claimIds:ids},{id:'observe',title:'Receive the observation',claimIds:ids}],links:[{from:'request',to:'observe',label:'returns',claimIds:ids}],legend:'The arrows summarize the reviewed caller-to-result relationship; they do not promise an unreviewed integration.'},
     limits:[{title:'Bounded service review',text:'External integrations and additional failure behavior remain outside this reviewed request scope.',claimIds:ids}]};f.save();return f;
 }
@@ -307,7 +308,7 @@ test('current publication delivers one numbered business reader with its complet
 test('reader verification needs the separate audited inputs and rejects numbered or content drift',t=>{
   const f=readerFixture(t),result=publishBusinessAtlas(f),html=read(f),auditBundle=JSON.parse(fs.readFileSync(result.audit,'utf8'));
   assert.throws(()=>validateAtlasHtml({html,css:css(),projectId:'sample-project'}),e=>e.code==='ATLAS-READER');
-  for(const changed of [html.replace('data-section-number="02"','data-section-number="01"'),html.replace('03.01.01','03.01.02'),html.replace('href="#journeys"','href="#limits"'),html.replace('The caller receives the same observed response.','Everything always succeeds.')]){
+  for(const changed of [html.replace('data-section-number="02"','data-section-number="01"'),html.replace('03.01.01','03.01.02'),html.replace('href="#journeys-content"','href="#limits-content"'),html.replace('The caller receives the same observed response.','Everything always succeeds.')]){
     assert.notEqual(changed,html);assert.throws(()=>validateAtlasHtml({html:changed,css:css(),projectId:'sample-project',auditBundle}),e=>e.code==='ATLAS-READER'&&e.hint.includes('numbering'));
   }
   assert.equal(validateAtlasHtml({html,css:css(),projectId:'sample-project',auditBundle}).status,'PASSED');

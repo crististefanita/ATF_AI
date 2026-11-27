@@ -189,6 +189,9 @@ export function validateArtifactPublication({artifactRoot}) {
       if (!current || entry.readerVersion!==5 || entry.audience!=='BUSINESS_PROJECT_UNDERSTANDING') {
         fail(entry.path,'Declare renderer 5 and its business audience together; historical readers are not automatically certified under the current reader contract.');
       }
+      if (html.includes('data-atlas-calibration=') || Object.hasOwn(entry,'calibrationProfile')) {
+        if (!html.includes('data-atlas-calibration="1"') || entry.calibrationProfile!==1) fail(entry.path,'Declare calibrationProfile 1 with the actual calibrated HTML; historical readers retain their captured profile.');
+      }
       try { inspectBusinessReaderHtml(html,{projectId:entry.projectId}); }
       catch (error) { fail(entry.path,error.message+' The original adjacent audit and native render acceptance remain required before selection.'); }
     }

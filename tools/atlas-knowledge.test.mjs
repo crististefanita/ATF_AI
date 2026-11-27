@@ -164,3 +164,5 @@ test('active Atlas guides agree with the retrieved business reader generation',(
     assert.doesNotMatch(text,/renderVersion [1-4]\b/,'Move old publication instructions to explicitly scoped historical contract material: '+relative);
   }
 });
+
+test('every retrieval keeps native artifact calibration and actual source comparison policy',()=>{const rule=retrieveAtlasKnowledge({query:'unrelated question',limit:0}).records.find(r=>r.id==='KB-BUSINESS-READER');for(const term of ['live source','expected cases','partial review depth','native navigation','architecture/behavior diagrams','masking'])assert.ok(rule.requirement.includes(term),'Repair the mandatory artifact-calibration policy: '+term);assert.ok(rule.sources.some(s=>s.quote.startsWith('ATLAS-CALIBRATION-001:')));});

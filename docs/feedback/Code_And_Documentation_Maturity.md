@@ -926,6 +926,44 @@ Calitate livrată pentru publicul cititorului 94 (corectitudine 94 / verificare 
 
 Dovezi: `${ATF_WORK_ROOT}/reviews/business-atlas-20261127`. Controalele finite de public și recuperarea lexicală necesită revizie semantică; cazurile selectate nu dovedesc înțelegerea exhaustivă. Fără E2E noi ale aplicației, emulator sau funcționalitate Java runtime.
 
+<a id="d-015"></a>
+<a id="d-015-artifact-calibration-against-the-live-project"></a>
+## D-015: Calibrarea artefactului față de proiectul live
+
+Stare: VERIFIED pentru reparațiile responsabile și artefactul revizuit; rezultatele finale au identități separate. Responsabil: guvernanța Atlas.
+Prioritate 90 (impact 92 / expunere 90 / urgență 85).
+Calitate inițială a calibrării 82 (corectitudine 82 / verificare 75 / claritate 90).
+
+- Randarea efectivă confirmă cinci legături care lasă conținutul închis la ambele lățimi.
+- Șase capabilități cu fațete PARTIAL nu au profunzimea reviziei explicită în cititor.
+- Cazurile executate cu eșec folosesc aceeași etichetă neutră ca verificările trecute.
+- Harta liniară generală nu explică suficient arhitectura și ramurile comportamentale.
+- Compararea delegării cu implementarea limitează mascarea la detaliile cunoscute; capturile și mesajele externe nu sunt automat igienizate.
+- Acceptanța cere surse/documente reale, controale negative/reparații, navigare și capturi native, politici RAG și note pe axe cu limite explicite. Fără E2E noi sau emulatoare.
+
+Dovezi: `${ATF_WORK_ROOT}/reviews/atlas-calibration-20261127`.
+
+Calitate livrată a calibrării 95 (corectitudine 95 / verificare 95 / claritate 94).
+
+- Auditul nativ inițial găsește opt abateri: verdicte, profunzime, navigare și diagrame la ambele lățimi. Candidatul reparat trece, cu 11 diagrame motivate și 24 de cazuri.
+- Legăturile deschid conținutul nativ. Hărțile arhitecturii păstrează relațiile reale; hărțile comportamentale rămân colapsate, cu legende adiacente.
+- Primul reactor nativ este respins pentru două aliasuri EN lipsă în RO; regula indică responsabilul și reparația. Aliasurile sunt restaurate, iar verificarea responsabilă trece înaintea rulării finale.
+- Controalele păstrează eșecurile inițiale; 243 de componente Node pe ediție trec. Metadatele, revizia sursei și capturile nu sunt atestare semantică automată.
+- Calificarea nativă finală, capturarea exactă a cititorului selectat și publicarea sunt legate în dovezi separate; nu se redenumesc rezultatele inițiale ca trecute.
+
+| Axa Atlasului | C / V / Cl | Calitate (1-100) |
+|---|---|---:|
+| Înțelegere business | 95 / 93 / 96 | 95 |
+| Explicarea arhitecturii | 95 / 94 / 94 | 94 |
+| Comportamente și cazuri negative | 95 / 95 / 94 | 95 |
+| Fidelitate față de surse și verdicte | 96 / 95 / 94 | 95 |
+| Lizibilitatea randării | 95 / 95 / 95 | 95 |
+| Navigare nativă | 95 / 94 / 94 | 94 |
+| Guvernanță RAG și calibrare | 95 / 95 / 93 | 94 |
+| Amploarea reviziei semantice | 84 / 82 / 90 | 85 |
+
+Notele folosesc formula 40/30/30 a registrului și privesc acest Atlas, nu întregul ATF. Revizia rămâne SELECTED: șase responsabili cu fațete PARTIAL, fără acceptanță nouă de aplicație. Săgețile, metricele native și 243 de teste nu dovedesc toate sensurile sau conformitatea completă de accesibilitate.
+
 <a id="current-assessment"></a>
 <a id="current-atf-ai-assessment"></a>
 ## Evaluarea curentă ATF AI

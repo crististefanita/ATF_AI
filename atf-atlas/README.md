@@ -190,3 +190,15 @@ folosind limitele randate reale. Observă fiecare graf declarat la ambele lăți
 înregistrate și păstrează controalele cu suprapunere, corectate și cu limite
 care doar se ating. Raportează lipsa dovezii `edgeLabelPairOverlaps` ca
 NOT_ASSESSED și rerulează verificarea de componentă a documentului înainte de publicare.
+
+<a id="artifact-calibration"></a>
+## Calibrarea artefactului
+
+Cititorul explică scopul business, arhitectura și comportamentele proiectului. Hărțile arhitecturii păstrează relațiile reale și folosesc denumiri pentru cititor; hărțile comportamentale stau în secțiuni colapsabile, cu legende adiacente.
+
+- Compară artefactul efectiv cu implementările live și documentele proiectului.
+- Urmărește delegarea până la operație; nu extinde mascarea detaliilor la toate capturile sau mesajele.
+- Păstrează verdictul observat separat de rezultatul așteptat al scenariului și afișează revizia parțială.
+- Verifică navigarea din secțiuni închise, capturile native, lizibilitatea și identitatea octeților selectați.
+
+[Contractul](Report_Contract.md) definește schema și limitele; [componenta de calibrare](../tools/atlas-calibration.mjs) explică eșecurile și calea de reparație. Notele pe axe rămân evaluări motivate, nu rate de teste.
