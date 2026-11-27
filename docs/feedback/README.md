@@ -9,7 +9,7 @@ jurnale și rapoarte în zona externă; copiile selectate și verificate pot fi 
 <a id="active-todos"></a>
 ## TODO-uri active
 
-Nu există elemente active acceptate în domeniul curent. Înregistrările verificate rămân mai jos, cu limitele dovezilor și notele inițiale.
+Nu există elemente active acceptate în domeniul curent. Înregistrările verificate păstrează dovezile și limitele; comparația Whist este în A-003.
 
 Revizuirea curentă: [sursa live, documentația, Atlas/RAG și atributele framework-ului](Code_And_Documentation_Maturity.md#current-assessment).
 
@@ -17,6 +17,7 @@ Revizuirea curentă: [sursa live, documentația, Atlas/RAG și atributele framew
 |---|---|---|---:|---:|---|---|
 
 <!-- feedback:empty -->
+
 
 Registrul este rezervat guvernanței, stabilității și documentației framework-ului.
 Înregistrările despre îmbunătățirea fluxurilor de produs sunt excluse din această listă.
@@ -98,6 +99,9 @@ Componentele păstrate ale evaluărilor inițiale:
 | D-009 | 90 / 80 / 80 | 85 / 65 / 80 | Structura Markdown, paritatea codului/valorilor și sensul calificărilor nu aveau controale dedicate |
 | G-018 | 70 / 75 / 60 | 75 / 45 / 60 | O clasă de teste de documentație de 1297 de linii amesteca șase domenii, selectorul și fixture-urile |
 | D-012 | 90 / 80 / 75 | 70 / 40 / 75 | Strategia folosea un flux vertical și nu compara limitele de proiectare API/Playwright/Selenium |
+| G-023 | 90 / 80 / 80 | 93 / 95 / 92 | Membrii JSON duplicați erau acceptați la limitele Atlas |
+| G-024 | 75 / 70 / 65 | 91 / 92 / 94 | Colaționarea gazdei schimba ordinea căilor pentru aceiași octeți |
+| T-008 | 90 / 85 / 80 | 94 / 95 / 93 | TestNG putea trece în timp ce invocationCount=0 suprima o metodă |
 | G-021 | 85 / 80 / 75 | 90 / 94 / 89 | Încărcarea/regăsirea accepta ID-uri și amprente de tip tablou înainte de controlul separat al provenienței arhivate |
 | G-022 | 85 / 85 / 75 | 88 / 86 / 92 | Descendenții generați erau parcurși înainte de filtrare; lipsea acceptanța actuală în căi Unicode/spații |
 | T-007 | 75 / 65 / 65 | 93 / 94 / 90 | Lipseau repetări native delimitate și legate de sursă ale oracolelor componente păstrate |
@@ -122,6 +126,9 @@ normalizarea prezentării nu reprezintă o nouă execuție.
 
 | ID | Comportament livrat | Verificare |
 |---|---|---|
+| G-023 | Membri JSON unici la toate limitele Atlas, calitate 94 (95/95/93) | 209 Node per ediție, contraexemple/reparații și dovadă validă identică; [dovezi](Code_And_Documentation_Maturity.md#g-023) |
+| G-024 | Ordine ordinală a căilor, calitate 93 (93/92/95) | Perechi cale/amprentă identice sub două colaționări native; [dovezi](Code_And_Documentation_Maturity.md#g-024) |
+| T-008 | Număr explicit pozitiv de invocări, calitate 95 (95/95/94) | Probă TestNG reală, controale existente extinse și reparații ale adnotării; [dovezi](Code_And_Documentation_Maturity.md#t-008) |
 | G-021 | ID-uri/amprente JSON stricte, calitate 93 (93/95/92) | 205 Node per ediție, contraexemple/reparații și dovadă validă identică; [dovezi](Code_And_Documentation_Maturity.md#g-021) |
 | G-022 | Excludere înainte de parcurgere și relocare Windows, calitate 92 (91/92/94) | 736 native per ediție în căi Unicode/spații LF/CRLF și închidere finală; [limite](Code_And_Documentation_Maturity.md#g-022) |
 | T-007 | Repetabilitate delimitată a componentelor păstrate, calitate 94 (94/95/93) | 120/120 rezultate native, fără omiteri/erori de configurație; [dovezi](Code_And_Documentation_Maturity.md#t-007) |

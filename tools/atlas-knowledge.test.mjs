@@ -135,3 +135,16 @@ test('archive digests must be strings before retrieval, with an actual repaired 
   assert.equal(validateAtlasKnowledge(loadAtlasKnowledge({root:selected}),{root:selected}).status,'PASSED');
   assert.ok(retrieveAtlasKnowledge({root:selected,query:'complete reader'}).mandatoryIds.every(id=>typeof id==='string'));
 });
+
+test('duplicate corpus members are refused before retrieval, including escaped and nested identities',t=>{
+  const selected=fixture(t),file=path.join(selected,'atf-atlas/knowledge/atlas-contracts.json'),original=JSON.stringify(raw());
+  for(const changed of ['{"schemaVersion":0,'+original.slice(1),original.replace('"mandatory":true','"mandatory":false,"mandatory":true'),original.replace('"id":','"\\u0069d":null,"id":')]){
+    assert.notEqual(changed,original);fs.writeFileSync(file,changed);
+    expectKnowledgeFailure(()=>loadAtlasKnowledge({root:selected}));
+    expectKnowledgeFailure(()=>retrieveAtlasKnowledge({root:selected,query:'complete reader'}));
+    assert.throws(()=>loadAtlasKnowledge({root:selected}),error=>/Duplicate JSON member/.test(error.observed));
+  }
+  fs.writeFileSync(file,original);
+  assert.equal(loadAtlasKnowledge({root:selected}).corpusSha256,loadAtlasKnowledge().corpusSha256);
+  assert.ok(retrieveAtlasKnowledge({root:selected,query:'complete reader'}).selectedIds.includes('KB-ONE-TARGET'));
+});

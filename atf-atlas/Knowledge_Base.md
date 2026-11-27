@@ -152,3 +152,9 @@ vizuală. Publicarea nouă folosește versiunea 4; regulile păstrate ale versiu
 pentru cazuri și accesibilitate continuă să se aplice.
 
 ID-urile cunoștințelor și valorile SHA-256 arhivate sunt șiruri JSON. Tablourile sau obiectele convertibile la text potrivit trebuie respinse înaintea clasării sau construirii dovezii; duplicatele sunt verificate pe șiruri validate. Aceasta este guvernanța tipurilor de intrare, separată de verificarea octeților arhivați reali și revizuirea semantică a sursei.
+
+JSON-ul original al corpusului, analizei, inventarului, provenienței și conținutului
+HTML trebuie să aibă nume de membri unice în fiecare obiect, inclusiv după decodarea
+escapărilor. Membrii repetați sunt respinși chiar dacă valorile lor sunt identice;
+obiecte independente pot reutiliza aceeași cheie. Șirurile și valorile JSON valide
+rămân neschimbate. Diagnosticul păstrează regula, responsabilul, indicația și reverificarea.

@@ -477,7 +477,14 @@ public class FrameworkArchitectureGovernanceTest {
                         + "@org.testng.annotations.Test(enabled = ACTIVE) public void runs(){} }", type + "#runs"},
                 {"public class SuiteProbeTest { static final boolean ACTIVE = true; "
                         + "@org.testng.annotations.Test(enabled = ACTIVE) public void runs(){} }", type + "#runs"},
-                {"public class SuiteProbeTest { @org.testng.annotations.Test(enabled = fal" + "\\u0073" + "e) public void runs(){} }", type + "#runs"}
+                {"public class SuiteProbeTest { @org.testng.annotations.Test(enabled = fal" + "\\u0073" + "e) public void runs(){} }", type + "#runs"},
+                {"@org.testng.annotations.Test(invocationCount = 0) public class SuiteProbeTest { public void runs(){} }", type},
+                {"public class SuiteProbeTest { @org.testng.annotations.Test(invocationCount = 0) public void runs(){} }", type + "#runs"},
+                {"public class SuiteProbeTest { @org.testng.annotations.Test(invocationCount = -1) public void runs(){} }", type + "#runs"},
+                {"public class SuiteProbeTest { @org.testng.annotations.Test(invocationCount = (0)) public void runs(){} }", type + "#runs"},
+                {"public class SuiteProbeTest { @org.testng.annotations.Test(invocationCount = 1 - 1) public void runs(){} }", type + "#runs"},
+                {"public class SuiteProbeTest { static final int COUNT = 0; @org.testng.annotations.Test(invocationCount = COUNT) public void runs(){} }", type + "#runs"},
+                {"public class SuiteProbeTest { static final int COUNT = 1; @org.testng.annotations.Test(invocationCount = COUNT) public void runs(){} }", type + "#runs"}
         };
     }
 
@@ -488,11 +495,19 @@ public class FrameworkArchitectureGovernanceTest {
             fixture.write(path, "package com.ai.atf.fixture; " + declaration);
             List<String> findings = FrameworkArchitectureRules.validateSuites(fixture.root);
             Assert.assertEquals(findings.size(), 1, GovernanceFiles.problems(findings));
-            assertFinding(findings, "SUITE-DISABLED " + owner + " must omit enabled or explicitly use true");
+            boolean invocations = declaration.contains("invocationCount");
+            assertFinding(findings, invocations ? "SUITE-INVOCATIONS " + owner + " must omit invocationCount or use a positive integer literal"
+                    : "SUITE-DISABLED " + owner + " must omit enabled or explicitly use true");
+            String diagnostic = GovernanceFiles.problems(findings);
+            Assert.assertTrue(diagnostic.contains("Repair hint:"));
+            Assert.assertTrue(diagnostic.contains("Owner:"));
+            Assert.assertTrue(diagnostic.contains("Recheck from an isolated reactor root"));
+            if (invocations) Assert.assertTrue(diagnostic.contains("positive integer literal"));
 
             // Repair the maintained test itself; do not change suite selections or add an exemption.
-            fixture.write(path, "package com.ai.atf.fixture; public class SuiteProbeTest { "
-                    + "@org.testng.annotations.Test(enabled = (true)) public void runs(){} }");
+            fixture.write(path, owner.contains("#")
+                    ? "package com.ai.atf.fixture; public class SuiteProbeTest { @org.testng.annotations.Test(enabled = (true), invocationCount = (0x2)) public void runs(){} }"
+                    : "package com.ai.atf.fixture; @org.testng.annotations.Test(enabled = (true), invocationCount = (2)) public class SuiteProbeTest { public void runs(){} }");
             assertValid(FrameworkArchitectureRules.validateSuites(fixture.root));
         }
     }
@@ -502,13 +517,13 @@ public class FrameworkArchitectureGovernanceTest {
         try (GovernanceFiles.Fixture fixture = suiteFixture()) {
             fixture.write("atf-tests/src/test/java/com/ai/atf/fixture/SuiteProbeTest.java",
                     "package com.ai.atf.fixture; import org.testng.annotations.Test; public class SuiteProbeTest { "
-                            + "// @Test(enabled = false) is an example only.\n"
-                            + "String example = \"@Test(enabled = false)\"; "
-                            + "@interface OtherTest { boolean enabled() default true; } "
-                            + "@OtherTest(enabled = false) @Test(enabled = (true), description = \"enabled=false\") public void runs(){} "
-                            + "public static class NestedFixture { @Test(enabled = false) public void nested(){} } }");
+                            + "// @Test(enabled = false, invocationCount = 0) is an example only.\n"
+                            + "String example = \"@Test(enabled = false, invocationCount = 0)\"; "
+                            + "@interface OtherTest { boolean enabled() default true; int invocationCount() default 1; } "
+                            + "@OtherTest(enabled = false, invocationCount = 0) @Test(enabled = (true), invocationCount = 1, description = \"enabled=false\") public void runs(){} "
+                            + "public static class NestedFixture { @Test(enabled = false, invocationCount = 0) public void nested(){} } }");
             fixture.write("atf-tests/src/test/java/com/ai/api/tests/PositiveUserTests.java",
-                    "package com.ai.api.tests; @org.testng.annotations.Test(enabled = false) "
+                    "package com.ai.api.tests; @org.testng.annotations.Test(enabled = false, invocationCount = 0) "
                             + "public class PositiveUserTests { public void manualOnly(){} }");
             assertValid(FrameworkArchitectureRules.validateSuites(fixture.root));
             fixture.write("atf-tests/src/test/java/com/ai/atf/fixture/SuiteProbeTest.java",

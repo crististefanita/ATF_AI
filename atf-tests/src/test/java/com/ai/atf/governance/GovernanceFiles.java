@@ -326,6 +326,10 @@ final class GovernanceFiles {
                 "A maintained selection is absent, malformed, filtered or points to an invalid class.",
                 "Inspect the reported suite XML and existing class; restore explicit supported wiring and retain separate opt-in application selections.",
                 "docs/Testing.md", architecture);
+        help(result, "SUITE-INVOCATIONS",
+                "A selected source test can be suppressed or its execution count is not explicit.",
+                "Repair the owned test annotation: omit enabled or use true, and omit invocationCount or use a positive integer literal. Preserve the method, assertions and maintained selection; parse-only governance does not resolve constants.",
+                policy + "#existing-test-quality", architecture);
         help(result, "SUITE-EXEMPTION-STALE SUITE-OPT-IN SUITE-OMISSION SUITE-GOVERNANCE SUITE-AGGREGATE SUITE-SOURCE",
                 "The existing verification inventory and maintained selections disagree.",
                 "Restore the affected existing regression to its owned selection or reconcile a reviewed exclusion; keep governance in the local gate and aggregate inventory aligned.",

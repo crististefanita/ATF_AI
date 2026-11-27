@@ -2,12 +2,22 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {validateAtlasBundle} from './atlas-bundle.mjs';
+import {parseAtlasJson} from './atlas-diagnostics.mjs';
 
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
 const encoded=(path,bytes)=>{const input=Buffer.isBuffer(bytes)?bytes:Buffer.from(bytes);return {path,sha256:hash(input),encoding:'BASE64',text:input.toString('base64')};};
 const text=(path,value)=>({path,sha256:hash(value),encoding:'UTF8',text:value});
 const source={path:'contract.txt',startLine:1,endLine:1,quote:'Return the observed response.'};
 const guard={path:'oracle.txt',startLine:1,endLine:1,quote:'Assert the same response.'};
+
+test('strict member identity preserves JSON values and independent object scopes',()=>{
+  const values=[null,true,0,-1.5,'quoted " keys: {} [] \\ end',[{same:1},{same:2}],{empty:{},nested:[{},[],{same:'value'}],text:'"same":0, "same":1'},JSON.parse('{"__proto__":{"safe":true}}')];
+  for(const value of values)assert.deepEqual(parseAtlasJson(JSON.stringify(value),'ATLAS-SOURCE','grammar probe'),value);
+  for(const input of ['{"same":1,"same":1}','{"k":1,"\\u006b":2}','[{"a\\\"b":1,"a\\\"b":2}]','{"nested":{"__proto__":0,"__proto__":1}}']){
+    assert.throws(()=>parseAtlasJson(input,'ATLAS-SOURCE','source-index.json'),error=>error.code==='ATLAS-SOURCE'&&/Duplicate JSON member/.test(error.observed)&&Boolean(error.hint&&error.owner&&error.recheck));
+  }
+  for(const input of ['{"a":1,}','{} trailing','{"a":NaN}','[1 2]'])assert.throws(()=>parseAtlasJson(input,'ATLAS-SCHEMA','malformed input'),error=>error.code==='ATLAS-SCHEMA');
+});
 
 function fixture(){
   const referencedSources=[text('contract.txt','Return the observed response.\n'),text('oracle.txt','Assert the same response.\n')];
@@ -28,6 +38,20 @@ function fixture(){
 test('a portable complete bundle preserves raw original JSON, documents, sources and execution',()=>{
   const {bundle}=fixture(),before=structuredClone(bundle),result=validateAtlasBundle(bundle);
   assert.equal(result.status,'PASSED');assert.equal(result.documents,5);assert.equal(result.sources,2);assert.deepEqual(bundle,before);
+});
+
+test('portable raw analysis, inventory and provenance cannot hide duplicate members',()=>{
+  for(const[field,code]of [['analysisText','ATLAS-SCHEMA'],['sourceIndexText','ATLAS-SOURCE']]){
+    const {bundle}=fixture(),original=bundle[field];bundle[field]='{"projectId":"foreign",'+original.trim().slice(1);
+    assert.throws(()=>validateAtlasBundle(bundle),error=>error.code===code&&/Duplicate JSON member/.test(error.observed));
+    bundle[field]=original;assert.equal(validateAtlasBundle(bundle).status,'PASSED');
+  }
+  const f=fixture(),entry=f.bundle.evidenceFiles.find(item=>item.path==='executed-source.json'),original=entry.text;
+  entry.text='{"manifest":{},'+original.trim().slice(1);entry.sha256=hash(entry.text);
+  f.bundle.analysis.evidence[0].sourceIdentity=entry.sha256;f.save();
+  assert.throws(()=>validateAtlasBundle(f.bundle),error=>error.code==='ATLAS-EVIDENCE'&&/Duplicate JSON member/.test(error.observed));
+  entry.text=original;entry.sha256=hash(original);f.bundle.analysis.evidence[0].sourceIdentity=entry.sha256;f.save();
+  assert.equal(validateAtlasBundle(f.bundle).status,'PASSED');
 });
 
 test('portable behavior execution retains the same exact testcase binding as live verification',()=>{

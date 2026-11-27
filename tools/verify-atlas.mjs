@@ -3,7 +3,7 @@ import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
-import {atlasFailure} from './atlas-diagnostics.mjs';
+import {atlasFailure,parseAtlasJson} from './atlas-diagnostics.mjs';
 import {validateFlowExecutionBindings} from './atlas-execution.mjs';
 import {validateAtlasBehavior} from './atlas-behavior.mjs';
 
@@ -22,7 +22,7 @@ function ownedFile(root, relative) {
 
 function readJson(root, relative) {
   const text=fs.readFileSync(ownedFile(root, relative), 'utf8');
-  try{return JSON.parse(text);}catch(error){throw atlasFailure('Invalid JSON input: '+relative+' / '+error.message);}
+  return parseAtlasJson(text,'ATLAS-SCHEMA',relative);
 }
 
 function records(value, name) {
@@ -130,7 +130,7 @@ export function verifyAtlas({sourceRoot, analysisRoot, artifactRoot}) {
       if (observed.status !== item.status || ['tests','failures','errors','skipped'].some(name => observed[name] !== item[name])) fail('Declared execution verdict/counters differ from XML/TAP: ' + item.id);
       const provenance = fs.readFileSync(ownedFile(artifacts, item.sourceManifest));
       if (digest(provenance) !== item.sourceIdentity) fail('Execution source identity differs: ' + item.id);
-      const captured = JSON.parse(provenance.toString('utf8'));
+      const captured = parseAtlasJson(provenance.toString('utf8'),'ATLAS-EVIDENCE',item.sourceManifest);
       executedSources = captured.manifest;
       normalizedSources = captured.normalizedManifest;
       if (!executedSources || typeof executedSources !== 'object') fail('Execution source manifest is required');

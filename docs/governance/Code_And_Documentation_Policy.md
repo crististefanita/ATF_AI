@@ -59,6 +59,10 @@ așteptat. Constatările necunoscute rămân neclasificate.
 - Anotările TestNG întreținute din sursă trebuie să omită `enabled` sau să
   folosească literalul `true` (parantezele sunt permise). Indicatorii dezactivați
   sau indirecți pică guvernanța sursei; cazurile imbricate/manuale revizuite păstrează limita explicită.
+- Atributul `invocationCount` trebuie omis sau să fie un literal întreg pozitiv
+  (parantezele sunt permise). Zero, valorile negative și expresiile/constantele
+  indirecte sunt respinse cu `SUITE-INVOCATIONS`; controlul fără rezolvare semantică
+  nu certifică valorile constantelor. Repară adnotarea, păstrând metoda și aserțiunile.
 - Păstrează clasele semnificative de test existente accesibile prin selecțiile
   de suite întreținute. Distinge testele explicite de aplicație, cazurile
   controlate și probele de mediu de regresiile omise accidental.

@@ -773,12 +773,146 @@ totalul Node întreținut la 205.
 
 </details>
 
+<a id="g-023"></a>
+<a id="g-023-unambiguous-json-across-atlas-input-boundaries"></a>
+## G-023: JSON fără ambiguități la limitele de intrare Atlas
+
+Stare: VERIFIED pentru limitele JSON Atlas întreținute. Responsabil: guvernanța Atlas.
+Prioritate 85 (impact 90 / expunere 80 / urgență 80).
+Calitate inițială 93 (corectitudine 93 / verificare 95 / claritate 92).
+Calitate livrată 94 (corectitudine 95 / verificare 95 / claritate 93).
+
+- Încărcarea/regăsirea inițială accepta membri repetați la rădăcină/în obiecte
+  imbricate. Respinge numele duplicate decodate în fiecare obiect, inclusiv valori
+  identice și scrieri cu escapări. Șirurile valide, obiectele independente și valorile native se păstrează.
+- Folosește același control pentru corpus, analiza/inventarul brut, manifestele
+  sursei executate și JSON-ul încorporat în HTML. Cazurile componente verifică
+  diagnosticele cu responsabil și intrări reparate; dovezile valide de regăsire rămân exact egale.
+- Selecția Node întreținută trece 209/209 per ediție. Este întărită identitatea
+  intrării; regăsirea semantică și înțelegerea automată a proiectului rămân necertificate.
+
+<a id="g-024"></a>
+<a id="g-024-locale-independent-artifact-path-ordering"></a>
+## G-024: Ordine a căilor artifactelor independentă de localizare
+
+Stare: VERIFIED pentru limita ordonării colectorului. Responsabil: guvernanța artifactelor.
+Prioritate 72 (impact 75 / expunere 70 / urgență 65).
+Calitate inițială 92 (corectitudine 91 / verificare 92 / claritate 94).
+Calitate livrată 93 (corectitudine 93 / verificare 92 / claritate 95).
+
+- Colaționările native explicite engleză/suedeză produceau secvențe de căi diferite
+  pentru intrări identice. Înlocuiește colaționarea gazdei cu comparații ordinale
+  UTF-16 la parcurgerea directoarelor, modulelor și ordonarea manifestului final.
+- Procese izolate verifică perechi complete cale/amprentă, inclusiv nume cu
+  diacritice, spații și caractere suplimentare. Octeții originali ai rapoartelor rămân neschimbați.
+- Aceasta este variație ICU nativă, nu acceptanța unei a doua localizări OS sau
+  Linux/macOS. Ordinea stabilă nu face identice marcajele temporale sau rezultatele execuției.
+
+<a id="t-008"></a>
+<a id="t-008-positive-execution-counts-for-maintained-tests"></a>
+## T-008: Număr pozitiv de execuții pentru testele întreținute
+
+Stare: VERIFIED pentru adnotările surselor întreținute. Responsabil: guvernanța testelor.
+Prioritate 87 (impact 90 / expunere 85 / urgență 80).
+Calitate inițială 94 (corectitudine 94 / verificare 95 / claritate 93).
+Calitate livrată 95 (corectitudine 95 / verificare 95 / claritate 94).
+
+- O probă TestNG reală a returnat starea 0 cu o invocare obișnuită și zero invocări
+  ale unei metode păstrate; guvernanța sursei inițială nu raporta lacune.
+- Controalele existente resping acum numere zero, negative și indirecte la nivel
+  de clasă/metodă. Literalii întregi pozitivi și atributul omis trec. Guvernanța fără
+  rezolvare semantică nu rezolvă constante; diagnosticul explică această limită.
+- Șapte rânduri de date adăugate exercită eșecuri și reparații reale ale adnotării,
+  fără schimbarea inventarului Java de 561 de metode. Limitele imbricate/manuale și
+  exemplele din comentarii/literali rămân explicite; selecțiile E2E de aplicație sunt neschimbate.
+
+<details>
+<summary>Dovezi ale sursei, acceptanță și observații excluse pentru G-023/G-024/T-008</summary>
+
+- Rădăcina dovezilor: `${ATF_WORK_ROOT}/reviews/rag-portability-stability-20261127`.
+  Intrările incorecte originale și observațiile native TestNG/ICU rămân în baseline.
+- Reactoarele native locale trec 743/743 per ediție: 37 cazuri ale bibliotecilor și
+  706 intermodulare, fără eșecuri/erori/omiteri. Checkout-urile Windows LF/CRLF au
+  spații și Unicode prin lansatorul UTF-8 controlat; nu se califică o matrice OS/browser nouă.
+- Captura sursei finale leagă 209 cazuri Node per ediție, guvernanța bilingvă și
+  randarea revizuită a documentației. README.md păstrează comenzile exacte,
+  amprentele brute/canonice și XML/TAP nativ original; nicio dovadă eșuată nu este rescrisă.
+- Prima execuție Node a trecut 208/209: fixture-ul nou al colectorului avea o
+  revizie nevalidă înaintea aserțiunilor de ordonare. Se repară doar acea metadată;
+  verificarea focalizată și selecțiile complete finale păstrează rezultatele reale.
+- Un caz existent de perimetru a durat neobișnuit de mult o dată, apoi a trecut în
+  aproximativ 1.2 secunde neschimbat. Nu se afirmă o cauză reproductibilă sau o îmbunătățire de timp a codului.
+- Prima încercare nativă nu are rezumat/dovadă de ieșire complete și este exclusă.
+  Rerularea calificată este identificată separat. Nu se folosesc E2E de produs sau emulatoare.
+- Acceptanța nativă acceptance-02 a expus o înregistrare duplicată a indicațiilor
+  în această schimbare. Păstrează responsabilul existent pentru activarea testelor
+  și înregistrează doar cheia nouă pentru invocări; XML-ul eșuat este păstrat și exclus din acceptanță.
+
+</details>
+
+<a id="a-003"></a>
+<a id="a-003-atf-ai-and-whist-snapshot-comparison"></a>
+## A-003: Comparația capturilor ATF AI și Whist
+
+Revizie redactată la 2026-11-27, pe axele comune de control. `atf_j4` este Whist Lab, nu un al treilea framework. Captura Whist are modificări locale în lucru; execuția sa în această revizie este NOT_RUN. Notele V mai mici reflectă această limită a dovezii, nu eșecuri de test demonstrate.
+
+```mermaid
+flowchart LR
+    AI["ATF_AI"] -->|execută| Native["Controale native"]
+    Whist["Whist capturat"] -->|inspectează| Review["Revizie de sursă"]
+    Native -->|susține| Axes["C / V / Cl"]
+    Review -->|limitează| Axes
+```
+
+<details>
+<summary>Legendă: nivelurile dovezii și limitele comparației</summary>
+
+- Săgețile arată aportul dovezilor la evaluare, nu dependențe runtime.
+- ATF_AI are execuții locale noi; Whist este o captură de sursă revizuită, fără rerulare sau modificare aici.
+- Nu se calculează câștigător global, scor de joc, acceptanță Android/browser sau regăsire semantică.
+
+</details>
+
+| Axă | ATF_AI | Whist | Baza reviziei |
+|---|---:|---:|---|
+| Limitele modulelor | 93 | 92 | Cinci module neutre; Whist combină adaptoare de aplicație și biblioteci comune. |
+| Guvernanța codului și testelor | 95 | 94 | Controale cu responsabil și inventar; Whist leagă și schimbările protejate de controale revizuite. |
+| Identitate și proveniență RAG | 94 | 94 | Contracte pentru cititorul Atlas versus evaluator de versiuni; comparăm integritatea dovezilor, nu calitatea răspunsurilor. |
+| Controale de portabilitate | 93 | 93 | ATF_AI are probe de relocare/colaționare; Whist are contracte explicite pentru JVM și normalizarea sursei. |
+| Stabilitatea testelor existente | 95 | 91 | Execuții ATF_AI actuale; lansatorul și controalele negative Whist sunt inspectate, fără rerulare. |
+| Designul documentației | 94 | 94 | Diagrame orizontale guvernate, text concis și trimiteri către detalii cu responsabil în ambele proiecte. |
+| Feedback și ciclul dovezilor | 94 | 95 | Whist distinge subcriteriile calificate de porțile de acceptanță/cercetare încă deschise. |
+| Dovezi ale reviziei bilingve | 94 | 90 | Perechea ATF_AI este reverificată; Whist declară un sigiliu al edițiilor, fără execuție pereche nouă aici. |
+
+<details>
+<summary>Intrări C/V/Cl și surse revizuite</summary>
+
+Folosește aceeași formulă 40/30/30 din registru. Fiecare intrare este 1–100; nu există medie globală între domenii diferite.
+
+| Axă | ATF_AI C/V/Cl | Whist C/V/Cl |
+|---|---|---|
+| Limitele modulelor | 94 / 93 / 92 | 95 / 87 / 94 |
+| Guvernanța codului și testelor | 95 / 95 / 94 | 96 / 89 / 96 |
+| Identitate și proveniență RAG | 95 / 95 / 93 | 97 / 86 / 97 |
+| Controale de portabilitate | 93 / 92 / 95 | 96 / 87 / 96 |
+| Stabilitatea testelor existente | 95 / 95 / 94 | 95 / 82 / 94 |
+| Designul documentației | 94 / 93 / 94 | 95 / 89 / 96 |
+| Feedback și ciclul dovezilor | 95 / 93 / 94 | 97 / 90 / 97 |
+| Dovezi ale reviziei bilingve | 94 / 93 / 94 | 94 / 81 / 95 |
+
+- Captura Whist și amprentele celor 24 de surse revizuite sunt în `comparison/whist-source-v2.json` sub rădăcina dovezilor G-023. Reperul Git este păstrat împreună cu starea modificărilor locale; nu este o calificare a ramurii live Whist.
+- Responsabilii Whist revizuiți: evaluatorul RAG și identitatea intrărilor, lansatorul JVM și cazurile sale componente, revizuirea schimbărilor de teste, regulile de text/diagrame și registrul feedback-ului.
+- Regulile și cazurile negative de joc au fost doar inspectate; nu se atribuie o notă pentru corectitudinea jocului. Manifestul Whist declară 130 de documente; perechea sa EN/RO nu este rerulată aici.
+- Transferurile livrate sunt G-023, G-024 și T-008. Politicile Whist de calificare a versiunilor rămân context de comparație; nu se adaugă funcționalități, coordonator LangGraph sau E2E.
+
+</details>
+
 <a id="current-assessment"></a>
 <a id="current-atf-ai-assessment"></a>
 ## Evaluarea curentă ATF AI
 
-Revizuit la 2026-11-26 față de reperul runtime live
-fad9c29abb9ec5a7ae68b5e002907a6c054c0f86 și suprapunerea revizuită de guvernanță/
+Revizuit la 2026-11-27 față de reperul runtime live
+9bea4567cc352ad75e1e06f4238a2c80d467506e și suprapunerea revizuită de guvernanță/
 documentație. Notele acoperă domeniul suportat HTTP, UI desktop, Extent și Atlas.
 Responsabilii runtime critici au fost inspectați direct; controalele statice ale
 întregii surse și execuția reprezentativă sunt niveluri distincte de dovadă. Aceasta
@@ -792,14 +926,14 @@ folosește 1-100. Aplică formula reproductibilă a registrului:
 |---|---|---:|
 | Cod și arhitectură | 94 / 93 / 92 | 93 |
 | Documentație și ediții | 94 / 93 / 94 | 94 |
-| Atlas și RAG | 93 / 95 / 92 | 93 |
+| Atlas și RAG | 95 / 95 / 93 | 94 |
 | Ciclul de viață al feedback-ului | 95 / 93 / 94 | 94 |
-| Guvernanța codului și testelor | 95 / 94 / 93 | 94 |
-| Stabilitatea testelor existente | 94 / 95 / 93 | 94 |
+| Guvernanța codului și testelor | 95 / 95 / 94 | 95 |
+| Stabilitatea testelor existente | 95 / 95 / 94 | 95 |
 | Configurație și tratarea erorilor | 93 / 94 / 90 | 92 |
 | Auditabilitate și raportare | 94 / 94 / 92 | 93 |
 | Mentenabilitate | 92 / 92 / 91 | 92 |
-| Dovezi de portabilitate | 91 / 92 / 94 | 92 |
+| Dovezi de portabilitate | 93 / 92 / 95 | 93 |
 | Extensibilitatea furnizorilor | 92 / 90 / 92 | 91 |
 
 <details>
@@ -826,6 +960,5 @@ generare Atlas nouă sau acceptanța aplicației. Dimensiunea sursei și număru
 identifică domeniul; intrările declarate ale revizuirii determină aceste note.
 
 Tabelele comparative AI/J1 și cititorii Atlas publicați își păstrează reperele și
-notele originale. J4 este o referință de guvernanță a feedback-ului doar prin citire,
-nu un concurent proaspăt executat sau notat. Nota mai mică a portabilității reflectă
+notele originale. J4 are acum comparația A-003 legată de captura de sursă, cu execuție NOT_RUN. Nota mai mică a portabilității reflectă
 matricea Windows înregistrată, nu un defect runtime observat între platforme.

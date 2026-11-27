@@ -3,7 +3,7 @@ import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
-import {AtlasGovernanceError, requireAtlas} from './atlas-diagnostics.mjs';
+import {AtlasGovernanceError, requireAtlas, parseAtlasJson} from './atlas-diagnostics.mjs';
 
 const defaultRoot=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const corpusPath='atf-atlas/knowledge/atlas-contracts.json';
@@ -72,8 +72,7 @@ export function validateAtlasKnowledge(knowledge,{root=defaultRoot}={}){
 export function loadAtlasKnowledge({root=defaultRoot}={}){
   let selected;
   try{selected=fs.realpathSync(root);}catch(error){throw new AtlasGovernanceError('ATLAS-KNOWLEDGE','Knowledge project root is unavailable: '+error.message);}
-  const bytes=ownedRead(selected,corpusPath);let knowledge;
-  try{knowledge=JSON.parse(bytes.toString('utf8'));}catch(error){throw new AtlasGovernanceError('ATLAS-KNOWLEDGE','Knowledge JSON cannot be parsed: '+error.message);}
+  const bytes=ownedRead(selected,corpusPath),knowledge=parseAtlasJson(bytes.toString('utf8'),'ATLAS-KNOWLEDGE',corpusPath);
   const validated=validateAtlasKnowledge(knowledge,{root:selected});
   return {...knowledge,corpusSha256:validated.corpusSha256,sourceSha256:hash(bytes),corpusIdentity:'CANONICAL_JSON_WITH_SORTED_OBJECT_KEYS'};
 }

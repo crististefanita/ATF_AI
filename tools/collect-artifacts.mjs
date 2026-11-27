@@ -242,7 +242,7 @@ export function collectArtifacts({sourceRoot, outputRoot, runId, evidence = [], 
     const stat = fs.lstatSync(input);
     if (stat.isSymbolicLink()) throw new Error('Report evidence must not contain links: ' + input);
     if (!stat.isDirectory()) {copy(input, relative, module, forcedKind || classify(relative)); return;}
-    for (const entry of fs.readdirSync(input, {withFileTypes: true}).sort((a,b) => a.name.localeCompare(b.name))) {
+    for (const entry of fs.readdirSync(input, {withFileTypes: true}).sort((a,b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0)) {
       const next = relative + '/' + entry.name;
       if (!forcedKind && targetRoot && depth === 0 && compiledDirectories.has(entry.name)) {ignored.push({path: next, reason: 'compiled-or-temporary-output'}); continue;}
       const reportTree = /\/(?:reports|surefire-reports|failsafe-reports|atf-core-aggregate-report|allure-results|allure-report|screenshots?|videos?|traces?|attachments|browser)\//.test(relative + '/');
@@ -252,7 +252,7 @@ export function collectArtifacts({sourceRoot, outputRoot, runId, evidence = [], 
   };
   try {
     const modules = [{root: source, name: 'root', relative: ''}];
-    for (const item of fs.readdirSync(source, {withFileTypes: true}).sort((a,b) => a.name.localeCompare(b.name))) {
+    for (const item of fs.readdirSync(source, {withFileTypes: true}).sort((a,b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0)) {
       if (item.isDirectory() && fs.existsSync(path.join(source, item.name, 'pom.xml'))) modules.push({root:path.join(source,item.name), name:item.name, relative:item.name + '/'});
     }
     for (const module of modules) for (const producer of ['target', 'allure-results', '.codex-artifacts']) {
@@ -261,7 +261,7 @@ export function collectArtifacts({sourceRoot, outputRoot, runId, evidence = [], 
     }
     extra.forEach((item,index) => walk(item.root, 'files/_included/' + index + '/' + path.basename(item.root), 'explicit-input', item.kind));
     evidenceFiles.forEach((file,index) => copy(file, 'evidence/' + index + '/' + path.basename(file), 'execution-evidence', 'execution'));
-    files.sort((a,b) => a.path.localeCompare(b.path));
+    files.sort((a,b) => a.path < b.path ? -1 : a.path > b.path ? 1 : 0);
     const catalog = Object.fromEntries(artifactKinds.map(kind => [kind, {status:files.some(file=>file.kind===kind)?'COLLECTED':'NOT_FOUND', files:files.filter(file=>file.kind===kind).map(file=>file.path)}]));
     fs.mkdirSync(path.join(destination, 'catalog'));
     for (const kind of artifactKinds) writeJson(path.join(destination,'catalog',kind+'.json'),catalog[kind]);

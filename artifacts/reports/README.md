@@ -20,6 +20,10 @@ Rulează-l după terminarea comenzilor producătoare, din orice copie care conț
 | execution | Jurnale/proveniență explicite și diagnostice de proces | Contextul original al execuției și revizia declarată a sursei |
 | unclassified | Alte rezultate păstrate | Dovezi vizibile care necesită revizuirea responsabilului, niciodată eliminate implicit |
 
+Căile dovezilor sunt ordonate ordinal după unitățile UTF-16, independent de
+colaționarea gazdei. Perechile cale/amprentă rămân comparabile între colaționări;
+această ordine nu face identice marcajele temporale sau rezultatele execuției.
+
 Colectorul parcurge rădăcina furnizată și modulele imediate care au POM.
 
 - Copiază rezultatele target, exceptând directoarele compilate/temporare declarate și fișierele Java/class generate din afara arborilor de raportare.

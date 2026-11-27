@@ -1,6 +1,6 @@
 import {createHash} from 'node:crypto';
 import {isDeepStrictEqual} from 'node:util';
-import {requireAtlas} from './atlas-diagnostics.mjs';
+import {requireAtlas,parseAtlasJson} from './atlas-diagnostics.mjs';
 import {surefireSummary,nodeTestSummary} from './verify-atlas.mjs';
 import {validateFlowExecutionBindings} from './atlas-execution.mjs';
 import {validateAtlasUnderstanding} from './atlas-understanding.mjs';
@@ -16,8 +16,7 @@ const requiredDocuments=['README.md','project-map.md','architecture.md','testing
 const list=(value,code,name)=>{requireAtlas(Array.isArray(value),code,'Expected '+name+' array');return value;};
 
 function parseJson(text,code,name){
-  requireAtlas(typeof text==='string',code,'Original '+name+' text is missing');
-  try{return JSON.parse(text);}catch{requireAtlas(false,code,'Original '+name+' is invalid JSON');}
+  return parseAtlasJson(text,code,name);
 }
 
 function payloads(entries,code,name){
