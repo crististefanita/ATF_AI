@@ -36,6 +36,9 @@ execution evidence. A cited old requirement cannot certify today's project code.
 
 ## Adaptation rules
 
+- Remove exact repeated business sentences; review similar meanings manually.
+- Group capability-review detail once, keep unknown failure scope distinct from
+  partial review, and measure real diagram clearances rather than CSS padding.
 - Preserve dedicated styling, collapsible sections and minimal inline diagrams.
 - Explain existing domain or framework behavior; keep dependency maps separate.
 - Bind observations, source fragments, assertions, verdicts and proof limits.

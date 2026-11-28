@@ -1,8 +1,8 @@
 import test from 'node:test';import assert from 'node:assert/strict';
-import {readingProjection,referenceTable,reviewConciseReading,renderCaseTable,reviewConciseReadingPath} from './reading.mjs';
+import {readingProjection,referenceTable,reviewConciseReading,renderCaseTable,reviewConciseReadingPath,reviewNarrativeRepetition,failureScopeLabel} from './reading.mjs';
 import {referenceFixture} from '../../tools/fixtures/atlas-reference.mjs';
 import {renderBusinessReader,validateBusinessReader} from '../../tools/atlas-reader.mjs';
-const fixture=()=>{const a=referenceFixture();a.reader.presentationProfile='BUSINESS_REFERENCE_V2';a.reader.readingProfile='CONCISE_READING_V1';a.behaviorFlows[0].claimIds=['FACT'];a.reader.guide=['Which observation does the caller receive?','What remains outside this local check?'].map(question=>({question,answer:'The existing operation returns the observation supported by its independent local check.',limits:'The selected local observation does not establish every deployment or input.',flowIds:['operation'],claimIds:['FACT'],oracleClaimIds:['ORACLE']}));return a;};
+const fixture=()=>{const a=referenceFixture();a.reader.presentationProfile='BUSINESS_REFERENCE_V2';a.reader.readingProfile='CONCISE_READING_V1';a.behaviorFlows[0].claimIds=['FACT'];a.reader.guide=['Which observation does the caller receive?','What remains outside this local check?'].map((question,i)=>({question,answer:i?'The available check describes a local boundary without establishing every deployed application behavior.':'The existing operation returns the observation supported by its independent local check.',limits:'The selected local observation does not establish every deployment or input.',flowIds:['operation'],claimIds:['FACT'],oracleClaimIds:['ORACLE']}));return a;};
 const owned=fn=>assert.throws(fn,e=>e.code==='ATLAS-READER'&&Boolean(e.hint&&e.owner&&e.recheck));
 
 test('concise orientation retains actual flow and independent oracle ownership without adding a semantic guarantee',()=>{
@@ -10,7 +10,7 @@ test('concise orientation retains actual flow and independent oracle ownership w
   for(const change of [g=>g.flowIds=['foreign'],g=>g.claimIds=['ORACLE'],g=>g.oracleClaimIds=['FACT'],g=>g.oracleClaimIds=[]]){const b=fixture();change(b.reader.guide[0]);owned(()=>readingProjection(b));}
 });
 test('a short reader guide refuses verbose filler, duplicate questions and undeclared fields',()=>{
-  for(const change of [r=>r.guide[0].answer='Words '.repeat(56),r=>r.guide[1].question=r.guide[0].question,r=>r.guide[0].command='ignored',r=>r.guide.pop(),r=>delete r.readingProfile]){const a=fixture();change(a.reader);owned(()=>readingProjection(a));}
+  for(const change of [r=>r.guide[0].answer='Words '.repeat(41),r=>r.guide[0].limits='Boundary '.repeat(31),r=>r.guide[1].question=r.guide[0].question,r=>r.guide[0].command='ignored',r=>r.guide.pop(),r=>delete r.readingProfile]){const a=fixture();change(a.reader);owned(()=>readingProjection(a));}
   const a=fixture();a.reader.guide[0].answer='Inspect source-index.json for this exact observation';owned(()=>validateBusinessReader(a));
 });
 test('exactly shared reference limits appear once while distinct boundaries remain separate and escaped',()=>{
@@ -23,13 +23,23 @@ test('concise cases use comparison rows, retain real failed proof and deduplicat
   owned(()=>renderCaseTable(j,flow,'03.01',new Map(),()=>''));const foreign=structuredClone(j);foreign.cases[0].caseId='foreign';owned(()=>renderCaseTable(foreign,flow,'03.01',new Map(a.claims.map(c=>[c.id,c])),()=>''));
 });
 test('the concise business reader opens its story and keeps cases and individual score rationale on request',()=>{
-  const a=fixture(),html=renderBusinessReader({analysis:a},'body{}');assert.match(html,/data-atlas-reading="concise-1"/);assert.match(html,/reader-overview-grid/);assert.match(html,/reader-journey-table/);assert.match(html,/reader-case-table/);assert.doesNotMatch(html,/<details class="reader-journey-details" open|<details class="reader-score-axis"[^>]* open/);assert.match(html,/<details class="reader-score-axis"[^>]*><summary>[\s\S]*?<div id="score-atlas-understanding">/);assert.match(html,/The project in brief/);
+  const a=fixture(),html=renderBusinessReader({analysis:a},'body{}');assert.match(html,/data-atlas-reading="concise-1"/);assert.match(html,/reader-overview-grid/);assert.match(html,/reader-journey-table/);assert.match(html,/reader-case-table/);assert.doesNotMatch(html,/<details class="reader-journey-details" open|<details class="reader-score-axis"[^>]* open/);assert.match(html,/<details class="reader-score-axis"[^>]*><summary>[\s\S]*?<div id="score-atlas-understanding">/);assert.match(html,/The project in brief/);assert.equal((html.match(/<details class="reader-review-depth">/g)||[]).length,1);assert.doesNotMatch(html,/<details class="reader-review-depth" open/);
 });
 test('measured reading refuses wasted width, missing behaviors and premature disclosure independently',()=>{
-  const expected={guide:[['A reader question','Its actual supported answer','Its remaining boundary']],journeys:[['Existing behavior','Actual operation','Actual result']]},m={width:1860,...structuredClone(expected),openJourneys:0,visibleCases:0,openAxes:0};assert.deepEqual(reviewConciseReading(m,1920,expected),[]);
-  for(const[code,change]of [['READING_WIDTH',x=>x.width=1200],['READING_ORIENTATION',x=>x.journeys=[]],['READING_ORIENTATION',x=>x.guide[0][1]='Generic filler'],['READING_DISCLOSURE',x=>x.visibleCases=1],['READING_DISCLOSURE',x=>x.openAxes=18]]){const bad=structuredClone(m);change(bad);assert.deepEqual(reviewConciseReading(bad,1920,expected).map(f=>f.code),[code]);}
+  const expected={guide:[['A reader question','Its actual supported answer','Its remaining boundary']],journeys:[['Existing behavior','Actual operation','Actual result']]},m={width:1860,...structuredClone(expected),openJourneys:0,visibleCases:0,openAxes:0,reviewDepthGroups:1,openReviewDepth:0};assert.deepEqual(reviewConciseReading(m,1920,expected),[]);
+  for(const[code,change]of [['READING_WIDTH',x=>x.width=1200],['READING_ORIENTATION',x=>x.journeys=[]],['READING_ORIENTATION',x=>x.guide[0][1]='Generic filler'],['READING_DISCLOSURE',x=>x.visibleCases=1],['READING_DISCLOSURE',x=>x.openAxes=18],['READING_DISCLOSURE',x=>x.openReviewDepth=1],['READING_DISCLOSURE',x=>x.reviewDepthGroups=6]]){const bad=structuredClone(m);change(bad);assert.deepEqual(reviewConciseReading(bad,1920,expected).map(f=>f.code),[code]);}
 });
 test('normal reading navigation reveals useful summaries without exposing every case at once',()=>{
   const targets=['#purpose','#choices','#behaviors'],path=[{target:targets[0],briefVisible:true},{target:targets[1],guideRows:3},{target:targets[2],summaryRows:16,visibleCases:0}];assert.deepEqual(reviewConciseReadingPath(path,targets,3,16),[]);
   for(const change of [p=>p[0].briefVisible=false,p=>p[1].guideRows=0,p=>p[2].summaryRows=15,p=>p[2].visibleCases=51,p=>p[1].target='#foreign']){const bad=structuredClone(path);change(bad);assert.deepEqual(reviewConciseReadingPath(bad,targets,3,16).map(f=>f.code),['READING_PATH']);}
+});
+
+test('narrative repetition rejects exact long sentences without merging distinct claims or proof boundaries',()=>{
+  const r=fixture().reader,before=structuredClone(r);assert.equal(reviewNarrativeRepetition(r).status,'PASSED');assert.deepEqual(r,before);
+  owned(()=>reviewNarrativeRepetition({...r,summary:null}));owned(()=>reviewNarrativeRepetition({...r,value:[{text:null}]}));
+  const repeated='A completed operation does not establish an accepted application result.';r.summary=repeated;r.guide[0].answer='  '+repeated.toUpperCase()+'  ';owned(()=>reviewNarrativeRepetition(r));
+  r.guide[0].answer='A completed operation does not establish every possible application result.';assert.equal(reviewNarrativeRepetition(r).status,'PASSED');
+});
+test('concise failure labels preserve unknown, partial and not-applicable scope without claiming exhaustive coverage',()=>{
+  assert.equal(failureScopeLabel('UNKNOWN'),'Failure scenarios: not established');assert.equal(failureScopeLabel('PARTIAL'),'Failure scenarios: partial review');assert.equal(failureScopeLabel('NOT_APPLICABLE'),'Failure scenarios: not applicable in reviewed scope');assert.equal(failureScopeLabel('REVIEWED'),'Failure scenarios: reviewed within stated scope');owned(()=>failureScopeLabel('PASSED'));
 });

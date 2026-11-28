@@ -165,7 +165,12 @@ test('active Atlas guides agree with the retrieved business reader generation',(
   }
 });
 
-test('every retrieval keeps native artifact calibration and actual source comparison policy',()=>{const rule=retrieveAtlasKnowledge({query:'unrelated question',limit:0}).records.find(r=>r.id==='KB-BUSINESS-READER');for(const term of ['live source','expected cases','partial review depth','native navigation','architecture/behavior diagrams','masking'])assert.ok(rule.requirement.includes(term),'Repair the mandatory artifact-calibration policy: '+term);assert.ok(rule.sources.some(s=>s.quote.startsWith('ATLAS-CALIBRATION-001:')));});
+test('every retrieval keeps native artifact calibration and actual source comparison policy',()=>{
+ const receipt=retrieveAtlasKnowledge({query:'unrelated question',limit:0}),rule=receipt.records.find(r=>r.id==='KB-BUSINESS-READER');
+ for(const term of ['live source','expected cases','partial review depth','native navigation','architecture/behavior diagrams','masking','exact repeated business sentences','one initially closed disclosure','Unknown failure scope'])assert.ok(rule.requirement.includes(term),'Repair the mandatory artifact-calibration policy: '+term);
+ for(const id of ['ATLAS-CALIBRATION-001:','ATLAS-CLARITY-001:','ATLAS-SPACING-001:'])assert.ok(rule.sources.some(s=>s.quote.startsWith(id)),'Restore the exact current clarity/spacing citation: '+id);
+ const graph=receipt.records.find(r=>r.id==='KB-GRAPH-READABILITY');assert.match(graph.requirement,/six CSS pixels/);assert.match(graph.requirement,/complete source identities/);
+});
 
 test('semantic qualification and compact identity policy cannot be evicted by query ranking',()=>{
  const r=retrieveAtlasKnowledge({query:'unrelated topic',limit:0}),rule=r.records.find(x=>x.id==='KB-SEMANTIC-FACETS');assert.equal(rule.mandatory,true);for(const value of ['SEMANTIC_FACETS_V1','independent existing oracles','original testcase identities','partial scopes','compact Atlas/project identity'])assert.ok(rule.requirement.includes(value));const changed=raw();changed.records.find(x=>x.id===rule.id).mandatory=false;expectKnowledgeFailure(()=>validateAtlasKnowledge(changed));

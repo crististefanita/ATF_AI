@@ -4,6 +4,22 @@ const need=(ok,message)=>requireAtlas(ok,'ATLAS-READER',message),unique=a=>Array
 const escape=v=>String(v).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 export const conciseProfile='CONCISE_READING_V1';
 
+/** Exact repeated narrative is editable noise; similar meanings still require a reviewer. */
+export function reviewNarrativeRepetition(reader){
+  need(reader&&typeof reader.summary==='string'&&Array.isArray(reader.value)&&reader.value.every(v=>v&&typeof v.text==='string')&&Array.isArray(reader.guide)&&reader.guide.every(g=>g&&typeof g.answer==='string'),'Declare the actual summary, value statements and guide answers before reviewing repetition');
+  const fields=[['summary',reader.summary],...reader.value.map((v,i)=>['value['+i+']',v.text]),...reader.guide.map((g,i)=>['guide['+i+']',g.answer])],seen=new Map();
+  for(const [owner,text]of fields)for(const sentence of text.split(/(?<=[.!?])\s+/)){
+    const key=sentence.toLowerCase().replace(/[.!?]+$/,'').replace(/\s+/g,' ').trim();if(words(key)<6)continue;
+    need(!seen.has(key),'Remove the exact repeated business sentence in '+owner+'; explain its distinct contribution instead of repeating '+seen.get(key));seen.set(key,owner);
+  }
+  return {status:'PASSED',scope:'EXACT_NARRATIVE_SENTENCES; NO_FUZZY_DEDUPLICATION_OR_SEMANTIC_TRUTH'};
+}
+
+export function failureScopeLabel(status){
+  const labels={REVIEWED:'Failure scenarios: reviewed within stated scope',PARTIAL:'Failure scenarios: partial review',UNKNOWN:'Failure scenarios: not established',NOT_APPLICABLE:'Failure scenarios: not applicable in reviewed scope'};
+  need(Object.hasOwn(labels,status),'Keep the actual declared failure review status');return labels[status];
+}
+
 /** Concise answers retain actual source relationships; schema checks do not establish prose truth. */
 export function readingProjection(analysis){
   const r=analysis.reader;if(r.readingProfile===undefined){need(r.guide===undefined,'Declare concise reading before adding its guide');return null;}
@@ -13,7 +29,7 @@ export function readingProjection(analysis){
   const rows=r.guide.map((g,index)=>{
     const context=' (reader.guide['+index+'])';
     need(g&&Object.keys(g).every(k=>['question','answer','limits','flowIds','claimIds','oracleClaimIds'].includes(k)),'Keep guide entries within their owned reading fields'+context);
-    need([g.question,g.answer,g.limits].every(s=>typeof s==='string'&&s.trim().length>=20)&&words(g.question)<=16&&words(g.answer)<=55&&words(g.limits)<=35,'Keep each guide question concise: at most 16 question, 55 answer and 35 boundary words'+context);
+    need([g.question,g.answer,g.limits].every(s=>typeof s==='string'&&s.trim().length>=20)&&words(g.question)<=16&&words(g.answer)<=40&&words(g.limits)<=30,'Keep each guide question concise: at most 16 question, 40 answer and 30 boundary words'+context);
     need(unique(g.flowIds)&&g.flowIds.length>0&&g.flowIds.every(id=>analysis.behaviorFlows.some(f=>f.id===id)),'Guide answers need their actual existing flow owners'+context);
     const flows=g.flowIds.map(id=>analysis.behaviorFlows.find(f=>f.id===id)),owned=new Set(flows.flatMap(f=>f.claimIds||[]));
     need(unique(g.claimIds)&&g.claimIds.length>0&&g.claimIds.every(id=>owned.has(id)&&['SOURCE_REVIEWED','EXECUTED'].includes(claims.get(id)?.status))&&flows.every(f=>(f.claimIds||[]).some(id=>g.claimIds.includes(id))),'Guide source claims must belong to every selected existing flow'+context);
@@ -22,6 +38,7 @@ export function readingProjection(analysis){
     return [g.question,g.answer,g.limits];
   });
   need(new Set(rows.map(r=>r[0].toLowerCase().trim())).size===rows.length,'Remove repeated reader questions instead of duplicating their answers');
+  reviewNarrativeRepetition(r);
   return {rows,scope:'DECLARED_FLOW_AND_ORACLE_LINKS; HUMAN_MEANING_REVIEW_REQUIRED'};
 }
 
@@ -47,7 +64,7 @@ export function reviewConciseReading(metrics,width,expected){
   const findings=[],add=(code,observation)=>findings.push({code,observation}),same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
   if(!metrics||!Number.isFinite(metrics.width)||metrics.width<width*.9||metrics.width>width+2)add('READING_WIDTH','Use the available page width for meaningful comparisons; retain readable line lengths and a primary-map/context layout instead of empty fixed margins');
   if(!metrics||!same(metrics.guide,expected.guide)||!same(metrics.journeys,expected.journeys)||expected.brief&&!same(metrics.brief,expected.brief))add('READING_ORIENTATION','Retain the exact concise source-bound answers, project brief and complete behavior summary; do not substitute generic filler or erase an existing behavior');
-  if(!metrics||metrics.openJourneys!==0||metrics.visibleCases!==0||metrics.openAxes!==0)add('READING_DISCLOSURE','Start with the useful summary: journey cases and individual score rationale open only on request');
+  if(!metrics||metrics.openJourneys!==0||metrics.visibleCases!==0||metrics.openAxes!==0||metrics.openReviewDepth!==0||metrics.reviewDepthGroups!==1)add('READING_DISCLOSURE','Start with the useful summary: group detailed capability review once and keep it, journey cases and individual score rationale closed until requested');
   return findings;
 }
 

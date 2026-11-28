@@ -131,6 +131,7 @@ normalizing their presentation does not claim a fresh execution.
 
 | ID | Delivered behavior | Verification |
 |---|---|---|
+| D-029 | Grouped review, concise business prose and measured diagram spacing; quality 96 (96/97/95) | [Source, owned repairs and native review](Code_And_Documentation_Maturity.md#d-029) |
 | D-028 | Concise reading, useful width and cases on request; quality 96 (96/97/95) | [Source, reading path and evidence](Code_And_Documentation_Maturity.md#d-028) |
 | D-027 | Fitted diagrams and two complete local disclosures; quality 95 (95/96/94) | [Components, refusals and native calibration](Code_And_Documentation_Maturity.md#d-027) |
 | D-026 | Open primary map, local proof and explained scores; quality 95 (95/96/94) | [Provenance, components and native repair](Code_And_Documentation_Maturity.md#d-026) |

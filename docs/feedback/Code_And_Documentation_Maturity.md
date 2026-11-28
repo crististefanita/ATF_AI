@@ -1382,3 +1382,40 @@ Delivered quality 96 (correctness 96 / verification 97 / clarity 95).
 The scoped assessment targets understanding 95, reading quality 96 and semantic
 breadth 94: the new questions connect existing responsibilities without claiming
 more code coverage or external acceptance. Both partial facets remain partial.
+
+<a id="d-029"></a>
+## D-029: Calm business explanation and measured breathing room
+
+Status: VERIFIED within bounded component and native-reading scope. Owner: Atlas reading and governance.
+Priority 88 (impact 92 / exposure 85 / urgency 84).
+Baseline quality 93 (correctness 95 / verification 94 / clarity 90).
+
+- Six separate capability-review controls repeat the same names already in the
+  responsibility table. Group their detail once and keep all original facets.
+- Feature three useful existing scores, retain every authored rationale, and
+  shorten answers without erasing source owners, original verdicts or limits.
+- Exact repeated narrative needs an owned repair hint; similar meanings need
+  human review. Unknown failure scope must not be described as partial review.
+- Overlap checks alone do not establish breathing room. Measure every actual
+  transformed node/label rectangle and require six CSS pixels of clearance.
+- Retain the first refused provenance edit and preview comparison: the citation
+  kind was unsupported, and measured rectangles initially polluted the graph
+  identity projection. Repair their owners without weakening source equality.
+
+Evidence: ${ATF_WORK_ROOT}/reviews/atlas-clarity-20261128.
+Acceptance requires paired governance/components, current-source publication,
+actual native review and intended negative controls. No new application E2E,
+emulator or application persistence claim is in scope.
+
+Delivered quality 96 (correctness 96 / verification 97 / clarity 95).
+
+- Three existing headline scores keep all eighteen authored axes available.
+  One closed capability-review group retains all forty-two original facets.
+- Four added component cases cover exact repetition, distinct failure scope,
+  real clearance and missing geometry; measured labels preserve every source edge.
+- The preview passes at 900/1440/1920. Both focused document selections pass
+  after the register rejected the unsupported underscore status; original XML remains.
+- The exact final source, current publisher refusals, repaired native controls
+  and bounded selected publication retain separate receipts in the dossier.
+- Reading quality remains 96, understanding 95 and semantic breadth 94. New
+  test counts do not complete the two partial facets or certify external behavior.

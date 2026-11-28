@@ -938,6 +938,10 @@ marker#arrow path{fill:var(--accent)}body{font-size:15px}.wrap{max-width:1320px}
 .concise-reader p{max-width:80ch}
 .concise-reader .reader-score-wall .score-card{padding:8px 14px}
 .concise-reader .reader-score-opening>.muted{margin:10px 0}
+.concise-reader .reader-score-wall{grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}
+.concise-reader .reader-review-depth{padding:6px 12px;margin:12px 0}
+.concise-reader .reader-review-depth>summary{font-size:14px;padding:4px 0}
+.concise-reader .reader-negative-scope{color:var(--muted);font-size:14px}
 .concise-reader .reader-overview-grid{display:grid;gap:24px;align-items:start}
 .concise-reader .reader-primary{padding:0;border:0;background:none}
 .concise-reader .reader-brief h2{font-size:20px;margin:8px 0 12px}

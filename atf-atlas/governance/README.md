@@ -45,6 +45,8 @@ The external native review supplies actual screenshots and transformed pixels.
 | Collapsed supporting subgraphs | [Reader](../../tools/atlas-reader.mjs): primary open, support closed, two closed disclosures below each graph |
 | Negative candidate fixtures | [Component tests](diagram-layout.test.mjs) and [native calibration](../../tools/atlas-calibration.mjs) |
 | Concise source orientation | [Reading component](reading.mjs) and [independent cases](reading.test.mjs): short answers, exact shared boundaries and measured width/disclosure |
+| Repeated narrative and early review detail | [Reading component](reading.mjs): exact sentence checks, one closed review group and distinct failure-scope labels |
+| Diagram breathing room | [Native rectangle review](diagram-layout.mjs): complete source identities and at least six CSS pixels between distinct boxes and labels |
 
 The source anchor is `main_mcp` revision
 `70a7279c2a9560d39e6bd2554cd2f96a88626692`. The archived visual-scale,
@@ -70,6 +72,12 @@ MCP services and Allure are outside this module.
 failures. Source projection, graph geometry and original proof have independent
 checks. Their diagnostics identify the report owner and a concrete recheck;
 passing markup alone never certifies semantic truth.
+
+`DIAGRAM_SPACING` reports the graph, crowded pair and measured clearance. Move
+or shorten its source-bound label; keep the relationship and readable type.
+
+`NEGATIVE_SCOPE` preserves the distinction between unknown and partial failure
+review. These checks complement visual inspection and source comparison.
 
 <details>
 <summary>Focused component command</summary>

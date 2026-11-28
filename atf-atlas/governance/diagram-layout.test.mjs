@@ -1,5 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';
-import {layoutFittedDiagram,reviewFittedDiagramMetrics} from './diagram-layout.mjs';
+import {layoutFittedDiagram,reviewFittedDiagramMetrics,reviewDiagramSpacing} from './diagram-layout.mjs';
 import {referenceFixture} from '../../tools/fixtures/atlas-reference.mjs';
 import {renderBusinessReader} from '../../tools/atlas-reader.mjs';
 import {readerGraphSet,readerDiagramProjection,renderReaderGraph} from '../../tools/atlas-reader-graphs.mjs';
@@ -45,4 +45,13 @@ test('legend and references must both start closed and retain exactly one owned 
 });
 test('historical reference captures do not gain current no-scroll qualification by compatibility alone',()=>{
   const a=current(),index={captureProfile:'GIT_WORKTREE_V1'};Object.assign(a.reader,{diagramProfile:'SOURCE_GRAPH_V2',comparisonProfile:'SOURCE_BOUND_COMPARISONS_V1',captureProfile:'GIT_WORKTREE_V1'});a.understanding.originProfile='SOURCE_ORIGINS_V1';assert.equal(validateCurrentUnderstandingProfiles(a,index,{profile:'CURRENT_UNDERSTANDING_V3'}).profile,'CURRENT_UNDERSTANDING_V3');a.reader.presentationProfile='BUSINESS_REFERENCE_V1';assert.throws(()=>validateCurrentUnderstandingProfiles(a,index),e=>e.code==='ATLAS-UNDERSTANDING');assert.match(validateCurrentUnderstandingProfiles(a,index,{profile:'CURRENT_UNDERSTANDING_V2'}).scope,/HISTORICAL_V2/);
+});
+
+test('native diagram spacing distinguishes readable gaps from touching labels without changing source relationships',()=>{
+ const expected=[{id:'owned',nodes:[{id:'request'},{id:'result'}],edges:[{from:'request',to:'result'}]}],d=[{id:'owned',spacing:{nodes:[{id:'request',x:0,y:0,width:100,height:60},{id:'result',x:200,y:0,width:100,height:60}],labels:[{from:'request',to:'result',x:106,y:0,width:88,height:20}]}}],before=structuredClone(d);
+ assert.deepEqual(reviewDiagramSpacing(d,expected),[]);assert.deepEqual(d,before);d[0].spacing.labels[0].x=103;const findings=reviewDiagramSpacing(d,expected);assert.equal(findings[0].code,'DIAGRAM_SPACING');assert.match(findings[0].observation,/3.00 px/);assert.match(findings[0].observation,/without shrinking type or deleting/);
+});
+test('diagram breathing room requires actual complete finite native rectangles rather than padding declarations',()=>{
+ const expected=[{id:'owned',nodes:[{id:'request'}],edges:[]}],d=[{id:'owned',spacing:{nodes:[{id:'request',x:0,y:0,width:100,height:60}],labels:[]}}];assert.deepEqual(reviewDiagramSpacing(d,expected),[]);
+ for(const change of [r=>delete r[0].spacing,r=>r[0].spacing.nodes[0].width=0,r=>r[0].spacing.nodes[0].x=NaN,r=>r[0].spacing.nodes[0].id='foreign',r=>r.push(structuredClone(r[0]))]){const r=structuredClone(d);change(r);assert.ok(reviewDiagramSpacing(r,expected).some(f=>f.code==='DIAGRAM_SPACING'));}
 });

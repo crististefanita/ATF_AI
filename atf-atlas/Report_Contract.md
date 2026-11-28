@@ -127,8 +127,18 @@ historical readers are never rewritten or given a new presentation grade.
 
 Declare `reader.readingProfile` and two to five `reader.guide` entries. Each
 entry has `question`, `answer`, `limits`, `flowIds`, `claimIds` and
-`oracleClaimIds`. Keep questions within 16 words, answers within 55 and limits
-within 35. These bounds support editing; only source review establishes meaning.
+`oracleClaimIds`. Keep questions within 16 words, answers within 40 and limits
+within 30. These bounds support editing; only source review establishes meaning.
+
+`ATLAS-CLARITY-001: Remove exact repeated business sentences from the summary, value statements and guide answers; preserve distinct claims and proof boundaries, group capability-review detail in one initially closed disclosure, and feature only the most useful existing scores for the reader's purpose.`
+
+`ATLAS-SPACING-001: Measure complete transformed native node and relationship-label rectangles; retain at least six CSS pixels between distinct boxes and labels, without shrinking type, clipping text, inventing nodes or removing source relationships.`
+
+Use a short failure-review label that preserves the actual declared status.
+UNKNOWN does not mean PARTIAL; a reviewed scope is not exhaustive coverage.
+
+Exact sentence detection supports editing, while similar meanings still require
+a reviewer. Standard labels and original proof text remain attributable.
 
 Use the [reading component](governance/README.md) for progressive disclosure.
 At wide desktop widths the main map and project brief share the opening;
