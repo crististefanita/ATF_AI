@@ -1486,5 +1486,8 @@ Calitate livrată 96 (corectitudine 96 / verificare 97 / claritate 95).
   după refuzul stării cu underscore din registru; dovezile originale rămân păstrate.
 - Sursa finală exactă, refuzurile publicării, controalele native reparate și
   publicarea delimitată păstrează chitanțe separate în dosar.
+- Selecția Node completă a prins răspunsuri identice în exemplul CLI generic
+  existent. Răspunsuri distincte și legate de sursă repară exemplul; regula de
+  repetiție și dovada TAP a eșecului rămân intacte.
 - Lectura rămâne la 96, înțelegerea la 95 și amploarea semantică la 94. Numărul
   testelor nu închide cele două fațete parțiale și nu certifică aplicația externă.
