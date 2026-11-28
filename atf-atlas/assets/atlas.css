@@ -855,7 +855,7 @@ marker#arrow path{fill:var(--accent)}body{font-size:15px}.wrap{max-width:1320px}
 .reader footer{margin-top:28px;color:var(--muted)}
 @media(max-width:980px){.reader .reader-grid{grid-template-columns:1fr}.reader .hero{padding:24px}.reader .hero h1{font-size:29px}.reader .reader-journey{padding:16px}}
 .reader .flow{display:block;width:100%;background:var(--panel2);border:1px solid var(--border);border-radius:12px}
-.reader .flow:not(.primary-fluid){height:auto}
+.reader .flow:not(.fluid-diagram){height:auto}
 .reader .flow .node rect{fill:var(--panel);stroke:#35507a;stroke-width:2}
 .reader .flow text{fill:var(--text);font-family:var(--sans)}
 .reader .flow .edge{fill:none;stroke:var(--accent);stroke-width:2}
@@ -944,7 +944,10 @@ marker#arrow path{fill:var(--accent)}body{font-size:15px}.wrap{max-width:1320px}
 .concise-reader .reader-review-depth>summary{font-size:14px;padding:4px 0}
 .concise-reader .reader-negative-scope{color:var(--muted);font-size:14px}
 .concise-reader .reader-overview{display:block}
-.concise-reader .primary-map{width:100%;max-width:none}
+.concise-reader .reader-map{width:100%;max-width:none}
+.concise-reader .reader-map .flow{width:100%;max-width:none}
+.concise-reader .reader-map:not(.primary-map) .flow text{font-size:clamp(16px,1.7vw,20px)}
+.concise-reader .reader-map:not(.primary-map) .flow .edge-label{font-size:clamp(14px,1.7vw,18px)}
 .concise-reader .primary-map .flow{width:100%;max-width:none}
 .concise-reader .primary-map .primary-object-label{font-size:clamp(16px,1.7vw,19px)}
 .concise-reader .primary-map .flow .edge-label,.concise-reader .primary-map .maturity-label{font-size:clamp(14px,1.7vw,17px)}

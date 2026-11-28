@@ -90,6 +90,9 @@ a eșecurilor. Aceste verificări completează inspecția vizuală și comparaț
 Măsoară dimensiunile randate; lățimea paginii nu dovedește lățimea hărții.
 `READER_NOISE` elimină textele generice și păstrează limitele în secțiunile responsabile.
 
+`DIAGRAM_WIDTH` compară fiecare desen secundar cu lățimea panoului disponibil;
+lățirea paginii exterioare nu repară un desen plafonat.
+
 <details>
 <summary>Comandă pentru componentele vizate</summary>
 

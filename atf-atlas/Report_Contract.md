@@ -158,6 +158,8 @@ pentru toate rândurile.
 
 `ATLAS-READER-NOISE-001: Fresh concise readers contain no generic footer, redundant score instruction or unowned narrative outside dedicated sections; keep confidence and remaining limits in their existing owned sections, without repeating global offline or scope labels.`
 
+`ATLAS-DIAGRAM-WIDTH-001: Every current concise diagram uses the full width available in its own panel; measure both figure and actual SVG canvas, reject artificial width caps and overflow, and scale route geometry without stretching text or border weight.`
+
 Desenul principal ocupă lățimea HTML disponibilă. Geometria adaptivă a relațiilor
 păstrează textul și marginile nodurilor la scara nativă, fără să întindă fonturile.
 Contextul valorii rămâne colapsat sub hartă, cu sensul său legat de sursă păstrat.

@@ -1520,6 +1520,10 @@ Calitate livrată 96 (corectitudine 96 / verificare 97 / claritate 95).
 
 - Previzualizarea folosește întreaga bandă la cele trei lățimi, fără coloane laterale,
   plafon fix, text mărit artificial sau relații din sursă pierdute.
+- Diagramele secundare urmează aceeași lățime fluidă; panourile și desenele reale
+  sunt măsurate separat. Păstrează prima captură cu lățimea secundară restrânsă.
+- Prima previzualizare uniformă a refuzat trei perechi prea apropiate la 900 px.
+  Împărțirea pe rânduri la cuvinte întregi repară distanța, fără micșorarea fontului sau eliminarea relațiilor.
 - Trei cazuri de componentă adăugate refuză geometria îngustată/supradimensionată,
   subsolul/instrucțiunile generice și textul fără secțiune, păstrând domeniul istoric.
 - Catalogul lățimii și harta principală deschisă din main_mcp ancorează adaptarea;
