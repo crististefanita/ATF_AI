@@ -1422,3 +1422,41 @@ Delivered quality 96 (correctness 96 / verification 97 / clarity 95).
   repetition rule and original failed TAP remain intact.
 - Reading quality remains 96, understanding 95 and semantic breadth 94. New
   test counts do not complete the two partial facets or certify external behavior.
+
+<a id="d-030"></a>
+## D-030: Independent full-width map and owned reader text
+
+Status: VERIFIED within bounded component and native-render scope. Owner: Atlas presentation and governance.
+Priority 92 (impact 96 / exposure 92 / urgency 84).
+Baseline quality 91 (correctness 95 / verification 80 / clarity 96).
+
+- The previous page-width check accepted a main map inside a left/right split.
+  The current requirement gives the actual primary panel and SVG their own band.
+- The pinned main_mcp map is an independent open disclosure. Its width catalog
+  and diagram-grid refusal inform the correction without restoring old runtime.
+- A short brief precedes the map; value context follows in closed detail.
+  Percentage geometry fills the HTML width while text and border weight stay uniform.
+- Remove the generic offline/scope footer and score prompt. Confidence and
+  limits stay in their dedicated sections; reject other unowned narrative.
+- Native acceptance measures actual rectangles, source relationships, scale,
+  spacing and noise. Markup or outer page width alone cannot qualify the map.
+
+Evidence: ${ATF_WORK_ROOT}/reviews/atlas-primary-band-20261128.
+Acceptance requires paired source/docs checks, original component proof and
+actual desktop rendering with intended negative controls. Existing application
+E2E, Java runtime and both partial application facets remain unchanged.
+
+Delivered quality 96 (correctness 96 / verification 97 / clarity 95).
+
+- The preview uses the full main band at all three widths without sidebars,
+  fixed canvas caps, inflated text or lost source relationships.
+- Three added component cases reject narrowed/oversized geometry, generic
+  footer/prompts and unowned text while retaining historical envelope scope.
+- The known main_mcp width catalog and actual open primary map anchor the
+  adaptation; their archived runtime and original grades remain untouched.
+- Paired documentation checks pass after the Romanian table-cell gate refused
+  143 visible characters; a shorter explanation repairs it without relaxing 140.
+- Exact final-source tests, actual publisher refusals, native negative controls
+  and the selected publication retain separate receipts in this dossier.
+- Understanding 95, reading 96 and semantic breadth 94 retain their bounded
+  judgment; neither partial application facet is promoted by layout or test counts.

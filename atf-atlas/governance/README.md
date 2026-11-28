@@ -47,6 +47,7 @@ The external native review supplies actual screenshots and transformed pixels.
 | Concise source orientation | [Reading component](reading.mjs) and [independent cases](reading.test.mjs): short answers, exact shared boundaries and measured width/disclosure |
 | Repeated narrative and early review detail | [Reading component](reading.mjs): exact sentence checks, one closed review group and distinct failure-scope labels |
 | Diagram breathing room | [Native rectangle review](diagram-layout.mjs): complete source identities and at least six CSS pixels between distinct boxes and labels |
+| Independent main-map band and quiet surface | [Reading component](reading.mjs): actual full-width panel/canvas geometry, brief above, no generic footer or unowned narrative |
 
 The source anchor is `main_mcp` revision
 `70a7279c2a9560d39e6bd2554cd2f96a88626692`. The archived visual-scale,
@@ -78,6 +79,10 @@ or shorten its source-bound label; keep the relationship and readable type.
 
 `NEGATIVE_SCOPE` preserves the distinction between unknown and partial failure
 review. These checks complement visual inspection and source comparison.
+
+`PRIMARY_BAND` identifies a sidebar, a narrowed panel/canvas or displaced brief.
+Measure the actual rendered bounds; a wide outer page does not prove a wide map.
+`READER_NOISE` removes floating boilerplate and routes limits to owned sections.
 
 <details>
 <summary>Focused component command</summary>

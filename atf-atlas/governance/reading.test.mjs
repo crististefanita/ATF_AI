@@ -1,7 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';
-import {readingProjection,referenceTable,reviewConciseReading,renderCaseTable,reviewConciseReadingPath,reviewNarrativeRepetition,failureScopeLabel} from './reading.mjs';
+import {readingProjection,referenceTable,reviewConciseReading,renderCaseTable,reviewConciseReadingPath,reviewNarrativeRepetition,failureScopeLabel,reviewPrimaryBand} from './reading.mjs';
 import {referenceFixture} from '../../tools/fixtures/atlas-reference.mjs';
-import {renderBusinessReader,validateBusinessReader} from '../../tools/atlas-reader.mjs';
+import {renderBusinessReader,validateBusinessReader,inspectBusinessReaderHtml} from '../../tools/atlas-reader.mjs';
 const fixture=()=>{const a=referenceFixture();a.reader.presentationProfile='BUSINESS_REFERENCE_V2';a.reader.readingProfile='CONCISE_READING_V1';a.behaviorFlows[0].claimIds=['FACT'];a.reader.guide=['Which observation does the caller receive?','What remains outside this local check?'].map((question,i)=>({question,answer:i?'The available check describes a local boundary without establishing every deployed application behavior.':'The existing operation returns the observation supported by its independent local check.',limits:'The selected local observation does not establish every deployment or input.',flowIds:['operation'],claimIds:['FACT'],oracleClaimIds:['ORACLE']}));return a;};
 const owned=fn=>assert.throws(fn,e=>e.code==='ATLAS-READER'&&Boolean(e.hint&&e.owner&&e.recheck));
 
@@ -23,7 +23,7 @@ test('concise cases use comparison rows, retain real failed proof and deduplicat
   owned(()=>renderCaseTable(j,flow,'03.01',new Map(),()=>''));const foreign=structuredClone(j);foreign.cases[0].caseId='foreign';owned(()=>renderCaseTable(foreign,flow,'03.01',new Map(a.claims.map(c=>[c.id,c])),()=>''));
 });
 test('the concise business reader opens its story and keeps cases and individual score rationale on request',()=>{
-  const a=fixture(),html=renderBusinessReader({analysis:a},'body{}');assert.match(html,/data-atlas-reading="concise-1"/);assert.match(html,/reader-overview-grid/);assert.match(html,/reader-journey-table/);assert.match(html,/reader-case-table/);assert.doesNotMatch(html,/<details class="reader-journey-details" open|<details class="reader-score-axis"[^>]* open/);assert.match(html,/<details class="reader-score-axis"[^>]*><summary>[\s\S]*?<div id="score-atlas-understanding">/);assert.match(html,/The project in brief/);assert.equal((html.match(/<details class="reader-review-depth">/g)||[]).length,1);assert.doesNotMatch(html,/<details class="reader-review-depth" open/);
+  const a=fixture(),html=renderBusinessReader({analysis:a},'body{}');assert.match(html,/data-atlas-reading="concise-1"/);assert.match(html,/reader-overview/);assert.match(html,/reader-journey-table/);assert.match(html,/reader-case-table/);assert.doesNotMatch(html,/<details class="reader-journey-details" open|<details class="reader-score-axis"[^>]* open/);assert.match(html,/<details class="reader-score-axis"[^>]*><summary>[\s\S]*?<div id="score-atlas-understanding">/);assert.ok(html.indexOf('class="reader-brief"')<html.indexOf('class="reader-primary"'));assert.doesNotMatch(html,/<aside|<footer|Open a score for its review basis/);assert.equal((html.match(/<details class="reader-review-depth">/g)||[]).length,1);assert.doesNotMatch(html,/<details class="reader-review-depth" open/);
 });
 test('measured reading refuses wasted width, missing behaviors and premature disclosure independently',()=>{
   const expected={guide:[['A reader question','Its actual supported answer','Its remaining boundary']],journeys:[['Existing behavior','Actual operation','Actual result']]},m={width:1860,...structuredClone(expected),openJourneys:0,visibleCases:0,openAxes:0,reviewDepthGroups:1,openReviewDepth:0};assert.deepEqual(reviewConciseReading(m,1920,expected),[]);
@@ -42,4 +42,21 @@ test('narrative repetition rejects exact long sentences without merging distinct
 });
 test('concise failure labels preserve unknown, partial and not-applicable scope without claiming exhaustive coverage',()=>{
   assert.equal(failureScopeLabel('UNKNOWN'),'Failure scenarios: not established');assert.equal(failureScopeLabel('PARTIAL'),'Failure scenarios: partial review');assert.equal(failureScopeLabel('NOT_APPLICABLE'),'Failure scenarios: not applicable in reviewed scope');assert.equal(failureScopeLabel('REVIEWED'),'Failure scenarios: reviewed within stated scope');owned(()=>failureScopeLabel('PASSED'));
+});
+
+const bandFixture=()=>({section:{x:20,y:400,width:1400,height:1000},brief:{x:28,y:410,width:1384,height:60},primary:{x:28,y:480,width:1384,height:800},figure:{x:28,y:520,width:1384,height:740},canvas:{x:28,y:520,width:1384,height:710}}),quiet=()=>({footers:0,scoreHints:0,unownedText:[]});
+test('the primary map needs measured full-band geometry rather than a wide outer page or a narrow fixed canvas',()=>{
+ const band=bandFixture(),before=structuredClone(band);assert.deepEqual(reviewPrimaryBand(band,quiet()),[]);assert.deepEqual(band,before);
+ for(const change of [b=>b.primary.width=700,b=>b.figure.width=960,b=>b.canvas.width=960,b=>b.canvas.width=1500,b=>b.brief.y=500,b=>b.canvas.x=240,b=>b.canvas.height=0,b=>delete b.canvas]){const b=bandFixture();change(b);assert.deepEqual(reviewPrimaryBand(b,quiet()).map(f=>f.code),['PRIMARY_BAND']);}
+});
+test('reader noise governance refuses generic footers, score prompts and narrative outside its owning sections',()=>{
+ for(const change of [n=>n.footers=1,n=>n.scoreHints=1,n=>n.unownedText=['Repeated global scope label']]){const n=quiet();change(n);assert.deepEqual(reviewPrimaryBand(bandFixture(),n).map(f=>f.code),['READER_NOISE']);}
+ const a=fixture(),html=renderBusinessReader({analysis:a},'body{}');assert.equal(inspectBusinessReaderHtml(html).status,'PASSED');owned(()=>inspectBusinessReaderHtml(html.replace('</body>','<footer>Read this document offline.</footer></body>')));
+ const historical=html.replace(' data-atlas-layout="primary-band-1"','').replace('</body>','<footer>Captured historical scope.</footer></body>');assert.match(inspectBusinessReaderHtml(historical).scope,/ORIGINAL_AUDIT_AND_SEMANTIC_REVIEW_STILL_REQUIRED/);
+});
+test('the full-width primary canvas scales only route geometry and retains every original object, label and legacy view',()=>{
+ const a=fixture(),html=renderBusinessReader({analysis:a},'body{}');assert.match(html,/class="flow primary-fluid"/);assert.equal((html.match(/class="primary-routing"/g)||[]).length,a.reader.primaryGraph.edges.length);assert.match(html,/<rect x="[\d.]+%"[^>]+width="[\d.]+%"/);
+ const routes=[...html.matchAll(/<svg class="primary-routing"[\s\S]*?<\/svg>/g)];assert.ok(routes.every(r=>!r[0].includes('<text')&&r[0].includes('non-scaling-stroke')));for(const n of a.reader.primaryGraph.nodes)assert.ok(html.includes('data-node-id="'+n.id+'"'));
+ delete a.reader.readingProfile;delete a.reader.guide;const legacy=renderBusinessReader({analysis:a},'body{}');assert.doesNotMatch(legacy,/primary-fluid/);assert.match(legacy,/viewBox="0 0 940/);assert.match(legacy,/<footer>/);
+ const compact=fixture();compact.reader.primaryGraph.nodes.forEach((n,i)=>Object.assign(n,{band:0,column:i}));const short=renderBusinessReader({analysis:compact},'body{}');assert.match(short,/class="flow primary-fluid"[^>]+height="290"/);assert.match(short,/primary-routing[^>]+viewBox="0 0 940 290"/);
 });

@@ -62,7 +62,7 @@ export function renderCaseTable(journey,flow,ordinal,claims,comparisonMarkup){
 
 export function reviewConciseReading(metrics,width,expected){
   const findings=[],add=(code,observation)=>findings.push({code,observation}),same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
-  if(!metrics||!Number.isFinite(metrics.width)||metrics.width<width*.9||metrics.width>width+2)add('READING_WIDTH','Use the available page width for meaningful comparisons; retain readable line lengths and a primary-map/context layout instead of empty fixed margins');
+  if(!metrics||!Number.isFinite(metrics.width)||metrics.width<width*.9||metrics.width>width+2)add('READING_WIDTH','Use the available page width for meaningful comparisons and an independent full-width primary map; keep readable type instead of empty fixed margins');
   if(!metrics||!same(metrics.guide,expected.guide)||!same(metrics.journeys,expected.journeys)||expected.brief&&!same(metrics.brief,expected.brief))add('READING_ORIENTATION','Retain the exact concise source-bound answers, project brief and complete behavior summary; do not substitute generic filler or erase an existing behavior');
   if(!metrics||metrics.openJourneys!==0||metrics.visibleCases!==0||metrics.openAxes!==0||metrics.openReviewDepth!==0||metrics.reviewDepthGroups!==1)add('READING_DISCLOSURE','Start with the useful summary: group detailed capability review once and keep it, journey cases and individual score rationale closed until requested');
   return findings;
@@ -71,4 +71,12 @@ export function reviewConciseReading(metrics,width,expected){
 export function reviewConciseReadingPath(path,targets,guideCount,journeyCount){
   const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
   return Array.isArray(path)&&same(path.map(p=>p.target),targets)&&path[0]?.briefVisible===true&&path[1]?.guideRows===guideCount&&path[2]?.summaryRows===journeyCount&&path[2]?.visibleCases===0?[]:[{code:'READING_PATH',observation:'Actual section navigation must reveal the project brief, source-bound guide and complete behavior summary while keeping detailed cases closed; inspect the normal reading path as well as the fully expanded audit.'}];
+}
+
+/** A wide page is insufficient: the actual main canvas must own the full content band. */
+export function reviewPrimaryBand(band,noise){
+  const findings=[],rectangle=b=>b&&['x','y','width','height'].every(k=>Number.isFinite(b[k]))&&b.width>0&&b.height>0;
+  if(!band||!['section','brief','primary','figure','canvas'].every(k=>rectangle(band[k]))||band.brief.y+band.brief.height>band.primary.y+2||['primary','figure','canvas'].some(k=>band[k].width<band.section.width*.94||band[k].x+band[k].width>band.section.x+band.section.width+2||Math.abs(band[k].x-band.section.x)>band.section.width*.04))findings.push({code:'PRIMARY_BAND',observation:'Give the open main map its own full-width content band with a short brief above it. Measure the actual canvas as well as its container; remove sidebars and fixed narrow caps without stretching type.'});
+  if(!noise||noise.footers!==0||noise.scoreHints!==0||!Array.isArray(noise.unownedText)||noise.unownedText.length)findings.push({code:'READER_NOISE',observation:'Remove generic footers, redundant score instructions and unowned narrative outside dedicated sections. Keep confidence and scope in their existing owned sections rather than repeating global labels.'});
+  return findings;
 }

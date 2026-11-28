@@ -36,6 +36,9 @@ execution evidence. A cited old requirement cannot certify today's project code.
 
 ## Adaptation rules
 
+- Give the main map its own full-width band and measure its actual SVG canvas.
+- Keep the short brief above, support below and scope in dedicated sections;
+  omit generic footer/score prompts and retain uniform unscaled primary text.
 - Remove exact repeated business sentences; review similar meanings manually.
 - Group capability-review detail once, keep unknown failure scope distinct from
   partial review, and measure real diagram clearances rather than CSS padding.

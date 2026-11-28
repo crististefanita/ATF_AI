@@ -141,10 +141,18 @@ Exact sentence detection supports editing, while similar meanings still require
 a reviewer. Standard labels and original proof text remain attributable.
 
 Use the [reading component](governance/README.md) for progressive disclosure.
-At wide desktop widths the main map and project brief share the opening;
+The short project brief precedes the open main map in a separate full-width band;
 comparative tables use the available page. Native review includes 1920 px as
 well as 1440/900. Measure the real first view before any interaction. Reuse a
 shared boundary once only when its exact original text matches every row.
+
+`ATLAS-PRIMARY-BAND-001: The open primary map owns an independent full-width content band, with a short brief above it and support below; measure both its panel and actual SVG canvas, reject sidebars and fixed narrow caps, and preserve uniform readable type, borders and every source relationship.`
+
+`ATLAS-READER-NOISE-001: Fresh concise readers contain no generic footer, redundant score instruction or unowned narrative outside dedicated sections; keep confidence and remaining limits in their existing owned sections, without repeating global offline or scope labels.`
+
+The primary canvas fills the available HTML width. Responsive route geometry
+keeps text and node borders at their native scale, rather than stretching fonts.
+Value context remains collapsed below the map; its source meaning is preserved.
 
 `ATLAS-DIAGRAM-FIT-001: Fresh CURRENT_UNDERSTANDING_V3 requires BUSINESS_REFERENCE_V2; every diagram and table fits without horizontal scrolling, clipping or reduced text, with actual transformed SVG type of at least 13 CSS px at the qualified desktop widths; split a wide idea into meaningful source-bound subviews or prose and retain its complete audit.`
 
