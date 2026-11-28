@@ -24,11 +24,13 @@ ghidurile responsabililor păstrează contractele detaliate, iar feedback-ul des
 
 | Modul | Document responsabil |
 |---|---|
-| Contracte neutre, configurație, ciclu UI și execuție API | [atf-core](../atf-core/README.md) |
+| Contracte neutre, configurare și ciclu de viață UI | [atf-core](../atf-core/README.md) |
+| Execuție REST reutilizabilă și aserțiuni ale răspunsurilor | [atf-api](../atf-api/README.md) |
 | Implementarea Playwright | [atf-playwright](../atf-playwright/README.md) |
 | Implementarea Selenium | [atf-selenium](../atf-selenium/README.md) |
 | Raportare Extent și ciclu de viață | [atf-reporting](../atf-reporting/README.md) |
-| Guvernanță, verificări de framework și fixture-uri de produs | [atf-tests](../atf-tests/README.md) |
+| Guvernanța codului și documentației | [atf-governance](../atf-governance/README.md) |
+| Helpere de framework/produs și verificări adnotate | [atf-tests](../atf-tests/README.md) |
 
 Documentele responsabililor descriu contractele curente. Înregistrările de feedback păstrează
 puncte de control ale sursei, comenzi și dovezi externe; rezultatele istorice își păstrează

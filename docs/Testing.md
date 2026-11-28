@@ -36,7 +36,7 @@ flowchart LR
 
 | Direcție | Responsabil de proiectare | Oracol observabil | Limita dovezii |
 |---|---|---|---|
-| API | [Executor de cereri](../atf-core/src/main/java/com/ai/api/core/client/ApiRequestExecutor.java) | Ordinea cererilor, bugetul de reîncercare și eroarea originală | Dublurile dovedesc contractele locale de execuție; GoRest necesită execuție separată |
+| API | [Executor de cereri](../atf-api/src/main/java/com/ai/api/core/client/ApiRequestExecutor.java) | Ordinea cererilor, bugetul de reîncercare și eroarea originală | Dublurile dovedesc contractele locale de execuție; GoRest necesită execuție separată |
 | Playwright | [Furnizor Playwright](../atf-playwright/src/main/java/com/ai/ui/core/engine/playwright/PlaywrightProvider.java) | Resurse dobândite, starea paginii și răspunsul real | Colaboratorii de componentă nu dovedesc comportamentul Chromium |
 | Selenium | [Furnizor Selenium](../atf-selenium/src/main/java/com/ai/ui/core/engine/selenium/SeleniumProvider.java) | Resurse dobândite, starea paginii și răspunsul real | Dovada browserului se leagă de binarul, driverul și CDP-ul tipizat selectate |
 
@@ -52,6 +52,7 @@ Acestea sunt niveluri distincte de dovadă, chiar când protejează aceeași abs
 | Schimbare sau întrebare | Selecție existentă | Observație necesară |
 |---|---|---|
 | Contractul unei biblioteci | Modulul responsabil și dependențele | Aserțiunile selectate și responsabilitatea resurselor |
+| Responsabilitatea surselor sau documentației | [Suita de guvernanță](../atf-governance/src/test/resources/suites/framework-governance.xml) | Constatare cu responsabil, control negativ și reparare reală |
 | Configurație sau comportament între module | Suita locală implicită | Rezultate locale și controale negative relevante |
 | Interacțiune sau răspuns UI real | Profilul browser | Ambele adaptoare, stare/răspuns real și curățare |
 | Integrarea și publicarea rapoartelor | Subsetul raportării și profilul agregat | Rezultate, atașamente și cititor generat |
@@ -79,8 +80,9 @@ flowchart LR
 <a id="local-baseline"></a>
 ## Referința locală
 
-Reactorul implicit rulează testele native ale bibliotecilor și
-[framework-local.xml](../atf-tests/src/test/resources/suites/framework-local.xml).
+Reactorul implicit rulează testele native ale bibliotecilor,
+[suita independentă de guvernanță](../atf-governance/src/test/resources/suites/framework-governance.xml)
+și [framework-local.xml](../atf-tests/src/test/resources/suites/framework-local.xml).
 Acoperă execuția API, delegarea/configurația UI, raportarea și guvernanța, fără
 selectarea implicită a claselor dependente de browser sau de aplicație.
 

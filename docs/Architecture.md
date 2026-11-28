@@ -4,37 +4,38 @@
 <a id="module-ownership"></a>
 ## Responsabilitățile modulelor
 
-[POM-ul părinte](../pom.xml) coordonează cinci module cu aceeași versiune.
-Core gestionează contractele reutilizabile și ciclul de viață. Fiecare implementare
-de browser și implementarea raportării depind de Core. Modulul de teste consumă
-cele patru biblioteci ca dependențe destinate testelor.
+[POM-ul părinte](../pom.xml) coordonează șapte module cu aceeași versiune. Core deține configurarea comună, contractele UI și raportarea neutră. Bibliotecile API, browser și raportare depind de Core. Modulele de verificare separă helperele reutilizabile de clasele TestNG adnotate.
 
 ```mermaid
 flowchart LR
-    PW["atf-playwright"] -->|depinde de| Core["atf-core"]
-    SE["atf-selenium"] -->|depinde de| Core
-    Reports["atf-reporting"] -->|depinde de| Core
-    Tests["atf-tests"] -. verifică .-> Core
-    Tests -. verifică .-> PW
-    Tests -. verifică .-> SE
-    Tests -. verifică .-> Reports
+    API["atf-api"] --> Core["atf-core"]
+    PW["atf-playwright"] --> Core
+    SE["atf-selenium"] --> Core
+    Reporting["atf-reporting"] --> Core
+    Tests["atf-tests"] --> API
+    Tests --> PW
+    Tests --> SE
+    Tests --> Reporting
+    Tests --> Governance["atf-governance"]
+    Governance -. auditează .-> Core
 ```
 
 <details>
 <summary>Legendă: relații și limita dovezii</summary>
 
-Săgețile continue arată dependențele bibliotecilor; cele punctate arată utilizarea
-pentru verificare. Core nu depinde de o implementare de browser sau de raportare.
+Săgețile continue arată dependențe de compilare selectate; cele punctate arată inspecția sursei. Guvernanța are dependențe de test spre cele cinci biblioteci de execuție pentru descoperirea SPI și compilarea exemplelor. Core nu depinde de implementările API, browser sau raportare.
 
 </details>
 
 | Modul | Responsabilitatea surselor |
 |---|---|
-| [atf-core](../atf-core/README.md) | com.ai.core.support, com.ai.core.reporting neutru, com.ai.api.core, com.ai.ui.core neutru și UIActions |
+| [atf-core](../atf-core/README.md) | com.ai.core.support, com.ai.core.reporting neutru, com.ai.ui.core neutru și UIActions |
+| [atf-api](../atf-api/README.md) | com.ai.api.core: execuție REST Assured, ciclu de viață API și contractele răspunsului |
 | [atf-playwright](../atf-playwright/README.md) | com.ai.ui.core.engine.playwright |
 | [atf-selenium](../atf-selenium/README.md) | com.ai.ui.core.engine.selenium |
 | [atf-reporting](../atf-reporting/README.md) | Furnizori de raportare, adaptoare, ascultători, publicarea atașamentelor, audit de execuție și generatoare agregate |
-| [atf-tests](../atf-tests/README.md) | Testele com.ai.atf și fixture-urile specifice produsului com.ai.ui.support / com.ai.api.support |
+| [atf-governance](../atf-governance/README.md) | Reguli/helpere în main; teste de guvernanță adnotate și inventarul metodelor în test |
+| [atf-tests](../atf-tests/README.md) | Main: helpere de framework/produs; test: clase existente adnotate de componentă și aplicație |
 
 Pachetele își păstrează numele Java între module. Responsabilitățile modulelor,
 declarațiile dependențelor și importurile definesc împreună limitele.
@@ -112,8 +113,7 @@ exclusiv API folosește infrastructura API Core fără o sesiune de browser.
 Proprietățile JVM suprascriu setări individuale. Consumatorii trebuie să rezolve
 resursele împachetate din classpath; locațiile surselor servesc guvernanței dezvoltării.
 
-Sursele de producție aparțin arborelui src/main al fiecărei biblioteci. Fixture-urile
-de produs, resursele de test și XML-urile suitelor aparțin atf-tests/src/test.
+Sursele de producție aparțin arborelui src/main al fiecărei biblioteci. Ambele module de verificare împachetează helperele din src/main/java și păstrează clasele adnotate în src/test/java. Datele de produs și schemele aparțin atf-tests/src/main/resources; suitele XML și inventarul metodelor rămân resurse de test.
 Guvernanța care citește surse rezolvă rădăcina reactorului și modulul responsabil,
 fără să presupună că directorul curent al procesului conține un singur arbore src.
 

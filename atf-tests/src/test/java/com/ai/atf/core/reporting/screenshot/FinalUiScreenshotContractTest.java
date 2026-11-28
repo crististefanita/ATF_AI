@@ -125,7 +125,7 @@ public class FinalUiScreenshotContractTest {
         FakeUiEngine engine = new FakeUiEngine(uiEngine + "-success");
         setEngineForCurrentThread(engine);
 
-        ITestResult result = successResult();
+        ITestResult result = successResult(FinalUiScreenshotContractTest.class);
         listener.onTestStart(result);
         listener.afterInvocation(testInvocation(), result);
         listener.onTestSuccess(result);
@@ -148,7 +148,7 @@ public class FinalUiScreenshotContractTest {
         FakeUiEngine engine = new FakeUiEngine(uiEngine + "-failure");
         setEngineForCurrentThread(engine);
 
-        ITestResult result = failureResult(new AssertionError("boom"));
+        ITestResult result = failureResult(new AssertionError("boom"), FinalUiScreenshotContractTest.class);
         listener.onTestStart(result);
         UiInteractionTracker.markUiInteraction();
         StepLogger.withExpectedFailureLogging(() ->
@@ -170,7 +170,7 @@ public class FinalUiScreenshotContractTest {
         configureScreenshots(uiEngine, reportingEngine, enabled, failureOnly, captureFinalState);
         installObserverBesideActiveReporter();
 
-        ITestResult result = successResult();
+        ITestResult result = successResult(FinalUiScreenshotContractTest.class);
         listener.onTestStart(result);
         listener.onTestSuccess(result);
 
@@ -188,7 +188,7 @@ public class FinalUiScreenshotContractTest {
         configureScreenshots(uiEngine, reportingEngine, enabled, failureOnly, captureFinalState);
         installObserverBesideActiveReporter();
 
-        ITestResult result = failureResult(new AssertionError("boom"));
+        ITestResult result = failureResult(new AssertionError("boom"), FinalUiScreenshotContractTest.class);
         listener.onTestStart(result);
         StepLogger.withExpectedFailureLogging(() ->
                 listener.onTestFailure(result)

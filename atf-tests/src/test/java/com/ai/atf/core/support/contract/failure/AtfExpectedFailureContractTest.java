@@ -24,7 +24,6 @@ import java.util.regex.Pattern;
 @Listeners(TestListener.class)
 public class AtfExpectedFailureContractTest {
 
-    private static final Path ATF_TEST_ROOT = AtfSourcePaths.TEST_ATF_ROOT;
     private static final Pattern EXPECTED_FAILURE_GROUP =
             Pattern.compile("groups\\s*=\\s*\\{[^}]*expected-failure[^}]*}", Pattern.DOTALL);
     private static final Pattern EXPECTED_FAILURE_NARRATIVE =
@@ -72,13 +71,17 @@ public class AtfExpectedFailureContractTest {
     }
 
     private static List<Path> expectedFailureFiles() throws IOException {
-        try (Stream<Path> stream = Files.walk(ATF_TEST_ROOT)) {
-            return stream
+        List<Path> result = new java.util.ArrayList<>();
+        for (Path sourceRoot : AtfSourcePaths.VERIFICATION_JAVA_ROOTS) {
+            try (Stream<Path> stream = Files.walk(sourceRoot.resolve("com/ai/atf"))) {
+                result.addAll(stream
                     .filter(Files::isRegularFile)
                     .filter(AtfSourcePaths::isJavaSource)
                     .filter(AtfExpectedFailureContractTest::hasExpectedFailureGroup)
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toList()));
+            }
         }
+        return result;
     }
 
     private static boolean hasExpectedFailureGroup(Path path) {

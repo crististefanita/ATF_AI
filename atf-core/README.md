@@ -3,8 +3,7 @@
 <a id="overview"></a>
 ## Prezentare generală
 
-Core oferă contracte reutilizabile de execuție UI și API fără dependențe de SDK-urile
-Selenium, Playwright, Extent. Coordonatele sunt
+Core oferă configurare, contracte și ciclu de viață UI, precum și raportare neutră, fără dependențe SDK REST Assured, Selenium, Playwright sau Extent. Coordonatele sunt
 `com.ai:atf-core:1.0.0`; compilarea Java 11 este moștenită de la
 [atf-parent](../pom.xml).
 
@@ -17,7 +16,7 @@ Selenium, Playwright, Extent. Coordonatele sunt
 | Contracte UI | [UIEngine](src/main/java/com/ai/ui/core/engine/UIEngine.java), capabilități, locatori și valori de cerere/răspuns |
 | Compoziție UI | [UiEngineProvider](src/main/java/com/ai/ui/core/engine/UiEngineProvider.java), registru și fabrică |
 | Ciclu de viață UI | [BaseTestUI](src/main/java/com/ai/ui/core/runtime/BaseTestUI.java), sesiune și metadate de execuție |
-| Execuție API | [BaseTestAPI](src/main/java/com/ai/api/core/BaseTestAPI.java), execuție HTTP, reîncercări, interogare repetată și validare |
+| Bibliotecă API | [BaseTestAPI](../atf-api/src/main/java/com/ai/api/core/BaseTestAPI.java), deținut de atf-api: execuție HTTP, reîncercări, interogare repetată și validare |
 | Contracte de raportare | [ReportLogger](src/main/java/com/ai/core/reporting/ReportLogger.java), TestStatus și [SPI ReportingBackend](src/main/java/com/ai/core/reporting/spi/ReportingBackend.java) |
 | Pași | [StepLogger](src/main/java/com/ai/core/reporting/StepLogger.java), domenii de pas, ieșire în consolă și delegare neutră către rapoarte |
 

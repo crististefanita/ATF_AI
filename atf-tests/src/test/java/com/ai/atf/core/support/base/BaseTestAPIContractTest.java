@@ -40,7 +40,7 @@ public class BaseTestAPIContractTest {
     private static final Path API_CORE_VALIDATION_ROOT = API_CORE_ROOT.resolve("validation");
     private static final Path API_CORE_VALIDATION_MODEL_ROOT = API_CORE_VALIDATION_ROOT.resolve("model");
     private static final Path API_CORE_UTILS_ROOT = API_CORE_ROOT.resolve("utils");
-    private static final Path API_SUPPORT_ROOT = AtfSourcePaths.testJavaPackage("com.ai.api.support");
+    private static final Path API_SUPPORT_ROOT = AtfSourcePaths.supportJavaPackage("com.ai.api.support");
     private static final String API_CORE_VALIDATION_MODEL_PACKAGE =
             AtfSourcePaths.API_CORE_PACKAGE + ".validation.model";
     private static final List<String> LEGACY_API_ROOT_PACKAGES = List.of(
@@ -130,7 +130,8 @@ public class BaseTestAPIContractTest {
 
         List<Path> scannedRoots = List.of(
                 AtfSourcePaths.MAIN_API_ROOT,
-                AtfSourcePaths.TEST_ATF_API_ROOT
+                AtfSourcePaths.TEST_ATF_API_ROOT,
+                AtfSourcePaths.supportJavaPackage("com.ai.atf.api")
         );
         List<String> violations = scannedRoots.stream()
                 .flatMap(BaseTestAPIContractTest::javaFiles)

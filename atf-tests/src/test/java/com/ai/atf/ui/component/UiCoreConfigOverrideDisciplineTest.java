@@ -25,7 +25,6 @@ import java.util.stream.Stream;
 @Listeners(TestListener.class)
 public class UiCoreConfigOverrideDisciplineTest {
 
-    private static final Path ATF_TEST_ROOT = AtfSourcePaths.TEST_ATF_ROOT;
 
     @Test
     @AtfContractRef(AtfContractNarrativeIds.Contract.UI_CORE_CONFIG_OVERRIDE_HEADLESS_RESTORE)
@@ -39,9 +38,11 @@ public class UiCoreConfigOverrideDisciplineTest {
         List<String> violatingFiles = new ArrayList<>();
         List<String> overrideFiles = new ArrayList<>();
 
-        try (Stream<Path> files = Files.walk(ATF_TEST_ROOT)) {
-            files.filter(AtfSourcePaths::isJavaSource)
-                    .forEach(path -> inspectFile(path, overrideFiles, violatingFiles));
+        for (Path sourceRoot : AtfSourcePaths.VERIFICATION_JAVA_ROOTS) {
+            try (Stream<Path> files = Files.walk(sourceRoot.resolve("com/ai/atf"))) {
+                files.filter(AtfSourcePaths::isJavaSource)
+                        .forEach(path -> inspectFile(path, overrideFiles, violatingFiles));
+            }
         }
 
         AtfContractSteps.observed("override.files=" + overrideFiles
@@ -92,7 +93,7 @@ public class UiCoreConfigOverrideDisciplineTest {
                 return;
             }
 
-            String relativePath = ATF_TEST_ROOT.relativize(path).toString();
+            String relativePath = AtfSourcePaths.projectRelative(path);
             overrideFiles.add(relativePath);
 
             if (!hasRestoreDiscipline(source)) {

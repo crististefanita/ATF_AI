@@ -27,7 +27,7 @@ mvn -B -ntp test
 
 Comanda din rădăcină rulează verificările native ale bibliotecilor și
 [suita locală a framework-ului](../atf-tests/src/test/resources/suites/framework-local.xml)
-în atf-tests, inclusiv guvernanța. Regresiile locale folosesc fixture-uri și dubluri
+în atf-tests, plus [suita independentă de guvernanță](../atf-governance/src/test/resources/suites/framework-governance.xml). Regresiile locale folosesc fixture-uri și dubluri
 pentru configurație, execuție API, delegare UI și raportare. Exclud cazurile dependente
 de browser, fixture-urile cu eșec intenționat și scenariile live de aplicație.
 O compilare reușită sau o suită omisă nu reprezintă dovezi de execuție.
@@ -42,6 +42,7 @@ dependente. Căile suitelor de mai jos sunt relative la modulul atf-tests:
 <summary>Rulează un subset UI/API existent sau o selecție de contracte numite</summary>
 
 ```powershell
+mvn -B -ntp -pl atf-governance -am test
 mvn -B -ntp -pl atf-tests -am "-Datf.test.suite=src/test/resources/suites/framework-ui.xml" test
 mvn -B -ntp -pl atf-tests -am "-Datf.test.suite=src/test/resources/suites/framework-api.xml" test
 mvn -B -ntp -pl atf-tests -am "-Dtest=InvoiceEvidenceContractTest,RegistrationSubmissionContractTest,ConfigManagerFileContractTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
@@ -85,7 +86,7 @@ schimbarea testului.
 
 ```powershell
 mvn -B -ntp "-Dsurefire.failIfNoSpecifiedTests=false" "-Dtest=FrameworkArchitectureGovernanceTest" test
-(Get-FileHash -LiteralPath atf-tests/src/test/resources/governance/test-method-inventory.txt -Algorithm SHA256).Hash.ToLowerInvariant()
+(Get-FileHash -LiteralPath atf-governance/src/test/resources/governance/test-method-inventory.txt -Algorithm SHA256).Hash.ToLowerInvariant()
 ```
 
 </details>

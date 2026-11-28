@@ -8,9 +8,7 @@ Această zonă gestionează politicile de revizuire pentru cod, testele existent
 documentația menținută. Transformă practici istorice utile în contracte de framework
 fără a restaura un registru de skill-uri, un sistem de agenți sau infrastructură de generare.
 
-Reactorul rămâne format din cinci module Maven: atf-core, atf-playwright, atf-selenium,
-atf-reporting și atf-tests. [Atlasul](../../atf-atlas/README.md) separat înseamnă
-documentație și guvernanță; nu este un al șaselea modul Maven.
+Reactorul cu șapte module oferă responsabilități explicite pentru [API](../../atf-api/README.md) și [guvernanță](../../atf-governance/README.md). [Atlas](../../atf-atlas/README.md) rămâne în afara Maven.
 
 <a id="choose-a-review-owner"></a>
 ## Alege responsabilul revizuirii
@@ -51,12 +49,12 @@ rămase și dovezile de închidere la limitele declarate.
 
 | Responsabil | Suprafața verificată în prezent | Ce demonstrează rezultatul |
 |---|---|---|
-| Arhitectură | [Regulile de arhitectură](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureRules.java) și [fixture-urile existente](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureGovernanceTest.java) | Limitele modulelor și furnizorilor, vizibilitatea surselor și regulile susținute de responsabilitate a execuției |
-| Documentație | [Regulile Markdown](../../atf-tests/src/test/java/com/ai/atf/governance/MarkdownDocumentationRules.java) și [testele README](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationRootGovernanceTest.java) | README, ediții, Living, structură, feedback și publicare au responsabili separați; ambele suite îi înscriu |
-| Lizibilitate | [Reguli pentru cititor și cazuri de componentă](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationReadabilityRulesTest.java) | Decizii în paragrafele strategiei, proză de referință limitată și rețete Maven pliate |
-| Prezentare | [Regulile diagramelor](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationPresentationRules.java) | Fluxuri orizontale, legende adiacente pliate și revizie desktop a geometriei |
-| Revizia edițiilor | [Controale de traducere](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationTranslationRules.java) | Semnale românești acceptate, blocuri englezești neschimbate și actualitatea amprentelor reviziei complete |
-| Inspecția surselor | [Fixture-urile scanerului Java](../../atf-tests/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java) | Regiuni lexicale susținute, politica markerilor cunoscuți pentru engleză și excepțiile exacte pentru date |
+| Arhitectură | [Regulile de arhitectură](../../atf-governance/src/main/java/com/ai/atf/governance/FrameworkArchitectureRules.java) și [fixture-urile existente](../../atf-governance/src/test/java/com/ai/atf/governance/FrameworkArchitectureGovernanceTest.java) | Limitele modulelor și furnizorilor, vizibilitatea surselor și regulile susținute de responsabilitate a execuției |
+| Documentație | [Regulile Markdown](../../atf-governance/src/main/java/com/ai/atf/governance/MarkdownDocumentationRules.java) și [testele README](../../atf-governance/src/test/java/com/ai/atf/governance/DocumentationRootGovernanceTest.java) | README, ediții, Living, structură, feedback și publicare au responsabili separați; ambele suite îi înscriu |
+| Lizibilitate | [Reguli pentru cititor și cazuri de componentă](../../atf-governance/src/test/java/com/ai/atf/governance/DocumentationReadabilityRulesTest.java) | Decizii în paragrafele strategiei, proză de referință limitată și rețete Maven pliate |
+| Prezentare | [Regulile diagramelor](../../atf-governance/src/main/java/com/ai/atf/governance/DocumentationPresentationRules.java) | Fluxuri orizontale, legende adiacente pliate și revizie desktop a geometriei |
+| Revizia edițiilor | [Controale de traducere](../../atf-governance/src/main/java/com/ai/atf/governance/DocumentationTranslationRules.java) | Semnale românești acceptate, blocuri englezești neschimbate și actualitatea amprentelor reviziei complete |
+| Inspecția surselor | [Fixture-urile scanerului Java](../../atf-governance/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java) | Regiuni lexicale susținute, politica markerilor cunoscuți pentru engleză și excepțiile exacte pentru date |
 | Comportament | Testele indicate de [harta de acoperire](../../atf-atlas/Coverage_Map.md) | Rezultatele observate explicite și limitele fixture-urilor |
 
 O politică scrisă nu este dovada unei verificări automate. Menține identificabile

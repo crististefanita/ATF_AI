@@ -148,4 +148,4 @@ Prima comandă rulează verificările native ale furnizorului și Core fără a 
 Identificatorii, comentariile, jurnalele și mesajele aserțiunilor **TREBUIE să fie în engleză**.
 Documentația canonică este în engleză; traducerile README în română urmează
 [contractul edițiilor](../docs/governance/Readme_Editions.md). Aplică [politica pentru cod și documentație](../docs/governance/Code_And_Documentation_Policy.md)
-și păstrează [fixture-uri relevante ale scanerului](../atf-tests/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java).
+și păstrează [fixture-uri relevante ale scanerului](../atf-governance/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java).

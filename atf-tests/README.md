@@ -3,10 +3,9 @@
 <a id="overview"></a>
 ## Prezentare generală
 
-Acest modul gestionează guvernanța, regresiile între module, suportul produsului și
-scenariile de aplicație explicite. Coordonatele sunt `com.ai:atf-tests:1.0.0`.
-Dependențele sale de framework și codul de suport sunt destinate testelor; modulul
-nu este o bibliotecă de execuție pentru producție.
+Acest modul deține helperele de framework/produs și verificările existente între module și ale aplicației. Coordonate: `com.ai:atf-tests:1.0.0`.
+
+Helperele sunt împachetate din src/main/java; clasele cu adnotări @Test TestNG rămân în src/test/java. Guvernanța are propriul [modul](../atf-governance/README.md).
 
 ```mermaid
 flowchart LR
@@ -30,20 +29,18 @@ Săgețile arată selecția testelor și producerea dovezilor. Ramura punctată 
 
 | Zonă | Locație |
 |---|---|
-| Verificări de framework și guvernanță | [com.ai.atf](src/test/java/com/ai/atf) |
-| Pagini, fluxuri și aserțiuni UI ale produsului | [com.ai.ui.support](src/test/java/com/ai/ui/support) |
-| Endpoint-uri API, modele și fabrici ale produsului | [com.ai.api.support](src/test/java/com/ai/api/support) |
+| Verificări de framework adnotate | [com.ai.atf](src/test/java/com/ai/atf) |
+| Pagini, fluxuri și aserțiuni UI ale produsului | [com.ai.ui.support](src/main/java/com/ai/ui/support) |
+| Endpoint-uri API, modele și fabrici ale produsului | [com.ai.api.support](src/main/java/com/ai/api/support) |
 | Selecții TestNG menținute | [suite](src/test/resources/suites) |
-| Date de fixture și setări de raportare | [resurse de test](src/test/resources) |
+| Date fixture și scheme împachetate | [Resurse main](src/main/resources/tests) |
+| Helpere de framework/raportare | [Java main](src/main/java/com/ai/atf) |
 
-Guvernanța protejează graful de dependențe al celor cinci module, limitele furnizorilor,
-documentația menținută și responsabilitatea surselor. Verificările native ale bibliotecilor
-rămân în modulele lor.
+Modulul separat atf-governance protejează graful celor șapte module, limitele SDK-urilor, documentația și plasarea surselor. Verificările native rămân în modulele responsabile.
 
 Modulul folosește [atf-core](../atf-core/README.md),
 [atf-playwright](../atf-playwright/README.md),
-[atf-selenium](../atf-selenium/README.md) și
-[atf-reporting](../atf-reporting/README.md) ca dependențe de test.
+[atf-selenium](../atf-selenium/README.md), [atf-reporting](../atf-reporting/README.md), [atf-api](../atf-api/README.md) și [atf-governance](../atf-governance/README.md) ca dependențe de compilare ale helperelor împachetate.
 
 <a id="execution"></a>
 ## Execuție
@@ -67,7 +64,7 @@ mvn -B -ntp -Paggregate test
 
 </details>
 
-Execuția implicită selectează framework-local, inclusiv guvernanța.
+Execuția implicită aici selectează framework-local. Reactorul rulează și suita separată de guvernanță.
 
 - Profilul browser selectează framework-browser numai în acest modul.
 - Profilul aggregate execută suita menținută de agregare și publică raportul HTML Extent.

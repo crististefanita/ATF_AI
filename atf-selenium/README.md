@@ -148,7 +148,7 @@ Prima comandă rulează verificările native ale furnizorului și Core fără a 
 Identificatorii din surse, comentariile, jurnalele și mesajele aserțiunilor **TREBUIE să fie în engleză**.
 Documentația canonică este în engleză; traducerile README în română urmează
 [contractul edițiilor](../docs/governance/Readme_Editions.md). Urmează [politica pentru cod și documentație](../docs/governance/Code_And_Documentation_Policy.md)
-și [cazurile de regresie ale scanerului de surse](../atf-tests/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java).
+și [cazurile de regresie ale scanerului de surse](../atf-governance/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java).
 
 [Matricea menținută browser/driver/CDP](../docs/Testing.md#selenium-pinned-manager-route)
 definește versiunile exacte și pregătirea portabilă. Folosește ruta Manager existentă,

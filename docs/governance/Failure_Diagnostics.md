@@ -10,7 +10,7 @@ canonic și selecția întreținută de reverificare. Indiciile descriu corecți
 plauzibile; nu stabilesc cauza și nu autorizează slăbirea unui contract.
 
 Formatatorul comun aparține
-[GovernanceFiles](../../atf-tests/src/test/java/com/ai/atf/governance/GovernanceFiles.java).
+[GovernanceFiles](../../atf-governance/src/main/java/com/ai/atf/governance/GovernanceFiles.java).
 Controalele de arhitectură, documentație și sursă engleză își păstrează
 validatorii existenți și codurile constatărilor. Mesajele și comentariile
 rămân în engleză în ambele ediții. Acesta este suport de test existent, fără serviciu runtime sau modul de reguli.
@@ -135,7 +135,7 @@ Dintr-o copie izolată a reactorului, rulează responsabilii existenți:
 <summary>Rulează comenzile de verificare și feedback</summary>
 
 ```powershell
-mvn -B -ntp -pl atf-tests -am "-Dtest=FrameworkArchitectureGovernanceTest,DocumentationGovernanceTest,DocumentationRootGovernanceTest,DocumentationEditionGovernanceTest,LivingPrinciplesGovernanceTest,DocumentationStructureGovernanceTest,FeedbackGovernanceTest,DocumentationPublicationGovernanceTest,DocumentationReadabilityRulesTest,JavaSourceScannerTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
+mvn -B -ntp -pl atf-governance -am "-Dtest=FrameworkArchitectureGovernanceTest,DocumentationGovernanceTest,DocumentationRootGovernanceTest,DocumentationEditionGovernanceTest,LivingPrinciplesGovernanceTest,DocumentationStructureGovernanceTest,FeedbackGovernanceTest,DocumentationPublicationGovernanceTest,DocumentationReadabilityRulesTest,JavaSourceScannerTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
 ```
 
 </details>

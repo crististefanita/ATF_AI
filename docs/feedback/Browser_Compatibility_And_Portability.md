@@ -142,8 +142,8 @@ Referințe primare care susțin matricea și configurarea selectate:
   forme Windows/UNC/rădăcină de cont și căi derivate din mediu. Compilarea/testarea unei
   copii temporare relocate și păstrarea comparațiilor surselor.
 - Verificare:
-  [guvernanța căilor](../../atf-tests/src/test/java/com/ai/atf/governance/GovernanceFiles.java)
-  și [fixture-urile de arhitectură](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureGovernanceTest.java)
+  [guvernanța căilor](../../atf-governance/src/main/java/com/ai/atf/governance/GovernanceFiles.java)
+  și [fixture-urile de arhitectură](../../atf-governance/src/test/java/com/ai/atf/governance/FrameworkArchitectureGovernanceTest.java)
   existente verifică căile fixe în textul deținut și în literalii Java decodați. Rădăcinile dinamice ale utilizatorului/apelantului,
   rezolvarea JVM pentru temporare/directorul utilizatorului, căile HTTP/API și selectorii XPath expliciți
   rămân valide. Ambele copii acceptate, locală și agregată, au rulat cu succes

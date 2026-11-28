@@ -6,16 +6,6 @@
     </listeners>
     <test name="Framework aggregate regressions">
         <classes>
-            <class name="com.ai.atf.governance.FrameworkArchitectureGovernanceTest"/>
-            <class name="com.ai.atf.governance.DocumentationGovernanceTest"/>
-            <class name="com.ai.atf.governance.DocumentationRootGovernanceTest"/>
-            <class name="com.ai.atf.governance.DocumentationEditionGovernanceTest"/>
-            <class name="com.ai.atf.governance.LivingPrinciplesGovernanceTest"/>
-            <class name="com.ai.atf.governance.DocumentationStructureGovernanceTest"/>
-            <class name="com.ai.atf.governance.FeedbackGovernanceTest"/>
-            <class name="com.ai.atf.governance.DocumentationPublicationGovernanceTest"/>
-            <class name="com.ai.atf.governance.DocumentationReadabilityRulesTest"/>
-            <class name="com.ai.atf.governance.JavaSourceScannerTest"/>
             <class name="com.ai.atf.core.reporting.adapters.ExtentAdapterDirectoryContractTest"/>
             <class name="com.ai.atf.core.reporting.adapters.ExtentAdapterTest"/>
             <class name="com.ai.atf.core.reporting.adapters.ExtentHtmlPatchPipelineContractTest"/>

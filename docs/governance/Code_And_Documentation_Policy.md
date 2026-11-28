@@ -67,7 +67,7 @@ așteptat. Constatările necunoscute rămân neclasificate.
   de suite întreținute. Distinge testele explicite de aplicație, cazurile
   controlate și probele de mediu de regresiile omise accidental.
 - Păstrează identitățile ordonate ale metodelor TestNG executabile în
-  [test-method-inventory.txt](../../atf-tests/src/test/resources/governance/test-method-inventory.txt).
+  [test-method-inventory.txt](../../atf-governance/src/test/resources/governance/test-method-inventory.txt).
   Controlul AST înregistrează tipul declarant, numele metodei și tipurile
   parametrilor, independent de selecția claselor din suită.
 - `TEST-METHOD-REMOVED` identifică o metodă fixată care lipsește din sursă;
@@ -129,7 +129,7 @@ scutiri generale pentru date de test. Cazurile externe noi necesită revizia exp
 a responsabilului.
 
 Responsabilul executabil este
-[JavaSourceScannerTest](../../atf-tests/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java),
+[JavaSourceScannerTest](../../atf-governance/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java),
 inclusiv inspecția depozitului și cazurile de comentarii/nume/mesaje cu eșec intenționat.
 Responsabilii testelor de documentație protejează și cerința obligatorie,
 diagramele README și exemplele compilabile ale consumatorilor. Clasele sunt
@@ -140,7 +140,7 @@ reactorului:
 <summary>Rulează comenzile pentru sursă și comentarii în engleză</summary>
 
 ```powershell
-mvn -B -ntp -pl atf-tests -am "-Dtest=JavaSourceScannerTest,DocumentationGovernanceTest,DocumentationRootGovernanceTest,DocumentationEditionGovernanceTest,LivingPrinciplesGovernanceTest,DocumentationStructureGovernanceTest,FeedbackGovernanceTest,DocumentationPublicationGovernanceTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
+mvn -B -ntp -pl atf-governance -am "-Dtest=JavaSourceScannerTest,DocumentationGovernanceTest,DocumentationRootGovernanceTest,DocumentationEditionGovernanceTest,LivingPrinciplesGovernanceTest,DocumentationStructureGovernanceTest,FeedbackGovernanceTest,DocumentationPublicationGovernanceTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
 ```
 
 </details>
@@ -223,7 +223,7 @@ tabel scurt întrebare–responsabil când există mai multe intrări utile.
 Rădăcina explică alcătuirea; ghidurile modulelor și pachetelor explică propriile contracte.
 
 README-ul rădăcină este harta de orientare a framework-ului: explică separarea
-dintre contracte, furnizori, raportare și verificare; rezumă cele cinci module
+dintre contracte, furnizori, raportare și verificare; rezumă cele șapte module
 Maven; arată traseele verificărilor API/UI; apoi trimite cititorul la ghidul
 responsabil. Rezumatul modulelor are două coloane. Exemplele compilabile pentru
 consumatori Playwright/Selenium stau în README-urile adaptoarelor, lângă
@@ -498,3 +498,14 @@ Cititorul Atlas actual respectă [limita publicului](../../atf-atlas/Report_Cont
 explicații business numerotate, cazuri și limite în HTML; datele tehnice de construire
 în auditul adiacent. Controalele [cititorului](../../tools/atlas-reader.test.mjs)
 completează verificările de sursă, fără a certifica automat sensul propozițiilor.
+
+<a id="verification-source-ownership"></a>
+## Responsabilitatea surselor de verificare
+
+Reactorul cu șapte module izolează REST Assured și validarea JSON Schema în atf-api.
+Core și bibliotecile de browser/raportare nu trebuie să depindă de implementarea API.
+În atf-governance și atf-tests, helperele TREBUIE împachetate din src/main/java;
+clasele care conțin adnotări TestNG @Test TREBUIE păstrate în src/test/java.
+Suitele XML selectează clase adnotate din propriul modul. Inventarul revizuit al
+metodelor acoperă ambele module de verificare; mutarea nu retrage un test.
+Datele fixture de produs și schemele sunt împachetate în atf-tests/src/main/resources.

@@ -19,7 +19,7 @@ Această zonă de documentație gestionează [contractul raportului complet](Rep
 - Uneltele opționale de mentenanță verifică și publică analiza revizuită.
 - Ele nu execută teste de produs și nu oferă servicii Java de execuție.
 - HTML-ul generat aparține rădăcinii de artefacte selectate.
-- Reactorul Maven rămâne format din cele cinci module descrise în [Arhitectură](../docs/Architecture.md).
+- Reactorul Maven rămâne format din cele șapte module descrise în [Arhitectură](../docs/Architecture.md).
 
 <a id="ownership"></a>
 ## Responsabilități

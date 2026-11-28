@@ -49,7 +49,7 @@ către GoRest și nu demonstrează funcționarea unei instalări externe.
 păstrează cele două scenarii de scriere existente: creare cu validarea schemei
 și creare/așteptare/ștergere. Niciunul nu a fost selectat sau executat în această
 verificare. Valoarea auth.token inclusă este goală și nu s-a furnizat o suprascriere.
-[BaseTestAPI](../../atf-core/src/main/java/com/ai/api/core/BaseTestAPI.java)
+[BaseTestAPI](../../atf-api/src/main/java/com/ai/api/core/BaseTestAPI.java)
 ridică SkipException când tokenul de scriere lipsește. Un token indisponibil sau
 un scenariu de scriere omis nu trebuie prezentat drept rezultat GoRest reușit.
 

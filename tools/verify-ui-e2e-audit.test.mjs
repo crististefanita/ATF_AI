@@ -29,7 +29,7 @@ function fixture(options={}){
     screenshotPolicy:{enabled:true,failureOnly:false,captureFinalState:true},selectedClasses:classes,expectedProductMethods:expected,expectedProductCases:16,manifest:{}
   };
   for(const name of classes)source.manifest['atf-tests/src/test/java/'+name.replaceAll('.','/')+'.java']=sha(name);
-  for(const name of ['RegistrationValidation','ProfileAccountValidation'])source.manifest['atf-tests/src/test/java/com/ai/ui/support/validation/'+name+'.java']=sha(name);
+  for(const name of ['RegistrationValidation','ProfileAccountValidation'])source.manifest['atf-tests/src/main/java/com/ai/ui/support/validation/'+name+'.java']=sha(name);
   let next=10;
   const captures=[],cases=[],htmlByClass=new Map(classes.map(name=>[name,[]]));
   const card=(id,label,status,details,terminals,children='')=>'<div class="card"><div class="card-header"><div class="card-toolbar"><span class="badge '+status.toLowerCase()+'-bg log">'+status+'</span></div><div class="card-title"><a class="node" id="'+id+'"><span>'+escape(label)+'</span></a></div></div><div class="collapse"><div class="card-body"><table><tbody>'
@@ -129,6 +129,10 @@ for(const engine of ['playwright','selenium']){
     assert.equal(result.classSetup[0].setupSubject,'com.ai.ui.tests.AccountAuthenticatedAreaTests#accountFavoritesAreaIsReachable');
     assert.equal(result.classSetup[1].setupSubject,'com.ai.ui.tests.ProfileContactAddressMemoryTests#profileKeepsRegisteredCityAndState');
     assert.ok(result.classSetup.every(entry=>entry.orderedActions.length===8));
+    const legacy=sourceChange(structuredClone(value),source=>{for(const name of ['RegistrationValidation','ProfileAccountValidation']){const current='atf-tests/src/main/java/com/ai/ui/support/validation/'+name+'.java';source.manifest[current.replace('/src/main/','/src/test/')]=source.manifest[current];delete source.manifest[current];}});
+    assert.equal(verifyUiE2eAudit(legacy).status,'PASSED','Original historical source owners remain auditable without rewriting their identity.');
+    const ambiguous=sourceChange(structuredClone(value),source=>{const current='atf-tests/src/main/java/com/ai/ui/support/validation/RegistrationValidation.java';source.manifest[current.replace('/src/main/','/src/test/')]=source.manifest[current];});
+    rejected(ambiguous,'E2E-SOURCE');
     assert.equal(JSON.stringify(value),before,'Pure reconciliation must leave every input unchanged.');
   });
 }
@@ -152,7 +156,7 @@ test('engine, target, explicit screenshot policy and selected source owners cann
     source=>source.args[source.args.indexOf('-Dbase.url=https://application.example.test')]='-Dbase.url=https://other.example.test',
     source=>source.screenshotPolicy.captureFinalState=false,
     source=>delete source.harnessSha256,
-    source=>delete source.manifest['atf-tests/src/test/java/com/ai/ui/support/validation/RegistrationValidation.java']
+    source=>delete source.manifest['atf-tests/src/main/java/com/ai/ui/support/validation/RegistrationValidation.java']
   ])rejected(sourceChange(fixture(),edit),'E2E-SOURCE');
   rejected(sourceChange(fixture(),source=>source.selectedClasses=['com.ai.atf.governance.DocumentationGovernanceTest']),'E2E-SUBJECT');
 });

@@ -49,9 +49,9 @@ Sunt execuții QA separate, nu cazuri suplimentare ale reactorului.
 ## G-002: Vizibilitatea surselor și responsabilitatea execuției
 
 - Responsabil: atf-tests,
-  [GovernanceFiles](../../atf-tests/src/test/java/com/ai/atf/governance/GovernanceFiles.java),
-  [FrameworkArchitectureRules](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureRules.java)
-  și [regresiile de arhitectură existente](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureGovernanceTest.java).
+  [GovernanceFiles](../../atf-governance/src/main/java/com/ai/atf/governance/GovernanceFiles.java),
+  [FrameworkArchitectureRules](../../atf-governance/src/main/java/com/ai/atf/governance/FrameworkArchitectureRules.java)
+  și [regresiile de arhitectură existente](../../atf-governance/src/test/java/com/ai/atf/governance/FrameworkArchitectureGovernanceTest.java).
 - Observație originală: excluderile globale după numele directoarelor puteau ascunde pachete sursă legale
   numite target sau artifacts. Politicile de pauză, consolă și întrerupere pentru întregul cod de execuție
   erau documentate sau verificate local, dar nu erau guvernate între module.
@@ -74,7 +74,7 @@ Sunt execuții QA separate, nu cazuri suplimentare ale reactorului.
 ## G-003: Fapte executabile din documentație și ciclu de viață
 
 - Responsabil:
-  [regulile de documentație](../../atf-tests/src/test/java/com/ai/atf/governance/MarkdownDocumentationRules.java)
+  [regulile de documentație](../../atf-governance/src/main/java/com/ai/atf/governance/MarkdownDocumentationRules.java)
   și [responsabilii tematici ai testelor de documentație](../../docs/governance/README.md)
   existente, ghidurile stabile și perechea canonică Living Architecture Markdown/HTML.
 - Observație originală: comenzile Maven din blocuri nu erau legate de selecții reale de profiluri/module/suite/teste,
@@ -130,7 +130,7 @@ Sunt execuții QA separate, nu cazuri suplimentare ale reactorului.
 ## F-009: Bugetele negative de reîncercare API omit cererea
 
 - Responsabil: atf-core
-  [ApiRuntimeOptions](../../atf-core/src/main/java/com/ai/api/core/client/ApiRuntimeOptions.java)
+  [ApiRuntimeOptions](../../atf-api/src/main/java/com/ai/api/core/client/ApiRuntimeOptions.java)
   și regresiile existente de execuție API legate în T-002.
 - Reproducere originală: crearea opțiunilor cu maxRateLimitRetries=-1 și executarea unei cereri
   al cărei furnizor incrementează un contor. Versiunea de referință compilată neschimbată a returnat
@@ -154,7 +154,7 @@ Sunt execuții QA separate, nu cazuri suplimentare ale reactorului.
 ## G-004: Surse, comentarii și diagnostice redactate în engleză
 
 - Responsabil: JavaSourceScanner din atf-tests și
-  [regresiile sale existente de guvernanță lingvistică](../../atf-tests/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java),
+  [regresiile sale existente de guvernanță lingvistică](../../atf-governance/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java),
   împreună cu [ENG-001](../governance/Code_And_Documentation_Policy.md#english-source-and-comments)
   și guvernanța documentației ca responsabili ai contractului public.
 - Cerință: toți identificatorii de cod redactați, comentariile/Javadoc și mesajele framework-ului/testelor

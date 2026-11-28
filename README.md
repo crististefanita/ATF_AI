@@ -1,36 +1,43 @@
 <a id="atf--ui-and-api-test-automation"></a>
 # ATF — automatizarea testelor UI și API
 
-ATF rulează teste API REST și UI în browser, scrise în Java. Cele cinci module Maven separă contractele comune, adaptoarele de browser, raportarea și verificarea. Proiectul părinte este `com.ai:atf-parent:1.0.0`; bibliotecile compilate țintesc Java 11.
+ATF rulează teste API REST și UI în browser, scrise în Java. Cele șapte module Maven separă contractele comune, execuția REST, adaptoarele de browser, raportarea, guvernanța și verificările. Proiectul părinte este `com.ai:atf-parent:1.0.0`; bibliotecile compilate țintesc Java 11.
 
 <a id="the-design-in-one-view"></a>
 ## Designul într-o singură imagine
 
-Un test consumator declară ce observă. Core deține contractele API/UI comune și ciclul de viață; adaptoarele implementează contractul UI, iar raportarea este opțională. Testele depozitului protejează aceste limite.
+Un test consumator declară ce observă. Core deține configurarea, contractele UI și raportarea neutră; atf-api deține execuția REST.
+
+Adaptoarele implementează contractul UI, iar raportarea este opțională. Testele depozitului protejează aceste limite.
 
 | Modul | Responsabilitate |
 |---|---|
-| [atf-core](atf-core/README.md) | Contracte API/UI neutre, configurare, ciclu de viață și SPI de raportare |
+| [atf-core](atf-core/README.md) | Configurare, contracte UI, ciclu de viață și SPI de raportare |
+| [atf-api](atf-api/README.md) | Execuție REST Assured reutilizabilă, reîncercări și aserțiuni ale răspunsului |
 | [atf-playwright](atf-playwright/README.md) | Implementarea contractului UI prin Playwright |
 | [atf-selenium](atf-selenium/README.md) | Implementarea contractului UI prin Selenium |
 | [atf-reporting](atf-reporting/README.md) | Adaptoare de raportare TestNG și publicare agregată |
-| [atf-tests](atf-tests/README.md) | Regresii existente ale framework-ului, guvernanță și verificări selectate ale produsului |
+| [atf-governance](atf-governance/README.md) | Reguli pentru surse, dependențe și documentație, cu contracte independente |
+| [atf-tests](atf-tests/README.md) | Helpere de framework/produs în main; verificări adnotate existente în test |
 
 ```mermaid
 flowchart LR
-    PW["atf-playwright"] --> Core["atf-core"]
+    API["atf-api"] --> Core["atf-core"]
+    PW["atf-playwright"] --> Core
     SE["atf-selenium"] --> Core
     Reporting["atf-reporting"] --> Core
-    Tests["atf-tests"] -. verifică .-> Core
-    Tests -. verifică .-> PW
-    Tests -. verifică .-> SE
-    Tests -. verifică .-> Reporting
+    Tests["atf-tests"] --> API
+    Tests --> PW
+    Tests --> SE
+    Tests --> Reporting
+    Tests --> Governance["atf-governance"]
+    Governance -. auditează .-> Core
 ```
 
 <details>
 <summary>Legendă: relații și limita dovezii</summary>
 
-Săgețile continue indică dependențe între biblioteci; cele punctate indică verificarea în teste. Core nu expune tipuri din SDK-urile Playwright, Selenium sau de raportare. [Atlas](atf-atlas/README.md) este exclusiv documentație, în afara Maven, și leagă sursele de teste și limitele dovezilor.
+Săgețile continue arată dependențe de compilare selectate; cele punctate arată inspecția sursei. Guvernanța are și dependențe de test spre bibliotecile de execuție, omise aici. Core nu expune tipuri REST Assured, Playwright, Selenium sau din SDK-ul de raportare. [Atlas](atf-atlas/README.md) este exclusiv documentație, în afara Maven, și leagă sursele de teste și limitele dovezilor.
 
 </details>
 
@@ -58,7 +65,7 @@ Săgețile continue arată calea contractului ales. Cele punctate arată raporta
 <a id="how-to-choose-a-consumer-route"></a>
 ## Cum alegi calea consumatorului
 
-- **API REST:** adaugă `atf-core`; baza și clientul API nu necesită un furnizor de browser.
+- **API REST:** adaugă `atf-api`; baza și clientul API nu necesită un furnizor de browser.
 - **UI în browser:** adaugă un adaptor și setează `ui.engine` înaintea inițializării TestNG. Folosește exemplul concret [Playwright](atf-playwright/README.md#consumer-example) sau [Selenium](atf-selenium/README.md#consumer-example).
 - **Rapoarte Extent:** adaugă `atf-reporting` când consumatorul are nevoie de raportare HTML.
 
@@ -94,7 +101,7 @@ Selecția implicită rulează verificări native ale modulelor și regresiile ex
 
 [framework.properties](atf-core/src/main/resources/framework.properties) furnizează valorile implicite din classpath; proprietățile JVM le suprascriu individual. Proprietatea JVM `framework.properties` poate indica un fișier existent, deținut de consumator. Setează `ui.engine` și `reporting.engine`; [configurația Core](atf-core/README.md#configuration) enumeră opțiunile.
 
-Înlocuiește vechiul `com.ai:test-framework` cu `com.ai:atf-core:1.0.0`, adaptorul de browser necesar și opțional `com.ai:atf-reporting:1.0.0`. Fluxurile API nu au nevoie de browser sau modul de raportare. `atf-tests` conține verificările depozitului și fixture-urile produsului; nu este un API runtime pentru consumatori.
+Înlocuiește vechiul `com.ai:test-framework` cu `com.ai:atf-core:1.0.0`, `com.ai:atf-api:1.0.0` pentru REST, adaptorul de browser necesar și opțional `com.ai:atf-reporting:1.0.0`. Fluxurile API nu au nevoie de browser sau modul de raportare. `atf-tests` conține verificările depozitului și fixture-urile produsului; nu este un API runtime pentru consumatori.
 
 <a id="read-by-task"></a>
 ## Citește în funcție de sarcină

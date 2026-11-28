@@ -67,3 +67,28 @@ temporare dedicate și permisiuni normale de execuție pe gazdă.
 La acest reper istoric, matricea browser desktop/CDP necesita încă
 o verificare separată. [Registrul curent](README.md) consemnează dovezile
 F-008 ulterioare.
+
+<a id="m-002"></a>
+<a id="m-002-explicit-api-and-verification-module-ownership"></a>
+## M-002: Responsabilități explicite pentru modulele API și de verificare
+
+Status: VERIFIED în limitele mutării surselor, componentelor, împachetării și consumatorului independent. Responsabil: API și guvernanța surselor.
+Prioritate 93 (impact 95 / expunere 92 / urgență 91).
+Calitate inițială 84 (corectitudine 91 / verificare 82 / claritate 77).
+
+- Extrage implementarea API reutilizabilă existentă și dependențele REST Assured în atf-api; păstrează pachetele și comportamentul.
+- Oferă regulilor de cod/documentație propriul modul atf-governance și propria suită implicită.
+- Împachetează helperele din main și păstrează clasele TestNG adnotate în test în ambele module de verificare; păstrează inventarul exact al metodelor revizuite.
+- Împachetează datele de produs cu helperele lor; păstrează suitele XML și inventarul de guvernanță în resursele de test.
+- Păstrează manifestele istorice de audit cu identitatea sursei originale și respinge responsabilitățile de validare duplicate și ambigue.
+- Actualizează ghidurile EN/RO, diagramele, responsabilii execuției și Living Markdown/HTML. Nu regenera Atlasul și nu schimba generarea ori contractele RAG.
+
+Dovezi: ${ATF_WORK_ROOT}/reviews/module-api-governance-20261128.
+Acceptanța necesită construiri curate în copii relocate pentru ambele ediții, identități păstrate ale metodelor și surselor, inspecția JAR-urilor/depedențelor și verificările existente relevante. Eșecurile de diagnostic originale sunt păstrate separat de calificarea finală.
+
+Calitate livrată 96 (corectitudine 97 / verificare 96 / claritate 95).
+Selecțiile pe sursa capturată trec 333 de cazuri de guvernanță, 373 locale ale framework-ului și 42 native ale bibliotecilor. Cele 35 de cazuri focalizate ale reparării se suprapun selecției de guvernanță și nu se adaugă acestor totaluri.
+
+Șapte JAR-uri păstrează bytecode Java 11 și exclud toate cele 113 tipuri sursă adnotate existente. Cele 35 de fișiere sursă API își păstrează conținutul canonic original. Un consumator Maven separat încarcă doar artefactele ATF Core/API, cu REST Assured/schemă prezente și browser/Extent/Mockito absente; fără apeluri HTTP sau browser.
+
+Refuzurile de diagnostic originale rămân în dosarul extern, inclusiv responsabili de surse vechi, proză README densă, lipsa reviziei HTML complete și coliziunea cu identificatorul istoric de feedback. Verificările au fost adaptate noilor responsabili, fără eliminarea controalelor. Rulările finale ale ambelor ediții și sincronizarea au propriile dovezi.
