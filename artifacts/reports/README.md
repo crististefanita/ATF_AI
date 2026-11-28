@@ -176,3 +176,18 @@ Fixture-urile publicației acoperă și inventare malformate, proiecte duplicate
 - Verificările care resping structura păstrează fișierele și marcajele lor temporale.
 - Aceste controale nu adaugă scenarii E2E de produs sau funcționalități la execuție.
 - Controalele UI păstrate resping în plus motoarele, rulările, reviziile și referințele la dovezi nealiniate, păstrând rezultatele originale de eșec/omitere.
+
+<details>
+<summary>Dovadă Extent pentru construcția Atlasului</summary>
+
+Selecția poate include `reports/current/atlas-construction/ExtentReport.html`,
+cu `id` egal cu `atlas-construction-extent` și `kind` egal cu `extent`. Acest raport
+derivat leagă cititorul exact și cele trei familii de dovezi originale: componente
+Node, randare nativă și controale de publicare. Nu este o execuție MCP sau E2E nouă.
+
+Chitanța `business-atlas-acceptance` păstrează identitățile sursei, cititorului,
+raportului și dovezilor. Raportul arhivat MCP este numai reper; alte site-uri
+HTML rămân în arhiva externă. Noul caz de guvernanță refuză legături sau
+verdicte nepotrivite și verifică repararea cu octeții declarați.
+
+</details>

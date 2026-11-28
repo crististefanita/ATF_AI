@@ -1572,3 +1572,39 @@ Calitate livrată 96 (corectitudine 96 / verificare 97 / claritate 95).
 - Prima selecție Node completă a refuzat trei publicări: selectorul CSS era
   confundat cu atributul formatului. Citește doar elementul HTML și păstrează
   în același caz de componentă dovada compatibilității formatului anterior.
+
+<a id="d-032"></a>
+<a id="d-032-business-decisions-tied-to-implementation-and-construction-evidence"></a>
+## D-032: Decizii business corelate cu implementarea și dovada construcției
+
+Stare: VERIFIED în domeniul verificărilor de componentă și al previzualizării native. Responsabil: Atlas, RAG și guvernanța artefactelor.
+Prioritate 93 (impact 95 / expunere 92 / urgență 89).
+Calitate inițială 89 (corectitudine 94 / verificare 84 / claritate 87).
+
+- HTML-ul explică business-ul, dar corelarea concretă cu metodele rămâne în audit.
+  Adaugă o hartă colapsată a deciziilor și responsabilităților susținute de sursă.
+- Păstrează obiectele business în graf; declarațiile concrete sunt dovezi, nu
+  înlocuitori ai sensului. Nu pretinde un graf de apeluri dedus automat.
+- Îmbunătățește lizibilitatea etichetelor peste conectori, cu măsurători native
+  și controale negative care păstrează toate relațiile originale.
+- Raportul Extent separat trebuie să provină din rezultatele curente și să fie
+  legat de cititorul exact; raportul MCP arhivat nu certifică sursa actuală.
+
+Dovezi: ${ATF_WORK_ROOT}/reviews/atlas-business-depth-20261128.
+Acceptanța cere EN/RO, teste originale, randare nativă și refuz/reparare.
+Fără Java runtime nou, E2E noi sau emulatoare.
+
+Calitate livrată 96 (corectitudine 96 / verificare 97 / claritate 95).
+
+- Șase decizii sunt corelate cu unsprezece declarații și douăzeci și două de cazuri
+  originale. Harta rămâne colapsată; grafurile principale păstrează obiectele business.
+- Verificarea nouă a traseelor a refuzat conectori peste etichete străine. Porturile
+  distincte și traseele de convergență trec la 900/1440/1920 px fără relații șterse.
+- Unsprezece cazuri de componentă suplimentare protejează corelarea, lizibilitatea
+  etichetelor, legătura relativă și asocierea raportului Extent cu dovezile originale.
+- Două citări arhivate suplimentare sunt verificate pe octeții Git fixați; prima
+  așteptare de număr a refuzat noul total, înaintea actualizării sale explicite.
+- Prototipul bibliotecii Extent existente este autonom și trece randarea fără rețea.
+  Raportul final derivat și asocierea sa cu sursa exactă au dovezi separate în dosar.
+- Primele observații refuzate și reparările rămân păstrate. Nici numărul testelor,
+  nici raportul derivat nu certifică automat semantica sau acceptanța aplicației.

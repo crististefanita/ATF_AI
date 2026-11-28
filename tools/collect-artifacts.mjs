@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
+import {parseAtlasJson} from './atlas-diagnostics.mjs';
 import {inspectBusinessReaderHtml} from './atlas-reader.mjs';
 
 export const artifactKinds = Object.freeze(['test-results', 'extent', 'allure', 'aggregate', 'browser', 'build', 'execution', 'unclassified']);
@@ -115,9 +116,10 @@ export function validateArtifactPublication({artifactRoot}) {
     const e2ePath = entry.path.toLowerCase() === e2ePrefix.slice(0, -1) || entry.path.toLowerCase().startsWith(e2ePrefix);
     const e2eRoute = /^reports\/current\/e2e\/(playwright|selenium)\/(.+)$/.exec(entry.path);
     const e2eReader = e2eRoute && e2eRoute[2] === 'ExtentReport.html' && entry.kind === 'extent';
+    const constructionReader=entry.id==='atlas-construction-extent'&&entry.kind==='extent'&&entry.path==='reports/current/atlas-construction/ExtentReport.html';
     if (entry.kind === 'build' || /\.(?:jar|zip|war|class)$/i.test(entry.path)
-        || /\.(?:html?|xhtml)$/i.test(entry.path) && !e2eReader) {
-      fail(entry.path, 'Build payloads and generic HTML report sites belong in the external immutable archive; only a governed per-engine E2E ExtentReport.html may be selected.');
+        || /\.(?:html?|xhtml)$/i.test(entry.path) && !e2eReader && !constructionReader) {
+      fail(entry.path, 'Build payloads and generic HTML report sites belong in the external immutable archive; only governed per-engine E2E or source-bound Atlas construction Extent readers may be selected.');
     }
     if (entry.sourceRevision !== undefined && !revision(entry.sourceRevision)) fail(location, 'Source revision must identify the captured source or UNVERSIONED.');
     if (entry.executionScope !== undefined && (typeof entry.executionScope !== 'string' || !entry.executionScope.trim())) fail(location, 'Execution scope must describe the preserved selection.');
@@ -183,6 +185,13 @@ export function validateArtifactPublication({artifactRoot}) {
   };
   walk('atlas/current'); walk('reports/current');
   for (const [key, entry] of expected) if (!observed.has(key)) fail(entry.path, 'A declared current reader, document or proof file is missing.');
+  for(const entry of manifest.reports.filter(r=>r.id==='atlas-construction-extent')){
+    const provenance=entry.construction,reader=manifest.atlases.find(a=>a.projectId===provenance?.projectId),receipt=manifest.reports.find(r=>r.id==='business-atlas-acceptance');
+    if(!provenance||provenance.role!=='DERIVED_ATLAS_CONSTRUCTION_V1'||!reader||provenance.readerSha256!==reader.sha256||entry.sourceRevision!==reader.sourceRevision||!receipt||receipt.sourceRevision!==reader.sourceRevision)fail(entry.path,'Bind derived Atlas construction evidence to its exact selected reader and original acceptance receipt.');
+    let captured;try{captured=parseAtlasJson(fs.readFileSync(local(receipt.path),'utf8'),'ATLAS-EVIDENCE','Atlas construction receipt').constructionEvidence;}catch(error){fail(entry.path,'Keep valid unique-member original receipt data: '+error.message);}
+    if(!object(captured)||captured.role!==provenance.role||captured.projectId!==reader.projectId||captured.sourceRevision!==reader.sourceRevision||captured.readerSha256!==reader.sha256||captured.reportPath!==entry.path||captured.reportSha256!==entry.sha256||!Array.isArray(captured.proofs)||captured.proofs.length!==3||!captured.proofs.every(p=>object(p))||new Set(captured.proofs.map(p=>p.kind)).size!==3||!['NODE_TAP','NATIVE_RENDER','PUBLISHER_CONTROLS'].every(k=>captured.proofs.some(p=>p.kind===k&&p.status==='PASSED'&&/^[a-f0-9]{64}$/.test(p.sha256))))fail(entry.path,'Retain the exact reader/report digests and three distinct original passing construction proof families. A derived report is not a fresh MCP or application execution.');
+    if(!fs.readFileSync(local(entry.path),'utf8').includes('name="atlas-construction-role" content="DERIVED_ATLAS_CONSTRUCTION_V1"'))fail(entry.path,'Mark this report explicitly as derived Atlas construction evidence.');
+  }
   for (const entry of manifest.atlases) {
     const html=fs.readFileSync(local(entry.path),'utf8'),current=html.includes('data-atlas-reader="5"');
     if (current || Object.hasOwn(entry,'readerVersion')) {

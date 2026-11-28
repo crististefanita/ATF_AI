@@ -41,6 +41,10 @@ actualul cod al proiectului.
 <a id="adaptation-rules"></a>
 ## Reguli de adaptare
 
+- Corelează deciziile business cu metodele concrete și cazurile originale ale fluxului;
+  păstrează codul detaliat în harta colapsată, cu limitele dovezii explicite.
+- Folosește formatul regulă–observație–hint–reverificare din arhiva MCP ca reper;
+  raportul Extent derivat trebuie să păstreze identitatea rezultatelor curente.
 - Păstrează margini întunecate simetrice; folosește lățimea interioară pentru fiecare diagramă.
 - Prezintă domeniul și limita revizuirii într-un tabel scurt; proveniența curată stă
   în detaliul dedicat. Avertizarea despre modificări nepublicate rămâne vizibilă.

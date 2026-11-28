@@ -984,3 +984,10 @@ html[data-atlas-surface="framed-1"] body{background:var(--bg)}
 .concise-reader .reader-score-axis>summary{font-size:16px}
 .concise-reader .reader-shared-limit,.concise-reader .references-shared-limit{padding:10px 12px;border-left:2px solid var(--border)}
 @media(min-width:1280px){.concise-reader nav{grid-template-columns:repeat(6,minmax(0,1fr))}}
+
+.concise-reader .flow .edge-label{paint-order:stroke fill;stroke:var(--panel2);stroke-width:4px;stroke-linejoin:round}
+.concise-reader .reader-source-trace col:nth-child(1){width:28%!important}
+.concise-reader .reader-source-trace col:nth-child(2),.concise-reader .reader-source-trace col:nth-child(3){width:36%!important}
+.concise-reader .reader-source-trace td{white-space:pre-line;overflow-wrap:anywhere}
+
+.concise-reader .reader-symbol{font:14px/1.55 var(--mono)}

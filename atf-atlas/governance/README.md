@@ -97,7 +97,7 @@ lățirea paginii exterioare nu repară un desen plafonat.
 <summary>Comandă pentru componentele vizate</summary>
 
 ```powershell
-node --test tools/atlas-reading.test.mjs tools/atlas-fit.test.mjs tools/atlas-reader-graphs.test.mjs tools/atlas-calibration.test.mjs
+node --test tools/atlas-reading.test.mjs tools/atlas-fit.test.mjs tools/atlas-reader-graphs.test.mjs tools/atlas-calibration.test.mjs tools/atlas-trace.test.mjs
 ```
 
 </details>
@@ -105,3 +105,16 @@ node --test tools/atlas-reading.test.mjs tools/atlas-fit.test.mjs tools/atlas-re
 `READER_FRAME` verifică marginile reale și fundalul uniform. `CONFIDENCE_REVIEW`
 compară răspunsurile și proveniența cu sursa; cere un singur detaliu colapsat
 pentru baza revizuirii. Inspectează separat cele șase secțiuni și toate diagramele.
+
+`BUSINESS_SOURCE_TRACE` compară decizia, declarațiile concrete, tipurile cazurilor,
+verdictul original și limita cu sursa. [Componenta de corelare](trace.mjs) și
+[cazurile independente](trace.test.mjs) refuză metode inventate, comentarii sau
+șiruri confundate cu declarații și dovezi împrumutate din alte fluxuri.
+
+`DIAGRAM_LABEL_SURFACE` cere măsurători native ale conturului opac al etichetelor;
+păstrează toate relațiile și textul lizibil. `CONSTRUCTION_LINK` păstrează legătura
+relativă și domeniul raportului separat, derivat din dovezi originale.
+
+`DIAGRAM_LABEL_ROUTE` refuză conectorii care trec prin eticheta altei relații.
+Ramurile folosesc porturi separate; conturul lizibil nu dovedește singur
+apartenența corectă a etichetei. Păstrează toate capetele și textele originale.
