@@ -1645,3 +1645,5 @@ Calitate livrată 96 (corectitudine 96 / verificare 97 / claritate 95).
   lățimi și folosește butonul real de întoarcere în afara navigației fixe.
 - Refuzurile originale pentru documentație, numărul surselor arhivate și randare sunt păstrate.
   Calificarea pereche a sursei finale și publicarea selectată au dovezi separate.
+
+- Rularea completă pereche a detectat un README revenit la versiunea inițială, rămas în suprapunerea de validare refolosită. Pregătirea finală compară acum fiecare fișier sursă urmărit octet cu octet; XML-urile eșuate originale și instantaneele sursei rămân separate de calificarea reparată.
