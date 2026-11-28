@@ -1048,3 +1048,15 @@ Măsoară atât cadrul tabloului de bord, cât și pe cel al detaliilor față d
 `ATLAS-ROUTING-001: BOUNDED_ORTHOGONAL_ROUTES_V1` Rotunjește colțurile conectorilor ortogonali în limita jumătății fiecărui segment adiacent, păstrând porturile, direcția și etichetele originale. Refuză intrările nefinite sau diagonale cu indicații de remediere și responsabil. Reverifică săgețile efectiv desenate, distanța față de etichetele altor legături și geometria nativă la fiecare lățime declarată; sintaxa traseului din sursă nu califică singură aspectul.
 
 `ATLAS-RETENTION-001: VERIFIED_COLD_HISTORY_V1` Păstrează dovezile originale exacte și lanțul dintre sursă și dovezi. Elimină clonele regenerabile, rezultatele compilării și cache-urile duplicate numai după inventariere. Arhivele istorice necesită un manifest complet cu amprentele fișierelor și verificarea extragerii înainte de eliminarea originalelor; păstrează HTML-ul main_mcp fixat, resursele adiacente și identitatea Git ca referințe direct utilizabile. Nu urma punctele de redirecționare în timpul curățării.
+
+<a id="compact-diagram-review"></a>
+## Revizia diagramelor compacte
+
+`ATLAS-DENSITY-001: COMPACT_DIAGRAMS_V1` reduce spațiul vertical gol, spațierea nodurilor și liniile supradimensionate, păstrând textul nativ lizibil, relațiile exacte din sursă, întreaga lățime interioară și banda principală deschisă. Măsoară înălțimea reală a diagramei și conținutului, înălțimea nodurilor, grosimea liniilor și mărimea textului. Refuză diagramele rare umflate, liniile groase, textul minuscul, măsurătorile absente și identitățile străine, cu remediere specifică grafului.
+
+- Hărțile principale păstrează benzile reale de citire într-o diagramă de maximum 560 px.
+- Hărțile auxiliare rămân în 420 px, sau 480 px pentru vederile de dependențe cu trasee ocolitoare.
+- Nodurile native rămân la 56–76 px înălțime, cu text lizibil de 13–18 px și săgeți vizibile.
+- Verificările existente pentru distanțe, sursă, maturitate, legendă/referințe locale și lipsa derulării orizontale rămân independente.
+
+O diagramă mai mică nu reprezintă o înțelegere mai profundă. Păstrează HTML-ul acceptat anterior și identitatea sursei sale înaintea unei analize noi. Reconstruiește pe sursa live și dovezile originale calificate într-un director nou cu timestamp; compară sensul sursei, geometria nativă și amprentele exacte ale rezultatului. Repetă generarea într-un director de ieșire independent, fără a copia analiza sau HTML-ul anterior. Rezultatele stabile stabilesc repetabilitate limitată, fără a certifica automat sensul.

@@ -135,3 +135,5 @@ independent lipsa dovezilor, săgețile ascunse, etichetele deplasate și hint-u
 Titlurile detaliilor despre întrebări sunt derivate din clasificările efective. Comparația nativă a fațetelor include titlul, fiecare întrebare originală și răspunsul; transformarea unei limite a sursei într-o afirmație de acceptanță este refuzată de verificările existente ale domeniului.
 
 [Rutarea conectorilor](diagram-routing.mjs) rotunjește vârfurile ortogonale reale cu limite pentru colțuri. [Cazurile independente](diagram-routing.test.mjs) acoperă trasee scurte și inversate, vârfuri repetate, translația, porturile păstrate și coordonatele invalide. Verificările native ale distanțelor și săgeților rămân necesare.
+
+[Verificările de compactitate](diagram-density.mjs) inspectează înălțimea nativă reală a diagramei și conținutului, geometria nodurilor vizibile, textul și liniile. [Componentele independente](diagram-density.test.mjs) refuză spațiul vertical gol, nodurile umflate, conectorii groși, măsurătorile lipsă și textul minuscul. DIAGRAM_DENSITY numește graful și o remediere limitată; verificările existente ale sursei și distanțelor rămân active.

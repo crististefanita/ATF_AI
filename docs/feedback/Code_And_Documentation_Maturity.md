@@ -1671,3 +1671,20 @@ Calitate livrată 96 (corectitudine 96 / verificare 97 / claritate 95).
 Cele două fațete ale aplicației rămân parțiale: răspunsurile din sursa locală nu stabilesc acceptanța în mediu, unicitatea globală sau ștergerea conturilor. Limitele sursei sunt clarificate, fără a fi numărate ca domeniu nou finalizat.
 
 - Prima rulare Node RO a refuzat citări RAG bazate pe fraze engleze absente din contractul tradus. Citările folosesc acum identificatori comuni ai contractului; explicațiile rămân traduse. Rezultatele originale sunt păstrate separat de calificarea corectată.
+
+<a id="d-035"></a>
+<a id="d-035-compact-source-diagrams-and-independent-regeneration"></a>
+## D-035: Diagrame compacte ale sursei și regenerare independentă
+
+Status: VERIFIED în domeniul componentelor și randării native. Responsabil: Atlas, RAG și guvernanța artefactelor.
+Prioritate 92 (impact 94 / expunere 91 / urgență 89).
+Calitate inițială 91 (corectitudine 95 / verificare 89 / claritate 88).
+
+- Adaptează principiile main_mcp pentru scară vizuală și cazuri negative: reduce spațiul auxiliar gol și liniile supradimensionate, păstrând relațiile numite, maturitatea și dovezile locale.
+- Guvernează dimensiunile native reale și textul lizibil; o clasă compactă sau un font mai mic nu înlocuiește măsurarea.
+- Păstrează referința publicată. Generează un Atlas nou cu timestamp pe sursa live, repetă într-un director de ieșire independent și compară proiecțiile exacte, dovezile originale și amprentele HTML.
+- Păstrează ramura main_mcp și referințele originale. Auditează curățarea auxiliară printr-un manifest explicit; refuzurile păstrate rămân vizibile, fără ocolire ascunsă.
+
+Dovezi: ${ATF_WORK_ROOT}/reviews/atlas-compact-20261128-170427.
+Calitate livrată 96 (corectitudine 96 / verificare 97 / claritate 95).
+Două fațete ale aplicației rămân parțiale; șase cazuri noi de componentă pentru mentenanță nu extind acceptanța aplicației. Fără Java de execuție nou, E2E de aplicație noi sau emulator.

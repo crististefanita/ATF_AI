@@ -136,6 +136,7 @@ normalizarea prezentării nu reprezintă o nouă execuție.
 
 | ID | Comportament livrat | Verificare |
 |---|---|---|
+| D-035 | Diagrame native compacte și analiză independentă repetată; calitate 96 (96/97/95) | [Compactitate, dovezi originale și regenerare](Code_And_Documentation_Maturity.md#d-035) |
 | D-034 | Limite cunoscute ale sursei, trasee line limitate și curățare verificată; calitate 96 (96/97/95) | [Starea dovezilor, rutare și păstrare](Code_And_Documentation_Maturity.md#d-034) |
 | D-032 | Decizii corelate cu metode reale, trasee lizibile și dovadă Extent; calitate 96 (96/97/95) | [Corelare, refuzuri și dovezi](Code_And_Documentation_Maturity.md#d-032) |
 | D-031 | Margini întunecate simetrice, tabel de încredere concis și proveniență dedicată; calitate 96 (96/97/95) | [Dovezi native și de componentă](Code_And_Documentation_Maturity.md#d-031) |
