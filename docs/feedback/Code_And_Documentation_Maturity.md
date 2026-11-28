@@ -1450,6 +1450,10 @@ Delivered quality 96 (correctness 96 / verification 97 / clarity 95).
 
 - The preview uses the full main band at all three widths without sidebars,
   fixed canvas caps, inflated text or lost source relationships.
+- Supporting diagrams follow the same fluid width rhythm; their actual panels
+  and canvases are measured separately. Preserve the first narrower capture.
+- The first uniform preview rejected three tight label pairs at 900 px. Full-word
+  wrapping repairs their clearance without shrinking type or removing relationships.
 - Three added component cases reject narrowed/oversized geometry, generic
   footer/prompts and unowned text while retaining historical envelope scope.
 - The known main_mcp width catalog and actual open primary map anchor the

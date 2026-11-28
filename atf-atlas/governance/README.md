@@ -84,6 +84,9 @@ review. These checks complement visual inspection and source comparison.
 Measure the actual rendered bounds; a wide outer page does not prove a wide map.
 `READER_NOISE` removes floating boilerplate and routes limits to owned sections.
 
+`DIAGRAM_WIDTH` checks every supporting canvas against its available panel
+width; stretching the surrounding page does not repair a capped diagram.
+
 <details>
 <summary>Focused component command</summary>
 

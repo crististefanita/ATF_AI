@@ -150,6 +150,8 @@ shared boundary once only when its exact original text matches every row.
 
 `ATLAS-READER-NOISE-001: Fresh concise readers contain no generic footer, redundant score instruction or unowned narrative outside dedicated sections; keep confidence and remaining limits in their existing owned sections, without repeating global offline or scope labels.`
 
+`ATLAS-DIAGRAM-WIDTH-001: Every current concise diagram uses the full width available in its own panel; measure both figure and actual SVG canvas, reject artificial width caps and overflow, and scale route geometry without stretching text or border weight.`
+
 The primary canvas fills the available HTML width. Responsive route geometry
 keeps text and node borders at their native scale, rather than stretching fonts.
 Value context remains collapsed below the map; its source meaning is preserved.
