@@ -1688,3 +1688,5 @@ Calitate inițială 91 (corectitudine 95 / verificare 89 / claritate 88).
 Dovezi: ${ATF_WORK_ROOT}/reviews/atlas-compact-20261128-170427.
 Calitate livrată 96 (corectitudine 96 / verificare 97 / claritate 95).
 Două fațete ale aplicației rămân parțiale; șase cazuri noi de componentă pentru mentenanță nu extind acceptanța aplicației. Fără Java de execuție nou, E2E de aplicație noi sau emulator.
+
+- Revizia nativă completă a refuzat primul candidat compact: textul unui nod pe trei rânduri depășea cadrul, iar un conector de reunire traversa eticheta altei relații. Repoziționează elementele, păstrează capturile refuzate și recalifică sursele exacte corectate; nu relaxa verificările de încadrare sau apartenență a relațiilor.
