@@ -1501,3 +1501,38 @@ Delivered quality 96 (correctness 96 / verification 97 / clarity 95).
 - The first complete Node selection refused three publications because a CSS
   selector was confused with the format attribute. Read only the HTML root and
   retain legacy compatibility in the same independent component case.
+
+<a id="d-032"></a>
+## D-032: Business decisions tied to implementation and construction evidence
+
+Status: VERIFIED within component and native-preview scope. Owner: Atlas, RAG and artifact governance.
+Priority 93 (impact 95 / exposure 92 / urgency 89).
+Baseline quality 89 (correctness 94 / verification 84 / clarity 87).
+
+- The HTML explains business, but concrete method correlation remains in the audit.
+  Add a closed map of source-backed decisions and implementation responsibilities.
+- Keep business objects in the graph; concrete declarations are evidence, not
+  substitutes for meaning. Do not claim an automatically inferred call graph.
+- Improve label legibility over connectors with actual native paint measurements
+  and negative controls that preserve every original relationship.
+- The separate Extent report must derive from current results and bind the exact
+  reader; an archived MCP report cannot certify current source.
+
+Evidence: ${ATF_WORK_ROOT}/reviews/atlas-business-depth-20261128.
+Acceptance requires paired tests, original proof, native rendering and refusal/repair.
+No new Java runtime, application E2E or emulator.
+
+Delivered quality 96 (correctness 96 / verification 97 / clarity 95).
+
+- Six decisions map to eleven declarations and twenty-two original cases. The
+  trace remains closed; primary diagrams retain business objects.
+- The new route check refused connectors crossing foreign labels. Separate
+  branch ports and converging routes pass at 900/1440/1920 px without lost edges.
+- Eleven additional component cases protect source correlation, label readability,
+  the relative link and construction Extent association with original evidence.
+- Two additional archived citations are verified against pinned Git bytes; the
+  initial count expectation refused the new total before its explicit update.
+- The existing Extent library prototype is standalone and passes network-free
+  rendering. Final derived reporting and exact-source binding retain separate receipts.
+- Original refusals and repairs remain preserved. Neither test counts nor the
+  derived report automatically certify semantics or application acceptance.

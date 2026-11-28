@@ -169,3 +169,18 @@ Publication fixtures also cover malformed inventories, duplicate projects, undec
 - Rejected checks preserve the files and their timestamps.
 - These controls add no product E2E scenario or runtime feature.
 - Retained-UI controls additionally reject mismatched engines, runs, revisions and proof references while preserving original failure/skip verdicts.
+
+<details>
+<summary>Extent evidence for Atlas construction</summary>
+
+The selection may include `reports/current/atlas-construction/ExtentReport.html`,
+with `id` equal to `atlas-construction-extent` and `kind` equal to `extent`. This
+derived report binds the exact reader and three original proof families: Node
+components, native rendering and publisher controls. It is not a new MCP or E2E execution.
+
+The `business-atlas-acceptance` receipt retains source, reader, report and proof
+identities. The archived MCP report is calibration only; other HTML report sites
+remain in the external archive. The new governance case refuses mismatched
+links or verdicts and verifies repair against declared bytes.
+
+</details>

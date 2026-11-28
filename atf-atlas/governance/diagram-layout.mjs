@@ -39,3 +39,25 @@ export function reviewDiagramSpacing(diagrams,expected){
   }
   return findings;
 }
+
+/** Actual paint measurements protect label legibility; they do not establish relationship meaning. */
+export function reviewLabelSurfaces(diagrams,expected){
+ const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b),findings=[];
+ if(!Array.isArray(diagrams)||diagrams.length!==expected.length)return [{code:'DIAGRAM_LABEL_SURFACE',observation:'Retain every actual diagram and its native relationship-label paint measurements.'}];
+ for(const [i,g]of expected.entries()){
+  const r=diagrams[i],styles=r?.labelSurface;
+  if(r?.id!==g.id||!Array.isArray(styles)||!same(styles.map(s=>[s.from,s.to]),g.edges.map(e=>[e.from,e.to]))||styles.some(s=>!/^stroke(?: fill)?$/.test(s.paintOrder)||s.stroke!==s.background||!Number.isFinite(s.strokeOpacity)||s.strokeOpacity<.95||s.strokeOpacity>1||!Number.isFinite(s.strokeWidth)||s.strokeWidth<3||s.strokeWidth>6||s.fill===s.stroke||['none','transparent','rgba(0, 0, 0, 0)'].includes(s.fill)))findings.push({code:'DIAGRAM_LABEL_SURFACE',observation:'Give '+g.id+' a measured opaque panel-colored label halo before the text fill (3–6 native CSS px). Retain readable type and every actual edge; do not repaint labels as hidden text or claim this proves graph semantics.'});
+ }
+ return findings;
+}
+
+/** Connectors must not borrow another relationship's label, even when a halo keeps letters visible. */
+export function reviewForeignLabelRoutes(diagrams,expected){
+ const findings=[],same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+ if(!Array.isArray(diagrams)||diagrams.length!==expected.length)return [{code:'DIAGRAM_LABEL_ROUTE',observation:'Measure all actual connectors against foreign relationship-label rectangles.'}];
+ for(const [i,wanted]of expected.entries()){
+  const actual=diagrams[i],routes=actual?.labelRoutes;
+  if(actual?.id!==wanted.id||!Array.isArray(routes)||!same(routes.map(r=>[r.from,r.to]),wanted.edges.map(e=>[e.from,e.to]))||routes.some(r=>!Array.isArray(r.foreignHits)||r.foreignHits.length))findings.push({code:'DIAGRAM_LABEL_ROUTE',observation:'Route '+wanted.id+' connectors outside other relationship labels. Preserve source endpoints, original labels and readable native type; a halo alone does not repair ambiguous relationship ownership.'});
+ }
+ return findings;
+}

@@ -165,6 +165,25 @@ narrowing a diagram inside its own panel. Inspect all six sections at
 
 `ATLAS-CONFIDENCE-001: Present review scope and its unproven boundary as short source-owned table answers, at most 40 words each; keep the exact date and clean-source provenance in one initially closed Review basis, retain dirty-source warnings and failed checks visibly, and inspect all six sections through native navigation.`
 
+`ATLAS-BUSINESS-TRACE-001: Explain selected business decisions through concrete declarations in their actual flow-owned source fragments and every original case of each selected flow; retain original verdicts and limits, refuse invented symbols or borrowed evidence, and keep implementation detail in a closed architecture trace rather than replacing business graph objects with classes.`
+
+`ATLAS-FOREIGN-LABEL-ROUTE-001: Measure actual connector paths against other relationship-label rectangles and refuse ambiguous crossings; use separate source-owned branch ports where needed, preserve every endpoint and label, and never treat a readable halo as sufficient proof of relationship ownership.`
+
+`ATLAS-LABEL-SURFACE-001: Keep connector labels readable with an opaque panel-colored halo painted before their original text fill, measured at 3–6 native CSS pixels; preserve every original edge, uniform type and local legend, and do not treat paint or geometry checks as proof of semantic correctness.`
+
+`ATLAS-CONSTRUCTION-001: A separate derived Extent construction report may link from the closed review basis through its governed project-relative path; bind its reader and report digests to the original passing Node, native-render and publisher-control receipts, and state that this is derived construction evidence rather than a fresh MCP or application execution.`
+
+The optional `sourceTrace` uses `BUSINESS_IMPLEMENTATION_V1`. Each row owns
+`flowId`, `subject`, `decision`, `limit`, `implementations` and `caseIds`. Concrete
+references declare `claimId`, `refIndex`, `symbol` and `meaning`. Declaration
+adapters recognize Java methods and named JavaScript functions; they do not
+establish a transitive call graph or semantic support for every language.
+
+The construction Extent report is separate from the single understanding HTML.
+`constructionEvidence` declares `href`, `title` and `scope`; only the relative
+`../../../reports/current/atlas-construction/ExtentReport.html` is permitted.
+Publication requires the exact reader and original proof; archived MCP remains calibration.
+
 `ATLAS-DIAGRAM-FIT-001: Fresh CURRENT_UNDERSTANDING_V3 requires BUSINESS_REFERENCE_V2; every diagram and table fits without horizontal scrolling, clipping or reduced text, with actual transformed SVG type of at least 13 CSS px at the qualified desktop widths; split a wide idea into meaningful source-bound subviews or prose and retain its complete audit.`
 
 `ATLAS-DIAGRAM-SUPPORT-001: Every current diagram has exactly two initially closed local disclosures, a source-specific bulleted legend and references with owned subjects, original proof and remaining limits; compare their actual rendered content with the original source-bound projection, never accept empty shells or generic legend filler.`

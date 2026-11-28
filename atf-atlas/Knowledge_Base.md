@@ -36,6 +36,10 @@ execution evidence. A cited old requirement cannot certify today's project code.
 
 ## Adaptation rules
 
+- Connect business decisions to concrete declarations and their original flow cases;
+  keep detailed code in the closed trace with explicit evidence limits.
+- Adapt the archived MCP rule/observation/hint/recheck format; the derived Extent
+  construction report must retain current original result identities.
 - Keep small symmetric dark gutters; use the inner frame for every diagram.
 - Present review scope and its boundary in a short table; keep clean provenance
   in its own optional detail. Unpublished-change warnings stay visible.

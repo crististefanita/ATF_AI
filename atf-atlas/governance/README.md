@@ -91,7 +91,7 @@ width; stretching the surrounding page does not repair a capped diagram.
 <summary>Focused component command</summary>
 
 ```powershell
-node --test tools/atlas-reading.test.mjs tools/atlas-fit.test.mjs tools/atlas-reader-graphs.test.mjs tools/atlas-calibration.test.mjs
+node --test tools/atlas-reading.test.mjs tools/atlas-fit.test.mjs tools/atlas-reader-graphs.test.mjs tools/atlas-calibration.test.mjs tools/atlas-trace.test.mjs
 ```
 
 </details>
@@ -99,3 +99,16 @@ node --test tools/atlas-reading.test.mjs tools/atlas-fit.test.mjs tools/atlas-re
 `READER_FRAME` checks actual side gutters and the solid background.
 `CONFIDENCE_REVIEW` compares source-owned answers and provenance, requiring one
 closed review-basis disclosure. Inspect all six sections and every diagram separately.
+
+`BUSINESS_SOURCE_TRACE` compares the decision, concrete declarations, case kinds,
+original verdict and remaining limit with source. The [trace component](trace.mjs)
+and [independent cases](trace.test.mjs) refuse invented methods, comment/string
+lookalikes and evidence borrowed from unrelated flows.
+
+`DIAGRAM_LABEL_SURFACE` requires native measurements of the opaque label halo;
+retain all relationships and readable type. `CONSTRUCTION_LINK` preserves the
+relative link and scope of the separate report derived from original evidence.
+
+`DIAGRAM_LABEL_ROUTE` refuses connectors crossing another relationship label.
+Branches use separate ports; a readable halo alone does not establish label
+ownership. Preserve all original endpoints and text.

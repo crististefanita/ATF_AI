@@ -6,6 +6,8 @@ import {facetProofProjection} from './atlas-semantics.mjs';
 import {validateAtlasCaptureDeclaration} from './verify-atlas.mjs';
 import {readingProjection,renderReadingGuide,renderCaseTable,failureScopeLabel,renderConfidenceReview} from '../atf-atlas/governance/reading.mjs';
 
+import {businessTraceProjection,renderBusinessTrace} from '../atf-atlas/governance/trace.mjs';
+
 export const businessSections=Object.freeze(['overview','capabilities','journeys','operating-model','confidence','limits']);
 const need=(ok,message)=>requireAtlas(ok,'ATLAS-READER',message);
 const object=value=>value!==null&&typeof value==='object'&&!Array.isArray(value);
@@ -58,7 +60,9 @@ export function inspectBusinessReaderHtml(html,{projectId}={}){
   const navigation=/<nav\b[^>]*>[\s\S]*?<\/nav>/.exec(html)?.[0]||'';
   const links=[...(html.includes('data-atlas-presentation=')?navigation:html).matchAll(/href="([^"]+)"/g)].map(m=>m[1]);
   need(links.length===businessSections.length&&links.every((href,i)=>href==='#'+businessSections[i]+(calibrated?'-content':'')),'Reader navigation must mirror the numbered local sections');
-  if(html.includes('data-atlas-presentation=')){need(/data-atlas-presentation="business-reference-[12]"/.test(html),'Use the declared reference presentation envelope');for(const match of html.matchAll(/href="([^"]+)"/g)){const href=match[1];need(links.includes(href)||/^#score-[a-z0-9-]+$/.test(href),'Reference links must remain local reviewed score or navigation targets');need((html.match(new RegExp('id="'+href.slice(1)+'"','g'))||[]).length===1,'A score/navigation target must exist exactly once');}}
+  const constructionLink='../../../reports/current/atlas-construction/ExtentReport.html',hasConstruction=html.includes('class="reader-construction"');
+  if(hasConstruction)need((html.match(/class="reader-construction"/g)||[]).length===1&&html.includes('href="'+constructionLink+'"'),'Use one explicit construction-evidence link in its dedicated review basis');
+  if(html.includes('data-atlas-presentation=')){need(/data-atlas-presentation="business-reference-[12]"/.test(html),'Use the declared reference presentation envelope');for(const match of html.matchAll(/href="([^"]+)"/g)){const href=match[1];if(href===constructionLink&&hasConstruction)continue;need(links.includes(href)||/^#score-[a-z0-9-]+$/.test(href),'Reference links must remain local reviewed score or navigation targets');need((html.match(new RegExp('id="'+href.slice(1)+'"','g'))||[]).length===1,'A score/navigation target must exist exactly once');}}
   if(calibrated)for(const id of businessSections)need((html.match(new RegExp('id="'+id+'-content"','g'))||[]).length===1,'Reader navigation needs one content target inside each disclosure: '+id);
   const prose=html.replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi,'').replace(/<[^>]*>/g,' ');
   need(!technical.test(prose),'Technical construction detail leaked into the published reader');
@@ -68,7 +72,7 @@ export function inspectBusinessReaderHtml(html,{projectId}={}){
 /** Source bindings and audience checks complement an explicit semantic review; they do not prove prose truth. */
 export function validateBusinessReader(analysis){
   const r=analysis.reader,claims=new Map(analysis.claims.map(c=>[c.id,c]));
-  shape(r,['schemaVersion','projectId','language','title','summary','reviewDate','review','value','capabilities','journeys','auditOnlyFlows','architecture','model','limits','diagramProfile','comparisonProfile','captureProfile','presentationProfile','primaryGraph','assessment','readingProfile','guide'],'project reader');
+  shape(r,['schemaVersion','projectId','language','title','summary','reviewDate','review','value','capabilities','journeys','auditOnlyFlows','architecture','model','limits','diagramProfile','comparisonProfile','captureProfile','presentationProfile','primaryGraph','assessment','readingProfile','guide','sourceTrace','constructionEvidence'],'project reader');
   need(r.schemaVersion===1&&r.projectId===analysis.projectId&&r.language==='en','Reader needs the same target, schemaVersion 1 and English authored prose');
   need(r.comparisonProfile===undefined||r.comparisonProfile==='SOURCE_BOUND_COMPARISONS_V1','Use the declared source-bound reader comparison profile');
   need(r.captureProfile===undefined||r.captureProfile==='GIT_WORKTREE_V1','Use the declared source-capture profile');
@@ -106,6 +110,8 @@ export function validateBusinessReader(analysis){
   need(r.model.links.length===r.model.stages.length-1&&r.model.links.every((link,i)=>link.from===r.model.stages[i].id&&link.to===r.model.stages[i+1].id),'The reader model must follow its declared adjacent reading stages; keep detailed branches in the audit');
   need(Array.isArray(r.limits)&&r.limits.length>0,'Keep remaining boundaries visible');r.limits.forEach(item=>statement(item,claims,'reader limit',true));
   const covered=new Set(r.limits.flatMap(l=>l.claimIds));for(const claim of claims.values())if(claim.status==='UNKNOWN'||claim.status==='EXECUTED'&&claim.verdict==='FAILED')need(covered.has(claim.id),'An unknown source claim is absent from the visible reader limits: '+claim.id);
+  const trace=businessTraceProjection(analysis);if(trace)need(r.readingProfile==='CONCISE_READING_V1','Use the current concise reader for the optional concrete source trace');if(trace)for(const row of trace){for(const text of [row.subject,row.decision,row.limit,...row.implementations.map(i=>i.meaning)])prose(text,'source trace');}
+  if(r.constructionEvidence){need(r.readingProfile==='CONCISE_READING_V1','Construction evidence belongs to the current concise review basis');shape(r.constructionEvidence,['href','title','scope'],'construction evidence');need(r.constructionEvidence.href==='../../../reports/current/atlas-construction/ExtentReport.html','Use the governed project-relative construction evidence link');prose(r.constructionEvidence.title,'construction title');prose(r.constructionEvidence.scope,'construction scope');}
   const reference=referencePresentationProjection(analysis);if(!reference)need(r.primaryGraph===undefined&&r.assessment===undefined,'Declare the reference presentation before adding a primary map or visible score projection');
   for(const value of referenceBusinessText(reference))prose(value,'reference presentation');if(reference)for(const edge of r.primaryGraph.edges)prose(edge.label,'primary relationship');
   const reading=readingProjection(analysis);if(reading)for(const text of reading.rows.flat())prose(text,'concise reader guide');
@@ -167,8 +173,8 @@ export function renderBusinessReader(bundle,css){
       return '<tbody class="reader-journey"><tr class="reader-journey-summary"><th scope="row">'+badge(ordinal)+escape(j.title)+'</th><td>'+escape(j.operation)+'</td><td>'+escape(j.outcome)+'</td></tr><tr><td colspan="3"><details class="reader-journey-details"><summary>Cases, map and context</summary>'+context+graph+'<p class="reader-negative-scope" data-negative-scope="'+escape(f.caseAnalysis.negativeScope.status)+'">'+escape(failureScopeLabel(f.caseAnalysis.negativeScope.status))+'</p>'+renderCaseTable(j,f,ordinal,claims,comparisonMarkup)+'</details></td></tr></tbody>';
     }).join('');
     bodies[2]='<p>Compare the existing behaviors below. Open only the cases or map needed for the current question.</p><div class="table-scroll atlas-table"><table class="reader-journey-table"><colgroup><col style="width:24%"><col style="width:38%"><col style="width:38%"></colgroup><thead><tr><th scope="col">Behavior</th><th scope="col">What happens</th><th scope="col">Expected result</th></tr></thead>'+journeyRows+'</table></div>';
-    bodies[3]=architecture;
-    bodies[4]=(analysis.claims.some(c=>c.status==='EXECUTED'&&c.verdict==='FAILED')?card('A retained check did not meet expectations','The original evidence includes a failure; the affected boundary remains explicit.'): '')+renderConfidenceReview(r.review,r.reviewDate,captureState)+renderReferenceRationale(reference,{concise:true})+(unknownAreas.length?presentationTable(['Capability','Not yet established'],unknownAreas):'');
+    bodies[3]=architecture+renderBusinessTrace(businessTraceProjection(analysis));
+    bodies[4]=(analysis.claims.some(c=>c.status==='EXECUTED'&&c.verdict==='FAILED')?card('A retained check did not meet expectations','The original evidence includes a failure; the affected boundary remains explicit.'): '')+renderConfidenceReview(r.review,r.reviewDate,captureState,r.constructionEvidence)+renderReferenceRationale(reference,{concise:true})+(unknownAreas.length?presentationTable(['Capability','Not yet established'],unknownAreas):'');
     bodies[5]='<div class="reader-boundaries">'+presentationTable(['Boundary','What remains outside'],r.limits.map(l=>[l.title,l.text]))+'</div>';
   }
   const titles=['Purpose and value','What the project enables','Behavior and meaningful cases','How the project works together','Confidence and review scope','Boundaries and remaining questions'];

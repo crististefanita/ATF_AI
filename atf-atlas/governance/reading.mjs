@@ -53,9 +53,9 @@ export function referenceTable(rows){
 export function renderReadingGuide(projection){return '<div class="reader-guide"><h3>Reader questions</h3>'+presentationTable(['Reader question','Supported answer','Remaining boundary'],projection.rows)+'</div>';}
 
 /** Keep review meaning visible and clean capture provenance in its own optional disclosure. */
-export function renderConfidenceReview(review,date,capture){
+export function renderConfidenceReview(review,date,capture,construction){
   const state=capture?'<p class="reader-source-state" data-atlas-capture-state="'+escape(capture.state)+'">'+escape(capture.meaning)+'</p>':'';
-  return '<div class="reader-confidence">'+presentationTable(['Review question','Answer'],[['What was reviewed',review.scope],['What remains unproven',review.limits]])+'</div>'+(capture?.state==='DIRTY'?state:'')+'<details class="reader-evidence-basis"><summary>Review basis</summary>'+presentationTable(['Basis','Recorded value'],[['Review date',date]])+(capture?.state==='CLEAN'?state:'')+'</details>';
+  return '<div class="reader-confidence">'+presentationTable(['Review question','Answer'],[['What was reviewed',review.scope],['What remains unproven',review.limits]])+'</div>'+(capture?.state==='DIRTY'?state:'')+'<details class="reader-evidence-basis"><summary>Review basis</summary>'+presentationTable(['Basis','Recorded value'],[['Review date',date]])+(capture?.state==='CLEAN'?state:'')+(construction?'<p class="reader-construction"><a href="'+escape(construction.href)+'">'+escape(construction.title)+'</a> — '+escape(construction.scope)+'</p>':'')+'</details>';
 }
 
 export function reviewConfidenceReview(metrics,expected){
