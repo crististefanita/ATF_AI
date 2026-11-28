@@ -8,10 +8,20 @@
   border-radius: 8px;
 }
 
-@media (max-width: 991px) {
+/* The SDK narrow layout includes its 992 px boundary. */
+@media (max-width: 992px) {
   .test-wrapper {
     left: 70px !important;
     width: calc(100% - 70px) !important;
+  }
+
+  .test-wrapper .test-list {
+    width: 100%;
+    float: none;
+  }
+
+  .test-wrapper .test-content .test-content-tools {
+    display: block;
   }
 
   .test-wrapper .test-content {
