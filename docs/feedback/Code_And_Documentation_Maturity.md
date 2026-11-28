@@ -1567,4 +1567,8 @@ Calitate livrată 96 (corectitudine 96 / verificare 97 / claritate 95).
 - Etichetele întregi sunt rearanjate după patru spațieri sub prag la 900 px;
   textul nu este micșorat, iar relațiile și limitele dovezii rămân neschimbate.
 - Calificarea finală pe sursa exactă, refuzurile editorului și controalele native
-  păstrează dovezi distincte în dosar. Două fațete și cinci întrebări rămân parțiale.
+  păstrează dovezi distincte în dosar. Două fațete rămân parțiale; cinci întrebări rămân deschise.
+
+- Prima selecție Node completă a refuzat trei publicări: selectorul CSS era
+  confundat cu atributul formatului. Citește doar elementul HTML și păstrează
+  în același caz de componentă dovada compatibilității formatului anterior.
