@@ -129,3 +129,5 @@ missing proof, hidden arrows, displaced labels and clipped hints independently.
 Question detail headings are derived from actual dispositions. Native facet comparison includes the heading as well as every original question and answer; changing a source limit into an acceptance claim fails the existing scope guards.
 
 [Connector routing](diagram-routing.mjs) rounds actual orthogonal vertices with bounded corners. [Independent cases](diagram-routing.test.mjs) cover short and reversed routes, repeated vertices, translation, preserved ports and invalid coordinates. Native spacing and arrow checks remain necessary.
+
+[Compactness checks](diagram-density.mjs) inspect actual native canvas/content height, visible node geometry, type and strokes. [Independent components](diagram-density.test.mjs) reject blank vertical space, inflated nodes, thick connectors, missing measurements and tiny type. DIAGRAM_DENSITY names the graph and a bounded repair; existing source and clearance guards remain active.

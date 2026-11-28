@@ -2,7 +2,7 @@ import {requireAtlas} from '../../tools/atlas-diagnostics.mjs';
 const need=(ok,message)=>requireAtlas(ok,'ATLAS-READER',message);
 
 /** Preserve real relationships within a shared canvas; wider ideas need an authored split. */
-export function layoutFittedDiagram(graph){
+export function layoutFittedDiagram(graph,{compact=false}={}){
   const nodes=new Map(graph.nodes.map(n=>[n.id,n]));
   need(nodes.size===graph.nodes.length&&nodes.size>0,'Fitted diagrams need actual unique source objects');
   const degree=new Map([...nodes.keys()].map(id=>[id,0])),rank=new Map([...nodes.keys()].map(id=>[id,0]));
@@ -12,8 +12,8 @@ export function layoutFittedDiagram(graph){
   const cyclic=visited!==nodes.size;if(cyclic)graph.nodes.forEach((n,i)=>rank.set(n.id,i));
   need(Math.max(...rank.values())<=2,'This view is too wide to read without horizontal scrolling. Split it into meaningful source-bound subviews or use the supported prose view; preserve original relationships in the audit instead of shrinking type or hiding overflow.');
   const columns=new Map();for(const n of graph.nodes){const column=rank.get(n.id);if(!columns.has(column))columns.set(column,[]);columns.get(column).push(n.id);}
-  const rows=Math.max(...[...columns.values()].map(c=>c.length)),routed=graph.edges.filter(e=>rank.get(e.to)!==rank.get(e.from)+1).length,top=56+routed*44,offset=(960-(Math.max(...rank.values())*340+280))/2;
-  return {width:960,height:rows*160+top+40,nodes:graph.nodes.map(n=>{const column=rank.get(n.id),siblings=columns.get(column);return {...n,x:offset+40+column*340,y:top+30+(rows-siblings.length)*80+siblings.indexOf(n.id)*160,width:200,height:90};}),edges:graph.edges,cyclic,scope:'BOUNDED_HORIZONTAL_READING; NO_HORIZONTAL_SCROLL'};
+  const rows=Math.max(...[...columns.values()].map(c=>c.length)),routed=graph.edges.filter(e=>rank.get(e.to)!==rank.get(e.from)+1).length,step=compact?112:160,top=(compact?28:56)+routed*44,offset=(960-(Math.max(...rank.values())*340+280))/2;
+  return {width:960,height:rows*step+top+(compact?30:40),nodes:graph.nodes.map(n=>{const column=rank.get(n.id),siblings=columns.get(column);return {...n,x:offset+40+column*340,y:top+(compact?20:30)+(rows-siblings.length)*step/2+siblings.indexOf(n.id)*step,width:200,height:compact?64:90};}),edges:graph.edges,cyclic,scope:'BOUNDED_HORIZONTAL_READING; NO_HORIZONTAL_SCROLL'};
 }
 
 /** These observations come from the rendered page; source-specific meaning needs separate review. */

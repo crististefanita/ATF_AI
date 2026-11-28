@@ -58,7 +58,7 @@ test('the full-width primary canvas scales only route geometry and retains every
  const a=fixture(),html=renderBusinessReader({analysis:a},'body{}');assert.match(html,/class="flow primary-fluid fluid-diagram"/);assert.match(html,/class="flow fluid-diagram"/);assert.equal((html.match(/class="primary-routing"/g)||[]).length,a.reader.primaryGraph.edges.length);assert.match(html,/<rect x="[\d.]+%"[^>]+width="[\d.]+%"/);
  const routes=[...html.matchAll(/<svg class="primary-routing"[\s\S]*?<\/svg>/g)];assert.ok(routes.every(r=>!r[0].includes('<text')&&r[0].includes('non-scaling-stroke')));for(const n of a.reader.primaryGraph.nodes)assert.ok(html.includes('data-node-id="'+n.id+'"'));
  delete a.reader.readingProfile;delete a.reader.guide;const legacy=renderBusinessReader({analysis:a},'body{}');assert.doesNotMatch(legacy,/primary-fluid/);assert.match(legacy,/viewBox="0 0 940/);assert.match(legacy,/<footer>/);
- const compact=fixture();compact.reader.primaryGraph.nodes.forEach((n,i)=>Object.assign(n,{band:0,column:i}));const short=renderBusinessReader({analysis:compact},'body{}');assert.match(short,/class="flow primary-fluid fluid-diagram"[^>]+height="290"/);assert.match(short,/primary-routing[^>]+viewBox="0 0 940 290"/);
+ const compact=fixture();compact.reader.primaryGraph.nodes.forEach((n,i)=>Object.assign(n,{band:0,column:i}));const short=renderBusinessReader({analysis:compact},'body{}');assert.match(short,/class="flow primary-fluid fluid-diagram"[^>]+height="230"/);assert.match(short,/primary-routing[^>]+viewBox="0 0 940 230"/);
 });
 
 

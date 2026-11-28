@@ -1597,3 +1597,19 @@ Delivered quality 96 (correctness 96 / verification 97 / clarity 95).
 The two application facets remain partial: local source answers do not establish deployment acceptance, global uniqueness or account deletion. Source limits are clarified rather than counted as newly completed scope.
 
 - The first RO Node run refused RAG citations based on English sentences absent from the translated contract. Citations now use shared contract identifiers; explanations stay translated. Original results remain separate from the repaired qualification.
+
+<a id="d-035"></a>
+## D-035: Compact source diagrams and independent regeneration
+
+Status: VERIFIED within component and native-render scope. Owner: Atlas, RAG and artifact governance.
+Priority 92 (impact 94 / exposure 91 / urgency 89).
+Baseline quality 91 (correctness 95 / verification 89 / clarity 88).
+
+- Adapt main_mcp visual-scale and negative-fixture principles: reduce supporting dead space and oversized strokes, preserving named relationships, maturity and local proof.
+- Govern actual native dimensions and readable type; a compact class or smaller font cannot substitute for measurement.
+- Retain the published baseline. Generate a fresh timestamped Atlas from live source, repeat in an independent output root and compare exact projections, original evidence and HTML digests.
+- Keep the main_mcp branch and original references. Audit auxiliary cleanup through an explicit manifest; retained review blocks remain visible rather than silently bypassed.
+
+Evidence: ${ATF_WORK_ROOT}/reviews/atlas-compact-20261128-170427.
+Delivered quality 96 (correctness 96 / verification 97 / clarity 95).
+Two application facets remain partial; six new maintenance component cases do not expand application acceptance. No new Java runtime, application E2E or emulator.

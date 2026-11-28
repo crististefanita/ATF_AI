@@ -997,3 +997,14 @@ Measure both the dashboard and detail frame against fixed navigation. A visible 
 `ATLAS-ROUTING-001: BOUNDED_ORTHOGONAL_ROUTES_V1` Round orthogonal connector corners within half of each adjacent segment, retaining original ports, direction and labels. Reject nonfinite or diagonal input with an owned repair hint. Recheck actual arrow paint, foreign-label clearance and native geometry at every declared width; source path syntax alone cannot qualify appearance.
 
 `ATLAS-RETENTION-001: VERIFIED_COLD_HISTORY_V1` Retain exact original proof and the source-to-evidence closure. Remove regenerable checkouts, compiled output and duplicate caches only after inventory. Cold archives need a complete per-file digest manifest and a verified extraction round trip before removing original files; retain the pinned main_mcp HTML, its adjacent assets and Git identity as directly usable references. Never follow a reparse point during cleanup.
+
+## Compact diagram review
+
+`ATLAS-DENSITY-001: COMPACT_DIAGRAMS_V1` reduces empty vertical space, node padding and oversized strokes while retaining readable native type, exact source relationships, full inner width and the open primary band. Measure actual canvas/content height, node height, stroke and font sizes. Reject inflated sparse canvases, thick strokes, tiny text, absent measurements and foreign identities with a graph-specific repair.
+
+- Primary maps keep their real reading bands within a 560 px canvas.
+- Supporting maps stay within 420 px, or 480 px for routed dependency views.
+- Native nodes remain 56–76 px high, with 13–18 px readable type and visible arrows.
+- Existing clearance, source, maturity, local legend/reference and no-scroll guards remain independent.
+
+A smaller canvas is not deeper understanding. Preserve the prior accepted HTML and its source identity before a fresh intake. Rebuild from the live source and original qualified receipts into a new timestamped directory; compare source meaning, native geometry and exact output digests. Repeat generation in an independent output root without copying the prior analysis or HTML. Stable outputs establish bounded repeatability, not automatic semantic truth.
