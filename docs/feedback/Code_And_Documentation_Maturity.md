@@ -1496,4 +1496,8 @@ Delivered quality 96 (correctness 96 / verification 97 / clarity 95).
 - Full words are rewrapped after four sub-threshold clearances at 900 px; type
   is not reduced, and source relationships and proof limits remain unchanged.
 - Final exact-source qualification, publisher refusals and native controls retain
-  distinct receipts in the dossier. Two facets and five questions remain partial.
+  distinct receipts in the dossier. Two facets remain partial; five questions remain open.
+
+- The first complete Node selection refused three publications because a CSS
+  selector was confused with the format attribute. Read only the HTML root and
+  retain legacy compatibility in the same independent component case.

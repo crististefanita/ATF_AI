@@ -50,7 +50,8 @@ export function inspectBusinessReaderHtml(html,{projectId}={}){
   const sections=[...html.matchAll(/<section id="([^"]+)" data-atlas-section="([^"]+)" data-section-number="([^"]+)"/g)];
   need(sections.length===businessSections.length&&sections.every((m,i)=>m[1]===businessSections[i]&&m[2]===m[1]&&m[3]===String(i+1).padStart(2,'0')),'Reader section identities, order or numbering differ');
   need(!html.includes('data-atlas-layout=')||html.includes('data-atlas-layout="primary-band-1"')&&html.includes('data-atlas-reading="concise-1"'),'Use the declared primary-band layout with its concise reader');
-  need(!html.includes('data-atlas-surface=')||html.includes('data-atlas-surface="framed-1"')&&html.includes('data-atlas-reading="concise-1"'),'Use the declared framed surface with its concise reader; native review still measures the actual gutters');
+  const rootElement=/<html\b[^>]*>/.exec(html)?.[0]||'';
+  need(!rootElement.includes('data-atlas-surface=')||rootElement.includes('data-atlas-surface="framed-1"')&&rootElement.includes('data-atlas-reading="concise-1"'),'Use the declared framed surface with its concise reader; native review still measures the actual gutters');
   if(html.includes('data-atlas-layout="primary-band-1"'))need(!/<footer\b/.test(html)&&!html.includes('Open a score for its review basis and limits.'),'Remove generic footer and score instructions; use dedicated confidence and boundary sections');
   const calibrated=html.includes('data-atlas-calibration="1"');
   need(!html.includes('data-atlas-calibration=')||calibrated,'Unsupported artifact calibration profile');
