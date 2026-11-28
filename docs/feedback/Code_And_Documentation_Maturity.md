@@ -1572,3 +1572,5 @@ Delivered quality 96 (correctness 96 / verification 97 / clarity 95).
   widths and exercises its actual back control outside the fixed navigation.
 - Original documentation, archive-count and rendering refusals remain preserved.
   Paired final-source qualification and selected publication retain separate receipts.
+
+- The complete paired run exposed a reverted README left in a reused validation overlay. Final staging now compares every tracked source file byte for byte; original failed XML and source snapshots remain separate from the repaired qualification.
