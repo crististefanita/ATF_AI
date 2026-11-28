@@ -1613,3 +1613,5 @@ Baseline quality 91 (correctness 95 / verification 89 / clarity 88).
 Evidence: ${ATF_WORK_ROOT}/reviews/atlas-compact-20261128-170427.
 Delivered quality 96 (correctness 96 / verification 97 / clarity 95).
 Two application facets remain partial; six new maintenance component cases do not expand application acceptance. No new Java runtime, application E2E or emulator.
+
+- Full native review refused the first compact candidate: three-line node text crossed its frame and a joining connector crossed a foreign label. Reposition those elements, preserve the failed captures and requalify exact repaired sources; do not relax clipping or relationship-ownership checks.
