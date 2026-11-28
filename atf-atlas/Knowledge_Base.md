@@ -41,6 +41,9 @@ actualul cod al proiectului.
 <a id="adaptation-rules"></a>
 ## Reguli de adaptare
 
+- Rezervă hărții principale o bandă pe toată lățimea și măsoară desenul SVG real.
+- Păstrează rezumatul deasupra, suportul dedesubt și limitele în secțiunile dedicate;
+  elimină subsolul/instrucțiunile generice și păstrează textul principal uniform.
 - Elimină propozițiile business identice; revizuiește manual sensurile apropiate.
 - Grupează o singură dată detaliile revizuirii, păstrează domeniul necunoscut al
   eșecurilor distinct de cel parțial și măsoară distanțele reale din diagrame.

@@ -148,11 +148,19 @@ Detectarea propozițiilor identice ajută redactarea, iar sensurile apropiate ce
 un revizor. Etichetele standard și dovezile originale rămân atribuibile.
 
 Folosește [componenta de lectură](governance/README.md) pentru detalii la cerere.
-Pe ecrane desktop late, harta principală și rezumatul împart deschiderea;
+Rezumatul scurt precedă harta principală deschisă, într-o bandă separată pe toată lățimea;
 tabelele comparative folosesc pagina disponibilă. Revizuirea nativă include
 1920 px alături de 1440/900. Măsoară prima vedere reală înaintea interacțiunilor.
 O limită comună apare o singură dată doar când textul original coincide exact
 pentru toate rândurile.
+
+`ATLAS-PRIMARY-BAND-001: The open primary map owns an independent full-width content band, with a short brief above it and support below; measure both its panel and actual SVG canvas, reject sidebars and fixed narrow caps, and preserve uniform readable type, borders and every source relationship.`
+
+`ATLAS-READER-NOISE-001: Fresh concise readers contain no generic footer, redundant score instruction or unowned narrative outside dedicated sections; keep confidence and remaining limits in their existing owned sections, without repeating global offline or scope labels.`
+
+Desenul principal ocupă lățimea HTML disponibilă. Geometria adaptivă a relațiilor
+păstrează textul și marginile nodurilor la scara nativă, fără să întindă fonturile.
+Contextul valorii rămâne colapsat sub hartă, cu sensul său legat de sursă păstrat.
 
 `ATLAS-DIAGRAM-FIT-001: Fresh CURRENT_UNDERSTANDING_V3 requires BUSINESS_REFERENCE_V2; every diagram and table fits without horizontal scrolling, clipping or reduced text, with actual transformed SVG type of at least 13 CSS px at the qualified desktop widths; split a wide idea into meaningful source-bound subviews or prose and retain its complete audit.`
 

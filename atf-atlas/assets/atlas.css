@@ -854,7 +854,8 @@ marker#arrow path{fill:var(--accent)}body{font-size:15px}.wrap{max-width:1320px}
 .reader .atlas-table{margin:18px 0}
 .reader footer{margin-top:28px;color:var(--muted)}
 @media(max-width:980px){.reader .reader-grid{grid-template-columns:1fr}.reader .hero{padding:24px}.reader .hero h1{font-size:29px}.reader .reader-journey{padding:16px}}
-.reader .flow{display:block;width:100%;height:auto;background:var(--panel2);border:1px solid var(--border);border-radius:12px}
+.reader .flow{display:block;width:100%;background:var(--panel2);border:1px solid var(--border);border-radius:12px}
+.reader .flow:not(.primary-fluid){height:auto}
 .reader .flow .node rect{fill:var(--panel);stroke:#35507a;stroke-width:2}
 .reader .flow text{fill:var(--text);font-family:var(--sans)}
 .reader .flow .edge{fill:none;stroke:var(--accent);stroke-width:2}
@@ -942,10 +943,14 @@ marker#arrow path{fill:var(--accent)}body{font-size:15px}.wrap{max-width:1320px}
 .concise-reader .reader-review-depth{padding:6px 12px;margin:12px 0}
 .concise-reader .reader-review-depth>summary{font-size:14px;padding:4px 0}
 .concise-reader .reader-negative-scope{color:var(--muted);font-size:14px}
-.concise-reader .reader-overview-grid{display:grid;gap:24px;align-items:start}
+.concise-reader .reader-overview{display:block}
+.concise-reader .primary-map{width:100%;max-width:none}
+.concise-reader .primary-map .flow{width:100%;max-width:none}
+.concise-reader .primary-map .primary-object-label{font-size:clamp(16px,1.7vw,19px)}
+.concise-reader .primary-map .flow .edge-label,.concise-reader .primary-map .maturity-label{font-size:clamp(14px,1.7vw,17px)}
 .concise-reader .reader-primary{padding:0;border:0;background:none}
 .concise-reader .reader-brief h2{font-size:20px;margin:8px 0 12px}
-.concise-reader .reader-brief p{max-width:70ch}
+.concise-reader .reader-brief p{max-width:none}
 .concise-reader .reader-journey{padding:0;margin:0;background:none}
 .concise-reader .reader-journey-table>tbody>tr>th{vertical-align:top}
 .concise-reader .reader-journey-details{padding:10px 12px;margin:0 0 8px}
@@ -968,4 +973,4 @@ marker#arrow path{fill:var(--accent)}body{font-size:15px}.wrap{max-width:1320px}
 .concise-reader .reader-score-axis{margin:10px 0}
 .concise-reader .reader-score-axis>summary{font-size:16px}
 .concise-reader .reader-shared-limit,.concise-reader .references-shared-limit{padding:10px 12px;border-left:2px solid var(--border)}
-@media(min-width:1280px){.concise-reader .reader-overview-grid{grid-template-columns:minmax(770px,1.5fr) minmax(320px,1fr)}.concise-reader nav{grid-template-columns:repeat(6,minmax(0,1fr))}}
+@media(min-width:1280px){.concise-reader nav{grid-template-columns:repeat(6,minmax(0,1fr))}}

@@ -51,6 +51,7 @@ Revizuirea nativă externă furnizează capturile reale și pixelii transformaț
 | Orientare concisă legată de sursă | [Componenta de lectură](reading.mjs) și [cazurile independente](reading.test.mjs): răspunsuri scurte, limite comune exacte și lățime/secțiuni măsurate |
 | Narațiune repetată și detalii expuse devreme | [Componenta de lectură](reading.mjs): propoziții identice, un grup de revizuire închis și stări distincte ale eșecurilor |
 | Spațiu liber în diagrame | [Revizuirea dreptunghiurilor native](diagram-layout.mjs): identitățile complete din sursă și minimum șase pixeli CSS între casete și etichete distincte |
+| Bandă independentă pentru harta principală și prezentare calmă | [Componenta de lectură](reading.mjs): panou/desen pe toată lățimea, rezumat deasupra și text în secțiunile responsabile |
 
 Reperul sursei este revizia `main_mcp`
 `70a7279c2a9560d39e6bd2554cd2f96a88626692`. Regulile istorice pentru scară
@@ -84,6 +85,10 @@ sau scurtează eticheta legată de sursă; păstrează relația și fontul lizib
 
 `NEGATIVE_SCOPE` păstrează distincția dintre revizuirea necunoscută și cea parțială
 a eșecurilor. Aceste verificări completează inspecția vizuală și comparația cu sursa.
+
+`PRIMARY_BAND` identifică o coloană laterală, un panou/desen îngustat sau un rezumat deplasat.
+Măsoară dimensiunile randate; lățimea paginii nu dovedește lățimea hărții.
+`READER_NOISE` elimină textele generice și păstrează limitele în secțiunile responsabile.
 
 <details>
 <summary>Comandă pentru componentele vizate</summary>

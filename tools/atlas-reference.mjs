@@ -80,9 +80,9 @@ export function referenceBusinessText(projection){
   return [projection.primary.title,projection.primary.summary,projection.primary.legend,...projection.primary.nodes.flatMap(n=>[n.label,n.meaning,n.limit]),...projection.groups.flatMap(g=>[g.title,g.scope,g.limits]),...projection.axes.flatMap(a=>[a.label,a.goal,a.question,a.measure,a.meaning,a.limits,a.ceilingReason])];
 }
 
-export function renderReferenceScores(projection){
+export function renderReferenceScores(projection,{concise=false}={}){
   if(!projection)return '';
-  return '<div class="reader-score-opening"><p class="eyebrow">'+escape(projection.featured[0].groupTitle)+' · 1–100</p><div class="score-wall reader-score-wall">'+projection.featured.map(a=>'<a class="score-card" data-score-group="'+escape(a.groupId)+'" data-score-axis="'+escape(a.axisId)+'" href="#score-'+escape(a.groupId)+'-'+escape(a.axisId)+'"><span class="label">'+escape(a.label)+'</span><strong class="score">'+a.score+'<small> / 100</small></strong><span class="note">'+escape(a.meaning)+'</span></a>').join('')+'</div><p class="muted">Open a score for its review basis and limits.</p></div>';
+  return '<div class="reader-score-opening"><p class="eyebrow">'+escape(projection.featured[0].groupTitle)+' · 1–100</p><div class="score-wall reader-score-wall">'+projection.featured.map(a=>'<a class="score-card" data-score-group="'+escape(a.groupId)+'" data-score-axis="'+escape(a.axisId)+'" href="#score-'+escape(a.groupId)+'-'+escape(a.axisId)+'"><span class="label">'+escape(a.label)+'</span><strong class="score">'+a.score+'<small> / 100</small></strong><span class="note">'+escape(a.meaning)+'</span></a>').join('')+'</div>'+(concise?'':'<p class="muted">Open a score for its review basis and limits.</p>')+'</div>';
 }
 
 export function renderReferenceRationale(projection,{concise=false}={}){

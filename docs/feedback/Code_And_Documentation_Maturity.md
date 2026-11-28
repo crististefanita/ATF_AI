@@ -1491,3 +1491,42 @@ Calitate livrată 96 (corectitudine 96 / verificare 97 / claritate 95).
   repetiție și dovada TAP a eșecului rămân intacte.
 - Lectura rămâne la 96, înțelegerea la 95 și amploarea semantică la 94. Numărul
   testelor nu închide cele două fațete parțiale și nu certifică aplicația externă.
+
+<a id="d-030"></a>
+<a id="d-030-independent-full-width-map-and-owned-reader-text"></a>
+## D-030: Hartă independentă pe toată lățimea și text cu responsabilitate
+
+Stare: VERIFIED în domeniul delimitat al componentelor și randării native. Responsabil: prezentarea și guvernanța Atlas.
+Prioritate 92 (impact 96 / expunere 92 / urgență 84).
+Calitate inițială 91 (corectitudine 95 / verificare 80 / claritate 96).
+
+- Verificarea anterioară a lățimii paginii accepta harta într-o împărțire stânga/dreapta.
+  Cerința curentă rezervă panoului și desenului SVG real o bandă independentă.
+- Harta din main_mcp este o secțiune independentă deschisă. Catalogul lățimii și
+  refuzul diagram-grid ghidează corecția, fără restaurarea execuției vechi.
+- Un rezumat scurt precedă harta; contextul valorii urmează în detalii închise.
+  Geometria procentuală ocupă lățimea HTML, iar textul și grosimea liniilor rămân uniforme.
+- Elimină subsolul generic despre citirea offline/limite și indicația pentru note.
+  Încrederea și limitele rămân în secțiunile dedicate; refuză textul fără responsabilitate.
+- Acceptanța nativă măsoară dreptunghiurile, relațiile, scara, distanțele și zgomotul.
+  Markup-ul sau lățimea exterioară a paginii nu sunt suficiente.
+
+Dovezi: ${ATF_WORK_ROOT}/reviews/atlas-primary-band-20261128.
+Acceptanța cere verificări pereche pentru sursă/documentație, dovezi originale
+de componentă și randare desktop reală cu controale negative țintite. E2E existente,
+execuția Java și cele două fațete parțiale ale aplicației rămân neschimbate.
+
+Calitate livrată 96 (corectitudine 96 / verificare 97 / claritate 95).
+
+- Previzualizarea folosește întreaga bandă la cele trei lățimi, fără coloane laterale,
+  plafon fix, text mărit artificial sau relații din sursă pierdute.
+- Trei cazuri de componentă adăugate refuză geometria îngustată/supradimensionată,
+  subsolul/instrucțiunile generice și textul fără secțiune, păstrând domeniul istoric.
+- Catalogul lățimii și harta principală deschisă din main_mcp ancorează adaptarea;
+  execuția istorică și notele originale rămân neschimbate.
+- Documentația pereche trece după refuzul celulei RO cu 143 de caractere vizibile;
+  explicația mai scurtă repară problema fără relaxarea limitei de 140.
+- Testele sursei finale exacte, refuzurile publicării, controalele native negative
+  și publicarea selectată păstrează chitanțe separate în acest dosar.
+- Înțelegerea 95, lectura 96 și amploarea semantică 94 rămân delimitate; niciuna
+  dintre fațetele parțiale nu este promovată prin layout sau numărul testelor.
