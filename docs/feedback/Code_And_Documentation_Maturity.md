@@ -1578,3 +1578,22 @@ Delivered quality 96 (correctness 96 / verification 97 / clarity 95).
 - Native inspection also refused the exact 992 px SDK breakpoint, where desktop and narrow rules overlap. The canonical construction skin now includes that boundary, keeps the test list full width and retains the real back control.
 
 - Manual image review exposed dashboard occlusion missed by detail-only bounds. Native component governance now measures both views, preserving the original apparently passing capture and its visual counterexample.
+
+<a id="d-034"></a>
+## D-034: Evidence-state reading, softer routes and maintenance storage
+
+Status: VERIFIED within component, native-render and retention scope. Owner: Atlas, RAG and artifact governance.
+Priority 91 (impact 93 / exposure 90 / urgency 88).
+Baseline quality 91 (correctness 95 / verification 88 / clarity 88).
+
+- The prior reader calls five records open questions although three describe known source limits. Derive the heading from the actual disposition, retaining all original evidence requirements and both partial facets.
+- Soften branch and joining corners using bounded geometry; retain every real endpoint, readable label and painted arrow. Compare native rendering with the pinned main_mcp reference.
+- Inventory the entire maintenance workspace. Remove regenerable output and duplicate caches; verify exact archived proof before removing redundant historical trees. Preserve directly usable main_mcp references and Git identities.
+
+Evidence: ${ATF_WORK_ROOT}/reviews/atlas-semantic-cleanup-20261128.
+Acceptance requires paired exact-source tests, source-bound Atlas regeneration, native visual review and a digest-verified cleanup receipt. No new Java runtime, application E2E or emulator.
+
+Delivered quality 96 (correctness 96 / verification 97 / clarity 95).
+The two application facets remain partial: local source answers do not establish deployment acceptance, global uniqueness or account deletion. Source limits are clarified rather than counted as newly completed scope.
+
+- The first RO Node run refused RAG citations based on English sentences absent from the translated contract. Citations now use shared contract identifiers; explanations stay translated. Original results remain separate from the repaired qualification.

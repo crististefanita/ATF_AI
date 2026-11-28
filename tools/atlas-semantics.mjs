@@ -1,4 +1,4 @@
-import {reviewQuestionSources,questionProjection} from '../atf-atlas/governance/questions.mjs';
+import {reviewQuestionSources,questionProjection,questionHeading} from '../atf-atlas/governance/questions.mjs';
 import {requireAtlas} from './atlas-diagnostics.mjs';
 const facets=['purpose','structure','behavior','data','configuration','failure','verification'];
 const need=(ok,message)=>requireAtlas(ok,'ATLAS-SEMANTICS',message);
@@ -82,7 +82,8 @@ export function facetProofProjection(analysis,unitId,facet){
   if(!bounded(analysis.understanding?.refinement?.verificationProfile))return {proof:'',nonClaims:[],openQuestions:[]};
   const boundary=boundaries(analysis).find(d=>d.unitId===unitId&&d.facet===facet)?.proofBoundary;
   if(!boundary)return {proof:'',nonClaims:[],openQuestions:[]};
-  return {proof:boundary.level==='COMPONENT'?'Local component checks; application acceptance is not established.':'Source review; no component execution inferred for the additional observation.',nonClaims:boundary.nonClaims,openQuestions:(boundary.openQuestions||[]).map(questionProjection)};
+  const openQuestions=(boundary.openQuestions||[]).map(questionProjection);
+  return {proof:boundary.level==='COMPONENT'?'Local component checks; application acceptance is not established.':'Source review; no component execution inferred for the additional observation.',nonClaims:boundary.nonClaims,openQuestions,...(openQuestions.length?{questionHeading:questionHeading(openQuestions)}:{})};
 }
 
 /** Reviewed means the declared facet scope was investigated, never that a whole source tree is understood. */

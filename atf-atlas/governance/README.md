@@ -125,3 +125,7 @@ facet's implementation and independent oracle; it cannot promote acceptance.
 complete refusal details and visible original source/reader attribution.
 [Component counterexamples](../../tools/atlas-question-style.test.mjs) exercise
 missing proof, hidden arrows, displaced labels and clipped hints independently.
+
+Question detail headings are derived from actual dispositions. Native facet comparison includes the heading as well as every original question and answer; changing a source limit into an acceptance claim fails the existing scope guards.
+
+[Connector routing](diagram-routing.mjs) rounds actual orthogonal vertices with bounded corners. [Independent cases](diagram-routing.test.mjs) cover short and reversed routes, repeated vertices, translation, preserved ports and invalid coordinates. Native spacing and arrow checks remain necessary.

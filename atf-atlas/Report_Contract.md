@@ -989,3 +989,11 @@ The canonical [construction Extent skin](assets/construction-extent.css) keeps t
 Diagram typography shares the report sans-serif family, including SVG labels without legacy typography classes. Native measurement must confirm the actual family as well as scale and spacing; a font declaration is not rendering proof.
 
 Measure both the dashboard and detail frame against fixed navigation. A visible attribution string does not establish that its table or chart is unobscured. Preserve the actual refused image and repair the canonical skin before requalification.
+
+## Evidence state and connector clarity
+
+`ATLAS-QUESTION-READING-001: SOURCE_BOUND_QUESTIONS_V1` Derive question headings from the retained dispositions. Known source limits and unverified environment questions remain distinct; preserve every original question, evidence requirement and partial facet. A clearer heading is not acceptance or additional semantic coverage.
+
+`ATLAS-ROUTING-001: BOUNDED_ORTHOGONAL_ROUTES_V1` Round orthogonal connector corners within half of each adjacent segment, retaining original ports, direction and labels. Reject nonfinite or diagonal input with an owned repair hint. Recheck actual arrow paint, foreign-label clearance and native geometry at every declared width; source path syntax alone cannot qualify appearance.
+
+`ATLAS-RETENTION-001: VERIFIED_COLD_HISTORY_V1` Retain exact original proof and the source-to-evidence closure. Remove regenerable checkouts, compiled output and duplicate caches only after inventory. Cold archives need a complete per-file digest manifest and a verified extraction round trip before removing original files; retain the pinned main_mcp HTML, its adjacent assets and Git identity as directly usable references. Never follow a reparse point during cleanup.

@@ -216,3 +216,5 @@ obsolete class conventions or fixed node quotas into a different source graph.
 Source answers retain all remaining partial-facet questions and their actual
 implementation/oracle selections. Rendered Extent proof must visibly distinguish
 recorded observations from a fresh application or MCP execution.
+
+Separate known source limits from environment questions in the reader, without deleting either from the audit. Rounded routes adapt the archived calm visual style while preserving actual graph meaning. Clean maintenance storage through verified cold archives and regenerable-output removal; preserve source, original evidence and directly usable pinned references.

@@ -131,6 +131,7 @@ normalizing their presentation does not claim a fresh execution.
 
 | ID | Delivered behavior | Verification |
 |---|---|---|
+| D-034 | Known source limits, bounded smooth routes and verified maintenance cleanup; quality 96 (96/97/95) | [Evidence state, routing and retention](Code_And_Documentation_Maturity.md#d-034) |
 | D-032 | Decisions tied to real declarations, readable routes and Extent proof; quality 96 (96/97/95) | [Correlation, refusals and evidence](Code_And_Documentation_Maturity.md#d-032) |
 | D-031 | Symmetric dark gutters, concise confidence table and dedicated provenance; quality 96 (96/97/95) | [Native and component evidence](Code_And_Documentation_Maturity.md#d-031) |
 | D-030 | Independent fluid main-map band, uniform type and no generic footer; quality 96 (96/97/95) | [Archive calibration, source and native evidence](Code_And_Documentation_Maturity.md#d-030) |
