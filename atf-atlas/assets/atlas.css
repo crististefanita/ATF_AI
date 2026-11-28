@@ -991,6 +991,3 @@ html[data-atlas-surface="framed-1"] body{background:var(--bg)}
 .concise-reader .reader-source-trace td{white-space:pre-line;overflow-wrap:anywhere}
 
 .concise-reader .reader-symbol{font:14px/1.55 var(--mono)}
-
-/* Current diagram typography shares the report family, including unclassed SVG labels. */
-.reader .flow text{font-family:var(--sans)}

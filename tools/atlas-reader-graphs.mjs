@@ -1,3 +1,4 @@
+import {roundedOrthogonalPath} from '../atf-atlas/governance/diagram-routing.mjs';
 import {requireAtlas} from './atlas-diagnostics.mjs';
 import {layoutFittedDiagram} from '../atf-atlas/governance/diagram-layout.mjs';
 import {referencePresentationProjection} from './atlas-reference.mjs';
@@ -80,10 +81,10 @@ export function renderReaderGraph(graph,{title,legend,labels,fit=false,legendIte
   if(graph.kind==='PRIMARY')return renderPrimaryMap(graph,layout,{title,legend,fit,legendItems,references,concise});
   const paths=layout.edges.map(edge=>{const from=byId.get(edge.from),to=byId.get(edge.to),start=from.x+from.width,end=to.x,sy=from.y+45,ty=to.y+45,skip=end-start>200||end<start,y=skip?52+lane++*44:0;
     const siblings=responsive?layout.edges.filter(e=>e.from===edge.from&&byId.get(e.to).x===to.x).sort((a,b)=>byId.get(a.to).y-byId.get(b.to).y):[],incoming=responsive?layout.edges.filter(e=>e.to===edge.to&&byId.get(e.from).x===from.x).sort((a,b)=>byId.get(a.from).y-byId.get(b.from).y):[],fork=!skip&&siblings.length>=2,join=!skip&&incoming.length>=2,port=15+60*siblings.indexOf(edge)/Math.max(1,siblings.length-1),targetPort=15+60*incoming.indexOf(edge)/Math.max(1,incoming.length-1);
-    const route=fork?'M'+start+','+(from.y+port)+' H'+(start+8)+' V'+ty+' H'+end:join?'M'+start+','+sy+' H'+(end-8)+' V'+(to.y+targetPort)+' H'+end:skip?'M'+start+','+sy+' C'+(start+28)+','+sy+' '+(start+28)+','+y+' '+(start+42)+','+y+' H'+(end-36)+' C'+(end-12)+','+y+' '+(end-24)+','+ty+' '+end+','+ty:'M'+start+','+sy+' C'+(start+30)+','+sy+' '+(end-30)+','+ty+' '+end+','+ty;
+    const route=fork?roundedOrthogonalPath([[start,from.y+port],[start+8,from.y+port],[start+8,ty],[end,ty]]):join?roundedOrthogonalPath([[start,sy],[end-8,sy],[end-8,to.y+targetPort],[end,to.y+targetPort]]):skip?'M'+start+','+sy+' C'+(start+28)+','+sy+' '+(start+28)+','+y+' '+(start+42)+','+y+' H'+(end-36)+' C'+(end-12)+','+y+' '+(end-24)+','+ty+' '+end+','+ty:'M'+start+','+sy+' C'+(start+30)+','+sy+' '+(end-30)+','+ty+' '+end+','+ty;
     const label=edge.label||(graph.kind==='DEPENDENCY'?'uses':'relates'),text=responsive?nativeLines(label,11):lines(label,fit?14:18),cx=(start+end)/2,baseline=skip?y-26:(fork?ty:join?sy:(sy+ty)/2)-14-(text.length-1)*18;
     need(text.length<=(fit?3:2),'Keep relationship labels concise and explain detail in the legend');
-    const routed=responsive&&skip?'M'+start+','+sy+' H'+(start+8)+' V'+y+' H'+(end-8)+' V'+ty+' H'+end:route;
+    const routed=responsive&&skip?roundedOrthogonalPath([[start,sy],[start+8,sy],[start+8,y],[end-8,y],[end-8,ty],[end,ty]]):route;
     const path='<path class="edge" d="'+routed+'"'+(responsive?' vector-effect="non-scaling-stroke"':'')+' marker-end="url(#arrow)"/>';
     const geometry=responsive?'<svg class="diagram-routing" width="100%" height="100%" viewBox="0 0 '+layout.width+' '+layout.height+'" preserveAspectRatio="none" aria-hidden="true">'+path+'</svg>':path;
     return '<g class="relationship" data-from="'+escape(edge.from)+'" data-to="'+escape(edge.to)+'">'+geometry+'<text class="edge-label" x="'+xPosition(cx)+'" y="'+baseline+'" text-anchor="middle">'+text.map((line,i)=>'<tspan x="'+xPosition(cx)+'" dy="'+(i?18:0)+'">'+escape(line)+'</tspan>').join('')+'</text></g>';}).join('');

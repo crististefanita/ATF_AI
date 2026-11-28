@@ -1651,3 +1651,23 @@ Calitate livrată 96 (corectitudine 96 / verificare 97 / claritate 95).
 - Inspecția nativă a respins și pragul SDK exact de 992 px, unde regulile desktop și cele înguste se suprapun. Stilul canonic de construcție include acum pragul, păstrează lista pe întreaga lățime și butonul real de întoarcere.
 
 - Revizia manuală a imaginilor a descoperit acoperirea tabloului de bord, ratată de măsurarea exclusivă a detaliilor. Guvernanța nativă de componentă măsoară acum ambele vederi, păstrând captura originală aparent validă și contraexemplul său vizual.
+
+<a id="d-034"></a>
+<a id="d-034-evidence-state-reading-softer-routes-and-maintenance-storage"></a>
+## D-034: Citirea stării dovezilor, trasee mai line și spațiul de mentenanță
+
+Status: VERIFIED în domeniul componentelor, randării native și păstrării dovezilor. Responsabil: Atlas, RAG și guvernanța artefactelor.
+Prioritate 91 (impact 93 / expunere 90 / urgență 88).
+Calitate inițială 91 (corectitudine 95 / verificare 88 / claritate 88).
+
+- Documentul anterior numește cinci înregistrări întrebări deschise, deși trei descriu limite cunoscute ale sursei. Derivă titlul din clasificarea reală, păstrând toate cerințele originale de dovadă și ambele fațete parțiale.
+- Rotunjește colțurile ramificațiilor și reunirilor prin geometrie limitată; păstrează fiecare extremitate reală, etichetă lizibilă și săgeată desenată. Compară randarea nativă cu referința main_mcp fixată.
+- Inventariază întregul spațiu de mentenanță. Elimină rezultatele regenerabile și cache-urile duplicate; verifică dovezile arhivate exact înainte de eliminarea arborilor istorici redundanți. Păstrează referințele main_mcp direct utilizabile și identitățile Git.
+
+Dovezi: ${ATF_WORK_ROOT}/reviews/atlas-semantic-cleanup-20261128.
+Acceptanța necesită teste pereche pe sursele exacte, regenerarea Atlasului legată de sursă, revizie vizuală nativă și o dovadă a curățării verificată prin amprente. Fără Java de execuție nou, E2E de aplicație noi sau emulator.
+
+Calitate livrată 96 (corectitudine 96 / verificare 97 / claritate 95).
+Cele două fațete ale aplicației rămân parțiale: răspunsurile din sursa locală nu stabilesc acceptanța în mediu, unicitatea globală sau ștergerea conturilor. Limitele sursei sunt clarificate, fără a fi numărate ca domeniu nou finalizat.
+
+- Prima rulare Node RO a refuzat citări RAG bazate pe fraze engleze absente din contractul tradus. Citările folosesc acum identificatori comuni ai contractului; explicațiile rămân traduse. Rezultatele originale sunt păstrate separat de calificarea corectată.

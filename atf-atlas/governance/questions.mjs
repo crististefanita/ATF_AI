@@ -33,3 +33,11 @@ export function questionProjection(question){
   const {id,question:meaning,evidenceNeeded,review}=question;
   return {id,question:meaning,evidenceNeeded,...(review?{disposition:questionDispositions[review.disposition],answer:review.answer}:{})};
 }
+
+/** Reading groups explain evidence state without closing any original question. */
+export function questionHeading(questions){
+  if(questions.length&&questions.every(q=>q.disposition===questionDispositions.SOURCE_BOUND_LIMIT))return 'Known source limits';
+  if(questions.length&&questions.every(q=>q.disposition===questionDispositions.UNVERIFIED_ENVIRONMENT))return 'Unverified environment questions';
+  if(questions.some(q=>q.disposition))return 'Source limits and remaining questions';
+  return 'Remaining questions';
+}

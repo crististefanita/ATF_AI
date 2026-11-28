@@ -228,3 +228,5 @@ convenții de clase retrase sau cote fixe de noduri într-un alt graf sursă.
 Răspunsurile din sursă păstrează toate întrebările fațetelor parțiale și selecțiile reale
 de implementare și verificare independentă. Dovada Extent randată trebuie să distingă vizibil
 observațiile înregistrate de o nouă execuție a aplicației sau MCP.
+
+Separă în documentul de înțelegere limitele cunoscute ale sursei de întrebările despre mediu, fără a le elimina din audit. Traseele rotunjite adaptează stilul vizual calm arhivat, păstrând sensul grafului real. Curăță spațiul de mentenanță prin arhive istorice verificate și eliminarea rezultatelor regenerabile; păstrează sursa, dovezile originale și referințele fixate direct utilizabile.

@@ -1039,3 +1039,12 @@ identitatea sursei și amprenta raportului în dovezile adiacente de construcți
 Tipografia diagramelor folosește familia fără serife a raportului, inclusiv pentru etichetele SVG fără clasele tipografice vechi. Măsurarea nativă trebuie să confirme familia reală, scara și spațierea; o declarație de font nu reprezintă dovadă de randare.
 
 Măsoară atât cadrul tabloului de bord, cât și pe cel al detaliilor față de navigația fixă. Un text de atribuire vizibil nu demonstrează că tabelul sau graficul său nu este acoperit. Păstrează imaginea refuzată și repară stilul canonic înainte de recalificare.
+
+<a id="evidence-state-and-connector-clarity"></a>
+## Starea dovezilor și claritatea conectorilor
+
+`ATLAS-QUESTION-READING-001: SOURCE_BOUND_QUESTIONS_V1` Derivă titlurile întrebărilor din clasificările păstrate. Limitele cunoscute ale sursei și întrebările neverificate în mediu rămân distincte; păstrează fiecare întrebare originală, cerință de dovadă și fațetă parțială. Un titlu mai clar nu reprezintă acceptanță sau acoperire semantică suplimentară.
+
+`ATLAS-ROUTING-001: BOUNDED_ORTHOGONAL_ROUTES_V1` Rotunjește colțurile conectorilor ortogonali în limita jumătății fiecărui segment adiacent, păstrând porturile, direcția și etichetele originale. Refuză intrările nefinite sau diagonale cu indicații de remediere și responsabil. Reverifică săgețile efectiv desenate, distanța față de etichetele altor legături și geometria nativă la fiecare lățime declarată; sintaxa traseului din sursă nu califică singură aspectul.
+
+`ATLAS-RETENTION-001: VERIFIED_COLD_HISTORY_V1` Păstrează dovezile originale exacte și lanțul dintre sursă și dovezi. Elimină clonele regenerabile, rezultatele compilării și cache-urile duplicate numai după inventariere. Arhivele istorice necesită un manifest complet cu amprentele fișierelor și verificarea extragerii înainte de eliminarea originalelor; păstrează HTML-ul main_mcp fixat, resursele adiacente și identitatea Git ca referințe direct utilizabile. Nu urma punctele de redirecționare în timpul curățării.

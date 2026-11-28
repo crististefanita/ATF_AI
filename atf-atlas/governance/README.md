@@ -131,3 +131,7 @@ verificarea independentă ale aceleiași fațete; nu poate promova acceptanța.
 detaliile complete ale refuzului și atribuirea vizibilă către sursa și cititorul originale.
 [Contraexemplele de componentă](../../tools/atlas-question-style.test.mjs) verifică
 independent lipsa dovezilor, săgețile ascunse, etichetele deplasate și hint-urile tăiate.
+
+Titlurile detaliilor despre întrebări sunt derivate din clasificările efective. Comparația nativă a fațetelor include titlul, fiecare întrebare originală și răspunsul; transformarea unei limite a sursei într-o afirmație de acceptanță este refuzată de verificările existente ale domeniului.
+
+[Rutarea conectorilor](diagram-routing.mjs) rotunjește vârfurile ortogonale reale cu limite pentru colțuri. [Cazurile independente](diagram-routing.test.mjs) acoperă trasee scurte și inversate, vârfuri repetate, translația, porturile păstrate și coordonatele invalide. Verificările native ale distanțelor și săgeților rămân necesare.
