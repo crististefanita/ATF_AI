@@ -191,3 +191,8 @@ HTML rămân în arhiva externă. Noul caz de guvernanță refuză legături sau
 verdicte nepotrivite și verifică repararea cu octeții declarați.
 
 </details>
+
+Raportul Extent autonom de construcție reprezintă dovezi derivate. Tabloul său de bord
+trebuie să arate identitatea sursei și a cititorului originale; deschide fiecare refuz așteptat
+pentru observația, hint-ul, responsabilul și comanda de reverificare vizibile. Contoarele și
+ora creării raportului SDK nu înlocuiesc dovada originală de execuție XML/TAP.

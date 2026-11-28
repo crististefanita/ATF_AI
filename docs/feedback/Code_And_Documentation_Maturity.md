@@ -1612,3 +1612,36 @@ Calitate livrată 96 (corectitudine 96 / verificare 97 / claritate 95).
 - Selecția Maven completă a refuzat un URL absolut literal dintr-un caz negativ.
   Cazul construiește acum URL-ul din modulul de test, relativ la proiect; regula
   de portabilitate și refuzul legăturii rămân intacte. Dovezile originale sunt păstrate.
+
+<a id="d-033"></a>
+<a id="d-033-source-answers-for-partial-facets-and-native-diagram-elegance"></a>
+## D-033: Răspunsuri din sursă pentru fațete parțiale și eleganță nativă a diagramelor
+
+Status: VERIFIED în limitele componentelor și previzualizării native. Owner: Atlas, RAG și guvernanța artefactelor.
+Prioritate 92 (impact 94 / expunere 91 / urgență 88).
+Calitate inițială 90 (corectitudine 94 / verificare 86 / claritate 89).
+
+- Păstrează cele două fațete ale aplicației parțiale; aprofundează toate cele cinci întrebări folosind
+  sursa reală pentru factură și înregistrare și componentele independente existente.
+- Refolosește principiile arhivate pentru stil neutru, etichete centrate și săgeți lizibile.
+  Pictarea și geometria native trebuie să califice primitivele actuale reale.
+- Inspectează fiecare refuz și tabloul de bord Extent derivat. Hint-urile ascunse, textul tăiat
+  și afirmațiile nejustificate despre o execuție nouă trebuie respinse de componente.
+
+Dovezi: ${ATF_WORK_ROOT}/reviews/atlas-partial-style-20261128.
+Acceptanța cere verificări pereche pe sursa exactă, revizie nativă Atlas și Extent,
+refuzuri și reparări originale și inventar E2E al aplicației neschimbat.
+Fără Java runtime nou, E2E al aplicației nou sau emulator.
+
+Calitate livrată 96 (corectitudine 96 / verificare 97 / claritate 95).
+
+- Toate cele cinci întrebări originale primesc răspunsuri delimitate din sursa proprie; cele două
+  fațete ale aplicației rămân parțiale, cu cerințele originale de dovezi.
+- Douăsprezece cazuri independente de componentă resping dovezi împrumutate, acceptanță
+  nejustificată, culori de semafor, altă tipografie, săgeți ascunse și hint-uri tăiate.
+- Toate cele optsprezece diagrame trec revizia sursei și cea nativă la 900/1440/1920 px.
+  Etichetele SVG folosesc familia raportului fără reducerea textului sau pierderea relațiilor.
+- Previzualizarea Extent reparată verifică fiecare refuz original la toate cele trei
+  lățimi și folosește butonul real de întoarcere în afara navigației fixe.
+- Refuzurile originale pentru documentație, numărul surselor arhivate și randare sunt păstrate.
+  Calificarea pereche a sursei finale și publicarea selectată au dovezi separate.

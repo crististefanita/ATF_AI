@@ -1001,3 +1001,39 @@ politicii; păstrarea obligatorie pentru o interogare fără legătură este con
 de politică, nu regăsire semantică a proiectului. Revizuirea sursei oferă explicația proiectului.
 
 </details>
+
+<a id="source-answers-for-partial-facets"></a>
+## Răspunsuri din sursă pentru fațetele parțiale
+
+`ATLAS-QUESTIONS-001: SOURCE_BOUND_QUESTIONS_V1` păstrează fiecare întrebare originală și cerința sa de dovezi; leagă răspunsul de fragmentele reale de implementare și de verificare independentă ale fațetei și păstrează PARTIAL fără acceptanță demonstrată a aplicației.
+
+| Dispoziție | Semnificație pentru cititor | Limita dovezii |
+|---|---|---|
+| Limită susținută de sursă | Contractul inspectat explică un răspuns delimitat | Nu rezultă garanții universale sau curățare implementată |
+| Mediu nerecalificat | Verificările locale explică ce rămâne neobservat la distanță | Nu rezultă o nouă acceptanță a mediului sau a browserelor |
+
+Răspunsurile apar doar în detaliul existent, închis, al întrebărilor rămase.
+Referințele tehnice rămân în audit. Lipsa unui răspuns, un fragment împrumutat,
+o afirmație necunoscută, o întrebare duplicată sau ștergerea limitei parțiale eșuează cu hint.
+Răspunsurile din sursă îmbunătățesc înțelegerea fără să închidă întrebarea nerezolvată.
+
+<a id="native-diagram-and-construction-style"></a>
+## Stil nativ pentru diagrame și raportul de construcție
+
+`ATLAS-DIAGRAM-STYLE-001: NEUTRAL_DIAGRAMS_V1` măsoară formele neutre vizibile, liniile de etichetă centrate și vârfurile de săgeată rezolvate și pictate; CSS-ul canonic sau atributele de marker nu sunt suficiente.
+
+Adaptează regulile arhivate pentru primitive neutre și scară la identitățile sursei actuale.
+Nu copia nume de clase retrase și nu impune complexitate decorativă în graf.
+Păstrează textul explicit de maturitate, contururi discrete, tipografie uniformă, legende și
+referințe locale. Verificările native resping umplerea nodurilor în culori de semafor, conectorii invizibili,
+săgețile nepictate și centrele etichetelor deplasate cu peste doi pixeli CSS.
+
+`ATLAS-CONSTRUCTION-002`: Inspectează raportul Extent autonom exact, fiecare refuz așteptat și tabloul său de bord; păstrează vizibile hint-urile încadrate, responsabilul, comanda de reverificare și atribuirea către dovezile originale înregistrate.
+
+Contoarele SDK și ora creării raportului descriu prezentarea derivată. Ele nu reprezintă
+execuții MCP noi sau duratele testelor originale. Păstrează XML/TAP originale,
+identitatea sursei și amprenta raportului în dovezile adiacente de construcție.
+
+[Stilul canonic Extent de construcție](assets/construction-extent.css) păstrează panoul de detalii în afara navigației fixe pe ferestre desktop înguste. Măsoară limitele reale ale panoului și verifică butonul existent de întoarcere; lipsa depășirii documentului nu poate detecta singură un titlu acoperit.
+
+Tipografia diagramelor folosește familia fără serife a raportului, inclusiv pentru etichetele SVG fără clasele tipografice vechi. Măsurarea nativă trebuie să confirme familia reală, scara și spațierea; o declarație de font nu reprezintă dovadă de randare.

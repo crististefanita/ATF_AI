@@ -118,3 +118,16 @@ relativă și domeniul raportului separat, derivat din dovezi originale.
 `DIAGRAM_LABEL_ROUTE` refuză conectorii care trec prin eticheta altei relații.
 Ramurile folosesc porturi separate; conturul lizibil nu dovedește singur
 apartenența corectă a etichetei. Păstrează toate capetele și textele originale.
+
+`DIAGRAM_STYLE` inspectează fiecare formă reală, umplerea neutră, centrul liniilor și
+vârful pictat al săgeții. [Verificările stilului nativ](diagram-style.mjs) adaptează principiile arhivate la
+primitivele actuale; o clasă pe container nu reprezintă o observație vizuală.
+
+[Verificările întrebărilor din sursă](questions.mjs) păstrează fiecare întrebare deschisă și
+cerința sa originală de dovezi. Răspunsul delimitat trebuie să citeze implementarea și
+verificarea independentă ale aceleiași fațete; nu poate promova acceptanța.
+
+[Verificările randării construcției](extent.mjs) inspectează raportul Extent derivat,
+detaliile complete ale refuzului și atribuirea vizibilă către sursa și cititorul originale.
+[Contraexemplele de componentă](../../tools/atlas-question-style.test.mjs) verifică
+independent lipsa dovezilor, săgețile ascunse, etichetele deplasate și hint-urile tăiate.
