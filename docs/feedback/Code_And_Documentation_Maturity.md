@@ -1649,3 +1649,5 @@ Calitate livrată 96 (corectitudine 96 / verificare 97 / claritate 95).
 - Rularea completă pereche a detectat un README revenit la versiunea inițială, rămas în suprapunerea de validare refolosită. Pregătirea finală compară acum fiecare fișier sursă urmărit octet cu octet; XML-urile eșuate originale și instantaneele sursei rămân separate de calificarea reparată.
 
 - Inspecția nativă a respins și pragul SDK exact de 992 px, unde regulile desktop și cele înguste se suprapun. Stilul canonic de construcție include acum pragul, păstrează lista pe întreaga lățime și butonul real de întoarcere.
+
+- Revizia manuală a imaginilor a descoperit acoperirea tabloului de bord, ratată de măsurarea exclusivă a detaliilor. Guvernanța nativă de componentă măsoară acum ambele vederi, păstrând captura originală aparent validă și contraexemplul său vizual.

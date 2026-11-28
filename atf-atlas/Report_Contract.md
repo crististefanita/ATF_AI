@@ -1037,3 +1037,5 @@ identitatea sursei și amprenta raportului în dovezile adiacente de construcți
 [Stilul canonic Extent de construcție](assets/construction-extent.css) păstrează panoul de detalii în afara navigației fixe pe ferestre desktop înguste. Măsoară limitele reale ale panoului și verifică butonul existent de întoarcere; lipsa depășirii documentului nu poate detecta singură un titlu acoperit.
 
 Tipografia diagramelor folosește familia fără serife a raportului, inclusiv pentru etichetele SVG fără clasele tipografice vechi. Măsurarea nativă trebuie să confirme familia reală, scara și spațierea; o declarație de font nu reprezintă dovadă de randare.
+
+Măsoară atât cadrul tabloului de bord, cât și pe cel al detaliilor față de navigația fixă. Un text de atribuire vizibil nu demonstrează că tabelul sau graficul său nu este acoperit. Păstrează imaginea refuzată și repară stilul canonic înainte de recalificare.
