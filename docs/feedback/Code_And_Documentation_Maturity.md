@@ -1534,3 +1534,37 @@ Calitate livrată 96 (corectitudine 96 / verificare 97 / claritate 95).
   și publicarea selectată păstrează chitanțe separate în acest dosar.
 - Înțelegerea 95, lectura 96 și amploarea semantică 94 rămân delimitate; niciuna
   dintre fațetele parțiale nu este promovată prin layout sau numărul testelor.
+
+<a id="d-031"></a>
+<a id="d-031-balanced-reading-frame-and-dedicated-provenance"></a>
+## D-031: Cadru de lectură echilibrat și proveniență dedicată
+
+Stare: VERIFIED în domeniul verificărilor de componentă și al randării native. Responsabil: prezentare și guvernanță Atlas.
+Prioritate 91 (impact 94 / expunere 90 / urgență 85).
+Calitate inițială 90 (corectitudine 95 / verificare 85 / claritate 88).
+
+- Captura utilizatorului arată un inventar tehnic lung și proveniență curată la vedere.
+  Înlocuiește inventarul cu domeniul și limita revizuirii într-un tabel scurt.
+- Păstrează margini întunecate simetrice și lățimea interioară completă pentru diagrame;
+  reperul arhivat ghidează stilul fără restaurarea vechiului runtime.
+- Compară toate cele șase secțiuni cu sursa curentă; păstrează cazurile, verdictele,
+  limitele parțiale și avertizările vizibile despre surse nepublicate sau eșecuri.
+- Testele de componentă și controalele native trebuie să refuze întinderea până la
+  margini, asimetria, proveniența deplasată și repetițiile neatribuite.
+
+Dovezi: ${ATF_WORK_ROOT}/reviews/atlas-framed-reading-20261128.
+Acceptanța cere verificări EN/RO, dovezi originale, inspecție nativă la
+900/1440/1920 px și controale negative reparate. Fără E2E noi sau emulatoare.
+
+Calitate livrată 96 (corectitudine 96 / verificare 97 / claritate 95).
+
+- Previziunea nativă finală trece la 900/1440/1920 px, cu margini de 45/72/120 px
+  și toate cele șase secțiuni inspectate separat. Cele optsprezece diagrame rămân intacte.
+- Trei cazuri de componentă suplimentare refuză margini greșite, proveniență
+  deplasată și pierderea avertizărilor; răspunsurile și coloanele sunt măsurate.
+- Prima verificare a documentației a refuzat ancora RO absentă; ambele selecții
+  de 68 de cazuri trec după repararea ei. Jurnalele originale rămân păstrate.
+- Etichetele întregi sunt rearanjate după patru spațieri sub prag la 900 px;
+  textul nu este micșorat, iar relațiile și limitele dovezii rămân neschimbate.
+- Calificarea finală pe sursa exactă, refuzurile editorului și controalele native
+  păstrează dovezi distincte în dosar. Două fațete și cinci întrebări rămân parțiale.

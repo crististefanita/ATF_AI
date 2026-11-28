@@ -101,3 +101,7 @@ node --test tools/atlas-reading.test.mjs tools/atlas-fit.test.mjs tools/atlas-re
 ```
 
 </details>
+
+`READER_FRAME` verifică marginile reale și fundalul uniform. `CONFIDENCE_REVIEW`
+compară răspunsurile și proveniența cu sursa; cere un singur detaliu colapsat
+pentru baza revizuirii. Inspectează separat cele șase secțiuni și toate diagramele.

@@ -136,6 +136,7 @@ normalizarea prezentării nu reprezintă o nouă execuție.
 
 | ID | Comportament livrat | Verificare |
 |---|---|---|
+| D-031 | Margini întunecate simetrice, tabel de încredere concis și proveniență dedicată; calitate 96 (96/97/95) | [Dovezi native și de componentă](Code_And_Documentation_Maturity.md#d-031) |
 | D-030 | Bandă principală fluidă independentă, text uniform și fără subsol generic; calitate 96 (96/97/95) | [Calibrare istorică, sursă și dovezi native](Code_And_Documentation_Maturity.md#d-030) |
 | D-029 | Revizuire grupată, proză business concisă și distanțe măsurate în diagrame; calitate 96 (96/97/95) | [Sursă, reparări și revizuire nativă](Code_And_Documentation_Maturity.md#d-029) |
 | D-028 | Lectură concisă, lățime utilă și cazuri la cerere; calitate 96 (96/97/95) | [Sursă, traseu de lectură și dovezi](Code_And_Documentation_Maturity.md#d-028) |

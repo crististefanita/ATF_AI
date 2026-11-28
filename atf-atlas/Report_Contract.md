@@ -160,9 +160,18 @@ pentru toate rândurile.
 
 `ATLAS-DIAGRAM-WIDTH-001: Every current concise diagram uses the full width available in its own panel; measure both figure and actual SVG canvas, reject artificial width caps and overflow, and scale route geometry without stretching text or border weight.`
 
-Desenul principal ocupă lățimea HTML disponibilă. Geometria adaptivă a relațiilor
+Cadrul de lectură are margini întunecate, simetrice; desenul principal ocupă
+lățimea interioară disponibilă. Geometria adaptivă a relațiilor
 păstrează textul și marginile nodurilor la scara nativă, fără să întindă fonturile.
 Contextul valorii rămâne colapsat sub hartă, cu sensul său legat de sursă păstrat.
+
+Cadrul folosește 90% din fereastră, până la 1680 px. Marginea decorativă nu
+justifică îngustarea unei diagrame în propriul panou. Inspectează toate cele șase
+secțiuni la 900/1440/1920 px, prin navigarea normală și cu detaliile deschise.
+
+`ATLAS-READER-FRAME-001: Center the current reader at 90% viewport width with a maximum of 1680 CSS pixels and symmetric solid dark gutters; every diagram still fills its own inner panel, without clipping, horizontal scrolling or scaled-down type.`
+
+`ATLAS-CONFIDENCE-001: Present review scope and its unproven boundary as short source-owned table answers, at most 40 words each; keep the exact date and clean-source provenance in one initially closed Review basis, retain dirty-source warnings and failed checks visibly, and inspect all six sections through native navigation.`
 
 `ATLAS-DIAGRAM-FIT-001: Fresh CURRENT_UNDERSTANDING_V3 requires BUSINESS_REFERENCE_V2; every diagram and table fits without horizontal scrolling, clipping or reduced text, with actual transformed SVG type of at least 13 CSS px at the qualified desktop widths; split a wide idea into meaningful source-bound subviews or prose and retain its complete audit.`
 

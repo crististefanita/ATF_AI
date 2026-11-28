@@ -41,6 +41,9 @@ actualul cod al proiectului.
 <a id="adaptation-rules"></a>
 ## Reguli de adaptare
 
+- Păstrează margini întunecate simetrice; folosește lățimea interioară pentru fiecare diagramă.
+- Prezintă domeniul și limita revizuirii într-un tabel scurt; proveniența curată stă
+  în detaliul dedicat. Avertizarea despre modificări nepublicate rămâne vizibilă.
 - Rezervă hărții principale o bandă pe toată lățimea și măsoară desenul SVG real.
 - Păstrează rezumatul deasupra, suportul dedesubt și limitele în secțiunile dedicate;
   elimină subsolul/instrucțiunile generice și păstrează textul principal uniform.

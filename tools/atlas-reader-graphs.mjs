@@ -8,6 +8,9 @@ const escape=value=>String(value).replaceAll('&','&amp;').replaceAll('<','&lt;')
 const plain=value=>typeof value==='string'&&value.trim().length>0;
 function lines(label,width=18){need(plain(label),'Give the diagram an actual readable label');const result=[''];for(const word of label.split(/\s+/)){if((result.at(-1)+' '+word).trim().length>width)result.push(word);else result[result.length-1]=(result.at(-1)+' '+word).trim();}need(result.length<=3&&label.split(/\s+/).every(word=>word.length<=width),'Shorten the source-bound diagram label instead of shrinking its type: '+label);return result;}
 
+/** Wrap full words for native text without silently dropping a longer source word. */
+function nativeLines(label,width){const result=[''];for(const word of label.split(/\s+/)){if(result.at(-1)&&(result.at(-1)+' '+word).length>width)result.push(word);else result[result.length-1]=(result.at(-1)+' '+word).trim();}need(result.length<=3&&label.split(/\s+/).every(word=>word.length<=18),'Keep native relationship words readable and explain long detail in the local legend: '+label);return result;}
+
 /** Relationship identities and direction survive layout, including cycles and disconnected owners. */
 export function layoutReaderGraph(graph,{fit=false}={}){
   need(Array.isArray(graph?.nodes)&&graph.nodes.length>0&&Array.isArray(graph.edges),'A reader graph needs actual nodes and relationships');
@@ -77,7 +80,7 @@ export function renderReaderGraph(graph,{title,legend,labels,fit=false,legendIte
   if(graph.kind==='PRIMARY')return renderPrimaryMap(graph,layout,{title,legend,fit,legendItems,references,concise});
   const paths=layout.edges.map(edge=>{const from=byId.get(edge.from),to=byId.get(edge.to),start=from.x+from.width,end=to.x,sy=from.y+45,ty=to.y+45,skip=end-start>200||end<start,y=skip?52+lane++*44:0;
     const route=skip?'M'+start+','+sy+' C'+(start+28)+','+sy+' '+(start+28)+','+y+' '+(start+42)+','+y+' H'+(end-36)+' C'+(end-12)+','+y+' '+(end-24)+','+ty+' '+end+','+ty:'M'+start+','+sy+' C'+(start+30)+','+sy+' '+(end-30)+','+ty+' '+end+','+ty;
-    const label=edge.label||(graph.kind==='DEPENDENCY'?'uses':'relates'),text=lines(label,responsive?12:fit?14:18),cx=(start+end)/2,baseline=skip?y-26:(sy+ty)/2-14-(text.length-1)*18;
+    const label=edge.label||(graph.kind==='DEPENDENCY'?'uses':'relates'),text=responsive?nativeLines(label,11):lines(label,fit?14:18),cx=(start+end)/2,baseline=skip?y-26:(sy+ty)/2-14-(text.length-1)*18;
     need(text.length<=(fit?3:2),'Keep relationship labels concise and explain detail in the legend');
     const path='<path class="edge" d="'+route+'"'+(responsive?' vector-effect="non-scaling-stroke"':'')+' marker-end="url(#arrow)"/>';
     const geometry=responsive?'<svg class="diagram-routing" width="100%" height="100%" viewBox="0 0 '+layout.width+' '+layout.height+'" preserveAspectRatio="none" aria-hidden="true">'+path+'</svg>':path;
@@ -97,7 +100,7 @@ function renderPrimaryMap(graph,layout,{title,legend,fit,legendItems,references,
   const byId=new Map(layout.nodes.map(n=>[n.id,n])),responsive=fit&&concise,xPosition=value=>responsive?(value/layout.width*100).toFixed(6)+'%':value;
   const relationshipLines=value=>{const result=[''];for(const word of value.split(/\s+/)){if((result.at(-1)+' '+word).trim().length>11)result.push(word);else result[result.length-1]=(result.at(-1)+' '+word).trim();}return result;};
   const paths=layout.edges.map(edge=>{
-    const from=byId.get(edge.from),to=byId.get(edge.to),wrapped=relationshipLines(edge.label),sameBand=from.band===to.band;
+    const from=byId.get(edge.from),to=byId.get(edge.to),wrapped=responsive?nativeLines(edge.label,9):relationshipLines(edge.label),sameBand=from.band===to.band;
     need(wrapped.length<=2,'Keep primary relationship labels concise and explain detail in the legend');
     let route,cx,baseline;
     if(sameBand){const forward=to.x>from.x,sx=from.x+(forward?220:0),ex=to.x+(forward?0:220),y=from.y+45;cx=(sx+ex)/2;
