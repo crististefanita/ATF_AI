@@ -112,3 +112,16 @@ relative link and scope of the separate report derived from original evidence.
 `DIAGRAM_LABEL_ROUTE` refuses connectors crossing another relationship label.
 Branches use separate ports; a readable halo alone does not establish label
 ownership. Preserve all original endpoints and text.
+
+`DIAGRAM_STYLE` inspects each actual shape, neutral fill, line center and painted
+arrowhead. [Native style checks](diagram-style.mjs) adapt archived principles to
+current primitives; a wrapper class is not a visual observation.
+
+[Source-question checks](questions.mjs) retain every open question and its
+original evidence requirement. A bounded source answer must cite the same
+facet's implementation and independent oracle; it cannot promote acceptance.
+
+[Construction rendering checks](extent.mjs) inspect the derived Extent reader,
+complete refusal details and visible original source/reader attribution.
+[Component counterexamples](../../tools/atlas-question-style.test.mjs) exercise
+missing proof, hidden arrows, displaced labels and clipped hints independently.

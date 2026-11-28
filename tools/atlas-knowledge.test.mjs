@@ -24,7 +24,7 @@ test('the maintained knowledge corpus has complete mandatory policy and exact cu
 });
 
 test('archived provenance verifies actual pinned Git bytes and useful excerpts without network access',()=>{
-  const result=verifyAtlasKnowledgeArchive();assert.equal(result.status,'PASSED');assert.equal(result.archivedBlobs,14);
+  const result=verifyAtlasKnowledgeArchive();assert.equal(result.status,'PASSED');assert.equal(result.archivedBlobs,16);
   assert.match(result.scope,/PINNED_ARCHIVE_BLOB_AND_EXCERPT_IDENTITY/);
 });
 

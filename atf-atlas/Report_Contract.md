@@ -953,3 +953,37 @@ an unrelated query is honest policy context and does not become semantic
 project retrieval. Source review supplies the project explanation.
 
 </details>
+
+## Source answers for partial facets
+
+`ATLAS-QUESTIONS-001: SOURCE_BOUND_QUESTIONS_V1` retains every original question and evidence requirement; bind each answer to that facet's actual implementation and independent oracle fragments, and retain PARTIAL with application acceptance not established.
+
+| Disposition | Reader meaning | Proof boundary |
+|---|---|---|
+| Source-bound limit | The inspected contract explains a bounded answer | No universal guarantee or implemented cleanup is inferred |
+| Environment not requalified | Local checks explain what remains unobserved remotely | No fresh deployment or browser acceptance is inferred |
+
+Answers appear only inside the existing closed remaining-questions detail.
+Technical references stay in the audit. A missing answer, borrowed fragment,
+unknown claim, duplicated question or erased partial boundary fails with a hint.
+Source answers improve understanding without closing an unresolved question.
+
+## Native diagram and construction style
+
+`ATLAS-DIAGRAM-STYLE-001: NEUTRAL_DIAGRAMS_V1` measures actual visible neutral shapes, centered label lines and resolved painted arrowheads; canonical CSS or marker attributes alone are insufficient.
+
+Adapt the archived neutral primitive and scale rules to current source identities.
+Do not copy obsolete class names or require decorative graph complexity.
+Keep explicit maturity text, subtle outlines, uniform type, local legends and
+references. Native checks reject traffic-light node fills, invisible connectors,
+unpainted arrowheads and label centers displaced by over two CSS pixels.
+
+`ATLAS-CONSTRUCTION-002`: Inspect the exact standalone Extent reader, each expected refusal and its dashboard; preserve visible wrapped hints, owner, runnable recheck and attribution to original recorded evidence.
+
+SDK counters and report creation time describe the derived display. They are not
+new MCP executions or the original test durations. Retain original XML/TAP,
+source identity and report digest in adjacent construction receipts.
+
+The canonical [construction Extent skin](assets/construction-extent.css) keeps the narrow desktop detail panel outside fixed navigation. Measure actual panel bounds and exercise the built-in back control; zero document overflow alone cannot detect a covered title.
+
+Diagram typography shares the report sans-serif family, including SVG labels without legacy typography classes. Native measurement must confirm the actual family as well as scale and spacing; a font declaration is not rendering proof.

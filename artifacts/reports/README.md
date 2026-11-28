@@ -184,3 +184,8 @@ remain in the external archive. The new governance case refuses mismatched
 links or verdicts and verifies repair against declared bytes.
 
 </details>
+
+The standalone construction Extent report is derived evidence. Its dashboard
+must show the original source and reader identity; open every expected refusal
+to inspect the visible observation, hint, owner and runnable recheck. SDK report
+creation timestamps and counters do not replace original XML/TAP execution proof.

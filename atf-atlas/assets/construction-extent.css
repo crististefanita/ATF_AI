@@ -1,0 +1,27 @@
+/* Derived construction evidence only; preserve the official Extent navigation. */
+.owned-refusal {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.5;
+  padding: 12px;
+  border: 1px solid #304357;
+  border-radius: 8px;
+}
+
+@media (max-width: 991px) {
+  .test-wrapper {
+    left: 70px !important;
+    width: calc(100% - 70px) !important;
+  }
+
+  .test-wrapper .test-content {
+    width: calc(100% - 70px) !important;
+    left: calc(-100% - 70px) !important;
+    height: calc(100vh - 85px);
+    transition: none;
+  }
+
+  .test-wrapper .test-content.open {
+    left: 70px !important;
+  }
+}

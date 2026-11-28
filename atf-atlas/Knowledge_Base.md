@@ -209,3 +209,10 @@ The reader explains business purpose, project architecture and behavior. Archite
 The [contract](Report_Contract.md) defines the schema and limits; the [calibration component](../tools/atlas-calibration.mjs) explains failures and repair routes. Axis ratings remain reasoned review judgments, not test pass rates.
 
 Semantic qualification uses distinct facet observations, owned source and independent oracles, with visible remaining limits. Atlas identity stays compact; review date belongs with confidence. See the [semantic contract](Report_Contract.md#semantic-review-and-compact-identity).
+
+Retrieve the archived neutral diagram style, reference primitives and visual-scale
+rules together with current native controls. Adapt their intent; do not import
+obsolete class conventions or fixed node quotas into a different source graph.
+Source answers retain all remaining partial-facet questions and their actual
+implementation/oracle selections. Rendered Extent proof must visibly distinguish
+recorded observations from a fresh application or MCP execution.

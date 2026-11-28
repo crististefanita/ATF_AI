@@ -1,3 +1,4 @@
+import {reviewQuestionSources,questionProjection} from '../atf-atlas/governance/questions.mjs';
 import {requireAtlas} from './atlas-diagnostics.mjs';
 const facets=['purpose','structure','behavior','data','configuration','failure','verification'];
 const need=(ok,message)=>requireAtlas(ok,'ATLAS-SEMANTICS',message);
@@ -81,7 +82,7 @@ export function facetProofProjection(analysis,unitId,facet){
   if(!bounded(analysis.understanding?.refinement?.verificationProfile))return {proof:'',nonClaims:[],openQuestions:[]};
   const boundary=boundaries(analysis).find(d=>d.unitId===unitId&&d.facet===facet)?.proofBoundary;
   if(!boundary)return {proof:'',nonClaims:[],openQuestions:[]};
-  return {proof:boundary.level==='COMPONENT'?'Local component checks; application acceptance is not established.':'Source review; no component execution inferred for the additional observation.',nonClaims:boundary.nonClaims,openQuestions:boundary.openQuestions||[]};
+  return {proof:boundary.level==='COMPONENT'?'Local component checks; application acceptance is not established.':'Source review; no component execution inferred for the additional observation.',nonClaims:boundary.nonClaims,openQuestions:(boundary.openQuestions||[]).map(questionProjection)};
 }
 
 /** Reviewed means the declared facet scope was investigated, never that a whole source tree is understood. */
@@ -111,5 +112,6 @@ export function validateSemanticFacets(analysis,{required=false}={}){
       counts[facet.status]++;
     }
   }
-  return {status:'PASSED',profile:understanding.reviewProfile,units:understanding.units.length,facets:counts,sourceSelections:bindings,refinement:refinement(analysis),scope:'DECLARED_SCOPED_SEMANTIC_REVIEW; HUMAN_MEANING_REVIEW_REQUIRED; NO_AUTOMATIC_COMPLETENESS_OR_SCORE'};
+  const refined=refinement(analysis);reviewQuestionSources(analysis);
+  return {status:'PASSED',profile:understanding.reviewProfile,units:understanding.units.length,facets:counts,sourceSelections:bindings,refinement:refined,scope:'DECLARED_SCOPED_SEMANTIC_REVIEW; HUMAN_MEANING_REVIEW_REQUIRED; NO_AUTOMATIC_COMPLETENESS_OR_SCORE'};
 }

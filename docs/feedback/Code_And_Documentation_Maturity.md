@@ -1540,3 +1540,35 @@ Delivered quality 96 (correctness 96 / verification 97 / clarity 95).
 - The complete Maven selection refused a literal absolute URL in a negative case.
   The case now resolves its URL from the test module; portability governance and
   the absolute-link refusal remain intact. Original observations are preserved.
+
+<a id="d-033"></a>
+## D-033: Source answers for partial facets and native diagram elegance
+
+Status: VERIFIED within component and native-preview scope. Owner: Atlas, RAG and artifact governance.
+Priority 92 (impact 94 / exposure 91 / urgency 88).
+Baseline quality 90 (correctness 94 / verification 86 / clarity 89).
+
+- Keep the two application facets partial; deepen all five questions using the
+  actual invoice and registration source and independent existing components.
+- Reuse archived neutral-style, centered-label and readable-arrow principles.
+  Native paint and geometry must qualify the actual current primitives.
+- Inspect each derived Extent refusal and dashboard. Hidden hints, clipped text
+  and unsupported fresh-execution claims must fail component controls.
+
+Evidence: ${ATF_WORK_ROOT}/reviews/atlas-partial-style-20261128.
+Acceptance requires paired exact-source checks, native Atlas and Extent review,
+original refusals and repairs, and unchanged application E2E inventory.
+No new Java runtime, application E2E or emulator.
+
+Delivered quality 96 (correctness 96 / verification 97 / clarity 95).
+
+- All five original questions gain source-owned bounded answers; the two
+  application facets remain partial, with their original evidence requirements.
+- Twelve independent component cases refuse borrowed evidence, unsupported
+  acceptance, traffic-light fills, foreign type, hidden arrows and clipped hints.
+- All eighteen diagrams pass source and native review at 900/1440/1920 px.
+  SVG labels share the report family without shrinking type or losing edges.
+- The repaired Extent preview verifies every original refusal at all three
+  widths and exercises its actual back control outside the fixed navigation.
+- Original documentation, archive-count and rendering refusals remain preserved.
+  Paired final-source qualification and selected publication retain separate receipts.

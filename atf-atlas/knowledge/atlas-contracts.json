@@ -30,6 +30,11 @@
           "path": "src/main/java/com/ai/skills/atlas/contract/catalog/AtlasBaseRuleCatalog.java",
           "sha256": "b39b60eb88ee1fbc1856d39bac782cec0913a44283e8a940f72d011361840637",
           "quote": "The atlas must reuse the shared report visual system instead of inventing local styling."
+        },
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "assets/construction-extent.css"
         }
       ]
     },
@@ -334,7 +339,7 @@
         "transformed text"
       ],
       "mandatory": true,
-      "requirement": "Use visible minimal SVG shapes, understandable relationship labels and arrowheads. Inspect real desktop rendering for overlap, clipped labels and ambiguous direction; valid markup alone is insufficient. Require SOURCE_GRAPH_V2 for fresh understand: preserve full source/domain relationship labels and arrow direction, distinguish actual refusal boundaries from future frontiers, use calm shared primitives, consistent scale, compact horizontal layouts and closed local bullet legends. Audit actual native labels, endpoints, outlines, arrowheads, overlap and clipping; never replace a long relationship with a generic observe label. Adapt archive guidance to the current English audience and keep raw technical proof outside the HTML. Each rendered view needs at least three meaningful nodes and two distinct real directed relationships. Compact journey or architecture ideas use TEXT_ONLY with a substantive diagramReason; preserve truthful audit graphs, cases and ownership without padding nodes or fabricating dependencies. Historical SOURCE_GRAPH_V1 captures retain their original assessment; compatibility publication does not recertify them as the current profile. Fresh reference presentation opens the actual primary map and closes support, uses three reading bands for rich maps, retains local facet-bound maturity and independent object proof, and measures initial state before interaction. Never use test metadata or invented future features as primary business objects. Historical V3 requires BUSINESS_REFERENCE_V2. No horizontal scrolling in diagrams, tables or expanded details. Measure actual transformed type at native desktop widths, not multiline bounding-box height. Keep every graph at a consistent calm scale with two initially closed local disclosures: a three-bullet source-specific legend and owned references, original verdicts and limits. An empty shell or repeated generic caption does not qualify. Split an overly wide source story into meaningful subviews or prose without removing its complete audit. The no-scroll extension is a current project decision, distinct from the archived rules. Measure actual transformed node and relationship-label rectangles against complete source identities. Require at least six CSS pixels between distinct boxes and labels; reject crowded finite measurements and missing geometry with an owned repair hint. Never shrink fonts or remove source relationships to pass spacing. The source archive rejects diagram-grid flow panels; adapt its width rhythm to an independent main-map band. A fluid canvas may scale route geometry, but never stretch text or node borders.",
+      "requirement": "Use visible minimal SVG shapes, understandable relationship labels and arrowheads. Inspect real desktop rendering for overlap, clipped labels and ambiguous direction; valid markup alone is insufficient. Require SOURCE_GRAPH_V2 for fresh understand: preserve full source/domain relationship labels and arrow direction, distinguish actual refusal boundaries from future frontiers, use calm shared primitives, consistent scale, compact horizontal layouts and closed local bullet legends. Audit actual native labels, endpoints, outlines, arrowheads, overlap and clipping; never replace a long relationship with a generic observe label. Adapt archive guidance to the current English audience and keep raw technical proof outside the HTML. Each rendered view needs at least three meaningful nodes and two distinct real directed relationships. Compact journey or architecture ideas use TEXT_ONLY with a substantive diagramReason; preserve truthful audit graphs, cases and ownership without padding nodes or fabricating dependencies. Historical SOURCE_GRAPH_V1 captures retain their original assessment; compatibility publication does not recertify them as the current profile. Fresh reference presentation opens the actual primary map and closes support, uses three reading bands for rich maps, retains local facet-bound maturity and independent object proof, and measures initial state before interaction. Never use test metadata or invented future features as primary business objects. Historical V3 requires BUSINESS_REFERENCE_V2. No horizontal scrolling in diagrams, tables or expanded details. Measure actual transformed type at native desktop widths, not multiline bounding-box height. Keep every graph at a consistent calm scale with two initially closed local disclosures: a three-bullet source-specific legend and owned references, original verdicts and limits. An empty shell or repeated generic caption does not qualify. Split an overly wide source story into meaningful subviews or prose without removing its complete audit. The no-scroll extension is a current project decision, distinct from the archived rules. Measure actual transformed node and relationship-label rectangles against complete source identities. Require at least six CSS pixels between distinct boxes and labels; reject crowded finite measurements and missing geometry with an owned repair hint. Never shrink fonts or remove source relationships to pass spacing. The source archive rejects diagram-grid flow panels; adapt its width rhythm to an independent main-map band. A fluid canvas may scale route geometry, but never stretch text or node borders. Measure native neutral node fills, centered label lines and resolved painted arrowheads; declarations alone do not prove visible direction. Adapt archived primitive intent to current source identities without copying obsolete class names or decorative complexity quotas.",
       "sources": [
         {
           "kind": "ARCHIVE",
@@ -447,6 +452,32 @@
           "path": "src/main/java/com/ai/skills/atlas/contract/catalog/AtlasGraphRuleCatalog.java",
           "sha256": "bfba3d2e4b1b9019617668810598a58a0ef72e39b5af3b770124348c5587001c",
           "quote": "Give Business Subgraphs the same content width rhythm as the main graph."
+        },
+        {
+          "kind": "ARCHIVE",
+          "revision": "70a7279c2a9560d39e6bd2554cd2f96a88626692",
+          "path": "src/main/java/com/ai/skills/atlas/rules/base/AtlasDiagramStyleRule.java",
+          "sha256": "d4b05cddd7c9afb889daf8b2e09d65673742edec2658252b3c18b913223a876a",
+          "quote": "Business-flow diagrams use minimal shared-report styling: mostly neutral nodes, subtle overlay, no strong traffic-light fills."
+        },
+        {
+          "kind": "ARCHIVE",
+          "revision": "70a7279c2a9560d39e6bd2554cd2f96a88626692",
+          "path": "src/main/java/com/ai/skills/atlas/rules/graph/AtlasReferenceDiagramPrimitiveRule.java",
+          "sha256": "eb919aaff2924f369015a4c842360eae137da39b6cc03eb0844adf23f81282fe",
+          "quote": "Center node labels inside each shape: x should be near half the node width and text-anchor should be middle."
+        },
+        {
+          "kind": "ARCHIVE",
+          "revision": "70a7279c2a9560d39e6bd2554cd2f96a88626692",
+          "path": "src/main/java/com/ai/skills/atlas/rules/graph/style/AtlasGraphVisualScaleRule.java",
+          "sha256": "4d517f8d23e5c20f6d5e75bde7018bcbc10e641c79bb2aad49dd506fd82df1a7",
+          "quote": "All atlas graphs keep a stable visual scale, and the primary Business Flow Graph is visually readable:"
+        },
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "ATLAS-DIAGRAM-STYLE-001: NEUTRAL_DIAGRAMS_V1"
         }
       ]
     },
@@ -805,12 +836,17 @@
         "nonclaims"
       ],
       "mandatory": true,
-      "requirement": "For observation refinement declare BOUNDED_OBSERVATIONS_V1 and a proof boundary on every investigated facet. Component claims need their actual named passing oracle execution; source-only observations remain partial. Follow the live shared response projection: whitespace normalization and bounded previews do not preserve a complete raw body. Image bytes do not prove page layout, masking or pixel meaning. Request association does not establish every delayed event or redirect. Local validation, randomized contacts and flat resource lookup do not establish remote persistence, global uniqueness or account cleanup. Preserve original scope, limits and explicit non-claims in the reader and native comparison.",
+      "requirement": "For observation refinement declare BOUNDED_OBSERVATIONS_V1 and a proof boundary on every investigated facet. Component claims need their actual named passing oracle execution; source-only observations remain partial. Follow the live shared response projection: whitespace normalization and bounded previews do not preserve a complete raw body. Image bytes do not prove page layout, masking or pixel meaning. Request association does not establish every delayed event or redirect. Local validation, randomized contacts and flat resource lookup do not establish remote persistence, global uniqueness or account cleanup. Preserve original scope, limits and explicit non-claims in the reader and native comparison. Answer each remaining partial question using its actual facet-owned implementation and independent oracle, retaining the original evidence requirement and explicit non-acceptance. Inspect every derived Extent refusal and visible original source attribution; SDK display counters and creation timestamps are not fresh execution proof. Use the dedicated construction Extent skin; inspect fixed-navigation coverage and the real back interaction as well as document overflow.",
       "sources": [
         {
           "kind": "CURRENT_CONTRACT",
           "path": "atf-atlas/Report_Contract.md",
           "quote": "ATLAS-OBSERVATION-001: Separate observed response fields and bounded previews from complete payloads, image bytes from pixel meaning, and local component validation from application acceptance; a reviewed observation facet needs original passing component oracle subjects and explicit non-claims, while additional source-only observations remain partial."
+        },
+        {
+          "kind": "CURRENT_CONTRACT",
+          "path": "atf-atlas/Report_Contract.md",
+          "quote": "ATLAS-QUESTIONS-001: SOURCE_BOUND_QUESTIONS_V1"
         }
       ]
     }
