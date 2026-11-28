@@ -41,6 +41,9 @@ actualul cod al proiectului.
 <a id="adaptation-rules"></a>
 ## Reguli de adaptare
 
+- Elimină propozițiile business identice; revizuiește manual sensurile apropiate.
+- Grupează o singură dată detaliile revizuirii, păstrează domeniul necunoscut al
+  eșecurilor distinct de cel parțial și măsoară distanțele reale din diagrame.
 - Păstrează stilul dedicat, secțiunile pliabile și diagramele inline minimale.
 - Explică comportamentul existent al domeniului sau framework-ului; separă hărțile dependențelor.
 - Leagă observațiile, fragmentele sursă, aserțiunile, verdictele și limitele dovezii.

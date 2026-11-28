@@ -136,6 +136,7 @@ normalizarea prezentării nu reprezintă o nouă execuție.
 
 | ID | Comportament livrat | Verificare |
 |---|---|---|
+| D-029 | Revizuire grupată, proză business concisă și distanțe măsurate în diagrame; calitate 96 (96/97/95) | [Sursă, reparări și revizuire nativă](Code_And_Documentation_Maturity.md#d-029) |
 | D-028 | Lectură concisă, lățime utilă și cazuri la cerere; calitate 96 (96/97/95) | [Sursă, traseu de lectură și dovezi](Code_And_Documentation_Maturity.md#d-028) |
 | D-027 | Diagrame fără scroll și două secțiuni locale complete; calitate 95 (95/96/94) | [Componente, refuzuri și calibrare nativă](Code_And_Documentation_Maturity.md#d-027) |
 | D-026 | Hartă deschisă, dovezi locale și note explicate; calitate 95 (95/96/94) | [Proveniență, componente și reparație nativă](Code_And_Documentation_Maturity.md#d-026) |

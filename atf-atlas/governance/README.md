@@ -49,6 +49,8 @@ Revizuirea nativă externă furnizează capturile reale și pixelii transformaț
 | Subgrafuri secundare colapsate | [Cititor](../../tools/atlas-reader.mjs): harta principală deschisă, suportul închis, două secțiuni închise sub fiecare graf |
 | Cazuri negative pentru candidați | [Teste de componentă](diagram-layout.test.mjs) și [calibrare nativă](../../tools/atlas-calibration.mjs) |
 | Orientare concisă legată de sursă | [Componenta de lectură](reading.mjs) și [cazurile independente](reading.test.mjs): răspunsuri scurte, limite comune exacte și lățime/secțiuni măsurate |
+| Narațiune repetată și detalii expuse devreme | [Componenta de lectură](reading.mjs): propoziții identice, un grup de revizuire închis și stări distincte ale eșecurilor |
+| Spațiu liber în diagrame | [Revizuirea dreptunghiurilor native](diagram-layout.mjs): identitățile complete din sursă și minimum șase pixeli CSS între casete și etichete distincte |
 
 Reperul sursei este revizia `main_mcp`
 `70a7279c2a9560d39e6bd2554cd2f96a88626692`. Regulile istorice pentru scară
@@ -76,6 +78,12 @@ Execuția vechilor skill-uri, serviciile MCP și Allure nu fac parte din acest m
 eșecurile măsurate. Proiecția sursei, geometria grafului și dovada originală au
 verificări independente. Diagnosticele indică responsabilul raportului și o
 reverificare concretă; markup-ul valid nu certifică singur adevărul semantic.
+
+`DIAGRAM_SPACING` indică graful, perechea aglomerată și distanța măsurată. Mută
+sau scurtează eticheta legată de sursă; păstrează relația și fontul lizibil.
+
+`NEGATIVE_SCOPE` păstrează distincția dintre revizuirea necunoscută și cea parțială
+a eșecurilor. Aceste verificări completează inspecția vizuală și comparația cu sursa.
 
 <details>
 <summary>Comandă pentru componentele vizate</summary>

@@ -25,3 +25,17 @@ export function reviewFittedDiagramMetrics(structure,graphIds,openingSupport){
   if(!Array.isArray(openingSupport)||JSON.stringify(openingSupport.map(v=>v.id))!==JSON.stringify(graphIds)||openingSupport.some(v=>v.legends!==1||v.references!==1||v.details!==2||v.open!==0))add('DIAGRAM_DISCLOSURES','Every diagram needs exactly two initially closed local disclosures: a source-specific legend and references with original proof and remaining limits');
   return findings;
 }
+
+/** Native rectangles retain transformed CSS pixels; no graph meaning is inferred from distance. */
+export function reviewDiagramSpacing(diagrams,expected){
+  const findings=[],add=observation=>findings.push({code:'DIAGRAM_SPACING',observation});
+  const rectangle=b=>b&&['x','y','width','height'].every(k=>Number.isFinite(b[k]))&&b.width>0&&b.height>0;
+  if(!Array.isArray(diagrams)||diagrams.length!==expected.length){add('Retain every actual diagram and its measured node/label rectangles');return findings;}
+  for(const [i,wanted]of expected.entries()){
+    const row=diagrams[i],s=row?.spacing,identity=JSON.stringify;
+    if(row?.id!==wanted.id||!s||!Array.isArray(s.nodes)||!Array.isArray(s.labels)||identity(s.nodes.map(n=>n.id))!==identity(wanted.nodes.map(n=>n.id))||identity(s.labels.map(e=>[e.from,e.to]))!==identity(wanted.edges.map(e=>[e.from,e.to]))||![...s.nodes,...s.labels].every(rectangle)){add('Measure the actual distinct source objects and relationship labels for '+wanted.id+'; do not substitute a declared padding value');continue;}
+    const pairs=[...s.nodes.map((n,i)=>s.nodes.slice(i+1).map(m=>[n,m])),...s.labels.map((e,i)=>[...s.nodes.map(n=>[e,n]),...s.labels.slice(i+1).map(m=>[e,m])])].flat();
+    for(const [a,b]of pairs){const dx=Math.max(a.x-b.x-b.width,b.x-a.x-a.width,0),dy=Math.max(a.y-b.y-b.height,b.y-a.y-a.height,0),gap=Math.hypot(dx,dy);if(gap<6)add('Give '+wanted.id+' at least 6 native CSS px between '+(a.id||a.from+' → '+a.to)+' and '+(b.id||b.from+' → '+b.to)+'; measured '+gap.toFixed(2)+' px. Move or shorten the source-bound label without shrinking type or deleting a relationship');}
+  }
+  return findings;
+}

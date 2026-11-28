@@ -1450,3 +1450,41 @@ Calitate livrată 96 (corectitudine 96 / verificare 97 / claritate 95).
 Evaluarea delimitată urmărește înțelegere 95, lectură 96 și amploare semantică 94:
 întrebările noi conectează responsabilități existente, fără să pretindă mai mult
 cod acoperit sau acceptanță externă. Cele două fațete parțiale rămân parțiale.
+
+<a id="d-029"></a>
+<a id="d-029-calm-business-explanation-and-measured-breathing-room"></a>
+## D-029: Explicație business calmă și spațiu liber măsurat
+
+Stare: VERIFIED în domeniul delimitat al componentelor și lecturii native. Responsabil: lectura și guvernanța Atlas.
+Prioritate 88 (impact 92 / expunere 85 / urgență 84).
+Calitate inițială 93 (corectitudine 95 / verificare 94 / claritate 90).
+
+- Șase controale separate repetă numele deja prezente în tabelul responsabilităților.
+  Grupează detaliile o singură dată și păstrează toate fațetele originale.
+- Prezintă trei note existente utile, păstrează toate justificările și scurtează
+  răspunsurile fără să elimini sursa, verdictele originale sau limitele.
+- Propozițiile identice cer indicații concrete de reparare; sensurile apropiate
+  cer revizuire umană. Domeniul necunoscut al eșecurilor nu înseamnă revizuire parțială.
+- Lipsa suprapunerilor nu dovedește spațiu liber. Măsoară fiecare dreptunghi nativ
+  transformat al casetelor și etichetelor și cere șase pixeli CSS între ele.
+- Păstrează primul refuz al provenienței și comparația previzualizării: tipul
+  citării era nesuportat, iar dreptunghiurile măsurate contaminau inițial proiecția
+  identității grafului. Repară responsabilitățile fără să slăbești egalitatea sursei.
+
+Dovezi: ${ATF_WORK_ROOT}/reviews/atlas-clarity-20261128.
+Acceptanța cere guvernanță/componente pereche, publicarea sursei curente, revizuire
+nativă reală și controale negative țintite. E2E noi, emulatoarele și garanțiile
+despre persistența aplicației nu fac parte din domeniu.
+
+Calitate livrată 96 (corectitudine 96 / verificare 97 / claritate 95).
+
+- Trei note existente la deschidere păstrează accesul la toate cele optsprezece axe.
+  Un grup închis de revizuire păstrează toate cele patruzeci și două de fațete.
+- Patru cazuri de componentă adăugate acoperă repetiția exactă, domeniul distinct
+  al eșecurilor, distanțele reale și geometria absentă; toate relațiile rămân păstrate.
+- Previzualizarea trece la 900/1440/1920. Ambele selecții de documentație trec
+  după refuzul stării cu underscore din registru; dovezile originale rămân păstrate.
+- Sursa finală exactă, refuzurile publicării, controalele native reparate și
+  publicarea delimitată păstrează chitanțe separate în dosar.
+- Lectura rămâne la 96, înțelegerea la 95 și amploarea semantică la 94. Numărul
+  testelor nu închide cele două fațete parțiale și nu certifică aplicația externă.

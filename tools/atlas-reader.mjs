@@ -4,7 +4,7 @@ import {presentationTable} from './atlas-presentation.mjs';
 import {renderReaderGraph,readerGraphSet,validateReaderDiagramProfile} from './atlas-reader-graphs.mjs';
 import {facetProofProjection} from './atlas-semantics.mjs';
 import {validateAtlasCaptureDeclaration} from './verify-atlas.mjs';
-import {readingProjection,renderReadingGuide,renderCaseTable} from '../atf-atlas/governance/reading.mjs';
+import {readingProjection,renderReadingGuide,renderCaseTable,failureScopeLabel} from '../atf-atlas/governance/reading.mjs';
 
 export const businessSections=Object.freeze(['overview','capabilities','journeys','operating-model','confidence','limits']);
 const need=(ok,message)=>requireAtlas(ok,'ATLAS-READER',message);
@@ -158,9 +158,9 @@ export function renderBusinessReader(bundle,css){
     r.limits.map((item,i)=>card(item.title,item.text,'06.'+number(i+1))).join('')];
   if(reading){
     bodies[0]='<div class="reader-overview-grid">'+main+'<aside class="reader-brief"><h2>The project in brief</h2>'+paragraph(r.summary)+presentationTable(['Value','Why it matters'],r.value.map(v=>[v.title,v.text]))+'</aside></div>';
-    bodies[1]=renderReadingGuide(reading)+'<h3>Responsibilities at a glance</h3><div class="reader-breadth">'+presentationTable(['Capability','Contribution','Review'],r.capabilities.map(c=>[c.title,c.benefit,reviewDepth(analysis.understanding.units.find(u=>u.id===c.unitId))]))+'</div><div class="reader-capability-details">'+r.capabilities.map(facetDetails).join('')+'</div>';
+    bodies[1]=renderReadingGuide(reading)+'<h3>Responsibilities at a glance</h3><div class="reader-breadth">'+presentationTable(['Capability','Contribution','Review'],r.capabilities.map(c=>[c.title,c.benefit,reviewDepth(analysis.understanding.units.find(u=>u.id===c.unitId))]))+'</div><details class="reader-review-depth"><summary>Review detail and remaining questions</summary><div class="reader-capability-details">'+r.capabilities.map(facetDetails).join('')+'</div></details>';
     const journeyRows=r.journeys.map((j,i)=>{const f=flowById.get(j.flowId),ordinal='03.'+number(i+1),view=diagramViews.find(v=>v.flowId===f.id),graph=j.diagramMode==='TEXT_ONLY'?paragraph(j.diagramReason):renderReaderGraph(view.graph,view),context='<p class="reader-caller"><strong>Caller:</strong> '+escape(j.actor)+' · <strong>Purpose:</strong> '+escape(j.intent)+'</p>';
-      return '<tbody class="reader-journey"><tr class="reader-journey-summary"><th scope="row">'+badge(ordinal)+escape(j.title)+'</th><td>'+escape(j.operation)+'</td><td>'+escape(j.outcome)+'</td></tr><tr><td colspan="3"><details class="reader-journey-details"><summary>Cases, map and context</summary>'+context+graph+(f.caseAnalysis.negativeScope.status!=='REVIEWED'?paragraph('The reviewed failure scenarios are partial; other failure behavior has not been established.'):'')+renderCaseTable(j,f,ordinal,claims,comparisonMarkup)+'</details></td></tr></tbody>';
+      return '<tbody class="reader-journey"><tr class="reader-journey-summary"><th scope="row">'+badge(ordinal)+escape(j.title)+'</th><td>'+escape(j.operation)+'</td><td>'+escape(j.outcome)+'</td></tr><tr><td colspan="3"><details class="reader-journey-details"><summary>Cases, map and context</summary>'+context+graph+'<p class="reader-negative-scope" data-negative-scope="'+escape(f.caseAnalysis.negativeScope.status)+'">'+escape(failureScopeLabel(f.caseAnalysis.negativeScope.status))+'</p>'+renderCaseTable(j,f,ordinal,claims,comparisonMarkup)+'</details></td></tr></tbody>';
     }).join('');
     bodies[2]='<p>Compare the existing behaviors below. Open only the cases or map needed for the current question.</p><div class="table-scroll atlas-table"><table class="reader-journey-table"><colgroup><col style="width:24%"><col style="width:38%"><col style="width:38%"></colgroup><thead><tr><th scope="col">Behavior</th><th scope="col">What happens</th><th scope="col">Expected result</th></tr></thead>'+journeyRows+'</table></div>';
     bodies[3]=architecture;

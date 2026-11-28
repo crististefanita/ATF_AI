@@ -134,8 +134,18 @@ cititorii istorici nu sunt rescriși și nu primesc o nouă notă de prezentare.
 
 Declară `reader.readingProfile` și două până la cinci intrări `reader.guide`.
 Fiecare intrare are `question`, `answer`, `limits`, `flowIds`, `claimIds` și
-`oracleClaimIds`. Întrebările au cel mult 16 cuvinte, răspunsurile 55, iar limitele 35.
+`oracleClaimIds`. Întrebările au cel mult 16 cuvinte, răspunsurile 40, iar limitele 30.
 Aceste praguri ajută redactarea; sensul este stabilit prin revizuirea sursei.
+
+`ATLAS-CLARITY-001: Remove exact repeated business sentences from the summary, value statements and guide answers; preserve distinct claims and proof boundaries, group capability-review detail in one initially closed disclosure, and feature only the most useful existing scores for the reader's purpose.`
+
+`ATLAS-SPACING-001: Measure complete transformed native node and relationship-label rectangles; retain at least six CSS pixels between distinct boxes and labels, without shrinking type, clipping text, inventing nodes or removing source relationships.`
+
+Folosește o etichetă scurtă care păstrează starea declarată a revizuirii eșecurilor.
+UNKNOWN nu înseamnă PARTIAL; domeniul revizuit nu este acoperire exhaustivă.
+
+Detectarea propozițiilor identice ajută redactarea, iar sensurile apropiate cer
+un revizor. Etichetele standard și dovezile originale rămân atribuibile.
 
 Folosește [componenta de lectură](governance/README.md) pentru detalii la cerere.
 Pe ecrane desktop late, harta principală și rezumatul împart deschiderea;
