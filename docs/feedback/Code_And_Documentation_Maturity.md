@@ -1417,5 +1417,8 @@ Delivered quality 96 (correctness 96 / verification 97 / clarity 95).
   after the register rejected the unsupported underscore status; original XML remains.
 - The exact final source, current publisher refusals, repaired native controls
   and bounded selected publication retain separate receipts in the dossier.
+- The complete Node selection caught duplicate guide answers in an existing
+  generic CLI fixture. Distinct source-bound answers repair the fixture; the
+  repetition rule and original failed TAP remain intact.
 - Reading quality remains 96, understanding 95 and semantic breadth 94. New
   test counts do not complete the two partial facets or certify external behavior.
