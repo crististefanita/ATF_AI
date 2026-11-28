@@ -25,6 +25,7 @@ export function readingProjection(analysis){
   const r=analysis.reader;if(r.readingProfile===undefined){need(r.guide===undefined,'Declare concise reading before adding its guide');return null;}
   need(r.readingProfile===conciseProfile&&r.presentationProfile==='BUSINESS_REFERENCE_V2','Use the current concise reading contract with the fitted reference');
   need(Array.isArray(r.guide)&&r.guide.length>=2&&r.guide.length<=5,'Use two to five useful reader questions, not another exhaustive inventory');
+  need(words(r.review.scope)<=40&&words(r.review.limits)<=40,'Keep the confidence scope and boundary within 40 words each; move detailed inventories into their owned capability or case sections');
   const claims=new Map(analysis.claims.map(c=>[c.id,c]));
   const rows=r.guide.map((g,index)=>{
     const context=' (reader.guide['+index+'])';
@@ -51,6 +52,23 @@ export function referenceTable(rows){
 
 export function renderReadingGuide(projection){return '<div class="reader-guide"><h3>Reader questions</h3>'+presentationTable(['Reader question','Supported answer','Remaining boundary'],projection.rows)+'</div>';}
 
+/** Keep review meaning visible and clean capture provenance in its own optional disclosure. */
+export function renderConfidenceReview(review,date,capture){
+  const state=capture?'<p class="reader-source-state" data-atlas-capture-state="'+escape(capture.state)+'">'+escape(capture.meaning)+'</p>':'';
+  return '<div class="reader-confidence">'+presentationTable(['Review question','Answer'],[['What was reviewed',review.scope],['What remains unproven',review.limits]])+'</div>'+(capture?.state==='DIRTY'?state:'')+'<details class="reader-evidence-basis"><summary>Review basis</summary>'+presentationTable(['Basis','Recorded value'],[['Review date',date]])+(capture?.state==='CLEAN'?state:'')+'</details>';
+}
+
+export function reviewConfidenceReview(metrics,expected){
+  const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+  return metrics&&same(metrics.rows,expected.rows)&&metrics.date===expected.date&&metrics.basisCount===1&&metrics.basisOpen===0&&metrics.looseParagraphs===0&&Array.isArray(metrics.columns)&&metrics.columns.length===2&&metrics.columns.every(Number.isFinite)&&metrics.columns[0]>=18&&metrics.columns[0]<=30&&Math.abs(metrics.columns[0]+metrics.columns[1]-100)<=1&&same(metrics.capture,expected.capture)?[]:[{code:'CONFIDENCE_REVIEW',observation:'Present a short review answer and its unproven boundary in the confidence table. Keep the original date and clean-source provenance inside one initially closed Review basis; a dirty-source warning stays outside it. Preserve the exact source state and visible failed checks.'}];
+}
+
+/** Outer gutters are intentional; each diagram still fills the inner reading frame. */
+export function reviewReaderFrame(frame,viewport){
+  const finite=frame&&['x','width','right'].every(k=>Number.isFinite(frame[k]));
+  return finite&&Math.abs(frame.right-frame.x-frame.width)<=2&&frame.x>=24&&viewport-frame.right>=24&&Math.abs(frame.x-(viewport-frame.right))<=2&&frame.width>=Math.min(viewport*.84,1680)&&frame.width<=Math.min(viewport*.94,1680)+2&&frame.background==='rgb(11, 15, 20)'&&frame.backgroundImage==='none'?[]:[{code:'READER_FRAME',observation:'Center the reading frame with small symmetric dark gutters (90% width, maximum 1680 CSS px). Measure both edges and the actual solid background; do not stretch prose to the viewport or narrow an individual diagram inside its panel.'}];
+}
+
 /** Cases compare along rows; detailed comparison remains local and initially closed. */
 export function renderCaseTable(journey,flow,ordinal,claims,comparisonMarkup){
   const shared=journey.cases.length>1&&journey.cases.every(c=>c.limits===journey.cases[0].limits);
@@ -62,7 +80,7 @@ export function renderCaseTable(journey,flow,ordinal,claims,comparisonMarkup){
 
 export function reviewConciseReading(metrics,width,expected){
   const findings=[],add=(code,observation)=>findings.push({code,observation}),same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
-  if(!metrics||!Number.isFinite(metrics.width)||metrics.width<width*.9||metrics.width>width+2)add('READING_WIDTH','Use the available page width for meaningful comparisons and an independent full-width primary map; keep readable type instead of empty fixed margins');
+  if(!metrics||!Number.isFinite(metrics.width)||metrics.width<Math.min(width*.84,1680)||metrics.width>Math.min(width*.94,1680)+2)add('READING_WIDTH','Use a generous centered reading frame with small dark side gutters; keep every primary and supporting map full width within that frame, with readable native type');
   if(!metrics||!same(metrics.guide,expected.guide)||!same(metrics.journeys,expected.journeys)||expected.brief&&!same(metrics.brief,expected.brief))add('READING_ORIENTATION','Retain the exact concise source-bound answers, project brief and complete behavior summary; do not substitute generic filler or erase an existing behavior');
   if(!metrics||metrics.openJourneys!==0||metrics.visibleCases!==0||metrics.openAxes!==0||metrics.openReviewDepth!==0||metrics.reviewDepthGroups!==1)add('READING_DISCLOSURE','Start with the useful summary: group detailed capability review once and keep it, journey cases and individual score rationale closed until requested');
   return findings;

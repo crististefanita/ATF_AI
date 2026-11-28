@@ -152,9 +152,18 @@ shared boundary once only when its exact original text matches every row.
 
 `ATLAS-DIAGRAM-WIDTH-001: Every current concise diagram uses the full width available in its own panel; measure both figure and actual SVG canvas, reject artificial width caps and overflow, and scale route geometry without stretching text or border weight.`
 
-The primary canvas fills the available HTML width. Responsive route geometry
+The centered reading frame retains small dark side gutters; the primary
+canvas fills its available inner width. Responsive route geometry
 keeps text and node borders at their native scale, rather than stretching fonts.
 Value context remains collapsed below the map; its source meaning is preserved.
+
+Use 90% of the viewport, capped at 1680 px. Decorative gutters do not justify
+narrowing a diagram inside its own panel. Inspect all six sections at
+900/1440/1920 px through normal navigation and with details expanded.
+
+`ATLAS-READER-FRAME-001: Center the current reader at 90% viewport width with a maximum of 1680 CSS pixels and symmetric solid dark gutters; every diagram still fills its own inner panel, without clipping, horizontal scrolling or scaled-down type.`
+
+`ATLAS-CONFIDENCE-001: Present review scope and its unproven boundary as short source-owned table answers, at most 40 words each; keep the exact date and clean-source provenance in one initially closed Review basis, retain dirty-source warnings and failed checks visibly, and inspect all six sections through native navigation.`
 
 `ATLAS-DIAGRAM-FIT-001: Fresh CURRENT_UNDERSTANDING_V3 requires BUSINESS_REFERENCE_V2; every diagram and table fits without horizontal scrolling, clipping or reduced text, with actual transformed SVG type of at least 13 CSS px at the qualified desktop widths; split a wide idea into meaningful source-bound subviews or prose and retain its complete audit.`
 

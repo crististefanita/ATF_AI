@@ -36,6 +36,9 @@ execution evidence. A cited old requirement cannot certify today's project code.
 
 ## Adaptation rules
 
+- Keep small symmetric dark gutters; use the inner frame for every diagram.
+- Present review scope and its boundary in a short table; keep clean provenance
+  in its own optional detail. Unpublished-change warnings stay visible.
 - Give the main map its own full-width band and measure its actual SVG canvas.
 - Keep the short brief above, support below and scope in dedicated sections;
   omit generic footer/score prompts and retain uniform unscaled primary text.

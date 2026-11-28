@@ -95,3 +95,7 @@ node --test tools/atlas-reading.test.mjs tools/atlas-fit.test.mjs tools/atlas-re
 ```
 
 </details>
+
+`READER_FRAME` checks actual side gutters and the solid background.
+`CONFIDENCE_REVIEW` compares source-owned answers and provenance, requiring one
+closed review-basis disclosure. Inspect all six sections and every diagram separately.

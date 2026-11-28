@@ -169,7 +169,7 @@ test('every retrieval keeps native artifact calibration and actual source compar
  const receipt=retrieveAtlasKnowledge({query:'unrelated question',limit:0}),rule=receipt.records.find(r=>r.id==='KB-BUSINESS-READER');
  for(const term of ['live source','expected cases','partial review depth','native navigation','architecture/behavior diagrams','masking','exact repeated business sentences','one initially closed disclosure','Unknown failure scope'])assert.ok(rule.requirement.includes(term),'Repair the mandatory artifact-calibration policy: '+term);
  for(const id of ['ATLAS-CALIBRATION-001:','ATLAS-CLARITY-001:','ATLAS-SPACING-001:','ATLAS-PRIMARY-BAND-001:','ATLAS-READER-NOISE-001:','ATLAS-DIAGRAM-WIDTH-001:'])assert.ok(rule.sources.some(s=>s.quote.startsWith(id)),'Restore the exact current audience/layout citation: '+id);
- for(const term of ['full-width band','artificial canvas caps','No generic footer','dedicated sections'])assert.ok(rule.requirement.includes(term),'Retain the independent main-map and quiet-surface policy: '+term);
+ for(const term of ['full-width band','artificial canvas caps','No generic footer','dedicated sections','symmetric solid dark gutters','Clean provenance','all six sections'])assert.ok(rule.requirement.includes(term),'Retain the independent main-map and quiet-surface policy: '+term);
  const graph=receipt.records.find(r=>r.id==='KB-GRAPH-READABILITY');assert.match(graph.requirement,/six CSS pixels/);assert.match(graph.requirement,/complete source identities/);
 });
 

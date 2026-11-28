@@ -1464,3 +1464,36 @@ Delivered quality 96 (correctness 96 / verification 97 / clarity 95).
   and the selected publication retain separate receipts in this dossier.
 - Understanding 95, reading 96 and semantic breadth 94 retain their bounded
   judgment; neither partial application facet is promoted by layout or test counts.
+
+<a id="d-031"></a>
+## D-031: Balanced reading frame and dedicated provenance
+
+Status: VERIFIED within bounded component and native-render scope. Owner: Atlas presentation and governance.
+Priority 91 (impact 94 / exposure 90 / urgency 85).
+Baseline quality 90 (correctness 95 / verification 85 / clarity 88).
+
+- The user capture exposes a long technical inventory and clean-source provenance.
+  Replace the inventory with a short table of review scope and its boundary.
+- Keep symmetric dark gutters and the full inner frame for diagrams; the archived
+  reference guides style without restoring retired runtime.
+- Compare all six sections with current source; retain cases, verdicts, partial
+  limits and visible warnings about unpublished source or failed checks.
+- Component and native controls must refuse full bleed, asymmetry, misplaced
+  provenance and unowned repeated narrative.
+
+Evidence: ${ATF_WORK_ROOT}/reviews/atlas-framed-reading-20261128.
+Acceptance requires paired checks, original proof, native inspection at
+900/1440/1920 px and repaired negative controls. No new application E2E or emulator.
+
+Delivered quality 96 (correctness 96 / verification 97 / clarity 95).
+
+- The final native preview passes at 900/1440/1920 px, with 45/72/120 px gutters
+  and all six sections inspected separately. All eighteen diagrams remain intact.
+- Three additional component cases refuse incorrect gutters, misplaced provenance
+  and lost warnings; source-owned answers and actual columns are measured.
+- The first documentation check refused a missing RO anchor; both 68-case
+  selections pass after repair. Original logs remain preserved.
+- Full words are rewrapped after four sub-threshold clearances at 900 px; type
+  is not reduced, and source relationships and proof limits remain unchanged.
+- Final exact-source qualification, publisher refusals and native controls retain
+  distinct receipts in the dossier. Two facets and five questions remain partial.

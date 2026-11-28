@@ -131,6 +131,7 @@ normalizing their presentation does not claim a fresh execution.
 
 | ID | Delivered behavior | Verification |
 |---|---|---|
+| D-031 | Symmetric dark gutters, concise confidence table and dedicated provenance; quality 96 (96/97/95) | [Native and component evidence](Code_And_Documentation_Maturity.md#d-031) |
 | D-030 | Independent fluid main-map band, uniform type and no generic footer; quality 96 (96/97/95) | [Archive calibration, source and native evidence](Code_And_Documentation_Maturity.md#d-030) |
 | D-029 | Grouped review, concise business prose and measured diagram spacing; quality 96 (96/97/95) | [Source, owned repairs and native review](Code_And_Documentation_Maturity.md#d-029) |
 | D-028 | Concise reading, useful width and cases on request; quality 96 (96/97/95) | [Source, reading path and evidence](Code_And_Documentation_Maturity.md#d-028) |
