@@ -1608,3 +1608,7 @@ Calitate livrată 96 (corectitudine 96 / verificare 97 / claritate 95).
   Raportul final derivat și asocierea sa cu sursa exactă au dovezi separate în dosar.
 - Primele observații refuzate și reparările rămân păstrate. Nici numărul testelor,
   nici raportul derivat nu certifică automat semantica sau acceptanța aplicației.
+
+- Selecția Maven completă a refuzat un URL absolut literal dintr-un caz negativ.
+  Cazul construiește acum URL-ul din modulul de test, relativ la proiect; regula
+  de portabilitate și refuzul legăturii rămân intacte. Dovezile originale sunt păstrate.
