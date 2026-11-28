@@ -6,7 +6,7 @@ const unique=a=>Array.isArray(a)&&new Set(a).size===a.length;
 
 /** Mask comments and literals before recognizing a named declaration; this is not a call-graph parser. */
 export function declaredSymbol(ref,symbol){
-  if(!ref||typeof ref.quote!=='string'||typeof symbol!=='string')return false;
+  if(!ref||typeof ref.path!=='string'||typeof ref.quote!=='string'||typeof symbol!=='string')return false;
   const code=ref.quote.replace(/\/\*[\s\S]*?\*\/|\/\/[^\n]*|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|`(?:\\.|[^`\\])*`/g,m=>m.replace(/[^\n]/g,' '));
   if(ref.path.endsWith('.java')){
     const owner=ref.path.split('/').at(-1).replace(/\.java$/,''),parts=symbol.split('.');

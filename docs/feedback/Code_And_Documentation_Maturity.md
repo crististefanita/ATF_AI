@@ -1536,3 +1536,7 @@ Delivered quality 96 (correctness 96 / verification 97 / clarity 95).
   rendering. Final derived reporting and exact-source binding retain separate receipts.
 - Original refusals and repairs remain preserved. Neither test counts nor the
   derived report automatically certify semantics or application acceptance.
+
+- The complete Maven selection refused a literal absolute URL in a negative case.
+  The case now resolves its URL from the test module; portability governance and
+  the absolute-link refusal remain intact. Original observations are preserved.
