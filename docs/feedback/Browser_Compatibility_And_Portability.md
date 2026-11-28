@@ -138,8 +138,8 @@ Primary references supporting the selected matrix and setup:
   Windows/UNC/account-root forms and environment-derived paths. Build/test a
   relocated disposable copy and retain source comparisons.
 - Verification: existing
-  [path governance](../../atf-tests/src/test/java/com/ai/atf/governance/GovernanceFiles.java)
-  and [architecture fixtures](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureGovernanceTest.java)
+  [path governance](../../atf-governance/src/main/java/com/ai/atf/governance/GovernanceFiles.java)
+  and [architecture fixtures](../../atf-governance/src/test/java/com/ai/atf/governance/FrameworkArchitectureGovernanceTest.java)
   check fixed paths in owned text and decoded Java literals. Dynamic home/caller
   roots, JVM temp/user-home resolution, HTTP/API paths and explicit XPath selectors
   remain valid. The accepted local and aggregate copies both ran successfully

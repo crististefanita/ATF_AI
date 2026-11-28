@@ -2,10 +2,9 @@
 
 ## Overview
 
-This module owns governance, cross-module regressions, product support and
-explicit application journeys. Its coordinates are `com.ai:atf-tests:1.0.0`.
-Its framework dependencies and support code are test scoped; this module is
-not a production runtime library.
+This module owns framework/product helpers and existing cross-module and application checks. Coordinates: `com.ai:atf-tests:1.0.0`.
+
+Helpers are packaged from src/main/java; classes containing TestNG @Test annotations remain in src/test/java. Governance has its own [module](../atf-governance/README.md).
 
 ```mermaid
 flowchart LR
@@ -28,20 +27,18 @@ Arrows show test selection and evidence production. The dotted branch requires a
 
 | Area | Location |
 |---|---|
-| Framework and governance checks | [com.ai.atf](src/test/java/com/ai/atf) |
-| UI product pages, workflows and assertions | [com.ai.ui.support](src/test/java/com/ai/ui/support) |
-| API product endpoints, models and factories | [com.ai.api.support](src/test/java/com/ai/api/support) |
+| Annotated framework checks | [com.ai.atf](src/test/java/com/ai/atf) |
+| UI product pages, workflows and assertions | [com.ai.ui.support](src/main/java/com/ai/ui/support) |
+| API product endpoints, models and factories | [com.ai.api.support](src/main/java/com/ai/api/support) |
 | Maintained TestNG selections | [suites](src/test/resources/suites) |
-| Fixture data and report settings | [test resources](src/test/resources) |
+| Packaged fixture data and schemas | [main resources](src/main/resources/tests) |
+| Framework/report helpers | [main Java](src/main/java/com/ai/atf) |
 
-Governance protects the five-module dependency graph, vendor boundaries,
-maintained documentation and source ownership. Native library checks remain
-with their owning modules.
+The separate atf-governance module protects the seven-module graph, vendor boundaries, documentation and source placement. Native library checks remain with their owning modules.
 
 The module uses [atf-core](../atf-core/README.md),
 [atf-playwright](../atf-playwright/README.md),
-[atf-selenium](../atf-selenium/README.md) and
-[atf-reporting](../atf-reporting/README.md) as test dependencies.
+[atf-selenium](../atf-selenium/README.md), [atf-reporting](../atf-reporting/README.md), [atf-api](../atf-api/README.md) and [atf-governance](../atf-governance/README.md) as compile dependencies of its packaged helpers.
 
 ## Execution
 
@@ -64,7 +61,7 @@ mvn -B -ntp -Paggregate test
 
 </details>
 
-The default selects framework-local, including governance.
+The default here selects framework-local. The reactor also runs the separate governance suite.
 
 - The browser profile selects framework-browser only in this module.
 - The aggregate profile executes the maintained aggregate suite and publishes Extent HTML.

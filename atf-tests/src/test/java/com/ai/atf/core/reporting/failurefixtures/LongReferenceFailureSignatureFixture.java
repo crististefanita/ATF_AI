@@ -14,17 +14,10 @@ import org.testng.annotations.Test;
 
 @Listeners(TestListener.class)
 public final class LongReferenceFailureSignatureFixture {
-    public static final String ACTIONABLE_REASON =
-            "Move bulky @AtfContract/@AtfContractSuite narratives ";
-    public static final String FIRST_REFERENCE_TITLE =
-            "ConfigManagerFileContractTest.java @AtfContractRef";
-    public static final String REPEATED_SOURCE_PREFIX =
-            "src\\test\\java\\com\\atf\\ai";
-    public static final String DIAGNOSTIC_SHELL_REFERENCE =
-            FailureFixtureReferencePaths.ref(
-                    ExtentPublishedOverviewInspectorContractTest.class,
-                    AtfContractRef.class
-            ).format();
+    public static final String ACTIONABLE_REASON = FailureFixtureReferencePaths.ACTIONABLE_REASON;
+    public static final String FIRST_REFERENCE_TITLE = FailureFixtureReferencePaths.FIRST_REFERENCE_TITLE;
+    public static final String REPEATED_SOURCE_PREFIX = FailureFixtureReferencePaths.REPEATED_SOURCE_PREFIX;
+    public static final String DIAGNOSTIC_SHELL_REFERENCE = FailureFixtureReferencePaths.DIAGNOSTIC_SHELL_REFERENCE;
 
     private static final String LONG_REFERENCE_ERROR =
             ACTIONABLE_REASON

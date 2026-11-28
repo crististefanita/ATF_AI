@@ -8,7 +8,7 @@ maintained recheck selection. Hints describe plausible corrections; they do not
 establish the root cause or authorize weakening a contract.
 
 The shared formatter belongs to
-[GovernanceFiles](../../atf-tests/src/test/java/com/ai/atf/governance/GovernanceFiles.java).
+[GovernanceFiles](../../atf-governance/src/main/java/com/ai/atf/governance/GovernanceFiles.java).
 Architecture, documentation and English-source checks retain their existing
 validators and finding codes. Messages and comments remain English in both
 editions. This is existing test support, with no runtime service or rule module.
@@ -127,7 +127,7 @@ From an isolated reactor copy, run the existing owners:
 <summary>Run Verification and feedback commands</summary>
 
 ```powershell
-mvn -B -ntp -pl atf-tests -am "-Dtest=FrameworkArchitectureGovernanceTest,DocumentationGovernanceTest,DocumentationRootGovernanceTest,DocumentationEditionGovernanceTest,LivingPrinciplesGovernanceTest,DocumentationStructureGovernanceTest,FeedbackGovernanceTest,DocumentationPublicationGovernanceTest,DocumentationReadabilityRulesTest,JavaSourceScannerTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
+mvn -B -ntp -pl atf-governance -am "-Dtest=FrameworkArchitectureGovernanceTest,DocumentationGovernanceTest,DocumentationRootGovernanceTest,DocumentationEditionGovernanceTest,LivingPrinciplesGovernanceTest,DocumentationStructureGovernanceTest,FeedbackGovernanceTest,DocumentationPublicationGovernanceTest,DocumentationReadabilityRulesTest,JavaSourceScannerTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
 ```
 
 </details>

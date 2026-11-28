@@ -62,7 +62,7 @@ does not establish the expected failure. Unknown findings remain unclassified.
   selections. Distinguish deliberate opt-in application tests, fixtures and
   environment probes from accidentally omitted regressions.
 - Preserve the sorted executable TestNG method identities in
-  [test-method-inventory.txt](../../atf-tests/src/test/resources/governance/test-method-inventory.txt).
+  [test-method-inventory.txt](../../atf-governance/src/test/resources/governance/test-method-inventory.txt).
   The AST guard records each declaring type, method name and parameter types,
   independently of the suite's class selection.
 - `TEST-METHOD-REMOVED` identifies a pinned method missing from source;
@@ -120,7 +120,7 @@ exceptions fail, and a production file cannot receive a blanket test-data
 exemption. New external-language cases need explicit owner review.
 
 The executable owner is
-[JavaSourceScannerTest](../../atf-tests/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java),
+[JavaSourceScannerTest](../../atf-governance/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java),
 including repository inspection and deliberate failing comment/name/message cases.
 The documentation-test owners protect this mandatory requirement, README diagrams
 and compilable consumer examples. The owners are listed explicitly in the local
@@ -130,7 +130,7 @@ and aggregate TestNG suites. From an isolated reactor copy:
 <summary>Run English source and comments commands</summary>
 
 ```powershell
-mvn -B -ntp -pl atf-tests -am "-Dtest=JavaSourceScannerTest,DocumentationGovernanceTest,DocumentationRootGovernanceTest,DocumentationEditionGovernanceTest,LivingPrinciplesGovernanceTest,DocumentationStructureGovernanceTest,FeedbackGovernanceTest,DocumentationPublicationGovernanceTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
+mvn -B -ntp -pl atf-governance -am "-Dtest=JavaSourceScannerTest,DocumentationGovernanceTest,DocumentationRootGovernanceTest,DocumentationEditionGovernanceTest,LivingPrinciplesGovernanceTest,DocumentationStructureGovernanceTest,FeedbackGovernanceTest,DocumentationPublicationGovernanceTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
 ```
 
 </details>
@@ -205,7 +205,7 @@ question-to-owner table when several entry points are useful. The root explains
 composition; module and package guides explain their own contracts.
 
 The root README is the framework's route map: explain the separation between
-contracts, providers, reporting and verification; summarize the five Maven
+contracts, providers, reporting and verification; summarize the seven Maven
 modules; show how API and UI checks enter the framework; then route the reader
 to the owner guide. Keep its module summary to two columns. Put compilable
 Playwright/Selenium consumer examples in their adapter READMEs, where provider
@@ -394,7 +394,7 @@ pause/console/interrupt controls adapt the archive's ownership principle to
 ATF_AI's documented execution contracts rather than claiming a verbatim old rule.
 `DocumentedBuildContracts` checks factual build documentation; and
 `DocumentationLifecycleGovernanceTest` keeps delivery history out of stable
-contracts. Adapt those principles to this repository's five modules, TestNG
+contracts. Adapt those principles to this repository's seven modules, TestNG
 and ownership. J0 workspace catalogs, consumer rules and language aliases are
 not ATF_AI contracts.
 ## Reader-oriented guides
@@ -463,3 +463,13 @@ The current Atlas reader follows the [audience boundary](../../atf-atlas/Report_
 numbered business explanations, cases and limits in HTML; technical construction
 inputs in the adjacent audit. [Reader controls](../../tools/atlas-reader.test.mjs)
 complement source verification without automatically certifying prose meaning.
+
+## Verification source ownership
+
+The seven-module reactor isolates REST Assured and JSON Schema validation in atf-api.
+Core and browser/reporting libraries must not depend on that API implementation.
+In atf-governance and atf-tests, helpers MUST be packaged from src/main/java;
+classes containing TestNG @Test annotations MUST stay in src/test/java.
+Suite XML selects annotated classes from its own module. The reviewed method
+inventory spans both verification modules; relocation does not retire a test.
+Product fixture data and schemas are packaged in atf-tests/src/main/resources.

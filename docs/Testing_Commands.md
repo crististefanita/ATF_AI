@@ -24,7 +24,7 @@ mvn -B -ntp test
 
 The root command runs native library checks and the
 [framework-local suite](../atf-tests/src/test/resources/suites/framework-local.xml)
-in atf-tests, including governance. Local regressions use fixtures and doubles
+in atf-tests, plus the independent [governance suite](../atf-governance/src/test/resources/suites/framework-governance.xml). Local regressions use fixtures and doubles
 for configuration, API execution, UI delegation and reporting. They exclude
 browser-dependent cases, intentional failure fixtures and live application
 journeys. A successful compile or a skipped suite is not execution evidence.
@@ -38,6 +38,7 @@ Suite paths below are relative to the atf-tests module:
 <summary>Run an existing UI/API subset or named contract selection</summary>
 
 ```powershell
+mvn -B -ntp -pl atf-governance -am test
 mvn -B -ntp -pl atf-tests -am "-Datf.test.suite=src/test/resources/suites/framework-ui.xml" test
 mvn -B -ntp -pl atf-tests -am "-Datf.test.suite=src/test/resources/suites/framework-api.xml" test
 mvn -B -ntp -pl atf-tests -am "-Dtest=InvoiceEvidenceContractTest,RegistrationSubmissionContractTest,ConfigManagerFileContractTest" "-Dsurefire.failIfNoSpecifiedTests=false" test
@@ -80,7 +81,7 @@ digest change alone does not review or approve the test change.
 
 ```powershell
 mvn -B -ntp "-Dsurefire.failIfNoSpecifiedTests=false" "-Dtest=FrameworkArchitectureGovernanceTest" test
-(Get-FileHash -LiteralPath atf-tests/src/test/resources/governance/test-method-inventory.txt -Algorithm SHA256).Hash.ToLowerInvariant()
+(Get-FileHash -LiteralPath atf-governance/src/test/resources/governance/test-method-inventory.txt -Algorithm SHA256).Hash.ToLowerInvariant()
 ```
 
 </details>

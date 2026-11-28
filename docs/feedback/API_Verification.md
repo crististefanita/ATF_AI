@@ -44,7 +44,7 @@ order. They do not send requests to GoRest or prove an external deployment.
 retains its two existing write journeys: create with schema validation, and
 create/wait/delete. Neither was selected or executed in this verification.
 The bundled auth.token is empty, and no token override was supplied.
-[BaseTestAPI](../../atf-core/src/main/java/com/ai/api/core/BaseTestAPI.java)
+[BaseTestAPI](../../atf-api/src/main/java/com/ai/api/core/BaseTestAPI.java)
 raises SkipException when the write token is absent. An unavailable token or
 a skipped write journey must not be presented as a passing GoRest result.
 

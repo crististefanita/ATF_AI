@@ -17,7 +17,7 @@ This documentation area owns the [complete report contract](Report_Contract.md),
 - Optional maintenance tools verify and publish the reviewed analysis.
 - They do not execute product tests or provide Java runtime services.
 - Generated HTML belongs in the selected artifact root.
-- The Maven reactor remains the five modules described in [Architecture](../docs/Architecture.md).
+- The Maven reactor remains the seven modules described in [Architecture](../docs/Architecture.md).
 
 ## Ownership
 

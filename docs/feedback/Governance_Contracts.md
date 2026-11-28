@@ -47,9 +47,9 @@ They are separate QA executions, not additional reactor cases.
 ## G-002: Source visibility and execution ownership
 
 - Owner: atf-tests,
-  [GovernanceFiles](../../atf-tests/src/test/java/com/ai/atf/governance/GovernanceFiles.java),
-  [FrameworkArchitectureRules](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureRules.java)
-  and [existing architecture regressions](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureGovernanceTest.java).
+  [GovernanceFiles](../../atf-governance/src/main/java/com/ai/atf/governance/GovernanceFiles.java),
+  [FrameworkArchitectureRules](../../atf-governance/src/main/java/com/ai/atf/governance/FrameworkArchitectureRules.java)
+  and [existing architecture regressions](../../atf-governance/src/test/java/com/ai/atf/governance/FrameworkArchitectureGovernanceTest.java).
 - Original observation: global directory-name exclusions could hide legal source packages
   named target or artifacts. Whole-runtime pause, console and interrupt policies
   were documented or checked locally but not governed across modules.
@@ -71,7 +71,7 @@ They are separate QA executions, not additional reactor cases.
 ## G-003: Executable documentation facts and lifecycle
 
 - Owner: existing
-  [documentation rules](../../atf-tests/src/test/java/com/ai/atf/governance/MarkdownDocumentationRules.java)
+  [documentation rules](../../atf-governance/src/main/java/com/ai/atf/governance/MarkdownDocumentationRules.java)
   and [focused documentation-test owners](../../docs/governance/README.md),
   stable guides and the canonical Living Architecture Markdown/HTML pair.
 - Original observation: fenced Maven commands were not tied to real profile/module/suite/test
@@ -124,7 +124,7 @@ They are separate QA executions, not additional reactor cases.
 ## F-009: Negative API retry budgets skip the request
 
 - Owner: atf-core
-  [ApiRuntimeOptions](../../atf-core/src/main/java/com/ai/api/core/client/ApiRuntimeOptions.java)
+  [ApiRuntimeOptions](../../atf-api/src/main/java/com/ai/api/core/client/ApiRuntimeOptions.java)
   and the existing API execution regressions linked in T-002.
 - Original reproducer: create options with maxRateLimitRetries=-1 and execute a request
   whose supplier increments a counter. The unchanged compiled baseline returned
@@ -147,7 +147,7 @@ They are separate QA executions, not additional reactor cases.
 ## G-004: English authored source, comments and diagnostics
 
 - Owner: atf-tests JavaSourceScanner and its existing
-  [language-governance regressions](../../atf-tests/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java),
+  [language-governance regressions](../../atf-governance/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java),
   with [ENG-001](../governance/Code_And_Documentation_Policy.md#english-source-and-comments)
   and documentation governance as the public contract owners.
 - Requirement: all authored code identifiers, comments/Javadoc and framework/test

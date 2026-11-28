@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Framework governance" verbose="1" parallel="none">
+  <test name="Source and documentation contracts">
+    <classes>
+      <class name="com.ai.atf.governance.FrameworkArchitectureGovernanceTest"/>
+      <class name="com.ai.atf.governance.DocumentationGovernanceTest"/>
+      <class name="com.ai.atf.governance.DocumentationRootGovernanceTest"/>
+      <class name="com.ai.atf.governance.DocumentationEditionGovernanceTest"/>
+      <class name="com.ai.atf.governance.LivingPrinciplesGovernanceTest"/>
+      <class name="com.ai.atf.governance.DocumentationStructureGovernanceTest"/>
+      <class name="com.ai.atf.governance.FeedbackGovernanceTest"/>
+      <class name="com.ai.atf.governance.DocumentationPublicationGovernanceTest"/>
+      <class name="com.ai.atf.governance.DocumentationReadabilityRulesTest"/>
+      <class name="com.ai.atf.governance.JavaSourceScannerTest"/>
+    </classes>
+  </test>
+</suite>

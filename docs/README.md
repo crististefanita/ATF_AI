@@ -21,11 +21,13 @@ owner guides keep the detailed contract, and feedback keeps reproducible gaps.
 
 | Module | Owner document |
 |---|---|
-| Neutral contracts, configuration, UI lifecycle and API execution | [atf-core](../atf-core/README.md) |
+| Neutral contracts, configuration and UI lifecycle | [atf-core](../atf-core/README.md) |
+| Reusable REST execution and response assertions | [atf-api](../atf-api/README.md) |
 | Playwright implementation | [atf-playwright](../atf-playwright/README.md) |
 | Selenium implementation | [atf-selenium](../atf-selenium/README.md) |
 | Extent reporting lifecycle | [atf-reporting](../atf-reporting/README.md) |
-| Governance, framework checks and product fixtures | [atf-tests](../atf-tests/README.md) |
+| Code and documentation governance | [atf-governance](../atf-governance/README.md) |
+| Framework/product helpers and annotated checks | [atf-tests](../atf-tests/README.md) |
 
 Owner documents describe current contracts. Feedback records retain source
 checkpoints, commands and external evidence; historical results keep their

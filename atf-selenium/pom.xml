@@ -16,5 +16,9 @@
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
     </dependency>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+    </dependency>
   </dependencies>
 </project>

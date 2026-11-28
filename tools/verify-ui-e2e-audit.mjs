@@ -283,10 +283,13 @@ export function verifyUiE2eAudit({sourceManifestText,surefireXml,extentHtml,capt
   requireAudit(object(source.expectedProductMethods)&&same(normalizedMap(source.expectedProductMethods),normalizedMap(expected))&&source.expectedProductCases===16,'E2E-SUBJECT','source selection','The exact same sixteen retained subjects must be declared.');
   requireAudit(Array.isArray(source.selectedClasses)&&same(source.selectedClasses.slice().sort(),classes),'E2E-SUBJECT','selectedClasses','Select exactly the three retained product classes.');
   requireAudit(object(source.manifest),'E2E-SOURCE','manifest','Retain the original source-file manifest.');
-  for(const file of [...classes.map(name=>'atf-tests/src/test/java/'+name.replaceAll('.','/')+'.java'),
-    'atf-tests/src/test/java/com/ai/ui/support/validation/RegistrationValidation.java',
-    'atf-tests/src/test/java/com/ai/ui/support/validation/ProfileAccountValidation.java']){
+  for(const file of classes.map(name=>'atf-tests/src/test/java/'+name.replaceAll('.','/')+'.java')){
     requireAudit(shaPattern.test(source.manifest[file]||''),'E2E-SOURCE',file,'The executed test and validation owners require captured source hashes.');
+  }
+  for(const name of ['RegistrationValidation','ProfileAccountValidation']){
+    const owners=['main','test'].map(tree=>'atf-tests/src/'+tree+'/java/com/ai/ui/support/validation/'+name+'.java');
+    const captured=owners.filter(file=>Object.hasOwn(source.manifest,file));
+    requireAudit(captured.length===1&&shaPattern.test(source.manifest[captured[0]]||''),'E2E-SOURCE',name,'Retain exactly one captured validation owner: current main or historical test source. Never relabel an earlier manifest or keep ambiguous duplicate owners.');
   }
   requireAudit(object(capture)&&capture.schemaVersion===1&&capture.captureMode==='NATIVE_CHROMIUM_DOM','E2E-DOM','capture','Use the native document capture contract.');
   for(const [field,actual]of Object.entries({runId:source.runId,sourceCommit:source.sourceCommit,uiEngine:source.engine,baseUrl:source.targetUrl})){

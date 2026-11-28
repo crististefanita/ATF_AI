@@ -33,7 +33,7 @@ flowchart LR
 
 | Lane | Design owner | Observable oracle | Proof limit |
 |---|---|---|---|
-| API | [Request executor](../atf-core/src/main/java/com/ai/api/core/client/ApiRequestExecutor.java) | Request order, retry budget and original failure | Doubles prove local execution contracts; GoRest needs separate execution |
+| API | [Request executor](../atf-api/src/main/java/com/ai/api/core/client/ApiRequestExecutor.java) | Request order, retry budget and original failure | Doubles prove local execution contracts; GoRest needs separate execution |
 | Playwright | [Playwright provider](../atf-playwright/src/main/java/com/ai/ui/core/engine/playwright/PlaywrightProvider.java) | Acquired resources, page state and actual response | Component collaborators do not prove Chromium behavior |
 | Selenium | [Selenium provider](../atf-selenium/src/main/java/com/ai/ui/core/engine/selenium/SeleniumProvider.java) | Acquired resources, page state and actual response | Browser proof binds the selected binary, driver and typed CDP |
 
@@ -48,6 +48,7 @@ These are distinct proof levels, even when they protect the same abstraction.
 | Change or question | Existing selection | Required observation |
 |---|---|---|
 | One library contract | Owning module and dependencies | Selected assertions and resource ownership |
+| Source or documentation ownership | [Governance suite](../atf-governance/src/test/resources/suites/framework-governance.xml) | Owned finding, negative control and actual repair |
 | Configuration or cross-module behavior | Default local suite | Local outcomes and meaningful negative controls |
 | Real UI interaction or response | Browser profile | Both adapters, actual state/response and cleanup |
 | Report integration and publication | Reporting subset and aggregate profile | Outcomes, attachments and generated reader |
@@ -74,8 +75,9 @@ flowchart LR
 
 ## Local baseline
 
-The default reactor runs native library checks and
-[framework-local.xml](../atf-tests/src/test/resources/suites/framework-local.xml).
+The default reactor runs native library checks, the independent
+[governance suite](../atf-governance/src/test/resources/suites/framework-governance.xml)
+and [framework-local.xml](../atf-tests/src/test/resources/suites/framework-local.xml).
 It covers API execution, UI delegation/configuration, reporting and governance
 without opting into browser-dependent or application classes.
 

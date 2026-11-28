@@ -2,8 +2,7 @@
 
 ## Overview
 
-Core provides reusable UI and API execution contracts without Selenium,
-Playwright, Extent SDK dependencies. Its coordinates are
+Core provides configuration, UI lifecycle/contracts and neutral reporting without REST Assured, Selenium, Playwright or Extent SDK dependencies. Its coordinates are
 `com.ai:atf-core:1.0.0`; it inherits Java 11 compilation from
 [atf-parent](../pom.xml).
 
@@ -15,7 +14,7 @@ Playwright, Extent SDK dependencies. Its coordinates are
 | UI contracts | [UIEngine](src/main/java/com/ai/ui/core/engine/UIEngine.java), capabilities, locators and request/response values |
 | UI composition | [UiEngineProvider](src/main/java/com/ai/ui/core/engine/UiEngineProvider.java), registry and factory |
 | UI lifecycle | [BaseTestUI](src/main/java/com/ai/ui/core/runtime/BaseTestUI.java), session and runtime metadata |
-| API runtime | [BaseTestAPI](src/main/java/com/ai/api/core/BaseTestAPI.java), HTTP execution, retries, polling and validation |
+| API library | [BaseTestAPI](../atf-api/src/main/java/com/ai/api/core/BaseTestAPI.java), owned by atf-api: HTTP execution, retries, polling and validation |
 | Reporting contracts | [ReportLogger](src/main/java/com/ai/core/reporting/ReportLogger.java), TestStatus and [ReportingBackend SPI](src/main/java/com/ai/core/reporting/spi/ReportingBackend.java) |
 | Steps | [StepLogger](src/main/java/com/ai/core/reporting/StepLogger.java), scopes, console output and neutral report delegation |
 

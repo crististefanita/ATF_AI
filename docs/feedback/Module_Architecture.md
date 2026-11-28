@@ -63,3 +63,27 @@ temporary directories and normal host execution permissions.
 At this historical checkpoint, the desktop browser/CDP matrix still needed
 separate verification. The [current register](README.md) records the later
 F-008 evidence.
+
+<a id="m-002"></a>
+## M-002: Explicit API and verification module ownership
+
+Status: VERIFIED within source relocation, component, package and independent consumer scope. Owner: API and source governance.
+Priority 93 (impact 95 / exposure 92 / urgency 91).
+Baseline quality 84 (correctness 91 / verification 82 / clarity 77).
+
+- Extract the existing reusable API implementation and REST Assured dependencies into atf-api; preserve packages and behavior.
+- Give code/documentation rules their own atf-governance module and default suite.
+- Package helpers from main and keep annotated TestNG classes in test in both verification modules; retain the exact reviewed method inventory.
+- Package product fixture data with its helpers; keep suite XML and governance inventory in test resources.
+- Retain historical audit manifests under their original source identities and reject ambiguous duplicate validation owners.
+- Update EN/RO guides, diagrams, execution owners and Living Markdown/HTML. Do not regenerate Atlas or change its renderer/RAG contracts.
+
+Evidence: ${ATF_WORK_ROOT}/reviews/module-api-governance-20261128.
+Acceptance requires clean relocated paired builds, preserved method and source identities, JAR/dependency inspection and relevant existing checks. Original diagnostic failures are retained separately from final qualification.
+
+Delivered quality 96 (correctness 97 / verification 96 / clarity 95).
+The source-bound module selections pass 333 governance, 373 framework-local and 42 native library cases. The 35 focused repair cases overlap the governance selection and are not added to those totals.
+
+Seven JARs retain Java 11 bytecode and exclude all 113 existing annotated source types. The 35 API source files retain their original canonical bytes. A separate Maven consumer loads only Core/API ATF artifacts, with REST Assured/schema present and browser/Extent/Mockito absent; no HTTP or browser invocation.
+
+Original diagnostic refusals remain in the external dossier, including stale source owners, dense README prose, missing whole-HTML review and the historical feedback-ID collision. Source guards were adapted to the new owners, without dropping checks. Final paired reactor runs and synchronization retain their own receipts.

@@ -6,9 +6,7 @@ This area owns the review policies for code, existing tests and maintained
 documentation. It translates useful historical practices into framework
 contracts without restoring a skill registry, agent runtime or generation stack.
 
-The reactor remains five Maven modules: atf-core, atf-playwright, atf-selenium,
-atf-reporting and atf-tests. The separate [Atlas](../../atf-atlas/README.md) is
-documentation and governance; it is not a sixth Maven module.
+The seven-module reactor gives [API](../../atf-api/README.md) and [governance](../../atf-governance/README.md) explicit owners. The separate [Atlas](../../atf-atlas/README.md) stays outside Maven.
 
 ## Choose a review owner
 
@@ -47,12 +45,12 @@ and scoped closure evidence.
 
 | Owner | Current guard surface | What its result establishes |
 |---|---|---|
-| Architecture | [Architecture rules](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureRules.java) and [existing fixtures](../../atf-tests/src/test/java/com/ai/atf/governance/FrameworkArchitectureGovernanceTest.java) | Module/provider boundaries, source visibility and supported execution-ownership rules |
-| Documentation | [Markdown rules](../../atf-tests/src/test/java/com/ai/atf/governance/MarkdownDocumentationRules.java) and [root tests](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationRootGovernanceTest.java) | README, editions, Living, structure, feedback and publication have separate owners; both suites register each |
-| Readability | [Reader-oriented rules and component cases](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationReadabilityRulesTest.java) | Strategy paragraph decisions, bounded reference prose and closed Maven recipes |
-| Presentation | [Diagram rules](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationPresentationRules.java) | Horizontal flows, adjacent closed legends and desktop geometry review |
-| Edition review | [Translation controls](../../atf-tests/src/test/java/com/ai/atf/governance/DocumentationTranslationRules.java) | Supported Romanian signals, unchanged English blocks and complete review-digest freshness |
-| Source inspection | [Java scanner fixtures](../../atf-tests/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java) | Supported lexical regions, English known-marker policy and exact data exceptions |
+| Architecture | [Architecture rules](../../atf-governance/src/main/java/com/ai/atf/governance/FrameworkArchitectureRules.java) and [existing fixtures](../../atf-governance/src/test/java/com/ai/atf/governance/FrameworkArchitectureGovernanceTest.java) | Module/provider boundaries, source visibility and supported execution-ownership rules |
+| Documentation | [Markdown rules](../../atf-governance/src/main/java/com/ai/atf/governance/MarkdownDocumentationRules.java) and [root tests](../../atf-governance/src/test/java/com/ai/atf/governance/DocumentationRootGovernanceTest.java) | README, editions, Living, structure, feedback and publication have separate owners; both suites register each |
+| Readability | [Reader-oriented rules and component cases](../../atf-governance/src/test/java/com/ai/atf/governance/DocumentationReadabilityRulesTest.java) | Strategy paragraph decisions, bounded reference prose and closed Maven recipes |
+| Presentation | [Diagram rules](../../atf-governance/src/main/java/com/ai/atf/governance/DocumentationPresentationRules.java) | Horizontal flows, adjacent closed legends and desktop geometry review |
+| Edition review | [Translation controls](../../atf-governance/src/main/java/com/ai/atf/governance/DocumentationTranslationRules.java) | Supported Romanian signals, unchanged English blocks and complete review-digest freshness |
+| Source inspection | [Java scanner fixtures](../../atf-governance/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java) | Supported lexical regions, English known-marker policy and exact data exceptions |
 | Behavior | Tests linked by the [coverage map](../../atf-atlas/Coverage_Map.md) | Their explicit observed outcomes and fixture scope |
 
 A written policy is not evidence of an automated guard. Keep manual review

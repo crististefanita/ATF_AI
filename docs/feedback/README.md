@@ -16,6 +16,7 @@ Current review: [live source, documentation, Atlas/RAG and framework attributes]
 
 <!-- feedback:empty -->
 
+
 The register is reserved for framework governance, stability and documentation.
 Product-flow improvement records are excluded from this backlog.
 
@@ -131,6 +132,7 @@ normalizing their presentation does not claim a fresh execution.
 
 | ID | Delivered behavior | Verification |
 |---|---|---|
+| M-002 | API isolated; governance separated; helpers/main and annotated tests/test enforced | 333 governance + 373 framework + 42 native cases; seven JARs and independent API consumer; [scope](Module_Architecture.md#m-002) |
 | D-035 | Compact native diagrams and independently repeated source intake; quality 96 (96/97/95) | [Density, original proof and regeneration](Code_And_Documentation_Maturity.md#d-035) |
 | D-034 | Known source limits, bounded smooth routes and verified maintenance cleanup; quality 96 (96/97/95) | [Evidence state, routing and retention](Code_And_Documentation_Maturity.md#d-034) |
 | D-032 | Decisions tied to real declarations, readable routes and Extent proof; quality 96 (96/97/95) | [Correlation, refusals and evidence](Code_And_Documentation_Maturity.md#d-032) |

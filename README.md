@@ -1,34 +1,41 @@
 # ATF — UI and API test automation
 
-ATF runs REST API and browser UI tests in Java. Five Maven modules separate shared contracts, browser adapters, reporting, and verification. The parent is `com.ai:atf-parent:1.0.0`; compiled libraries target Java 11.
+ATF runs REST API and browser UI tests in Java. Seven Maven modules separate shared contracts, REST execution, browser adapters, reporting, governance and checks. The parent is `com.ai:atf-parent:1.0.0`; compiled libraries target Java 11.
 
 ## The design in one view
 
-A consumer test states what it observes. Core owns shared API/UI contracts and lifecycle; browser adapters implement the UI contract and reporting is optional. Repository tests protect these boundaries.
+A consumer test states what it observes. Core owns configuration, UI contracts and neutral reporting; atf-api owns REST execution.
+
+Browser adapters implement the UI contract and reporting is optional. Repository tests protect these boundaries.
 
 | Module | Responsibility |
 |---|---|
-| [atf-core](atf-core/README.md) | Neutral API/UI contracts, configuration, lifecycle and reporting SPI |
+| [atf-core](atf-core/README.md) | Configuration, UI contracts, lifecycle and reporting SPI |
+| [atf-api](atf-api/README.md) | Reusable REST Assured execution, retries and response assertions |
 | [atf-playwright](atf-playwright/README.md) | Playwright implementation of the UI contract |
 | [atf-selenium](atf-selenium/README.md) | Selenium implementation of the UI contract |
 | [atf-reporting](atf-reporting/README.md) | TestNG reporting adapters and aggregate publication |
-| [atf-tests](atf-tests/README.md) | Existing framework regressions, governance and selected product checks |
+| [atf-governance](atf-governance/README.md) | Source, dependency and documentation rules with independent contracts |
+| [atf-tests](atf-tests/README.md) | Framework/product helpers in main; existing annotated checks in test |
 
 ```mermaid
 flowchart LR
-    PW["atf-playwright"] --> Core["atf-core"]
+    API["atf-api"] --> Core["atf-core"]
+    PW["atf-playwright"] --> Core
     SE["atf-selenium"] --> Core
     Reporting["atf-reporting"] --> Core
-    Tests["atf-tests"] -. verifies .-> Core
-    Tests -. verifies .-> PW
-    Tests -. verifies .-> SE
-    Tests -. verifies .-> Reporting
+    Tests["atf-tests"] --> API
+    Tests --> PW
+    Tests --> SE
+    Tests --> Reporting
+    Tests --> Governance["atf-governance"]
+    Governance -. audits .-> Core
 ```
 
 <details>
 <summary>Legend: relationships and proof boundary</summary>
 
-Solid arrows mark library dependencies; dotted arrows mark test verification. Core exposes no Playwright, Selenium or reporting SDK types. [Atlas](atf-atlas/README.md) is documentation-only, outside Maven, and maps source to tests and their evidence limits.
+Solid arrows show selected compile dependencies; dotted arrows show source inspection. Governance also has test-scoped runtime dependencies for its own contracts, omitted here. Core exposes no REST Assured, Playwright, Selenium or reporting SDK types. [Atlas](atf-atlas/README.md) is documentation-only, outside Maven, and maps source to tests and their evidence limits.
 
 </details>
 
@@ -54,7 +61,7 @@ Solid arrows show the active contract path. Dotted arrows show optional TestNG l
 
 ## How to choose a consumer route
 
-- **REST API:** add `atf-core`; the API base and client do not require a browser provider.
+- **REST API:** add `atf-api`; the API base and client do not require a browser provider.
 - **Browser UI:** add one adapter and set `ui.engine` before TestNG setup. Use the concrete [Playwright](atf-playwright/README.md#consumer-example) or [Selenium](atf-selenium/README.md#consumer-example) example.
 - **Extent reports:** add `atf-reporting` when the consumer needs HTML reporting.
 
@@ -88,7 +95,7 @@ Default runs native module checks and existing framework/governance regressions.
 
 [framework.properties](atf-core/src/main/resources/framework.properties) supplies classpath defaults; individual JVM properties override them. The JVM property `framework.properties` can point to an existing consumer-owned file. Set `ui.engine` and `reporting.engine`; [Core configuration](atf-core/README.md#configuration) lists the options.
 
-Replace historical `com.ai:test-framework` with `com.ai:atf-core:1.0.0`, any required browser adapter and optional `com.ai:atf-reporting:1.0.0`. API flows need no browser or reporting module. `atf-tests` holds repository checks and product fixtures; it is not a consumer runtime API.
+Replace historical `com.ai:test-framework` with `com.ai:atf-core:1.0.0`, `com.ai:atf-api:1.0.0` for REST, any required browser adapter and optional `com.ai:atf-reporting:1.0.0`. API flows need no browser or reporting module. `atf-tests` holds repository checks and product fixtures; it is not a consumer runtime API.
 
 ## Read by task
 

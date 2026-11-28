@@ -52,19 +52,18 @@ root across modules; sharing a package prefix does not permit a reverse dependen
 
 | Maven module | Owned source | Primary consumer contract |
 |---|---|---|
-| [atf-core](../atf-core/README.md) | Neutral `com.ai.core`, `com.ai.api.core`, neutral `com.ai.ui.core`, generic UI action/wait facades | UIEngine, UiEngineProvider, ConfigManager, StepLogger, ReportLogger, ReportingBackend |
-| [atf-playwright](../atf-playwright/README.md) | `com.ai.ui.core.engine.playwright` | Playwright implementation of UiEngineProvider |
-| [atf-selenium](../atf-selenium/README.md) | `com.ai.ui.core.engine.selenium` | Selenium implementation of UiEngineProvider |
-| [atf-reporting](../atf-reporting/README.md) | Reporting backend, concrete listeners, Extent adapters and aggregate writers | ReportingBackend and neutral ReportLogger operations |
-| [atf-tests](../atf-tests/README.md) | Cross-module integration/governance checks and product UI/API support under test sources | Verification and explicit application journeys |
+| [atf-core](../atf-core/README.md) | Shared configuration, UI contracts and neutral reporting | UIEngine, ConfigManager, StepLogger, ReportingBackend |
+| [atf-api](../atf-api/README.md) | com.ai.api.core: HTTP execution, assertions and API lifecycle | ApiClient, ApiActions, BaseTestAPI |
+| [atf-playwright](../atf-playwright/README.md) | com.ai.ui.core.engine.playwright | Playwright UiEngineProvider |
+| [atf-selenium](../atf-selenium/README.md) | com.ai.ui.core.engine.selenium | Selenium UiEngineProvider |
+| [atf-reporting](../atf-reporting/README.md) | Extent adapters, lifecycle and aggregate writers | ReportingBackend and ReportLogger operations |
+| [atf-governance](../atf-governance/README.md) | Main: rules and helpers; test: annotated governance checks | Source/documentation findings and repair hints |
+| [atf-tests](../atf-tests/README.md) | Main: framework/product helpers; test: annotated checks | Existing components and explicit application journeys |
 
-There are five Maven modules. Each browser adapter and Reporting depends on
-Core; atf-tests consumes all four libraries with test scope. The parent POM
-coordinates versions. The [documentation-only Atlas](../atf-atlas/README.md) is a review/ownership
+Seven Maven modules separate shared Core contracts, REST execution, browser adapters, reporting, governance and existing checks. Runtime libraries depend on Core. Verification helpers are compiled from main; TestNG classes execute from test. The [documentation-only Atlas](../atf-atlas/README.md) is a review/ownership
 map outside the Maven reactor; it supplies no Java runtime or provider.
 
-Product pages, services, factories, steps, business validations and application
-scenarios live under `atf-tests/src/test`. Generic UIActions and WaitUtils retain
+Product pages, services, factories, steps and business validations belong to atf-tests/src/main/java; their data and schemas belong to src/main/resources. Annotated component and application classes remain in src/test/java. Generic UIActions and WaitUtils retain
 their existing packages in Core for compatibility. Concrete browser SDK classes
 remain inside the owning adapter. A consumer selects the libraries it needs;
 it does not consume atf-tests as a production API.
@@ -208,13 +207,13 @@ selection, engine and native result in the [report publication](../artifacts/rep
 | LD-02 | Section 3: application interactions use UIActions; provider engines own capabilities, not business decisions. | [UIActions](../atf-core/src/main/java/com/ai/ui/support/actions/UIActions.java) | [Engine delegation](../atf-tests/src/test/java/com/ai/atf/ui/component/UiEngineDelegationContractTest.java) | MAINTAINED | Technical engine tests may call the interface directly; application scenarios may not branch on vendor SDKs. |
 | LD-03 | Section 3: Selenium uses facade waits; Playwright supplies native auto-wait capability. | [UiActionWait](../atf-core/src/main/java/com/ai/ui/support/actions/UiActionWait.java) | [Action and input parity](../atf-tests/src/test/java/com/ai/atf/ui/component/UiEngineActionParityContractTest.java) | MAINTAINED | Both wait paths have component contracts; native browser and product outcomes need separate execution. |
 | LD-04 | Section 3, Waits: WaitUtils observes bounded conditions and does not independently emit FAIL. | [WaitUtils](../atf-core/src/main/java/com/ai/ui/support/wait/WaitUtils.java) | [Bounded wait regressions](../atf-tests/src/test/java/com/ai/atf/ui/component/WaitUtilsContractTest.java) | MAINTAINED | WaitUtils does not emit FAIL; the enclosing action/validation owns the verdict. A polling timeout is not success. |
-| LD-05 | Section 3: validations compare independent actual values with expected business conditions in explicit Validate steps. | [Registration validation](../atf-tests/src/test/java/com/ai/ui/support/validation/RegistrationValidation.java) and [Profile validation](../atf-tests/src/test/java/com/ai/ui/support/validation/ProfileAccountValidation.java) | [Registration validation contracts](../atf-tests/src/test/java/com/ai/atf/ui/component/RegistrationValidationContractTest.java) | MAINTAINED | Expected/actual details and one terminal verdict explain the assertion; action completion alone does not establish business success. |
+| LD-05 | Section 3: validations compare independent actual values with expected business conditions in explicit Validate steps. | [Registration validation](../atf-tests/src/main/java/com/ai/ui/support/validation/RegistrationValidation.java) and [Profile validation](../atf-tests/src/main/java/com/ai/ui/support/validation/ProfileAccountValidation.java) | [Registration validation contracts](../atf-tests/src/test/java/com/ai/atf/ui/component/RegistrationValidationContractTest.java) | MAINTAINED | Expected/actual details and one terminal verdict explain the assertion; action completion alone does not establish business success. |
 | LD-06 | Section 4, Details and exceptions: the listener owns test lifecycle and preserves the actual failure outside an action step. | [Reporting listener](../atf-reporting/src/main/java/com/ai/core/reporting/listener/ReportingTestListener.java) and [BaseTestUI](../atf-core/src/main/java/com/ai/ui/core/runtime/BaseTestUI.java) | [Listener failures](../atf-tests/src/test/java/com/ai/atf/core/reporting/lifecycle/TestListenerFailureContractTest.java) | MAINTAINED | Class setup/teardown are configuration evidence, not product tests; preserve the original failure scope. |
 | LD-07 | Sections 3.5 and 4: details need an active step, one terminal verdict and supported nested depth. | [StepLogger](../atf-core/src/main/java/com/ai/core/reporting/StepLogger.java) and [StepScope](../atf-core/src/main/java/com/ai/core/reporting/step/StepScope.java) | [Step lifecycle regressions](../atf-tests/src/test/java/com/ai/atf/core/reporting/regression/StepLoggerContractTest.java) | MAINTAINED | Nested actions must return to their validation scope; closing an unfinished scope is not an implicit PASS. |
 | LD-08 | Section 4: one failing-step stacktrace and listener-owned failure attachments at test level. | [UI screenshot handler](../atf-core/src/main/java/com/ai/ui/core/reporting/UiScreenshotFailureHandler.java) and [Failure attachment registry](../atf-core/src/main/java/com/ai/core/reporting/attachment/FailureAttachmentRegistry.java) | [Failure attachment contracts](../atf-tests/src/test/java/com/ai/atf/core/reporting/attachment/FailureAttachmentRegistryTest.java) | MAINTAINED | Configured final-state capture is distinct from a failure screenshot; missing attachments do not convert a failure into success. |
 | LD-09 | Section 4: neutral evidence facade; Reporting owns adapters and lifecycle. | [ReportingManager](../atf-core/src/main/java/com/ai/core/reporting/ReportingManager.java) and [Default backend](../atf-reporting/src/main/java/com/ai/core/reporting/DefaultReportingBackend.java) | [Reporting manager contracts](../atf-tests/src/test/java/com/ai/atf/core/reporting/regression/ReportingManagerSessionContractTest.java) | MAINTAINED | Missing backend, invalid configuration and adapter diagnostics remain distinct; no universal silent fallback. |
-| LD-10 | Section 5: unique factory data, method-order independence and explicit shared-fixture lifecycle. | [UserDataFactory](../atf-tests/src/test/java/com/ai/ui/support/factory/UserDataFactory.java) and [Profile component](../atf-tests/src/test/java/com/ai/ui/support/component/ProfileAccountComponent.java) | [Registration submission contracts](../atf-tests/src/test/java/com/ai/atf/ui/component/RegistrationSubmissionContractTest.java) | MAINTAINED | Malformed-data counterexamples remain valid; class-scoped account/profile fixtures only read account state. |
-| LD-11 | Section 5, Test data: cleanup of created application data remains mandatory and must have its own observable contract. | [RegistrationService](../atf-tests/src/test/java/com/ai/ui/support/service/RegistrationService.java) and [Profile component](../atf-tests/src/test/java/com/ai/ui/support/component/ProfileAccountComponent.java) | [Registration submission contracts](../atf-tests/src/test/java/com/ai/atf/ui/component/RegistrationSubmissionContractTest.java) | PARTIAL | ACCOUNT_DELETION_NOT_IMPLEMENTED: demo tests create accounts without deletion; submission checks do not prove cleanup. |
+| LD-10 | Section 5: unique factory data, method-order independence and explicit shared-fixture lifecycle. | [UserDataFactory](../atf-tests/src/main/java/com/ai/ui/support/factory/UserDataFactory.java) and [Profile component](../atf-tests/src/main/java/com/ai/ui/support/component/ProfileAccountComponent.java) | [Registration submission contracts](../atf-tests/src/test/java/com/ai/atf/ui/component/RegistrationSubmissionContractTest.java) | MAINTAINED | Malformed-data counterexamples remain valid; class-scoped account/profile fixtures only read account state. |
+| LD-11 | Section 5, Test data: cleanup of created application data remains mandatory and must have its own observable contract. | [RegistrationService](../atf-tests/src/main/java/com/ai/ui/support/service/RegistrationService.java) and [Profile component](../atf-tests/src/main/java/com/ai/ui/support/component/ProfileAccountComponent.java) | [Registration submission contracts](../atf-tests/src/test/java/com/ai/atf/ui/component/RegistrationSubmissionContractTest.java) | PARTIAL | ACCOUNT_DELETION_NOT_IMPLEMENTED: demo tests create accounts without deletion; submission checks do not prove cleanup. |
 | LD-12 | Sections 4 and 5, engine independence: select the same retained scenarios through configuration for Playwright and Selenium. | [UIEngineRegistry](../atf-core/src/main/java/com/ai/ui/core/engine/UiEngineRegistry.java) | [Registration scenarios](../atf-tests/src/test/java/com/ai/atf/ui/RegistrationTests.java), [Account scenarios](../atf-tests/src/test/java/com/ai/ui/tests/AccountAuthenticatedAreaTests.java) and [Profile scenarios](../atf-tests/src/test/java/com/ai/ui/tests/ProfileContactAddressMemoryTests.java) | MAINTAINED | SAME_RETAINED_SCENARIOS: both engines select the same 16 methods; only native results and application observations prove execution. |
 
 For each selected UI scenario, the action step records intent, locator and the
@@ -230,7 +229,7 @@ can pass its test only when that expected rejection is independently observed.
 An unexpected browser, action, assertion or configuration failure retains its
 actual failed or skipped result; recording contract metadata cannot certify it.
 
-The [living-principles governance owner](../atf-tests/src/test/java/com/ai/atf/governance/LivingPrinciplesGovernanceTest.java)
+The [living-principles governance owner](../atf-governance/src/test/java/com/ai/atf/governance/LivingPrinciplesGovernanceTest.java)
 checks the twelve IDs, real source/check routes and bounded states. Missing or
 duplicate principles and promotion of the declared cleanup gap are diagnostic
 failures. These structural guards do not establish semantic completeness or
@@ -532,7 +531,7 @@ sequenceDiagram
 <summary>Legend: relationships and proof boundary</summary>
 
 BaseTestAPI is write-oriented: blank authentication causes its readiness skip.
-Core API execution is independent of UI initialization. Application factories
+API execution in atf-api is independent of UI initialization. Application factories
 own reusable models; services own relative endpoints; shared execution applies
 the configured retry policy; validators own assertions and schemas. Separate
 anonymous/invalid-auth paths remain explicit negative fixtures.
@@ -644,7 +643,7 @@ coverage, and a local mock does not prove public-service acceptance.
 <a id="test-data-and-auth"></a>
 ### Test data, authentication and negative fixtures
 
-Reusable fixture data belongs under `atf-tests/src/test/resources/tests/testdata` and
+Reusable fixture data belongs under `atf-tests/src/main/resources/tests/testdata` and
 its factories/builders. Existing DataGenerator owns unique application values.
 JSON is the retained data format for shared product examples; unit tests may
 use in-memory doubles, and negative tests may need literal malformed data.
@@ -731,9 +730,9 @@ in this guide.
 | Window/zoom resolution | [UIWindowSizeResolver](../atf-core/src/main/java/com/ai/ui/core/engine/window/UIWindowSizeResolver.java) | [UI contract area](../atf-tests/src/test/java/com/ai/atf/ui/component) |
 | Action waits and verdicts | [UiActionWait](../atf-core/src/main/java/com/ai/ui/support/actions/UiActionWait.java) and [WaitUtils](../atf-core/src/main/java/com/ai/ui/support/wait/WaitUtils.java) | [Wait regressions](../atf-tests/src/test/java/com/ai/atf/ui/component/WaitUtilsContractTest.java) |
 | Step lifecycle | [StepLogger](../atf-core/src/main/java/com/ai/core/reporting/StepLogger.java) and [StepScope](../atf-core/src/main/java/com/ai/core/reporting/step/StepScope.java) | [Reporting regressions](../atf-tests/src/test/java/com/ai/atf/core/reporting) |
-| API call reporting | [ApiActions](../atf-core/src/main/java/com/ai/api/core/client/ApiActions.java) and [ApiExecutionReporter](../atf-core/src/main/java/com/ai/api/core/client/ApiExecutionReporter.java) | [API regression area](../atf-tests/src/test/java/com/ai/atf/api) |
+| API call reporting | [ApiActions](../atf-api/src/main/java/com/ai/api/core/client/ApiActions.java) and [ApiExecutionReporter](../atf-api/src/main/java/com/ai/api/core/client/ApiExecutionReporter.java) | [API regression area](../atf-tests/src/test/java/com/ai/atf/api) |
 | Reporting and attachments | [ReportingTestListener](../atf-reporting/src/main/java/com/ai/core/reporting/listener/ReportingTestListener.java) and [UI screenshot handler](../atf-core/src/main/java/com/ai/ui/core/reporting/UiScreenshotFailureHandler.java) | [Reporting test ownership](../atf-tests/src/test/java/com/ai/atf/core/reporting/README.md) |
-| Dependency/docs governance | [Existing governance tests](../atf-tests/src/test/java/com/ai/atf/governance) | [Governance owner](../atf-tests/README.md) |
+| Dependency/docs governance | [Existing governance tests](../atf-governance/src/test/java/com/ai/atf/governance) | [Governance owner](../atf-governance/README.md) |
 
 The map identifies implementation and retained regression locations. It is not
 a claim that every rule has been executed in every environment. Keep open

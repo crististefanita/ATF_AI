@@ -2,37 +2,38 @@
 
 ## Module ownership
 
-The [parent POM](../pom.xml) coordinates five modules with one version.
-Core owns reusable contracts and lifecycle. Each browser implementation and the
-reporting implementation depends on Core. The test module consumes all four
-libraries with test scope.
+The [parent POM](../pom.xml) coordinates seven modules with one version. Core owns shared configuration, UI contracts and neutral reporting. API, browser and reporting libraries depend on Core. The verification modules separate reusable helpers from annotated TestNG classes.
 
 ```mermaid
 flowchart LR
-    PW["atf-playwright"] -->|depends on| Core["atf-core"]
-    SE["atf-selenium"] -->|depends on| Core
-    Reports["atf-reporting"] -->|depends on| Core
-    Tests["atf-tests"] -. verifies .-> Core
-    Tests -. verifies .-> PW
-    Tests -. verifies .-> SE
-    Tests -. verifies .-> Reports
+    API["atf-api"] --> Core["atf-core"]
+    PW["atf-playwright"] --> Core
+    SE["atf-selenium"] --> Core
+    Reporting["atf-reporting"] --> Core
+    Tests["atf-tests"] --> API
+    Tests --> PW
+    Tests --> SE
+    Tests --> Reporting
+    Tests --> Governance["atf-governance"]
+    Governance -. audits .-> Core
 ```
 
 <details>
 <summary>Legend: relationships and proof boundary</summary>
 
-Solid arrows show library dependencies; dotted arrows show verification use.
-There is no dependency from Core to a browser or report implementation.
+Solid arrows show selected compile dependencies; dotted arrows show source inspection. Governance has test-scoped dependencies on the five runtime libraries for SPI discovery and example compilation. Core has no dependency on API, browser or report implementations.
 
 </details>
 
 | Module | Source ownership |
 |---|---|
-| [atf-core](../atf-core/README.md) | com.ai.core.support, neutral com.ai.core.reporting, com.ai.api.core, neutral com.ai.ui.core and UIActions |
+| [atf-core](../atf-core/README.md) | com.ai.core.support, neutral com.ai.core.reporting, neutral com.ai.ui.core and UIActions |
+| [atf-api](../atf-api/README.md) | com.ai.api.core: REST Assured execution, API lifecycle and response contracts |
 | [atf-playwright](../atf-playwright/README.md) | com.ai.ui.core.engine.playwright |
 | [atf-selenium](../atf-selenium/README.md) | com.ai.ui.core.engine.selenium |
 | [atf-reporting](../atf-reporting/README.md) | Reporting providers, adapters, listeners, attachment publication, runtime audit and aggregate writers |
-| [atf-tests](../atf-tests/README.md) | com.ai.atf tests and product-specific com.ai.ui.support / com.ai.api.support fixtures |
+| [atf-governance](../atf-governance/README.md) | Rules/helpers in main; annotated governance tests and reviewed method inventory in test |
+| [atf-tests](../atf-tests/README.md) | Main: framework/product helpers; test: existing annotated component and application classes |
 
 Packages retain their Java names across modules. Module ownership, dependency
 declarations and imports together define the boundary.
@@ -99,7 +100,7 @@ observed state. The sequence maps responsibility boundaries, not every TestNG ca
 | `Reports` | ReportingBackend supplied by atf-reporting |
 
 The reporting listener and backend are supplied by atf-reporting. API-only
-execution uses the Core API runtime without a browser session.
+execution uses the atf-api runtime without a browser session.
 
 ## Configuration and resources
 
@@ -108,8 +109,7 @@ loads the Core classpath defaults or an explicitly selected file. JVM properties
 override individual settings. Consumers should resolve packaged resources from
 the classpath; source locations are for development governance.
 
-Production sources belong to each library's src/main tree. Product fixtures,
-test resources and suite XML belong to atf-tests/src/test. Source-reading
+Production sources belong to each library's src/main tree. Both verification modules package helpers from src/main/java and keep annotated classes in src/test/java. Product fixture data and schemas belong to atf-tests/src/main/resources; suite XML and the governance method inventory remain test resources. Source-reading
 governance resolves the reactor root and owning module rather than assuming
 that the process working directory contains a single src tree.
 

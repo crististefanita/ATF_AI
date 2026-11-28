@@ -142,4 +142,4 @@ The first command runs native provider/Core checks without starting a browser.
 Identifiers, comments, logs and assertion messages **MUST be in English**.
 Canonical documentation is English; Romanian README translations follow the
 [edition contract](../docs/governance/Readme_Editions.md). Apply the [code/documentation policy](../docs/governance/Code_And_Documentation_Policy.md)
-and retain meaningful [scanner fixtures](../atf-tests/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java).
+and retain meaningful [scanner fixtures](../atf-governance/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java).

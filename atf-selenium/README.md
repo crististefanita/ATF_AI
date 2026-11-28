@@ -142,7 +142,7 @@ The first command runs native provider/Core checks without starting Chrome.
 Source identifiers, comments, logs and assertion messages **MUST be in English**.
 Canonical documentation is English; Romanian README translations follow the
 [edition contract](../docs/governance/Readme_Editions.md). Follow the [code/documentation policy](../docs/governance/Code_And_Documentation_Policy.md)
-and its [source scanner regression cases](../atf-tests/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java).
+and its [source scanner regression cases](../atf-governance/src/test/java/com/ai/atf/governance/JavaSourceScannerTest.java).
 
 The [maintained browser/driver/CDP matrix](../docs/Testing.md#selenium-pinned-manager-route)
 owns exact versions and portable preparation. It uses the existing Manager route
