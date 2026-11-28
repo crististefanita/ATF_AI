@@ -1576,3 +1576,5 @@ Delivered quality 96 (correctness 96 / verification 97 / clarity 95).
 - The complete paired run exposed a reverted README left in a reused validation overlay. Final staging now compares every tracked source file byte for byte; original failed XML and source snapshots remain separate from the repaired qualification.
 
 - Native inspection also refused the exact 992 px SDK breakpoint, where desktop and narrow rules overlap. The canonical construction skin now includes that boundary, keeps the test list full width and retains the real back control.
+
+- Manual image review exposed dashboard occlusion missed by detail-only bounds. Native component governance now measures both views, preserving the original apparently passing capture and its visual counterexample.

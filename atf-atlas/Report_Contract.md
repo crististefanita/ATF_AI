@@ -987,3 +987,5 @@ source identity and report digest in adjacent construction receipts.
 The canonical [construction Extent skin](assets/construction-extent.css) keeps the narrow desktop detail panel outside fixed navigation. Measure actual panel bounds and exercise the built-in back control; zero document overflow alone cannot detect a covered title.
 
 Diagram typography shares the report sans-serif family, including SVG labels without legacy typography classes. Native measurement must confirm the actual family as well as scale and spacing; a font declaration is not rendering proof.
+
+Measure both the dashboard and detail frame against fixed navigation. A visible attribution string does not establish that its table or chart is unobscured. Preserve the actual refused image and repair the canonical skin before requalification.

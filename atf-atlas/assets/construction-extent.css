@@ -10,6 +10,11 @@
 
 /* The SDK narrow layout includes its 992 px boundary. */
 @media (max-width: 992px) {
+  .dashboard-view {
+    margin-left: 70px !important;
+    width: calc(100% - 70px) !important;
+  }
+
   .test-wrapper {
     left: 70px !important;
     width: calc(100% - 70px) !important;
